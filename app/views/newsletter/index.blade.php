@@ -110,7 +110,7 @@
                                                 <h2 style="<?php echo $titleRed; ?>">L'incontournable colloque du domaine aura lieu cet automne à Neuchâtel !</h2>
                                                 <p style="<?php echo $paragraph; ?>">
                                                     Des thèmes d'actualité feront l'objet d'une analyse détaillée par des spécialistes du droit du bail :</p>
-                                                <ul>
+                                                <ul style="margin-left: 5px;padding-left: 15px;">
                                                     <li style="<?php echo $listItem; ?>"><strong>Prof. Blaise Carron et Me Placidus Plattner</strong></li>
                                                     <li style="<?php echo $listItem; ?>font-style:italic;">La réparation du préjudice subi par le locataire en cas de défaut de la chose louée</li>
                                                     <li style="<?php echo $listItem; ?>"><strong>Prof. Laurent Bieri</strong></li>
