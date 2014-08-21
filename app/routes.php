@@ -16,5 +16,9 @@ Route::get('/', function()
 	return View::make('hello');
 });
 
+
+Route::get('convert', 'NewsletterController@convert');
+Route::get('build', 'NewsletterController@build');
+Route::post('build', 'NewsletterController@build');
 Route::resource('/', 'NewsletterController');
 

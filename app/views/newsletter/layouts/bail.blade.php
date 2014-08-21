@@ -45,7 +45,7 @@
 
     <body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 
-    <!-- Main table -->
+        <!-- Main table -->
         <table border="0" width="100%" cellpadding="0" cellspacing="0">
             <!-- Main content wrapper -->
             <tr>
@@ -105,7 +105,7 @@
             </tr>
             <!-- End main content wrapper -->
         </table>
-    <!-- End main table -->
+        <!-- End main table -->
 
     </body>
 

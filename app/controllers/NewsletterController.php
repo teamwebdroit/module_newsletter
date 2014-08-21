@@ -48,4 +48,16 @@ class NewsletterController extends BaseController {
 		return View::make('newsletter.index');
 	}
 
+    public function convert()
+    {
+        return View::make('newsletter.show');
+    }
+
+    public function build()
+    {
+        $content = ( isset($_POST['content']) ? $_POST['content'] : '' );
+
+        return View::make('newsletter.content')->with(array('content' => $content));
+    }
+
 }

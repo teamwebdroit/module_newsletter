@@ -1,30 +1,41 @@
-<!-- Bloc content-->
-<table border="0" width="560" align="center" cellpadding="0" cellspacing="0" style="<?php echo $tableReset; ?>">
-    <tr>
-        <td valign="top" width="375"  style="<?php echo $resetMarge; ?>">
-            <h2 style="<?php echo $titleRed; ?>">Droit du bail - Fond et procédure</h2>
-            <p style="<?php echo $paragraph; ?>">
-                La Suisse est un pays de locataires. L’évolution de la société tend vers une multiplication des familles.
-                Une utilisation toujours plus mesurée du sol et des contraintes administratives strictes s’additionnent pour
-                péjorer l’offre de logements. D’où une situation tendue entre bailleurs et locataires. Cet abrégé se veut
-                une étude illustrative de ce droit social qu’est devenu le droit du bail. Il consacre une large place
-                à la jurisprudence, laquelle est abondante. L’accent est également mis sur l’aspect procédural, indissociable
-                d’une juste application du droit matériel. Contenu limité à l’étude des baux commerciaux et d’habitations,
-                l’ouvrage traite de la relation bailleur-locataire dès le début du bail jusqu’à son extinction.</p>
-            <p style="<?php echo $paragraph; ?>">
-                Sont ainsi abordées notamment les questions touchant la conclusion du contrat, la pluralité de locataires,
-                l’entretien et les défauts de la chose louée, la consignation des loyers, les frais accessoires,
-                la sous-location et le transfert de bail, la restitution de la chose louée et son aliénation, la problématique
-                complexe de la fixation des loyers et des congés. Enfin, l’ouvrage aurait été incomplet s’il n’avait pas
-                tenu compte des règles procédurales spécifiques en la matière.</p>
-            <p style="<?php echo $paragraph; ?>">Vous pouvez commander cet abrégé en
-                <a style="text-decoration:underline;<?php echo $paragraph; ?>" href="#" target="_blank">cliquant ici</a>.
-            </p>
-        </td>
-        <td width="25" style="<?php echo $resetMarge; ?>"></td><!-- space -->
-        <td valign="top" align="center" width="160" style="<?php echo $resetMarge; ?>">
-            <img height="222" alt="Droit du bail" src="{{ asset('newsletter/holder.jpg') }}" />
+<!-- Bloc -->
+<table border="0" width="600" align="center" cellpadding="0" cellspacing="0" style="<?php echo $tableReset; ?>">
+    <?php  echo $blocSpacer; ?>
+    <tr align="center" style="<?php echo $resetMarge; ?>">
+        <td style="<?php echo $resetMarge; ?>">
+
+            <!-- Bloc content-->
+            <table border="0" width="560" align="center" cellpadding="0" cellspacing="0" style="<?php echo $tableReset; ?>">
+                <tr>
+                    <td valign="top" width="375"  style="<?php echo $resetMarge; ?>">
+                        <h2 style="<?php echo $titleRed; ?>">18e Séminaire sur le droit du bail</h2>
+                        <h3 style="<?php echo $soustitleRed; ?>">L'incontournable colloque du domaine aura lieu cet automne à Neuchâtel !</h3>
+                        <p style="<?php echo $paragraph; ?>">
+                            Des thèmes d'actualité feront l'objet d'une analyse détaillée par des spécialistes du droit du bail :</p>
+                        <ul style="margin-left: 5px;padding-left: 15px;">
+                            <li style="<?php echo $listItem; ?>"><strong>Prof. Blaise Carron et Me Placidus Plattner</strong><br/>
+                                <i>La réparation du préjudice subi par le locataire en cas de défaut de la chose louée</i></li>
+                            <li style="<?php echo $listItem; ?>"><strong>Prof. Laurent Bieri</strong><br/>
+                                <i>La réparation du préjudice subi par le locataire en cas de défaut de la chose louée</i></li>
+                        </ul>
+                        <h4 style="<?php echo $paragraph; ?>text-align:justify;font-weight:bold;">Deux éditions identiques auront lieu à l'Aula des Jeunes-Rives à Neuchâtel</h4>
+                        <ul style="<?php echo $resetMarge; ?>margin-left: 5px;padding-left: 15px;">
+                            <li style="<?php echo $listItem; ?>">
+                                <h2 style="<?php echo $soustitleRed; ?>">les 3 & 4 octobre 2014 pour la première édition</h2>
+                            </li>
+                            <li style="<?php echo $listItem; ?>"><h2 style="<?php echo $soustitleRed; ?>">les 17 & 18 octobre 2014 pour la deuxième édition</h2></li>
+                        </ul>
+                    </td>
+                    <td width="25" style="<?php echo $resetMarge; ?>"></td><!-- space -->
+                    <td valign="top" align="center" width="160" style="<?php echo $resetMarge; ?>">
+                        <a href="#"><img height="222" alt="Droit du bail" src="{{ asset('newsletter/holder2.jpg') }}" /></a>
+                    </td>
+                </tr>
+            </table>
+            <!-- Bloc content-->
+
         </td>
     </tr>
+    <?php echo $blocSpacerBorder; ?><!-- space -->
 </table>
-<!-- Bloc content-->
+<!-- End bloc -->
