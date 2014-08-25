@@ -6,9 +6,10 @@
 
             @if(!empty($content))
                 <?php
-                    echo '<pre><xmp>';
+                    $content = htmlspecialchars(nl2br ($content ));
+                    echo '<pre>';
                     print_r($content);
-                    echo '</xmp></pre>';
+                    echo '</pre>';
                 ?>
             @endif
 
