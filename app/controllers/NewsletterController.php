@@ -1,5 +1,7 @@
 <?php
 
+use \InlineStyle\InlineStyle;
+
 class NewsletterController extends BaseController {
 
     /* Inject dependencies */
@@ -23,7 +25,7 @@ class NewsletterController extends BaseController {
          * Styles
         */
         $shared['header']       = 'color: #ffffff; font-size: 18px; font-weight: normal; font-family: Helvetica, Arial, sans-serif;';
-        $shared['titleRed']     = 'font-family: Arial, Helvetica,sans-serif;font-size:13px;font-weight:bold;color:#'.$shared['redBail'].';margin: 0 0 10px 0;padding: 0 0 0 0;';
+        $shared['titleRed']     = 'font-family: Arial, Helvetica,sans-serif;font-size:14px;font-weight:bold;color:#'.$shared['redBail'].';margin: 0 0 10px 0;padding: 0 0 0 0;';
         $shared['soustitleRed'] = 'font-family: Arial, Helvetica,sans-serif;font-size:13px;font-weight:bold;color:#'.$shared['redBail'].';margin: 0 0 10px 0;padding: 0 0 0 0;';
         $shared['paragraph']    = 'text-align:justify;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:normal;color:#'.$shared['grayBail'].';margin:0 0 10px 0;padding:0;';
         $shared['soustitre']    = 'text-align:justify;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:normal;font-style:italic;color:#666;margin:0 0 10px 0;padding:0 0 0 0;';
@@ -59,5 +61,22 @@ class NewsletterController extends BaseController {
 
         return View::make('newsletter.content')->with(array('content' => $content));
     }
+
+    public function test()
+    {
+
+        $htmldoc = new InlineStyle(file_get_contents('http://newsletter.local/html'));
+        $htmldoc->applyStylesheet($htmldoc->extractStylesheets());
+
+        $html = $htmldoc->getHTML();
+
+        return View::make('newsletter.test')->with(array('content' => $html));
+    }
+
+    public function html()
+    {
+        return View::make('newsletter.html');
+    }
+
 
 }

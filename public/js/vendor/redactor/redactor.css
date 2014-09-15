@@ -149,6 +149,7 @@ body .redactor_box_fullscreen {
 .redactor_editor h5,
 .redactor_editor h6 {
   font-family: Arial, Helvetica, Verdana, Tahoma, sans-serif;
+  line-height: 20px;
 }
 .redactor_editor code,
 .redactor_editor pre {
@@ -278,22 +279,22 @@ body .redactor_box_fullscreen {
   font-weight: bold;
 }
 .redactor_editor h1 {
-  font-size: 36px !important;
+  font-size: 30px !important;
   line-height: 1.111em !important;
   margin-bottom: .15em !important;
 }
 .redactor_editor h2 {
-  font-size: 30px !important;
+  font-size: 20px !important;
   line-height: 1.111em !important;
   margin-bottom: .25em !important;
 }
 .redactor_editor h3 {
-  font-size: 24px !important;
+  font-size: 16px !important;
   line-height: 1.333em !important;
   margin-bottom: .2em !important;
 }
 .redactor_editor h4 {
-  font-size: 18px !important;
+  font-size: 14px !important;
   line-height: 1.5em !important;
   margin-bottom: .2em !important;
 }

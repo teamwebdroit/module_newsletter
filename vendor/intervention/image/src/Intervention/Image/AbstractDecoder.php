@@ -8,7 +8,7 @@ abstract class AbstractDecoder
      * Initiates new image from path in filesystem
      *
      * @param  string $path
-     * @return Intervention\Image\Image
+     * @return \Intervention\Image\Image
      */
     abstract public function initFromPath($path);
 
@@ -16,7 +16,7 @@ abstract class AbstractDecoder
      * Initiates new image from binary data
      *
      * @param  string $data
-     * @return Intervention\Image\Image
+     * @return \Intervention\Image\Image
      */
     abstract public function initFromBinary($data);
 
@@ -24,7 +24,7 @@ abstract class AbstractDecoder
      * Initiates new image from GD resource
      *
      * @param  Resource $resource
-     * @return Intervention\Image\Image
+     * @return \Intervention\Image\Image
      */
     abstract public function initFromGdResource($resource);
 
@@ -32,7 +32,7 @@ abstract class AbstractDecoder
      * Initiates new image from Imagick object
      *
      * @param  Imagick $object
-     * @return Intervention\Image\Image
+     * @return \Intervention\Image\Image
      */
     abstract public function initFromImagick(\Imagick $object);
 
@@ -88,6 +88,16 @@ abstract class AbstractDecoder
     }
 
     /**
+     * Determines if current data is SplFileInfo object
+     *
+     * @return boolean
+     */
+    public function isSplFileInfo()
+    {
+        return is_a($this->data, 'SplFileInfo');
+    }
+
+    /**
      * Determines if current data is Symfony UploadedFile component
      *
      * @return boolean
@@ -137,10 +147,22 @@ abstract class AbstractDecoder
     }
 
     /**
+     * Determines if current source data is data-url
+     *
+     * @return boolean
+     */
+    public function isDataUrl()
+    {
+        $data = $this->decodeDataUrl($this->data);
+
+        return is_null($data) ? false : true;
+    }
+
+    /**
      * Initiates new Image from Intervention\Image\Image
      *
      * @param  Image $object
-     * @return Intervention\Image\Image
+     * @return \Intervention\Image\Image
      */
     public function initFromInterventionImage($object)
     {
@@ -148,10 +170,28 @@ abstract class AbstractDecoder
     }
 
     /**
+     * Parses and decodes binary image data from data-url
+     *
+     * @param  string $data_url
+     * @return string
+     */
+    private function decodeDataUrl($data_url)
+    {
+        $pattern = "/^data:(?:image\/.+)(?:charset=\".+\")?;base64,(?P<data>.+)$/";
+        preg_match($pattern, $data_url, $matches);
+
+        if (is_array($matches) && array_key_exists('data', $matches)) {
+            return base64_decode($matches['data']);
+        }
+
+        return null;
+    }
+
+    /**
      * Initiates new image from mixed data
      *
      * @param  mixed $data
-     * @return Intervention\Image\Image
+     * @return \Intervention\Image\Image
      */
     public function init($data)
     {
@@ -168,7 +208,7 @@ abstract class AbstractDecoder
             case $this->isInterventionImage():
                 return $this->initFromInterventionImage($this->data);
 
-            case $this->isSymfonyUpload():
+            case $this->isSplFileInfo():
                 return $this->initFromPath($this->data->getRealPath());
 
             case $this->isBinary():
@@ -179,6 +219,9 @@ abstract class AbstractDecoder
 
             case $this->isFilePath():
                 return $this->initFromPath($this->data);
+
+            case $this->isDataUrl():
+                return $this->initFromBinary($this->decodeDataUrl($this->data));
 
             default:
                 throw new Exception\NotReadableException("Image source not readable");
