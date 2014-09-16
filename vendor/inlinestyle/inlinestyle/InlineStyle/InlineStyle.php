@@ -93,11 +93,9 @@ class InlineStyle
     public function loadDomDocument(\DOMDocument $domDocument)
     {
         $this->_dom = $domDocument;
+
         foreach ($this->_getNodesForCssSelector('[style]') as $node) {
-            $node->setAttribute(
-                'inlinestyle-original-style',
-                $node->getAttribute('style')
-            );
+            $node->setAttribute('inlinestyle-original-style',$node->getAttribute('style'));
         }
     }
 

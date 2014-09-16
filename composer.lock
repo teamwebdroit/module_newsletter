@@ -2526,6 +2526,7 @@
     "stability-flags": {
         "intervention/image": 20
     },
+    "prefer-stable": false,
     "platform": [
 
     ],

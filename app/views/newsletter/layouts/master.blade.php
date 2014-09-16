@@ -26,17 +26,7 @@
             <div class="col-md-12">
                 <nav class="navbar navbar-default" role="navigation">
                     <div class="container-fluid">
-                        <!-- Brand and toggle get grouped for better mobile display -->
-                        <div class="navbar-header">
-                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                                <span class="sr-only">Toggle navigation</span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                            </button>
-                            <a class="navbar-brand" href="#">Brand</a>
-                        </div>
-
+                        <a class="navbar-brand" href="#">Brand</a>
                         <!-- Collect the nav links, forms, and other content for toggling -->
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                             <ul class="nav navbar-nav">
@@ -64,7 +54,7 @@
 <script type="text/javascript" src="<?php echo asset('js/bootstrap.min.js');?>"></script>
 <script type="text/javascript" src="<?php echo asset('js/vendor/jqueryui/jquery-ui.js');?>"></script>
 <script type="text/javascript" src="<?php echo asset('js/vendor/redactor/redactor.js');?>"></script>
-
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-rc.1/angular.min.js"></script>
 <script type="text/javascript" src="<?php echo asset('js/main.js');?>"></script>
 
 </body>

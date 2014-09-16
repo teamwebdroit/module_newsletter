@@ -51,6 +51,12 @@ App::error(function(Exception $exception, $code)
 	Log::error($exception);
 });
 
+/*App::error(function(Droit\Exceptions\FileUploadException $exception, $code)
+{
+    return Redirect::back()->withInput()->withErrors( $exception->getErrors() );
+});*/
+
+
 /*
 |--------------------------------------------------------------------------
 | Maintenance Mode Handler
