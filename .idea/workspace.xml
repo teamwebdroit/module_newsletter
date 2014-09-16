@@ -53,25 +53,25 @@
       <file leaf-file-name="master.blade.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/newsletter/layouts/master.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="56" column="97" selection-start="2356" selection-end="2356" vertical-scroll-proportion="-36.53846" vertical-offset="450" max-vertical-offset="1650">
+            <state line="57" column="64" selection-start="2421" selection-end="2421" vertical-scroll-proportion="-17.576923" vertical-offset="968" max-vertical-offset="1675">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="content.blade.php" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="content.blade.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/newsletter/content.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="33" column="59" selection-start="1153" selection-end="1153" vertical-scroll-proportion="0.69648093" vertical-offset="350" max-vertical-offset="1175">
+            <state line="41" column="10" selection-start="1525" selection-end="1525" vertical-scroll-proportion="-18.538462" vertical-offset="543" max-vertical-offset="1275">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="main.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="32" column="33" selection-start="751" selection-end="751" vertical-scroll-proportion="0.0" vertical-offset="317" max-vertical-offset="1175">
+            <state line="58" column="20" selection-start="1512" selection-end="1512" vertical-scroll-proportion="0.7175141" vertical-offset="942" max-vertical-offset="1725">
               <folding />
             </state>
           </provider>
@@ -122,12 +122,13 @@
         <option value="$PROJECT_DIR$/app/routes.php" />
         <option value="$PROJECT_DIR$/app/controllers/UploadController.php" />
         <option value="$PROJECT_DIR$/public/css/main.css" />
-        <option value="$PROJECT_DIR$/app/views/newsletter/layouts/master.blade.php" />
         <option value="$PROJECT_DIR$/app/Droit/Exceptions/FileUploadException.php" />
         <option value="$PROJECT_DIR$/app/Droit/Service/Worker/UploadWorker.php" />
         <option value="$PROJECT_DIR$/app/start/global.php" />
-        <option value="$PROJECT_DIR$/public/js/main.js" />
+        <option value="$PROJECT_DIR$/app/views/newsletter/layouts/master.blade.php" />
+        <option value="$PROJECT_DIR$/public/js/vendor/angular/angular-dragdrop.js" />
         <option value="$PROJECT_DIR$/app/views/newsletter/content.blade.php" />
+        <option value="$PROJECT_DIR$/public/js/main.js" />
       </list>
     </option>
   </component>
@@ -259,6 +260,32 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="vendor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="newsletter" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="newsletter" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vendor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="angular" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -534,10 +561,10 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1680" height="951" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16553289" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16553289" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -573,13 +600,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/views/newsletter/show.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="71" selection-start="120" selection-end="120" vertical-scroll-proportion="0.0" vertical-offset="75" max-vertical-offset="600">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/newsletter/index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="58" column="0" selection-start="2322" selection-end="2327" vertical-scroll-proportion="0.0" vertical-offset="840" max-vertical-offset="1600" />
@@ -814,13 +834,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/css/main.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="23" selection-start="99" selection-end="99" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="350">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/newsletter/html.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="91" column="7" selection-start="2960" selection-end="2960" vertical-scroll-proportion="1.6352766" vertical-offset="1181" max-vertical-offset="2425">
@@ -879,23 +892,37 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/newsletter/layouts/master.blade.php">
+    <entry file="file://$PROJECT_DIR$/public/js/vendor/angular/angular-dragdrop.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="56" column="97" selection-start="2356" selection-end="2356" vertical-scroll-proportion="-36.53846" vertical-offset="450" max-vertical-offset="1650">
+        <state line="115" column="0" selection-start="4987" selection-end="4987" vertical-scroll-proportion="4.0607343" vertical-offset="0" max-vertical-offset="3025">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/main.js">
+    <entry file="file://$PROJECT_DIR$/app/views/newsletter/layouts/master.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="33" selection-start="751" selection-end="751" vertical-scroll-proportion="0.0" vertical-offset="317" max-vertical-offset="1175">
+        <state line="57" column="64" selection-start="2421" selection-end="2421" vertical-scroll-proportion="-17.576923" vertical-offset="968" max-vertical-offset="1675">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/main.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="23" selection-start="99" selection-end="99" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="350">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/newsletter/content.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="59" selection-start="1153" selection-end="1153" vertical-scroll-proportion="0.69648093" vertical-offset="350" max-vertical-offset="1175">
+        <state line="41" column="10" selection-start="1525" selection-end="1525" vertical-scroll-proportion="-18.538462" vertical-offset="543" max-vertical-offset="1275">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="58" column="20" selection-start="1512" selection-end="1512" vertical-scroll-proportion="0.7175141" vertical-offset="942" max-vertical-offset="1725">
           <folding />
         </state>
       </provider>

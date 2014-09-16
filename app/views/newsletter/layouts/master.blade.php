@@ -55,6 +55,7 @@
 <script type="text/javascript" src="<?php echo asset('js/vendor/jqueryui/jquery-ui.js');?>"></script>
 <script type="text/javascript" src="<?php echo asset('js/vendor/redactor/redactor.js');?>"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-rc.1/angular.min.js"></script>
+<script type="text/javascript" src="<?php echo asset('js/vendor/angular/angular-dragdrop.js');?>"></script>
 <script type="text/javascript" src="<?php echo asset('js/main.js');?>"></script>
 
 </body>

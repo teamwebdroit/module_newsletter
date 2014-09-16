@@ -6,6 +6,7 @@
         <div class="col-md-9">
 
 
+            <!--
             {{ Form::open(array( 'url' => 'build', 'class' => 'form-horizontal')) }}
 
                 <div class="form-group">
@@ -21,17 +22,20 @@
                     </div>
                 </div>
 
-            {{ Form::close() }}
+            {{ Form::close() }}-->
 
-            <div id="build">
-                <p>Drag me to my target</p>
+            <div id="build" ui-on-Drop="onDrop($event,$data)">
+                <div my-widget="Hello World"></div>
             </div>
 
         </div>
-        <div class="col-md-3">
+        <div class="col-md-1"></div>
+        <div class="col-md-2">
             <ul>
                 <li ng-repeat="bloc in blocs">
-                    <a href="#"><img src="{{ asset('images/<% bloc.images %>') }}" alt="<% bloc.title %>"></a>
+                    <a ui-draggable="true" drag="bloc" on-drop-success="dropSuccessHandler($event,$index,bloc)" href="#" ng-model="bloc.title">
+                        <img src="{{ asset('images/<% bloc.image %>') }}" alt="<% bloc.title %>">
+                    </a>
                 </li>
             </ul>
         </div>
