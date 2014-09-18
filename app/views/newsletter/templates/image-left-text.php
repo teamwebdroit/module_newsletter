@@ -9,12 +9,10 @@
                 </td>
                 <td width="25" class="resetMarge"></td><!-- space -->
                 <td valign="top" align="center" width="160" class="resetMarge bgCell">
-                    <div flow-init="{target: '/upload'}"
-                         flow-files-submitted="$flow.upload()"
-                         flow-file-success="$file.msg = $message">
+                    <div flow-init="{target: '/upload/store'}" flow-files-submitted="$flow.upload()" flow-file-success="$file.msg = $message">
 
                         <input type="file" flow-btn/>
-                        Input OR Other element as upload button
+                        <input type="hidden" name="destination" value="files" />
                         <span class="btn" flow-btn>Upload File</span>
 
                         <table>

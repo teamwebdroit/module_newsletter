@@ -22,5 +22,6 @@ Route::get('test', 'NewsletterController@test');
 Route::get('html', 'NewsletterController@html');
 Route::resource('/', 'NewsletterController');
 
+Route::get('upload', 'UploadController@store');
 Route::resource('upload', 'UploadController');
 

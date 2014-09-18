@@ -1,16 +1,15 @@
-<?php 
+<?php namespace Droit;
+
 /**
  * Service provider for common tasks
  */
- 
-namespace Droit;
 
 use Illuminate\Support\ServiceProvider;
 
 /**
  *  DroitServiceProvider
  */
-class DroitServiceProvider extends ServiceProvider {
+class UploadServiceProvider extends ServiceProvider {
 
 	/**
 	 * Register binding interface to implementation 
