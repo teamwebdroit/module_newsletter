@@ -1,3 +1,5 @@
+var url  = location.protocol + "//" + location.host+"/";
+
 (function ($) {
 
     var url  = location.protocol + "//" + location.host+"/";
@@ -19,15 +21,22 @@
 
 })(jQuery);
 
-var App = angular.module('newsletter', ["ngDragDrop","angular-redactor","ngSanitize"] , function($interpolateProvider)
+var App = angular.module('newsletter', ["ngDragDrop","angular-redactor","flow","ngSanitize"] , function()
 {
-    $interpolateProvider.startSymbol('<%');
-    $interpolateProvider.endSymbol('%>');
+
     // Change opening and closing tags for working with blade
 }).config(function(redactorOptions) {
         redactorOptions.minHeight = 200;
         redactorOptions.formattingTags = ['p', 'h2', 'h3','h4'];
-});
+}).config(['flowFactoryProvider', function (flowFactoryProvider) {
+        flowFactoryProvider.defaults = {
+            target: url + 'upload',
+            permanentErrors: [404, 500, 501],
+            maxChunkRetries: 1,
+            chunkRetryInterval: 5000,
+            simultaneousUploads: 4
+        };
+}]);
 
 App.controller('BuildController', ['$scope',function($scope){
 

@@ -14,13 +14,16 @@
     <link rel="stylesheet" href="<?php echo asset('css/main.css');?>">
     <link rel="stylesheet" href="<?php echo asset('css/bootstrap.css');?>">
     <link rel="stylesheet" href="<?php echo asset('js/vendor/redactor/redactor.css'); ?>">
-    <link rel="stylesheet" href="<?php echo asset('js/vendor/redactor/newsletter.css'); ?>">
+    <link rel="stylesheet" href="<?php echo asset('css/newsletter.css'); ?>">
     <link href="<?php echo asset('js/vendor/jqueryui/jquery-ui.css');?>" rel="stylesheet">
 
     <base href="/">
 
 </head>
-<body>
+<body flow-prevent-drop
+      flow-drag-enter="style={border: '5px solid green'}"
+      flow-drag-leave="style={}"
+      ng-style="style">
 
 <div class="container">
 
@@ -46,21 +49,24 @@
 
     <div id="main" ng-app="newsletter"><!-- main div for app-->
 
-        <div id="bailNewsletter" class="row" ng-controller="BuildController as build">
-            <div class="col-md-9">
-                <div ng-controller="DropController as dropped" id="build" data-drop="true" data-jqyoui-options jqyoui-droppable="{onDrop:'dropped'}">
-                    <div class="row">
-                        <div class="col-md-8 col-md-offset-2">
+        <div ng-controller="BuildController as build">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <ul id="buildingBlocs">
+                        <li buiding-blocs ng-repeat="bloc in build.blocs"></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div ng-controller="DropController as dropped" id="build" data-drop="true" data-jqyoui-options jqyoui-droppable="{onDrop:'dropped'}">
+                        <div class="well">
                             <image-left-text></image-left-text>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-1"></div>
-            <div class="col-md-2">
-                <ul id="buildingBlocs">
-                    <li buiding-blocs ng-repeat="bloc in build.blocs"></li>
-                </ul>
             </div>
         </div>
 
@@ -80,6 +86,7 @@
 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular-sanitize.js"></script>
 <script type="text/javascript" src="<?php echo asset('js/vendor/angular/angular-dragdrop.js');?>"></script>
 <script type="text/javascript" src="<?php echo asset('js/vendor/angular/angular-redactor.js');?>"></script>
+<script type="text/javascript" src="<?php echo asset('js/vendor/angular/angular-flow.js');?>"></script>
 <script type="text/javascript" src="<?php echo asset('js/main.js');?>"></script>
 
 </body>

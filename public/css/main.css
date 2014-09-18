@@ -5,9 +5,11 @@ ul li{
 #build{
     width: 100%;
     min-height: 400px;
-    background: #e9e9e9;
 }
 
 #buildingBlocs li{
     list-style: none;
+    display: inline-block;
+    width: 80px;
+    margin-right: 40px;
 }
