@@ -5,8 +5,8 @@
     $('#content').redactor({
         minHeight: 300
     });
-
-    $( ".builBloc" ).draggable();
+/*
+    $( ".bloc" ).draggable();
 
     $( "#build" ).droppable({
         drop: function( event, ui ) {
@@ -15,49 +15,73 @@
                 .find( "p" )
                 .html( "Dropped!" );
         }
-    });
+    });*/
 
 })(jQuery);
 
+var App = angular.module('newsletter', ["ngDragDrop","angular-redactor","ngSanitize"] , function($interpolateProvider)
+{
+    $interpolateProvider.startSymbol('<%');
+    $interpolateProvider.endSymbol('%>');
+    // Change opening and closing tags for working with blade
+}).config(function(redactorOptions) {
+        redactorOptions.minHeight = 200;
+        redactorOptions.formattingTags = ['p', 'h2', 'h3','h4'];
+});
 
-var App = angular.module('newsletter', ['ngDragDrop'] , function($interpolateProvider)
-    {
-        $interpolateProvider.startSymbol('<%');
-        $interpolateProvider.endSymbol('%>');
-        // Change opening and closing tags for working with blade
+App.controller('BuildController', ['$scope',function($scope){
 
-    }).controller('DragDropController', ['$scope', function($scope)
-    {
+    this.blocs = blocs;
 
-        $scope.blocs = [
-            { title : 'Image Left and Text',  image : 'imageLeftText.svg'  },
-            { title : 'Image Right and Text', image : 'imageRightText.svg' },
-            { title : 'Image and Text', image : 'imageText.svg' },
-            { title : 'Image', image : 'image.svg' }
-        ];
+}]);
 
-        $scope.test = "hex ho";
+App.controller('DropController', ['$scope', '$sce',function($scope,$sce){
 
-        $scope.dropSuccessHandler = function($event,index,array){
-            console.log(index);
-        };
+    this.blocs = blocs;
 
-        $scope.onDrop = function($event,$data){
-            console.log($data);
-        };
-
-    }]);
-
-App.directive("myWidget", function() {
-
-    var linkFunction = function(scope, element, attributes) {
-        scope.text = attributes["myWidget"];
+    $scope.dropped = function(event, ui){
+        console.log(ui.draggable.attr("id"));
+        var index = ui.draggable.attr("id");
+        console.log(blocs[index].type);
     };
 
+    $scope.renderHtml = function(html_code)
+    {
+        return $sce.trustAsHtml(html_code);
+    };
+
+}]);
+
+App.directive("buidingBlocs", function() {
     return {
-        restrict: "A",
+        restrict: "EA",
         scope: true,
-        template: "<p>{{ text }}</p>",
-        link: linkFunction
+        templateUrl: "building-blocs"
     };
 });
+
+
+App.directive("imageLeftText", function() {
+    return {
+        restrict: "EA",
+        scope: true,
+        templateUrl: "image-left-text"
+    };
+});
+
+var blocs = [
+    { title : 'Image Left and Text',  image : 'imageLeftText.svg', type: 'imageLeftText'  },
+    { title : 'Image Right and Text', image : 'imageRightText.svg', type: 'imageRightText' },
+    { title : 'Image and Text', image : 'imageText.svg', type: 'imageText' },
+    { title : 'Image', image : 'image.svg' , type: 'image'}
+];
+
+
+/*
+App.directive('redactor', function() {
+    return function(scope, element, attrs) {
+        element.redactor({
+            minHeight: 200
+        });
+    }
+});*/

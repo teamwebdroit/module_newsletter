@@ -45,10 +45,21 @@ class NewsletterController extends BaseController {
 
     }
 
-	public function index()
-	{
-		return View::make('newsletter.index');
-	}
+    public function index()
+    {
+        return View::make('newsletter.build');
+    }
+
+    public function buildingBlocs()
+    {
+        return View::make('newsletter.templates.building-blocs');
+    }
+
+    public function imageLeftText()
+    {
+        return View::make('newsletter.templates.image-left-text');
+    }
+
 
     public function convert()
     {

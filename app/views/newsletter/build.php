@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="<?php echo asset('css/main.css');?>">
     <link rel="stylesheet" href="<?php echo asset('css/bootstrap.css');?>">
     <link rel="stylesheet" href="<?php echo asset('js/vendor/redactor/redactor.css'); ?>">
+    <link rel="stylesheet" href="<?php echo asset('js/vendor/redactor/newsletter.css'); ?>">
     <link href="<?php echo asset('js/vendor/jqueryui/jquery-ui.css');?>" rel="stylesheet">
 
     <base href="/">
@@ -43,9 +44,27 @@
         </div>
     </header>
 
-    <!-- Main content -->
-    @yield('content')
-    <!-- Fin contenu -->
+    <div id="main" ng-app="newsletter"><!-- main div for app-->
+
+        <div id="bailNewsletter" class="row" ng-controller="BuildController as build">
+            <div class="col-md-9">
+                <div ng-controller="DropController as dropped" id="build" data-drop="true" data-jqyoui-options jqyoui-droppable="{onDrop:'dropped'}">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            <image-left-text></image-left-text>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-1"></div>
+            <div class="col-md-2">
+                <ul id="buildingBlocs">
+                    <li buiding-blocs ng-repeat="bloc in build.blocs"></li>
+                </ul>
+            </div>
+        </div>
+
+    </div><!-- end main div for app-->
 
 </div>
 
@@ -57,7 +76,10 @@
 <script type="text/javascript" src="<?php echo asset('js/vendor/jqueryui/jquery-ui.js');?>"></script>
 <script type="text/javascript" src="<?php echo asset('js/vendor/redactor/redactor.js');?>"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-rc.1/angular.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.8/angular-route.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular-sanitize.js"></script>
 <script type="text/javascript" src="<?php echo asset('js/vendor/angular/angular-dragdrop.js');?>"></script>
+<script type="text/javascript" src="<?php echo asset('js/vendor/angular/angular-redactor.js');?>"></script>
 <script type="text/javascript" src="<?php echo asset('js/main.js');?>"></script>
 
 </body>
