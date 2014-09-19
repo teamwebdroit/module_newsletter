@@ -30,7 +30,9 @@ var App = angular.module('newsletter', ["ngDragDrop","angular-redactor","flow","
         redactorOptions.formattingTags = ['p', 'h2', 'h3','h4'];
 }).config(['flowFactoryProvider', function (flowFactoryProvider) {
         flowFactoryProvider.defaults = {
-            target: url + 'upload',
+            target: 'upload',
+            testChunks:false,
+            singleFile: true,
             permanentErrors: [404, 500, 501],
             maxChunkRetries: 1,
             chunkRetryInterval: 5000,
@@ -49,14 +51,9 @@ App.controller('DropController', ['$scope', '$sce',function($scope,$sce){
     this.blocs = blocs;
 
     $scope.dropped = function(event, ui){
-        console.log(ui.draggable.attr("id"));
+
         var index = ui.draggable.attr("id");
         console.log(blocs[index].type);
-    };
-
-    $scope.renderHtml = function(html_code)
-    {
-        return $sce.trustAsHtml(html_code);
     };
 
 }]);

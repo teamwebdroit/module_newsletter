@@ -18,10 +18,9 @@ Route::get('image-left-text', 'NewsletterController@imageLeftText');
 Route::get('convert', 'NewsletterController@convert');
 Route::get('build', 'NewsletterController@build');
 Route::post('build', 'NewsletterController@build');
-Route::get('test', 'NewsletterController@test');
+Route::post('upload', 'NewsletterController@upload');
+Route::get('upload', 'NewsletterController@upload');
 Route::get('html', 'NewsletterController@html');
 Route::resource('/', 'NewsletterController');
 
-Route::get('upload', 'UploadController@store');
-Route::resource('upload', 'UploadController');
 

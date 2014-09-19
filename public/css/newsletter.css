@@ -16,16 +16,12 @@
     padding: 0;
 }
 
-#bailNewsletter .bgCell{
-    background: #ddd;
-}
-
 #bailNewsletter h2,
-#bailNewsletter h3,
-#bailNewsletter h4,
-#bailNewsletter p,
-#bailNewsletter a,
-#bailNewsletter ul li{
+#bailNewsletter .contentForm h3,
+#bailNewsletter .contentForm h4,
+#bailNewsletter .contentForm p,
+#bailNewsletter .contentForm a,
+#bailNewsletter .contentForm ul li{
     margin: 0 0 10px 0;
     padding: 0;
 }
@@ -36,34 +32,54 @@
     color: #cb2629;
 }
 
-#bailNewsletter h3 {
+#bailNewsletter .contentForm h3 {
     font-size:13px;
     font-weight:bold;
     color: #cb2629;
 }
 
-#bailNewsletter a {
+#bailNewsletter .contentForm a {
     color: #000;
     text-decoration: underline;
 }
 
-#bailNewsletter h4 ,
-#bailNewsletter p ,
-#bailNewsletter a,
-#bailNewsletter ul li{
+#bailNewsletter .contentForm h4 ,
+#bailNewsletter .contentForm p ,
+#bailNewsletter .contentForm ul li{
     font-size:12px;
     font-weight:normal;
 }
 
-#bailNewsletter ul{
-    margin-left: 10px;
+#bailNewsletter .contentForm p {
+   text-align: justify;
 }
 
-#bailNewsletter ul li{
+#bailNewsletter .contentForm ul{
+    margin-left: 5px;
+}
+
+#bailNewsletter .contentForm ul li{
     text-align:justify;
     font-family:Arial, Helvetica, sans-serif;
     font-size:12px;
     font-weight:normal;
     color:#1c1c1b;
     margin-bottom: 5px;
+}
+
+#bailNewsletter .thumbnail{
+    margin-bottom: 0;
+    max-width: 130px;
+}
+
+#bailNewsletter .upoadBtn a{
+    background: none repeat scroll 0 0 #ccc;
+    border: medium none;
+    border-radius: 0;
+    color: #777;
+    padding: 5px 10px;
+}
+
+#bailNewsletter .upoadBtn a{
+
 }

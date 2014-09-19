@@ -1,28 +1,26 @@
-<form action="" method="post" class="row" name="blocForm" class="form-horizontal">
+<form flow-init flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]"
+      flow-files-submitted="$flow.upload()"
+      class="row" name="blocForm" class="form-horizontal">
     <div class="col-md-7" id="bailNewsletter">
         <!-- Bloc content-->
         <table border="0" width="560" align="center" cellpadding="0" cellspacing="0" class="resetTable">
             <tr>
-                <td valign="top" width="375" class="resetMarge">
+                <td valign="top" width="375" class="resetMarge contentForm">
                     <h2>{{ form.title }}</h2>
                     <div ng-bind-html='form.content'></div>
                 </td>
                 <td width="25" class="resetMarge"></td><!-- space -->
-                <td valign="top" align="center" width="160" class="resetMarge bgCell">
-                    <div flow-init="{target: '/upload/store'}" flow-files-submitted="$flow.upload()" flow-file-success="$file.msg = $message">
+                <td valign="top" align="center" width="160" class="resetMarge">
 
-                        <input type="file" flow-btn/>
-                        <input type="hidden" name="destination" value="files" />
-                        <span class="btn" flow-btn>Upload File</span>
+                    <div class="thumbnail" ng-hide="$flow.files.length"><img src="http://www.placehold.it/130x140/EFEFEF/AAAAAA&text=no+image" /></div>
+                    <div class="thumbnail" ng-show="$flow.files.length"><img flow-img="$flow.files[0]" /></div>
 
-                        <table>
-                            <tr ng-repeat="file in $flow.files">
-                                <td>{{$index+1}}</td>
-                                <td>{{file.name}}</td>
-                                <td>{{file.msg}}</td>
-                            </tr>
-                        </table>
+                    <div class="upoadBtn">
+                        <a href="#" class="btn btn-xs btn-info" ng-hide="$flow.files.length" flow-btn flow-attrs="{accept:'image/*'}">Selectionner image</a>
+                        <a href="#" class="btn btn-xs btn-warning" ng-show="$flow.files.length" flow-btn flow-attrs="{accept:'image/*'}">Changer</a>
+                        <a href="#" class="btn btn-xs btn-danger" ng-show="$flow.files.length" ng-click="$flow.cancel()">Supprimer</a>
                     </div>
+
                 </td>
             </tr>
         </table>

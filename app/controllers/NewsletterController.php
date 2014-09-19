@@ -1,12 +1,16 @@
 <?php
 
 use \InlineStyle\InlineStyle;
+use Droit\Service\Worker\UploadInterface;
 
 class NewsletterController extends BaseController {
 
+    protected $upload;
+
     /* Inject dependencies */
-    public function __construct()
+    public function __construct(UploadInterface $upload)
     {
+        $this->upload = $upload;
 
         /*
          * Urls
@@ -42,6 +46,8 @@ class NewsletterController extends BaseController {
         $shared['blocSpacerBorder'] = '<tr bgcolor="ffffff"><td colspan="3" height="35" style="'.$shared['blocBorder'].'"></td></tr>';
 
         View::share( $shared );
+
+
 
     }
 
@@ -84,9 +90,40 @@ class NewsletterController extends BaseController {
         return View::make('newsletter.test')->with(array('content' => $html));
     }
 
-    public function html()
+    public function upload()
     {
-        return View::make('newsletter.html');
+        $tempDir = __DIR__ . DIRECTORY_SEPARATOR . 'temp';
+
+        if (!file_exists($tempDir)) {
+            mkdir($tempDir);
+        }
+
+        if (Request::isMethod('get'))
+        {
+            $chunkDir  = $tempDir . DIRECTORY_SEPARATOR . Input::get('flowIdentifier');
+            $chunkFile = $chunkDir.'/chunk.part'.Input::get('flowChunkNumber');
+
+            if (file_exists($chunkFile)) {
+                header("HTTP/1.0 200 Ok");
+            } else {
+                header("HTTP/1.0 404 Not Found");
+            }
+        }
+
+        $files = $this->upload->upload( Input::file('file') , 'files' );
+
+        if($files)
+        {
+            echo json_encode([
+                'success' => true,
+                'files'   => Input::file(),
+                'get'     => Input::all(),
+                'post'    => Input::all()
+            ]);
+        }
+
+        return false;
+
     }
 
 
