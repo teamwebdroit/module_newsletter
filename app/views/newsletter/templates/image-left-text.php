@@ -5,11 +5,7 @@
         <!-- Bloc content-->
         <table border="0" width="560" align="center" cellpadding="0" cellspacing="0" class="resetTable">
             <tr>
-                <td valign="top" width="375" class="resetMarge contentForm">
-                    <h2>{{ form.title }}</h2>
-                    <div ng-bind-html='form.content'></div>
-                </td>
-                <td width="25" class="resetMarge"></td><!-- space -->
+
                 <td valign="top" align="center" width="160" class="resetMarge">
 
                     <div class="thumbnail" ng-hide="$flow.files.length"><img src="http://www.placehold.it/130x140/EFEFEF/AAAAAA&text=no+image" /></div>
@@ -21,6 +17,11 @@
                         <a href="#" class="btn btn-xs btn-danger" ng-show="$flow.files.length" ng-click="$flow.cancel()">Supprimer</a>
                     </div>
 
+                </td>
+                <td width="25" class="resetMarge"></td><!-- space -->
+                <td valign="top" width="375" class="resetMarge contentForm">
+                    <h2>{{ form.title }}</h2>
+                    <div ng-bind-html='form.content'></div>
                 </td>
             </tr>
         </table>

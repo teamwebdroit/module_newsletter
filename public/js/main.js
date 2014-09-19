@@ -49,16 +49,17 @@ App.controller('BuildController', ['$scope',function($scope){
 App.controller('DropController', ['$scope', '$sce',function($scope){
 
     this.blocs = blocs;
-
-    $scope.visible = function(){
-
-        return true;
-    };
+    var self   = this;
+    this.blocDrop  = '';
 
     $scope.dropped = function(event, ui){
 
         var index = ui.draggable.attr("id");
         console.log(blocs[index].type);
+        var type = blocs[index].type;
+
+        this.blocDrop = type;
+
     };
 
 }]);
@@ -76,7 +77,7 @@ App.directive("imageLeftText", function() {
     return {
         restrict: "EA",
         scope:{
-            visible: "="
+            imageLeftText: "="
         },
         templateUrl: "image-left-text"
     };
