@@ -46,9 +46,14 @@ App.controller('BuildController', ['$scope',function($scope){
 
 }]);
 
-App.controller('DropController', ['$scope', '$sce',function($scope,$sce){
+App.controller('DropController', ['$scope', '$sce',function($scope){
 
     this.blocs = blocs;
+
+    $scope.visible = function(){
+
+        return true;
+    };
 
     $scope.dropped = function(event, ui){
 
@@ -61,7 +66,7 @@ App.controller('DropController', ['$scope', '$sce',function($scope,$sce){
 App.directive("buidingBlocs", function() {
     return {
         restrict: "EA",
-        scope: true,
+        scope:true,
         templateUrl: "building-blocs"
     };
 });
@@ -70,7 +75,9 @@ App.directive("buidingBlocs", function() {
 App.directive("imageLeftText", function() {
     return {
         restrict: "EA",
-        scope: true,
+        scope:{
+            visible: "="
+        },
         templateUrl: "image-left-text"
     };
 });
@@ -81,13 +88,3 @@ var blocs = [
     { title : 'Image and Text', image : 'imageText.svg', type: 'imageText' },
     { title : 'Image', image : 'image.svg' , type: 'image'}
 ];
-
-
-/*
-App.directive('redactor', function() {
-    return function(scope, element, attrs) {
-        element.redactor({
-            minHeight: 200
-        });
-    }
-});*/
