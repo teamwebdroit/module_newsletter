@@ -104,6 +104,26 @@ App.directive("imageRightText", function() {
     };
 });
 
+App.directive("imageText", function() {
+    return {
+        restrict: "EA",
+        scope:{
+            ngModel: '='
+        },
+        templateUrl: "image-text"
+    };
+});
+
+App.directive("imageAlone", function() {
+    return {
+        restrict: "EA",
+        scope:{
+            ngModel: '='
+        },
+        templateUrl: "image"
+    };
+});
+
 var blocs = [
     { title : 'Image Left and Text',  image : 'imageLeftText.svg', type: 'imageLeftText'  },
     { title : 'Image Right and Text', image : 'imageRightText.svg', type: 'imageRightText' },

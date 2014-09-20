@@ -60,7 +60,7 @@ class NewsletterController extends BaseController {
      * App views
      * @return mixed
      */
-/
+
     public function buildingBlocs()
     {
         return View::make('newsletter.templates.building-blocs');

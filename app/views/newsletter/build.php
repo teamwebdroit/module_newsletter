@@ -63,8 +63,10 @@
                 <div class="col-md-12">
                     <div ng-controller="DropController as dropped" id="build" data-drop="true" data-jqyoui-options jqyoui-droppable="{onDrop:'dropped'}">
                         <div class="well">
-                            <image-left-text ng-show="isBloc(1)"></image-left-text>
-                            <image-right-text ng-show="isBloc(2)"></image-right-text>
+                            <image-left-text ng-if="isBloc(1)"></image-left-text>
+                            <image-right-text ng-if="isBloc(2)"></image-right-text>
+                            <image-text ng-if="isBloc(3)"></image-text>
+                            <image-alone ng-if="isBloc(4)"></image-alone>
                         </div>
                     </div>
                 </div>
