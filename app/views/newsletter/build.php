@@ -63,7 +63,8 @@
                 <div class="col-md-12">
                     <div ng-controller="DropController as dropped" id="build" data-drop="true" data-jqyoui-options jqyoui-droppable="{onDrop:'dropped'}">
                         <div class="well">
-                            <image-left-text ng-show="imageLeftText == dropped.blocDrop"></image-left-text>
+                            <image-left-text ng-show="isBloc(1)"></image-left-text>
+                            <image-right-text ng-show="isBloc(2)"></image-right-text>
                         </div>
                     </div>
                 </div>
@@ -81,7 +82,7 @@
 <script type="text/javascript" src="<?php echo asset('js/bootstrap.min.js');?>"></script>
 <script type="text/javascript" src="<?php echo asset('js/vendor/jqueryui/jquery-ui.js');?>"></script>
 <script type="text/javascript" src="<?php echo asset('js/vendor/redactor/redactor.js');?>"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-rc.1/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-rc.1/angular.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.8/angular-route.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular-sanitize.js"></script>
 <script type="text/javascript" src="<?php echo asset('js/vendor/angular/angular-dragdrop.js');?>"></script>

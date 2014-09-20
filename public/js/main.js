@@ -46,19 +46,30 @@ App.controller('BuildController', ['$scope',function($scope){
 
 }]);
 
-App.controller('DropController', ['$scope', '$sce',function($scope){
+App.controller('DropController', ['$scope',function($scope){
 
-    this.blocs = blocs;
-    var self   = this;
-    this.blocDrop  = '';
+    $scope.blocs     = blocs;
+    $scope.blocDrop  = 0;
 
     $scope.dropped = function(event, ui){
 
         var index = ui.draggable.attr("id");
-        console.log(blocs[index].type);
-        var type = blocs[index].type;
+        index = parseInt(index) + 1;
+        //var bloc = blocs[index];
 
-        this.blocDrop = type;
+        $scope.setBloc(index);
+    };
+
+    $scope.setBloc = function(bloc){
+
+        $scope.blocDrop = bloc;
+
+        console.log($scope.blocDrop);
+    };
+
+    $scope.isBloc = function(bloc){
+
+        return $scope.blocDrop === bloc;
 
     };
 
@@ -77,9 +88,19 @@ App.directive("imageLeftText", function() {
     return {
         restrict: "EA",
         scope:{
-            imageLeftText: "="
+            ngModel: '='
         },
         templateUrl: "image-left-text"
+    };
+});
+
+App.directive("imageRightText", function() {
+    return {
+        restrict: "EA",
+        scope:{
+            ngModel: '='
+        },
+        templateUrl: "image-right-text"
     };
 });
 

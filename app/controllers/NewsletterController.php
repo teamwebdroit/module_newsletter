@@ -56,6 +56,11 @@ class NewsletterController extends BaseController {
         return View::make('newsletter.build');
     }
 
+    /**
+     * App views
+     * @return mixed
+     */
+/
     public function buildingBlocs()
     {
         return View::make('newsletter.templates.building-blocs');
@@ -66,6 +71,20 @@ class NewsletterController extends BaseController {
         return View::make('newsletter.templates.image-left-text');
     }
 
+    public function imageRightText()
+    {
+        return View::make('newsletter.templates.image-right-text');
+    }
+
+    public function imageText()
+    {
+        return View::make('newsletter.templates.image-text');
+    }
+
+    public function image()
+    {
+        return View::make('newsletter.templates.image');
+    }
 
     public function convert()
     {

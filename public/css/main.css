@@ -2,7 +2,7 @@ ul li{
 
 }
 
-#build{
+#build .well{
     width: 100%;
     min-height: 400px;
 }

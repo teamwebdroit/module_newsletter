@@ -14,6 +14,7 @@ Route::get('/views/{name}', function($name) {
 
 Route::get('building-blocs', 'NewsletterController@buildingBlocs');
 Route::get('image-left-text', 'NewsletterController@imageLeftText');
+Route::get('image-right-text', 'NewsletterController@imageRightText');
 
 Route::get('convert', 'NewsletterController@convert');
 Route::get('build', 'NewsletterController@build');
