@@ -46,6 +46,18 @@ App.controller('BuildController', ['$scope',function($scope){
 
 }]);
 
+App.controller("FormController",['$scope', function($scope){
+
+    $scope.content = {};
+
+    $scope.addContent = function(form) {
+        //product.reviews.push(this.content);
+        console.log(form);
+        console.log(form.title);
+    };
+
+}]);
+
 App.controller('DropController', ['$scope',function($scope){
 
     $scope.blocs     = blocs;
@@ -54,9 +66,7 @@ App.controller('DropController', ['$scope',function($scope){
     $scope.dropped = function(event, ui){
 
         var index = ui.draggable.attr("id");
-        index = parseInt(index) + 1;
-        //var bloc = blocs[index];
-
+        index     = parseInt(index) + 1;
         $scope.setBloc(index);
     };
 
@@ -64,7 +74,6 @@ App.controller('DropController', ['$scope',function($scope){
 
         $scope.blocDrop = bloc;
 
-        console.log($scope.blocDrop);
     };
 
     $scope.isBloc = function(bloc){
