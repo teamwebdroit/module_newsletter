@@ -17,6 +17,7 @@ Route::get('image-left-text', 'NewsletterController@imageLeftText');
 Route::get('image-right-text', 'NewsletterController@imageRightText');
 Route::get('image-text', 'NewsletterController@imageText');
 Route::get('image', 'NewsletterController@image');
+Route::post('process', 'NewsletterController@process');
 
 Route::get('convert', 'NewsletterController@convert');
 Route::get('build', 'NewsletterController@build');

@@ -46,17 +46,38 @@ App.controller('BuildController', ['$scope',function($scope){
 
 }]);
 
-App.controller("FormController",['$scope', function($scope){
+App.controller("FormController", function($scope,$http){
 
-    $scope.content = {};
 
-    $scope.addContent = function(form) {
-        //product.reviews.push(this.content);
-        console.log(form);
-        console.log(form.title);
+    $scope.addContent = function(form,type) {
+
+        var image =  $('.uploadImage').val();
+        var data =  { title : form.title.$modelValue , image : image , content: form.content.$modelValue, type: type };
+        console.log(data);
+
+        var all = $.param( data);
+
+            $http({
+                method : 'POST',
+                url : 'process',
+                data : all, // pass in data as strings
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'} // set the headers so angular passing info as form data (not request payload)
+            })
+            .success(function(data) {
+
+                console.log(data);
+
+                if (!data.success) {
+                    // if not successful, bind errors to error variables
+                }
+                else {
+                // if successful, bind success message to message
+                }
+            });
+
     };
 
-}]);
+});
 
 App.controller('DropController', ['$scope',function($scope){
 

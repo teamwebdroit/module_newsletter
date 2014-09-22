@@ -145,5 +145,12 @@ class NewsletterController extends BaseController {
 
     }
 
+    public function process(){
+
+        $post = Input::all();
+        print_r($post);
+
+    }
+
 
 }
