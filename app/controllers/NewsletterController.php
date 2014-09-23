@@ -2,15 +2,20 @@
 
 use \InlineStyle\InlineStyle;
 use Droit\Service\Worker\UploadInterface;
+use Droit\Newsletter\Repo\NewsletterContentInterface;
 
 class NewsletterController extends BaseController {
 
     protected $upload;
 
+    protected $content;
+
     /* Inject dependencies */
-    public function __construct(UploadInterface $upload)
+    public function __construct(UploadInterface $upload,NewsletterContentInterface $content)
     {
-        $this->upload = $upload;
+        $this->upload  = $upload;
+
+        $this->content = $content;
 
         /*
          * Urls
@@ -55,6 +60,16 @@ class NewsletterController extends BaseController {
     {
         return View::make('newsletter.build');
     }
+
+
+    public function campagne()
+    {
+
+        $content = $this->content->getByCampagne(1);
+
+        return View::make('newsletter.show')->with(array('content' => $content));
+    }
+
 
     /**
      * App views
@@ -147,10 +162,21 @@ class NewsletterController extends BaseController {
 
     public function process(){
 
-        $post = Input::all();
-        print_r($post);
+        $data = Input::all();
+
+        $contents = $this->content->create(array(
+            'type_id'                => $data['type'],
+            'titre'                  => $data['titre'],
+            'contenu'                => $data['contenu'],
+            'image'                  => $data['image'],
+            'arret_id'               => 0,
+            'categorie_id'           => 0,
+            'newsletter_campagne_id' => 1,
+            'rang'                   => 1
+        ));
+
+        print_r($contents);
 
     }
-
 
 }

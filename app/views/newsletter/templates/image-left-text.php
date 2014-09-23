@@ -21,8 +21,8 @@
                 </td>
                 <td width="25" class="resetMarge"></td><!-- space -->
                 <td valign="top" width="375" class="resetMarge contentForm">
-                    <h2>{{ formCtrl.form.title }}</h2>
-                    <div ng-bind-html='formCtrl.form.content'></div>
+                    <h2>{{ formCtrl.form.titre }}</h2>
+                    <div ng-bind-html='formCtrl.form.contenu'></div>
                 </td>
             </tr>
         </table>
@@ -32,11 +32,11 @@
     <div class="col-md-5">
         <div class="form-group">
             <label>Titre</label>
-            <input type="text" ng-model="formCtrl.form.title" name="title" class="form-control">
+            <input type="text" ng-model="formCtrl.form.titre" name="titre" class="form-control">
         </div>
         <div class="form-group">
             <label>Texte</label>
-            <textarea redactor ng-model="formCtrl.form.content" novalidate name="content" class="form-control" rows="10"></textarea>
+            <textarea redactor ng-model="formCtrl.form.contenu" novalidate name="contenu" class="form-control" rows="10"></textarea>
         </div>
         <div class="form-group">
             <button type="submit" class="btn btn-default">Envoyer</button>

@@ -16,8 +16,10 @@ class CreateNewsletterTypesTable extends Migration {
 		{
 
 			$table->increments('id');
-            $table->enum('position', array('left','center','justify','right'))->default('left');
-            $table->integer('elements_id');
+            $table->string('titre');
+            $table->string('partial');
+            $table->string('template');
+            $table->enum('elements', array('titre','titre,texte','titre,texte,image','texte','image','titre,image','arret','categorie'));
 
 		});
 	}

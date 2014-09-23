@@ -16,7 +16,7 @@ class CreateNewsletterContentsTable extends Migration {
 		{
 
 			$table->increments('id');
-            $table->integer('type');
+            $table->integer('type_id');
             $table->string('titre')->nullable();
             $table->binary('contenu')->nullable();
             $table->string('image')->nullable();

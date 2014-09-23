@@ -52,7 +52,7 @@ App.controller("FormController", function($scope,$http){
     $scope.addContent = function(form,type) {
 
         var image =  $('.uploadImage').val();
-        var data =  { title : form.title.$modelValue , image : image , content: form.content.$modelValue, type: type };
+        var data  =  { titre : form.titre.$modelValue , image : image , contenu: form.contenu.$modelValue, type: type };
         console.log(data);
 
         var all = $.param( data);

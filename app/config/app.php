@@ -122,6 +122,7 @@ return array(
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
         'Droit\UploadServiceProvider',
+        'Droit\NewsletterServiceProvider',
         'Intervention\Image\ImageServiceProvider',
         'Way\Generators\GeneratorsServiceProvider',
 	),
