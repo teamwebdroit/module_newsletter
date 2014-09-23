@@ -7,6 +7,7 @@
 use Illuminate\Support\ServiceProvider;
 
 use Droit\Newsletter\Entities\Newsletter_contents as Newsletter_contents;
+use Droit\Newsletter\Entities\Newsletter_types as Newsletter_types;
 
 /**
  *  NewsletterServiceProvider
@@ -19,10 +20,12 @@ class NewsletterServiceProvider extends ServiceProvider {
     public function register()
     {         	
 		$this->registerContentService();
+
+        $this->registerTypesService();
     }
 
 	/**
-	 * Content service
+	 * Newsletter Content service
 	 */     
     protected function registerContentService(){
     
@@ -30,6 +33,17 @@ class NewsletterServiceProvider extends ServiceProvider {
         {
             return new \Droit\Newsletter\Repo\NewsletterContentEloquent( new Newsletter_contents );
         });        
+    }
+
+    /**
+     * Newsletter Types service
+     */
+    protected function registerTypesService(){
+
+        $this->app->bind('Droit\Newsletter\Repo\NewsletterTypesInterface', function()
+        {
+            return new \Droit\Newsletter\Repo\NewsletterTypesEloquent( new Newsletter_types );
+        });
     }
 
 }

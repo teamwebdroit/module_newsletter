@@ -54,7 +54,9 @@
             <div class="row">
                 <div class="col-md-12">
                     <ul id="buildingBlocs">
-                        <li buiding-blocs ng-repeat="bloc in build.blocs"></li>
+                        <li ng-repeat="bloc in build.blocs">
+                            <buiding-blocs></buiding-blocs>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -63,14 +65,17 @@
                 <div class="col-md-12">
                     <div ng-controller="DropController as dropped" id="build" data-drop="true" data-jqyoui-options jqyoui-droppable="{onDrop:'dropped'}">
                         <div class="well">
-                            <image-left-text ng-if="isBloc(1)"></image-left-text>
-                            <image-right-text ng-if="isBloc(2)"></image-right-text>
-                            <image-text ng-if="isBloc(3)"></image-text>
-                            <image-alone ng-if="isBloc(4)"></image-alone>
+                            <image-left-text ng-if="isBloc('image-left-text')"></image-left-text>
+                            <image-right-text ng-if="isBloc('image-right-text')"></image-right-text>
+                            <image-text ng-if="isBloc('image-text')"></image-text>
+                            <image-alone ng-if="isBloc('image')"></image-alone>
+                            <text-alone ng-if="isBloc('text')"></text-alone>
+                            <arret ng-if="isBloc('arret')"></arret>
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
 
     </div><!-- end main div for app-->
@@ -86,6 +91,7 @@
 <script type="text/javascript" src="<?php echo asset('js/vendor/redactor/redactor.js');?>"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-rc.1/angular.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.8/angular-route.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.8/angular-resource.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular-sanitize.js"></script>
 <script type="text/javascript" src="<?php echo asset('js/vendor/angular/angular-dragdrop.js');?>"></script>
 <script type="text/javascript" src="<?php echo asset('js/vendor/angular/angular-redactor.js');?>"></script>

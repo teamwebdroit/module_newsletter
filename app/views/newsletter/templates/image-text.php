@@ -21,7 +21,7 @@
             <tr>
 
                 <td valign="top" align="left" width="100%" class="resetMarge contentForm">
-                    <h2>{{ form.title }}</h2>
+                    <h2>{{ form.titre }}</h2>
                     <div ng-bind-html='form.content'></div>
                 </td>
 
@@ -32,7 +32,7 @@
     <div class="col-md-5">
         <div class="form-group">
             <label>Titre</label>
-            <input type="text" ng-model="form.title" name="title" class="form-control">
+            <input type="text" ng-model="form.titre" name="titre" class="form-control">
         </div>
         <div class="form-group">
             <label>Texte</label>

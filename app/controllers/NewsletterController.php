@@ -3,6 +3,7 @@
 use \InlineStyle\InlineStyle;
 use Droit\Service\Worker\UploadInterface;
 use Droit\Newsletter\Repo\NewsletterContentInterface;
+use Droit\Newsletter\Repo\NewsletterTypesInterface;
 
 class NewsletterController extends BaseController {
 
@@ -10,12 +11,16 @@ class NewsletterController extends BaseController {
 
     protected $content;
 
+    protected $types;
+
     /* Inject dependencies */
-    public function __construct(UploadInterface $upload,NewsletterContentInterface $content)
+    public function __construct(UploadInterface $upload, NewsletterContentInterface $content, NewsletterTypesInterface $types)
     {
         $this->upload  = $upload;
 
         $this->content = $content;
+
+        $this->types   = $types;
 
         /*
          * Urls
@@ -101,6 +106,16 @@ class NewsletterController extends BaseController {
         return View::make('newsletter.templates.image');
     }
 
+    public function text()
+    {
+        return View::make('newsletter.templates.text');
+    }
+
+    public function arret()
+    {
+        return View::make('newsletter.templates.arret');
+    }
+
     public function convert()
     {
         return View::make('newsletter.show');
@@ -177,6 +192,16 @@ class NewsletterController extends BaseController {
 
         print_r($contents);
 
+    }
+
+    /**
+     * Return building blocs for js
+     *
+     * @return json
+     */
+    public function building()
+    {
+        return array( 'blocs' => $this->types->getAll());
     }
 
 }

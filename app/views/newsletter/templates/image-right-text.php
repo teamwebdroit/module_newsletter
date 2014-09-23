@@ -30,7 +30,7 @@
     <div class="col-md-5">
         <div class="form-group">
             <label>Titre</label>
-            <input type="text" ng-model="form.title" name="title" class="form-control">
+            <input type="text" ng-model="form.titre" name="titre" class="form-control">
         </div>
         <div class="form-group">
             <label>Texte</label>

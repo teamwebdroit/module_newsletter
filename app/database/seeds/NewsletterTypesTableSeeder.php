@@ -11,31 +11,36 @@ class NewsletterTypesTableSeeder extends Seeder {
         $newsletter_types = array(
             array(
                 'titre'     => 'Image',
+                'image'     => 'image.svg',
                 'partial'   => 'imageCenter',
                 'template'  => 'image',
                 'elements'  => 'image'
             ),
             array(
                 'titre'     => 'Text et image',
+                'image'     => 'imageText.svg',
                 'partial'   => 'imageText.',
                 'template'  => 'image-text',
-                'elements'  => 'texte,image'
+                'elements'  => 'titre,texte,image'
             ),
             array(
                 'titre'     => 'Text et image à droite',
-                'partial'   => 'ImageRightText',
+                'image'     => 'imageRightText.svg',
+                'partial'   => 'imageRightText',
                 'template'  => 'image-right-text',
                 'elements'  => 'titre,texte,image'
             ),
             array(
                 'titre'     => 'Text et image à gauche',
-                'partial'   => 'ImageLeftText',
+                'image'     => 'imageLeftText.svg',
+                'partial'   => 'imageLeftText',
                 'template'  => 'image-left-text',
                 'elements'  => 'titre,texte,image'
             ),
             array(
                 'titre'     => 'Arrêt',
-                'partial'   => 'arretImageText.',
+                'image'     => 'arret.svg',
+                'partial'   => 'arret',
                 'template'  => 'arret',
                 'elements'  => 'arret'
             )

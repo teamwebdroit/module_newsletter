@@ -21,10 +21,8 @@ var url  = location.protocol + "//" + location.host+"/";
 
 })(jQuery);
 
-var App = angular.module('newsletter', ["ngDragDrop","angular-redactor","flow","ngSanitize"] , function()
+var App = angular.module('newsletter', ["ngDragDrop","ngResource","angular-redactor","flow","ngSanitize"] , function()
 {
-
-    // Change opening and closing tags for working with blade
 }).config(function(redactorOptions) {
         redactorOptions.minHeight = 200;
         redactorOptions.formattingTags = ['p', 'h2', 'h3','h4'];
@@ -40,20 +38,46 @@ var App = angular.module('newsletter', ["ngDragDrop","angular-redactor","flow","
         };
 }]);
 
-App.controller('BuildController', ['$scope',function($scope){
 
-    this.blocs = blocs;
+App.factory('Blocs', ['$http', '$q', function($http, $q) {
+    return {
+        query: function() {
+            var deferred = $q.defer();
+            $http.get('/building')
+                .success(function(data) {
+                    deferred.resolve(data);
+                })
+                .error(function(data) {
+                    deferred.reject(data);
+                });
+            return deferred.promise;
+        }
+    };
+}]);
+
+App.controller('BuildController', ['$scope','$http','Blocs',function($scope,$http,Blocs){
+
+    this.blocs  = [];
+    var self    = this;
+
+    this.refresh = function() {
+        Blocs.query()
+            .then(function (data) {
+                //console.log(data.blocs);
+                self.blocs = data.blocs;
+            })
+    }
+
+    this.refresh();
 
 }]);
 
 App.controller("FormController", function($scope,$http){
 
-
     $scope.addContent = function(form,type) {
 
         var image =  $('.uploadImage').val();
         var data  =  { titre : form.titre.$modelValue , image : image , contenu: form.contenu.$modelValue, type: type };
-        console.log(data);
 
         var all = $.param( data);
 
@@ -63,47 +87,59 @@ App.controller("FormController", function($scope,$http){
                 data : all, // pass in data as strings
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'} // set the headers so angular passing info as form data (not request payload)
             })
-            .success(function(data) {
-
-                console.log(data);
-
+            .success(function(data)
+            {
                 if (!data.success) {
-                    // if not successful, bind errors to error variables
+                    console.log(data);
                 }
                 else {
-                // if successful, bind success message to message
+                    alert('probleme avec le process form');
                 }
             });
-
     };
-
 });
 
-App.controller('DropController', ['$scope',function($scope){
+App.controller('DropController', ['$scope','Blocs',function($scope,Blocs){
 
-    $scope.blocs     = blocs;
     $scope.blocDrop  = 0;
+    this.arrets = [{ id : 1, reference : 'TF 34d/2012' }, { id : 2, reference : 'TF 5fd/2012' }];
+    this.blocs  = [];
+    var self    = this;
+
+    $scope.refresh = function() {
+        Blocs.query()
+            .then(function (data) {
+                //console.log(data.blocs);
+                self.blocs = data.blocs;
+            })
+    }
+
+    $scope.refresh();
 
     $scope.dropped = function(event, ui){
-
-        var index = ui.draggable.attr("id");
-        index     = parseInt(index) + 1;
-        $scope.setBloc(index);
+        var template = ui.draggable.attr("id");
+        $scope.setBloc(template);
     };
 
     $scope.setBloc = function(bloc){
-
         $scope.blocDrop = bloc;
-
     };
 
     $scope.isBloc = function(bloc){
-
         return $scope.blocDrop === bloc;
-
     };
 
 }]);
+
+App.controller('SelectController',function(){
+
+    this.arrets = [{ id : 1, reference : 'TF 34d/2012' }, { id : 2, reference : 'TF 5fd/2012' }];
+
+    this.changed = function(){
+       console.log('changed');
+    };
+
+});
 
 App.directive("buidingBlocs", function() {
     return {
@@ -112,7 +148,6 @@ App.directive("buidingBlocs", function() {
         templateUrl: "building-blocs"
     };
 });
-
 
 App.directive("imageLeftText", function() {
     return {
@@ -154,9 +189,27 @@ App.directive("imageAlone", function() {
     };
 });
 
-var blocs = [
-    { title : 'Image Left and Text',  image : 'imageLeftText.svg', type: 'imageLeftText'  },
-    { title : 'Image Right and Text', image : 'imageRightText.svg', type: 'imageRightText' },
-    { title : 'Image and Text', image : 'imageText.svg', type: 'imageText' },
-    { title : 'Image', image : 'image.svg' , type: 'image'}
+App.directive("textAlone", function() {
+    return {
+        restrict: "EA",
+        scope:{
+            ngModel: '='
+        },
+        templateUrl: "text"
+    };
+});
+
+App.directive("arret", function() {
+    return {
+        restrict: "EA",
+        templateUrl: "arret"
+    };
+});
+
+var bloces = [
+    { titre : 'Image Left and Text',  image : 'imageLeftText.svg', type: 'imageLeftText'  },
+    { titre : 'Image Right and Text', image : 'imageRightText.svg', type: 'imageRightText' },
+    { titre : 'Image and Text', image : 'imageText.svg', type: 'imageText' },
+    { titre : 'Image', image : 'image.svg' , type: 'image'},
+    { titre : 'Texte', image : 'text.svg' , type: 'text'}
 ];
