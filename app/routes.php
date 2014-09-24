@@ -37,6 +37,7 @@ Route::get('build', 'NewsletterController@build');
 Route::post('build', 'NewsletterController@build');
 Route::get('html', 'NewsletterController@html');
 Route::get('date', 'ArretController@index');
+Route::get('arret/{id}', 'ArretController@show');
 Route::get('campagne', 'NewsletterController@campagne');
 Route::resource('/', 'NewsletterController');
 

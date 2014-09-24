@@ -41,4 +41,16 @@ class ArretController extends \BaseController {
         return $this->arret->find($id);
     }
 
+    /**
+     * Return one arret by id
+     *
+     * @return json
+     */
+    public function show($id)
+    {
+        $arret = $this->arret->find($id);
+
+        return View::make('newsletter.arret')->with(array( 'arret' => $arret));
+    }
+
 }

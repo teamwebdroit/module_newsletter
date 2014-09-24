@@ -24,19 +24,29 @@ var url  = location.protocol + "//" + location.host+"/";
 var App = angular.module('newsletter', ["ngDragDrop","ngResource","angular-redactor","flow","ngSanitize"] , function()
 {
 }).config(function(redactorOptions) {
+
+        /**
+         * Redactor wysiwyg editor configuration
+         */
         redactorOptions.minHeight = 200;
         redactorOptions.formattingTags = ['p', 'h2', 'h3','h4'];
 }).config(['flowFactoryProvider', function (flowFactoryProvider) {
+
+        /**
+         * Flow image upload configuration
+         */
         flowFactoryProvider.defaults = {
             target: 'upload',
             testChunks:false,
             singleFile: true,
             permanentErrors: [404, 500, 501],
-            maxChunkRetries: 1,
-            chunkRetryInterval: 5000,
             simultaneousUploads: 4
         };
 }]);
+
+/**
+ * Retrive all newsletter types blocs for build
+ */
 
 App.factory('Blocs', ['$http', '$q', function($http, $q) {
     return {
@@ -53,6 +63,10 @@ App.factory('Blocs', ['$http', '$q', function($http, $q) {
         }
     };
 }]);
+
+/**
+ * Retrive all arrets blocs for bloc arret
+ */
 
 App.factory('Arrets', ['$http', '$q', function($http, $q) {
     return {
@@ -77,11 +91,18 @@ App.factory('Arrets', ['$http', '$q', function($http, $q) {
     };
 }]);
 
+/**
+ * Build controller, controls all bloc for building the newsletter
+ */
 App.controller('BuildController', ['$scope','$http','Blocs',function($scope,$http,Blocs){
 
+    /* assign empty values for blocs */
     this.blocs  = [];
+
+    /* capture this (the controller scope ) as self */
     var self    = this;
 
+    /* function for refreshing the asynchronus retrival of blocs */
     this.refresh = function() {
         Blocs.query()
             .then(function (data) {
@@ -94,13 +115,18 @@ App.controller('BuildController', ['$scope','$http','Blocs',function($scope,$htt
 
 }]);
 
+/**
+ * Form controller, controls the form for creating new content blocs
+ */
 App.controller("FormController", function($scope,$http){
 
     $scope.addContent = function(form,type) {
 
+        /* gather all date to send to the server */
         var image =  $('.uploadImage').val();
         var data  =  { titre : form.titre.$modelValue , image : image , contenu: form.contenu.$modelValue, type: type };
 
+        /* Send data */
         var all = $.param( data);
 
             $http({
@@ -111,6 +137,7 @@ App.controller("FormController", function($scope,$http){
             })
             .success(function(data)
             {
+                // TODO implement success and fail result processing form
                 if (!data.success) {
                     console.log(data);
                 }
@@ -121,13 +148,19 @@ App.controller("FormController", function($scope,$http){
     };
 });
 
+/**
+ * Drag and Drop controller, catch the bloc who has been dropped
+ */
 App.controller('DropController', ['$scope','Blocs',function($scope,Blocs){
 
-    $scope.blocDrop  = 0;
+    /* assign empty values for blocs */
+    this.blocDrop = 0;
+    this.blocs    = [];
 
-    this.blocs  = [];
-    var self    = this;
+    /* capture this (the controller scope ) as self */
+    var self = this;
 
+    /* function for refreshing the asynchronus retrival of blocs */
     $scope.refresh = function() {
         Blocs.query()
             .then(function (data) {
@@ -138,6 +171,7 @@ App.controller('DropController', ['$scope','Blocs',function($scope,Blocs){
 
     $scope.refresh();
 
+    /* Get the dropped blocs id and set it */
     $scope.dropped = function(event, ui){
         var template = ui.draggable.attr("id");
         $scope.setBloc(template);
@@ -147,17 +181,26 @@ App.controller('DropController', ['$scope','Blocs',function($scope,Blocs){
         $scope.blocDrop = bloc;
     };
 
+    /* Test if the bloc is the one selected to create the correct template view */
     $scope.isBloc = function(bloc){
         return $scope.blocDrop === bloc;
     };
 
 }]);
 
+/**
+ * Select arret controller, select an arret and display's it
+ */
 App.controller('SelectController', ['$scope','Arrets',function($scope,Arrets){
 
-    this.arrets  = [];
-    var self     = this;
+    /* assign empty values for arrets */
+    this.arrets = [];
+    this.arret  = false;
 
+    /* capture this (the controller scope ) as self */
+    var self = this;
+
+    /* function for refreshing the asynchronus retrival of blocs */
     this.refresh = function() {
         Arrets.query()
             .then(function (data) {
@@ -167,20 +210,52 @@ App.controller('SelectController', ['$scope','Arrets',function($scope,Arrets){
 
     this.refresh();
 
+    /* When one arret is selected in the dropdown */
     this.changed = function(){
-        console.log($scope.selected);
 
+        /* hide arret */
+        self.arret = false;
+        self.categories = false;
+        self.date  = new Date();
+
+        /* Get the id of arret */
         var id = $scope.selected.id
 
+        /* Get the selected arret infos */
         Arrets.simple(id)
             .then(function (data) {
+                self.arret = data;
+                self.categories = data.arrets_categories;
+
+                //get substring
+                var jsonObject = self.arret.pub_date.substr(0,10);
+                var newdate    = new Date(jsonObject);
+                self.date      = self.convertDate(newdate)
+
                 console.log(data);
             });
 
     };
 
+    this.convertDate = function(date){
+
+        var months  = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"];
+        var newdate = date.getDate();
+        if (newdate < 10)
+        {
+            newdate = "0" + newdate;
+        }
+        var output = newdate + " " + months[date.getMonth()] + " " + date.getFullYear();
+        return output;
+    }
+
+
+
 }]);
 
+/**
+ * Build directive, display all types of content
+ */
 App.directive("buidingBlocs", function() {
     return {
         restrict: "EA",
@@ -189,6 +264,9 @@ App.directive("buidingBlocs", function() {
     };
 });
 
+/**
+ * Build directive, all blocs of content
+ */
 App.directive("imageLeftText", function() {
     return {
         restrict: "EA",
@@ -246,6 +324,10 @@ App.directive("arret", function() {
     };
 });
 
+
+/**
+ * Array for test
+ */
 var bloces = [
     { titre : 'Image Left and Text',  image : 'imageLeftText.svg', type: 'imageLeftText'  },
     { titre : 'Image Right and Text', image : 'imageRightText.svg', type: 'imageRightText' },

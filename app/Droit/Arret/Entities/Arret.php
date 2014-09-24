@@ -4,4 +4,9 @@ class Arret extends \Eloquent {
 
 	protected $fillable = ['pid','user_id','deleted','reference','pub_date','abstract','pub_text','file','categories','analysis'];
 
+    public function arrets_categories()
+    {
+        return $this->belongsToMany('\Droit\Categorie\Entities\Ba_categories', 'arret_ba_categories', 'arret_id', 'ba_categories_id');
+    }
+
 }

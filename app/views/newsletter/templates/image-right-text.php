@@ -13,7 +13,7 @@
                 <td width="25" class="resetMarge"></td><!-- space -->
                 <td valign="top" align="center" width="160" class="resetMarge">
 
-                    <div class="thumbnail" ng-hide="$flow.files.length"><img src="http://www.placehold.it/130x140/EFEFEF/AAAAAA&text=no+image" /></div>
+                    <div class="thumbnail" ng-hide="$flow.files.length"><img src="http://www.placehold.it/130x140/EFEFEF/AAAAAA&text=pas+d+image" /></div>
                     <div class="thumbnail" ng-show="$flow.files.length"><img flow-img="$flow.files[0]" /></div>
 
                     <div class="upoadBtn">
@@ -30,7 +30,7 @@
     <div class="col-md-5">
         <div class="form-group">
             <label>Titre</label>
-            <input type="text" ng-model="form.titre" name="titre" class="form-control">
+            <input type="text" ng-model="form.title" name="title" class="form-control">
         </div>
         <div class="form-group">
             <label>Texte</label>
