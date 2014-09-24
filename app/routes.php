@@ -36,6 +36,7 @@ Route::get('convert', 'NewsletterController@convert');
 Route::get('build', 'NewsletterController@build');
 Route::post('build', 'NewsletterController@build');
 Route::get('html', 'NewsletterController@html');
+Route::get('date', 'ArretController@index');
 Route::get('campagne', 'NewsletterController@campagne');
 Route::resource('/', 'NewsletterController');
 
@@ -43,3 +44,5 @@ Route::resource('/', 'NewsletterController');
  * API
  */
 Route::get('building', 'NewsletterController@building');
+Route::get('arrets', 'ArretController@all');
+Route::get('arrets/{id}', 'ArretController@simple');

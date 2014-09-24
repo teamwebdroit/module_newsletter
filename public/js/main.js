@@ -38,7 +38,6 @@ var App = angular.module('newsletter', ["ngDragDrop","ngResource","angular-redac
         };
 }]);
 
-
 App.factory('Blocs', ['$http', '$q', function($http, $q) {
     return {
         query: function() {
@@ -50,6 +49,29 @@ App.factory('Blocs', ['$http', '$q', function($http, $q) {
                 .error(function(data) {
                     deferred.reject(data);
                 });
+            return deferred.promise;
+        }
+    };
+}]);
+
+App.factory('Arrets', ['$http', '$q', function($http, $q) {
+    return {
+        query: function() {
+            var deferred = $q.defer();
+            $http.get('/arrets').success(function(data) {
+                    deferred.resolve(data);
+                }).error(function(data) {
+                    deferred.reject(data);
+                });
+            return deferred.promise;
+        },
+        simple: function(id) {
+            var deferred = $q.defer();
+            $http.get('/arrets/'+ id).success(function(data) {
+                deferred.resolve(data);
+            }).error(function(data) {
+                deferred.reject(data);
+            });
             return deferred.promise;
         }
     };
@@ -102,7 +124,7 @@ App.controller("FormController", function($scope,$http){
 App.controller('DropController', ['$scope','Blocs',function($scope,Blocs){
 
     $scope.blocDrop  = 0;
-    this.arrets = [{ id : 1, reference : 'TF 34d/2012' }, { id : 2, reference : 'TF 5fd/2012' }];
+
     this.blocs  = [];
     var self    = this;
 
@@ -131,15 +153,33 @@ App.controller('DropController', ['$scope','Blocs',function($scope,Blocs){
 
 }]);
 
-App.controller('SelectController',function(){
+App.controller('SelectController', ['$scope','Arrets',function($scope,Arrets){
 
-    this.arrets = [{ id : 1, reference : 'TF 34d/2012' }, { id : 2, reference : 'TF 5fd/2012' }];
+    this.arrets  = [];
+    var self     = this;
+
+    this.refresh = function() {
+        Arrets.query()
+            .then(function (data) {
+                self.arrets = data;
+            });
+    }
+
+    this.refresh();
 
     this.changed = function(){
-       console.log('changed');
+        console.log($scope.selected);
+
+        var id = $scope.selected.id
+
+        Arrets.simple(id)
+            .then(function (data) {
+                console.log(data);
+            });
+
     };
 
-});
+}]);
 
 App.directive("buidingBlocs", function() {
     return {

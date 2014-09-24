@@ -13,9 +13,11 @@
     <div class="col-md-5">
         <div class="form-group">
             <label>Sélectionner l'arrêt</label>
-            <select class="form-control" ng-model="selected" ng-change="select.changed()">
-                <option ng-repeat="arret in select.arrets" value="{{ arret.id }}">{{ arret.reference }}</option>
+
+            <select class="form-control" ng-change="select.changed()" ng-model="selected" ng-options="arret.reference for arret in select.arrets track by arret.id">
+                <option value="">Choisir</option>
             </select>
+
         </div>
         <div class="form-group">
             <button type="submit" class="btn btn-default">Envoyer</button>
