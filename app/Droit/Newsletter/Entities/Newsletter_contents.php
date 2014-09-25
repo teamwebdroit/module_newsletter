@@ -2,7 +2,7 @@
 
 class Newsletter_contents extends \Eloquent {
 
-	protected $fillable = ['type','titre','contenu','image','arret_id','categorie_id','newsletter_campagne_id','rang'];
+	protected $fillable = ['type_id','titre','contenu','image','arret_id','categorie_id','newsletter_campagne_id','rang'];
 
     public function campagne(){
 

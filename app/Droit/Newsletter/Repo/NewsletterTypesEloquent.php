@@ -26,10 +26,15 @@ class NewsletterTypesEloquent implements NewsletterTypesInterface{
 		return $this->types->findOrFail($id);
 	}
 
+    public function findByPartial($partial){
+
+        return $this->types->where('partial','=',$partial)->get()->first();
+    }
+
 	public function create(array $data){
 
 		$types = $this->types->create(array(
-			'type'                   => $data['type'],
+			'type_id'                => $data['type_id'],
 			'titre'                  => $data['titre'],
             'contenu'                => $data['contenu'],
             'image'                  => $data['image'],
@@ -59,7 +64,7 @@ class NewsletterTypesEloquent implements NewsletterTypesInterface{
 			return false;
 		}
 
-        $types->type                   = $data['type'];
+        $types->type_id                = $data['type_id'];
 		$types->titre                  = $data['titre'];
         $types->contenu                = $data['contenu'];
         $types->image                  = $data['image'];

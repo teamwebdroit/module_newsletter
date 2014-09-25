@@ -29,7 +29,7 @@ class NewsletterContentEloquent implements NewsletterContentInterface{
 	public function create(array $data){
 
 		$contents = $this->contents->create(array(
-			'type_id'                => $data['type'],
+			'type_id'                => $data['type_id'],
 			'titre'                  => $data['titre'],
             'contenu'                => $data['contenu'],
             'image'                  => $data['image'],
@@ -59,7 +59,7 @@ class NewsletterContentEloquent implements NewsletterContentInterface{
 			return false;
 		}
 
-        $contents->type_id                = $data['type'];
+        $contents->type_id                = $data['type_id'];
 		$contents->titre                  = $data['titre'];
         $contents->contenu                = $data['contenu'];
         $contents->image                  = $data['image'];

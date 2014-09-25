@@ -1,6 +1,9 @@
 <form flow-init flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]"
       flow-files-submitted="$flow.upload()"
-      class="row" name="blocForm" class="form-horizontal" ng-controller="FormController as formCtrl" ng-submit="addContent(blocForm,'imageLeftText')">
+      class="row" name="blocForm" class="form-horizontal"
+      ng-controller="FormController as formCtrl"
+      ng-submit="addContent(blocForm,'imageLeftText')">
+
     <div class="col-md-7" id="bailNewsletter">
         <!-- Bloc content-->
         <table border="0" width="560" align="center" cellpadding="0" cellspacing="0" class="resetTable">

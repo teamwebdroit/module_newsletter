@@ -179,8 +179,10 @@ class NewsletterController extends BaseController {
 
         $data = Input::all();
 
-        $contents = $this->content->create(array(
-            'type_id'                => $data['type'],
+        // TODO retrive type from database to set it right in content
+        $type = $this->types->findByPartial($data['type']);
+        $new = array(
+            'type_id'                => $type->id,
             'titre'                  => $data['titre'],
             'contenu'                => $data['contenu'],
             'image'                  => $data['image'],
@@ -188,7 +190,8 @@ class NewsletterController extends BaseController {
             'categorie_id'           => 0,
             'newsletter_campagne_id' => 1,
             'rang'                   => 1
-        ));
+        );
+        $contents = $this->content->create($new);
 
         print_r($contents);
 
