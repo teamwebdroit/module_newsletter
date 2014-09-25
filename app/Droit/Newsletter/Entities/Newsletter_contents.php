@@ -14,4 +14,8 @@ class Newsletter_contents extends \Eloquent {
         return $this->belongsTo('Droit\Newsletter\Entities\Newsletter');
     }
 
+    public function type(){
+        return $this->belongsTo('Droit\Newsletter\Entities\Newsletter_types');
+    }
+
 }

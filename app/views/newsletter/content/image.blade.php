@@ -7,13 +7,9 @@
             <!-- Bloc content-->
             <table border="0" width="560" align="center" cellpadding="0" cellspacing="0" class="tableReset">
                 <tr>
-                    <td valign="top" width="375" class="resetMarge">
-                        <h2>{{ $titre }}</h2>
-                        <div>{{ $content }}</div>
-                    </td>
-                    <td width="25" class="resetMarge"></td><!-- space -->
-                    <td valign="top" align="center" width="160" class="resetMarge">
-                        <a href="#"><img height="222" alt="Droit du bail" src="{{ asset('newsletter/files/'.$image.'') }}" /></a>
+                    <td valign="top" width="560" align="center" class="tableReset">
+                        <a href="#"><img alt="Droit du bail" src="{{ asset('newsletter/'.$image) }}" /></a>
+                        <p>{{ $titre }}</p>
                     </td>
                 </tr>
             </table>

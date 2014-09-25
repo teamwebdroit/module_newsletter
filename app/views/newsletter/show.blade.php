@@ -1,19 +1,20 @@
-@extends('newsletter.layouts.master')
+@extends('newsletter.layouts.bail')
 @section('content')
 
-    <div class="row">
-        <div class="col-md-9">
 
-        @if(!empty($content))
+    @if(!empty($content))
+        @foreach($content as $bloc)
             <?php
-                echo '<pre>';
-                print_r($content);
-                echo '</pre>';
-            ?>
-        @endif
 
-        </div>
-        <div class="col-md-3">.col-md-4</div>
-    </div>
+            echo View::make('newsletter/content/'.$bloc->type->partial)
+                ->with(array('content' => 'content here', 'titre' => 'titre', 'image' => 'images.jpg'));
+
+            echo '<pre>';
+            //print_r($bloc->type->partial);
+            echo '</pre>';
+
+            ?>
+        @endforeach
+    @endif
 
 @stop
