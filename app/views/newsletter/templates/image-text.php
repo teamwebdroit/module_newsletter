@@ -1,7 +1,9 @@
 <form flow-init flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]"
       flow-files-submitted="$flow.upload()"
       class="row" name="blocForm" class="form-horizontal"
-      ng-controller="FormController as formCtrl" ng-submit="addContent(blocForm,'imageText')">
+      ng-controller="FormController as formCtrl"
+      ng-submit="addContent(blocForm,'imageText')">
+
     <div class="col-md-7" id="bailNewsletter">
         <!-- Bloc content-->
         <table border="0" width="560" align="center" cellpadding="0" cellspacing="0" class="resetTable">
@@ -19,14 +21,13 @@
                     <input type="hidden" class="uploadImage" name="image" value="{{ $flow.files[0].name }}">
 
                 </td>
-
             </tr>
             <tr><td colspan="3" height="25"></td></tr>
             <tr>
 
                 <td valign="top" align="left" width="100%" class="resetMarge contentForm">
                     <h2>{{ formCtrl.form.titre }}</h2>
-                    <div ng-bind-html='formCtrl.form.content'></div>
+                    <div ng-bind-html='formCtrl.form.contenu'></div>
                 </td>
 
             </tr>
@@ -36,11 +37,11 @@
     <div class="col-md-5">
         <div class="form-group">
             <label>Titre</label>
-            <input type="text" ng-model="formCtrl.form.titre" name="titre" class="form-control">
+            <input type="text" ng-model="formCtrl.form.titre" required name="titre" class="form-control">
         </div>
         <div class="form-group">
             <label>Texte</label>
-            <textarea redactor ng-model="formCtrl.form.contenu" name="content" class="form-control" rows="10"></textarea>
+            <textarea redactor ng-model="formCtrl.form.contenu" required name="contenu" class="form-control" rows="10"></textarea>
         </div>
         <div class="form-group">
             <button type="submit" class="btn btn-default">Envoyer</button>

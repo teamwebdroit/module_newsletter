@@ -21,6 +21,11 @@ class NewsletterContentEloquent implements NewsletterContentInterface{
 		return $this->contents->where('newsletter_campagne_id','=',$newsletter_campagne_id)->get();
 	}
 
+    public function getRang($newsletter_campagne_id){
+
+        return $this->contents->where('newsletter_campagne_id','=',$newsletter_campagne_id)->count();
+    }
+
 	public function find($id){
 				
 		return $this->contents->where('id','=',$id)->with(array('campagne','newsletter'))->get()->first();

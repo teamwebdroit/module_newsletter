@@ -12,14 +12,14 @@ class NewsletterTypesTableSeeder extends Seeder {
             array(
                 'titre'     => 'Image',
                 'image'     => 'image.svg',
-                'partial'   => 'imageCenter',
+                'partial'   => 'image',
                 'template'  => 'image',
                 'elements'  => 'image'
             ),
             array(
                 'titre'     => 'Text et image',
                 'image'     => 'imageText.svg',
-                'partial'   => 'imageText.',
+                'partial'   => 'imageText',
                 'template'  => 'image-text',
                 'elements'  => 'titre,texte,image'
             ),

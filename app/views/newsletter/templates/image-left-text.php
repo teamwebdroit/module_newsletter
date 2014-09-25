@@ -2,13 +2,17 @@
       flow-files-submitted="$flow.upload()"
       class="row" name="blocForm" class="form-horizontal"
       ng-controller="FormController as formCtrl"
-      ng-submit="addContent(blocForm,'imageLeftText')">
+      ng-submit="addContent(blocForm,'imageRightText')">
 
     <div class="col-md-7" id="bailNewsletter">
         <!-- Bloc content-->
         <table border="0" width="560" align="center" cellpadding="0" cellspacing="0" class="resetTable">
             <tr>
-
+                <td valign="top" width="375" class="resetMarge contentForm">
+                    <h2>{{ formCtrl.form.titre }}</h2>
+                    <div ng-bind-html='formCtrl.form.contenu'></div>
+                </td>
+                <td width="25" class="resetMarge"></td><!-- space -->
                 <td valign="top" align="center" width="160" class="resetMarge">
 
                     <div class="thumbnail" ng-hide="$flow.files.length"><img src="http://www.placehold.it/130x140/EFEFEF/AAAAAA&text=pas+d+image" /></div>
@@ -22,24 +26,19 @@
                     <input type="hidden" class="uploadImage" name="image" value="{{ $flow.files[0].name }}">
 
                 </td>
-                <td width="25" class="resetMarge"></td><!-- space -->
-                <td valign="top" width="375" class="resetMarge contentForm">
-                    <h2>{{ formCtrl.form.titre }}</h2>
-                    <div ng-bind-html='formCtrl.form.contenu'></div>
-                </td>
             </tr>
+
         </table>
         <!-- Bloc content-->
-
     </div>
     <div class="col-md-5">
         <div class="form-group">
             <label>Titre</label>
-            <input type="text" ng-model="formCtrl.form.titre" name="titre" class="form-control">
+            <input type="text" ng-model="formCtrl.form.titre" required name="titre" class="form-control">
         </div>
         <div class="form-group">
             <label>Texte</label>
-            <textarea redactor ng-model="formCtrl.form.contenu" novalidate name="contenu" class="form-control" rows="10"></textarea>
+            <textarea redactor ng-model="formCtrl.form.contenu" required name="contenu" class="form-control" rows="10"></textarea>
         </div>
         <div class="form-group">
             <button type="submit" class="btn btn-default">Envoyer</button>

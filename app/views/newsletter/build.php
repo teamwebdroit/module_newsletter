@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="<?php echo asset('js/vendor/redactor/redactor.css'); ?>">
     <link rel="stylesheet" href="<?php echo asset('css/newsletter.css'); ?>">
     <link href="<?php echo asset('js/vendor/jqueryui/jquery-ui.css');?>" rel="stylesheet">
+    <link href="<?php echo asset('js/vendor/angular/angular-notify.css');?>" rel="stylesheet">
 
     <base href="/">
 
@@ -96,6 +97,7 @@
 <script type="text/javascript" src="<?php echo asset('js/vendor/angular/angular-dragdrop.js');?>"></script>
 <script type="text/javascript" src="<?php echo asset('js/vendor/angular/angular-redactor.js');?>"></script>
 <script type="text/javascript" src="<?php echo asset('js/vendor/angular/angular-flow.js');?>"></script>
+<script type="text/javascript" src="<?php echo asset('js/vendor/angular/angular-notify.js');?>"></script>
 <script type="text/javascript" src="<?php echo asset('js/main.js');?>"></script>
 
 </body>

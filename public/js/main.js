@@ -21,7 +21,7 @@ var url  = location.protocol + "//" + location.host+"/";
 
 })(jQuery);
 
-var App = angular.module('newsletter', ["ngDragDrop","ngResource","angular-redactor","flow","ngSanitize"] , function()
+var App = angular.module('newsletter', ["cgNotify","ngDragDrop","ngResource","angular-redactor","flow","ngSanitize"] , function()
 {
 }).config(function(redactorOptions) {
 
@@ -42,7 +42,17 @@ var App = angular.module('newsletter', ["ngDragDrop","ngResource","angular-redac
             permanentErrors: [404, 500, 501],
             simultaneousUploads: 4
         };
-}]);
+}]).service('myService',  function ($rootScope) {
+    var blocDrop = 0;
+    return {
+        getBloc : function() {
+            return blocDrop;
+        },
+        setBloc : function(bloc) {
+            blocDrop = bloc;
+        }
+    };
+});
 
 /**
  * Retrive all newsletter types blocs for build
@@ -98,10 +108,8 @@ App.controller('BuildController', ['$scope','$http','Blocs',function($scope,$htt
 
     /* assign empty values for blocs */
     this.blocs  = [];
-
     /* capture this (the controller scope ) as self */
     var self    = this;
-
     /* function for refreshing the asynchronus retrival of blocs */
     this.refresh = function() {
         Blocs.query()
@@ -110,7 +118,6 @@ App.controller('BuildController', ['$scope','$http','Blocs',function($scope,$htt
                 self.blocs = data.blocs;
             })
     }
-
     this.refresh();
 
 }]);
@@ -118,13 +125,22 @@ App.controller('BuildController', ['$scope','$http','Blocs',function($scope,$htt
 /**
  * Form controller, controls the form for creating new content blocs
  */
-App.controller("FormController", function($scope,$http){
+App.controller("FormController",['$scope','$http','notify','myService', function($scope,$http,notify,myService){
 
-    $scope.addContent = function(form,type) {
+    console.log(myService.getBloc());
+
+    $scope.addContent = function(form, type, id) {
 
         /* gather all date to send to the server */
         var image =  $('.uploadImage').val();
-        var data  =  { titre : form.titre.$modelValue , image : image , contenu: form.contenu.$modelValue, type: type };
+
+        var titre   = ( form.titre ? form.titre.$modelValue : '');
+        var image   = ( image ? image : '');
+        var contenu = ( form.contenu ? form.contenu.$modelValue : '');
+
+        var arret_id = (id ? id : 0);
+
+        var data = { titre : titre , image : image , contenu: contenu , type: type , arret_id: arret_id };
 
         /* Send data */
         var all = $.param( data);
@@ -139,22 +155,26 @@ App.controller("FormController", function($scope,$http){
             {
                 // TODO implement success and fail result processing form
                 if (!data.success) {
-                    console.log(data);
+                    //console.log(data);
+                    notify('Le bloc a bien été ajouté');
+                    // remove arret template
+                    console.log($scope.blocDrop);
+                    myService.setBloc(0);
                 }
                 else {
-                    alert('probleme avec le process form');
+                    notify('Problème avec l\'ajout du bloc');
                 }
             });
     };
-});
+}]);
 
 /**
  * Drag and Drop controller, catch the bloc who has been dropped
  */
-App.controller('DropController', ['$scope','Blocs',function($scope,Blocs){
+App.controller('DropController', ['$scope','Blocs','myService',function($scope,Blocs,myService){
 
     /* assign empty values for blocs */
-    this.blocDrop = 0;
+    $scope.blocDrop = 0;
     this.blocs    = [];
 
     /* capture this (the controller scope ) as self */
@@ -175,15 +195,16 @@ App.controller('DropController', ['$scope','Blocs',function($scope,Blocs){
     $scope.dropped = function(event, ui){
         var template = ui.draggable.attr("id");
         $scope.setBloc(template);
+
     };
 
     $scope.setBloc = function(bloc){
-        $scope.blocDrop = bloc;
+        myService.setBloc(bloc);
     };
 
     /* Test if the bloc is the one selected to create the correct template view */
     $scope.isBloc = function(bloc){
-        return $scope.blocDrop === bloc;
+        return myService.getBloc() === bloc;
     };
 
 }]);
@@ -191,12 +212,11 @@ App.controller('DropController', ['$scope','Blocs',function($scope,Blocs){
 /**
  * Select arret controller, select an arret and display's it
  */
-App.controller('SelectController', ['$scope','Arrets',function($scope,Arrets){
+App.controller('SelectController', ['$scope','$http','Arrets','notify','myService',function($scope,$http,Arrets,notify,myService){
 
     /* assign empty values for arrets */
     this.arrets = [];
     this.arret  = false;
-
     /* capture this (the controller scope ) as self */
     var self = this;
 
@@ -207,7 +227,6 @@ App.controller('SelectController', ['$scope','Arrets',function($scope,Arrets){
                 self.arrets = data;
             });
     }
-
     this.refresh();
 
     /* When one arret is selected in the dropdown */
@@ -234,7 +253,6 @@ App.controller('SelectController', ['$scope','Arrets',function($scope,Arrets){
 
                 console.log(data);
             });
-
     };
 
     this.convertDate = function(date){
@@ -247,9 +265,34 @@ App.controller('SelectController', ['$scope','Arrets',function($scope,Arrets){
         }
         var output = newdate + " " + months[date.getMonth()] + " " + date.getFullYear();
         return output;
-    }
+    };
 
+    $scope.addArret = function() {
 
+        var arret_id = ( self.arret ? self.arret.id : 0);
+        var data     = { type: 'arret' , arret_id: arret_id };
+        /* Send data */
+        var all = $.param( data);
+
+        $http({
+            method : 'POST',
+            url : 'process',
+            data : all, // pass in data as strings
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'} // set the headers so angular passing info as form data (not request payload)
+        })
+        .success(function(data)
+        {
+            // TODO implement success and fail result processing form
+            if (!data.success) {
+                console.log(data);
+                notify('L\'arrêt a bien été ajouté');
+
+                // remove arret template
+                myService.setBloc(0);
+            }
+            else { notify('Problème avec l\'ajout du bloc'); }
+        });
+    };
 
 }]);
 

@@ -3,6 +3,7 @@
 interface NewsletterContentInterface {
 
 	public function getByCampagne($newsletter_campagne_id);
+    public function getRang($newsletter_campagne_id);
 
 	public function find($data);
 	
