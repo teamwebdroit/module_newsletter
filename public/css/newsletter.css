@@ -152,6 +152,6 @@ body{
     border:1px solid #ededed;
 }
 
-#bailNewsletter .contentForm .centerText{
+#bailNewsletter .contentForm .centerText,#bailNewsletter p.centerText{
     text-align: center;
 }

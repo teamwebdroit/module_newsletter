@@ -7,12 +7,16 @@
             <!-- Bloc content-->
             <table border="0" width="560" align="center" cellpadding="0" cellspacing="0" class="tableReset contentForm">
                 <tr>
+                    <td colspan="3" valign="top" align="left" width="560" class="resetMarge">
+                        <h2>{{ $bloc->titre }}</h2>
+                    </td>
+                </tr>
+                <tr>
                     <td valign="top" align="center" width="130" class="resetMarge">
                         <a href="#"><img style="max-width: 130px; max-height: 220px;" alt="Droit du bail" src="{{ asset('files/'.$bloc->image) }}" /></a>
                     </td>
                     <td width="25" class="resetMarge"></td><!-- space -->
                     <td valign="top" width="405" class="resetMarge">
-                        <h2>{{ $bloc->titre }}</h2>
                         <div>{{ $bloc->contenu }}</div>
                     </td>
                 </tr>
