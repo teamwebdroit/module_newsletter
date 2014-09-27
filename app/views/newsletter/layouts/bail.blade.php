@@ -51,7 +51,7 @@
                 @include('newsletter.content.header')
 
                 <tr>
-                    <td width="560" align="center" valign="top">
+                    <td  class="newsletterborder" width="560" align="center" valign="top">
                         <!-- Main content -->
                         @yield('content')
                         <!-- Fin contenu -->

@@ -1,20 +1,15 @@
-@extends('newsletter.layouts.bail')
+@extends('newsletter.layouts.master')
 @section('content')
 
 
     @if(!empty($content))
-        @foreach($content as $bloc)
-       <?php
 
-            //$view = View::make('content/'.$bloc->)->with($bloc);
-
-            //echo $view;
+    <?php
         echo '<pre>';
-            //print_r($bloc);
+        print_r($content);
         echo '</pre>';
+    ?>
 
-       ?>
-        @endforeach
     @endif
 
 @stop

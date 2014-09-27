@@ -23,7 +23,7 @@ class ArretEloquent implements ArretInterface{
 
 	public function find($id){
 				
-		return $this->arret->with(array('arrets_categories'))->findOrFail($id);
+		return $this->arret->where('id', '=' ,$id)->with(array('arrets_categories'))->get()->first();
 	}
 
 	public function create(array $data){

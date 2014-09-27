@@ -5,7 +5,9 @@ body{
 }
 
 #bailNewsletter{
-    font-family: Helvetica, Arial, sans-serif;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 12px;
+    text-align: justify;
     line-height: 20px;
     width: 600px;
     margin: 0 auto;
@@ -94,6 +96,7 @@ body{
 
 #bailNewsletter  p,
 #bailNewsletter .contentForm p,
+#bailNewsletter .contentForm div,
 #bailNewsletter .contentForm .content {
     font-family: Arial,Helvetica,sans-serif;
     font-size: 12px;
@@ -143,4 +146,12 @@ body{
 
 #bailNewsletter .blocBorder{
     border-bottom:1px solid #ededed;
+}
+
+#bailNewsletter .newsletterborder{
+    border:1px solid #ededed;
+}
+
+#bailNewsletter .contentForm .centerText{
+    text-align: center;
 }

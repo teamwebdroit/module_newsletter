@@ -15,7 +15,13 @@ class Newsletter_contents extends \Eloquent {
     }
 
     public function type(){
+
         return $this->belongsTo('Droit\Newsletter\Entities\Newsletter_types');
+    }
+
+    public function arrets(){
+
+        return $this->hasMany('Droit\Arret\Entities\Arret', 'id', 'arret_id');
     }
 
 }

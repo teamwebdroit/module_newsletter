@@ -5,7 +5,7 @@
         <td class="resetMarge">
 
             <!-- Bloc content-->
-            <table border="0" width="560" align="center" cellpadding="0" cellspacing="0" class="tableReset">
+            <table border="0" width="560" align="center" cellpadding="0" cellspacing="0" class="tableReset contentForm">
                 <tr>
                     <td valign="top" align="center" width="130" class="resetMarge">
                         <a href="#"><img style="max-width: 130px; max-height: 220px;" alt="Droit du bail" src="{{ asset('files/'.$bloc->image) }}" /></a>

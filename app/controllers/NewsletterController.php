@@ -4,6 +4,7 @@ use \InlineStyle\InlineStyle;
 use Droit\Service\Worker\UploadInterface;
 use Droit\Newsletter\Repo\NewsletterContentInterface;
 use Droit\Newsletter\Repo\NewsletterTypesInterface;
+use Droit\Arret\Repo\ArretInterface;
 
 class NewsletterController extends BaseController {
 
@@ -13,14 +14,18 @@ class NewsletterController extends BaseController {
 
     protected $types;
 
+    protected $arret;
+
     /* Inject dependencies */
-    public function __construct(UploadInterface $upload, NewsletterContentInterface $content, NewsletterTypesInterface $types)
+    public function __construct(UploadInterface $upload, NewsletterContentInterface $content, NewsletterTypesInterface $types, ArretInterface $arret)
     {
         $this->upload  = $upload;
 
         $this->content = $content;
 
         $this->types   = $types;
+
+        $this->arret   = $arret;
 
         /*
          * Urls
@@ -67,14 +72,71 @@ class NewsletterController extends BaseController {
     }
 
 
+
+    public function html()
+    {
+
+        /*
+        $htmldoc = new InlineStyle(file_get_contents('http://newsletter.local/html'));
+        $htmldoc->applyStylesheet($htmldoc->extractStylesheets());
+
+        $html = $htmldoc->getHTML();
+        */
+
+
+        $html = $this->content->getByCampagne(1);
+
+
+        $campagne = $html->map(function($item)
+        {
+            if ($item->arret_id > 0)
+            {
+                $arret = $this->arret->find($item->arret_id);
+                $arret->setAttribute('type',$item->type);
+                return $arret;
+            }
+            else
+            {
+                return $item;
+            }
+        });
+
+        echo '<pre>';
+        print_r($campagne);
+        echo '</pre>';
+
+       // return View::make('newsletter.html')->with(array('content' => $ids));
+    }
+
     public function campagne()
     {
 
         $content = $this->content->getByCampagne(1);
 
-        return View::make('newsletter.show')->with(array('content' => $content));
+        $campagne = $content->map(function($item)
+        {
+            if ($item->arret_id > 0)
+            {
+                $arret = $this->arret->find($item->arret_id);
+                $arret->setAttribute('type',$item->type);
+                return $arret;
+            }
+            else
+            {
+                return $item;
+            }
+        });
+
+        return View::make('newsletter.show')->with(array('content' => $campagne));
     }
 
+
+    public function build()
+    {
+        $content = ( isset($_POST['content']) ? $_POST['content'] : '' );
+
+        return View::make('newsletter.content')->with(array('content' => $content));
+    }
 
     /**
      * App views
@@ -116,28 +178,10 @@ class NewsletterController extends BaseController {
         return View::make('newsletter.templates.arret');
     }
 
-    public function convert()
-    {
-        return View::make('newsletter.show');
-    }
+    /**
+     * End App views
+     */
 
-    public function build()
-    {
-        $content = ( isset($_POST['content']) ? $_POST['content'] : '' );
-
-        return View::make('newsletter.content')->with(array('content' => $content));
-    }
-
-    public function test()
-    {
-
-        $htmldoc = new InlineStyle(file_get_contents('http://newsletter.local/html'));
-        $htmldoc->applyStylesheet($htmldoc->extractStylesheets());
-
-        $html = $htmldoc->getHTML();
-
-        return View::make('newsletter.test')->with(array('content' => $html));
-    }
 
     public function upload()
     {

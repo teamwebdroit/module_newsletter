@@ -5,7 +5,7 @@
         <td class="resetMarge">
 
             <!-- Bloc content-->
-            <table border="0" width="560" align="center" cellpadding="0" cellspacing="0" class="tableReset">
+            <table border="0" width="560" align="center" cellpadding="0" cellspacing="0" class="tableReset contentForm">
                 <tr>
                     <td valign="top" width="405" class="resetMarge">
                         <h2>{{ $bloc->titre }}</h2>
