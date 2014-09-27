@@ -46,6 +46,10 @@
                         <!-- End logos and header img -->
                     </td>
                 </tr>
+
+                <!-- Header -->
+                @include('newsletter.content.header')
+
                 <tr>
                     <td width="560" align="center" valign="top">
                         <!-- Main content -->

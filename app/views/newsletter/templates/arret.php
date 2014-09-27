@@ -19,7 +19,7 @@
                     <!-- Categories -->
                     <div class="resetMarge" ng-repeat="categorie in select.categories">
                         <a href="#">
-                            <img ng-show="categorie.image" width="140" height="107" border="0" alt="{{ categorie.title }}" src="<?php echo asset('newsletter/pictos/{{ categorie.image }}') ?>">
+                            <img ng-show="categorie.image" width="140" height="107" border="0" alt="{{ categorie.title }}" ng-src="<?php echo asset('newsletter/pictos/{{ categorie.image }}') ?>">
                         </a>
                         <p class="middle">{{ categorie.title }}</p>
                     </div>

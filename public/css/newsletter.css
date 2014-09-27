@@ -24,6 +24,23 @@ body{
     padding: 0;
 }
 
+#bailNewsletter .redBail{
+    color: #cb2629;
+}
+
+#bailNewsletter .header{
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: normal;
+    margin: 0;
+    padding: 0;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+#bailNewsletter .header.headerSmall{
+    font-size: 15px;
+}
+
 #bailNewsletter h2,
 #bailNewsletter .contentForm h3,
 #bailNewsletter .contentForm h4,
@@ -35,19 +52,20 @@ body{
 }
 
 #bailNewsletter h2 {
-    font-size:16px;
+    font-size:14px;
     font-weight:bold;
     color: #cb2629;
 }
 
 #bailNewsletter .contentForm h3 {
-    font-size:14px;
+    font-size:13px;
     font-weight:bold;
     color: #cb2629;
 }
 
 #bailNewsletter .contentForm h4 {
     font-weight:bold;
+    font-size:13px;
     color: #cb2629;
 }
 
@@ -74,8 +92,12 @@ body{
     font-weight:normal;
 }
 
-#bailNewsletter .contentForm p, #bailNewsletter .contentForm .content {
-   text-align: justify;
+#bailNewsletter  p,
+#bailNewsletter .contentForm p,
+#bailNewsletter .contentForm .content {
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 12px;
+    text-align: justify;
 }
 
 #bailNewsletter .contentForm ul{
