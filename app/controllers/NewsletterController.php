@@ -249,6 +249,17 @@ class NewsletterController extends BaseController {
 
     }
 
+    public function sorting(){
+
+        $data = Input::all();
+
+        $contents = $this->content->updateSorting($data['bloc_rang']);
+
+        print_r($data['bloc_rang']);
+
+    }
+
+
     /**
      * Return building blocs for js
      *

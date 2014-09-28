@@ -31,8 +31,8 @@
                         <!-- End see in browser -->
 
                         <!-- Logos and header img -->
-                        <table border="0" width="560" align="center" cellpadding="0" cellspacing="0" style="{{ $tableReset }}">
-                            <tr style="{{ $resetMarge }}display:block;">
+                        <table border="0" width="560" align="center" cellpadding="0" cellspacing="0" class="tableReset">
+                            <tr class="resetMarge" style="display:block;">
                                 <td height="100" style="margin: 0;padding: 0;display:block;border: 1px solid #{{ $borderGray }}; border-bottom: 0;">
                                     <a href="http://www.bail.ch"><img width="100%" alt="Droit du bail" src="{{ asset('newsletter/logos-bail.jpg') }}" /></a>
                                 </td>
@@ -51,7 +51,7 @@
                 @include('newsletter.content.header')
 
                 <tr>
-                    <td  class="newsletterborder" width="560" align="center" valign="top">
+                    <td id="sortable" class="newsletterborder" width="560" align="center" valign="top">
                         <!-- Main content -->
                         @yield('content')
                         <!-- Fin contenu -->
@@ -60,10 +60,10 @@
                 <tr>
                     <td width="560" align="center" valign="top">
                         <!-- See in browser -->
-                        <table border="0" width="600" cellpadding="0" cellspacing="0" style="{{ $tableReset }}">
+                        <table border="0" width="600" cellpadding="0" cellspacing="0" class="tableReset">
                             <tr><td height="15"></td></tr><!-- space -->
                             <tr>
-                                <td align="center"  style="{{ $linkGrey }}">
+                                <td align="center"  class="linkGrey">
                                     Si vous ne désirez plus recevoir cette newsletter, vous pouvez vous désinscrire à tout moment en
                                     <a class="linkGrey" href="{{ $unsuscribe }}">cliquant ici</a>.
                                 </td>
@@ -77,6 +77,12 @@
             </table>
             <!-- End main table -->
         </div>
+        <!-- Javascript Files
+        ================================================== -->
+
+        <script type="text/javascript" src="<?php echo asset('js/jquery.js');?>"></script>
+        <script type="text/javascript" src="<?php echo asset('js/vendor/jqueryui/jquery-ui.js');?>"></script>
+        <script type="text/javascript" src="<?php echo asset('js/sorting.js');?>"></script>
 
     </body>
 </html>

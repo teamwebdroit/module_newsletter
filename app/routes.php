@@ -45,5 +45,6 @@ Route::resource('/', 'NewsletterController');
  * API
  */
 Route::get('building', 'NewsletterController@building');
+Route::post('sorting', 'NewsletterController@sorting');
 Route::get('arrets', 'ArretController@all');
 Route::get('arrets/{id}', 'ArretController@simple');
