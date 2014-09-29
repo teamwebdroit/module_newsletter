@@ -9,7 +9,7 @@
                 <tr>
                     <td valign="top" width="375" class="resetMarge">
                         <?php setlocale(LC_ALL, 'fr_FR');  ?>
-                        <h3>{{ $bloc->reference }} du {{ $bloc->pub_date->formatLocalized('%d %B %Y') }}</h3>
+                        <h3 style="text-align: left;">{{ $bloc->reference }} du {{ $bloc->pub_date->formatLocalized('%d %B %Y') }}</h3>
                         <p class="abstract">{{ $bloc->abstract }}</p>
                         <div>{{ $bloc->pub_text }}</div>
                     </td>

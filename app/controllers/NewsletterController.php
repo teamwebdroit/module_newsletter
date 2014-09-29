@@ -76,34 +76,40 @@ class NewsletterController extends BaseController {
     public function html()
     {
 
-        /*
-        $htmldoc = new InlineStyle(file_get_contents('http://newsletter.local/html'));
+
+        $htmldoc = new InlineStyle(file_get_contents('http://newsletter.local/campagne'));
         $htmldoc->applyStylesheet($htmldoc->extractStylesheets());
 
         $html = $htmldoc->getHTML();
-        */
 
+        $html = preg_replace('#<script(.*?)>(.*?)</script>#is', '', $html);
 
-        $html = $this->content->getByCampagne(1);
+        echo $html;
 
-
-        $campagne = $html->map(function($item)
-        {
-            if ($item->arret_id > 0)
+            try
             {
-                $arret = $this->arret->find($item->arret_id);
-                $arret->setAttribute('type',$item->type);
-                return $arret;
-            }
-            else
-            {
-                return $item;
-            }
-        });
+                $subject   =  'Newsletter RJN';
+                $fromEmail = 'info@rjne.ch';
+                $fromName  = 'RJN';
 
+                \Mail::send('emails.newsletter', array('html' => $html) , function($message) use ( $fromEmail,$fromName, $subject )
+                {
+                    $message->to('cindy.leschaud@gmail.com', 'Cindy Leschaud');
+                    $message->from($fromEmail, $fromName);
+                    $message->subject($subject);
+                });
+
+               echo 'email envoyé!!';
+
+            }
+            catch (Exception $e)
+            {
+                echo 'problème!';
+            }
+        /*
         echo '<pre>';
-        print_r($campagne);
-        echo '</pre>';
+        print_r($html);
+        echo '</pre>';*/
 
        // return View::make('newsletter.html')->with(array('content' => $ids));
     }
