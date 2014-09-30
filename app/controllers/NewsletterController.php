@@ -99,22 +99,12 @@ class NewsletterController extends BaseController {
             {
                 echo 'problème!';
             }
-        /*
-        echo '<pre>';
-        print_r($html);
-        echo '</pre>';*/
-
-       // return View::make('newsletter.html')->with(array('content' => $ids));
+git status
     }
 
     public function campagne()
     {
         $content  = $this->content->getByCampagne(1);
-
-/*        $content = $content->sortByDesc(function($item)
-        {
-            return $item->rang;
-        });*/
 
         $campagne = $content->map(function($item)
         {
