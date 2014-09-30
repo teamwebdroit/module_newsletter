@@ -1,15 +1,15 @@
 @extends('newsletter.layouts.master')
 @section('content')
 
+@if(!empty($content))
 
-    @if(!empty($content))
-
-    <?php
+    @foreach($content as $bloc)
+        <?php
         echo '<pre>';
-        print_r($content);
+        print_r($bloc->idItem);
         echo '</pre>';
-    ?>
-
-    @endif
+        ?>
+    @endforeach
+@endif
 
 @stop

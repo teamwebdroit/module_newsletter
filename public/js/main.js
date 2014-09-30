@@ -31,12 +31,9 @@ var App = angular.module('newsletter', ["cgNotify","ngDragDrop","ngResource","an
         redactorOptions.minHeight = 200;
         redactorOptions.formattingTags = ['p', 'h2', 'h3','h4'];
 }).config(['flowFactoryProvider', function (flowFactoryProvider) {
-
-        /**
-         * Flow image upload configuration
-         */
+        /* Flow image upload configuration */
         flowFactoryProvider.defaults = {
-            target: 'upload',
+            target: 'uploadJS',
             testChunks:false,
             singleFile: true,
             permanentErrors: [404, 500, 501],

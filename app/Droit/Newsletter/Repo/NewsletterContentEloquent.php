@@ -18,7 +18,9 @@ class NewsletterContentEloquent implements NewsletterContentInterface{
 	
 	public function getByCampagne($newsletter_campagne_id){
 		
-		return $this->contents->where('newsletter_campagne_id','=',$newsletter_campagne_id)->with(array('type','arrets'))->orderBy('rang')->get();
+		return $this->contents->where('newsletter_campagne_id','=',$newsletter_campagne_id)
+                              ->with(array('type','arrets'))
+                              ->orderBy('newsletter_contents.rang','ASC')->get();
 	}
 
     public function getRang($newsletter_campagne_id){
@@ -43,8 +45,6 @@ class NewsletterContentEloquent implements NewsletterContentInterface{
                 {
                     return false;
                 }
-
-                print_r($contents);
 
                 $contents->rang = $rang;
                 $contents->save();

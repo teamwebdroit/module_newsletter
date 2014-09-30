@@ -1,14 +1,11 @@
 <?php
 
 use \InlineStyle\InlineStyle;
-use Droit\Service\Worker\UploadInterface;
 use Droit\Newsletter\Repo\NewsletterContentInterface;
 use Droit\Newsletter\Repo\NewsletterTypesInterface;
 use Droit\Arret\Repo\ArretInterface;
 
 class NewsletterController extends BaseController {
-
-    protected $upload;
 
     protected $content;
 
@@ -17,9 +14,8 @@ class NewsletterController extends BaseController {
     protected $arret;
 
     /* Inject dependencies */
-    public function __construct(UploadInterface $upload, NewsletterContentInterface $content, NewsletterTypesInterface $types, ArretInterface $arret)
+    public function __construct( NewsletterContentInterface $content, NewsletterTypesInterface $types, ArretInterface $arret)
     {
-        $this->upload  = $upload;
 
         $this->content = $content;
 
@@ -33,36 +29,7 @@ class NewsletterController extends BaseController {
         $shared['unsuscribe'] = url('/');
         $shared['browser']    = url('/');
 
-        /*
-         * Colors
-        */
-        $shared['redBail']    = 'cb2629';
-        $shared['grayBail']   = '303030';
-        $shared['borderGray'] = 'ededed';
-
-        /*
-         * Styles
-        */
-        $shared['header']       = 'color: #ffffff; font-size: 18px; font-weight: normal; font-family: Helvetica, Arial, sans-serif;';
-        $shared['titleRed']     = 'font-family: Arial, Helvetica,sans-serif;font-size:14px;font-weight:bold;color:#'.$shared['redBail'].';margin: 0 0 10px 0;padding: 0 0 0 0;';
-        $shared['soustitleRed'] = 'font-family: Arial, Helvetica,sans-serif;font-size:13px;font-weight:bold;color:#'.$shared['redBail'].';margin: 0 0 10px 0;padding: 0 0 0 0;';
-        $shared['paragraph']    = 'text-align:justify;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:normal;color:#'.$shared['grayBail'].';margin:0 0 10px 0;padding:0;';
-        $shared['soustitre']    = 'text-align:justify;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:normal;font-style:italic;color:#666;margin:0 0 10px 0;padding:0 0 0 0;';
-        $shared['listItem']     = 'text-align:justify;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:normal;color:#1c1c1b;margin-bottom:5px;';
-        $shared['tableReset']   = 'border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;margin: 0;padding: 0;';
-        $shared['blocBorder']   = 'border-bottom:1px solid #ededed;';
-        $shared['resetMarge']   = 'margin: 0;padding: 0;';
-        $shared['linkGrey']     = 'color: #999; font-size: 11px; font-weight: normal; font-family: Helvetica, Arial, sans-serif;';
-
-        /*
-         * Building blocs
-        */
-        $shared['blocSpacer']       = '<tr bgcolor="ffffff"><td colspan="3" height="35"></td></tr>';
-        $shared['blocSpacerBorder'] = '<tr bgcolor="ffffff"><td colspan="3" height="35" style="'.$shared['blocBorder'].'"></td></tr>';
-
         View::share( $shared );
-
-
 
     }
 
@@ -71,12 +38,38 @@ class NewsletterController extends BaseController {
         return View::make('newsletter.build');
     }
 
+    public function test()
+    {
+        $content  = $this->content->getByCampagne(1);
 
+        $content = $content->sortByDesc(function($item)
+        {
+            return $item->rang;
+        });
+
+        $campagne = $content->map(function($item)
+        {
+            if ($item->arret_id > 0)
+            {
+                $arret = $this->arret->find($item->arret_id);
+                $arret->setAttribute('type',$item->type);
+                $arret->setAttribute('rangItem',$item->rang);
+                $arret->setAttribute('idItem',$item->id);
+                return $arret;
+            }
+            else
+            {
+                $item->setAttribute('rangItem',$item->rang);
+                $item->setAttribute('idItem',$item->id);
+                return $item;
+            }
+        });
+
+        return View::make('newsletter.html')->with(array('content' => $campagne));
+    }
 
     public function html()
     {
-
-
         $htmldoc = new InlineStyle(file_get_contents('http://newsletter.local/campagne'));
         $htmldoc->applyStylesheet($htmldoc->extractStylesheets());
 
@@ -116,8 +109,12 @@ class NewsletterController extends BaseController {
 
     public function campagne()
     {
+        $content  = $this->content->getByCampagne(1);
 
-        $content = $this->content->getByCampagne(1);
+/*        $content = $content->sortByDesc(function($item)
+        {
+            return $item->rang;
+        });*/
 
         $campagne = $content->map(function($item)
         {
@@ -125,155 +122,19 @@ class NewsletterController extends BaseController {
             {
                 $arret = $this->arret->find($item->arret_id);
                 $arret->setAttribute('type',$item->type);
+                $arret->setAttribute('rangItem',$item->rang);
+                $arret->setAttribute('idItem',$item->id);
                 return $arret;
             }
             else
             {
+                $item->setAttribute('rangItem',$item->rang);
+                $item->setAttribute('idItem',$item->id);
                 return $item;
             }
         });
 
         return View::make('newsletter.show')->with(array('content' => $campagne));
-    }
-
-
-    public function build()
-    {
-        $content = ( isset($_POST['content']) ? $_POST['content'] : '' );
-
-        return View::make('newsletter.content')->with(array('content' => $content));
-    }
-
-    /**
-     * App views
-     * @return mixed
-     */
-
-    public function buildingBlocs()
-    {
-        return View::make('newsletter.templates.building-blocs');
-    }
-
-    public function imageLeftText()
-    {
-        return View::make('newsletter.templates.image-left-text');
-    }
-
-    public function imageRightText()
-    {
-        return View::make('newsletter.templates.image-right-text');
-    }
-
-    public function imageText()
-    {
-        return View::make('newsletter.templates.image-text');
-    }
-
-    public function image()
-    {
-        return View::make('newsletter.templates.image');
-    }
-
-    public function text()
-    {
-        return View::make('newsletter.templates.text');
-    }
-
-    public function arret()
-    {
-        return View::make('newsletter.templates.arret');
-    }
-
-    /**
-     * End App views
-     */
-
-
-    public function upload()
-    {
-        $tempDir = __DIR__ . DIRECTORY_SEPARATOR . 'temp';
-
-        if (!file_exists($tempDir)) {
-            mkdir($tempDir);
-        }
-
-        if (Request::isMethod('get'))
-        {
-            $chunkDir  = $tempDir . DIRECTORY_SEPARATOR . Input::get('flowIdentifier');
-            $chunkFile = $chunkDir.'/chunk.part'.Input::get('flowChunkNumber');
-
-            if (file_exists($chunkFile)) {
-                header("HTTP/1.0 200 Ok");
-            } else {
-                header("HTTP/1.0 404 Not Found");
-            }
-        }
-
-        $files = $this->upload->upload( Input::file('file') , 'files' );
-
-        if($files)
-        {
-            echo json_encode([
-                'success' => true,
-                'files'   => Input::file(),
-                'get'     => Input::all(),
-                'post'    => Input::all()
-            ]);
-        }
-
-        return false;
-
-    }
-
-    public function process(){
-
-        $data = Input::all();
-
-        /* retrive type from database to set it right in content */
-        $type = $this->types->findByPartial($data['type']);
-        $rang = $this->content->getRang(1);
-
-        $titre    = (isset($data['titre']) ? $data['titre'] : null);
-        $contenu  = (isset($data['contenu']) ? $data['contenu'] : null);
-        $image    = (isset($data['image']) ? $data['image'] : null);
-        $arret_id = (isset($data['arret_id']) ? $data['arret_id'] : 0);
-
-        $new  = array(
-            'type_id'                => $type->id,
-            'titre'                  => $titre,
-            'contenu'                => $contenu,
-            'image'                  => $image,
-            'arret_id'               => $arret_id,
-            'categorie_id'           => 0,
-            'newsletter_campagne_id' => 1,
-            'rang'                   => $rang
-        );
-
-        $contents = $this->content->create($new);
-
-        print_r($contents);
-
-    }
-
-    public function sorting(){
-
-        $data = Input::all();
-
-        $contents = $this->content->updateSorting($data['bloc_rang']);
-
-        print_r($data['bloc_rang']);
-
-    }
-
-
-    /**
-     * Return building blocs for js
-     *
-     * @return json
-     */
-    public function building()
-    {
-        return array( 'blocs' => $this->types->getAll());
     }
 
 }

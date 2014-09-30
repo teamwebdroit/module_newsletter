@@ -11,13 +11,25 @@ class UploadController extends BaseController {
 
     }
 
-	public function store()
-	{
+    public function uploadJS()
+    {
 
-        $destination = Input::get('destination');
+        $files = $this->upload->upload( Input::file('file') , 'files' );
 
-        return $this->upload->upload( Input::file('file') , $destination );
+        if($files)
+        {
+            return Response::json(array(
+                    'success' => true,
+                    'files'   => Input::file(),
+                    'get'     => Input::all(),
+                    'post'    => Input::all()
+                ),
+            200 );
 
-	}
+        }
+
+        return false;
+
+    }
 
 }

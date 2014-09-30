@@ -21,7 +21,7 @@
                         <table border="0" width="560" cellpadding="0" cellspacing="0" class="resetTable">
                             <tr><td height="15"></td></tr><!-- space -->
                             <tr>
-                                <td align="center" style="{{ $linkGrey }}">
+                                <td align="center" class="linkGrey">
                                     Si cet email ne s'affiche pas correctement, vous pouvez le voir directement dans
                                     <a class="linkGrey" href="{{ $browser }}">votre navigateur</a>.
                                 </td>
@@ -33,12 +33,12 @@
                         <!-- Logos and header img -->
                         <table border="0" width="560" align="center" cellpadding="0" cellspacing="0" class="tableReset">
                             <tr class="resetMarge" style="display:block;">
-                                <td height="100" style="margin: 0;padding: 0;display:block;border: 1px solid #{{ $borderGray }}; border-bottom: 0;">
+                                <td height="100" style="margin: 0;padding: 0;display:block;border: 1px solid #ededed; border-bottom: 0;">
                                     <a href="http://www.bail.ch"><img width="100%" alt="Droit du bail" src="{{ asset('newsletter/logos-bail.jpg') }}" /></a>
                                 </td>
                             </tr>
-                            <tr style="{{ $resetMarge }}display:block;">
-                                <td height="130" style="{{ $resetMarge }}display:block;">
+                            <tr class="resetMarge" style="display:block;">
+                                <td height="130" class="resetMarge" style="display:block;">
                                     <img height="130" alt="Droit du bail" src="{{ asset('newsletter/header-bail.jpg') }}" />
                                 </td>
                             </tr>

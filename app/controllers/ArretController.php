@@ -21,25 +21,6 @@ class ArretController extends \BaseController {
         return View::make('newsletter.test');
     }
 
-    /**
-     * Return all arrets for dropdown
-     *
-     * @return json
-     */
-    public function all()
-    {
-        return $this->arret->getAll();
-    }
-
-    /**
-     * Return one arret by id
-     *
-     * @return json
-     */
-    public function simple($id)
-    {
-        return $this->arret->find($id);
-    }
 
     /**
      * Return one arret by id
