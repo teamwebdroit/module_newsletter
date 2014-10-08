@@ -6,6 +6,7 @@
 Route::get('convert', 'NewsletterController@convert');
 Route::get('html', 'NewsletterController@html');
 Route::get('test', 'NewsletterController@test');
+Route::get('convert', 'NewsletterController@convert');
 Route::get('date', 'ArretController@index');
 Route::get('campagne', 'NewsletterController@campagne');
 Route::resource('/', 'NewsletterController');

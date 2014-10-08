@@ -3,13 +3,12 @@
 
 @if(!empty($content))
 
-    @foreach($content as $bloc)
-        <?php
+    <?php
         echo '<pre>';
-        print_r($bloc->idItem);
+        print_r($content);
         echo '</pre>';
-        ?>
-    @endforeach
+     ?>
+
 @endif
 
 @stop

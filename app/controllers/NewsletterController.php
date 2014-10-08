@@ -3,7 +3,8 @@
 use \InlineStyle\InlineStyle;
 use Droit\Newsletter\Repo\NewsletterContentInterface;
 use Droit\Newsletter\Repo\NewsletterTypesInterface;
-use Droit\Arret\Repo\ArretInterface;
+use Droit\Content\Repo\ArretInterface;
+use Droit\Content\Repo\AnalyseInterface;
 
 class NewsletterController extends BaseController {
 
@@ -13,8 +14,10 @@ class NewsletterController extends BaseController {
 
     protected $arret;
 
+    protected $analyse;
+
     /* Inject dependencies */
-    public function __construct( NewsletterContentInterface $content, NewsletterTypesInterface $types, ArretInterface $arret)
+    public function __construct( NewsletterContentInterface $content, NewsletterTypesInterface $types, ArretInterface $arret, AnalyseInterface $analyse)
     {
 
         $this->content = $content;
@@ -22,6 +25,8 @@ class NewsletterController extends BaseController {
         $this->types   = $types;
 
         $this->arret   = $arret;
+
+        $this->analyse = $analyse;
 
         /*
          * Urls
@@ -38,34 +43,17 @@ class NewsletterController extends BaseController {
         return View::make('newsletter.build');
     }
 
+    public function convert()
+    {
+        return View::make('newsletter.test');
+    }
+
     public function test()
     {
-        $content  = $this->content->getByCampagne(1);
 
-        $content = $content->sortByDesc(function($item)
-        {
-            return $item->rang;
-        });
+        $analyse = $this->analyse->find(21);
 
-        $campagne = $content->map(function($item)
-        {
-            if ($item->arret_id > 0)
-            {
-                $arret = $this->arret->find($item->arret_id);
-                $arret->setAttribute('type',$item->type);
-                $arret->setAttribute('rangItem',$item->rang);
-                $arret->setAttribute('idItem',$item->id);
-                return $arret;
-            }
-            else
-            {
-                $item->setAttribute('rangItem',$item->rang);
-                $item->setAttribute('idItem',$item->id);
-                return $item;
-            }
-        });
-
-        return View::make('newsletter.html')->with(array('content' => $campagne));
+        return View::make('newsletter.html')->with(array('content' => $analyse));
     }
 
     public function html()
@@ -99,7 +87,6 @@ class NewsletterController extends BaseController {
             {
                 echo 'problème!';
             }
-git status
     }
 
     public function campagne()

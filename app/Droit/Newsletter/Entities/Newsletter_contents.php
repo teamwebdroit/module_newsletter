@@ -21,7 +21,7 @@ class Newsletter_contents extends \Eloquent {
 
     public function arrets(){
 
-        return $this->hasMany('Droit\Arret\Entities\Arret', 'id', 'arret_id');
+        return $this->hasMany('Droit\Content\Entities\Arret', 'id', 'arret_id');
     }
 
 }

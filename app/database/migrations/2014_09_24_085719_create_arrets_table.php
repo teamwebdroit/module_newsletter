@@ -24,7 +24,7 @@ class CreateArretsTable extends Migration {
             $table->text('abstract')->nullable();
             $table->text('pub_text')->nullable();
             $table->text('file')->nullable();
-            $table->integer('categories');
+            $table->integer('categories')->nullable();
             $table->text('analysis')->nullable();
 			$table->timestamps();
 

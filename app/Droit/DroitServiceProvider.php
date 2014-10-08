@@ -4,7 +4,9 @@
  */
 
 use Illuminate\Support\ServiceProvider;
-use Droit\Arret\Entities\Arret as Arret;
+use Droit\Content\Entities\Arret as Arret;
+use Droit\Content\Entities\Analyse as Analyse;
+
 
 /**
  *  DroitServiceProvider
@@ -17,6 +19,7 @@ class DroitServiceProvider extends ServiceProvider {
     public function register()
     {         	
 		$this->registerArretService();
+        $this->registerAnalyseService();
     }
 
 	/**
@@ -24,10 +27,19 @@ class DroitServiceProvider extends ServiceProvider {
 	 */     
     protected function registerArretService(){
     
-	    $this->app->bind('Droit\Arret\Repo\ArretInterface', function()
+	    $this->app->bind('Droit\Content\Repo\ArretInterface', function()
         {
-            return new \Droit\Arret\Repo\ArretEloquent( new Arret );
+            return new \Droit\Content\Repo\ArretEloquent( new Arret );
         });        
     }
+    /**
+     * Analyse
+     */
+    protected function registerAnalyseService(){
 
+        $this->app->bind('Droit\Content\Repo\AnalyseInterface', function()
+        {
+            return new \Droit\Content\Repo\AnalyseEloquent( new Analyse );
+        });
+    }
 }

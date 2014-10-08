@@ -3,7 +3,7 @@
 use \InlineStyle\InlineStyle;
 use Droit\Newsletter\Repo\NewsletterContentInterface;
 use Droit\Newsletter\Repo\NewsletterTypesInterface;
-use Droit\Arret\Repo\ArretInterface;
+use Droit\Content\Repo\ArretInterface;
 
 class NewsletterApiController extends BaseController {
 
