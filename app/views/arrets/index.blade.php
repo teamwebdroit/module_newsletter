@@ -9,29 +9,35 @@
 
 <div class="content">
     <div class="section">
-        <div id="inner-content" class="blog3">
+
+        <div id="inner-content">
 
             @if(!empty($arrets))
                 @foreach($arrets as $arret)
-                <div class="post">
-                    <div class="post-title">
-                        <?php setlocale(LC_ALL, 'fr_FR');  ?>
-                        <h2 class="title"><a href="blog-single.html">{{ $arret->reference }} du {{ $arret->pub_date->formatLocalized('%d %B %Y') }}</a></h2>
-                        <div class="post-date">
-                            <ul>
-                                @if(!$arret->arrets_categories->isEmpty())
-                                    @foreach($arret->arrets_categories as $arrets_categorie)
-                                        <li class="date">{{ $arrets_categorie->title }}</li>
-                                    @endforeach
-                                @endif
-                            </ul>
-                        </div><!--END POST-DATE-->
-                        <p>{{ $arret->abstract }}</p>
-                    </div><!--END POST-TITLE-->
-                    <div class="post-entry">
-                        <p>{{ $arret->pub_text }}</p>
-                    </div>
-                </div><!--END POST-->
+
+                <div class="three-fourth">
+                    <div class="post">
+                        <div class="post-title">
+                            <?php setlocale(LC_ALL, 'fr_FR');  ?>
+                            <h2 class="title"><a href="blog-single.html">{{ $arret->reference }} du {{ $arret->pub_date->formatLocalized('%d %B %Y') }}</a></h2>
+                            <p>{{ $arret->abstract }}</p>
+                        </div><!--END POST-TITLE-->
+                        <div class="post-entry">
+                            <p>{{ $arret->pub_text }}</p>
+                        </div>
+                    </div><!--END POST-->
+                </div>
+                <div class="one-fifth last listCat">
+
+                    @if(!$arret->arrets_categories->isEmpty())
+                        @foreach($arret->arrets_categories as $arrets_categorie)
+                            <img width="110" border="0" alt="{{ $arrets_categorie->title }}" src="{{ asset('newsletter/pictos/'.$arrets_categorie->image) }}">
+                            <p class="centerText">{{ $arrets_categorie->title }}</p>
+                        @endforeach
+                    @endif
+
+                </div>
+                <span class="clear"></span>
                 @endforeach
 
                 <!--Pagination -->

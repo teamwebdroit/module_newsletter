@@ -60,6 +60,9 @@ code{
     content: "";
     display: block;
 }
+.centerText{
+    text-align: center;
+}
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite,  del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {	margin:0px; 
 	padding:0px; 
 	border:0px; 
@@ -423,12 +426,12 @@ img {
 	padding: 100px 0;
 }	
 #about {
-	background-image: url(http://placehold.it/1130x840);
+    background-image: url('../edition/bg.jpg');
 	color: #fff;
-	padding: 100px 0;
+	padding: 20px 0;
 }
 #about2 {
-	background-image: url(http://placehold.it/1130x840);
+	background-image: url('../edition/bg.jpg');
 	padding: 200px 0;
 	color: #fff;
 }	
@@ -1157,7 +1160,7 @@ li.open a .sf-sub-indicator:after, li.open li.open a .sf-sub-indicator:after, li
 	background-color: #fff;
 }
 .small {
-	padding: 0 12px 0 12px !important;
+	padding: 4px 12px !important;
 	font-size: 10px;
 }
 .medium {
@@ -1175,7 +1178,7 @@ li.open a .sf-sub-indicator:after, li.open li.open a .sf-sub-indicator:after, li
 .grey:hover { color: #FFFFFF; }
 .yellow { background-color:#FEEB43; color: #707070; }
 .white { background-color:#fff; color: #444; }
-.orange { background-color:#f96e5b; }
+.orange { background-color:#e5013e; }
 .white.outline { box-shadow: 0 0 0 2px #FFFFFF inset; color: #fff; background-color:transparent; }
 .green { background-color:#78d18b; }
 .tealgreen { background-color:#3ea9a1; }

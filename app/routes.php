@@ -1,5 +1,8 @@
 <?php
 
+Route::get('contact', 'HomeController@contact');
+Route::get('recueil', 'HomeController@recueil');
+
 /**
  * Pages
  */

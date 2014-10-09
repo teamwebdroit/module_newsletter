@@ -2,9 +2,11 @@
 
 <div id="sidebar">
     <div class="widget">
-        <h3 class="title">Filtres</h3>
-        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
-            totam rem aperiam, eaque ipsa inventore veritatis et quasi architecto.</p>
+        <h3 class="title">Dernière édition RJN</h3>
+        <p><img width="160" border="0" alt="RJN" src="{{ asset('edition/rjn.png') }}"></p>
+        <p class="text-align-left">
+            <a class="button small grey" href="#">Commander</a>
+        </p>
     </div><!--END WIDGET-->
 
     <div class="widget">
