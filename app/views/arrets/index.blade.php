@@ -1,93 +1,51 @@
-@extends('layouts.admin')
+@extends('layouts.master')
 @section('content')
 
-<?php  $custom = new Custom; ?>
+<?php $custom = new \Custom; ?>
 
-    <div id="page-heading">
-        <h1>Arrêts</h1>
-        <div class="options">
-            <div class="btn-toolbar">
-                <a href="{{ url('admin/arrets/create/'.$pid) }}" class="btn btn-default"><i class="fa fa-plus"></i> &nbsp;Ajouter arrêt</a>
-            </div>
-        </div>
-    </div>
+<div class="page-header text-align-left">
+    <h1 class="title uppercase">Recueil de jurisprudence neuchâteloise</h1>
+</div><!--END PAGE-HEADER-->
 
-    <div class="container">
+<div class="content">
+    <div class="section">
+        <div id="inner-content" class="blog3">
 
-    <!-- Arrets bail -->
-        <div class="row">
-          <div class="col-md-12">
+            @if(!empty($arrets))
+                @foreach($arrets as $arret)
+                <div class="post">
+                    <div class="post-title">
+                        <?php setlocale(LC_ALL, 'fr_FR');  ?>
+                        <h2 class="title"><a href="blog-single.html">{{ $arret->reference }} du {{ $arret->pub_date->formatLocalized('%d %B %Y') }}</a></h2>
+                        <div class="post-date">
+                            <ul>
+                                @if(!$arret->arrets_categories->isEmpty())
+                                    @foreach($arret->arrets_categories as $arrets_categorie)
+                                        <li class="date">{{ $arrets_categorie->title }}</li>
+                                    @endforeach
+                                @endif
+                            </ul>
+                        </div><!--END POST-DATE-->
+                        <p>{{ $arret->abstract }}</p>
+                    </div><!--END POST-TITLE-->
+                    <div class="post-entry">
+                        <p>{{ $arret->pub_text }}</p>
+                    </div>
+                </div><!--END POST-->
+                @endforeach
 
-              <div class="panel panel-sky">
-                  <div class="panel-body collapse in">
+                <!--Pagination -->
+                {{ $arrets->links() }}
 
-                        <h3 class="text-center">
-                            @if ( $pid == 195 )
-                                {{HTML::image('/images/bail/logo.png')}}
-                            @endif
-                            @if ( $pid == 207 )
-                                {{HTML::image('/images/admin/matrimonial.jpg')}}
-                            @endif
-                        </h3>
+            @endif
 
-                        <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered arrets_table" id="users_table">
-                            <thead>
-                                <th>Réference</th>
-                                <th>Date de parution</th>
-                                <th>Résumé</th>
-                                <th>Analyses</th>
-                                <th>Catégories</th>
-                                <th>Options</th>
-                            </thead>
-                            <tbody>
-                                <?php if(!empty($arrets)){ ?>
-                                <?php foreach($arrets as $arret)
-                                      {
+        </div><!--END INNER-CONTENT-->
 
-                                        $arrets_categories = $arret->arrets_categories;
-                                ?>
-                                    <tr class="odd gradeX">
-                                        <td class="center"><strong><?php echo $arret->reference; ?></strong></td>
-                                        <td class="center"><?php echo $arret->pub_date->format('d/m/Y'); ?></td>
-                                        <td class="center"><?php echo $custom->limit_words($arret->abstract,20); ?></td>
-                                        <td class="center">
-                                            <?php if( isset($analyses[$arret->id]) ) {?>
-                                            <ul class="fa-ul">
-                                            <?php
-                                                foreach($analyses[$arret->id] as $arrets_analyse)
-                                                {
-                                                    echo '<li><a href="'.url('admin/analyses/'.$arrets_analyse->analyse_id).'" class="">
-                                                                <i class="fa-li fa fa-bookmark"></i>
-                                                                '.$arrets_analyse->authors.' | '.$custom->getCreatedAtAttribute($arrets_analyse->pub_date).'</a></li>';
-                                                }
-                                            ?>
-                                            </ul>
-                                            <?php } ?>
-                                        </td>
-                                        <td>
-                                            <?php if( !$arrets_categories->isEmpty() ) { ?>
-                                            <div class="list-group">
-                                                <?php
-                                                    foreach($arrets_categories as $arrets_categorie)
-                                                    {
-                                                        echo '<p class="list-group-item">'.$arrets_categorie->title.'</p>';
-                                                    }
-                                                ?>
-                                            </div>
-                                            <?php } ?>
-                                        </td>
-                                        <td><a class="btn btn-primary btn-sm edit_btn" href="{{ url('admin/arrets/'.$arret->id) }}">éditer</a></td>
-                                    </tr>
-                                <?php }} ?>
-                            </tbody>
-                        </table>
+        <!-- Sidebar  -->
+        @include('partials.sidebar')
+        <!-- END Sidebar  -->
 
-                    </div><!-- end body panel -->
-                </div><!-- end panel -->
-
-            </div><!-- end col -->
-        </div><!-- end row -->
-
-    </div><!-- end container  -->
+    </div><!--END SECTION-->
+</div><!--END CONTENT-->
 
 @stop

@@ -15,10 +15,16 @@ class ArretEloquent implements ArretInterface{
 		$this->arret = $arret;
 	}
 
-    public function getAll(){
+    public function getAll($pid){
 
-        return $this->arret->all();
-
+        return $this->arret->where('pid','=',$pid)->where('deleted', '=', 0)->with( array('arrets_categories' => function ($query)
+            {
+                $query->orderBy('sorting', 'ASC');
+            },'arrets_analyses' => function($query)
+            {
+                $query->where('analyses.deleted', '=', 0);
+            }))
+            ->orderBy('pub_date', 'DESC')->paginate(10);
     }
 
 	public function find($id){
