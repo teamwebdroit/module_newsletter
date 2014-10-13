@@ -18,26 +18,7 @@ class BaseModel extends Eloquent{
 		{
 			return $model->validate();			
 		});
-		
-		static::creating(function($model) 
-		{
-			static::setNullWhenEmpty($model);
-			return true;
-		});
 
-	}
-	
-	/**
-	 * Set empty values to null during creation
-	 */
-	private static function setNullWhenEmpty($model)
-	{
-		foreach ($model->toArray() as $name => $value) {
-			if (empty($value))
-            {
-				$model->{$name} = null;
-			}
-		}
 	}
 	
 	/**

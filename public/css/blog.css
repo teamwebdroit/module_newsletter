@@ -52,6 +52,9 @@ CSS overview:
 	margin: 0 0 5px 0;
 	width: 100%;
 }
+.widget  .select2-container-multi .select2-choices li{
+    width: auto;
+}
 .widget ul li:last-child {
 	margin: 0;
 }

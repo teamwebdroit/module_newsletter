@@ -14,7 +14,7 @@ class Analyse extends BaseModel {
 
     public function analyses_categories()
     {
-        return $this->belongsToMany('\Droit\Categorie\Entities\Ba_categories', 'analyse_ba_categories', 'analyse_id', 'ba_categories_id');
+        return $this->belongsToMany('\Droit\Categorie\Entities\Categories', 'analyse_categories', 'analyse_id', 'categories_id');
     }
     
 	public function analyses_arrets()

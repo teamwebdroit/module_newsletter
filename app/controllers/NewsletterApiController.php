@@ -84,16 +84,6 @@ class NewsletterApiController extends BaseController {
     }
 
     /**
-     * Return all arrets for dropdown
-     *
-     * @return json
-     */
-    public function all()
-    {
-        return $this->arret->getAll();
-    }
-
-    /**
      * Return one arret by id
      *
      * @return json

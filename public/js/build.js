@@ -2,22 +2,9 @@ var url  = location.protocol + "//" + location.host+"/";
 
 (function ($) {
 
-    var url  = location.protocol + "//" + location.host+"/";
-
     $('#content').redactor({
         minHeight: 300
     });
-/*
-    $( ".bloc" ).draggable();
-
-    $( "#build" ).droppable({
-        drop: function( event, ui ) {
-            $( this )
-                .addClass( "ui-state-highlight" )
-                .find( "p" )
-                .html( "Dropped!" );
-        }
-    });*/
 
 })(jQuery);
 

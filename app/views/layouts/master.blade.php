@@ -15,15 +15,30 @@
         <link rel="stylesheet" type="text/css" href="<?php echo asset('css/style.css');?>" media="screen" />
         <link rel="stylesheet" type="text/css" href="<?php echo asset('css/blog.css');?>" media="screen" />
         <link rel="stylesheet" type="text/css" href="<?php echo asset('css/responsive.css');?>" media="screen" />
+        <link rel="stylesheet" type="text/css" href="<?php echo asset('css/select.css');?>">
+        <link rel="stylesheet" type="text/css" href="<?php echo asset('css/select2.css');?>">
 
         <!-- Javascript Files
         ================================================== -->
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script src="http://code.jquery.com/jquery-migrate-1.0.0.js"></script>
         <script src="<?php echo asset('js/custom.js');?>"></script>
         <script src="<?php echo asset('js/header.js');?>"></script>
 
+        @if(isset($required))
+
+            <link href="<?php echo asset('js/vendor/angular/angular-notify.css');?>" rel="stylesheet">
+            <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-rc.1/angular.js"></script>
+            <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.8/angular-route.js"></script>
+            <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.8/angular-resource.js"></script>
+            <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular-sanitize.js"></script>
+            <script src="<?php echo asset('js/jquery.isotope.min.js');?>"></script>
+            <script type="text/javascript" src="<?php echo asset('js/select.js');?>"></script>
+            <script type="text/javascript" src="<?php echo asset('js/filter.js');?>"></script>
+
+        @endif
+
     </head>
-    <body>
 
     <body id="top">
 

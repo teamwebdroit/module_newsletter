@@ -28,26 +28,6 @@
 
 <div class="container">
 
-    <header>
-        <div class="row">
-            <div class="col-md-12">
-                <nav class="navbar navbar-default" role="navigation">
-                    <div class="container-fluid">
-                        <a class="navbar-brand" href="#">Brand</a>
-                        <!-- Collect the nav links, forms, and other content for toggling -->
-                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                            <ul class="nav navbar-nav">
-                                <li class="active"><a href="#">Link</a></li>
-                                <li><a href="#">Link</a></li>
-                            </ul>
-
-                        </div><!-- /.navbar-collapse -->
-                    </div><!-- /.container-fluid -->
-                </nav>
-            </div>
-        </div>
-    </header>
-
     <div id="main" ng-app="newsletter"><!-- main div for app-->
 
         <div ng-controller="BuildController as build">
@@ -98,7 +78,7 @@
 <script type="text/javascript" src="<?php echo asset('js/vendor/angular/angular-redactor.js');?>"></script>
 <script type="text/javascript" src="<?php echo asset('js/vendor/angular/angular-flow.js');?>"></script>
 <script type="text/javascript" src="<?php echo asset('js/vendor/angular/angular-notify.js');?>"></script>
-<script type="text/javascript" src="<?php echo asset('js/main.js');?>"></script>
+<script type="text/javascript" src="<?php echo asset('js/build.js');?>"></script>
 
 </body>
 </html>

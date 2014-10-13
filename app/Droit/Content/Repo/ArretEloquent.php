@@ -24,7 +24,19 @@ class ArretEloquent implements ArretInterface{
             {
                 $query->where('analyses.deleted', '=', 0);
             }))
-            ->orderBy('pub_date', 'DESC')->paginate(10);
+            ->orderBy('pub_date', 'DESC')->get();
+    }
+
+    public function getPaginate($pid,$nbr){
+
+        return $this->arret->where('pid','=',$pid)->where('deleted', '=', 0)->with( array('arrets_categories' => function ($query)
+        {
+            $query->orderBy('sorting', 'ASC');
+        },'arrets_analyses' => function($query)
+        {
+            $query->where('analyses.deleted', '=', 0);
+        }))
+            ->orderBy('pub_date', 'DESC')->paginate($nbr);
     }
 
 	public function find($id){

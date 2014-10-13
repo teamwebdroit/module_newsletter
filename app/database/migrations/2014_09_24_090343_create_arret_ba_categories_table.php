@@ -12,12 +12,12 @@ class CreateArretBaCategoriesTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('arret_ba_categories', function(Blueprint $table)
+		Schema::create('arret_categories', function(Blueprint $table)
 		{
 
 			$table->increments('id');
 			$table->integer('arret_id')->unsigned()->index();
-			$table->integer('ba_categories_id')->unsigned()->index();
+			$table->integer('categories_id')->unsigned()->index();
             $table->integer('sorting')->default(0);
 
 		});
@@ -31,7 +31,7 @@ class CreateArretBaCategoriesTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('arret_ba_categories');
+		Schema::drop('arret_categories');
 	}
 
 }

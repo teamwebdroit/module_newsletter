@@ -25,7 +25,7 @@ class ArretController extends \BaseController {
 
     public function index()
     {
-        $arrets = $this->arret->getAll(195);
+        $arrets = $this->arret->getPaginate(195,15);
         $latest = $arrets->take(5);
 
         $categories = $this->categorie->getAll(195);
@@ -33,6 +33,22 @@ class ArretController extends \BaseController {
         return View::make('arrets.index')->with(array( 'arrets' => $arrets , 'categories' => $categories , 'latest' => $latest ));
     }
 
+    /**
+     * Display a list of arrets
+     * GET /arret
+     *
+     * @return Response
+     */
+
+    public function listed()
+    {
+        $arrets = $this->arret->getAll(195);
+        $categories = $this->categorie->getAll(195);
+
+        $required = true;
+
+        return View::make('arrets.list')->with(array( 'arrets' => $arrets , 'categories' => $categories  , 'required' => $required ));
+    }
 
     /**
      * Return one arret by id
@@ -44,6 +60,30 @@ class ArretController extends \BaseController {
         $arret = $this->arret->find($id);
 
         return View::make('newsletter.arret')->with(array( 'arret' => $arret));
+    }
+
+    /**
+     * Return response arrets
+     *
+     * @return response
+    */
+    public function arrets()
+    {
+        $arrets = $this->arret->getAll(195);
+
+        return Response::json( $arrets, 200 );
+    }
+
+    /**
+     * Return response categories
+     *
+     * @return response
+     */
+    public function categories()
+    {
+        $categories = $this->categorie->getAll(195);
+
+        return Response::json( $categories, 200 );
     }
 
 }

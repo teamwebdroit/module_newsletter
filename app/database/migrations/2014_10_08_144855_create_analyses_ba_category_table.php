@@ -12,11 +12,11 @@ class CreateAnalysesBaCategoryTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('analyse_ba_categories', function(Blueprint $table)
+		Schema::create('analyse_categories', function(Blueprint $table)
 		{
 			$table->increments('id');
             $table->integer('analyse_id')->unsigned()->index();
-            $table->integer('ba_categories_id')->unsigned()->index();
+            $table->integer('categories_id')->unsigned()->index();
             $table->integer('sorting')->default(0);
 		});
 	}
@@ -29,7 +29,7 @@ class CreateAnalysesBaCategoryTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('analyse_ba_categories');
+		Schema::drop('analyse_categories');
 	}
 
 }

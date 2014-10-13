@@ -1,7 +1,7 @@
 <?php namespace Droit\Categorie\Repo;
 
 use Droit\Categorie\Repo\CategorieInterface;
-use Droit\Categorie\Entities\Ba_categories as M;
+use Droit\Categorie\Entities\Categories as M;
 
 class CategorieEloquent implements CategorieInterface{
 

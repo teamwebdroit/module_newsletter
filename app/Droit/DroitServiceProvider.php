@@ -6,7 +6,7 @@
 use Illuminate\Support\ServiceProvider;
 use Droit\Content\Entities\Arret as Arret;
 use Droit\Content\Entities\Analyse as Analyse;
-use Droit\Categorie\Entities\Ba_categories as Categorie;
+use Droit\Categorie\Entities\Categories as Categorie;
 
 
 /**

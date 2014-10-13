@@ -2,7 +2,7 @@
 
 use Droit\Common\BaseModel as BaseModel;
 
-class Ba_categories extends BaseModel {
+class Categories extends BaseModel {
 
 	protected $fillable = ['pid','user_id','deleted','title','image','ismain'];
     protected $dates    = ['created_at','updated_at'];

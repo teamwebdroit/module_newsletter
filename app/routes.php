@@ -14,6 +14,7 @@ Route::get('campagne', 'NewsletterController@campagne');
 Route::resource('/', 'NewsletterController');
 
 Route::get('post', 'ArretController@index');
+Route::get('listed', 'ArretController@listed');
 
 /**
  * Templates for js
@@ -37,5 +38,6 @@ Route::post('uploadJS', 'UploadController@uploadJS');
 Route::get('building', 'NewsletterApiController@building');
 Route::post('sorting', 'NewsletterApiController@sorting');
 Route::post('process', 'NewsletterApiController@process');
-Route::get('arrets', 'NewsletterApiController@all');
+Route::get('arrets', 'ArretController@arrets');
+Route::get('categories', 'ArretController@categories');
 Route::get('arrets/{id}', 'NewsletterApiController@simple');

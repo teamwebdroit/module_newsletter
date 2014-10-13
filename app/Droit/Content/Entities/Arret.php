@@ -12,7 +12,7 @@ class Arret extends BaseModel {
 
     public function arrets_categories()
     {
-        return $this->belongsToMany('\Droit\Categorie\Entities\Ba_categories', 'arret_ba_categories', 'arret_id', 'ba_categories_id');
+        return $this->belongsToMany('\Droit\Categorie\Entities\Categories', 'arret_categories', 'arret_id', 'categories_id');
     }
 
     public function arrets_analyses()

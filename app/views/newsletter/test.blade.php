@@ -17,7 +17,6 @@
                         $createdate = $arret->created_at->toDateTimeString();
                         $updatedate = $arret->updated_at->toDateTimeString();
 
-                        /*
                         $newarret = new \Droit\Content\Entities\Arret;
                         $newarret->id         = $arret->id;
                         $newarret->pid        = $arret->pid;
@@ -32,8 +31,6 @@
                         $newarret->updated_at = $updatedate;
 
                         $newarret->save();
-                        */
-
 
                         //print_r($arret);
 
@@ -49,7 +46,7 @@
                         $createdate = $categorie->created_at->toDateTimeString();
                         $updatedate = $categorie->updated_at->toDateTimeString();
 
-  /*                    $newcat = new \Droit\Categorie\Entities\Ba_categories;
+                        $newcat = new \Droit\Categorie\Entities\Categories;
                         $newcat->id         = $categorie->id;
                         $newcat->pid        = $categorie->pid;
                         $newcat->user_id    = $categorie->cruser_id;
@@ -59,7 +56,7 @@
                         $newcat->created_at = $createdate;
                         $newcat->updated_at = $updatedate;
 
-                        $newcat->save();*/
+                        $newcat->save();
 
                         /*
                         echo '<pre>';
@@ -80,7 +77,6 @@
                     $createdate = $analyse->created_at->toDateTimeString();
                     $updatedate = $analyse->updated_at->toDateTimeString();
 
-/*
                     $newanalyse = new \Droit\Content\Entities\Analyse;
                     $newanalyse->id         = $analyse->id;
                     $newanalyse->pid        = $analyse->pid;
@@ -97,7 +93,7 @@
 
                     $newanalyse->save();
 
-                    echo '<pre>';
+                   /* echo '<pre>';
                     print_r($newanalyse);
                     echo '</pre>';*/
 

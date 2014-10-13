@@ -12,7 +12,7 @@ class CreateBaCategoriesTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('ba_categories', function(Blueprint $table)
+		Schema::create('categories', function(Blueprint $table)
 		{
 			$table->increments('id')->unsigned();
             $table->integer('pid');
@@ -34,7 +34,7 @@ class CreateBaCategoriesTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('ba_categories');
+		Schema::drop('categories');
 	}
 
 }
