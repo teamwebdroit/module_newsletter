@@ -9,7 +9,17 @@ var Filter = angular.module('filter', ["ngResource", 'ui.select','ngSanitize']).
     $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
 }).config(function(uiSelectConfig) {
     uiSelectConfig.theme = 'select2';
-});;
+}).service('myService',  function ($rootScope) {
+    var selected = 0;
+    return {
+        getSelected : function() {
+            return selected;
+        },
+        setSelected : function(select) {
+            selected = select;
+        }
+    };
+});
 
 /**
  * Retrive all arrets blocs for bloc arret

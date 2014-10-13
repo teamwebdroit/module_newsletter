@@ -10,7 +10,7 @@
 <div class="content">
     <div class="section" ng-app="filter">
 
-        <div class="isotope" id="inner-content" ng-controller="ArretController as arret">
+        <div id="inner-content" isotope-container="isotope-container" ng-controller="ArretController as arret">
 
             @if(!empty($arrets))
                 @foreach($arrets as $arret)
@@ -30,14 +30,12 @@
                         </div><!--END POST-->
                     </div>
                     <div class="one-fifth last listCat">
-
                         @if(!$arret->arrets_categories->isEmpty())
                             @foreach($arret->arrets_categories as $arrets_categorie)
                                 <img width="110" border="0" alt="{{ $arrets_categorie->title }}" src="{{ asset('newsletter/pictos/'.$arrets_categorie->image) }}">
                                 <p class="centerText">{{ $arrets_categorie->title }}</p>
                             @endforeach
                         @endif
-
                     </div>
                     <span class="clear"></span>
 
