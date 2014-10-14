@@ -5,18 +5,67 @@
 })(jQuery);
 
 
-var Filter = angular.module('filter', ["ngResource", 'ui.select','ngSanitize']).config(function($interpolateProvider){
+// attach the .equals method to Array's prototype to call it on any array
+Array.prototype.equals = function (array) {
+    // if the other array is a falsy value, return
+    if (!array)
+        return false;
+
+    // compare lengths - can save a lot of time
+    if (this.length != array.length)
+        return false;
+
+    for (var i = 0, l=this.length; i < l; i++) {
+        // Check if we have nested arrays
+        if (this[i] instanceof Array && array[i] instanceof Array) {
+            // recurse into the nested arrays
+            if (!this[i].equals(array[i]))
+                return false;
+        }
+        else if (this[i] != array[i]) {
+            // Warning - two different object instances will never be equal: {x:20} != {x:20}
+            return false;
+        }
+    }
+    return true;
+};
+
+var Filter = angular.module('filtering', ["ngResource", 'ui.select','ngSanitize']).config(function($interpolateProvider){
     $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
 }).config(function(uiSelectConfig) {
     uiSelectConfig.theme = 'select2';
 }).service('myService',  function ($rootScope) {
-    var selected = 0;
+    var selected = [];
     return {
         getSelected : function() {
             return selected;
         },
         setSelected : function(select) {
             selected = select;
+        },
+        isSelected : function(cat){
+
+            if(selected.length > 0){
+                var res = cat.replace(/cat-/g, "");
+                var res = res.split(" ");
+                res.filter(Boolean);
+
+                $.arrayIntersect = function(a, b)
+                {
+                    return $.grep(a, function(i)
+                    {
+                        return $.inArray(i, b) > -1;
+                    });
+                };
+
+                var compare = $.arrayIntersect(selected,res);
+
+                return (compare.equals(selected) ? true : false);
+            }
+            else
+            {
+                return true;
+            }
         }
     };
 });
@@ -55,61 +104,32 @@ Filter.factory('Categories', ['$http', '$q', function($http, $q) {
     };
 }]);
 
-Filter.controller('ArretController', ['$scope','$http','Arrets',function($scope,$http,Arrets){
+Filter.controller('ArretController', ['$scope','$timeout','$http','Arrets','myService',function($scope,$timeout,$http,Arrets,myService){
 
+    this.loading = true;
     /* capture this (the controller scope ) as self */
-    var self = this;
-
+    var self     = this;
     this.allpost = [];
 
     this.refresh = function() {
         Arrets.query()
             .then(function (data) {
                 self.allpost = data;
+                self.loading = false;
             });
     }
-
     this.refresh();
+
+    this.isSelected = function(cat){
+        return myService.isSelected(cat);
+    };
 
 }]);
 
 /**
- * AngularJS default filter with the following expression:
- * "person in people | filter: {name: $select.search, age: $select.search}"
- * performs a AND between 'name: $select.search' and 'age: $select.search'.
- * We want to perform a OR.
- */
-Filter.filter('propsFilter', function() {
-    return function(items, props) {
-        var out = [];
-        if (angular.isArray(items)) {
-            items.forEach(function(item) {
-                var itemMatches = false;
-                var keys = Object.keys(props);
-                for (var i = 0; i < keys.length; i++) {
-                    var prop = keys[i];
-                    var text = props[prop].toLowerCase();
-                    if (item[prop].toString().toLowerCase().indexOf(text) !== -1) {
-                        itemMatches = true;
-                        break;
-                    }
-                }
-                if (itemMatches) {
-                    out.push(item);
-                }
-            });
-        } else {
-            // Let the output be the input untouched
-            out = items;
-        }
-        return out;
-    };
-});
-
-/**
  * Select arret controller, select an arret and display's it
  */
-Filter.controller('FilterController', ['$scope','$http', '$sce','Categories',function($scope,$http,$sce,Categories){
+Filter.controller('FilterController', ['$scope','$http', '$sce','Categories','myService',function($scope,$http,$sce,Categories,myService){
 
     this.disabled      = undefined;
     this.searchEnabled = undefined;
@@ -129,10 +149,6 @@ Filter.controller('FilterController', ['$scope','$http', '$sce','Categories',fun
     this.disableSearch = function() {
         this.searchEnabled = false;
     }
-
-    this.trustAsHtml = function(value) {
-        return $sce.trustAsHtml(value);
-    };
 
     this.clear = function() {
         this.categorie.selected = undefined;
@@ -169,8 +185,9 @@ Filter.controller('FilterController', ['$scope','$http', '$sce','Categories',fun
 
     this.refresh();
 
-    /* When one categorie is selected in the dropdown */
-    this.changed = function(){ };
+    this.filterFunction = function(element) {
+        myService.setSelected(element);
+    };
 
 }]);
 
@@ -190,6 +207,40 @@ Filter.directive('postText', function($timeout) {
                 });
             },true);
         }*/
+    };
+});
+
+
+/**
+ * AngularJS default filter with the following expression:
+ * "person in people | filter: {name: $select.search, age: $select.search}"
+ * performs a AND between 'name: $select.search' and 'age: $select.search'.
+ * We want to perform a OR.
+ */
+Filter.filter('propsFilter', function() {
+    return function(items, props) {
+        var out = [];
+        if (angular.isArray(items)) {
+            items.forEach(function(item) {
+                var itemMatches = false;
+                var keys = Object.keys(props);
+                for (var i = 0; i < keys.length; i++) {
+                    var prop = keys[i];
+                    var text = props[prop].toLowerCase();
+                    if (item[prop].toString().toLowerCase().indexOf(text) !== -1) {
+                        itemMatches = true;
+                        break;
+                    }
+                }
+                if (itemMatches) {
+                    out.push(item);
+                }
+            });
+        } else {
+            // Let the output be the input untouched
+            out = items;
+        }
+        return out;
     };
 });
 
