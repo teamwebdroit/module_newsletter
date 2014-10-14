@@ -28,7 +28,7 @@ Filter.factory('Arrets', ['$http', '$q', function($http, $q) {
     return {
         query: function() {
             var deferred = $q.defer();
-            $http.get('/arrets').success(function(data) {
+            $http.get('/preparedArrets').success(function(data) {
                     deferred.resolve(data);
                 }).error(function(data) {
                     deferred.reject(data);
@@ -55,10 +55,23 @@ Filter.factory('Categories', ['$http', '$q', function($http, $q) {
     };
 }]);
 
-Filter.controller('ArretController', ['$scope','$http','Arrets',function($scope,$http,Blocs){
+Filter.controller('ArretController', ['$scope','$http','Arrets',function($scope,$http,Arrets){
+
+    /* capture this (the controller scope ) as self */
+    var self = this;
+
+    this.allpost = [];
+
+    this.refresh = function() {
+        Arrets.query()
+            .then(function (data) {
+                self.allpost = data;
+            });
+    }
+
+    this.refresh();
 
 }]);
-
 
 /**
  * AngularJS default filter with the following expression:
@@ -161,11 +174,12 @@ Filter.controller('FilterController', ['$scope','$http', '$sce','Categories',fun
 
 }]);
 
-Filter.directive('isotope', function($timeout) {
+Filter.directive('postText', function($timeout) {
     return {
         restrict: "EA",
         scope: false,
-        link: function (scope, element, attrs) {
+        templateUrl: "post-text"
+        /*link: function (scope, element, attrs) {
 
             $('.isotope').isotope({ itemSelector: 'post'});
 
@@ -175,7 +189,7 @@ Filter.directive('isotope', function($timeout) {
                     $('.isotope').isotope( 'reloadItems' ).isotope({ filter: scope.selectedCategories  });
                 });
             },true);
-        }
+        }*/
     };
 });
 

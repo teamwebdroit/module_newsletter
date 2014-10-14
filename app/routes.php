@@ -26,6 +26,7 @@ Route::get('image-text', 'TemplateController@imageText');
 Route::get('image', 'TemplateController@image');
 Route::get('text', 'TemplateController@text');
 Route::get('arret', 'TemplateController@arret');
+Route::get('post-text', 'TemplateController@postText');
 
 /**
  * Upload routes
@@ -39,5 +40,6 @@ Route::get('building', 'NewsletterApiController@building');
 Route::post('sorting', 'NewsletterApiController@sorting');
 Route::post('process', 'NewsletterApiController@process');
 Route::get('arrets', 'ArretController@arrets');
+Route::get('preparedArrets', 'ArretController@preparedArrets');
 Route::get('categories', 'ArretController@categories');
 Route::get('arrets/{id}', 'NewsletterApiController@simple');

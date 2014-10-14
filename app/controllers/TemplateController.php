@@ -37,4 +37,9 @@ class TemplateController extends BaseController {
         return View::make('newsletter.templates.arret');
     }
 
+    public function postText()
+    {
+        return View::make('newsletter.templates.post-text');
+    }
+
 }

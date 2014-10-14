@@ -445,4 +445,14 @@ class Custom {
 		return (isset($types[$title]) ? $types[$title] : "");	
 	}
 
+    public function convertLink($link){
+
+        $text  = preg_replace('/<link[^>]*?>([\\s\\S]*?)<\/link>/','\\1', $link);
+        $strip = array("<link", "</link>", "_blank", ">" ,"external-link-new-window", $text);
+        $href  = str_replace($strip, "", $link);
+
+        return '<a href="'.$href.'" target="_blank">'.$text.'</a>';
+
+    }
+
 }

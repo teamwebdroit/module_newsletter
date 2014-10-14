@@ -7,7 +7,7 @@
 
           <ui-select multiple ng-model="filter.selectedCategories" theme="select2" ng-disabled="disabled" style="width: 220px;">
              <ui-select-match placeholder="Catégorie...">{[{$item.title}]}</ui-select-match>
-             <ui-select-choices repeat="categorie.title as categorie in filter.categories | propsFilter: {title: $select.search}">
+             <ui-select-choices repeat="categorie.id as categorie in filter.categories | propsFilter: {title: $select.search}">
                 <div ng-bind-html="categorie.title | highlight: $select.search"></div>
              </ui-select-choices>
           </ui-select>

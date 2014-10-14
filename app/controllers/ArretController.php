@@ -75,6 +75,38 @@ class ArretController extends \BaseController {
     }
 
     /**
+     * Return response arrets prepared for filtered
+     *
+     * @return response
+     */
+    public function preparedArrets()
+    {
+        $arrets = $this->arret->getAll(195);
+
+        $prepared = $arrets->map(function($arret)
+        {
+                // categories for isotope
+                if(!$arret->arrets_categories->isEmpty())
+                {
+                    foreach($arret->arrets_categories as $cat){
+                        $cats[] = 'cat-'.$cat->id;
+                    }
+                }
+                $cats = ( isset($cats) && !empty($cats) ? implode(' ',$cats) : array() );
+
+                $arret->setAttribute('allcats',$cats);
+                // format the title with the date
+                setlocale(LC_ALL, 'fr_FR');
+                $arret->setAttribute('humanTitle',$arret->reference.' du '.$arret->pub_date->formatLocalized('%d %B %Y'));
+                $arret->setAttribute('parsedText',$arret->pub_text);
+
+                return $arret;
+        });
+
+        return Response::json( $prepared, 200 );
+    }
+
+    /**
      * Return response categories
      *
      * @return response
