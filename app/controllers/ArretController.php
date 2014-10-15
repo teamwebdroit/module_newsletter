@@ -9,11 +9,15 @@ class ArretController extends \BaseController {
 
     protected $categorie;
 
+    protected $custom;
+
     public function __construct( ArretInterface $arret, CategorieInterface $categorie )
     {
-        $this->arret  = $arret;
+        $this->arret     = $arret;
 
-        $this->categorie  = $categorie;
+        $this->categorie = $categorie;
+
+        $this->custom    = new \Custom;
     }
 
 	/**
@@ -79,28 +83,38 @@ class ArretController extends \BaseController {
      *
      * @return response
      */
-    public function preparedArrets()
+    public function preparedArrets($selected = null)
     {
         $arrets = $this->arret->getAll(195);
 
         $prepared = $arrets->map(function($arret)
         {
+                // format the title with the date
+                setlocale(LC_ALL, 'fr_FR');
+                $arret->setAttribute('humanTitle',$arret->reference.' du '.$arret->pub_date->formatLocalized('%d %B %Y'));
+                $arret->setAttribute('parsedText',$arret->pub_text);
+
                 // categories for isotope
                 if(!$arret->arrets_categories->isEmpty())
                 {
                     foreach($arret->arrets_categories as $cat){
                         $cats[] = 'cat-'.$cat->id;
                     }
+
+                    $cats = ( isset($cats) && !empty($cats) ? implode(' ',$cats) : array() );
+
+                    if( (isset($selected) && $this->custom->compare( $selected, $arret->arrets_categories->lists('id') )) || !isset($selected))
+                    {
+                        $arret->setAttribute('allcats',$cats);
+
+                        return $arret;
+                    }
                 }
-                $cats = ( isset($cats) && !empty($cats) ? implode(' ',$cats) : array() );
+                else
+                {
+                    return $arret;
+                }
 
-                $arret->setAttribute('allcats',$cats);
-                // format the title with the date
-                setlocale(LC_ALL, 'fr_FR');
-                $arret->setAttribute('humanTitle',$arret->reference.' du '.$arret->pub_date->formatLocalized('%d %B %Y'));
-                $arret->setAttribute('parsedText',$arret->pub_text);
-
-                return $arret;
         });
 
         return Response::json( $prepared, 200 );

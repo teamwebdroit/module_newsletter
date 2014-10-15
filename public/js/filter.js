@@ -150,9 +150,11 @@ Filter.controller('ArretController', ['$scope','$timeout','$http','Arrets','mySe
     };
 
     $scope.$watch("currentPage", function(newValue) {
+
         self.pagedItems = self.get(newValue * self.itemsPerPage, self.itemsPerPage);
         self.total = self.getTotal();
         $('body,html').animate({ scrollTop: 0 }, 600);
+
     });
 
     this.setPage = function(n) {
@@ -174,9 +176,6 @@ Filter.controller('ArretController', ['$scope','$timeout','$http','Arrets','mySe
     };
 
     this.get = function(offset, limit) {
-
-
-
         return self.allpost.slice(offset, offset + limit);
     };
 
@@ -188,7 +187,7 @@ Filter.controller('ArretController', ['$scope','$timeout','$http','Arrets','mySe
         Arrets.query().then(function (data) {
             self.allpost    = data;
             self.loading    = false;
-            self.pagedItems = self.get(self.currentPage,self.itemsPerPage);
+            self.pagedItems = self.get($scope.currentPage,self.itemsPerPage);
         });
     }
 
@@ -196,10 +195,6 @@ Filter.controller('ArretController', ['$scope','$timeout','$http','Arrets','mySe
 
     this.isSelected = function(cat){
         return myService.isSelected(cat);
-    };
-
-    this.needToPaginate = function(){
-        return ( myService.getSelected().length === 0 ? true : false );
     };
 
 }]);

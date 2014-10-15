@@ -455,4 +455,20 @@ class Custom {
 
     }
 
+    /**
+     * Compare two arrays
+     *
+     * @return
+     */
+    public function compare($selected, $result)
+    {
+
+
+        $compare = array_intersect($selected, $result);
+
+        return ($compare == $selected ? true : false);
+    }
+
+
+
 }

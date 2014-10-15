@@ -40,6 +40,6 @@ Route::get('building', 'NewsletterApiController@building');
 Route::post('sorting', 'NewsletterApiController@sorting');
 Route::post('process', 'NewsletterApiController@process');
 Route::get('arrets', 'ArretController@arrets');
-Route::get('preparedArrets', 'ArretController@preparedArrets');
+Route::get('preparedArrets/{selected?}', 'ArretController@preparedArrets');
 Route::get('categories', 'ArretController@categories');
 Route::get('arrets/{id}', 'NewsletterApiController@simple');
