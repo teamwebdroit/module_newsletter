@@ -85,37 +85,46 @@ class ArretController extends \BaseController {
      */
     public function preparedArrets($selected = null)
     {
+        $selected = json_decode(Input::get('selected'));
+
         $arrets = $this->arret->getAll(195);
 
-        $prepared = $arrets->map(function($arret)
+        $prepared = $arrets->filter(function($arret) use ($selected)
         {
-                // format the title with the date
-                setlocale(LC_ALL, 'fr_FR');
-                $arret->setAttribute('humanTitle',$arret->reference.' du '.$arret->pub_date->formatLocalized('%d %B %Y'));
-                $arret->setAttribute('parsedText',$arret->pub_text);
+            // format the title with the date
+            setlocale(LC_ALL, 'fr_FR');
+            $arret->setAttribute('humanTitle',$arret->reference.' du '.$arret->pub_date->formatLocalized('%d %B %Y'));
+            $arret->setAttribute('parsedText',$arret->pub_text);
 
-                // categories for isotope
-                if(!$arret->arrets_categories->isEmpty())
-                {
-                    foreach($arret->arrets_categories as $cat){
-                        $cats[] = 'cat-'.$cat->id;
-                    }
+            // categories for isotope
+            if(!$arret->arrets_categories->isEmpty())
+            {
+                foreach($arret->arrets_categories as $cat){ $cats[] = 'cat-'.$cat->id; }
 
-                    $cats = ( isset($cats) && !empty($cats) ? implode(' ',$cats) : array() );
+                $cats    = ( isset($cats) && !empty($cats) ? implode(' ',$cats) : array() );
+                $cats_id = $arret->arrets_categories->lists('id');
 
-                    if( (isset($selected) && $this->custom->compare( $selected, $arret->arrets_categories->lists('id') )) || !isset($selected))
-                    {
-                        $arret->setAttribute('allcats',$cats);
+                $arret->setAttribute('allcats',$cats);
 
-                        return $arret;
-                    }
-                }
-                else
+                if( (isset($selected) && $this->custom->compare($selected, $cats_id)) || !isset($selected) )
                 {
                     return $arret;
                 }
-
+            }
+            else
+            {
+                return $arret;
+            }
         });
+
+/*       foreach($prepared as $arret)
+       {
+           echo '<pre>';
+
+               print_r($arret->arrets_categories->lists('id'));
+
+           echo '</pre>';
+       }*/
 
         return Response::json( $prepared, 200 );
     }

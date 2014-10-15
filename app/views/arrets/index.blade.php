@@ -30,6 +30,21 @@
                 <div class="one-fifth last listCat">
 
                     @if(!$arret->arrets_categories->isEmpty())
+
+                    <?php
+
+                        $selected = array(6);
+
+                        if( (isset($selected) && $custom->compare( $selected , $arret->arrets_categories->lists('id') )) || !isset($selected) )
+                        {
+                            echo  'ok:';
+                            print_r($arret->arrets_categories->lists('id'));
+                            echo '<br/>';
+                        }
+                        else{
+                            echo 'not<br/>';
+                        }
+                    ?>
                         @foreach($arret->arrets_categories as $arrets_categorie)
                             <img width="110" border="0" alt="{{ $arrets_categorie->title }}" src="{{ asset('newsletter/pictos/'.$arrets_categorie->image) }}">
                             <p class="centerText">{{ $arrets_categorie->title }}</p>

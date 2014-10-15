@@ -32,23 +32,22 @@ var Filter = angular.module('filtering', ["ngResource", 'ui.select','ngSanitize'
 
     $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
 
-}).config(function(uiSelectConfig) {
-
-    uiSelectConfig.theme = 'select2';
-
-}).service('myService',  function ($rootScope) {
+}).config(function(uiSelectConfig) { uiSelectConfig.theme = 'select2'; })
+  .service('myService',  function ($rootScope) {
 
     var selected = [];
+
     return {
         getSelected : function() {
             return selected;
         },
         setSelected : function(select) {
             selected = select;
+            $rootScope.$broadcast('selected:updated');
         },
         isSelected : function(cat){
-
-            if(selected.length > 0){
+            if(selected.length > 0)
+            {
                 var res = cat.replace(/cat-/g, "");
                 var res = res.split(" ");
                 res.filter(Boolean);
@@ -60,15 +59,11 @@ var Filter = angular.module('filtering', ["ngResource", 'ui.select','ngSanitize'
                         return $.inArray(i, b) > -1;
                     });
                 };
-
                 var compare = $.arrayIntersect(selected,res);
 
                 return (compare.equals(selected) ? true : false);
             }
-            else
-            {
-                return true;
-            }
+            else{ return true; }
         }
     };
 });
@@ -77,11 +72,13 @@ var Filter = angular.module('filtering', ["ngResource", 'ui.select','ngSanitize'
  * Retrive all arrets blocs for bloc arret
  */
 Filter.factory('Arrets', ['$http', '$q', function($http, $q) {
-    var items = [];
     return {
-        query: function() {
+        query: function(selected) {
             var deferred = $q.defer();
-            $http.get('/preparedArrets').success(function(data) {
+            $http.get('/preparedArrets', {
+                    params: {  selected: JSON.stringify(selected) }
+                })
+                .success(function(data) {
                     deferred.resolve(data);
                 }).error(function(data) {
                     deferred.reject(data);
@@ -192,6 +189,16 @@ Filter.controller('ArretController', ['$scope','$timeout','$http','Arrets','mySe
     }
 
     this.refresh();
+
+    $scope.$on('selected:updated', function() {
+
+        Arrets.query(myService.getSelected()).then(function (data) {
+            self.allpost    = data;
+            self.pagedItems = self.get($scope.currentPage,self.itemsPerPage);
+            self.total      = self.getTotal();
+        });
+
+    });
 
     this.isSelected = function(cat){
         return myService.isSelected(cat);

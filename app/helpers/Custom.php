@@ -462,8 +462,6 @@ class Custom {
      */
     public function compare($selected, $result)
     {
-
-
         $compare = array_intersect($selected, $result);
 
         return ($compare == $selected ? true : false);
