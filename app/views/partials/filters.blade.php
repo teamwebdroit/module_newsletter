@@ -12,8 +12,6 @@
              </ui-select-choices>
           </ui-select>
 
-          <p>Selected: {[{filter.selectedCategories}]}</p>
-
     </div><!--END WIDGET-->
 
 </div><!--END SIDEBAR-->

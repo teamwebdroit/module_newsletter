@@ -10,11 +10,9 @@ Array.prototype.equals = function (array) {
     // if the other array is a falsy value, return
     if (!array)
         return false;
-
     // compare lengths - can save a lot of time
     if (this.length != array.length)
         return false;
-
     for (var i = 0, l=this.length; i < l; i++) {
         // Check if we have nested arrays
         if (this[i] instanceof Array && array[i] instanceof Array) {
@@ -31,10 +29,15 @@ Array.prototype.equals = function (array) {
 };
 
 var Filter = angular.module('filtering', ["ngResource", 'ui.select','ngSanitize']).config(function($interpolateProvider){
+
     $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
+
 }).config(function(uiSelectConfig) {
+
     uiSelectConfig.theme = 'select2';
+
 }).service('myService',  function ($rootScope) {
+
     var selected = [];
     return {
         getSelected : function() {
@@ -74,6 +77,7 @@ var Filter = angular.module('filtering', ["ngResource", 'ui.select','ngSanitize'
  * Retrive all arrets blocs for bloc arret
  */
 Filter.factory('Arrets', ['$http', '$q', function($http, $q) {
+    var items = [];
     return {
         query: function() {
             var deferred = $q.defer();
@@ -86,6 +90,7 @@ Filter.factory('Arrets', ['$http', '$q', function($http, $q) {
         }
     };
 }]);
+
 
 /**
  * Retrive all arrets blocs for bloc arret
@@ -106,22 +111,95 @@ Filter.factory('Categories', ['$http', '$q', function($http, $q) {
 
 Filter.controller('ArretController', ['$scope','$timeout','$http','Arrets','myService',function($scope,$timeout,$http,Arrets,myService){
 
-    this.loading = true;
+    this.loading  = true;
+    this.paginate = true;
+
     /* capture this (the controller scope ) as self */
     var self     = this;
     this.allpost = [];
 
+    this.itemsPerPage  = 5;
+    $scope.currentPage = 0;
+
+    this.prevPage = function() {
+        if ($scope.currentPage > 0) {
+            $scope.currentPage--;
+        }
+    };
+
+    this.prevPageDisabled = function() {
+        return $scope.currentPage === 0 ? "disabled" : "";
+    };
+
+    this.isCurrentPage = function(page) {
+        return $scope.currentPage === page ? "current" : "";
+    };
+
+    this.nextPage = function() {
+        if ($scope.currentPage < self.pageCount() - 1) {
+            $scope.currentPage++;
+        }
+    };
+
+    this.nextPageDisabled = function() {
+        return $scope.currentPage === self.pageCount() - 1 ? "disabled" : "";
+    };
+
+    this.pageCount = function() {
+        return Math.ceil(this.getTotal()/self.itemsPerPage);
+    };
+
+    $scope.$watch("currentPage", function(newValue) {
+        self.pagedItems = self.get(newValue * self.itemsPerPage, self.itemsPerPage);
+        self.total = self.getTotal();
+        $('body,html').animate({ scrollTop: 0 }, 600);
+    });
+
+    this.setPage = function(n) {
+        if (n > 0 && n < self.pageCount()) {
+            $scope.currentPage = n;
+        }
+    };
+
+    this.range = function() {
+        var rangeSize = 5;
+        var ret = [];
+        var start;
+        start = $scope.currentPage;
+        if ( start > self.pageCount()-rangeSize ) { start = self.pageCount()-rangeSize;}
+        for (var i = start; i < start + rangeSize; i++) {
+            ret.push(i);
+        }
+        return ret;
+    };
+
+    this.get = function(offset, limit) {
+
+
+
+        return self.allpost.slice(offset, offset + limit);
+    };
+
+    this.getTotal = function() {
+        return self.allpost.length;
+    };
+
     this.refresh = function() {
-        Arrets.query()
-            .then(function (data) {
-                self.allpost = data;
-                self.loading = false;
-            });
+        Arrets.query().then(function (data) {
+            self.allpost    = data;
+            self.loading    = false;
+            self.pagedItems = self.get(self.currentPage,self.itemsPerPage);
+        });
     }
+
     this.refresh();
 
     this.isSelected = function(cat){
         return myService.isSelected(cat);
+    };
+
+    this.needToPaginate = function(){
+        return ( myService.getSelected().length === 0 ? true : false );
     };
 
 }]);
@@ -196,20 +274,20 @@ Filter.directive('postText', function($timeout) {
         restrict: "EA",
         scope: false,
         templateUrl: "post-text"
-        /*link: function (scope, element, attrs) {
-
-            $('.isotope').isotope({ itemSelector: 'post'});
-
-            scope.$watch('selectedCategories', function(newVal, oldVal){
-                $timeout(function(){
-                    console.log('changed!');
-                    $('.isotope').isotope( 'reloadItems' ).isotope({ filter: scope.selectedCategories  });
-                });
-            },true);
-        }*/
     };
 });
 
+/**
+ * Pagination filter
+ */
+Filter.filter('pagination', function()
+{
+    return function(input, start)
+    {
+        start = +start;
+        return input.slice(start);
+    };
+});
 
 /**
  * AngularJS default filter with the following expression:

@@ -1,7 +1,7 @@
 <div class="three-fourth">
     <div class="post">
         <div class="post-title">
-            <h2 class="title"><a href="#">{[{ post.humanTitle }]}</a></h2>
+            <h2 class="title">{[{ post.humanTitle }]}</h2>
             <p>{[{ post.abstract }]}</p>
         </div><!--END POST-TITLE-->
         <div class="post-entry">

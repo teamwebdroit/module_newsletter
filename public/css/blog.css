@@ -694,7 +694,7 @@ CSS overview:
 	background-color: #444;
     border: 1px solid #444;
 }
-.wp-pagenavi span.current {
+.wp-pagenavi span.current, .wp-pagenavi a.current {
 	color: #444;
     border: 1px solid #444;
 }

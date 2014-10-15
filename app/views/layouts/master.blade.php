@@ -32,6 +32,7 @@
             <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.8/angular-route.js"></script>
             <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.8/angular-resource.js"></script>
             <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular-sanitize.js"></script>
+            <script src="<?php echo asset('js/vendor/angular/dirPagination.js');?>"></script>
             <script type="text/javascript" src="<?php echo asset('js/select.js');?>"></script>
             <script type="text/javascript" src="<?php echo asset('js/filter.js');?>"></script>
 
