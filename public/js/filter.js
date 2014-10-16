@@ -32,8 +32,13 @@ var Filter = angular.module('filtering', ["ngResource", 'ui.select','ngSanitize'
 
     $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
 
-}).config(function(uiSelectConfig) { uiSelectConfig.theme = 'select2'; })
-  .service('myService',  function ($rootScope) {
+}).config(function(uiSelectConfig) { uiSelectConfig.theme = 'select2'; });
+
+/**
+ * Service to pass the selected categories from filter to ArretController
+ * and set correct pagination on list
+ */
+Filter.service('selectionFilter',  function ($rootScope) {
 
     var selected = [];
 
@@ -69,7 +74,8 @@ var Filter = angular.module('filtering', ["ngResource", 'ui.select','ngSanitize'
 });
 
 /**
- * Retrive all arrets blocs for bloc arret
+ * Retrive all arrets for posts
+ * and prepare them in controller
  */
 Filter.factory('Arrets', ['$http', '$q', function($http, $q) {
     return {
@@ -106,46 +112,63 @@ Filter.factory('Categories', ['$http', '$q', function($http, $q) {
     };
 }]);
 
-Filter.controller('ArretController', ['$scope','$timeout','$http','Arrets','myService',function($scope,$timeout,$http,Arrets,myService){
+Filter.controller('ArretController', ['$scope','$timeout','$http','Arrets','selectionFilter',function($scope,$timeout,$http,Arrets,selectionFilter){
 
+    /* Set loading to true to hide all arrets during loading from server */
     this.loading  = true;
-    this.paginate = true;
 
     /* capture this (the controller scope ) as self */
     var self     = this;
+
+    /* empty all posts to empty array will be populated later */
     this.allpost = [];
 
+    /* number of items per page for pagination */
     this.itemsPerPage  = 5;
+
+    /* the current page in scope so we can watch it! */
     $scope.currentPage = 0;
 
+    /* prev page button */
     this.prevPage = function() {
         if ($scope.currentPage > 0) {
             $scope.currentPage--;
         }
     };
 
+    /* prev page button disabled if 0  */
     this.prevPageDisabled = function() {
         return $scope.currentPage === 0 ? "disabled" : "";
     };
 
+    /* test if we are on the current page for styles in pagination links  */
     this.isCurrentPage = function(page) {
         return $scope.currentPage === page ? "current" : "";
     };
 
+    /* next page button  */
     this.nextPage = function() {
         if ($scope.currentPage < self.pageCount() - 1) {
             $scope.currentPage++;
         }
     };
 
+    /* next page button disabled if 0  */
     this.nextPageDisabled = function() {
         return $scope.currentPage === self.pageCount() - 1 ? "disabled" : "";
     };
 
+    /* calculate page count from total and itemPerPage  */
     this.pageCount = function() {
-        return Math.ceil(this.getTotal()/self.itemsPerPage);
+        return Math.ceil(self.getTotal()/self.itemsPerPage);
     };
 
+    /* *
+     * If the currentPage variable changes:
+     * slice items to be displayed from allposts array from offset to limit
+     * set total variable to change pagination
+     * Go to top page
+     */
     $scope.$watch("currentPage", function(newValue) {
 
         self.pagedItems = self.get(newValue * self.itemsPerPage, self.itemsPerPage);
@@ -154,32 +177,46 @@ Filter.controller('ArretController', ['$scope','$timeout','$http','Arrets','mySe
 
     });
 
+    /* set current page  */
     this.setPage = function(n) {
-        if (n > 0 && n < self.pageCount()) {
+        if (n > 0 && n < self.pageCount() || n == 0) {
             $scope.currentPage = n;
         }
     };
 
+    /**
+     * Range of pagination
+     * If we have less thant 5 pages set the rang to the pagecount
+     * or else we have negative values :(
+     */
     this.range = function() {
-        var rangeSize = 5;
-        var ret = [];
-        var start;
+
+        var rangeSize = (self.pageCount() > 5 ? 5 : self.pageCount() );
+        var ret = [] , start;
         start = $scope.currentPage;
-        if ( start > self.pageCount()-rangeSize ) { start = self.pageCount()-rangeSize;}
+        if ( start > self.pageCount() - rangeSize ) { start = self.pageCount() - rangeSize; }
         for (var i = start; i < start + rangeSize; i++) {
             ret.push(i);
         }
         return ret;
     };
 
+    /* slice portion of allpost  */
     this.get = function(offset, limit) {
         return self.allpost.slice(offset, offset + limit);
     };
 
+    /* get total of allpost  */
     this.getTotal = function() {
         return self.allpost.length;
     };
 
+    /**
+     * Async get of allposts
+     * then refresh the variable to display all arrets
+     * hide loader
+     * get portion of all post for pagination
+    */
     this.refresh = function() {
         Arrets.query().then(function (data) {
             self.allpost    = data;
@@ -188,20 +225,31 @@ Filter.controller('ArretController', ['$scope','$timeout','$http','Arrets','mySe
         });
     }
 
+    /* refresh all the things!  */
     this.refresh();
 
+    /**
+     *  if the selected categories in filter is updated in service
+     *  query again allposts and filter with categories
+     *  set current page to 0
+     *  get new total for pagination
+     */
     $scope.$on('selected:updated', function() {
 
-        Arrets.query(myService.getSelected()).then(function (data) {
+        var selectedCat = (selectionFilter.getSelected().length > 0 ? selectionFilter.getSelected() : null );
+
+        Arrets.query(selectedCat).then(function (data) {
             self.allpost    = data;
-            self.pagedItems = self.get($scope.currentPage,self.itemsPerPage);
-            self.total      = self.getTotal();
+            self.pagedItems = self.get(0 * self.itemsPerPage, self.itemsPerPage);
+            $scope.currentPage = 0;
+            self.total = self.getTotal();
         });
 
     });
 
+    /* filter posts with selected categories */
     this.isSelected = function(cat){
-        return myService.isSelected(cat);
+        return selectionFilter.isSelected(cat);
     };
 
 }]);
@@ -209,38 +257,43 @@ Filter.controller('ArretController', ['$scope','$timeout','$http','Arrets','mySe
 /**
  * Select arret controller, select an arret and display's it
  */
-Filter.controller('FilterController', ['$scope','$http', '$sce','Categories','myService',function($scope,$http,$sce,Categories,myService){
+Filter.controller('FilterController', ['$scope','$http', '$sce','Categories','selectionFilter',function($scope,$http,$sce,Categories,selectionFilter){
 
+    /* set variables  */
     this.disabled      = undefined;
     this.searchEnabled = undefined;
+    this.counter = 0;
 
+    this.selectedCategories = {};
+    this.categorie = {};
+    this.categories = [];
+
+    /* filter is enabled */
     this.enable = function() {
         this.disabled = false;
     };
 
+    /* filter is disabled */
     this.disable = function() {
         this.disabled = true;
     };
 
+    /* search on filter is enable */
     this.enableSearch = function() {
         this.searchEnabled = true;
     }
 
+    /* search on filter is disabled */
     this.disableSearch = function() {
         this.searchEnabled = false;
     }
 
+    /* clear filter */
     this.clear = function() {
         this.categorie.selected = undefined;
     };
 
-    this.counter = 0;
-
-    this.someFunction = function (item, model){
-        this.counter++;
-        this.eventResult = {item: item, model: model};
-    };
-
+    /* last removed categories */
     this.removed = function (item, model) {
         this.lastRemoved = {
             item: item,
@@ -248,14 +301,10 @@ Filter.controller('FilterController', ['$scope','$http', '$sce','Categories','my
         };
     };
 
-    this.selectedCategories = {};
-    this.categorie = {};
-    this.categories = [];
-
     /* capture this (the controller scope ) as self */
     var self = this;
 
-    /* function for refreshing the asynchronus retrival of blocs */
+    /* function for refreshing the asynchronus retrival of categorie */
     this.refresh = function() {
         Categories.query()
             .then(function (data) {
@@ -263,14 +312,19 @@ Filter.controller('FilterController', ['$scope','$http', '$sce','Categories','my
             });
     }
 
+    /* refresh all the things!  */
     this.refresh();
 
+    /* set selected categorie in service  */
     this.filterFunction = function(element) {
-        myService.setSelected(element);
+        selectionFilter.setSelected(element);
     };
 
 }]);
 
+/**
+ * post directive
+ */
 Filter.directive('postText', function($timeout) {
     return {
         restrict: "EA",

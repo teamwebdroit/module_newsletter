@@ -6,7 +6,7 @@
         <h3 class="title">Catégories</h3>
 
           <ui-select ng-change="filter.filterFunction(filter.selectedCategories)" multiple ng-model="filter.selectedCategories" theme="select2" ng-disabled="disabled" style="width: 220px;">
-             <ui-select-match placeholder="Catégorie...">{[{$item.title}]}</ui-select-match>
+             <ui-select-match placeholder="Filter par catégorie...">{[{$item.title}]}</ui-select-match>
              <ui-select-choices repeat="categorie.id as categorie in filter.categories | propsFilter: {title: $select.search}">
                 <div ng-bind-html="categorie.title | highlight: $select.search"></div>
              </ui-select-choices>

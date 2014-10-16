@@ -17,9 +17,10 @@
                  ng-repeat="post in arret.pagedItems track by $index"></div>
 
             <div class="wp-pagenavi text-align-center">
-                <a ng-class="arret.prevPageDisabled()" href ng-click="arret.prevPage()">« Prev</a>
+                <span class="pages">Page {[{ currentPage + 1 }]} de {[{ arret.pageCount() }]}</span>
+                <a ng-class="arret.prevPageDisabled()" href ng-click="arret.prevPage()">←</a>
                 <a ng-class="arret.isCurrentPage(n)" ng-repeat="n in arret.range()" ng-click="arret.setPage(n)" href="#">{[{n+1}]}</a>
-                <a ng-class="arret.nextPageDisabled()" href ng-click="arret.nextPage()">Next »</a>
+                <a ng-class="arret.nextPageDisabled()" href ng-click="arret.nextPage()">→</a>
             </div><!--END WP-PAGENAVI-->
 
         </div>

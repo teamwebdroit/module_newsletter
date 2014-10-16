@@ -32,9 +32,11 @@ class ArretController extends \BaseController {
         $arrets = $this->arret->getPaginate(195,15);
         $latest = $arrets->take(5);
 
+        $required = true;
+
         $categories = $this->categorie->getAll(195);
 
-        return View::make('arrets.index')->with(array( 'arrets' => $arrets , 'categories' => $categories , 'latest' => $latest ));
+        return View::make('arrets.index')->with(array( 'arrets' => $arrets , 'categories' => $categories , 'latest' => $latest , 'required' => $required ));
     }
 
     /**
@@ -86,8 +88,7 @@ class ArretController extends \BaseController {
     public function preparedArrets($selected = null)
     {
         $selected = json_decode(Input::get('selected'));
-
-        $arrets = $this->arret->getAll(195);
+        $arrets   = $this->arret->getAll(195);
 
         $prepared = $arrets->filter(function($arret) use ($selected)
         {
@@ -117,15 +118,19 @@ class ArretController extends \BaseController {
             }
         });
 
-/*       foreach($prepared as $arret)
-       {
+    /*
+    foreach($prepared as $arret)
+      {
            echo '<pre>';
 
-               print_r($arret->arrets_categories->lists('id'));
+               $prepared->values();
+               print_r($prepared->toarray());
 
            echo '</pre>';
-       }*/
-
+      }
+    */
+        $prepared->sortBy('id');
+        $prepared->values();
         return Response::json( $prepared, 200 );
     }
 
