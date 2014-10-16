@@ -41,5 +41,6 @@ Route::post('sorting', 'NewsletterApiController@sorting');
 Route::post('process', 'NewsletterApiController@process');
 Route::get('arrets', 'ArretController@arrets');
 Route::get('preparedArrets/{selected?}', 'ArretController@preparedArrets');
+Route::get('preparedAnnees', 'ArretController@preparedAnnees');
 Route::get('categories', 'ArretController@categories');
 Route::get('arrets/{id}', 'NewsletterApiController@simple');

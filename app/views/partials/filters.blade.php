@@ -1,8 +1,8 @@
 <?php  $custom = new \Custom; ?>
 
-<div id="sidebar">
+<div id="sidebar" ng-controller="FilterController as filter">
 
-    <div class="widget" ng-controller="FilterController as filter">
+    <div class="widget">
         <h3 class="title">Catégories</h3>
 
           <ui-select ng-change="filter.filterFunction(filter.selectedCategories)" multiple ng-model="filter.selectedCategories" theme="select2" ng-disabled="disabled" style="width: 220px;">
@@ -11,6 +11,16 @@
                 <div ng-bind-html="categorie.title | highlight: $select.search"></div>
              </ui-select-choices>
           </ui-select>
+
+    </div><!--END WIDGET-->
+
+    <div class="widget">
+        <h3 class="title">Années</h3>
+
+        <div ng-repeat="annee in annees">
+            <input type="checkbox" checkbox-group />
+            <label>{[{annee.year}]}</label>
+        </div>{[{selectedAnnees}]}
 
     </div><!--END WIDGET-->
 

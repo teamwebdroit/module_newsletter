@@ -7,7 +7,7 @@
     <div class="section parallax-background" id="about">
         <div class="holder text-align-left">
             <div class="one-half about-content">
-                <h2 class="uppercase">Recueil de jurisprudence neuchâteloise 2013</h2>
+                <h2 class="uppercase">Recueil de jurisprudence neuchâteloise</h2>
                 <p><a href="#" class="button small rounded grey">Acheter</a></p>
             </div>
             <div class="one-half last">

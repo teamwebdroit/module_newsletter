@@ -102,7 +102,9 @@ class ArretController extends \BaseController {
             {
                 foreach($arret->arrets_categories as $cat){ $cats[] = 'cat-'.$cat->id; }
 
-                $cats    = ( isset($cats) && !empty($cats) ? implode(' ',$cats) : array() );
+                $cats[]  = 'year-'.$arret->pub_date->year;
+                $cats    = implode(' ',$cats);
+
                 $cats_id = $arret->arrets_categories->lists('id');
 
                 $arret->setAttribute('allcats',$cats);
@@ -114,6 +116,8 @@ class ArretController extends \BaseController {
             }
             else
             {
+                $cats[]  = 'year-'.$arret->pub_date->year;
+                $arret->setAttribute('allcats',$cats);
                 return $arret;
             }
         });
@@ -133,6 +137,32 @@ class ArretController extends \BaseController {
         $prepared->values();
         return Response::json( $prepared, 200 );
     }
+    /**
+     * Return response arrets prepared for filtered
+     *
+     * @return response
+     */
+    public function preparedAnnees()
+    {
+        $arrets   = $this->arret->getAll(195);
+        $prepared = $arrets->lists('pub_date');
+
+        foreach($prepared as $arret)
+        {
+            $years[] = $arret->year;
+        }
+
+        $years = array_reverse(array_unique(array_values($years)));
+
+        foreach($years as $id => $year)
+        {
+            $new = array('id' => $id , 'year' =>$year );
+            $allyears[] = $new;
+        }
+
+        return Response::json( $allyears, 200 );
+    }
+
 
     /**
      * Return response categories

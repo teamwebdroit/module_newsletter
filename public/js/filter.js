@@ -1,9 +1,3 @@
-(function ($) {
-
-
-
-})(jQuery);
-
 
 // attach the .equals method to Array's prototype to call it on any array
 Array.prototype.equals = function (array) {
@@ -54,16 +48,17 @@ Filter.service('selectionFilter',  function ($rootScope) {
             if(selected.length > 0)
             {
                 var res = cat.replace(/cat-/g, "");
+                res = cat.replace(/year-/g, "");
+
                 var res = res.split(" ");
                 res.filter(Boolean);
 
-                $.arrayIntersect = function(a, b)
-                {
-                    return $.grep(a, function(i)
-                    {
+                $.arrayIntersect = function(a, b){
+                    return $.grep(a, function(i){
                         return $.inArray(i, b) > -1;
                     });
                 };
+
                 var compare = $.arrayIntersect(selected,res);
 
                 return (compare.equals(selected) ? true : false);
@@ -94,6 +89,23 @@ Filter.factory('Arrets', ['$http', '$q', function($http, $q) {
     };
 }]);
 
+/**
+ * Retrive all annees for posts filter
+ */
+Filter.factory('Annees', ['$http', '$q', function($http, $q) {
+    return {
+        query: function() {
+            var deferred = $q.defer();
+            $http.get('/preparedAnnees')
+              .success(function(data) {
+                deferred.resolve(data);
+            }).error(function(data) {
+                deferred.reject(data);
+            });
+            return deferred.promise;
+        }
+    };
+}]);
 
 /**
  * Retrive all arrets blocs for bloc arret
@@ -112,7 +124,8 @@ Filter.factory('Categories', ['$http', '$q', function($http, $q) {
     };
 }]);
 
-Filter.controller('ArretController', ['$scope','$timeout','$http','Arrets','selectionFilter',function($scope,$timeout,$http,Arrets,selectionFilter){
+Filter.controller('ArretController', ['$scope','$timeout','$http','Arrets','selectionFilter',
+    function($scope,$timeout,$http,Arrets,selectionFilter){
 
     /* Set loading to true to hide all arrets during loading from server */
     this.loading  = true;
@@ -190,7 +203,6 @@ Filter.controller('ArretController', ['$scope','$timeout','$http','Arrets','sele
      * or else we have negative values :(
      */
     this.range = function() {
-
         var rangeSize = (self.pageCount() > 5 ? 5 : self.pageCount() );
         var ret = [] , start;
         start = $scope.currentPage;
@@ -238,6 +250,8 @@ Filter.controller('ArretController', ['$scope','$timeout','$http','Arrets','sele
 
         var selectedCat = (selectionFilter.getSelected().length > 0 ? selectionFilter.getSelected() : null );
 
+        console.log(selectedCat);
+
         Arrets.query(selectedCat).then(function (data) {
             self.allpost    = data;
             self.pagedItems = self.get(0 * self.itemsPerPage, self.itemsPerPage);
@@ -257,7 +271,8 @@ Filter.controller('ArretController', ['$scope','$timeout','$http','Arrets','sele
 /**
  * Select arret controller, select an arret and display's it
  */
-Filter.controller('FilterController', ['$scope','$http', '$sce','Categories','selectionFilter',function($scope,$http,$sce,Categories,selectionFilter){
+Filter.controller('FilterController', ['$scope','$http', '$sce','Categories','Annees','selectionFilter',
+    function($scope,$http,$sce,Categories,Annees,selectionFilter){
 
     /* set variables  */
     this.disabled      = undefined;
@@ -265,8 +280,21 @@ Filter.controller('FilterController', ['$scope','$http', '$sce','Categories','se
     this.counter = 0;
 
     this.selectedCategories = {};
+    $scope.selectedAnnees = [];
+
     this.categorie = {};
     this.categories = [];
+
+    this.annee    = {};
+    $scope.annees = [];
+
+    /* update call from anne filter */
+    $scope.update = function () {
+        console.log('annee changed');
+        var selected = selectionFilter.getSelected();
+        selected.push($scope.selectedAnnees);
+        selectionFilter.setSelected(selected);
+    };
 
     /* filter is enabled */
     this.enable = function() {
@@ -310,6 +338,11 @@ Filter.controller('FilterController', ['$scope','$http', '$sce','Categories','se
             .then(function (data) {
                 self.categories = data;
             });
+
+        Annees.query()
+            .then(function (data) {
+                $scope.annees = data;
+            });
     }
 
     /* refresh all the things!  */
@@ -331,6 +364,39 @@ Filter.directive('postText', function($timeout) {
         scope: false,
         templateUrl: "post-text"
     };
+});
+
+/**
+ * annees directive
+ */
+Filter.directive("checkboxGroup", function () {
+    return {
+        restrict: "A",
+        link: function (scope, elem, attrs) {
+            // Determine initial checked boxes
+            if (scope.selectedAnnees.indexOf(scope.annee.year) !== -1) {
+                elem[0].checked = true;
+            }
+            // Update array on click
+            elem.bind('click', function () {
+                var index = scope.selectedAnnees.indexOf(scope.annee.year);
+                // Add if checked
+                if (elem[0].checked) {
+                    if (index === -1) scope.selectedAnnees.push(scope.annee.year);
+                    scope.update();
+                }
+                // Remove if unchecked
+                else {
+                    if (index !== -1) scope.selectedAnnees.splice(index, 1);
+                    scope.update();
+                }
+                // Sort and update DOM display
+                scope.$apply(scope.selectedAnnees.sort(function (a, b) {
+                    return a - b
+                }));
+            });
+        }
+    }
 });
 
 /**
