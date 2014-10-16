@@ -47,10 +47,10 @@ Filter.service('selectionFilter',  function ($rootScope) {
         isSelected : function(cat){
             if(selected.length > 0)
             {
-                var res = cat.replace(/cat-/g, "");
-                res = cat.replace(/year-/g, "");
+                //var res = cat.replace(/cat-/g, "");
+                //res = res.replace(/year-/g, "");
 
-                var res = res.split(" ");
+                var res = cat.split(" ");
                 res.filter(Boolean);
 
                 $.arrayIntersect = function(a, b){
@@ -280,21 +280,40 @@ Filter.controller('FilterController', ['$scope','$http', '$sce','Categories','An
     this.counter = 0;
 
     this.selectedCategories = {};
-    $scope.selectedAnnees = [];
+    $scope.selectedAnnee    = [];
 
     this.categorie = {};
     this.categories = [];
 
     this.annee    = {};
+    this.anneeChecked = {};
     $scope.annees = [];
 
     /* update call from anne filter */
-    $scope.update = function () {
-        console.log('annee changed');
-        var selected = selectionFilter.getSelected();
-        selected.push($scope.selectedAnnees);
+    this.changeAnnee = function (annee) {
+
+        angular.forEach($scope.annees, function (annee) {
+            annee.checked = false;
+        });
+
+        console.log($scope.annees);
+
+        var selected = this.selectedCategories;
+        selected = self.removeAnnee(selected);
+
+        selected.push('year-' +annee);
         selectionFilter.setSelected(selected);
     };
+
+    this.removeAnnee = function(annees){
+
+        for (i=0;i < annees.length;i++) {
+            if (annees[i].indexOf('year-') > -1) {
+                annees.splice(i,1);
+            }
+        }
+        return annees;
+    }
 
     /* filter is enabled */
     this.enable = function() {
@@ -350,8 +369,27 @@ Filter.controller('FilterController', ['$scope','$http', '$sce','Categories','An
 
     /* set selected categorie in service  */
     this.filterFunction = function(element) {
-        selectionFilter.setSelected(element);
+
+        var select   = selectionFilter.getSelected();
+        var prefixed = self.addPrefix(element);
+        var selected = select.concat(prefixed);
+
+        // filter unique values
+        selected = $.grep(selected, function(v, k){ return $.inArray(v ,selected) === k; });
+
+        selectionFilter.setSelected(selected);
     };
+
+    this.addPrefix = function(array){
+        var cats = [];
+
+        $.each(array, function(index, value) {
+            var prefix = 'cat-' + value;
+            cats.push(prefix);
+        });
+
+        return cats;
+    }
 
 }]);
 
@@ -364,39 +402,6 @@ Filter.directive('postText', function($timeout) {
         scope: false,
         templateUrl: "post-text"
     };
-});
-
-/**
- * annees directive
- */
-Filter.directive("checkboxGroup", function () {
-    return {
-        restrict: "A",
-        link: function (scope, elem, attrs) {
-            // Determine initial checked boxes
-            if (scope.selectedAnnees.indexOf(scope.annee.year) !== -1) {
-                elem[0].checked = true;
-            }
-            // Update array on click
-            elem.bind('click', function () {
-                var index = scope.selectedAnnees.indexOf(scope.annee.year);
-                // Add if checked
-                if (elem[0].checked) {
-                    if (index === -1) scope.selectedAnnees.push(scope.annee.year);
-                    scope.update();
-                }
-                // Remove if unchecked
-                else {
-                    if (index !== -1) scope.selectedAnnees.splice(index, 1);
-                    scope.update();
-                }
-                // Sort and update DOM display
-                scope.$apply(scope.selectedAnnees.sort(function (a, b) {
-                    return a - b
-                }));
-            });
-        }
-    }
 });
 
 /**

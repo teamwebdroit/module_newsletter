@@ -467,6 +467,25 @@ class Custom {
         return ($compare == $selected ? true : false);
     }
 
+    /**
+     * Get array of string using prefix
+     *
+     * @return
+     */
+    public function getPrefixString($array, $prefix)
+    {
+        $items = array();
 
+        if(!empty($array)){
+            foreach($array as $item){
+                preg_match('/'.$prefix.'(.*)/', $item, $results);
+                if(isset($results[1])){
+                    $items[] = $results[1];
+                }
+            }
+        }
+
+        return $items;
+    }
 
 }

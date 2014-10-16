@@ -10,6 +10,7 @@ class CustomTest extends TestCase {
 
         $this->custom = new \Custom;
     }
+
 	/**
 	 * A basic functional test example.
 	 *
@@ -24,5 +25,21 @@ class CustomTest extends TestCase {
 
         $this->assertTrue($actual);
 	}
+
+    /**
+     * Get elements by prefix
+     *
+     * @return void
+     */
+    public function testGetElementWithPrefix()
+    {
+        $array  = array('year-1','year-3','year-2');
+        $prefix = 'year-';
+
+        $expected = array(1,3,2);
+        $actual   = $this->custom->getPrefixString($array, $prefix);
+
+        $this->assertEquals($expected,$actual);
+    }
 
 }

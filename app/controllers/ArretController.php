@@ -88,9 +88,14 @@ class ArretController extends \BaseController {
     public function preparedArrets($selected = null)
     {
         $selected = json_decode(Input::get('selected'));
-        $arrets   = $this->arret->getAll(195);
 
-        $prepared = $arrets->filter(function($arret) use ($selected)
+        $selected_cats  = $this->custom->getPrefixString($selected, 'cat-');
+        $selected_annee = $this->custom->getPrefixString($selected, 'year-');
+        $selected_annee = (isset($selected_annee[0]) ? $selected_annee[0] : null );
+
+        $arrets   = $this->arret->getAll(195,$selected_annee);
+
+        $prepared = $arrets->filter(function($arret) use ($selected_cats,$selected_annee)
         {
             // format the title with the date
             setlocale(LC_ALL, 'fr_FR');
@@ -104,21 +109,27 @@ class ArretController extends \BaseController {
 
                 $cats[]  = 'year-'.$arret->pub_date->year;
                 $cats    = implode(' ',$cats);
-
                 $cats_id = $arret->arrets_categories->lists('id');
 
                 $arret->setAttribute('allcats',$cats);
 
-                if( (isset($selected) && $this->custom->compare($selected, $cats_id)) || !isset($selected) )
+                if( (!empty($selected_cats) && $this->custom->compare($selected_cats, $cats_id) ) || empty($selected_cats) )
                 {
-                    return $arret;
+                    if( (isset($selected_annee) && ($selected_annee == $arret->pub_date->year) ) || !$selected_annee )
+                    {
+                        return $arret;
+                    }
                 }
             }
             else
             {
-                $cats[]  = 'year-'.$arret->pub_date->year;
-                $arret->setAttribute('allcats',$cats);
-                return $arret;
+                if( (isset($selected_annee) && ($selected_annee == $arret->pub_date->year) ) || !$selected_annee )
+                {
+                    $cats[]  = 'year-'.$arret->pub_date->year;
+                    $arret->setAttribute('allcats',$cats);
+
+                    return $arret;
+                }
             }
         });
 
@@ -133,6 +144,7 @@ class ArretController extends \BaseController {
            echo '</pre>';
       }
     */
+
         $prepared->sortBy('id');
         $prepared->values();
         return Response::json( $prepared, 200 );
@@ -156,7 +168,7 @@ class ArretController extends \BaseController {
 
         foreach($years as $id => $year)
         {
-            $new = array('id' => $id , 'year' =>$year );
+            $new = array('id' => $id , 'year' =>$year , 'checked' => false);
             $allyears[] = $new;
         }
 

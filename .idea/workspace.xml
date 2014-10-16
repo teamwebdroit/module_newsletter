@@ -23,19 +23,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="filter.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="filter.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/js/filter.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="252" column="31" selection-start="7533" selection-end="7533" vertical-scroll-proportion="0.5826211" vertical-offset="5891" max-vertical-offset="11300">
+            <state line="288" column="21" selection-start="8479" selection-end="8491" vertical-scroll-proportion="-19.307692" vertical-offset="6698" max-vertical-offset="11425">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="filters.blade.php" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="filters.blade.php" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/partials/filters.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="79" selection-start="226" selection-end="244" vertical-scroll-proportion="-5.3461537" vertical-offset="36" max-vertical-offset="825">
+            <state line="21" column="49" selection-start="951" selection-end="951" vertical-scroll-proportion="0.616836" vertical-offset="100" max-vertical-offset="900">
               <folding>
                 <element signature="n#style#0;n#ui-select#0;n#div#0;n#div#0;n#!!top" expanded="true" />
               </folding>
@@ -46,7 +46,28 @@
       <file leaf-file-name="ArretController.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/ArretController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="118" column="32" selection-start="3039" selection-end="3039" vertical-scroll-proportion="-22.192308" vertical-offset="2348" max-vertical-offset="4575">
+            <state line="170" column="63" selection-start="4634" selection-end="4634" vertical-scroll-proportion="-19.307692" vertical-offset="3723" max-vertical-offset="4875">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="laravel.log" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/storage/logs/laravel.log">
+          <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="3813" column="16" selection-start="180123" selection-end="180212" vertical-scroll-proportion="-19.0" vertical-offset="94812" max-vertical-offset="95500">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ArretEloquent.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Droit/Content/Repo/ArretEloquent.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="17" column="31" selection-start="334" selection-end="334" vertical-scroll-proportion="-7.6923075" vertical-offset="200" max-vertical-offset="2775">
               <folding />
             </state>
           </provider>
@@ -55,7 +76,7 @@
       <file leaf-file-name="index.blade.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/arrets/index.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="42" selection-start="486" selection-end="496" vertical-scroll-proportion="-4.326923" vertical-offset="150" max-vertical-offset="1000">
+            <state line="11" column="0" selection-start="296" selection-end="296" vertical-scroll-proportion="-4.8076925" vertical-offset="25" max-vertical-offset="1000">
               <folding />
             </state>
           </provider>
@@ -64,16 +85,7 @@
       <file leaf-file-name="routes.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/routes.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="43" column="60" selection-start="1476" selection-end="1476" vertical-scroll-proportion="-21.23077" vertical-offset="523" max-vertical-offset="1275">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Custom.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/helpers/Custom.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="462" column="20" selection-start="11296" selection-end="11323" vertical-scroll-proportion="0.0" vertical-offset="11550" max-vertical-offset="11925">
+            <state line="69" column="3" selection-start="2234" selection-end="2234" vertical-scroll-proportion="-25.076923" vertical-offset="1073" max-vertical-offset="1875">
               <folding />
             </state>
           </provider>
@@ -82,7 +94,7 @@
       <file leaf-file-name="CustomTest.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/tests/CustomTest.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="27" selection-start="305" selection-end="305" vertical-scroll-proportion="0.0" vertical-offset="475" max-vertical-offset="850">
+            <state line="35" column="47" selection-start="622" selection-end="622" vertical-scroll-proportion="-14.5" vertical-offset="498" max-vertical-offset="1275">
               <folding />
             </state>
           </provider>
@@ -98,7 +110,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/app/Droit/Content/Entities/Analyses_arret.php" />
         <option value="$PROJECT_DIR$/app/Droit/Content/Entities/Analyses.php" />
         <option value="$PROJECT_DIR$/app/database/seeds/ArretsTableSeeder.php" />
         <option value="$PROJECT_DIR$/app/database/seeds/DatabaseSeeder.php" />
@@ -117,7 +128,6 @@
         <option value="$PROJECT_DIR$/app/controllers/NewsletterController.php" />
         <option value="$PROJECT_DIR$/app/Droit/Content/Entities/Analyse.php" />
         <option value="$PROJECT_DIR$/app/Droit/Content/Repo/AnalyseEloquent.php" />
-        <option value="$PROJECT_DIR$/app/Droit/Content/Repo/ArretInterface.php" />
         <option value="$PROJECT_DIR$/app/views/newsletter/templates/building-blocs.php" />
         <option value="$PROJECT_DIR$/app/start/global.php" />
         <option value="$PROJECT_DIR$/app/Droit/DroitServiceProvider.php" />
@@ -139,16 +149,18 @@
         <option value="$PROJECT_DIR$/app/views/layouts/master.blade.php" />
         <option value="$PROJECT_DIR$/public/js/vendor/angular/dirPagination.js" />
         <option value="$PROJECT_DIR$/public/css/blog.css" />
-        <option value="$PROJECT_DIR$/app/helpers/Custom.php" />
-        <option value="$PROJECT_DIR$/app/tests/CustomTest.php" />
-        <option value="$PROJECT_DIR$/app/Droit/Content/Repo/ArretEloquent.php" />
         <option value="$PROJECT_DIR$/app/views/arrets/list.blade.php" />
-        <option value="$PROJECT_DIR$/app/views/arrets/index.blade.php" />
         <option value="$PROJECT_DIR$/app/views/recueil.blade.php" />
+        <option value="$PROJECT_DIR$/app/views/arrets/index.blade.php" />
+        <option value="$PROJECT_DIR$/app/storage/logs/laravel.log" />
+        <option value="$PROJECT_DIR$/app/tests/CustomTest.php" />
+        <option value="$PROJECT_DIR$/app/helpers/Custom.php" />
         <option value="$PROJECT_DIR$/app/routes.php" />
-        <option value="$PROJECT_DIR$/app/views/partials/filters.blade.php" />
+        <option value="$PROJECT_DIR$/app/Droit/Content/Repo/ArretEloquent.php" />
+        <option value="$PROJECT_DIR$/app/Droit/Content/Repo/ArretInterface.php" />
         <option value="$PROJECT_DIR$/app/controllers/ArretController.php" />
         <option value="$PROJECT_DIR$/public/js/filter.js" />
+        <option value="$PROJECT_DIR$/app/views/partials/filters.blade.php" />
       </list>
     </option>
   </component>
@@ -200,38 +212,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="newsletter" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="newsletter" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="newsletter" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="newsletter" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="newsletter" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="css" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -347,7 +327,29 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="tests" />
+              <option name="myItemId" value="storage" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="newsletter" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="newsletter" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="storage" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="logs" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -662,26 +664,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/views/newsletter/templates/building-blocs.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="48" selection-start="195" selection-end="195" vertical-scroll-proportion="0.03311258" vertical-offset="0" max-vertical-offset="755" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/start/global.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="25" selection-start="585" selection-end="585" vertical-scroll-proportion="0.33112583" vertical-offset="0" max-vertical-offset="2100" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Droit/Content/Repo/AnalyseInterface.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="236" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="425" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Droit/DroitServiceProvider.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="40" selection-start="1164" selection-end="1164" vertical-scroll-proportion="-17.307692" vertical-offset="825" max-vertical-offset="1600" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Droit/Categorie/Repo/CategorieInterface.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="4" column="31" selection-start="102" selection-end="102" vertical-scroll-proportion="-3.8461537" vertical-offset="0" max-vertical-offset="425">
@@ -702,11 +684,6 @@
     <entry file="file://$PROJECT_DIR$/app/views/partials/pagination.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="1" column="107" selection-start="133" selection-end="133" vertical-scroll-proportion="-0.96153843" vertical-offset="0" max-vertical-offset="225" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Droit/Content/Repo/AnalyseEloquent.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="36" selection-start="0" selection-end="1975" vertical-scroll-proportion="-16.346153" vertical-offset="25" max-vertical-offset="2275" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/partials/sidebar.blade.php">
@@ -857,30 +834,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/tests/ExampleTest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="728" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/tests/TestCase.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="728" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/helpers/Custom.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="462" column="20" selection-start="11296" selection-end="11323" vertical-scroll-proportion="0.0" vertical-offset="11550" max-vertical-offset="11925">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/tests/CustomTest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="27" selection-start="305" selection-end="305" vertical-scroll-proportion="0.0" vertical-offset="475" max-vertical-offset="850">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/arrets/list.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="25" column="14" selection-start="0" selection-end="1321" vertical-scroll-proportion="-24.038462" vertical-offset="0" max-vertical-offset="1000">
@@ -909,47 +862,113 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/routes.php">
+    <entry file="file://$PROJECT_DIR$/app/tests/TestCase.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="43" column="60" selection-start="1476" selection-end="1476" vertical-scroll-proportion="-21.23077" vertical-offset="523" max-vertical-offset="1275">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="702">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Droit/Content/Repo/ArretEloquent.php">
+    <entry file="file://$PROJECT_DIR$/app/tests/ExampleTest.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="33" selection-start="708" selection-end="716" vertical-scroll-proportion="0.6766382" vertical-offset="150" max-vertical-offset="2700">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="575">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/start/global.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="25" selection-start="585" selection-end="585" vertical-scroll-proportion="0.35612535" vertical-offset="0" max-vertical-offset="2100">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bootstrap/start.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-1.4928775" vertical-offset="1048" max-vertical-offset="1750">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Droit/Content/Repo/AnalyseEloquent.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="36" selection-start="0" selection-end="1975" vertical-scroll-proportion="0.03846154" vertical-offset="423" max-vertical-offset="2275">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/tests/CustomTest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="35" column="47" selection-start="622" selection-end="622" vertical-scroll-proportion="-14.5" vertical-offset="498" max-vertical-offset="1275">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/arrets/index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="42" selection-start="486" selection-end="496" vertical-scroll-proportion="-4.326923" vertical-offset="150" max-vertical-offset="1000">
+        <state line="11" column="0" selection-start="296" selection-end="296" vertical-scroll-proportion="-4.8076925" vertical-offset="25" max-vertical-offset="1000">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/helpers/Custom.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="481" column="38" selection-start="11783" selection-end="11783" vertical-scroll-proportion="0.67343974" vertical-offset="11361" max-vertical-offset="12200">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="69" column="3" selection-start="2234" selection-end="2234" vertical-scroll-proportion="-25.076923" vertical-offset="1073" max-vertical-offset="1875">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/storage/logs/laravel.log">
+      <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3813" column="16" selection-start="180123" selection-end="180212" vertical-scroll-proportion="-19.0" vertical-offset="94812" max-vertical-offset="95500">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Droit/Content/Repo/ArretInterface.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="31" selection-start="96" selection-end="96" vertical-scroll-proportion="0.14245014" vertical-offset="0" max-vertical-offset="702">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Droit/Content/Repo/ArretEloquent.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="31" selection-start="334" selection-end="334" vertical-scroll-proportion="-7.6923075" vertical-offset="200" max-vertical-offset="2775">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/ArretController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="118" column="32" selection-start="3039" selection-end="3039" vertical-scroll-proportion="-22.192308" vertical-offset="2348" max-vertical-offset="4575">
+        <state line="170" column="63" selection-start="4634" selection-end="4634" vertical-scroll-proportion="-19.307692" vertical-offset="3723" max-vertical-offset="4875">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/filter.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="288" column="21" selection-start="8479" selection-end="8491" vertical-scroll-proportion="-19.307692" vertical-offset="6698" max-vertical-offset="11425">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/partials/filters.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="79" selection-start="226" selection-end="244" vertical-scroll-proportion="-5.3461537" vertical-offset="36" max-vertical-offset="825">
+        <state line="21" column="49" selection-start="951" selection-end="951" vertical-scroll-proportion="0.616836" vertical-offset="100" max-vertical-offset="900">
           <folding>
             <element signature="n#style#0;n#ui-select#0;n#div#0;n#div#0;n#!!top" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/filter.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="252" column="31" selection-start="7533" selection-end="7533" vertical-scroll-proportion="0.5826211" vertical-offset="5891" max-vertical-offset="11300">
-          <folding />
         </state>
       </provider>
     </entry>
