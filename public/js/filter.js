@@ -290,29 +290,35 @@ Filter.controller('FilterController', ['$scope','$http', '$sce','Categories','An
     $scope.annees = [];
 
     /* update call from anne filter */
-    this.changeAnnee = function (annee) {
+    $scope.change = function (annee) {
 
-        angular.forEach($scope.annees, function (annee) {
-            annee.checked = false;
+        // Delects all checkboxes
+        angular.forEach($scope.annees, function(item) {
+            item.checked = false;
         });
 
-        console.log($scope.annees);
+        // Select choosen checbock
+        annee.checked = true;
 
-        var selected = this.selectedCategories;
-        selected = self.removeAnnee(selected);
+        // Get all items selected and remove year if any
+        var selected = self.removeAnnee(selectionFilter.getSelected());
 
-        selected.push('year-' +annee);
+        // Push new year and set selected items back to service
+        selected.push('year-' +annee.year);
         selectionFilter.setSelected(selected);
+
     };
 
-    this.removeAnnee = function(annees){
+    this.removeAnnee = function(selected){
 
-        for (i=0;i < annees.length;i++) {
-            if (annees[i].indexOf('year-') > -1) {
-                annees.splice(i,1);
+        for (i=0;i < selected.length;i++)
+        {
+            console.log(selected[i]);
+            if (selected[i].indexOf('year-') > -1) {
+                selected.splice(i,1);
             }
         }
-        return annees;
+        return selected;
     }
 
     /* filter is enabled */

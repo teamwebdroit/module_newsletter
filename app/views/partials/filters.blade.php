@@ -18,10 +18,7 @@
         <h3 class="title">Années</h3>
 
         <div ng-repeat="annee in annees">
-            <input type="checkbox"
-                   ng-model="filter.annees[annee.id]"
-                   ng-checked="annee.checked"
-                   ng-change="filter.changeAnnee(annee.year)"/>
+            <input type="checkbox" ng-model="annee.checked" ng-click="change(annee)">
             <label>{[{annee.year}]}</label>
         </div>{[{selectedAnnee}]}
 
