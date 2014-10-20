@@ -33,6 +33,15 @@ Route::get('post-text', 'TemplateController@postText');
  */
 Route::post('uploadJS', 'UploadController@uploadJS');
 
+
+/**
+ * Admin routes
+ */
+Route::group(array('prefix' => 'admin'), function()
+{
+    Route::get('dashboard', 'AdminController@index');
+});
+
 /**
  * API
  */

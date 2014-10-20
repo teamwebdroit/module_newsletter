@@ -1,5 +1,4 @@
 @import url('font-awesome.css');
-@import url('socialize-bookmarks.css');
 /*------------------------------------------------------
 
 CSS overview: 
@@ -281,10 +280,11 @@ img {
 }
 #footer .divider-border {
 	border-top-color: #ddd;
+    margin:10px 0;
 }
 
 #spinner{
-    display:    block;
+    display:block;
     height: 200px;
     background: url("../images/ajax-loader.gif") 50% 50% no-repeat;
 }
@@ -448,7 +448,7 @@ img {
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b3b3b3', endColorstr='#494949',GradientType=1 ); /* IE6-8 */
 	color: #fff;
     padding: 0;
-    height: 300px;
+    height: 290px;
 }
 
 #about img {
@@ -820,6 +820,7 @@ li.open a .sf-sub-indicator:after, li.open li.open a .sf-sub-indicator:after, li
 	margin: 0;
 }
 #footer p.copyright {
+    margin-top: 5px;
 }
 /*--------------------------------------------------
 				TWITTER
@@ -1975,7 +1976,7 @@ ul.item-nav li.all a {
 }
 .form textarea {
 	width: 100%;
-	height: 150px;
+	height: 170px;
 }
 .form input.submit {
 	width: 110px;

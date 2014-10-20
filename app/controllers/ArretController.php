@@ -48,7 +48,7 @@ class ArretController extends \BaseController {
 
     public function listed()
     {
-        $arrets = $this->arret->getAll(195);
+        $arrets     = $this->arret->getAll(195);
         $categories = $this->categorie->getAll(195);
 
         $required = true;

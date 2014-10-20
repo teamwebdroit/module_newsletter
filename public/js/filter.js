@@ -331,6 +331,7 @@ Filter.controller('FilterController', ['$scope','$http', '$sce','Categories','An
        }
     };
 
+    /* remove current annee in master filter */
     $scope.removeAnnee = function(selected){
 
         for (i=0;i < selected.length;i++)
@@ -342,6 +343,7 @@ Filter.controller('FilterController', ['$scope','$http', '$sce','Categories','An
         return selected;
     }
 
+    /* remove current categories for update in master filter */
     $scope.removeCategory = function(selected){
 
         for (i=0;i < selected.length;i++)

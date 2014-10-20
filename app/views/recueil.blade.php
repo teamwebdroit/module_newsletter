@@ -11,7 +11,7 @@
                 <p><a href="#" class="button small rounded grey">Acheter</a></p>
             </div>
             <div class="one-half last">
-                <img alt="RJN" src="{{ asset('edition/cover.png') }}">
+                <img alt="RJN" src="{{ asset('images/edition/cover.png') }}">
             </div>
         </div><!--END HOLDER-->
     </div><!--END SECTION-->
@@ -29,7 +29,8 @@
         <div class="one-third">
             <h3 class="title">Perspiciatis unde omnist</h3>
             <p><strong>Etiam eget mi enim, non ultricies nisi voluptatem, illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo nemo enim ipsam voluptatem.</strong></p>
-            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo
+            <p>Sed ut perspiciatis unde omnis iste natus sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo
+                                                                     inventore veritatis et quasi architecto beatae vitae error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo
             inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Dusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae
              ab illo inventore veritatis.</p>
         </div><!--END ONE-THIRD-->
@@ -37,10 +38,13 @@
         <div class="one-third last">
             <h3 class="title">Ultricies unde omnist</h3>
             <p><strong>Etiam eget mi enim, non ultricies nisi voluptatem, illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo nemo enim ipsam voluptatem.</strong></p>
-            <p>Sed ut perspiciatis unde omnis ise vitae dicta sunt explicabo. Donec ut volutpat metus. Aliquam tortor lorem, fringilla tempor dignissim at,
+            <p>Sed ut perspiciatis unde omnis ise vitae dicsit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo
              pretium et arcu. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae
              ab illo inventore veritatis.</p>
         </div><!--END ONE-THIRD-->
+
+        <div class="divider-border"></div>
+        <div class="clear"></div>
 
     </div><!--END SECTION-->
 

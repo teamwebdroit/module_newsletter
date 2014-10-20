@@ -27,8 +27,6 @@ jQuery(document).ready(function($){
 				$("form#contact-form").before('<div class="contact-success"><strong>THANK YOU!</strong><p>Your email was successfully sent. We will contact you as soon as possible.</p></div>');
 			});
 		}
-
-
 		return false;
 
 	});

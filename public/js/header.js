@@ -64,8 +64,6 @@ function bra_add_sticky(add_sticky){
 		$('#header-wrapper').removeClass("sticky");
 		$('#content-wrapper').removeAttr("style");
 	}
-	
-	
 
 }
 

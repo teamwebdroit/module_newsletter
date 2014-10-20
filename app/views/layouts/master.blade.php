@@ -14,6 +14,7 @@
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,700italic,700,800,800italic,300italic,300' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" type="text/css" href="<?php echo asset('css/style.css');?>" media="screen" />
         <link rel="stylesheet" type="text/css" href="<?php echo asset('css/blog.css');?>" media="screen" />
+        <link rel="stylesheet" type="text/css" href="<?php echo asset('css/color-red.css');?>" media="screen" />
         <link rel="stylesheet" type="text/css" href="<?php echo asset('css/responsive.css');?>" media="screen" />
         <link rel="stylesheet" type="text/css" href="<?php echo asset('css/select.css');?>">
         <link rel="stylesheet" type="text/css" href="<?php echo asset('css/select2.css');?>">
@@ -24,6 +25,7 @@
         <script src="http://code.jquery.com/jquery-migrate-1.0.0.js"></script>
         <script src="<?php echo asset('js/custom.js');?>"></script>
         <script src="<?php echo asset('js/header.js');?>"></script>
+        <script src="<?php echo asset('js/contact-form-validate.js');?>"></script>
 
         @if(isset($required))
 
@@ -71,9 +73,10 @@
         <!-- START FOOTER -->
         <div id="footer">
             <div class="section">
-                <div class="one text-align-center"></div><!--END ONE-->
-                <div class="divider-border"></div>
-                <div class="one text-align-center"><p class="copyright">Copyright &copy; RJN <?php echo date('Y'); ?>. Tous droits réservés.</p></div><!--END ONE-->
+                <div class="one text-align-center">Faculté de droit, Avenue du 1er-Mars 26, 2000 Neuchâtel</div><!--END ONE-->
+                <div class="one text-align-center">
+                    <p class="copyright">Copyright &copy; RJN <?php echo date('Y'); ?>. Tous droits réservés.</p>
+                </div><!--END ONE-->
             </div><!--END SECTION-->
         </div><!--END FOOTER-->
         <!-- END FOOTER -->
