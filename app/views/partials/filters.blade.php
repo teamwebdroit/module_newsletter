@@ -18,9 +18,9 @@
         <h3 class="title">Années</h3>
 
         <div ng-repeat="annee in annees">
-            <input type="checkbox" ng-model="annee.checked" ng-click="change(annee)">
+            <input type="checkbox" ng-model="annee.checked" ng-click="update(annee)" ng-change="change(annee)">
             <label>{[{annee.year}]}</label>
-        </div>{[{selectedAnnee}]}
+        </div>
 
     </div><!--END WIDGET-->
 

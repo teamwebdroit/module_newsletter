@@ -223,6 +223,10 @@ Filter.controller('ArretController', ['$scope','$timeout','$http','Arrets','sele
         return self.allpost.length;
     };
 
+    this.isEmpty = function(){
+        return (self.pagedItems.length == 0 ? true : false);
+    };
+
     /**
      * Async get of allposts
      * then refresh the variable to display all arrets
@@ -250,8 +254,6 @@ Filter.controller('ArretController', ['$scope','$timeout','$http','Arrets','sele
 
         var selectedCat = (selectionFilter.getSelected().length > 0 ? selectionFilter.getSelected() : null );
 
-        console.log(selectedCat);
-
         Arrets.query(selectedCat).then(function (data) {
             self.allpost    = data;
             self.pagedItems = self.get(0 * self.itemsPerPage, self.itemsPerPage);
@@ -271,50 +273,80 @@ Filter.controller('ArretController', ['$scope','$timeout','$http','Arrets','sele
 /**
  * Select arret controller, select an arret and display's it
  */
-Filter.controller('FilterController', ['$scope','$http', '$sce','Categories','Annees','selectionFilter',
-    function($scope,$http,$sce,Categories,Annees,selectionFilter){
+Filter.controller('FilterController', ['$scope','$http', '$sce','Categories','Annees','selectionFilter', function($scope,$http,$sce,Categories,Annees,selectionFilter){
 
     /* set variables  */
     this.disabled      = undefined;
     this.searchEnabled = undefined;
     this.counter = 0;
 
-    this.selectedCategories = {};
-    $scope.selectedAnnee    = [];
-
+    $scope.selectedCategories = {};
     this.categorie = {};
     this.categories = [];
 
     this.annee    = {};
-    this.anneeChecked = {};
     $scope.annees = [];
 
-    /* update call from anne filter */
+    /**
+     * Change checkboxes values when change
+     * Push new year in filter if year is selected
+     */
     $scope.change = function (annee) {
+
+        // remove current year in filter if there is any
+        var selected  = $scope.removeAnnee(selectionFilter.getSelected());
 
         // Delects all checkboxes
         angular.forEach($scope.annees, function(item) {
             item.checked = false;
         });
 
-        // Select choosen checbock
+        // Set current selected year to true
         annee.checked = true;
 
-        // Get all items selected and remove year if any
-        var selected = self.removeAnnee(selectionFilter.getSelected());
+        // push new year in filter
+        if(annee.checked)
+        {
+            selected.push('year-' + annee.year);
+        }
 
-        // Push new year and set selected items back to service
-        selected.push('year-' +annee.year);
+        // update master filter with new value
         selectionFilter.setSelected(selected);
 
     };
 
-    this.removeAnnee = function(selected){
+    /**
+     * Update checkbox value on click
+     * if already checked set to false and remove it from filter
+     */
+    $scope.update = function(annee){
+
+       var id = annee.id;
+
+       if( $scope.annees[annee.id].checked)
+       {
+           $scope.annees[id].checked = false;
+           var selected  = $scope.removeAnnee(selectionFilter.getSelected());
+           selectionFilter.setSelected(selected);
+       }
+    };
+
+    $scope.removeAnnee = function(selected){
 
         for (i=0;i < selected.length;i++)
         {
-            console.log(selected[i]);
             if (selected[i].indexOf('year-') > -1) {
+                selected.splice(i,1);
+            }
+        }
+        return selected;
+    }
+
+    $scope.removeCategory = function(selected){
+
+        for (i=0;i < selected.length;i++)
+        {
+            if (selected[i].indexOf('cat-') > -1) {
                 selected.splice(i,1);
             }
         }
@@ -341,16 +373,9 @@ Filter.controller('FilterController', ['$scope','$http', '$sce','Categories','An
         this.searchEnabled = false;
     }
 
-    /* clear filter */
-    this.clear = function() {
-        this.categorie.selected = undefined;
-    };
-
     /* last removed categories */
     this.removed = function (item, model) {
-        this.lastRemoved = {
-            item: item,
-            model: model
+        this.lastRemoved = {item: item, model: model
         };
     };
 
@@ -376,7 +401,7 @@ Filter.controller('FilterController', ['$scope','$http', '$sce','Categories','An
     /* set selected categorie in service  */
     this.filterFunction = function(element) {
 
-        var select   = selectionFilter.getSelected();
+        var select   = $scope.removeCategory(selectionFilter.getSelected());
         var prefixed = self.addPrefix(element);
         var selected = select.concat(prefixed);
 

@@ -168,7 +168,7 @@ class ArretController extends \BaseController {
 
         foreach($years as $id => $year)
         {
-            $new = array('id' => $id , 'year' =>$year , 'checked' => false);
+            $new = array('id' => $id , 'year' => $year , 'checked' => false);
             $allyears[] = $new;
         }
 
