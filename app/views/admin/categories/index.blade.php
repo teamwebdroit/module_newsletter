@@ -12,7 +12,7 @@
 
         <div class="panel panel-midnightblue">
             <div class="panel-heading">
-                <h4><i class="fa fa-edit"></i> &nbsp;Arrêts</h4>
+                <h4><i class="fa fa-tasks"></i> &nbsp;Catégories</h4>
             </div>
             <div class="panel-body">
                 <div class="table-responsive">
@@ -20,9 +20,9 @@
                         <thead>
                         <tr>
                             <th class="col-sm-2">Action</th>
-                            <th class="col-sm-2">Référence</th>
+                            <th class="col-sm-4">Référence</th>
                             <th class="col-sm-2">Date de publication</th>
-                            <th class="col-sm-6">Résumé</th>
+                            <th class="col-sm-4">Résumé</th>
                         </tr>
                         </thead>
                         <tbody class="selects">
@@ -31,7 +31,7 @@
                             @foreach($arrets as $arret)
                                 <tr>
                                     <td><a class="btn btn-sky btn-sm" href="{{ url('admin/arret/'.$arret->id) }}">éditer</a></td>
-                                    <td><strong>{{ $arret->reference }}</strong></td>
+                                    <td>{{ $arret->reference }}</td>
                                     <td>{{ $arret->pub_date->formatLocalized('%d %B %Y') }}</td>
                                     <td>{{ $arret->abstract }}</td>
                                 </tr>
@@ -42,9 +42,9 @@
                         <tfoot>
                         <tr>
                             <th class="col-sm-2">Action</th>
-                            <th class="col-sm-2">Référence</th>
+                            <th class="col-sm-4">Référence</th>
                             <th class="col-sm-2">Date de publication</th>
-                            <th class="col-sm-6">Résumé</th>
+                            <th class="col-sm-4">Résumé</th>
                         </tr>
                         </tfoot>
                     </table>

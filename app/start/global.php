@@ -48,7 +48,20 @@ Log::useFiles(storage_path().'/logs/laravel.log');
 
 App::error(function(Exception $exception, $code)
 {
-	Log::error($exception);
+    if (App::environment('local'))
+    {
+        Log::error($exception);
+    }
+    else
+    {
+
+        return View::make('404');
+    }
+});
+
+App::error(function(Droit\Exceptions\FormValidationException $exception, $code)
+{
+    return Redirect::back()->withInput()->withErrors($exception->getErrors())->with(array('status' => 'danger'));
 });
 
 /*App::error(function(Droit\Exceptions\FileUploadException $exception, $code)

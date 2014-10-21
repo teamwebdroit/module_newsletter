@@ -22,6 +22,7 @@ class DroitServiceProvider extends ServiceProvider {
 		$this->registerArretService();
         $this->registerAnalyseService();
         $this->registerCategorieService();
+        $this->registerSearchService();
     }
 
 	/**
@@ -54,6 +55,19 @@ class DroitServiceProvider extends ServiceProvider {
         $this->app->bind('Droit\Categorie\Repo\CategorieInterface', function()
         {
             return new \Droit\Categorie\Repo\CategorieEloquent( new Categorie );
+        });
+    }
+
+    /**
+     * Search service
+     */
+    protected function registerSearchService(){
+
+        $this->app->bind('Droit\Service\Worker\SearchInterface', function()
+        {
+            return new \Droit\Service\Worker\SearchEloquent(
+                new Arret , new Categorie
+            );
         });
     }
 }

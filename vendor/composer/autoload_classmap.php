@@ -6,8 +6,14 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'AdminController' => $baseDir . '/app/controllers/AdminController.php',
+    'AnalyseBaCategoriesTableSeeder' => $baseDir . '/app/database/seeds/AnalyseBaCategoriesTableSeeder.php',
+    'AnalysesArretTableSeeder' => $baseDir . '/app/database/seeds/AnalysesArretTableSeeder.php',
+    'ArretBaCategoriesTableSeeder' => $baseDir . '/app/database/seeds/ArretBaCategoriesTableSeeder.php',
     'ArretController' => $baseDir . '/app/controllers/ArretController.php',
     'BaseController' => $baseDir . '/app/controllers/BaseController.php',
+    'CategorieController' => $baseDir . '/app/controllers/CategorieController.php',
+    'ContentController' => $baseDir . '/app/controllers/ContentController.php',
     'CreateAnalysesArretTable' => $baseDir . '/app/database/migrations/2014_10_08_143551_create_analyses_arret_table.php',
     'CreateAnalysesBaCategoryTable' => $baseDir . '/app/database/migrations/2014_10_08_144855_create_analyses_ba_category_table.php',
     'CreateAnalysesTable' => $baseDir . '/app/database/migrations/2014_10_08_143249_create_analyses_table.php',
@@ -408,6 +414,7 @@ return array(
     'PHP_Token_WHITESPACE' => $vendorDir . '/phpunit/php-token-stream/src/Token.php',
     'PHP_Token_XOR_EQUAL' => $vendorDir . '/phpunit/php-token-stream/src/Token.php',
     'PHP_Token_YIELD' => $vendorDir . '/phpunit/php-token-stream/src/Token.php',
+    'SearchController' => $baseDir . '/app/controllers/SearchController.php',
     'SebastianBergmann\\Diff\\Chunk' => $vendorDir . '/sebastian/diff/src/Chunk.php',
     'SebastianBergmann\\Diff\\Diff' => $vendorDir . '/sebastian/diff/src/Diff.php',
     'SebastianBergmann\\Diff\\Differ' => $vendorDir . '/sebastian/diff/src/Differ.php',

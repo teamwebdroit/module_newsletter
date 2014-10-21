@@ -1,6 +1,7 @@
 <?php namespace Droit\Common;
 
 use Laracasts\Commander\Events\EventGenerator;
+use Droit\Exceptions\FormValidationException as FormValidationException;
 use Eloquent;
 
 class BaseModel extends Eloquent{
@@ -30,7 +31,7 @@ class BaseModel extends Eloquent{
 
 		if( $validator->fails() )
 		{
-            throw new \Droit\Exceptions\FormValidationException('Validation failed', $validator->messages() );
+            throw new FormValidationException('Validation failed', $validator->messages() );
 		}
 	
 		return true;	

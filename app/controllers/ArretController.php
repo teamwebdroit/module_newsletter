@@ -99,10 +99,6 @@ class ArretController extends \BaseController {
         $data['file']     = (!empty($file) ? $file['name'] : '');
         $data['analysis'] = (!empty($analysis) ? $analysis['name'] : '');
 
-        echo '<pre>';
-        print_r($data);
-        echo '</pre>';exit;
-
         $arret = $this->arret->create( $data );
 
         return Redirect::to('admin/arret/'.$arret->id)->with( array('status' => 'success' , 'message' => 'Arrêt crée') );

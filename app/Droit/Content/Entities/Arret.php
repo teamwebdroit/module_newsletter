@@ -7,8 +7,25 @@ class Arret extends BaseModel {
 	protected $fillable = ['pid','user_id','deleted','reference','pub_date','abstract','pub_text','file','categories','analysis'];
     protected $dates    = ['pub_date','created_at','updated_at'];
 
-    public static $rules    = array();
-    public static $messages = array();
+    /*
+     * Validation rules
+    */
+    protected static $rules = array(
+        'reference' => 'required',
+        'pub_date'  => 'required',
+        'abstract'  => 'required',
+        'pub_text'  => 'required'
+    );
+
+    /*
+     * Validation messages
+    */
+    protected static $messages = array(
+        'reference.required' => 'La référence est requise',
+        'pub_date.required'  => 'La date de publication est requise',
+        'abstract.required'  => 'Le résumé est requis',
+        'pub_text.required'  => 'Le texte est requis'
+    );
 
     public function arrets_categories()
     {

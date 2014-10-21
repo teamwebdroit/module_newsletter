@@ -2,13 +2,9 @@
 <nav id="page-leftbar" role="navigation">
     <!-- BEGIN SIDEBAR MENU -->
     <ul class="acc-menu" id="sidebar">
-        <li id="search">
-            <a href="javascript:;"><i class="fa fa-search opacity-control"></i></a>
-             <form>
-                <input type="text" class="search-query" placeholder="Search...">
-                <button type="submit"><i class="fa fa-search"></i></button>
-             </form>
-        </li>
+        <!-- Recherche globale -->
+        @include('admin.partials.search')
+
         <li class="divider"></li>
         <li class="<?php echo (Request::is('admin/dashboard') ? 'active' : '' ); ?>"><a href="{{ url('admin/dashboard') }}"><i class="fa fa-home"></i> <span>Accueil</span></a></li>
         <li class="<?php echo (Request::is('admin/arret/*') ? 'active' : '' ); ?>"><a href="{{ url('admin/arret')  }}"><i class="fa fa-edit"></i> <span>Arrêts</span></a></li>

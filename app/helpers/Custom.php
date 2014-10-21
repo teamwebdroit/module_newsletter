@@ -488,4 +488,39 @@ class Custom {
         return $items;
     }
 
+    public function prepareSearch($search){
+
+        // decode spécial char
+        $search =  htmlspecialchars_decode($search);
+
+        preg_match_all('/"(?:\\\\.|[^\\\\"])*"|\S+/', $search, $matches);
+
+        $recherche = $matches[0];
+
+        foreach($recherche as $rech)
+        {
+            // there is quotes "
+            if (preg_match('/\"([^\"]*?)\"/', $rech, $m))
+            {
+                $string = $m[1];
+                $string = str_replace('"', '', $string);
+                $item   = str_replace('"', '', $string);
+
+                $find[] = $item;
+            }
+            else // no quotes
+            {
+                $string = trim($rech);
+
+                if( $string != '')
+                {
+                    $find[] = $string;
+                }
+            }
+        }
+
+        return $find;
+
+    }
+
 }

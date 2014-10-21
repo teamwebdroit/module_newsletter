@@ -42,4 +42,49 @@ class CustomTest extends TestCase {
         $this->assertEquals($expected,$actual);
     }
 
+    /**
+     * Prepare terms for search
+     *
+     * @return void
+     */
+    public function testPrepareSearchSimple()
+    {
+        $string  = 'df  fd';
+
+        $expected = array('df','fd');
+        $actual   = $this->custom->prepareSearch($string);
+
+        $this->assertEquals($expected,$actual);
+    }
+
+    /**
+     * Prepare terms for search
+     *
+     * @return void
+     */
+    public function testPrepareSearchQuotes()
+    {
+        $string  = '"df fd"';
+
+        $expected = array('df fd');
+        $actual   = $this->custom->prepareSearch($string);
+
+        $this->assertEquals($expected,$actual);
+    }
+
+
+    /**
+     * Prepare terms for search
+     *
+     * @return void
+     */
+    public function testPrepareSearchQuotesAndSimple()
+    {
+        $string  = '"TF 4A_549/2013" bail';
+
+        $expected = array('TF 4A_549/2013','bail');
+        $actual   = $this->custom->prepareSearch($string);
+
+        $this->assertEquals($expected,$actual);
+    }
 }

@@ -69,6 +69,9 @@
 
                 <div class="container">
 
+                    <!-- messages and errors -->
+                    @include('admin.partials.message')
+
                     <!-- Contenu -->
                     @yield('content')
                     <!-- Fin contenu -->
