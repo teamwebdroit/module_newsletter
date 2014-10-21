@@ -7,7 +7,7 @@ class Arret extends BaseModel {
 	protected $fillable = ['pid','user_id','deleted','reference','pub_date','abstract','pub_text','file','categories','analysis'];
     protected $dates    = ['pub_date','created_at','updated_at'];
 
-    public static $rules = array();
+    public static $rules    = array();
     public static $messages = array();
 
     public function arrets_categories()

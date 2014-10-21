@@ -1,55 +1,46 @@
 <?php
 
-use Droit\Content\Repo\ArretInterface;
 use Droit\Categorie\Repo\CategorieInterface;
 
-class AdminController extends \BaseController {
-
-    protected $arret;
+class CategorieController extends \BaseController {
 
     protected $categorie;
 
-    public function __construct( ArretInterface $arret, CategorieInterface $categorie )
+    protected $custom;
+
+    public function __construct( CategorieInterface $categorie )
     {
-        $this->arret     = $arret;
 
         $this->categorie = $categorie;
 
-        View::share('pageTitle', 'Administration');
-
+        $this->custom    = new \Custom;
     }
 
 	/**
 	 * Display a listing of the resource.
-	 * GET /adminconotroller
+	 * GET /categorie
 	 *
 	 * @return Response
 	 */
 	public function index()
 	{
-        $arrets     = $this->arret->getAll(195);
-        $categories = $this->categorie->getAll(195);
-
-        return View::make('admin.index')->with(array('arrets' => $arrets , 'categories' => $categories));
+		//
 	}
 
 	/**
 	 * Show the form for creating a new resource.
-	 * GET /adminconotroller/create
+	 * GET /categorie/create
 	 *
 	 * @return Response
 	 */
-	public function arret()
+	public function create()
 	{
-        $arrets     = $this->arret->getAll(195);
-        $categories = $this->categorie->getAll(195);
-
-        return View::make('admin.index')->with(array('arrets' => $arrets , 'categories' => $categories));
+		//
 	}
 
 	/**
 	 * Store a newly created resource in storage.
-	 * POST /adminconotroller
+	 * POST /categorie
 	 *
 	 * @return Response
 	 */
@@ -60,7 +51,7 @@ class AdminController extends \BaseController {
 
 	/**
 	 * Display the specified resource.
-	 * GET /adminconotroller/{id}
+	 * GET /categorie/{id}
 	 *
 	 * @param  int  $id
 	 * @return Response
@@ -72,7 +63,7 @@ class AdminController extends \BaseController {
 
 	/**
 	 * Show the form for editing the specified resource.
-	 * GET /adminconotroller/{id}/edit
+	 * GET /categorie/{id}/edit
 	 *
 	 * @param  int  $id
 	 * @return Response
@@ -84,7 +75,7 @@ class AdminController extends \BaseController {
 
 	/**
 	 * Update the specified resource in storage.
-	 * PUT /adminconotroller/{id}
+	 * PUT /categorie/{id}
 	 *
 	 * @param  int  $id
 	 * @return Response
@@ -96,7 +87,7 @@ class AdminController extends \BaseController {
 
 	/**
 	 * Remove the specified resource from storage.
-	 * DELETE /adminconotroller/{id}
+	 * DELETE /categorie/{id}
 	 *
 	 * @param  int  $id
 	 * @return Response
@@ -105,5 +96,18 @@ class AdminController extends \BaseController {
 	{
 		//
 	}
+
+    /**
+     * For AJAX
+     * Return response categories
+     *
+     * @return response
+     */
+    public function categories()
+    {
+        $categories = $this->categorie->getAll(195);
+
+        return Response::json( $categories, 200 );
+    }
 
 }

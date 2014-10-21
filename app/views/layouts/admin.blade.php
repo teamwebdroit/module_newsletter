@@ -9,7 +9,11 @@
 	<meta name="author" content="DesignPond">
 
     <link rel="stylesheet" href="<?php echo asset('admin/css/styles.css?=121');?>">
+    <link rel="stylesheet" href="<?php echo asset('js/vendor/redactor/redactor.css'); ?>">
     <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600' rel='stylesheet' type='text/css'>
+
+    <link rel='stylesheet' type='text/css' href="<?php echo asset('admin/plugins/datatables/dataTables.css');?>" />
+    <link rel='stylesheet' type='text/css' href="<?php echo asset('admin/plugins/form-multiselect/css/multi-select.css');?>" />
 
     <link href='assets/demo/variations/default.css' rel='stylesheet' type='text/css' media='all' id='styleswitcher'>
     <link href='assets/demo/variations/default.css' rel='stylesheet' type='text/css' media='all' id='headerswitcher'>
@@ -61,7 +65,7 @@
                 <!-- Breadcrumbs  -->
                 @include('admin.partials.breadcrumbs')
 
-                <div id="page-heading"><h1>Administration</h1></div>
+                <div id="page-heading"><h1>{{ $pageTitle or 'Administration' }}</h1></div>
 
                 <div class="container">
 
@@ -93,6 +97,11 @@
     <script type="text/javascript" src="<?php echo asset('admin/js/jquery.nicescroll.min.js');?>"></script>
     <script type="text/javascript" src="<?php echo asset('admin/plugins/form-toggle/toggle.min.js');?>"></script>
     <script type="text/javascript" src="<?php echo asset('admin/js/placeholdr.js');?>"></script>
+    <script type="text/javascript" src="<?php echo asset('js/vendor/redactor/redactor.js');?>"></script>
+    <script type='text/javascript' src="<?php echo asset('admin/plugins/form-multiselect/js/jquery.multi-select.min.js');?>"></script>
+    <script type='text/javascript' src="<?php echo asset('admin/plugins/datatables/jquery.dataTables.min.js');?>"></script>
+    <script type='text/javascript' src="<?php echo asset('admin/plugins/datatables/dataTables.bootstrap.js');?>"></script>
+    <script type="text/javascript" src="<?php echo asset('admin/js/datatables.js');?>"></script>
     <script type="text/javascript" src="<?php echo asset('admin/js/application.js');?>"></script>
 
 </body>

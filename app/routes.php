@@ -1,10 +1,14 @@
 <?php
 
-Route::get('contact', 'HomeController@contact');
+/**
+ * Site pages
+ */
 Route::get('recueil', 'HomeController@recueil');
+Route::get('contact', 'HomeController@contact');
+Route::get('post', 'HomeController@post');
 
 /**
- * Pages
+ * Newsletter
  */
 Route::get('convert', 'NewsletterController@convert');
 Route::get('html', 'NewsletterController@html');
@@ -12,9 +16,6 @@ Route::get('test', 'NewsletterController@test');
 Route::get('convert', 'NewsletterController@convert');
 Route::get('campagne', 'NewsletterController@campagne');
 Route::resource('/', 'NewsletterController');
-
-Route::get('post', 'ArretController@index');
-Route::get('listed', 'ArretController@listed');
 
 /**
  * Templates for js
@@ -33,6 +34,17 @@ Route::get('post-text', 'TemplateController@postText');
  */
 Route::post('uploadJS', 'UploadController@uploadJS');
 
+/**
+ * API
+ */
+Route::get('building', 'NewsletterApiController@building');
+Route::post('sorting', 'NewsletterApiController@sorting');
+Route::post('process', 'NewsletterApiController@process');
+Route::get('preparedArrets/{selected?}', 'NewsletterApiController@preparedArrets');
+Route::get('preparedAnnees', 'NewsletterApiController@preparedAnnees');
+Route::get('arrets/{id}', 'NewsletterApiController@simple');
+Route::get('arrets', 'ArretController@arrets');
+Route::get('categories', 'CategorieController@categories');
 
 /**
  * Admin routes
@@ -40,20 +52,14 @@ Route::post('uploadJS', 'UploadController@uploadJS');
 Route::group(array('prefix' => 'admin'), function()
 {
     Route::get('dashboard', 'AdminController@index');
+    Route::resource('arret', 'ArretController');
+    Route::resource('categorie', 'CategorieController');
 });
 
-/**
- * API
- */
-Route::get('building', 'NewsletterApiController@building');
-Route::post('sorting', 'NewsletterApiController@sorting');
-Route::post('process', 'NewsletterApiController@process');
-Route::get('arrets', 'ArretController@arrets');
-Route::get('preparedArrets/{selected?}', 'ArretController@preparedArrets');
-Route::get('preparedAnnees', 'ArretController@preparedAnnees');
-Route::get('categories', 'ArretController@categories');
-Route::get('arrets/{id}', 'NewsletterApiController@simple');
 
+/**
+ * LOG
+ */
 Event::listen('illuminate.query', function($query, $bindings, $time, $name)
 {
     $data = compact('bindings', 'time', 'name');
