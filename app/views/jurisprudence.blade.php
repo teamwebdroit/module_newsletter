@@ -4,7 +4,7 @@
 <?php $custom = new \Custom; ?>
 
 <div class="page-header text-align-left">
-    <h1 class="title uppercase"><i class="icon-edit"></i> &nbsp;Jurisprudence</h1>
+    <h1 class="title uppercase">Jurisprudence</h1>
 </div><!--END PAGE-HEADER-->
 
 <div class="content">
@@ -31,6 +31,7 @@
         <!-- Sidebar  -->
         <div id="sidebar">
             @include('partials.filters')
+            <p class="divider-border"></p>
             @include('partials.sidebar')
         </div>
         <!-- END Sidebar  -->

@@ -25,17 +25,3 @@
     </ul><!--END UL-->
 </div><!--END WIDGET-->
 
-<!--<div class="widget">
-    <h3 class="title">Catégories</h3>
-    <ul class="bra_categories">
-
-        @if(!$categories->isEmpty())
-            @foreach($categories as $categorie)
-                <li><a href="{{ url('categorie/'.$categorie->id) }}">{{ $categorie->title }}</a></li>
-            @endforeach
-        @endif
-
-    </ul>
-</div>-->
-<!--END WIDGET-->
-

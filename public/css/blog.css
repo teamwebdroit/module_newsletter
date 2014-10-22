@@ -19,27 +19,30 @@ CSS overview:
 #inner-content {
 	width: 800px;
 	float: left;
+    padding-top: 40px;
 }
 #sidebar, .sidebar {
-	width: 270px;
-	float: right;
+    width: 300px;
+    float: right;
+}
+#sidebar, #inner-contact{
+    padding-top: 20px;
 }
 
 #sidebar {
-    width: 270px;
-    padding-left: 5px;
+    padding-left: 10px;
     background: url("../images/sidebar.png") repeat-y;
     float: right;
 }
 
 #newsletter{
-    border: 1px solid #e49974;
+    border: 1px solid #d6d6d6;
     margin-bottom: 15px;
+    width: 100%;
 }
-
 .newsletter{
     padding:10px;
-    background: #d6d6d6;
+    min-height: 100px;
 }
 
 .newsletter .grey{
@@ -50,6 +53,12 @@ CSS overview:
     background-color:#444;
 }
 
+.newsletter a:after{
+    content: '.';
+    visibility: hidden;
+    clear: both;
+}
+
 /*--------------------------------------------------
 				WIDGET
 ---------------------------------------------------*/
@@ -58,6 +67,9 @@ CSS overview:
 	float: left;
 	width: 100%;
     padding-left: 10px;
+}
+.widget:last-child {
+    margin-bottom: 10px;
 }
 .widget .title,.newsletter .title {
 	font-size:14px;
@@ -134,6 +146,7 @@ CSS overview:
 
 .listCat{
     text-align: center;
+    padding-top: 20px;
 }
 
 .listCat p{

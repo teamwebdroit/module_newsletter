@@ -2,6 +2,7 @@
 
 use Droit\Content\Repo\ArretInterface;
 use Droit\Categorie\Repo\CategorieInterface;
+use Droit\Newsletter\Repo\NewsletterCampagneInterface;
 
 class HomeController extends BaseController {
 
@@ -9,13 +10,17 @@ class HomeController extends BaseController {
 
     protected $categorie;
 
+    protected $campagne;
+
     protected $custom;
 
-    public function __construct( ArretInterface $arret, CategorieInterface $categorie )
+    public function __construct( ArretInterface $arret, CategorieInterface $categorie, NewsletterCampagneInterface $campagne )
     {
         $this->arret     = $arret;
 
         $this->categorie = $categorie;
+
+        $this->campagne  = $campagne;
 
         $this->custom    = new \Custom;
 
@@ -46,7 +51,7 @@ class HomeController extends BaseController {
 
     /**
      * Display a listing of the resource.
-     * GET /arret
+     * GET /jurisprudence
      *
      * @return Response
      */
@@ -55,6 +60,19 @@ class HomeController extends BaseController {
         $required = true;
 
         return View::make('jurisprudence')->with(array( 'required' => $required ));
+    }
+
+    /**
+     * Display a listing of the resource.
+     * GET /newsletter
+     *
+     * @return Response
+     */
+    public function newsletters()
+    {
+        $campagnes =  $this->campagne->getAll();
+
+        return View::make('newsletter')->with(array( 'campagnes' => $campagnes  ));
     }
 
 }

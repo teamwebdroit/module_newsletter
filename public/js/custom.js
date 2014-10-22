@@ -16,10 +16,11 @@ jQuery(window).load(function() {
  
  }
  else {
-  var wrapper_margin_bottom = jQuery('#footer').outerHeight()+'px';
-   jQuery("#wrapper").after('<div style="height:' + wrapper_margin_bottom + '; float:left; width:100%;"></div>'); 
+  var margin = jQuery('#footer').outerHeight() + 25;
+  var wrapper_margin_bottom = margin+'px';
+   jQuery("#wrapper").after('<div style="height:' + wrapper_margin_bottom + '; float:left; width:100%;"></div>');
    jQuery("#footer").addClass("fixed");
- } 
+ }
 });
 
 
