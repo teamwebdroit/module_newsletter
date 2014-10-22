@@ -25,6 +25,8 @@ class NewsletterServiceProvider extends ServiceProvider {
         $this->registerTypesService();
 
         $this->registerCampagneService();
+
+        $this->registerCampagneWorkerService();
     }
 
 	/**
@@ -58,6 +60,20 @@ class NewsletterServiceProvider extends ServiceProvider {
         $this->app->bind('Droit\Newsletter\Repo\NewsletterCampagneInterface', function()
         {
             return new \Droit\Newsletter\Repo\NewsletterCampagneEloquent( new Newsletter_campagnes );
+        });
+    }
+
+    /**
+     * Newsletter Campagne worker
+     */
+    protected function registerCampagneWorkerService(){
+
+        $this->app->bind('Droit\Newsletter\Worker\CampagneInterface', function()
+        {
+            return new \Droit\Newsletter\Worker\CampagneWorker(
+                \App::make('Droit\Newsletter\Repo\NewsletterContentInterface'),
+                \App::make('Droit\Content\Repo\ArretInterface')
+            );
         });
     }
 

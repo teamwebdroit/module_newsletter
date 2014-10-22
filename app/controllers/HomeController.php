@@ -3,6 +3,7 @@
 use Droit\Content\Repo\ArretInterface;
 use Droit\Categorie\Repo\CategorieInterface;
 use Droit\Newsletter\Repo\NewsletterCampagneInterface;
+use Droit\Newsletter\Worker\CampagneInterface;
 
 class HomeController extends BaseController {
 
@@ -12,15 +13,19 @@ class HomeController extends BaseController {
 
     protected $campagne;
 
+    protected $worker;
+
     protected $custom;
 
-    public function __construct( ArretInterface $arret, CategorieInterface $categorie, NewsletterCampagneInterface $campagne )
+    public function __construct( ArretInterface $arret, CategorieInterface $categorie, NewsletterCampagneInterface $campagne , CampagneInterface $worker )
     {
         $this->arret     = $arret;
 
         $this->categorie = $categorie;
 
         $this->campagne  = $campagne;
+
+        $this->worker    = $worker;
 
         $this->custom    = new \Custom;
 
@@ -70,9 +75,10 @@ class HomeController extends BaseController {
      */
     public function newsletters()
     {
-        $campagnes =  $this->campagne->getAll();
+        $campagnes  = $this->campagne->getAll();
+        $newsletter = $this->worker->findCampagneById(1);
 
-        return View::make('newsletter')->with(array( 'campagnes' => $campagnes  ));
+        return View::make('newsletter')->with(array( 'campagnes' => $campagnes , 'newsletter' => $newsletter ));
     }
 
 }

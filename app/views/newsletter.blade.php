@@ -9,6 +9,13 @@
     <div class="section">
 
         <div id="inner-content">
+
+            @if(!empty($newsletter))
+                @foreach($newsletter as $bloc)
+                    <?php  echo View::make('newsletter/content/'.$bloc->type->partial)->with(array('bloc' => $bloc))->__toString(); ?>
+                @endforeach
+            @endif
+
         </div>
 
         <!-- Sidebar  -->
