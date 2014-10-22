@@ -49,10 +49,23 @@
             <!-- START HEADER -->
             <div id="header-wrapper">
                 <div class="header clear">
-                    <div id="logo"><a href="index.html"><img src="images/logo.png" alt="" /></a></div><!--END LOGO-->
 
-                    <!-- Navigation  -->
-                    @include('partials.navigation')
+                    <div class="one-third">
+                        <div id="logo">
+                            <a href="index.html">Droit du <strong>travail</strong></a>
+                        </div><!--END LOGO-->
+                    </div>
+
+                    <div class="one-third">
+                        <!-- Navigation  -->
+                        @include('partials.navigation')
+                    </div>
+
+                    <div class="one-third last logos">
+                        <a target="_blank" href="http://www2.unine.ch/droit"><img src="<?php echo asset('images/logo.png');?>" alt="" /></a>
+                        <a target="_blank" href="http://www2.unine.ch/cemaj"><img src="<?php echo asset('images/logos/cemaj.jpg');?>" alt="" /></a>
+                        <a target="_blank" href="http://www2.unine.ch/cert"><img src="<?php echo asset('images/logos/cert.jpg');?>" alt="" /></a>
+                    </div>
 
                 </div><!--END HEADER-->
             </div><!--END HEADER-WRAPPER-->

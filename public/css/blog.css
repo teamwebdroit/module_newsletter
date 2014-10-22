@@ -20,19 +20,46 @@ CSS overview:
 	width: 800px;
 	float: left;
 }
-#sidebar {
+#sidebar, .sidebar {
 	width: 270px;
 	float: right;
 }
+
+#sidebar {
+    width: 270px;
+    padding-left: 5px;
+    background: url("../images/sidebar.png") repeat-y;
+    float: right;
+}
+
+#newsletter{
+    border: 1px solid #e49974;
+    margin-bottom: 15px;
+}
+
+.newsletter{
+    padding:10px;
+    background: #d6d6d6;
+}
+
+.newsletter .grey{
+    background-color:#c5210d;
+}
+
+.newsletter .grey:hover{
+    background-color:#444;
+}
+
 /*--------------------------------------------------
 				WIDGET
 ---------------------------------------------------*/
 .widget {
-	margin-bottom: 50px;
+	margin-bottom: 30px;
 	float: left;
 	width: 100%;
+    padding-left: 10px;
 }
-.widget .title {
+.widget .title,.newsletter .title {
 	font-size:14px;
 	line-height: 20px;
 	font-weight: 700;
@@ -85,8 +112,13 @@ CSS overview:
 .widget .bra_recent_entries a {
 	text-transform: none;
 	font-weight: 600;
-    color: #e5013e;
+    color: #c5210d;
 }
+
+.widget .bra_recent_entries a:hover {
+    color: #c5210d;
+}
+
 .widget .photostream li:last-child {
 	margin: 0 0 5px 5px;
 }
@@ -397,7 +429,7 @@ CSS overview:
 	display: block;
 }
 .post-title h2.title, .post-title h2.title a {
-	font: 300 26px/30px 'Open Sans',Helvetica,Arial,sans-serif;
+	font: 300 22px/30px 'Open Sans',Helvetica,Arial,sans-serif;
 	text-transform: uppercase;
 	margin: 0 0 20px 0;
 }

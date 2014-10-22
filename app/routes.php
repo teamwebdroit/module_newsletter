@@ -5,7 +5,7 @@
  */
 Route::get('recueil', 'HomeController@recueil');
 Route::get('contact', 'HomeController@contact');
-Route::get('post', 'HomeController@post');
+Route::get('jurisprudence', 'HomeController@jurisprudence');
 
 /**
  * Newsletter

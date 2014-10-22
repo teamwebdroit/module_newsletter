@@ -18,6 +18,15 @@ class HomeController extends BaseController {
         $this->categorie = $categorie;
 
         $this->custom    = new \Custom;
+
+        $arrets = $this->arret->getPaginate(195,15);
+        $latest = $arrets->take(5);
+
+        $categories = $this->categorie->getAll(195);
+
+        View::share('arrets', $arrets);
+        View::share('latest', $latest);
+        View::share('categories', $categories);
     }
 
 	public function showWelcome()
@@ -32,7 +41,7 @@ class HomeController extends BaseController {
 
     public function recueil()
     {
-        return View::make('recueil');
+        return View::make('index');
     }
 
     /**
@@ -41,16 +50,11 @@ class HomeController extends BaseController {
      *
      * @return Response
      */
-    public function post()
+    public function jurisprudence()
     {
-        $arrets = $this->arret->getPaginate(195,15);
-        $latest = $arrets->take(5);
-
         $required = true;
 
-        $categories = $this->categorie->getAll(195);
-
-        return View::make('arrets.index')->with(array( 'arrets' => $arrets , 'categories' => $categories , 'latest' => $latest , 'required' => $required ));
+        return View::make('jurisprudence')->with(array( 'required' => $required ));
     }
 
 }

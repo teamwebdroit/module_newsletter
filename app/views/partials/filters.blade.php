@@ -1,5 +1,3 @@
-<?php  $custom = new \Custom; ?>
-
 <div id="sidebar" ng-controller="FilterController as filter">
 
     <div class="widget">

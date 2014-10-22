@@ -1,42 +1,41 @@
-<?php  $custom = new \Custom; ?>
+<?php $custom = new \Custom; ?>
 
-<div id="sidebar">
-    <div class="widget">
-        <h3 class="title">Dernière édition RJN</h3>
-        <p><img width="160" border="0" alt="RJN" src="{{ asset('edition/rjn.png') }}"></p>
-        <p class="text-align-left">
-            <a class="button small grey" href="#">Commander</a>
-        </p>
-    </div><!--END WIDGET-->
+<div class="newsletter">
+    <h3 class="title"><i class="icon-envelope"></i> &nbsp;Inscription à la newsletter</h3>
+    <input id="newsletter" type="text" size="30" value="" name="newsletter" placeholder="Entrez votre email">
+    <a href="#" class="button small grey">Envoyer</a>
+</div><!--END WIDGET-->
 
-    <div class="widget">
-        <h3 class="title">Derniers arrêts</h3>
-        <ul class="bra_recent_entries">
+<p class="divider-border"></p>
 
-            @if(!$latest->isEmpty())
-                @foreach($latest as $last)
-                    <li>
-                        <span class="date">{{ $last->pub_date->formatLocalized('%d %B %Y') }}</span>
-                        <a href="#">{{ $last->reference }}</a>
-                        <p>{{ $custom->limit_words($last->abstract,15) }}</p>
-                    </li>
-                @endforeach
-            @endif
+<div class="widget">
+    <h3 class="title"><i class="icon-edit"></i> &nbsp;Derniers arrêts</h3>
+    <ul class="bra_recent_entries">
 
-        </ul><!--END UL-->
-    </div><!--END WIDGET-->
+        @if(!$latest->isEmpty())
+            @foreach($latest as $last)
+                <li>
+                    <span class="date">{{ $last->pub_date->formatLocalized('%d %B %Y') }}</span>
+                    <a href="#">{{ $last->reference }}</a>
+                    <p>{{ $custom->limit_words($last->abstract,15) }}</p>
+                </li>
+            @endforeach
+        @endif
 
-    <div class="widget">
-        <h3 class="title">Catégories</h3>
-        <ul class="bra_categories">
+    </ul><!--END UL-->
+</div><!--END WIDGET-->
 
-            @if(!$categories->isEmpty())
-                @foreach($categories as $categorie)
-                    <li><a href="{{ url('categorie/'.$categorie->id) }}">{{ $categorie->title }}</a></li>
-                @endforeach
-            @endif
+<!--<div class="widget">
+    <h3 class="title">Catégories</h3>
+    <ul class="bra_categories">
 
-        </ul><!--END UL-->
-    </div><!--END WIDGET-->
+        @if(!$categories->isEmpty())
+            @foreach($categories as $categorie)
+                <li><a href="{{ url('categorie/'.$categorie->id) }}">{{ $categorie->title }}</a></li>
+            @endforeach
+        @endif
 
-</div><!--END SIDEBAR-->
+    </ul>
+</div>-->
+<!--END WIDGET-->
+
