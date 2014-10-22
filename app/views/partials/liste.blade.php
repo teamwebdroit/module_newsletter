@@ -3,13 +3,13 @@
 <div class="widget">
     <h3 class="title"><i class="icon-envelope"></i> &nbsp;Newsletter</h3>
     <ul class="bra_recent_entries">
-
-        @if(!$campagnes->isEmpty())
-            @foreach($campagnes as $campagne)
+        
+        @if(!$listCampagnes->isEmpty())
+            @foreach($listCampagnes as $campagnes)
                 <li>
-                    <span class="date">{{ $campagne->created_at->formatLocalized('%d %B %Y') }}</span>
-                    <a href="#">{{ $campagne->sujet }}</a>
-                    <p>{{ $campagne->auteurs }}</p>
+                    <span class="date">{{ $campagnes->created_at->formatLocalized('%d %B %Y') }}</span>
+                    <a href="#">{{ $campagnes->sujet }}</a>
+                    <p>{{ $campagnes->auteurs }}</p>
                 </li>
             @endforeach
         @endif

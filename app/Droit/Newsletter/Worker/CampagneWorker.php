@@ -2,20 +2,30 @@
 
 use Droit\Newsletter\Worker\CampagneInterface;
 use Droit\Newsletter\Repo\NewsletterContentInterface;
+use Droit\Newsletter\Repo\NewsletterCampagneInterface;
 use Droit\Content\Repo\ArretInterface;
 
 class CampagneWorker implements CampagneInterface{
 
     protected $content;
 
+    protected $campagne;
+
     protected $arret;
 
-	public function __construct(NewsletterContentInterface $content, ArretInterface $arret)
+	public function __construct(NewsletterContentInterface $content,NewsletterCampagneInterface $campagne, ArretInterface $arret)
 	{
         $this->content  = $content;
 
+        $this->campagne  = $campagne;
+
         $this->arret    = $arret;
 	}
+
+    public function getCampagne($id){
+
+        return $this->campagne->find($id);
+    }
 
 	public function findCampagneById($id){
 

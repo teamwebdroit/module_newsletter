@@ -3,5 +3,6 @@
 interface CampagneInterface {
 
 	public function findCampagneById($id);
+    public function getCampagne($id);
 
 }

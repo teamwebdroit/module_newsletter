@@ -10,9 +10,13 @@
 
         <div id="inner-content">
 
+            <h1>{{ $campagne->sujet }}</h1>
+            <h2>{{ $campagne->created_at->formatLocalized('%d %B %Y') }}</h2>
+            <p>{{ $campagne->auteurs }}</p>
+
             @if(!empty($newsletter))
                 @foreach($newsletter as $bloc)
-                    <?php  echo View::make('newsletter/content/'.$bloc->type->partial)->with(array('bloc' => $bloc))->__toString(); ?>
+                    <?php  echo View::make('content/'.$bloc->type->partial)->with(array('bloc' => $bloc))->__toString(); ?>
                 @endforeach
             @endif
 

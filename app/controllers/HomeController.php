@@ -75,10 +75,11 @@ class HomeController extends BaseController {
      */
     public function newsletters()
     {
-        $campagnes  = $this->campagne->getAll();
-        $newsletter = $this->worker->findCampagneById(1);
+        $listCampagnes  = $this->campagne->getAll();
+        $campagne       = $this->worker->getCampagne(1);
+        $newsletter     = $this->worker->findCampagneById(1);
 
-        return View::make('newsletter')->with(array( 'campagnes' => $campagnes , 'newsletter' => $newsletter ));
+        return View::make('newsletter')->with(array( 'listCampagnes' => $listCampagnes , 'campagne' => $campagne , 'newsletter' => $newsletter ));
     }
 
 }
