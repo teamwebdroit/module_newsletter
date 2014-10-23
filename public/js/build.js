@@ -116,7 +116,10 @@ App.controller("FormController",['$scope','$http','notify','myService', function
     $scope.addContent = function(form, type, id) {
 
         /* gather all date to send to the server */
-        var image =  $('.uploadImage').val();
+        var image    = $('.uploadImage').val();
+        var campagne = $('#campagne_id').val();
+
+        console.log(campagne);
 
         var titre   = ( form.titre ? form.titre.$modelValue : '');
         var image   = ( image ? image : '');
@@ -124,7 +127,7 @@ App.controller("FormController",['$scope','$http','notify','myService', function
 
         var arret_id = (id ? id : 0);
 
-        var data = { titre : titre , image : image , contenu: contenu , type: type , arret_id: arret_id };
+        var data = { titre : titre , image : image , contenu: contenu , type: type , arret_id: arret_id , campagne: campagne };
 
         /* Send data */
         var all = $.param( data);
@@ -137,7 +140,6 @@ App.controller("FormController",['$scope','$http','notify','myService', function
             })
             .success(function(data)
             {
-                // TODO implement success and fail result processing form
                 if (!data.success) {
                     //console.log(data);
                     notify('Le bloc a bien été ajouté');
@@ -254,7 +256,11 @@ App.controller('SelectController', ['$scope','$http','Arrets','notify','myServic
     $scope.addArret = function() {
 
         var arret_id = ( self.arret ? self.arret.id : 0);
-        var data     = { type: 'arret' , arret_id: arret_id };
+        var campagne = $('#campagne_id').val();
+
+        console.log(campagne);
+
+        var data     = { type: 'arret' , arret_id: arret_id, campagne : campagne };
         /* Send data */
         var all = $.param( data);
 
@@ -266,7 +272,6 @@ App.controller('SelectController', ['$scope','$http','Arrets','notify','myServic
         })
         .success(function(data)
         {
-            // TODO implement success and fail result processing form
             if (!data.success) {
                 console.log(data);
                 notify('L\'arrêt a bien été ajouté');

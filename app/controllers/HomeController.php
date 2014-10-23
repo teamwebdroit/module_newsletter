@@ -73,11 +73,13 @@ class HomeController extends BaseController {
      *
      * @return Response
      */
-    public function newsletters()
+    public function newsletters($id = null)
     {
+        $newsletter     = ($id ? $id : $this->campagne->getLastCampagne()->id );
+
         $listCampagnes  = $this->campagne->getAll();
-        $campagne       = $this->worker->getCampagne(1);
-        $newsletter     = $this->worker->findCampagneById(1);
+        $campagne       = $this->worker->getCampagne($newsletter);
+        $newsletter     = $this->worker->findCampagneById($newsletter);
 
         return View::make('newsletter')->with(array( 'listCampagnes' => $listCampagnes , 'campagne' => $campagne , 'newsletter' => $newsletter ));
     }

@@ -7,20 +7,25 @@ function is_touch_device() {
 ---------------------------------------------------*/
 jQuery(window).load(function() {  
 
- var footer_fixed = true;
- 
- if( is_touch_device() || !footer_fixed){
-  jQuery('#footer, #wrapper').css({'position':'static', 'z-index':'0'});
-  jQuery('#wrapper:last').css("margin-bottom", "0"); 
-  jQuery("#footer").removeClass("fixed");
- 
- }
- else {
-  var margin = jQuery('#footer').outerHeight() + 25;
-  var wrapper_margin_bottom = margin+'px';
-   jQuery("#wrapper").after('<div style="height:' + wrapper_margin_bottom + '; float:left; width:100%;"></div>');
-   jQuery("#footer").addClass("fixed");
- }
+    var footer_fixed = true;
+
+    if( is_touch_device() || !footer_fixed){
+        jQuery('#footer, #wrapper').css({'position':'static', 'z-index':'0'});
+        jQuery('#wrapper:last').css("margin-bottom", "0");
+        jQuery("#footer").removeClass("fixed");
+    }
+    else
+    {
+        var margin = jQuery('#footer').outerHeight() + 25;
+        var wrapper_margin_bottom = margin+'px';
+        jQuery("#wrapper").after('<div style="height:' + wrapper_margin_bottom + '; float:left; width:100%;"></div>');
+        jQuery("#footer").addClass("fixed");
+    }
+
+    var innerHeight = jQuery('#inner-content').outerHeight();
+    innerHeight = innerHeight + 30;
+    jQuery('#sidebar').css('height',innerHeight);
+
 });
 
 

@@ -472,17 +472,14 @@ img {
 	padding: 100px 0;
 }	
 #about {
-    background: #b3b3b3; /* Old browsers */
     /* IE9 SVG, needs conditional override of 'filter' to 'none' */
-    background: url("../images/edition/header.jpg") no-repeat;
 	color: #fff;
-    padding: 20px;
     height: 290px;
     margin-bottom: 40px;
 }
 
 #about img {
-   max-width: none;
+   max-width: 100%;
 }
 
 .about-content{

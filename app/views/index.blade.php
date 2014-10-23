@@ -12,7 +12,9 @@
 
         <div id="inner-content">
 
-            <div class="one" id="about"></div><!--END SECTION-->
+            <div class="one" id="about">
+                <img alt="Droit du travail" src="{{ asset('images/header.jpg') }}" />
+            </div><!--END SECTION-->
 
             <div class="clear"></div>
 
@@ -50,7 +52,8 @@
 
         <!-- Sidebar  -->
         <div id="sidebar">
-            @include('partials.sidebar')
+            @include('partials.newsletter')
+            @include('partials.latest')
         </div>
         <!-- END Sidebar  -->
 

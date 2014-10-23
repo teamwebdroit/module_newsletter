@@ -63,13 +63,13 @@ CSS overview:
 				WIDGET
 ---------------------------------------------------*/
 .widget {
-	margin-bottom: 30px;
+	margin-bottom: 20px;
 	float: left;
 	width: 100%;
     padding-left: 10px;
 }
 .widget:last-child {
-    margin-bottom: 10px;
+    margin-bottom:5px;
 }
 .widget .title,.newsletter .title {
 	font-size:14px;

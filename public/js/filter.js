@@ -47,9 +47,6 @@ Filter.service('selectionFilter',  function ($rootScope) {
         isSelected : function(cat){
             if(selected.length > 0)
             {
-                //var res = cat.replace(/cat-/g, "");
-                //res = res.replace(/year-/g, "");
-
                 var res = cat.split(" ");
                 res.filter(Boolean);
 
@@ -188,6 +185,13 @@ Filter.controller('ArretController', ['$scope','$timeout','$http','Arrets','sele
         self.total = self.getTotal();
         $('body,html').animate({ scrollTop: 0 }, 600);
 
+    });
+
+    $scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent) {
+        var innerHeight = jQuery('#inner-content').outerHeight();
+        innerHeight = innerHeight + 30;
+        jQuery('#sidebar').css('height',innerHeight);
+        console.log('height' + innerHeight);
     });
 
     /* set current page  */
@@ -423,8 +427,20 @@ Filter.controller('FilterController', ['$scope','$http', '$sce','Categories','An
 
         return cats;
     }
-
 }]);
+
+Filter.directive('onFinishRender', function ($timeout) {
+    return {
+        restrict: 'A',
+        link: function (scope, element, attr) {
+            if (scope.$last === true) {
+                $timeout(function () {
+                    scope.$emit('ngRepeatFinished');
+                });
+            }
+        }
+    }
+});
 
 /**
  * post directive

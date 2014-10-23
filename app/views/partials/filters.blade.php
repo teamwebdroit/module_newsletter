@@ -19,3 +19,5 @@
     </div><!--END WIDGET-->
 
 </div><!--END SIDEBAR-->
+
+<p class="divider-border"></p>

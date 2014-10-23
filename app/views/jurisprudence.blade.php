@@ -17,7 +17,7 @@
             <p ng-show="arret.isEmpty()">Aucun arrêts avec votre séléction</p>
 
             <div ng-show="arret.isSelected(post.allcats)" post-text class="{[{ post.allcats }]}"
-                 ng-repeat="post in arret.pagedItems track by $index"></div>
+                 ng-repeat="post in arret.pagedItems track by $index" on-finish-render></div>
 
             <div class="wp-pagenavi text-align-center" ng-show="!arret.isEmpty()">
                 <span class="pages">Page {[{ currentPage + 1 }]} de {[{ arret.pageCount() }]}</span>
@@ -31,8 +31,8 @@
         <!-- Sidebar  -->
         <div id="sidebar">
             @include('partials.filters')
-            <p class="divider-border"></p>
-            @include('partials.sidebar')
+            @include('partials.newsletter')
+            @include('partials.latest')
         </div>
         <!-- END Sidebar  -->
 

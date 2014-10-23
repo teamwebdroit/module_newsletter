@@ -2,17 +2,14 @@
 @section('content')
 
 <div class="page-header text-align-left">
-    <h1 class="title uppercase">Newsletter</h1>
+    <h1 class="title uppercase">{{ $campagne->sujet }}</h1>
+    <h2 class="subtitle">{{ $campagne->auteurs }}</h2>
 </div><!--END PAGE-HEADER-->
 
 <div class="content">
     <div class="section">
 
         <div id="inner-content">
-
-            <h1>{{ $campagne->sujet }}</h1>
-            <h2>{{ $campagne->created_at->formatLocalized('%d %B %Y') }}</h2>
-            <p>{{ $campagne->auteurs }}</p>
 
             @if(!empty($newsletter))
                 @foreach($newsletter as $bloc)
@@ -25,6 +22,8 @@
         <!-- Sidebar  -->
         <div id="sidebar">
             @include('partials.liste')
+            @include('partials.newsletter')
+            @include('partials.latest')
         </div>
         <!-- END Sidebar  -->
 

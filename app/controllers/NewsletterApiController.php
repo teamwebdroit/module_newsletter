@@ -33,23 +33,25 @@ class NewsletterApiController extends BaseController {
 
         $data = Input::all();
 
+        $campagne = $data['campagne'];
+
         /* retrive type from database to set it right in content */
         $type = $this->types->findByPartial($data['type']);
-        $rang = $this->content->getRang(1);
+        $rang = $this->content->getRang($campagne);
 
         $titre    = (isset($data['titre']) ? $data['titre'] : null);
         $contenu  = (isset($data['contenu']) ? $data['contenu'] : null);
         $image    = (isset($data['image']) ? $data['image'] : null);
         $arret_id = (isset($data['arret_id']) ? $data['arret_id'] : 0);
 
-        $new  = array(
+        $new = array(
             'type_id'                => $type->id,
             'titre'                  => $titre,
             'contenu'                => $contenu,
             'image'                  => $image,
             'arret_id'               => $arret_id,
             'categorie_id'           => 0,
-            'newsletter_campagne_id' => 1,
+            'newsletter_campagne_id' => $campagne,
             'rang'                   => $rang
         );
 

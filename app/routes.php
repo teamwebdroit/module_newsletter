@@ -6,7 +6,7 @@
 Route::get('recueil', 'HomeController@recueil');
 Route::get('contact', 'HomeController@contact');
 Route::get('jurisprudence', 'HomeController@jurisprudence');
-Route::get('newsletters', 'HomeController@newsletters');
+Route::get('newsletters/{id?}', 'HomeController@newsletters');
 
 /**
  * Newsletter

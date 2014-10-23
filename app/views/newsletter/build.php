@@ -31,7 +31,7 @@
     <div id="main" ng-app="newsletter"><!-- main div for app-->
 
         <div ng-controller="BuildController as build">
-
+            <input id="campagne_id" value="2" type="hidden">
             <div class="row">
                 <div class="col-md-12">
                     <ul id="buildingBlocs">
