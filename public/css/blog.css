@@ -30,7 +30,7 @@ CSS overview:
 }
 
 #sidebar {
-    padding-left: 10px;
+    padding-left: 15px;
     background: url("../images/sidebar.png") repeat-y;
     float: right;
 }
