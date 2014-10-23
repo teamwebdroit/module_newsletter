@@ -1,5 +1,8 @@
 <?php namespace Droit\Newsletter\Entities;
 
-class Newsletter_types extends \Eloquent {
+use Droit\Common\BaseModel as BaseModel;
+
+class Newsletter_types extends BaseModel {
+
 	protected $fillable = ['titre','partial','elements'];
 }

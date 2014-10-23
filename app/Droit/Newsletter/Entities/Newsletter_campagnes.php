@@ -1,12 +1,10 @@
 <?php namespace Droit\Newsletter\Entities;
 
 use Illuminate\Database\Eloquent\SoftDeletingTrait;
+use Droit\Common\BaseModel as BaseModel;
 
-class Newsletter_campagnes extends \Eloquent {
+class Newsletter_campagnes extends BaseModel {
 
-    use SoftDeletingTrait;
-
-    protected $dates = ['deleted_at'];
 
 	protected $fillable = ['sujet','auteurs','newsletter_id'];
 }

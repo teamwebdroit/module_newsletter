@@ -12,6 +12,8 @@
 
         <div id="inner-content">
 
+            @include('partials.message')
+
             <div class="one" id="about">
                 <img width="100%" alt="Droit du travail" src="{{ asset('images/header.jpg') }}" />
             </div><!--END SECTION-->

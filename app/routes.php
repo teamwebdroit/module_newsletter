@@ -46,6 +46,13 @@ Route::get('arrets/{id}', 'NewsletterApiController@simple');
 Route::get('arrets', 'ArretController@arrets');
 Route::get('categories', 'CategorieController@categories');
 
+
+/**
+ * Newsletter inscription routes
+ */
+Route::get('inscription/activation/{token}', 'InscriptionController@activation');
+Route::resource('inscription', 'InscriptionController');
+
 /**
  * Admin routes
  */

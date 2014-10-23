@@ -11,9 +11,10 @@ class NewsletterUsersTableSeeder extends Seeder {
 		foreach(range(1, 20) as $index)
 		{
             Droit\Newsletter\Entities\Newsletter_users::create([
-                'email'  => $faker->email,
-                'prenom' => $faker->firstName,
-                'nom'    => $faker->lastName
+                'email'         => $faker->email,
+                'prenom'        => $faker->firstName,
+                'nom'           => $faker->lastName,
+                'activated_at'  => date('Y-m-d G:i:s')
 			]);
 		}
 	}
