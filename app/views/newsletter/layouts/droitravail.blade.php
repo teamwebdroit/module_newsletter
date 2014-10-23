@@ -38,8 +38,8 @@
                                 </td>
                             </tr>
                             <tr class="resetMarge" style="display:block;">
-                                <td height="145" class="resetMarge" style="display:block;">
-                                    <img height="145" alt="Droit du bail" src="{{ asset('newsletter/header-droitravail.jpg') }}" />
+                                <td height="160" class="resetMarge" style="display:block;">
+                                    <img height="160" alt="Droit du bail" src="{{ asset('newsletter/header-droitravail.jpg') }}" />
                                 </td>
                             </tr>
                         </table>

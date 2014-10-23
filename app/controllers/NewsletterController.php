@@ -43,11 +43,6 @@ class NewsletterController extends BaseController {
         return View::make('newsletter.build');
     }
 
-    public function convert()
-    {
-        return View::make('newsletter.test');
-    }
-
     public function test()
     {
 

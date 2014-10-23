@@ -84,4 +84,12 @@ class HomeController extends BaseController {
         return View::make('newsletter')->with(array( 'listCampagnes' => $listCampagnes , 'campagne' => $campagne , 'newsletter' => $newsletter ));
     }
 
+    /*
+     * Only for testing and convert categories and arrets/analyses
+     * */
+    public function convert()
+    {
+        return View::make('test');
+    }
+
 }

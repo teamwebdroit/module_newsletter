@@ -1,4 +1,4 @@
-@extends('newsletter.layouts.bail')
+@extends('newsletter.layouts.droitravail')
 @section('content')
 
 

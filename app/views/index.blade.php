@@ -13,7 +13,7 @@
         <div id="inner-content">
 
             <div class="one" id="about">
-                <img alt="Droit du travail" src="{{ asset('images/header.jpg') }}" />
+                <img width="100%" alt="Droit du travail" src="{{ asset('images/header.jpg') }}" />
             </div><!--END SECTION-->
 
             <div class="clear"></div>
@@ -48,6 +48,7 @@
                     fermentum massa vitae massa finibus tempor. In eget elementum lacus.</p>
             </div><!--END ONE-THIRD-->
 
+            <div class="divider-noborder"></div>
         </div>
 
         <!-- Sidebar  -->

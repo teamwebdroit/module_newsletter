@@ -7,7 +7,7 @@ function is_touch_device() {
 ---------------------------------------------------*/
 jQuery(window).load(function() {  
 
-    var footer_fixed = true;
+   /* var footer_fixed = true;
 
     if( is_touch_device() || !footer_fixed){
         jQuery('#footer, #wrapper').css({'position':'static', 'z-index':'0'});
@@ -20,7 +20,7 @@ jQuery(window).load(function() {
         var wrapper_margin_bottom = margin+'px';
         jQuery("#wrapper").after('<div style="height:' + wrapper_margin_bottom + '; float:left; width:100%;"></div>');
         jQuery("#footer").addClass("fixed");
-    }
+    }*/
 
     var innerHeight = jQuery('#inner-content').outerHeight();
     innerHeight = innerHeight + 30;
