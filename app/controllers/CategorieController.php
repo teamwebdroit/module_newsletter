@@ -16,16 +16,18 @@ class CategorieController extends \BaseController {
         $this->custom    = new \Custom;
     }
 
-	/**
-	 * Display a listing of the resource.
-	 * GET /categorie
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
-		//
-	}
+    /**
+     * Show the form for creating a new resource.
+     * GET /adminconotroller/create
+     *
+     * @return Response
+     */
+    public function index()
+    {
+        $categories = $this->categorie->getAll(195);
+
+        return View::make('admin.index')->with(array( 'categories' => $categories));
+    }
 
 	/**
 	 * Show the form for creating a new resource.
