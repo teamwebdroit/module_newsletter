@@ -54,7 +54,6 @@ App::error(function(Exception $exception, $code)
     }
     else
     {
-
         return View::make('404');
     }
 });
@@ -103,3 +102,13 @@ App::down(function()
 */
 
 require app_path().'/filters.php';
+
+/*
+|--------------------------------------------------------------------------
+| Require The Events File
+|--------------------------------------------------------------------------
+|
+*/
+
+require app_path().'/events.php';
+

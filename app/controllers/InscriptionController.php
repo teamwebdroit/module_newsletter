@@ -1,8 +1,12 @@
 <?php
 
+use Laracasts\Commander\CommanderTrait;
 use Droit\Newsletter\Repo\NewsletterUserInterface;
+use Droit\Command\NewsletterSubscribeCommand;
 
 class InscriptionController extends \BaseController {
+
+    use CommanderTrait;
 
     protected $abo;
 
@@ -19,13 +23,13 @@ class InscriptionController extends \BaseController {
 	 */
 	public function activation($token)
 	{
-		if($this->abo->activate($token)){
-            return Redirect::to('recueil')->with( array('status' => 'success' , 'message' => 'Merci pour votre inscription à la newsletter en droit du travail') );
+		if($this->abo->activate($token))
+        {
+            return Redirect::to('/')->with( array('status' => 'success' , 'message' => 'Merci pour votre inscription à la newsletter en droit du travail') );
         }
         else{
             throw new \Droit\Exceptions\TokenInscriptionException('Token mismatch', array());
         }
-
 
 	}
 
@@ -48,7 +52,9 @@ class InscriptionController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+        $this->execute('Droit\Command\NewsletterSubscribeCommand');
+
+        return Redirect::home();
 	}
 
 	/**

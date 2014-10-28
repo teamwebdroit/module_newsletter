@@ -3,7 +3,7 @@
 /**
  * Site pages
  */
-Route::get('recueil', 'HomeController@recueil');
+Route::get('/', array('as' => 'home', 'uses' => 'HomeController@index'));
 Route::get('contact', 'HomeController@contact');
 Route::get('jurisprudence', 'HomeController@jurisprudence');
 Route::get('newsletters/{id?}', 'HomeController@newsletters');
@@ -15,7 +15,7 @@ Route::get('html', 'NewsletterController@html');
 Route::get('test', 'NewsletterController@test');
 Route::get('convert', 'HomeController@convert');
 Route::get('campagne', 'NewsletterController@campagne');
-Route::resource('/', 'NewsletterController');
+Route::get('gobuild', 'NewsletterController@index');
 
 /**
  * Templates for js

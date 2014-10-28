@@ -47,10 +47,12 @@ CSS overview:
 
 .newsletter .grey{
     background-color:#c5210d;
+    border: 1px solid #a61b0a;
 }
 
 .newsletter .grey:hover{
     background-color:#444;
+    border: 1px solid #323232;
 }
 
 .newsletter a:after{

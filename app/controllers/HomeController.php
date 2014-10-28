@@ -39,19 +39,14 @@ class HomeController extends BaseController {
         View::share('categories', $categories);
     }
 
-	public function showWelcome()
-	{
-		return View::make('hello');
-	}
+    public function index()
+    {
+        return View::make('index');
+    }
 
     public function contact()
     {
         return View::make('contact');
-    }
-
-    public function recueil()
-    {
-        return View::make('index');
     }
 
     /**

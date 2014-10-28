@@ -18,7 +18,7 @@ class CategorieController extends \BaseController {
 
     /**
      * Show the form for creating a new resource.
-     * GET /adminconotroller/create
+     * GET /admin/categorie/create
      *
      * @return Response
      */

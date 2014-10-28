@@ -21,5 +21,5 @@ class Newsletter_users extends BaseModel {
         'email.email'    => 'Veuillez entrer une adresse email valide'
     );
 
-	protected $fillable = ['email','prenom','nom'];
+	protected $fillable = ['email','activation_token','activated_at'];
 }
