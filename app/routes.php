@@ -61,7 +61,10 @@ Route::group(array('prefix' => 'admin'), function()
 {
     Route::get('dashboard', 'AdminController@index');
     Route::resource('arret', 'ArretController');
+
     Route::resource('categorie', 'CategorieController');
+    Route::get('categorie/arretsExists', 'CategorieController@arretsExists');
+    Route::post('categorie/arretsExists', 'CategorieController@arretsExists');
 
     Route::get('search', array('uses'  => 'SearchController@index'));
     Route::post('search', array('uses' => 'SearchController@index'));

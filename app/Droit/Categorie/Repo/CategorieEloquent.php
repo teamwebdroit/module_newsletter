@@ -1,5 +1,6 @@
 <?php namespace Droit\Categorie\Repo;
 
+use Droit\Service\Worker\UploadInterface;
 use Droit\Categorie\Repo\CategorieInterface;
 use Droit\Categorie\Entities\Categories as M;
 
@@ -19,7 +20,7 @@ class CategorieEloquent implements CategorieInterface{
 
     public function find($id){
 
-        return $this->categorie->findOrFail();
+        return $this->categorie->with(array('categorie_arrets'))->findOrFail($id);
     }
 
     public function create(array $data){
@@ -29,7 +30,6 @@ class CategorieEloquent implements CategorieInterface{
             'user_id'    => $data['user_id'],
             'title'      => $data['title'],
             'image'      => $data['image'],
-            'ismain'     => $data['ismain'],
             'created_at' => date('Y-m-d G:i:s'),
             'updated_at' => date('Y-m-d G:i:s')
         ));
@@ -52,12 +52,13 @@ class CategorieEloquent implements CategorieInterface{
             return false;
         }
 
-        $categorie->pid        = $data['pid'];
-        $categorie->title      = $data['title'];
-        $categorie->image      = $data['image'];
-        $categorie->ismain     = $data['ismain'];
-        $categorie->updated_at = date('Y-m-d G:i:s');
+        $categorie->title = $data['title'];
 
+        if(!empty($data['image'])){
+            $categorie->image = $data['image'];
+        }
+
+        $categorie->updated_at = date('Y-m-d G:i:s');
         $categorie->save();
 
         return $categorie;

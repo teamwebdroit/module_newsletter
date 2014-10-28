@@ -1,17 +1,21 @@
 <?php
 
 use Droit\Categorie\Repo\CategorieInterface;
+use Droit\Service\Worker\UploadInterface;
 
 class CategorieController extends \BaseController {
 
     protected $categorie;
 
+    protected $upload;
+
     protected $custom;
 
-    public function __construct( CategorieInterface $categorie )
+    public function __construct( CategorieInterface $categorie, UploadInterface $upload )
     {
-
         $this->categorie = $categorie;
+
+        $this->upload    = $upload;
 
         $this->custom    = new \Custom;
     }
@@ -26,7 +30,7 @@ class CategorieController extends \BaseController {
     {
         $categories = $this->categorie->getAll(195);
 
-        return View::make('admin.index')->with(array( 'categories' => $categories));
+        return View::make('admin.categories.index')->with(array( 'categories' => $categories));
     }
 
 	/**
@@ -37,7 +41,7 @@ class CategorieController extends \BaseController {
 	 */
 	public function create()
 	{
-		//
+        return View::make('admin.categories.create');
 	}
 
 	/**
@@ -48,7 +52,25 @@ class CategorieController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+        $_file = Input::file('file', null);
+
+        // Files upload
+        if( !isset($_file) )
+        {
+            return Redirect::back()->with( array('status' => 'danger' , 'message' => 'L\'image est requise') );
+        }
+
+        $file = $this->upload->upload( Input::file('file') , 'newsletter/pictos' );
+
+        // Data array
+        $data['title']   = Input::get('title');
+        $data['user_id'] = Input::get('user_id');
+        $data['pid']     = 195;
+        $data['image']   = (isset($file) && !empty($file) ? $file['name'] : null);
+
+        $categorie = $this->categorie->create( $data );
+
+        return Redirect::to('admin/categorie/'.$categorie->id)->with( array('status' => 'success' , 'message' => 'Catégorie crée') );
 	}
 
 	/**
@@ -60,7 +82,9 @@ class CategorieController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		//
+        $categorie = $this->categorie->find($id);
+
+        return View::make('admin.categories.show')->with(array( 'categorie' => $categorie));
 	}
 
 	/**
@@ -72,7 +96,7 @@ class CategorieController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+
 	}
 
 	/**
@@ -84,7 +108,22 @@ class CategorieController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+        $_file = Input::file('file', null);
+
+        // Files upload
+        if( $_file )
+        {
+            $file = $this->upload->upload( Input::file('file') , 'newsletter/pictos' );
+        }
+
+        // Data array
+        $data['id']    = $id;
+        $data['title'] = Input::get('title');
+        $data['image'] = (isset($file) && !empty($file) ? $file['name'] : null);
+
+        $this->categorie->update( $data );
+
+        return Redirect::to('admin/categorie/'.$id)->with( array('status' => 'success' , 'message' => 'Catégorie mise à jour') );
 	}
 
 	/**
@@ -96,7 +135,10 @@ class CategorieController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+
+        $this->categorie->delete($id);
+
+        return Redirect::back()->with(array('status' => 'success', 'message' => 'Catégorie supprimée' ));
 	}
 
     /**
@@ -110,6 +152,17 @@ class CategorieController extends \BaseController {
         $categories = $this->categorie->getAll(195);
 
         return Response::json( $categories, 200 );
+    }
+
+    public function arretsExists(){
+
+        $id = Input::get('id');
+
+        $categorie = $this->categorie->find($id);
+
+        $references = (!$categorie->categorie_arrets->isEmpty() ? $categorie->categorie_arrets->lists('reference') : null);
+
+        return Response::json( $references, 200 );
     }
 
 }

@@ -7,6 +7,16 @@ class Categories extends BaseModel {
 	protected $fillable = ['pid','user_id','deleted','title','image','ismain'];
     protected $dates    = ['created_at','updated_at'];
 
-    public static $rules = array();
-    public static $messages = array();
+    public static $rules = array(
+        'title' => 'required'
+    );
+
+    public static $messages = array(
+        'title.required' => 'Le titre est requis'
+    );
+
+    public function categorie_arrets()
+    {
+        return $this->belongsToMany('\Droit\Content\Entities\Arret', 'arret_categories', 'arret_id', 'categories_id');
+    }
 }
