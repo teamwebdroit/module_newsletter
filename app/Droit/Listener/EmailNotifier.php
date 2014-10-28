@@ -5,9 +5,11 @@ use Droit\Event\UserWasSubscribed;
 
 class EmailNotifier extends EventListener {
 
-    public function whenUserWasSubscribed(UserWasSubscribed $subscribe)
+    public function whenUserWasSubscribed(UserWasSubscribed $event)
     {
-        \Log::info('Send a notification email to the user with token.');
+        \Mail::send('emails.confirmation', array('token' => $event->subscribe->activation_token), function($message) use ($event)
+        {
+            $message->to($event->subscribe->email, $event->subscribe->email)->subject('Inscription!');
+        });
     }
-
 }

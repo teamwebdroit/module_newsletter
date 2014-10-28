@@ -2,7 +2,9 @@
 
 use Laracasts\Commander\CommandHandler;
 use Laracasts\Commander\Events\DispatchableTrait;
+use Laracasts\Validation\FormValidationException;
 use Droit\Newsletter\Repo\NewsletterUserInterface;
+use Droit\Form\InscriptionValidation;
 
 class NewsletterSubscribeCommandHandler implements CommandHandler {
 
@@ -10,9 +12,13 @@ class NewsletterSubscribeCommandHandler implements CommandHandler {
 
     protected $newsletter;
 
-    public function __construct(NewsletterUserInterface $newsletter)
+    protected $validator;
+
+    public function __construct(NewsletterUserInterface $newsletter,InscriptionValidation $validator)
     {
         $this->newsletter = $newsletter;
+
+        $this->validator = $validator;
     }
 
     /**
@@ -23,7 +29,9 @@ class NewsletterSubscribeCommandHandler implements CommandHandler {
      */
     public function handle($command)
     {
-        $activation_token = \Hash::make( $command->email.\Carbon\Carbon::now() );
+        $this->validator->validate( array('email' => $command->email) );
+
+        $activation_token = md5( $command->email.\Carbon\Carbon::now() );
 
         $suscribe = $this->newsletter->create( array('email' => $command->email, 'activation_token' => $activation_token) );
 

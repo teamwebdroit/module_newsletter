@@ -126,7 +126,8 @@ return array(
         'Droit\NewsletterServiceProvider',
         'Intervention\Image\ImageServiceProvider',
         'Way\Generators\GeneratorsServiceProvider',
-        'Laracasts\Commander\CommanderServiceProvider'
+        'Laracasts\Commander\CommanderServiceProvider',
+        'Laracasts\Validation\ValidationServiceProvider'
 	),
 
 	/*

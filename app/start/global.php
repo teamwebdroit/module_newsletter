@@ -60,12 +60,17 @@ App::error(function(Exception $exception, $code)
 
 App::error(function(Droit\Exceptions\FormValidationException $exception, $code)
 {
-    return Redirect::back()->withInput()->withErrors($exception->getErrors())->with(array('status' => 'danger'));
+    return Redirect::to('/')->withInput()->withErrors($exception->getErrors())->with(array('status' => 'danger', 'message' => ''));
+});
+
+App::error(function(Laracasts\Validation\FormValidationException $exception, $code)
+{
+    return Redirect::to('/')->withInput()->withErrors($exception->getErrors())->with(array('status' => 'danger', 'message' => ''));
 });
 
 App::error(function(Droit\Exceptions\TokenInscriptionException $exception, $code)
 {
-    return Redirect::to('recueil')->with(array('status' => 'danger', 'message' => 'Le jeton d\'inscription n\'est pas valable'));
+    return Redirect::to('/')->with(array('status' => 'danger', 'message' => 'Le jeton d\'inscription n\'est pas valable'));
 });
 
 /*App::error(function(Droit\Exceptions\FileUploadException $exception, $code)
@@ -112,3 +117,11 @@ require app_path().'/filters.php';
 
 require app_path().'/events.php';
 
+/*
+|--------------------------------------------------------------------------
+| extend validation rules
+|--------------------------------------------------------------------------
+|
+*/
+
+require app_path().'/rules.php';

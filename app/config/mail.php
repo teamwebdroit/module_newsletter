@@ -54,7 +54,7 @@ return array(
 	|
 	*/
 
-	'from' => array('address' => 'info@rjne.ch', 'name' => 'RJN'),
+	'from' => array('address' => 'info@droitdutravail.ch', 'name' => 'Droit du travail'),
 
 	/*
 	|--------------------------------------------------------------------------

@@ -54,7 +54,8 @@ class InscriptionController extends \BaseController {
 	{
         $this->execute('Droit\Command\NewsletterSubscribeCommand');
 
-        return Redirect::home();
+        return Redirect::to('/')
+            ->with(array('status' => 'success', 'message' => 'Merci pour votre inscription <br/>Veuillez confirmer votre adresse email en cliquant le lien qui vous à été envoyé par email'));
 	}
 
 	/**
