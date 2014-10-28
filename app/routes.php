@@ -51,6 +51,7 @@ Route::get('categories', 'CategorieController@categories');
  * Newsletter inscription routes
  */
 Route::get('inscription/activation/{token}', 'InscriptionController@activation');
+Route::post('inscription/resend', 'InscriptionController@resend');
 Route::resource('inscription', 'InscriptionController');
 
 /**

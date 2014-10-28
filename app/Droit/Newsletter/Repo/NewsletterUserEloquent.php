@@ -79,11 +79,9 @@ class NewsletterUserEloquent implements NewsletterUserInterface{
 		return $subscribe;
 	}
 
-	public function delete($id){
+	public function delete($email){
 
-        $subscribe = $this->subscribe->find($id);
-
-		return $subscribe->delete();
+		return $this->subscribe->where('email', '=', $email)->delete();
 		
 	}
 

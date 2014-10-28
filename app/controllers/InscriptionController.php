@@ -25,7 +25,7 @@ class InscriptionController extends \BaseController {
 	{
 		if($this->abo->activate($token))
         {
-            return Redirect::to('/')->with( array('status' => 'success' , 'message' => 'Merci pour votre inscription à la newsletter en droit du travail') );
+            return Redirect::to('/')->with( array('status' => 'success' , 'message' => 'Vous êtes maintenant abonné à la newsletter en droit du travail') );
         }
         else{
             throw new \Droit\Exceptions\TokenInscriptionException('Token mismatch', array());
@@ -44,20 +44,36 @@ class InscriptionController extends \BaseController {
 		//
 	}
 
-	/**
-	 * Store a newly created resource in storage.
-	 * POST /inscription
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
+    /**
+     * Store a newly created resource in storage.
+     * POST /inscription
+     *
+     * @return Response
+     */
+    public function store()
+    {
         $this->execute('Droit\Command\NewsletterSubscribeCommand');
 
         return Redirect::to('/')
-            ->with(array('status' => 'success', 'message' => 'Merci pour votre inscription <br/>Veuillez confirmer votre adresse email en cliquant le lien qui vous à été envoyé par email'));
-	}
+            ->with(array('status' => 'success', 'message' => '<strong>Merci pour votre inscription!</strong>
+                                                              <br/>Veuillez confirmer votre adresse email en cliquant le lien qui vous à été envoyé par email'));
+    }
 
+    /**
+     * Resend activation link email
+     * POST /inscription/resend/email
+     *
+     * @return Response
+     */
+    public function resend()
+    {
+        $email = Input::get('email');
+        $this->abo->delete($email);
+
+        $this->execute('Droit\Command\NewsletterSubscribeCommand');
+
+        return Redirect::to('/')->with(array('status' => 'success', 'message' => '<strong>Lien d\'activation envoyé</strong>'));
+    }
 	/**
 	 * Display the specified resource.
 	 * GET /inscription/{id}

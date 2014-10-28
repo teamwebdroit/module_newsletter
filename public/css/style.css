@@ -1329,7 +1329,7 @@ button.close {
 .rounded {
 	border-radius: 30px 30px 30px 30px;
 }
-.grey { background-color:#444; }
+.grey { background-color:#444;border: none; }
 .grey:hover { color: #FFFFFF; }
 .yellow { background-color:#FEEB43; color: #707070; }
 .white { background-color:#fff; color: #444; }
