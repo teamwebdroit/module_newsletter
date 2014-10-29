@@ -12,10 +12,10 @@
 
                     <div class="thumbnail" ng-hide="$flow.files.length"><img src="http://www.placehold.it/130x140/EFEFEF/AAAAAA&text=pas+d+image" /></div>
                     <div class="thumbnail" ng-show="$flow.files.length"><img flow-img="$flow.files[0]" /></div>
-                    <div class="upoadBtn">
-                        <a href="#" class="btn btn-xs btn-info" ng-hide="$flow.files.length" flow-btn flow-attrs="{accept:'image/*'}">Selectionner image</a>
-                        <a href="#" class="btn btn-xs btn-warning" ng-show="$flow.files.length" flow-btn flow-attrs="{accept:'image/*'}">Changer</a>
-                        <a href="#" class="btn btn-xs btn-danger" ng-show="$flow.files.length" ng-click="$flow.cancel()">Supprimer</a>
+                    <div class="uploadBtn">
+                        <button class="btn btn-xs btn-info" ng-hide="$flow.files.length" flow-btn flow-attrs="{accept:'image/*'}">Selectionner image</button>
+                        <button class="btn btn-xs btn-warning" ng-show="$flow.files.length" flow-btn flow-attrs="{accept:'image/*'}">Changer</button>
+                        <button class="btn btn-xs btn-danger" ng-show="$flow.files.length" ng-click="$flow.cancel()">Supprimer</button>
                     </div>
 
                     <input type="hidden" class="uploadImage" name="image" value="{{ $flow.files[0].name }}">

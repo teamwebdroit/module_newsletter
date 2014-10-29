@@ -63,12 +63,12 @@ Route::group(array('prefix' => 'admin'), function()
     Route::resource('arret', 'ArretController');
 
     Route::resource('categorie', 'CategorieController');
-    Route::get('categorie/arretsExists', 'CategorieController@arretsExists');
-    Route::post('categorie/arretsExists', 'CategorieController@arretsExists');
 
+    Route::resource('compose', 'NewsletterController');
+
+    Route::match(array('GET', 'POST'), 'categorie/arretsExists', array('uses' => 'CategorieController@arretsExists'));
     Route::match(array('GET', 'POST'), 'search', array('uses' => 'SearchController@index'));
 });
-
 
 /**
  * LOG

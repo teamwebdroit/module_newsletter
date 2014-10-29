@@ -24,11 +24,20 @@
 		<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/respond.js/1.1.0/respond.min.js"></script>
 	<![endif]-->
 
+    @if(isset($isNewsletter))
+        <link rel="stylesheet" href="<?php echo asset('css/newsletter.css'); ?>">
+        <link href="<?php echo asset('js/vendor/angular/angular-notify.css');?>" rel="stylesheet">
+    @endif
+
     <link rel='stylesheet' type='text/css' href='<?php echo asset('admin/plugins/form-toggle/toggles.css');?>' />
+    <base href="/">
 
 </head>
 
-<body class="">
+<body  flow-prevent-drop
+       flow-drag-enter="style={border: '5px solid green'}"
+       flow-drag-leave="style={}"
+       ng-style="style">
 
     <header class="navbar navbar-inverse navbar-fixed-top" role="banner">
 
@@ -106,6 +115,18 @@
     <script type="text/javascript" src="<?php echo asset('admin/js/datatables.js');?>"></script>
     <script type="text/javascript" src="<?php echo asset('admin/js/application.js');?>"></script>
     <script type="text/javascript" src="<?php echo asset('js/utils.js');?>"></script>
+
+    @if(isset($isNewsletter))
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-rc.1/angular.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.8/angular-route.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.8/angular-resource.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular-sanitize.js"></script>
+        <script type="text/javascript" src="<?php echo asset('js/vendor/angular/angular-dragdrop.js');?>"></script>
+        <script type="text/javascript" src="<?php echo asset('js/vendor/angular/angular-redactor.js');?>"></script>
+        <script type="text/javascript" src="<?php echo asset('js/vendor/angular/angular-flow.js');?>"></script>
+        <script type="text/javascript" src="<?php echo asset('js/vendor/angular/angular-notify.js');?>"></script>
+        <script type="text/javascript" src="<?php echo asset('js/build.js');?>"></script>
+    @endif
 
 </body>
 </html>

@@ -6,6 +6,18 @@ class Newsletter_contents extends BaseModel {
 
 	protected $fillable = ['type_id','titre','contenu','image','arret_id','categorie_id','newsletter_campagne_id','rang'];
 
+    /*
+ * Validation rules
+*/
+    protected static $rules = array(
+    );
+
+    /*
+     * Validation messages
+    */
+    protected static $messages = array(
+    );
+
     public function campagne(){
 
         return $this->belongsTo('Droit\Newsletter\Entities\Newsletter_campagnes');

@@ -6,6 +6,11 @@ var url  = location.protocol + "//" + location.host+"/";
         minHeight: 300
     });
 
+
+    $('body').on('click','.uploadBtn a',function(event){
+       // event.preventDefault();
+    });
+
 })(jQuery);
 
 var App = angular.module('newsletter', ["cgNotify","ngDragDrop","ngResource","angular-redactor","flow","ngSanitize"] , function()
