@@ -4,7 +4,7 @@
 <div class="row">
     <div class="col-md-12">
 
-        <div class="options text-right" style="margin-top: -50px;margin-bottom: 10px;">
+        <div class="options text-right" style="margin-bottom: 10px;">
             <div class="btn-toolbar">
                <a href="{{ url('admin/categorie/create') }}" class="btn btn-success"><i class="fa fa-plus"></i> &nbsp;Ajouter</a>
             </div>
@@ -34,9 +34,10 @@
                                     <td><strong>{{ $categorie->title }}</strong></td>
                                     <td><img height="60" src="{{ asset('newsletter/pictos/'.$categorie->image) }}" alt="{{ $categorie->title }}" /></td>
                                     <td class="text-right">
-                                        {{ Form::open(array('route' => array('admin.categorie.destroy', $categorie->id), 'method' => 'delete')) }}
-                                            <button data-id="{{ $categorie->id }}" class="btn btn-danger btn-sm deleteCategorie">Supprimer</button>
+                                        {{ Form::open(array('id' => 'deleteCategorieForm', 'route' => array('admin.categorie.destroy', $categorie->id), 'method' => 'delete')) }}
                                         {{ Form::close() }}
+                                        <button data-id="{{ $categorie->id }}" class="btn btn-danger btn-sm deleteCategorie">Supprimer</button>
+
                                     </td>
                                 </tr>
                             @endforeach
@@ -67,12 +68,13 @@
                         </button>
                         <h4 class="modal-title" id="myModalLabel">Suppression de la catégorie</h4>
                     </div>
-                    <div class="modal-body" id="modalCategorie">
-                        <p>Etês-vous sûr de vouloir supprimer cette catégorie?</p>
+                    <div class="modal-body">
+                        <p>&Ecirc;tes-vous sûr de vouloir supprimer cette catégorie?</p>
+                        <div id="modalCategorie"></div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                        <button type="button" id="deleteConfirm" class="btn btn-danger">Supprimer</button>
                     </div>
                 </div>
             </div>

@@ -18,8 +18,9 @@ $(function() {
 
     $('body').on('click','.deleteCategorie',function(event){
 
-        var $this = $(this);
-        var id    = $this.data('id');
+        var $this      = $(this);
+        var id         = $this.data('id');
+        $('#modalCategorie').empty();
 
         $.ajax({
             url     : 'categorie/arretsExists',
@@ -43,5 +44,10 @@ $(function() {
             }
         });
     });
+
+    $('#deleteConfirm').click(function() {
+        $('#deleteCategorieForm').submit();
+    });
+
 
 });
