@@ -137,7 +137,7 @@ class ArretController extends \BaseController {
         );
 
         // Attach file if any
-        $data['file'] = (!empty($file) ? $file['name'] : '');
+        $data['file'] = (!empty($file) ? $file['name'] : null);
 
         // Create arret
         $arret = $this->arret->update( $data );

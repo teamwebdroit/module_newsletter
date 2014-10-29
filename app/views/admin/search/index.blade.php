@@ -32,10 +32,11 @@
 <!-- Start row -->
 <div class="row">
   <div class="col-md-12">
-        <div class="panel panel-midnightblue">
+        <div class="panel panel-gray">
 
+            @if(!empty($arrets))
             <div class="panel-heading">
-                <h4>Résultats pour « <?php echo $search; ?> » dans arrêts</h4>
+                <h4><i class="fa fa-search icon-highlight icon-highlight-primary"></i> &nbsp;Résultats pour « <?php echo $search; ?> » dans arrêts</h4>
             </div>
 
             <div class="panel-body collapse in">
@@ -50,16 +51,14 @@
                     </thead>
                     <tbody class="selects">
 
-                        @if(!empty($arrets))
-                            @foreach($arrets as $arret)
-                                <tr>
-                                    <td><a class="btn btn-sky btn-sm" href="{{ url('admin/arret/'.$arret->id) }}">éditer</a></td>
-                                    <td><strong>{{ $arret->reference }}</strong></td>
-                                    <td>{{ $arret->pub_date->formatLocalized('%d %B %Y') }}</td>
-                                    <td>{{ $arret->abstract }}</td>
-                                </tr>
-                            @endforeach
-                        @endif
+                        @foreach($arrets as $arret)
+                            <tr>
+                                <td><a class="btn btn-sky btn-sm" href="{{ url('admin/arret/'.$arret->id) }}">éditer</a></td>
+                                <td><strong>{{ $arret->reference }}</strong></td>
+                                <td>{{ $arret->pub_date->formatLocalized('%d %B %Y') }}</td>
+                                <td>{{ $arret->abstract }}</td>
+                            </tr>
+                        @endforeach
 
                     </tbody>
                     <tfoot>
@@ -72,6 +71,17 @@
                     </tfoot>
                 </table>
             </div>
+
+            @else
+
+            <div class="panel-heading">
+                <h4><i class="fa fa-search icon-highlight icon-highlight-primary"></i> &nbsp;Recherche</h4>
+            </div>
+            <div class="panel-body collapse in">
+                <p>Aucune correspondance trouvé</p>
+            </div>
+
+            @endif
 
         </div>
     </div>

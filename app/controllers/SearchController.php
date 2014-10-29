@@ -20,6 +20,7 @@ class SearchController extends BaseController {
 	public function index()
 	{
 		$search = Request::get('search');
+        $arrets = array();
 
 		if($search){
             $arrets  = $this->search->find($search);

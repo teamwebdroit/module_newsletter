@@ -17,11 +17,12 @@
 
         <!-- form start -->
         {{ Form::model($arret,array(
-            'method'        => 'POST',
+            'method'        => 'PUT',
             'id'            => 'arret',
+            'files'         => true,
             'data-validate' => 'parsley',
             'class'         => 'validate-form form-horizontal',
-            'url'           => array('admin/arret')))
+            'url'           => array('admin/arret/'.$arret->id)))
         }}
 
             <div class="panel-heading">

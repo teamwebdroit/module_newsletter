@@ -66,8 +66,7 @@ Route::group(array('prefix' => 'admin'), function()
     Route::get('categorie/arretsExists', 'CategorieController@arretsExists');
     Route::post('categorie/arretsExists', 'CategorieController@arretsExists');
 
-    Route::get('search', array('uses'  => 'SearchController@index'));
-    Route::post('search', array('uses' => 'SearchController@index'));
+    Route::match(array('GET', 'POST'), 'search', array('uses' => 'SearchController@index'));
 });
 
 

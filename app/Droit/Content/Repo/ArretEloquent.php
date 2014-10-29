@@ -85,7 +85,11 @@ class ArretEloquent implements ArretInterface{
         $arret->abstract   = $data['abstract'];
         $arret->pub_text   = $data['pub_text'];
         $arret->categories = $data['categories'];
-        $arret->file       = $data['file'];
+
+        if($data['file']){
+            $arret->file = $data['file'];
+        }
+
 		$arret->updated_at = date('Y-m-d G:i:s');
 
 		$arret->save();
