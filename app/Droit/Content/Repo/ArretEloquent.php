@@ -57,7 +57,7 @@ class ArretEloquent implements ArretInterface{
             'abstract'   => $data['abstract'],
             'pub_text'   => $data['pub_text'],
             'categories' => $data['categories'],
-            'analysis'   => $data['analysis'],
+            'file'       => $data['file'],
 			'created_at' => date('Y-m-d G:i:s'),
 			'updated_at' => date('Y-m-d G:i:s')
 		));
@@ -80,14 +80,12 @@ class ArretEloquent implements ArretInterface{
 			return false;
 		}
 
-        $arret->pid        = $data['pid'];
-		$arret->user_id    = $data['user_id'];
         $arret->reference  = $data['reference'];
         $arret->pub_date   = $data['pub_date'];
         $arret->abstract   = $data['abstract'];
         $arret->pub_text   = $data['pub_text'];
         $arret->categories = $data['categories'];
-        $arret->analysis   = $data['analysis'];
+        $arret->file       = $data['file'];
 		$arret->updated_at = date('Y-m-d G:i:s');
 
 		$arret->save();

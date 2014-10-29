@@ -4,7 +4,7 @@ use Droit\Common\BaseModel as BaseModel;
 
 class Arret extends BaseModel {
 
-	protected $fillable = ['pid','user_id','deleted','reference','pub_date','abstract','pub_text','file','categories','analysis'];
+	protected $fillable = ['pid','user_id','deleted','reference','pub_date','abstract','pub_text','file','categories'];
     protected $dates    = ['pub_date','created_at','updated_at'];
 
     /*

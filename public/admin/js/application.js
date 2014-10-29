@@ -170,12 +170,10 @@ $(window).resize(function(){
 });
 rightbarRightPos();
 
-
-
 $('#multi-select').multiSelect();
 
 $('.redactor').redactor({
-    minHeight: 300
+    minHeight: 200
 });
 
 // -------------------------------

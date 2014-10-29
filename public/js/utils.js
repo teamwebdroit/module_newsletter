@@ -28,7 +28,7 @@ $(function() {
             type    : "POST",
             success : function(data) {
 
-                if(data)
+                if(data.length > 0)
                 {
                     var references = '<p class="text-danger"><strong>Attention!</strong>Les arrêts suivant sont liés à cette catégorie</p><ul>';
                     $.each(data, function( index, value ) {
@@ -49,5 +49,26 @@ $(function() {
         $('#deleteCategorieForm').submit();
     });
 
+    $.datepicker.regional['fr-CH'] = {
+        closeText: 'Fermer',
+        prevText: '&#x3c;Préc',
+        nextText: 'Suiv&#x3e;',
+        currentText: 'Courant',
+        dateFormat: "yy-mm-dd",
+        monthNames: ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'],
+        monthNamesShort: ['Jan','Fév','Mar','Avr','Mai','Jun','Jul','Aoû','Sep','Oct','Nov','Déc'],
+        dayNames: ['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'],
+        dayNamesShort: ['Dim','Lun','Mar','Mer','Jeu','Ven','Sam'],
+        dayNamesMin: ['Di','Lu','Ma','Me','Je','Ve','Sa'],
+        weekHeader: 'Sm',
+        firstDay: 1,
+        isRTL: false,
+        showMonthAfterYear: false,
+        yearSuffix: ''
+    };
+
+    $.datepicker.setDefaults($.datepicker.regional['fr-CH']);
+
+    $( ".datePicker" ).datepicker();
 
 });

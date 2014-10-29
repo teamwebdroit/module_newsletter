@@ -48,42 +48,22 @@
                     <label for="file" class="col-sm-3 control-label">Fichier</label>
                     <div class="col-sm-7">
                         <div class="list-group">
-                            <div class="list-group-item">
-                                <a href=""><i class="fa fa-file"></i> &nbsp;&nbsp;{{ $arret->file }}</a>
-                                <button class="btn btn-xs btn-danger pull-right" type="button">X</button>
+                            <div class="list-group-item"><i class="fa fa-file"></i> &nbsp;&nbsp;
+                                <a target="_blank" href="{{ asset('files/arrets/'.$arret->file) }}">
+                                    {{ $arret->file }}
+                                </a>
                             </div>
                         </div>
-                    </div>
-                </div>
-                @else
-                <div class="form-group">
-                    <label for="file" class="col-sm-3 control-label">Fichier</label>
-                    <div class="col-sm-7">
-                        {{ Form::file('file') }}
                     </div>
                 </div>
                 @endif
 
-                @if(!empty($arret->analysis ))
                 <div class="form-group">
-                    <label for="file" class="col-sm-3 control-label">Analyse</label>
+                    <label for="file" class="col-sm-3 control-label">Changer le fichier</label>
                     <div class="col-sm-7">
-                        <div class="list-group">
-                            <div class="list-group-item">
-                                <a href=""><i class="fa fa-file"></i> &nbsp;&nbsp;{{ $arret->analysis }}</a>
-                                <button class="btn btn-xs btn-danger pull-right" type="button">X</button>
-                            </div>
-                        </div>
+                        {{ Form::file('file') }}
                     </div>
                 </div>
-                @else
-                <div class="form-group">
-                    <label for="file" class="col-sm-3 control-label">Analyse</label>
-                    <div class="col-sm-7">
-                        {{ Form::file('analysis') }}
-                    </div>
-                </div>
-                @endif
 
                 <div class="form-group">
                     <label for="message" class="col-sm-3 control-label">Résumé</label>
@@ -137,13 +117,13 @@
             </div>
             <div class="panel-footer mini-footer ">
                 {{ Form::hidden('id', $arret->id )}}
-                {{ Form::hidden('user_id', 1 )}}
                 <div class="col-sm-3"></div>
                 <div class="col-sm-6">
                     <button class="btn btn-primary" type="submit">Envoyer </button>
                 </div>
             </div>
         {{ Form::close() }}
+
         </div>
     </div>
 

@@ -50,13 +50,6 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="analysis" class="col-sm-3 control-label">Analyse</label>
-                    <div class="col-sm-7">
-                        {{ Form::file('analysis') }}
-                    </div>
-                </div>
-
-                <div class="form-group">
                     <label for="message" class="col-sm-3 control-label">Résumé</label>
                     <div class="col-sm-7">
                         {{ Form::textarea('abstract', null , array('class' => 'form-control redactor', 'cols' => '50' , 'rows' => '4' )) }}

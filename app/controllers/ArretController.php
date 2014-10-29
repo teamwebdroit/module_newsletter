@@ -2,6 +2,7 @@
 
 use Droit\Content\Repo\ArretInterface;
 use Droit\Categorie\Repo\CategorieInterface;
+use Droit\Service\Worker\UploadInterface;
 
 class ArretController extends \BaseController {
 
@@ -9,13 +10,17 @@ class ArretController extends \BaseController {
 
     protected $categorie;
 
+    protected $upload;
+
     protected $custom;
 
-    public function __construct( ArretInterface $arret, CategorieInterface $categorie )
+    public function __construct( ArretInterface $arret, CategorieInterface $categorie , UploadInterface $upload )
     {
         $this->arret     = $arret;
 
         $this->categorie = $categorie;
+
+        $this->upload    = $upload;
 
         $this->custom    = new \Custom;
 
@@ -70,20 +75,15 @@ class ArretController extends \BaseController {
      */
     public function store()
     {
-
-        $_file     = Input::file('file', null);
-        $_analysis = Input::file('analysis', null);
+        $_file = Input::file('file');
 
         // Files upload
-        if( $_file )
+        if( $_file && !empty( $_file ) )
         {
             $file = $this->upload->upload( Input::file('file') , 'files/arrets' );
         }
 
-        if( $_analysis)
-        {
-            $analysis = $this->upload->upload( Input::file('analysis') , 'files/analyses' );
-        }
+        $categories = Input::get('categories');
 
         // Data array
         $data = array(
@@ -92,16 +92,60 @@ class ArretController extends \BaseController {
             'reference'  => Input::get('reference'),
             'pub_date'   => Input::get('pub_date'),
             'abstract'   => Input::get('abstract'),
-            'categories' => Input::get('categories'),
+            'categories' => count($categories),
             'pub_text'   => Input::get('pub_text')
         );
 
-        $data['file']     = (!empty($file) ? $file['name'] : '');
-        $data['analysis'] = (!empty($analysis) ? $analysis['name'] : '');
+        // Attach file if any
+        $data['file'] = (!empty($file) ? $file['name'] : '');
 
+        // Create arret
         $arret = $this->arret->create( $data );
 
+        // Insert related categories
+        $arret->arrets_categories()->sync($categories);
+
         return Redirect::to('admin/arret/'.$arret->id)->with( array('status' => 'success' , 'message' => 'Arrêt crée') );
+
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @return Response
+     */
+    public function update()
+    {
+        $_file = Input::file('file');
+
+        // Files upload
+        if( $_file && !empty( $_file ) )
+        {
+            $file = $this->upload->upload( Input::file('file') , 'files/arrets' );
+        }
+
+        $categories = Input::get('categories');
+
+        // Data array
+        $data = array(
+            'id'         => Input::get('id'),
+            'reference'  => Input::get('reference'),
+            'pub_date'   => Input::get('pub_date'),
+            'abstract'   => Input::get('abstract'),
+            'categories' => count($categories),
+            'pub_text'   => Input::get('pub_text')
+        );
+
+        // Attach file if any
+        $data['file'] = (!empty($file) ? $file['name'] : '');
+
+        // Create arret
+        $arret = $this->arret->update( $data );
+
+        // Insert related categories
+        $arret->arrets_categories()->sync($categories);
+
+        return Redirect::to('admin/arret/'.$arret->id)->with( array('status' => 'success' , 'message' => 'Arrêt mis à jour') );
 
     }
 

@@ -10,13 +10,12 @@
 
     <link rel="stylesheet" href="<?php echo asset('admin/css/styles.css?=121');?>">
     <link rel="stylesheet" href="<?php echo asset('js/vendor/redactor/redactor.css'); ?>">
+    <link rel="stylesheet" href="<?php echo asset('admin/js/jqueryui.min.css'); ?>">
     <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600' rel='stylesheet' type='text/css'>
 
     <link rel='stylesheet' type='text/css' href="<?php echo asset('admin/plugins/datatables/dataTables.css');?>" />
     <link rel='stylesheet' type='text/css' href="<?php echo asset('admin/plugins/form-multiselect/css/multi-select.css');?>" />
 
-    <link href='assets/demo/variations/default.css' rel='stylesheet' type='text/css' media='all' id='styleswitcher'>
-    <link href='assets/demo/variations/default.css' rel='stylesheet' type='text/css' media='all' id='headerswitcher'>
 
 	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries. Placeholdr.js enables the placeholder attribute -->
 	<!--[if lt IE 9]>

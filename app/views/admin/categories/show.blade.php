@@ -11,12 +11,6 @@
 <div class="row">
 
     @if ( !empty($categorie) )
-    
-    <?php
-        echo '<pre>';
-        print_r($categorie);
-        echo '</pre>';
-    ?>
 
     <div class="col-md-12">
         <div class="panel panel-midnightblue">

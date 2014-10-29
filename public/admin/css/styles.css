@@ -1449,7 +1449,7 @@ th {
 .table > tfoot > tr > td {
   padding: 10px;
   line-height: 1.428571429;
-  vertical-align: top;
+  vertical-align: middle;
   border-top: 1px solid #e6e7e8;
 }
 .table > thead > tr > th {
@@ -14955,4 +14955,9 @@ fieldset[disabled] .datepicker table tr td span.active.disabled:hover.active {
 }
 .input-group-addon:not(:first-child) {
   border-left: 0;
+}
+
+
+#ui-datepicker-div{
+    z-index: 4 !important;
 }

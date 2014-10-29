@@ -17,6 +17,6 @@ class Categories extends BaseModel {
 
     public function categorie_arrets()
     {
-        return $this->belongsToMany('\Droit\Content\Entities\Arret', 'arret_categories', 'arret_id', 'categories_id');
+        return $this->belongsToMany('\Droit\Content\Entities\Arret', 'arret_categories', 'categories_id', 'arret_id');
     }
 }
