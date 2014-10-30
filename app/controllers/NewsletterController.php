@@ -63,26 +63,26 @@ class NewsletterController extends BaseController {
 
         echo $html;
 
-            try
+        try
+        {
+            $subject   =  'Newsletter RJN';
+            $fromEmail = 'info@rjne.ch';
+            $fromName  = 'RJN';
+
+            \Mail::send('emails.newsletter', array('html' => $html) , function($message) use ( $fromEmail,$fromName, $subject )
             {
-                $subject   =  'Newsletter RJN';
-                $fromEmail = 'info@rjne.ch';
-                $fromName  = 'RJN';
+                $message->to('cindy.leschaud@gmail.com', 'Cindy Leschaud');
+                $message->from($fromEmail, $fromName);
+                $message->subject($subject);
+            });
 
-                \Mail::send('emails.newsletter', array('html' => $html) , function($message) use ( $fromEmail,$fromName, $subject )
-                {
-                    $message->to('cindy.leschaud@gmail.com', 'Cindy Leschaud');
-                    $message->from($fromEmail, $fromName);
-                    $message->subject($subject);
-                });
+            echo 'email envoyé!!';
 
-               echo 'email envoyé!!';
-
-            }
-            catch (Exception $e)
-            {
-                echo 'problème!';
-            }
+        }
+        catch (Exception $e)
+        {
+            echo 'problème!';
+        }
     }
 
     public function campagne()

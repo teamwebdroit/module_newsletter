@@ -39,14 +39,6 @@
                         @endif
 
                         </tbody>
-                        <tfoot>
-                        <tr>
-                            <th class="col-sm-2">Action</th>
-                            <th class="col-sm-2">Référence</th>
-                            <th class="col-sm-2">Date de publication</th>
-                            <th class="col-sm-6">Résumé</th>
-                        </tr>
-                        </tfoot>
                     </table>
                 </div>
             </div>

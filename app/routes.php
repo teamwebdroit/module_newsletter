@@ -64,7 +64,8 @@ Route::group(array('prefix' => 'admin'), function()
 
     Route::resource('categorie', 'CategorieController');
 
-    Route::resource('compose', 'NewsletterController');
+    Route::get('campagne/compose', 'CampagneController@compose');
+    Route::resource('campagne', 'CampagneController');
 
     Route::match(array('GET', 'POST'), 'categorie/arretsExists', array('uses' => 'CategorieController@arretsExists'));
     Route::match(array('GET', 'POST'), 'search', array('uses' => 'SearchController@index'));

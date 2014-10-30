@@ -1,33 +1,60 @@
 @extends('layouts.admin')
 @section('content')
 
-    <div id="main" ng-app="newsletter"><!-- main div for app-->
+<div class="row">
+    <div class="col-md-12">
 
-        <div ng-controller="BuildController as build">
-            <input id="campagne_id" value="2" type="hidden">
-            <div class="row">
-                <div class="col-md-1" ng-repeat="bloc in build.blocs">
-                    <buiding-blocs></buiding-blocs>
-                </div>
+        <div class="options text-right" style="margin-bottom: 10px;">
+            <div class="btn-toolbar">
+                <a href="{{ url('admin/compose/create') }}" class="btn btn-success"><i class="fa fa-plus"></i> &nbsp;Nouvelle campagne</a>
             </div>
-
-            <div class="row">
-                <div class="col-md-12">
-                    <div ng-controller="DropController as dropped" id="build" data-drop="true" data-jqyoui-options jqyoui-droppable="{onDrop:'dropped'}">
-                        <div class="well">
-                            <image-left-text ng-if="isBloc('image-left-text')"></image-left-text>
-                            <image-right-text ng-if="isBloc('image-right-text')"></image-right-text>
-                            <image-text ng-if="isBloc('image-text')"></image-text>
-                            <image-alone ng-if="isBloc('image')"></image-alone>
-                            <text-alone ng-if="isBloc('text')"></text-alone>
-                            <arret ng-if="isBloc('arret')"></arret>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
         </div>
 
-    </div><!-- end main div for app-->
+        <div class="panel panel-midnightblue">
+            <div class="panel-heading">
+                <h4><i class="fa fa-tasks"></i> &nbsp;Campagne Newsletter</h4>
+            </div>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table" style="margin-bottom: 0px;" id="campagnes">
+                        <thead>
+                            <tr>
+                                <th class="col-sm-1">Action</th>
+                                <th class="col-sm-2">Sujet</th>
+                                <th class="col-sm-3">Auteurs</th>
+                                <th class="col-sm-1">Status</th>
+                                <th class="col-sm-2">Date de création</th>
+                                <th class="col-sm-2">Mise à jour le</th>
+                                <th class="col-sm-1"></th>
+                            </tr>
+                        </thead>
+                        <tbody class="selects">
+
+                            @if(!empty($campagnes))
+                                @foreach($campagnes as $campagne)
+                                <tr>
+                                    <td><a class="btn btn-sky btn-sm" href="{{ url('admin/compose/'.$campagne->id) }}">&Eacute;diter</a></td>
+                                    <td><strong>{{ $campagne->sujet }}</strong></td>
+                                    <td>{{ $campagne->auteurs }}</td>
+                                    <td>{{ $campagne->status }}</td>
+                                    <td>{{ $campagne->created_at->formatLocalized('%d %B %Y') }}</td>
+                                    <td>{{ $campagne->updated_at->formatLocalized('%d %B %Y') }}</td>
+                                    <td class="text-right">
+                                        {{ Form::open(array('route' => array('admin.campagne.destroy', $campagne->id), 'method' => 'delete')) }}
+                                         <button data-action="campagne {{ $campagne->sujet }}" class="btn btn-danger btn-sm deleteAction">Supprimer</button>
+                                        {{ Form::close() }}
+                                    </td>
+                                </tr>
+                                @endforeach
+                            @endif
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
 
 @stop

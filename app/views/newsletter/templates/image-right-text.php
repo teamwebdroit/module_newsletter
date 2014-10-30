@@ -10,7 +10,7 @@
             <tr>
                 <td valign="top" align="center" width="160" class="resetMarge">
 
-                    <div class="thumbnail" ng-hide="$flow.files.length"><img src="http://www.placehold.it/130x140/EFEFEF/AAAAAA&text=pas+d+image" /></div>
+                    <div class="thumbnail" ng-hide="$flow.files.length"><img src="http://www.placehold.it/130x140/EFEFEF/AAAAAA&text=choisir+une+image" /></div>
                     <div class="thumbnail" ng-show="$flow.files.length"><img flow-img="$flow.files[0]" /></div>
                     <div class="uploadBtn">
                         <button class="btn btn-xs btn-info" ng-hide="$flow.files.length" flow-btn flow-attrs="{accept:'image/*'}">Selectionner image</button>

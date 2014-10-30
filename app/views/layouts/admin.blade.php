@@ -9,6 +9,7 @@
 	<meta name="author" content="DesignPond">
 
     <link rel="stylesheet" href="<?php echo asset('admin/css/styles.css?=121');?>">
+    <link rel="stylesheet" href="<?php echo asset('admin/css/newsletter.css');?>">
     <link rel="stylesheet" href="<?php echo asset('js/vendor/redactor/redactor.css'); ?>">
     <link rel="stylesheet" href="<?php echo asset('admin/js/jqueryui.min.css'); ?>">
     <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600' rel='stylesheet' type='text/css'>
@@ -34,10 +35,7 @@
 
 </head>
 
-<body  flow-prevent-drop
-       flow-drag-enter="style={border: '5px solid green'}"
-       flow-drag-leave="style={}"
-       ng-style="style">
+<body flow-prevent-drop>
 
     <header class="navbar navbar-inverse navbar-fixed-top" role="banner">
 

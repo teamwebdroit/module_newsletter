@@ -44,14 +44,6 @@
                         @endif
 
                         </tbody>
-                        <tfoot>
-                        <tr>
-                            <th class="col-sm-2">Action</th>
-                            <th class="col-sm-4">Titre</th>
-                            <th class="col-sm-4">Images</th>
-                            <th class="col-sm-2"></th>
-                        </tr>
-                        </tfoot>
                     </table>
                 </div>
             </div>
