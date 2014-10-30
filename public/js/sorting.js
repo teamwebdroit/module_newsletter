@@ -10,7 +10,7 @@ $(function() {
             $.ajax({
                 data: data,
                 type: 'POST',
-                url: 'sorting'
+                url: url+ 'sorting'
             });
         }
     });

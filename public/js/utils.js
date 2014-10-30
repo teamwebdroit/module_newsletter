@@ -4,9 +4,8 @@ $(function() {
 
         var $this   = $(this);
         var action  = $this.data('action');
-        var message = $this.data('message');
 
-        var answer = confirm('Voulez-vous vraiment supprimer : '+ action +' ? ' + message);
+        var answer = confirm('Voulez-vous vraiment supprimer : '+ action +' ?');
 
         if (answer){
             return true;

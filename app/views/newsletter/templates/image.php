@@ -22,7 +22,7 @@
             </tr>
             <tr><td colspan="3" height="25"></td></tr>
             <tr>
-                <td valign="top" align="center" width="100%" class="resetMarge contentForm">
+                <td valign="top" align="left" width="100%" class="resetMarge contentForm">
                     <h2>{{ formCtrl.form.titre }}</h2>
                 </td>
             </tr>
@@ -32,7 +32,7 @@
     <div class="col-md-5">
         <div class="form-group">
             <label>Titre</label>
-            <input type="text" ng-model="formCtrl.form.titre" name="titre" class="form-control">
+            <input type="text" ng-model="formCtrl.form.titre" required name="titre" class="form-control">
         </div>
         <div class="form-group">
             <button type="submit" class="btn btn-default">Envoyer</button>

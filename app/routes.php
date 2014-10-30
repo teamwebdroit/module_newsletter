@@ -65,6 +65,7 @@ Route::group(array('prefix' => 'admin'), function()
     Route::resource('categorie', 'CategorieController');
 
     Route::get('campagne/compose', 'CampagneController@compose');
+    Route::get('campagne/view/{id}', 'CampagneController@view');
     Route::resource('campagne', 'CampagneController');
 
     Route::match(array('GET', 'POST'), 'categorie/arretsExists', array('uses' => 'CategorieController@arretsExists'));

@@ -1,11 +1,14 @@
 <?php namespace Droit\Content\Entities;
 
 use Droit\Common\BaseModel as BaseModel;
+use Illuminate\Database\Eloquent\SoftDeletingTrait;
 
 class Arret extends BaseModel {
 
-	protected $fillable = ['pid','user_id','deleted','reference','pub_date','abstract','pub_text','file','categories'];
-    protected $dates    = ['pub_date','created_at','updated_at'];
+    use SoftDeletingTrait;
+
+	protected $fillable = ['pid','user_id','reference','pub_date','abstract','pub_text','file','categories'];
+    protected $dates    = ['pub_date','created_at','updated_at','deleted_at'];
 
     /*
      * Validation rules

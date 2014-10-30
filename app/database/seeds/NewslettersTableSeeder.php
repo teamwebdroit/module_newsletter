@@ -10,14 +10,14 @@ class NewslettersTableSeeder extends Seeder {
 
         $models = array(
             array(
-                'titre'        => 'Séminaire sur le droit du bail',
-                'from_name'    => 'Séminaire sur le droit du bail',
-                'from_email'   => 'info@bail.ch',
-                'return_email' => 'info@bail.ch',
+                'titre'        => 'Droit du travail',
+                'from_name'    => 'Droit du travail',
+                'from_email'   => 'info@droitdutravail.ch',
+                'return_email' => 'info@droitdutravail.ch',
                 'unsuscribe'   => 'http://newsletter.local/unsuscribe',
                 'preview'      => 'http://newsletter.local/preview',
-                'logos'        => 'http://newsletter.local/newsletter/logos-bail.jpg',
-                'header'       => 'http://newsletter.local/newsletter/header-bail.jpg'
+                'logos'        => 'http://newsletter.local/newsletter/logos-droitravail.jpg',
+                'header'       => 'http://newsletter.local/newsletter/header-droitravail.jpg'
             )
         );
 

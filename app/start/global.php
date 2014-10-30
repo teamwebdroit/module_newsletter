@@ -60,12 +60,12 @@ App::error(function(Exception $exception, $code)
 
 App::error(function(Droit\Exceptions\FormValidationException $exception, $code)
 {
-    return Redirect::to('/')->withInput()->withErrors($exception->getErrors())->with(array('status' => 'danger', 'message' => ''));
+    return Redirect::back()->withInput()->withErrors($exception->getErrors())->with(array('status' => 'danger', 'message' => ''));
 });
 
 App::error(function(Laracasts\Validation\FormValidationException $exception, $code)
 {
-    return Redirect::to('/')->withInput()->withErrors($exception->getErrors())->with(array('status' => 'danger', 'message' => ''));
+    return Redirect::back()->withInput()->withErrors($exception->getErrors())->with(array('status' => 'danger', 'message' => ''));
 });
 
 App::error(function(Droit\Exceptions\TokenInscriptionException $exception, $code)

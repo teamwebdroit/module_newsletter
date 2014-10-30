@@ -150,6 +150,22 @@ class ArretController extends \BaseController {
     }
 
     /**
+     * Remove the specified resource from storage.
+     * DELETE /adminconotroller/{id}
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function destroy($id)
+    {
+
+        $this->arret->delete($id);
+
+        return Redirect::back()->with(array('status' => 'success', 'message' => 'Arrêt supprimée' ));
+    }
+
+
+    /**
      * Return response arrets
      *
      * @return response

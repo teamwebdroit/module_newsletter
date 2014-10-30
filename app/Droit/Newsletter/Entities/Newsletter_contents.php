@@ -7,8 +7,8 @@ class Newsletter_contents extends BaseModel {
 	protected $fillable = ['type_id','titre','contenu','image','arret_id','categorie_id','newsletter_campagne_id','rang'];
 
     /*
- * Validation rules
-*/
+     * Validation rules
+    */
     protected static $rules = array(
     );
 

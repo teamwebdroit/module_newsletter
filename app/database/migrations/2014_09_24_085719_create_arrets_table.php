@@ -18,7 +18,6 @@ class CreateArretsTable extends Migration {
             $table->increments('id')->unsigned();
             $table->integer('pid');
             $table->integer('user_id');
-            $table->integer('deleted')->default(0);
             $table->string('reference');
             $table->dateTime('pub_date');
             $table->text('abstract')->nullable();
@@ -27,6 +26,7 @@ class CreateArretsTable extends Migration {
             $table->integer('categories')->nullable();
             $table->text('analysis')->nullable();
 			$table->timestamps();
+            $table->softDeletes();
 
 		});
 	}
