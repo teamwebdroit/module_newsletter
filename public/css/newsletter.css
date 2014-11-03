@@ -23,6 +23,11 @@
     mso-table-rspace:0pt;
     margin: 0;
     padding: 0;
+    background: #fff;
+}
+
+#bailNewsletter td{
+    background: #fff;
 }
 
 #bailNewsletter .redBail{

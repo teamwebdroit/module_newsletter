@@ -30,16 +30,23 @@
         <!-- Bloc content-->
     </div>
     <div class="col-md-5">
-        <div class="form-group">
-            <label>Titre</label>
-            <input type="text" ng-model="formCtrl.form.titre" required name="titre" class="form-control">
+
+        <div class="panel panel-success">
+            <div class="panel-heading">Titre et texte</div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <label>Titre</label>
+                    <input type="text" ng-model="formCtrl.form.titre" required name="titre" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>Texte</label>
+                    <textarea redactor ng-model="formCtrl.form.contenu" required name="contenu" class="form-control" rows="10"></textarea>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success">Envoyer</button>
+                </div>
+            </div>
         </div>
-        <div class="form-group">
-            <label>Texte</label>
-            <textarea redactor ng-model="formCtrl.form.contenu" required name="contenu" class="form-control" rows="10"></textarea>
-        </div>
-        <div class="form-group">
-            <button type="submit" class="btn btn-default">Envoyer</button>
-        </div>
+
     </div>
 </form>

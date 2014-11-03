@@ -2,17 +2,14 @@ $(function() {
 
     $('body').on('click','.deleteAction',function(event){
 
-        var $this   = $(this);
-        var action  = $this.data('action');
-
+        var $this  = $(this);
+        var action = $this.data('action');
         var answer = confirm('Voulez-vous vraiment supprimer : '+ action +' ?');
 
         if (answer){
             return true;
         }
-
         return false;
-
     });
 
     $('body').on('click','.deleteCategorie',function(event){

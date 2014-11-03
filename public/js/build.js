@@ -6,11 +6,6 @@ var url  = location.protocol + "//" + location.host+"/";
         minHeight: 300
     });
 
-
-    $('body').on('click','.uploadBtn a',function(event){
-       // event.preventDefault();
-    });
-
 })(jQuery);
 
 var App = angular.module('newsletter', ["cgNotify","ngDragDrop","ngResource","angular-redactor","flow","ngSanitize"] , function()
@@ -39,6 +34,9 @@ var App = angular.module('newsletter', ["cgNotify","ngDragDrop","ngResource","an
         },
         setBloc : function(bloc) {
             blocDrop = bloc;
+        },
+        changes : function() {
+            $rootScope.$broadcast('newsletter:updated');
         }
     };
 });
@@ -93,7 +91,7 @@ App.factory('Arrets', ['$http', '$q', function($http, $q) {
 /**
  * Build controller, controls all bloc for building the newsletter
  */
-App.controller('BuildController', ['$scope','$http','Blocs',function($scope,$http,Blocs){
+App.controller('BuildController', ['$scope','$http','Blocs','myService',function($scope,$http,Blocs,myService){
 
     /* assign empty values for blocs */
     this.blocs  = [];
@@ -109,14 +107,35 @@ App.controller('BuildController', ['$scope','$http','Blocs',function($scope,$htt
     }
     this.refresh();
 
+    this.clicked = function(bloc){
+        myService.setBloc(bloc.template);
+    };
+
 }]);
+
+/**
+ * Build controller, controls all bloc for building the newsletter
+ */
+App.controller('ViewController', ['$scope','$http','Blocs',function($scope,$http,Blocs){
+
+    /* capture this (the controller scope ) as self */
+    var self = this;
+    var campagne = $('#campagne_id').val();
+
+    $scope.$on('newsletter:updated', function() {
+        $( "#newsletterView").empty();
+        $( "#newsletterView" ).load( "admin/campagne/view/" + campagne );
+    });
+
+    $( "#newsletterView" ).load( "admin/campagne/view/" + campagne );
+
+}]);
+
 
 /**
  * Form controller, controls the form for creating new content blocs
  */
 App.controller("FormController",['$scope','$http','notify','myService', function($scope,$http,notify,myService){
-
-    console.log(myService.getBloc());
 
     $scope.addContent = function(form, type, id) {
 
@@ -151,6 +170,7 @@ App.controller("FormController",['$scope','$http','notify','myService', function
                     // remove arret template
                     console.log($scope.blocDrop);
                     myService.setBloc(0);
+                    myService.changes();
                 }
                 else {
                     notify('Problème avec l\'ajout du bloc');
@@ -181,17 +201,6 @@ App.controller('DropController', ['$scope','Blocs','myService',function($scope,B
     }
 
     $scope.refresh();
-
-    /* Get the dropped blocs id and set it */
-    $scope.dropped = function(event, ui){
-        var template = ui.draggable.attr("id");
-        $scope.setBloc(template);
-
-    };
-
-    $scope.setBloc = function(bloc){
-        myService.setBloc(bloc);
-    };
 
     /* Test if the bloc is the one selected to create the correct template view */
     $scope.isBloc = function(bloc){
@@ -263,8 +272,6 @@ App.controller('SelectController', ['$scope','$http','Arrets','notify','myServic
         var arret_id = ( self.arret ? self.arret.id : 0);
         var campagne = $('#campagne_id').val();
 
-        console.log(campagne);
-
         var data     = { type: 'arret' , arret_id: arret_id, campagne : campagne };
         /* Send data */
         var all = $.param( data);
@@ -283,6 +290,7 @@ App.controller('SelectController', ['$scope','$http','Arrets','notify','myServic
 
                 // remove arret template
                 myService.setBloc(0);
+                myService.changes();
             }
             else { notify('Problème avec l\'ajout du bloc'); }
         });

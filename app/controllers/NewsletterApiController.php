@@ -185,4 +185,8 @@ class NewsletterApiController extends BaseController {
         return Response::json( $allyears, 200 );
     }
 
+    public function getContents($id){
+
+    }
+
 }

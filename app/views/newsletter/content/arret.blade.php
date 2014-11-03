@@ -1,6 +1,10 @@
 <!-- Bloc -->
 <table id="bloc_rang_{{ $bloc->idItem }}" data-rel="{{ $bloc->rangItem }}" border="0" width="600" align="center" cellpadding="0" cellspacing="0" class="tableReset">
-    <tr bgcolor="ffffff"><td colspan="3" height="35"></td></tr><!-- space -->
+    <tr bgcolor="ffffff">
+        <td colspan="3" height="35">
+            <button class="deleteContent deleteAction" data-action="{{ $bloc->reference }}" type="button">×</button>
+        </td>
+    </tr><!-- space -->
     <tr align="center" class="resetMarge">
         <td class="resetMarge">
 
@@ -27,7 +31,6 @@
                             }
                         }
                         ?>
-
 
                     </td>
                 </tr>

@@ -12,7 +12,7 @@
     <body>
         <div id="bailNewsletter">
             <!-- Main table -->
-            <table border="0" width="600" cellpadding="0" cellspacing="0">
+            <table border="0" width="600" cellpadding="0" cellspacing="0" bgcolor="#ffffff">
                 <!-- Main content wrapper -->
                 <tr>
                     <td width="600" align="center" valign="top">

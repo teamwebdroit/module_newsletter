@@ -91,6 +91,7 @@ class CampagneController extends BaseController {
 
     public function view($id){
 
+        $infos    = $this->campagne->find($id);
         $content  = $this->content->getByCampagne($id);
 
         $campagne = $content->map(function($item)
@@ -111,7 +112,7 @@ class CampagneController extends BaseController {
             }
         });
 
-        return View::make('newsletter.view')->with(array('content' => $campagne));
+        return View::make('newsletter.view')->with(array('content' => $campagne , 'infos' => $infos));
     }
     /**
      * Update the specified resource in storage.
