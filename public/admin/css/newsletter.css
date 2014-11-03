@@ -14,9 +14,10 @@
     display: block;
     float: left;
     margin-right: 10px;
-    height: 125px;
+    height: 95px;
     width: 125px;
-    padding: 10px 15px 5px 15px;
+    text-align: center;
+    padding: 10px 5px 5px;
     -webkit-box-shadow: 1px 1px 2px 1px #ccc;
     box-shadow: 1px 1px 2px 1px #ccc;
     text-align: center;
@@ -31,5 +32,7 @@
 }
 
 .component-bloc a img{
-    width: 120px;
+    width: 80px;
+    display: block;
+    margin: 0 auto;
 }

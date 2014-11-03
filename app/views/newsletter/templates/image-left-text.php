@@ -8,11 +8,6 @@
         <!-- Bloc content-->
         <table border="0" width="560" align="center" cellpadding="0" cellspacing="0" class="resetTable">
             <tr>
-                <td valign="top" width="375" class="resetMarge contentForm">
-                    <h2>{{ formCtrl.form.titre }}</h2>
-                    <div ng-bind-html='formCtrl.form.contenu'></div>
-                </td>
-                <td width="25" class="resetMarge"></td><!-- space -->
                 <td valign="top" align="center" width="160" class="resetMarge">
 
                     <div class="thumbnail" ng-hide="$flow.files.length"><img src="http://www.placehold.it/130x140/EFEFEF/AAAAAA&text=choisir+une+image" /></div>
@@ -25,6 +20,11 @@
 
                     <input type="hidden" class="uploadImage" name="image" value="{{ $flow.files[0].name }}">
 
+                </td>
+                <td width="25" class="resetMarge"></td><!-- space -->
+                <td valign="top" width="375" class="resetMarge contentForm">
+                    <h2>{{ formCtrl.form.titre }}</h2>
+                    <div ng-bind-html='formCtrl.form.contenu'></div>
                 </td>
             </tr>
 

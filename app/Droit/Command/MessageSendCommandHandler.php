@@ -27,17 +27,10 @@ class MessageSendCommandHandler implements CommandHandler {
 
         $this->validator->validate( $data );
 
-        /*
-                echo '<pre>';
-                echo print_r($data);
-                echo '</pre>';exit;*/
-
-
        \Mail::send('emails.contact', $data , function($message)
         {
-            $message->to('cindy.leschaud@gmail.com', 'Droit du travail')->subject('Message depuis le site www.droitdutravail.ch');
+            $message->to('info@droitdutravail.ch', 'Droit du travail')->subject('Message depuis le site www.droitdutravail.ch');
         });
-
 
     }
 

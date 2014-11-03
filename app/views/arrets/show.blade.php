@@ -11,22 +11,9 @@
 
     <div class="container">
 
-        <div class="row"><!-- row -->
-            <div class="col-md-12"><!-- col -->
-
-                @if ( $arret->pid == 195 )
-                    <p><a class="btn btn-default" href="{{ url('admin/bail/arrets') }}"><i class="fa fa-reply"></i> &nbsp;Retour à la liste</a></p>
-                @endif
-                @if ( $arret->pid == 207 )
-                    <p><a class="btn btn-default" href="{{ url('admin/matrimonial/arrets') }}"><i class="fa fa-reply"></i> &nbsp;Retour à la liste</a></p>
-                @endif
-
-            </div>
-        </div>
+        @if ( !empty($arret) )
         <!-- start row -->
         <div class="row">
-
-        @if ( !empty($arret) )
 
             <div class="col-md-12">
                 <div class="panel panel-sky">
@@ -175,10 +162,10 @@
                 </div>
             </div>
 
-        @endif
-
         </div>
         <!-- end row -->
+
+        @endif
 
     </div><!-- end container -->
 

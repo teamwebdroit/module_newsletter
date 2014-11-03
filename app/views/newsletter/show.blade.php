@@ -1,6 +1,21 @@
 @extends('layouts.admin')
 @section('content')
 
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="options" style="margin-bottom: 10px;">
+                <div class="btn-toolbar">
+                    <a href="{{ url('admin/campagne/'.$campagne->id.'/edit') }}" class="btn btn-info">
+                        <i class="fa fa-chevron-left"></i>  &nbsp;&Eacute;diter la campagne</a>
+                    <a href="{{ url('admin/campagne/view/'.$campagne->id) }}" class="btn btn-inverse pull-right">Voir la newsletter
+                    &nbsp;<i class="fa fa-chevron-right"></i></a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
     <div id="main" ng-app="newsletter"><!-- main div for app-->
 
         <div class="row" ng-controller="BuildController as build">
@@ -10,7 +25,7 @@
 
                 <div class="component-menu">
                     <div class="row">
-                        <div class="col-md-8">
+                        <div class="col-md-12">
                             <!-- Component menu -->
                             <div class="panel">
                                 <div class="panel-heading"><h4><i class="fa fa-cogs"></i> Composants</h4></div>
@@ -21,9 +36,6 @@
                                 </div>
                             </div>
                             <!-- End component menu -->
-                        </div>
-                        <div class="col-md-4">
-                            <a target="_blank" class="btn btn-success btn-lg" href="{{ url('admin/campagne/view/'.$campagne->id) }}">Voir la newsletter</a>
                         </div>
                     </div>
                 </div>

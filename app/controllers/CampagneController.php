@@ -45,7 +45,7 @@ class CampagneController extends BaseController {
 
     /**
      * Store a newly created resource in storage.
-     * POST /adminconotroller
+     * POST /campagne
      *
      * @return Response
      */
@@ -63,7 +63,7 @@ class CampagneController extends BaseController {
 
     /**
      * Display the specified resource.
-     * GET /adminconotroller/{id}
+     * GET /campagne/{id}
      *
      * @param  int  $id
      * @return Response
@@ -77,14 +77,16 @@ class CampagneController extends BaseController {
 
     /**
      * Show the form for editing the specified resource.
-     * GET /adminconotroller/{id}/edit
+     * GET /campagne/{id}/edit
      *
      * @param  int  $id
      * @return Response
      */
     public function edit($id)
     {
-        //
+        $campagne = $this->campagne->find($id);
+
+        return View::make('newsletter.edit')->with(array( 'campagne' => $campagne ));
     }
 
     public function view($id){
@@ -113,19 +115,27 @@ class CampagneController extends BaseController {
     }
     /**
      * Update the specified resource in storage.
-     * PUT /adminconotroller/{id}
+     * PUT /campagne/{id}
      *
      * @param  int  $id
      * @return Response
      */
     public function update($id)
     {
-        //
+        // Data array
+        $data['id']            = $id;
+        $data['sujet']         = Input::get('sujet');
+        $data['auteurs']       = Input::get('auteurs');
+        $data['newsletter_id'] = 1;
+
+        $campagne = $this->campagne->update( $data );
+
+        return Redirect::to('admin/campagne/'.$campagne->id)->with( array('status' => 'success' , 'message' => 'Campagne éditée') );
     }
 
     /**
      * Remove the specified resource from storage.
-     * DELETE /adminconotroller/{id}
+     * DELETE /campagne/{id}
      *
      * @param  int  $id
      * @return Response

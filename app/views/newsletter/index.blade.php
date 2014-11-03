@@ -6,7 +6,7 @@
 
         <div class="options text-right" style="margin-bottom: 10px;">
             <div class="btn-toolbar">
-                <a href="{{ url('admin/campagne/create') }}" class="btn btn-success"><i class="fa fa-plus"></i> &nbsp;Nouvelle campagne</a>
+                <a href="{{ url('admin/campagne/create') }}" class="btn btn-info"><i class="fa fa-plus"></i> &nbsp;Nouvelle campagne</a>
             </div>
         </div>
 
@@ -33,7 +33,7 @@
                             @if(!empty($campagnes))
                                 @foreach($campagnes as $campagne)
                                 <tr>
-                                    <td><a class="btn btn-sky btn-sm" href="{{ url('admin/campagne/'.$campagne->id) }}">&Eacute;diter</a></td>
+                                    <td><a class="btn btn-sky btn-sm" href="{{ url('admin/campagne/'.$campagne->id.'/edit') }}">&Eacute;diter</a></td>
                                     <td><strong>{{ $campagne->sujet }}</strong></td>
                                     <td>{{ $campagne->auteurs }}</td>
                                     <td>{{ $campagne->status }}</td>

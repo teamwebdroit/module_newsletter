@@ -8,7 +8,7 @@ jQuery(document).ready(function($){
 		$('form#contact-form .requiredField').each(function() {
 			if(jQuery.trim($(this).val()) == '') {
             	var labelText = $(this).prev('label').text();
-            	$(this).parent().append('<span class="contact-error">Required</span>');
+            	$(this).parent().append('<span class="contact-error">Champ requis</span>');
             	$(this).addClass('inputError');
             	hasError = true;
             } else if($(this).hasClass('email')) {
@@ -23,14 +23,15 @@ jQuery(document).ready(function($){
 		});
 
 		if(!hasError) {
-		/*	var formInput = $(this).serialize();
+		    /*	var formInput = $(this).serialize();
 			$.post($(this).attr('action'),formInput, function(data){
                 console.log(data);
 				$("form#contact-form").before('<div class="contact-success"><strong>Merci!</strong><p>Votre email a été envoyé avec succès. Nous vous contacterons dès que possible.</p></div>');
 			});*/
+            return true;
 		}
 
-		//return false;
+		return false;
 
 	});
 });
