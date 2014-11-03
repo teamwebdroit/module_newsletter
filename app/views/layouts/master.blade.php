@@ -63,8 +63,8 @@
 
                     <div class="one-third one-small last logos">
                         <a target="_blank" href="http://www2.unine.ch/droit"><img src="<?php echo asset('images/logos/logo.png');?>" alt="" /></a>
-                        <a target="_blank" href="http://www2.unine.ch/cert"><img src="<?php echo asset('images/logos/cert.jpg');?>" alt="" /></a>
                         <a target="_blank" href="http://www2.unine.ch/cemaj"><img src="<?php echo asset('images/logos/cemaj.jpg');?>" alt="" /></a>
+                        <a target="_blank" href="http://www2.unine.ch/cert"><img src="<?php echo asset('images/logos/cert.jpg');?>" alt="" /></a>
                     </div>
 
                 </div><!--END HEADER-->

@@ -5,7 +5,12 @@ use Droit\Categorie\Repo\CategorieInterface;
 use Droit\Newsletter\Repo\NewsletterCampagneInterface;
 use Droit\Newsletter\Worker\CampagneInterface;
 
+use Laracasts\Commander\CommanderTrait;
+use Droit\Command\MessageSendCommand;
+
 class HomeController extends BaseController {
+
+    use CommanderTrait;
 
     protected $arret;
 
@@ -49,6 +54,14 @@ class HomeController extends BaseController {
         return View::make('contact');
     }
 
+    public function sendMessage(){
+
+        $this->execute('Droit\Command\MessageSendCommand');
+
+        return Redirect::to('/')->with(array('status' => 'success', 'message' => '<strong>Merci pour votre message</strong><br/>Nous vous contacterons dès que possible.'));
+
+    }
+
     /**
      * Display a listing of the resource.
      * GET /jurisprudence
@@ -80,7 +93,9 @@ class HomeController extends BaseController {
     }
 
     /*
+     * TEST TEST TEST TEST!!!!
      * Only for testing and convert categories and arrets/analyses
+     * TEST TEST TEST TEST!!!!
      * */
     public function convert()
     {

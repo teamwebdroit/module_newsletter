@@ -3,6 +3,7 @@
 use Laracasts\Commander\Events\EventListener;
 use Droit\Event\UserWasSubscribed;
 
+
 class EmailNotifier extends EventListener {
 
     public function whenUserWasSubscribed(UserWasSubscribed $event)
@@ -12,4 +13,5 @@ class EmailNotifier extends EventListener {
             $message->to($event->subscribe->email, $event->subscribe->email)->subject('Inscription!');
         });
     }
+
 }

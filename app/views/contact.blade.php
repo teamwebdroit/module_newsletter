@@ -23,21 +23,21 @@
 
                 <div class="two-third last">
 
-                    <form action="php/send.php" id="contact-form" class="form" method="post">
+                    <form action="{{ url('sendMessage') }}" id="contact-form" class="form" method="post">
                         <p class="form-name">
                             <label for="name">Nom <em>(*)</em></label>
-                            <input id="name" name="name" type="text" value="" size="30" class="requiredField" />
+                            <input id="name" name="nom" type="text" value="" size="30" class="requiredField" />
                         </p>
                         <p class="form-email">
                             <label for="email">Email <em>(*)</em></label>
                             <input id="email" name="email" type="email" value="" size="30" class="requiredField email" />
                         </p>
                         <p class="form-message">
-                            <label for="message">Message</label>
-                            <textarea id="message" name="message" cols="45" rows="8" class="requiredField"></textarea>
+                            <label for="remarque">Message</label>
+                            <textarea id="remarque" name="remarque" cols="45" rows="8" class="requiredField"></textarea>
                         </p>
                         <p class="form-submit">
-                            <input name="submit" id="submitted" value="Envoyer" class="submit button medium grey" type="submit" />
+                            <input id="submitted" value="Envoyer" class="submit button medium grey" type="submit" />
                         </p>
                     </form><!--END CONTACT FORM-->
 

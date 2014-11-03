@@ -76,8 +76,3 @@ jQuery(document).ready(function($) {
 jQuery(window).resize(function() {
 	bra_add_sticky(bra_sticky);
 })
-
-
-
-
-

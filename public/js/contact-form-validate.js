@@ -21,13 +21,16 @@ jQuery(document).ready(function($){
             	}
             }
 		});
+
 		if(!hasError) {
-			var formInput = $(this).serialize();
+		/*	var formInput = $(this).serialize();
 			$.post($(this).attr('action'),formInput, function(data){
-				$("form#contact-form").before('<div class="contact-success"><strong>THANK YOU!</strong><p>Your email was successfully sent. We will contact you as soon as possible.</p></div>');
-			});
+                console.log(data);
+				$("form#contact-form").before('<div class="contact-success"><strong>Merci!</strong><p>Votre email a été envoyé avec succès. Nous vous contacterons dès que possible.</p></div>');
+			});*/
 		}
-		return false;
+
+		//return false;
 
 	});
 });

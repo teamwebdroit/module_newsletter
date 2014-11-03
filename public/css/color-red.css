@@ -20,7 +20,13 @@ blockquote.color {background: #c5210d;}
 .item-info-overlay .outline:hover {box-shadow: 0 0 0 1px #c5210d inset;	background-color: #c5210d;}
 .filterable li.current a {color:#c5210d;}
 ul.item-nav li:hover {background: #c5210d;}
-.contact-success {background-color: #c5210d;}
+.contact-success {
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+    color: #3c763d;
+    width: 100%;
+    padding: 10px 20px;
+}
 .tagcloud a:hover {background-color: #c5210d;}
 
 
