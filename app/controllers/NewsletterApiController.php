@@ -160,7 +160,7 @@ class NewsletterApiController extends BaseController {
         $prepared->sortBy('id');
         $prepared->values();
 
-        return Response::json( $prepared, 200 );
+        return @json_encode($prepared);
     }
 
     /**

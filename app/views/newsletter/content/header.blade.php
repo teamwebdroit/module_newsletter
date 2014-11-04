@@ -2,7 +2,7 @@
     <td align="center">
 
         <!-- Title -->
-        <table width="600" bgcolor="#676767" border="0" cellpadding="0" cellspacing="0" align="center" class="resetTable">
+        <table width="600" bgcolor="#676767" border="0" cellpadding="0" cellspacing="0" align="center" class="resetTable headerInfos">
             <tr bgcolor="#676767"><td colspan="3" height="10"></td></tr><!-- space -->
             <tr bgcolor="#676767">
                 <td width="20"></td>
