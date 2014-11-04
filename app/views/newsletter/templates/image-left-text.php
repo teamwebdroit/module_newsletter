@@ -31,7 +31,7 @@
         </table>
         <!-- Bloc content-->
     </div>
-    <div class="col-md-5">
+    <div class="col-md-5 pull-right">
 
         <div class="panel panel-success">
             <div class="panel-heading">Image à gauche et texte</div>

@@ -3,10 +3,8 @@
     <tr bgcolor="ffffff">
         <td colspan="3" height="35">
             <div class="pull-right btn-group btn-group-xs">
-                <button class="btn btn-orange" type="button">éditer</button>
                 <button class="btn btn-danger deleteContent deleteContentBloc" data-id="{{ $bloc->idItem }}" data-action="{{ $bloc->reference }}" type="button">&nbsp;×&nbsp;</button>
             </div>
-
         </td>
     </tr><!-- space -->
     <tr align="center" class="resetMarge">

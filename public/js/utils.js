@@ -1,5 +1,9 @@
 $(function() {
 
+    $('#content').redactor({
+        minHeight: 300
+    });
+
     $('body').on('click','.deleteAction',function(event){
 
         var $this  = $(this);

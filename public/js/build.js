@@ -1,13 +1,3 @@
-var url  = location.protocol + "//" + location.host+"/";
-
-(function ($) {
-
-    $('#content').redactor({
-        minHeight: 300
-    });
-
-})(jQuery);
-
 var App = angular.module('newsletter', ["cgNotify","ngDragDrop","ngResource","angular-redactor","flow","ngSanitize"] , function()
 {
 }).config(function(redactorOptions) {
@@ -41,7 +31,6 @@ var App = angular.module('newsletter', ["cgNotify","ngDragDrop","ngResource","an
 /**
  * Retrive all newsletter types blocs for build
  */
-
 App.factory('Blocs', ['$http', '$q', function($http, $q) {
     return {
         query: function() {
@@ -61,12 +50,11 @@ App.factory('Blocs', ['$http', '$q', function($http, $q) {
 /**
  * Retrive all arrets blocs for bloc arret
  */
-
 App.factory('Arrets', ['$http', '$q', function($http, $q) {
     return {
         query: function() {
             var deferred = $q.defer();
-            $http.get('/arrets').success(function(data) {
+            $http.get('/arrets', { cache: true}).success(function(data) {
                     deferred.resolve(data);
                 }).error(function(data) {
                     deferred.reject(data);
@@ -91,9 +79,9 @@ App.factory('Arrets', ['$http', '$q', function($http, $q) {
 App.controller('BuildController', ['$scope','$http','Blocs','myService',function($scope,$http,Blocs,myService){
 
     /* assign empty values for blocs */
-    this.blocs  = [];
+    this.blocs = [];
     /* capture this (the controller scope ) as self */
-    var self    = this;
+    var self = this;
     /* function for refreshing the asynchronus retrival of blocs */
     this.refresh = function() {
         Blocs.query()
@@ -115,13 +103,12 @@ App.controller('BuildController', ['$scope','$http','Blocs','myService',function
  */
 App.controller('ViewController', ['$scope','$http','Blocs',function($scope,$http,Blocs){
 
-    /* capture this (the controller scope ) as self */
-    var self = this;
     var campagne = $('#campagne_id').val();
 
     $scope.$on('newsletter:updated', function() {
-        $( "#newsletterView").empty();
-        $( "#newsletterView" ).load( "admin/campagne/view/" + campagne );
+        $.get("admin/campagne/view/" + campagne , function(data) {
+            $("#newsletterView").replaceWith(data);
+        });
     });
 
     $( "#newsletterView" ).load( "admin/campagne/view/" + campagne );
@@ -140,9 +127,7 @@ App.controller("FormController",['$scope','$http','notify','myService', function
         var image    = $('.uploadImage').val();
         var campagne = $('#campagne_id').val();
 
-        notify.config({
-            duration: 1000
-        });
+        notify.config({ duration: 1000 });
 
         var titre   = ( form.titre ? form.titre.$modelValue : '');
         var image   = ( image ? image : '');
@@ -167,9 +152,9 @@ App.controller("FormController",['$scope','$http','notify','myService', function
                     //console.log(data);
                     notify('Le bloc a bien été ajouté');
                     // remove arret template
-                    console.log($scope.blocDrop);
                     myService.setBloc(0);
                     myService.changes();
+
                 }
                 else {
                     notify('Problème avec l\'ajout du bloc');
@@ -201,9 +186,7 @@ App.controller('SelectController', ['$scope','$http','Arrets','notify','myServic
     /* capture this (the controller scope ) as self */
     var self = this;
 
-    notify.config({
-        duration: 1000
-    });
+    notify.config({ duration: 1000 });
 
     /* function for refreshing the asynchronus retrival of blocs */
     this.refresh = function() {
@@ -212,7 +195,10 @@ App.controller('SelectController', ['$scope','$http','Arrets','notify','myServic
                 self.arrets = data;
             });
     }
-    this.refresh();
+
+    if(self.arrets.length == 0){
+        this.refresh();
+    }
 
     /* When one arret is selected in the dropdown */
     this.changed = function(){
@@ -235,8 +221,6 @@ App.controller('SelectController', ['$scope','$http','Arrets','notify','myServic
                 var jsonObject = self.arret.pub_date.substr(0,10);
                 var newdate    = new Date(jsonObject);
                 self.date      = self.convertDate(newdate)
-
-                console.log(data);
             });
     };
 
@@ -263,19 +247,19 @@ App.controller('SelectController', ['$scope','$http','Arrets','notify','myServic
 
         $http({
             method : 'POST',
-            url : 'process',
-            data : all, // pass in data as strings
+            url    : 'process',
+            data   : all, // pass in data as strings
             headers: {'Content-Type': 'application/x-www-form-urlencoded'} // set the headers so angular passing info as form data (not request payload)
         })
         .success(function(data)
         {
             if (!data.success) {
-                console.log(data);
                 notify('L\'arrêt a bien été ajouté');
 
                 // remove arret template
                 myService.setBloc(0);
                 myService.changes();
+
             }
             else { notify('Problème avec l\'ajout du bloc'); }
         });
@@ -353,15 +337,3 @@ App.directive("arret", function() {
         templateUrl: "arret"
     };
 });
-
-
-/**
- * Array for test
- */
-var bloces = [
-    { titre : 'Image Left and Text',  image : 'imageLeftText.svg', type: 'imageLeftText'  },
-    { titre : 'Image Right and Text', image : 'imageRightText.svg', type: 'imageRightText' },
-    { titre : 'Image and Text', image : 'imageText.svg', type: 'imageText' },
-    { titre : 'Image', image : 'image.svg' , type: 'image'},
-    { titre : 'Texte', image : 'text.svg' , type: 'text'}
-];

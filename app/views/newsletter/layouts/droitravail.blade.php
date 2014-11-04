@@ -16,9 +16,8 @@
                 <!-- Main content wrapper -->
                 <tr>
                     <td width="600" align="center" valign="top">
-
                         <!-- See in browser -->
-                        <table border="0" width="560" cellpadding="0" cellspacing="0" class="resetTable">
+                        <table border="0" width="560" cellpadding="0" cellspacing="0" class="resetTable hiddenOnBuild">
                             <tr><td height="15"></td></tr><!-- space -->
                             <tr>
                                 <td align="center" class="linkGrey">
@@ -57,14 +56,13 @@
                         <!-- Fin contenu -->
                     </td>
                 </tr>
-                <tr>
+                <tr class="hiddenOnBuild">
                     <td width="560" align="center" valign="top">
                         <!-- See in browser -->
                         <table border="0" width="600" cellpadding="0" cellspacing="0" class="tableReset">
                             <tr><td height="15"></td></tr><!-- space -->
                             <tr>
-                                <td align="center" class="linkGrey">
-                                    Si vous ne désirez plus recevoir cette newsletter, vous pouvez vous désinscrire à tout moment en
+                                <td align="center" class="linkGrey">Si vous ne désirez plus recevoir cette newsletter, vous pouvez vous désinscrire à tout moment en
                                     <a class="linkGrey" href="{{ $unsuscribe }}">cliquant ici</a>.
                                 </td>
                             </tr>

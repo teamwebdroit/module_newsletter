@@ -3,21 +3,22 @@
 }
 
 .component-menu{
-    margin-bottom: 10px;
-}
-
-.component-build{
-
+   position: absolute;
+   top: -180px;
+   right: 0px;
+   width: 500px;
+   text-align: right;
 }
 
 .component-bloc a{
     display: block;
-    float: left;
-    margin-right: 10px;
-    height: 100px;
-    width: 125px;
+    float: right;
+    height: 75px;
+    width: 135px;
     text-align: center;
-    padding: 10px 5px 5px;
+    padding: 5px 3px;
+    margin-bottom: 5px;
+    margin-right: 5px;
     background: #fff;
     -webkit-box-shadow: 1px 1px 2px 1px #ccc;
     box-shadow: 1px 1px 2px 1px #ccc;
@@ -33,7 +34,7 @@
 }
 
 .component-bloc a img{
-    width: 80px;
+    width: 65px;
     display: block;
     margin: 0 auto;
 }
@@ -41,10 +42,16 @@
 #build{
     min-height: 150px;
     height: auto;
-    padding: 10px;
-    background: #fff;
+    padding:20px 10px;
+    margin: 10px;
+    border-top:2px solid #ddd;
+    position: relative;
 }
 
 .thumbnail.big img{
     max-height: 100px;
+}
+
+.hiddenOnBuild{
+    display: none !important;
 }
