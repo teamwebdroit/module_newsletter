@@ -72,11 +72,15 @@ class NewsletterApiController extends BaseController {
 
         $contents = $this->content->updateSorting($data['bloc_rang']);
 
-        //return Response::json( $data, 200 );
-
         print_r($data);
 
-       // return false;
+    }
+
+    public function remove(){
+
+        $this->content->delete(Input::get('id'));
+
+        return 'ok';
     }
 
     /**

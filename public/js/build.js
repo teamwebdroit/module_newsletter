@@ -11,10 +11,7 @@ var url  = location.protocol + "//" + location.host+"/";
 var App = angular.module('newsletter', ["cgNotify","ngDragDrop","ngResource","angular-redactor","flow","ngSanitize"] , function()
 {
 }).config(function(redactorOptions) {
-
-        /**
-         * Redactor wysiwyg editor configuration
-         */
+        /* Redactor wysiwyg editor configuration */
         redactorOptions.minHeight = 200;
         redactorOptions.formattingTags = ['p', 'h2', 'h3','h4'];
 }).config(['flowFactoryProvider', function (flowFactoryProvider) {
@@ -143,7 +140,9 @@ App.controller("FormController",['$scope','$http','notify','myService', function
         var image    = $('.uploadImage').val();
         var campagne = $('#campagne_id').val();
 
-        console.log(campagne);
+        notify.config({
+            duration: 1000
+        });
 
         var titre   = ( form.titre ? form.titre.$modelValue : '');
         var image   = ( image ? image : '');
@@ -184,24 +183,6 @@ App.controller("FormController",['$scope','$http','notify','myService', function
  */
 App.controller('DropController', ['$scope','Blocs','myService',function($scope,Blocs,myService){
 
-    /* assign empty values for blocs */
-    $scope.blocDrop = 0;
-    this.blocs    = [];
-
-    /* capture this (the controller scope ) as self */
-    var self = this;
-
-    /* function for refreshing the asynchronus retrival of blocs */
-    $scope.refresh = function() {
-        Blocs.query()
-            .then(function (data) {
-                //console.log(data.blocs);
-                self.blocs = data.blocs;
-            })
-    }
-
-    $scope.refresh();
-
     /* Test if the bloc is the one selected to create the correct template view */
     $scope.isBloc = function(bloc){
         return myService.getBloc() === bloc;
@@ -219,6 +200,10 @@ App.controller('SelectController', ['$scope','$http','Arrets','notify','myServic
     this.arret  = false;
     /* capture this (the controller scope ) as self */
     var self = this;
+
+    notify.config({
+        duration: 1000
+    });
 
     /* function for refreshing the asynchronus retrival of blocs */
     this.refresh = function() {

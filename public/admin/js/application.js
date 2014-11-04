@@ -155,20 +155,7 @@ $(".widget-body").on('shown.bs.collapse', function () {
 // Sidebars Positionings
 // -------------------------------
 
-$(window).scroll(function(){
-    $("#widgetarea").getNiceScroll().resize();
-    $(".chathistory").getNiceScroll().resize();
-    rightbarTopPos();
-    leftbarTopPos();
-});
 
-$(window).resize(function(){
-    widgetheight();
-
-    rightbarRightPos();
-    $("#sidebar").getNiceScroll().resize();
-});
-rightbarRightPos();
 
 $('#multi-select').multiSelect();
 

@@ -12,6 +12,35 @@ $(function() {
         return false;
     });
 
+    $('body').on('click','.deleteContentBloc',function(event){
+
+        var $this  = $(this);
+        var action = $this.data('action');
+        var id     = $this.data('id');
+        var answer = confirm('Voulez-vous vraiment supprimer : '+ action +' ?');
+
+        if (answer)
+        {
+            $.ajax({
+                url     : 'remove',
+                data    : { id: id },
+                type    : "POST",
+                success : function(data) {
+
+                    if(data == 'ok')
+                    {
+                        console.log('ok remove');
+                        $('#bloc_rang_'+id).remove();
+                    }
+
+                }
+            });
+        }
+
+        return false;
+
+    });
+
     $('body').on('click','.deleteCategorie',function(event){
 
         var $this      = $(this);

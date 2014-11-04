@@ -8504,14 +8504,13 @@ body.static-header {
 }
 /* Logo */
 .navbar-brand {
-  font: 0/0 a !important;
-  color: transparent !important;
+  font: 22px/30px  !important;
+  color: #fff !important;
   text-shadow: none !important;
   background-color: transparent !important;
   border: 0 !important;
-  background: url("../img/logo.png") no-repeat center center;
   height: 40px;
-  width: 106px;
+  width: 220px;
 }
 @media (max-width: 480px) {
   ul.toolbar {

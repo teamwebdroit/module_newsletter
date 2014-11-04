@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Administration | RJN</title>
+	<title>Administration | Droit du travail</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="RJN administration">
@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="<?php echo asset('admin/css/styles.css?=121');?>">
     <link rel="stylesheet" href="<?php echo asset('admin/css/newsletter.css');?>">
     <link rel="stylesheet" href="<?php echo asset('js/vendor/redactor/redactor.css'); ?>">
-    <link rel="stylesheet" href="<?php echo asset('admin/js/jqueryui.min.css'); ?>">
+    <link rel="stylesheet" href="<?php echo asset('js/vendor/jqueryui/jquery-ui.min.css'); ?>">
     <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600' rel='stylesheet' type='text/css'>
 
     <link rel='stylesheet' type='text/css' href="<?php echo asset('admin/plugins/datatables/dataTables.css');?>" />
@@ -41,7 +41,7 @@
 
         <a id="leftmenu-trigger" class="tooltips" data-toggle="tooltip" data-placement="right" title="Toggle Sidebar"></a>
 
-        <div class="navbar-header pull-left"><a class="navbar-brand" href="{{ url('/')  }}">RJN</a></div>
+        <div class="navbar-header pull-left"><a class="navbar-brand" href="{{ url('/')  }}">Droit du travail</a></div>
 
         <ul class="nav navbar-nav pull-right toolbar">
             <li class="dropdown">
@@ -97,8 +97,8 @@
 
     </div> <!-- page-container -->
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+    <script src="<?php echo asset('js/jquery.js');?>"></script>
+    <script src="<?php echo asset('js/vendor/jqueryui/jquery-ui.min.js');?>"></script>
 
     <script type="text/javascript" src="<?php echo asset('admin/js/bootstrap.min.js');?>"></script>
     <script type="text/javascript" src="<?php echo asset('admin/js/enquire.js');?>"></script>

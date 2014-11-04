@@ -3,7 +3,7 @@
     <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
     <head>
         <meta charset="utf-8" />
-        <title>RJN</title>
+        <title>Droit du travail</title>
 
         <meta name="description" content="RJN">
         <meta name="author" content="Cindy Leschaud">

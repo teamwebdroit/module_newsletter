@@ -80,8 +80,6 @@
         <!-- Javascript Files
         ================================================== -->
 
-        <script type="text/javascript" src="<?php echo asset('js/jquery.js');?>"></script>
-        <script type="text/javascript" src="<?php echo asset('js/vendor/jqueryui/jquery-ui.js');?>"></script>
         <script type="text/javascript" src="<?php echo asset('js/sorting.js');?>"></script>
 
     </body>

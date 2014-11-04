@@ -1,6 +1,10 @@
 <!-- Bloc -->
 <table id="bloc_rang_{{ $bloc->idItem }}" data-rel="{{ $bloc->rangItem }}" border="0" width="600" align="center" cellpadding="0" cellspacing="0" class="tableReset">
-    <tr bgcolor="ffffff"><td colspan="3" height="35"></td></tr><!-- space -->
+    <tr bgcolor="ffffff">
+        <td colspan="3" height="35">
+            <button class="deleteContent deleteContentBloc" data-id="{{ $bloc->idItem }}" data-action="{{ $bloc->titre }}" type="button">×</button>
+        </td>
+    </tr><!-- space -->
     <tr align="center" class="resetMarge">
         <td class="resetMarge">
 
@@ -17,7 +21,7 @@
                     </td>
                     <td width="25" class="resetMarge"></td><!-- space -->
                     <td valign="top" align="center" width="130" class="resetMarge">
-                        <a href="#"><img style="max-width: 130px; max-height: 220px;" alt="Droit du bail" src="{{ asset('files/'.$bloc->image.'') }}" /></a>
+                        <a href="#"><img style="max-width: 130px; max-height: 220px;" alt="Droit du travail" src="{{ asset('files/'.$bloc->image.'') }}" /></a>
                     </td>
                 </tr>
             </table>

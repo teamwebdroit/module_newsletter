@@ -2,7 +2,7 @@
       flow-files-submitted="$flow.upload()"
       class="row" name="blocForm" class="form-horizontal"
       ng-controller="FormController as formCtrl"
-      ng-submit="addContent(blocForm,'imageRightText')">
+      ng-submit="addContent(blocForm,'imageLeftText')">
 
     <div class="col-md-7" id="bailNewsletter">
         <!-- Bloc content-->

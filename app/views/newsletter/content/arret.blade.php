@@ -2,7 +2,7 @@
 <table id="bloc_rang_{{ $bloc->idItem }}" data-rel="{{ $bloc->rangItem }}" border="0" width="600" align="center" cellpadding="0" cellspacing="0" class="tableReset">
     <tr bgcolor="ffffff">
         <td colspan="3" height="35">
-            <button class="deleteContent deleteAction" data-action="{{ $bloc->reference }}" type="button">×</button>
+            <button class="deleteContent deleteContentBloc" data-id="{{ $bloc->idItem }}" data-action="{{ $bloc->reference }}" type="button">×</button>
         </td>
     </tr><!-- space -->
     <tr align="center" class="resetMarge">
@@ -26,7 +26,7 @@
                            foreach($bloc->arrets_categories as $categorie)
                             {
                                 // Categories
-                                echo '<a href="#"><img width="140" height="107" border="0" alt="Loyer" src="'.asset('newsletter/pictos/'.$categorie->image).'"></a>';
+                                echo '<a href="#"><img width="140" height="107" border="0" alt="'.$categorie->title.'" src="'.asset('newsletter/pictos/'.$categorie->image).'"></a>';
                                 echo '<p class="centerText">'.$categorie->title.'</p>';
                             }
                         }

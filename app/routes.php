@@ -41,6 +41,7 @@ Route::post('uploadJS', 'UploadController@uploadJS');
 Route::get('building', 'NewsletterApiController@building');
 Route::post('sorting', 'NewsletterApiController@sorting');
 Route::post('process', 'NewsletterApiController@process');
+Route::post('remove', 'NewsletterApiController@remove');
 Route::get('preparedArrets/{selected?}', 'NewsletterApiController@preparedArrets');
 Route::get('preparedAnnees', 'NewsletterApiController@preparedAnnees');
 Route::get('arrets/{id}', 'NewsletterApiController@simple');
