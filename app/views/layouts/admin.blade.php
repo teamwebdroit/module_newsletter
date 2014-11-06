@@ -128,6 +128,7 @@
         <script type="text/javascript" src="<?php echo asset('js/build.js');?>"></script>
         <script type="text/javascript" src="<?php echo asset('js/newsletter/directives/directive.js');?>"></script>
         <script type="text/javascript" src="<?php echo asset('js/newsletter/factories/factory.js');?>"></script>
+        <script type="text/javascript" src="<?php echo asset('js/sorting.js');?>"></script>
     @endif
 
 </body>

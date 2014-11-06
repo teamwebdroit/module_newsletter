@@ -1,11 +1,10 @@
-<div id="bloc_rang_{[{ content.idItem }]}" class="edit_content" ng-controller="EditController as edit">
+<div class="edit_content" ng-controller="EditController as edit">
 
     <!-- Bloc content-->
     <table border="0" width="560" align="center" cellpadding="0" cellspacing="0" class="resetTable">
         <tr bgcolor="ffffff">
             <td colspan="3" height="35">
                 <div class="pull-right btn-group btn-group-xs">
-                    <button class="btn btn-orange" type="button">éditer</button>
                     <button class="btn btn-danger deleteContent deleteContentBloc" data-id="{[{ content.idItem }]}" data-action="{[{ content.reference }]}" type="button">&nbsp;×&nbsp;</button>
                 </div>
             </td>
@@ -13,7 +12,7 @@
         <tr>
             <td valign="top" width="375" class="resetMarge contentForm">
                 <div>
-                    <h3>{{ content.reference }} <span ng-show="content.reference">du</span> {{ content.date | date: 'fullDate' }}</h3>
+                    <h3>{{ content.reference }} <span ng-show="content.reference">du</span> {{ content.dateRef }}</h3>
                     <p class="abstract">{{ content.abstract }}</p>
                     <div class="content" ng-bind-html='content.pub_text'></div>
                 </div>

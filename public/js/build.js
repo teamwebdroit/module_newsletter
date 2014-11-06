@@ -106,6 +106,8 @@ App.controller("FormController",['$scope','$http','notify','myService', function
 
         notify.config({ duration: 1000 });
 
+        console.log(form.image);
+
         var titre    = ( form.titre ? form.titre.$modelValue : '');
         var image    = ( image ? image : '');
         var contenu  = ( form.contenu ? form.contenu.$modelValue : '');
@@ -139,6 +141,22 @@ App.controller("FormController",['$scope','$http','notify','myService', function
  * Form controller, controls the form for creating new content blocs
  */
 App.controller("EditController",['$scope','$http','notify','myService', function($scope,$http,notify,myService){
+
+    this.editContent = function(idItem){
+
+        var w = $( document ).width();
+        w = w - 900;
+        console.log(w);
+
+        var content = $('#bloc_rang_'+idItem);
+        content.find('.edit_content_form').css("width",w).show();
+
+    };
+
+    this.updateContent = function(editForm,idItem){
+
+        console.log(editForm);
+    }
 
 }]);
 /**

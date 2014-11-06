@@ -24,14 +24,17 @@
 
                 <div style="width: 600px;" ng-controller="ViewController as view">
 
-                    <div id="bailNewsletter" ng-repeat="content in view.contents">
-
-                        <image-left-text-edit ng-if="isTemplate('image-left-text',content.type.template)"></image-left-text-edit>
-                        <image-right-text-edit ng-if="isTemplate('image-right-text',content.type.template)"></image-right-text-edit>
-                        <image-text-edit ng-if="isTemplate('image-text',content.type.template)"></image-text-edit>
-                        <image-alone-edit ng-if="isTemplate('image',content.type.template)"></image-alone-edit>
-                        <text-alone-edit ng-if="isTemplate('text',content.type.template)"></text-alone-edit>
-                        <arret-edit ng-if="isTemplate('arret',content.type.template)"></arret-edit>
+                    <div id="bailNewsletter">
+                        <div id="sortable">
+                            <div ng-repeat="content in view.contents" id="bloc_rang_{[{ content.idItem }]}" data-rel="{[{ content.idItem }]}">
+                                <image-left-text-edit ng-if="isTemplate('image-left-text',content.type.template)"></image-left-text-edit>
+                                <image-right-text-edit ng-if="isTemplate('image-right-text',content.type.template)"></image-right-text-edit>
+                                <image-text-edit ng-if="isTemplate('image-text',content.type.template)"></image-text-edit>
+                                <image-alone-edit ng-if="isTemplate('image',content.type.template)"></image-alone-edit>
+                                <text-alone-edit ng-if="isTemplate('text',content.type.template)"></text-alone-edit>
+                                <arret-edit ng-if="isTemplate('arret',content.type.template)"></arret-edit>
+                            </div>
+                        </div>
                     </div>
                     <!--<div id="newsletterView" ng-include src="template"></div>-->
                 </div>

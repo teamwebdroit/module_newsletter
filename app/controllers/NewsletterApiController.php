@@ -201,6 +201,7 @@ class NewsletterApiController extends BaseController {
                 $arret->setAttribute('type',$item->type);
                 $arret->setAttribute('rangItem',$item->rang);
                 $arret->setAttribute('idItem',$item->id);
+                $arret->setAttribute('dateRef', $arret->pub_date->formatLocalized('%d %B %Y') );
                 return $arret;
             }
             else

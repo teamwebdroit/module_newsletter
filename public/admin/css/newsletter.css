@@ -59,8 +59,9 @@
 
 .edit_content_form{
     position: absolute;;
-    left: 640px;
+    left: 620px;
     top: 0;
+    width: 480px;
     z-index: 100;
     display: none;
 }

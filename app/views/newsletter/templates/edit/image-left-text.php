@@ -1,4 +1,4 @@
-<div id="bloc_rang_{[{ content.idItem }]}" class="edit_content" ng-controller="EditController as edit"
+<div class="edit_content" ng-controller="EditController as edit"
      flow-init flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]"
      flow-files-submitted="$flow.upload(),netedited = true">
 
@@ -7,7 +7,7 @@
         <tr bgcolor="ffffff">
             <td colspan="3" height="35">
                 <div class="pull-right btn-group btn-group-xs">
-                    <button class="btn btn-orange" type="button">éditer</button>
+                    <button class="btn btn-orange" ng-click="edit.editContent(content.idItem)" type="button">éditer</button>
                     <button class="btn btn-danger deleteContent deleteContentBloc" data-id="{[{ content.idItem }]}" data-action="{[{ content.titre }]}" type="button">&nbsp;×&nbsp;</button>
                 </div>
             </td>
@@ -36,21 +36,21 @@
     <!-- Bloc content-->
 
     <div class="edit_content_form">
-        <form name="editForm" class="form-horizontal" ng-submit="editContent(editForm,'imageLeftText')">
+        <form name="editForm" class="form-horizontal" ng-submit="edit.updateContent(editForm,content.idItem)">
 
             <div class="panel panel-success">
                 <div class="panel-heading">Image à gauche et texte</div>
                 <div class="panel-body">
                     <div class="form-group">
                         <label>Titre</label>
-                        <input type="text" ng-model="edit.titre" required name="titre" class="form-control">
+                        <input type="text" ng-model="content.titre" required name="titre" class="form-control">
                     </div>
                     <div class="form-group">
                         <label>Texte</label>
-                        <textarea redactor ng-model="edit.contenu" required name="contenu" class="form-control" rows="10"></textarea>
+                        <textarea redactor ng-model="content.contenu" required name="contenu" class="form-control" rows="10"></textarea>
                     </div>
                     <div class="form-group">
-                        <input type="hidden" ng-model="edit.id" name="id">
+                        <input type="hidden" ng-model="content.idItem" name="id">
                         <input type="hidden" class="uploadImage" name="image" ng-if="notedited" value="{{ $flow.files[0].name }}">
                         <button type="submit" class="btn btn-default">Envoyer</button>
                     </div>

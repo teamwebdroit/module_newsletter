@@ -48,10 +48,5 @@
             <!-- End main table -->
         </div>
 
-        <!-- Javascript Files stripped before sending
-        ================================================== -->
-
-        <script type="text/javascript" src="<?php echo asset('js/sorting.js');?>"></script>
-
     </body>
 </html>
