@@ -39,17 +39,17 @@ Newsletter.directive("newsletterView", ['Content' ,function(Content) {
     };
 }]);
 
+
+/* =========================
+    Templates for creation
+  ========================= */
+
 Newsletter.directive("arret", function() {
     return {
         restrict: "EA",
         templateUrl: "arret"
     };
 });
-
-
-/* =========================
-    Templates for creation
-  ========================= */
 
 Newsletter.directive("imageLeftText", function() {
     return {
@@ -92,13 +92,19 @@ Newsletter.directive("textAlone", function() {
 });
 
 /* =========================
- Templates for creation
+ Templates for edition
  ========================= */
+
+Newsletter.directive("arretEdit", function() {
+    return {
+        restrict: "EA",
+        templateUrl: "arret-edit"
+    };
+});
 
 Newsletter.directive("imageLeftTextEdit", function() {
     return {
         restrict: "EA",
-        scope   :{ngModel: '='},
         templateUrl: "image-left-text-edit"
     };
 });
@@ -106,7 +112,6 @@ Newsletter.directive("imageLeftTextEdit", function() {
 Newsletter.directive("imageRightTextEdit", function() {
     return {
         restrict: "EA",
-        scope   :{ngModel: '='},
         templateUrl: "image-right-text-edit"
     };
 });
@@ -114,7 +119,6 @@ Newsletter.directive("imageRightTextEdit", function() {
 Newsletter.directive("imageTextEdit", function() {
     return {
         restrict: "EA",
-        scope   :{ngModel: '='},
         templateUrl: "image-text-edit"
     };
 });
@@ -122,7 +126,6 @@ Newsletter.directive("imageTextEdit", function() {
 Newsletter.directive("imageAloneEdit", function() {
     return {
         restrict: "EA",
-        scope   :{ngModel: '='},
         templateUrl: "image-edit"
     };
 });
@@ -130,7 +133,6 @@ Newsletter.directive("imageAloneEdit", function() {
 Newsletter.directive("textAloneEdit", function() {
     return {
         restrict: "EA",
-        scope   :{ngModel: '='},
         templateUrl: "text-edit"
     };
 });

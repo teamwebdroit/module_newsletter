@@ -42,6 +42,7 @@ Route::get('post-text', 'TemplateController@postText');
     Route::get('image-text-edit', 'TemplateController@imageTextEdit');
     Route::get('image-edit', 'TemplateController@imageEdit');
     Route::get('text-edit', 'TemplateController@textEdit');
+    Route::get('arret-edit', 'TemplateController@arretEdit');
 
 /**
  * Upload routes

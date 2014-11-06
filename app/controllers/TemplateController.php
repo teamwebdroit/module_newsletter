@@ -60,17 +60,22 @@ class TemplateController extends BaseController {
 
     public function imageTextEdit()
     {
-        return View::make('newsletter.templates.create.image-text');
+        return View::make('newsletter.templates.edit.image-text');
     }
 
     public function imageEdit()
     {
-        return View::make('newsletter.templates.edit.create.image');
+        return View::make('newsletter.templates.edit.image');
     }
 
     public function textEdit()
     {
-        return View::make('newsletter.templates.edit.create.text');
+        return View::make('newsletter.templates.edit.text');
+    }
+
+    public function arretEdit()
+    {
+        return View::make('newsletter.templates.edit.arret');
     }
 
 }

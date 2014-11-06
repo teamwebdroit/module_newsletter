@@ -10,9 +10,9 @@
             <tr>
                 <td valign="top" align="center" width="100%" class="resetMarge">
                     <div class="uploadBtn">
-                        <button class="btn btn-xs btn-info" ng-hide="$flow.files.length" flow-btn flow-attrs="{accept:'image/*'}">Selectionner image</button>
-                        <button class="btn btn-xs btn-warning" ng-show="$flow.files.length" flow-btn flow-attrs="{accept:'image/*'}">Changer</button>
-                        <button class="btn btn-xs btn-danger" ng-show="$flow.files.length" ng-click="$flow.cancel()">Supprimer</button>
+                        <span class="btn btn-xs btn-info" ng-hide="$flow.files.length" flow-btn flow-attrs="{accept:'image/*'}">Selectionner image</span>
+                        <span class="btn btn-xs btn-warning" ng-show="$flow.files.length" flow-btn flow-attrs="{accept:'image/*'}">Changer</span>
+                        <span class="btn btn-xs btn-danger" ng-show="$flow.files.length" ng-click="$flow.cancel()">Supprimer</span>
                     </div>
                     <div class="thumbnail big" ng-hide="$flow.files.length"><img src="http://www.placehold.it/560x160/EFEFEF/AAAAAA&text=choisir+une+image" /></div>
                     <div class="thumbnail big" ng-show="$flow.files.length"><img flow-img="$flow.files[0]" /></div>
@@ -36,7 +36,7 @@
             <div class="panel-body">
                 <div class="form-group">
                     <label>Titre</label>
-                    <input type="text" ng-model="formCtrl.form.titre" required name="titre" class="form-control">
+                    <input type="text" ng-model="formCtrl.form.titre" name="titre" class="form-control">
                 </div>
                 <div class="form-group">
                     <button type="submit" class="btn btn-success">Envoyer</button>

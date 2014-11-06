@@ -50,7 +50,7 @@ App.factory('Contents', ['$http', '$q', function($http, $q) {
     return {
         query: function(id) {
             var deferred = $q.defer();
-            $http.get('/prepareCampagne/'+id, { cache: true }).success(function(data) {
+            $http.get('/prepareCampagne/'+id).success(function(data) {
                 deferred.resolve(data);
             }).error(function(data) {
                 deferred.reject(data);

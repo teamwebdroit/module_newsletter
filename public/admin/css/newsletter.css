@@ -62,4 +62,5 @@
     left: 640px;
     top: 0;
     z-index: 100;
+    display: none;
 }

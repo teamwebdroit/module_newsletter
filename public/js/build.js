@@ -1,5 +1,7 @@
-var App = angular.module('newsletter', ["cgNotify","ngDragDrop","ngResource","angular-redactor","flow","ngSanitize","xeditable"] , function()
+var App = angular.module('newsletter', ["cgNotify","ngDragDrop","ngResource","angular-redactor","flow","ngSanitize","xeditable"] , function($interpolateProvider)
 {
+    $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
+
 }).config(function(redactorOptions) {
         /* Redactor wysiwyg editor configuration */
         redactorOptions.minHeight = 200;
@@ -66,10 +68,6 @@ App.controller('ViewController', ['$scope','$http','Contents',function($scope,$h
     var campagne    = $('#campagne_id').val();
     $scope.template = 'admin/campagne/view/' + campagne;
 
-    $scope.$on('newsletter:updated', function() {
-        var random = Math.random();
-        $scope.template = 'admin/campagne/view/' + campagne + '?' + random;
-    });
 
     /* assign empty values for blocs */
     this.contents = [];
@@ -81,9 +79,17 @@ App.controller('ViewController', ['$scope','$http','Contents',function($scope,$h
             .then(function (data) {
                 console.log(data);
                 self.contents = data;
-            })
+            });
     }
     this.refresh();
+
+    $scope.$on('newsletter:updated', function() {
+        self.refresh();
+    });
+
+    $scope.isTemplate = function(template,content){
+        return template === content;
+    };
 
 }]);
 
@@ -129,6 +135,12 @@ App.controller("FormController",['$scope','$http','notify','myService', function
     };
 }]);
 
+/**
+ * Form controller, controls the form for creating new content blocs
+ */
+App.controller("EditController",['$scope','$http','notify','myService', function($scope,$http,notify,myService){
+
+}]);
 /**
  * Select arret controller, select an arret and display's it
  */
