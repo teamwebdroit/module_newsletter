@@ -22,13 +22,26 @@ Route::get('gobuild', 'NewsletterController@index');
  * Templates for js
  */
 Route::get('building-blocs', 'TemplateController@buildingBlocs');
-Route::get('image-left-text', 'TemplateController@imageLeftText');
-Route::get('image-right-text', 'TemplateController@imageRightText');
-Route::get('image-text', 'TemplateController@imageText');
-Route::get('image', 'TemplateController@image');
-Route::get('text', 'TemplateController@text');
-Route::get('arret', 'TemplateController@arret');
 Route::get('post-text', 'TemplateController@postText');
+
+    /**
+     * Templates for js creation
+     */
+    Route::get('image-left-text', 'TemplateController@imageLeftText');
+    Route::get('image-right-text', 'TemplateController@imageRightText');
+    Route::get('image-text', 'TemplateController@imageText');
+    Route::get('image', 'TemplateController@image');
+    Route::get('text', 'TemplateController@text');
+    Route::get('arret', 'TemplateController@arret');
+
+    /**
+     * Templates for js edit
+     */
+    Route::get('image-left-text-edit', 'TemplateController@imageLeftTextEdit');
+    Route::get('image-right-text-edit', 'TemplateController@imageRightTextEdit');
+    Route::get('image-text-edit', 'TemplateController@imageTextEdit');
+    Route::get('image-edit', 'TemplateController@imageEdit');
+    Route::get('text-edit', 'TemplateController@textEdit');
 
 /**
  * Upload routes
@@ -47,7 +60,7 @@ Route::get('preparedAnnees', 'NewsletterApiController@preparedAnnees');
 Route::get('arrets/{id}', 'NewsletterApiController@simple');
 Route::get('arrets', 'ArretController@arrets');
 Route::get('categories', 'CategorieController@categories');
-
+Route::get('prepareCampagne/{id}', 'NewsletterApiController@prepareCampagne');
 
 /**
  * Newsletter inscription routes

@@ -52,6 +52,14 @@
     max-height: 100px;
 }
 
-.hiddenOnBuild{
-    display: none !important;
+.edit_content{
+    position: relative;
+    display: block;
+}
+
+.edit_content_form{
+    position: absolute;;
+    left: 640px;
+    top: 0;
+    z-index: 100;
 }

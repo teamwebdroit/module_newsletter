@@ -26,7 +26,7 @@
                     <div id="newsletterView" ng-include src="template"></div>
                 </div>
 
-                <div ng-controller="DropController as dropped" id="build">
+                <div id="build">
 
                     <div class="component-menu">
                         <div class="component-bloc" ng-repeat="bloc in build.blocs">
@@ -40,6 +40,7 @@
                     <image-alone ng-if="isBloc('image')"></image-alone>
                     <text-alone ng-if="isBloc('text')"></text-alone>
                     <arret ng-if="isBloc('arret')"></arret>
+
                 </div>
 
             </div>

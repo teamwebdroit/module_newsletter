@@ -189,8 +189,29 @@ class NewsletterApiController extends BaseController {
         return Response::json( $allyears, 200 );
     }
 
-    public function getContents($id){
+    public function prepareCampagne($id){
 
+        $content  = $this->content->getByCampagne($id);
+
+        $campagne = $content->map(function($item)
+        {
+            if ($item->arret_id > 0)
+            {
+                $arret = $this->arret->find($item->arret_id);
+                $arret->setAttribute('type',$item->type);
+                $arret->setAttribute('rangItem',$item->rang);
+                $arret->setAttribute('idItem',$item->id);
+                return $arret;
+            }
+            else
+            {
+                $item->setAttribute('rangItem',$item->rang);
+                $item->setAttribute('idItem',$item->id);
+                return $item;
+            }
+        });
+
+        return $campagne;
     }
 
 }
