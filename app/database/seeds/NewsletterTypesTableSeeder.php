@@ -17,6 +17,13 @@ class NewsletterTypesTableSeeder extends Seeder {
                 'elements'  => 'image'
             ),
             array(
+                'titre'     => 'Text',
+                'image'     => 'text.svg',
+                'partial'   => 'text',
+                'template'  => 'text',
+                'elements'  => 'text'
+            ),
+            array(
                 'titre'     => 'Text et image',
                 'image'     => 'imageText.svg',
                 'partial'   => 'imageText',

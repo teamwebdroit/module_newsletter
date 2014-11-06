@@ -28,6 +28,7 @@
     @if(isset($isNewsletter))
         <link rel="stylesheet" href="<?php echo asset('css/newsletter.css'); ?>">
         <link href="<?php echo asset('js/vendor/angular/angular-notify.css');?>" rel="stylesheet">
+        <link href="<?php echo asset('js/vendor/angular/angular-xeditable.css');?>" rel="stylesheet">
     @endif
 
     <link rel='stylesheet' type='text/css' href='<?php echo asset('admin/plugins/form-toggle/toggles.css');?>' />
@@ -123,6 +124,7 @@
         <script type="text/javascript" src="<?php echo asset('js/vendor/angular/angular-redactor.js');?>"></script>
         <script type="text/javascript" src="<?php echo asset('js/vendor/angular/angular-flow.js');?>"></script>
         <script type="text/javascript" src="<?php echo asset('js/vendor/angular/angular-notify.js');?>"></script>
+        <script type="text/javascript" src="<?php echo asset('js/vendor/angular/angular-xeditable.js');?>"></script>
         <script type="text/javascript" src="<?php echo asset('js/build.js');?>"></script>
     @endif
 

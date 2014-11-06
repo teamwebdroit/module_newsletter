@@ -1,4 +1,4 @@
-var App = angular.module('newsletter', ["cgNotify","ngDragDrop","ngResource","angular-redactor","flow","ngSanitize"] , function()
+var App = angular.module('newsletter', ["cgNotify","ngDragDrop","ngResource","angular-redactor","flow","ngSanitize","xeditable"] , function()
 {
 }).config(function(redactorOptions) {
         /* Redactor wysiwyg editor configuration */
@@ -54,7 +54,7 @@ App.factory('Arrets', ['$http', '$q', function($http, $q) {
     return {
         query: function() {
             var deferred = $q.defer();
-            $http.get('/arrets', { cache: true}).success(function(data) {
+            $http.get('/arrets', { cache: true }).success(function(data) {
                     deferred.resolve(data);
                 }).error(function(data) {
                     deferred.reject(data);
@@ -105,13 +105,12 @@ App.controller('ViewController', ['$scope','$http','Blocs',function($scope,$http
 
     var campagne = $('#campagne_id').val();
 
-    $scope.$on('newsletter:updated', function() {
-        $.get("admin/campagne/view/" + campagne , function(data) {
-            $("#newsletterView").replaceWith(data);
-        });
-    });
+    $scope.template = 'admin/campagne/view/' + campagne;
 
-    $( "#newsletterView" ).load( "admin/campagne/view/" + campagne );
+    $scope.$on('newsletter:updated', function() {
+        var random = Math.random();
+        $scope.template = 'admin/campagne/view/' + campagne + '?' + random;
+    });
 
 }]);
 
@@ -337,3 +336,31 @@ App.directive("arret", function() {
         templateUrl: "arret"
     };
 });
+
+App.directive("newsletterView", ['Content' ,function(Content) {
+    return {
+        template: '<ng-include src="template"/>',
+        restrict: 'E',
+        controller: function($scope) {
+            var campagne = $('#campagne_id').val();
+            //function used on the ng-include to resolve the template
+            $scope.template = 'admin/campagne/view/' + campagne;
+            // Refresh include on add content
+            $scope.$on('newsletter:updated', function() {
+                var random = Math.random();
+                $scope.template = 'admin/campagne/view/' + campagne + '?' + random;
+            });
+            /* assign empty values for blocs */
+            this.contentBloc = {};
+            /* capture this (the controller scope ) as self */
+            var self = this;
+            $scope.getContent = function(id){
+                Content.query(id)
+                    .then(function (data) {
+                        self.contentBloc = data;
+                        console.log(self.contentBloc);
+                    });
+            };
+        }
+    };
+}]);

@@ -23,7 +23,7 @@
             <div class="component-build">
 
                 <div style="width: 600px;" ng-controller="ViewController as view">
-                     <div id="newsletterView"></div>
+                    <div id="newsletterView" ng-include src="template"></div>
                 </div>
 
                 <div ng-controller="DropController as dropped" id="build">
