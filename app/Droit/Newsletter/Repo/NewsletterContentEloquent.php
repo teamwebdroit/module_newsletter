@@ -87,15 +87,14 @@ class NewsletterContentEloquent implements NewsletterContentInterface{
 			return false;
 		}
 
-        $contents->type_id                = $data['type_id'];
 		$contents->titre                  = $data['titre'];
         $contents->contenu                = $data['contenu'];
-        $contents->image                  = $data['image'];
-        $contents->arret_id               = $data['arret_id'];
-        $contents->categorie_id           = $data['categorie_id'];
-        $contents->newsletter_campagne_id = $data['newsletter_campagne_id'];
-        $contents->rang                   = $data['rang'];
-		$contents->updated_at             = date('Y-m-d G:i:s');
+        $contents->updated_at             = date('Y-m-d G:i:s');
+
+        // if we changed the image
+        if(isset($data['image'])){
+            $contents->image = $data['image'];
+        }
 
 		$contents->save();
 		

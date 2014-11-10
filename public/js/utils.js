@@ -1,7 +1,7 @@
 $(function() {
 
     $('#content').redactor({
-        minHeight: 300
+        minHeight: 200
     });
 
     $('body').on('click','.deleteAction',function(event){

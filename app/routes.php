@@ -55,13 +55,17 @@ Route::post('uploadJS', 'UploadController@uploadJS');
 Route::get('building', 'NewsletterApiController@building');
 Route::post('sorting', 'NewsletterApiController@sorting');
 Route::post('process', 'NewsletterApiController@process');
+Route::post('edit', 'NewsletterApiController@edit');
 Route::post('remove', 'NewsletterApiController@remove');
+
 Route::get('preparedArrets/{selected?}', 'NewsletterApiController@preparedArrets');
 Route::get('preparedAnnees', 'NewsletterApiController@preparedAnnees');
+Route::get('prepareCampagne/{id}', 'NewsletterApiController@prepareCampagne');
+
 Route::get('arrets/{id}', 'NewsletterApiController@simple');
 Route::get('arrets', 'ArretController@arrets');
 Route::get('categories', 'CategorieController@categories');
-Route::get('prepareCampagne/{id}', 'NewsletterApiController@prepareCampagne');
+
 
 /**
  * Newsletter inscription routes

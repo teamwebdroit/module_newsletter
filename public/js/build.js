@@ -106,8 +106,6 @@ App.controller("FormController",['$scope','$http','notify','myService', function
 
         notify.config({ duration: 1000 });
 
-        console.log(form.image);
-
         var titre    = ( form.titre ? form.titre.$modelValue : '');
         var image    = ( image ? image : '');
         var contenu  = ( form.contenu ? form.contenu.$modelValue : '');
@@ -142,20 +140,56 @@ App.controller("FormController",['$scope','$http','notify','myService', function
  */
 App.controller("EditController",['$scope','$http','notify','myService', function($scope,$http,notify,myService){
 
+    this.editable = 0;
+
+    this.onedit = function(){
+
+    };
+
     this.editContent = function(idItem){
 
         var w = $( document ).width();
         w = w - 900;
         console.log(w);
 
+        $('.edit_content_form').hide();
+
         var content = $('#bloc_rang_'+idItem);
         content.find('.edit_content_form').css("width",w).show();
+        $( "#sortable" ).sortable( "disable" );
 
     };
 
     this.updateContent = function(editForm,idItem){
 
-        console.log(editForm);
+        notify.config({ duration: 1000 });
+
+        var image    = $('#editImage_'+ idItem ).val();
+        var image    = ( image ? image : null);
+        var titre    = ( editForm.titre ? editForm.titre.$modelValue : null);
+        var contenu  = ( editForm.contenu ? editForm.contenu.$modelValue : null);
+
+        var data = { titre : titre , image : image , contenu: contenu , id:idItem  };
+
+        /* Send data */
+        var all = $.param( data);
+
+        $http({
+            method : 'POST',
+            url    : 'edit',
+            data   : all, // pass in data as strings
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'} // set the headers so angular passing info as form data (not request payload)
+        })
+        .success(function(data)
+        {
+            if (!data.success) {
+                notify('Le bloc a bien été édité');
+                myService.changes();
+                $( "#sortable" ).sortable( "enable" );
+            }
+            else {  notify('Problème avec l\'édition du bloc'); }
+        });
+
     }
 
 }]);
@@ -248,5 +282,3 @@ App.controller('SelectController', ['$scope','$http','Arrets','notify','myServic
     };
 
 }]);
-
-

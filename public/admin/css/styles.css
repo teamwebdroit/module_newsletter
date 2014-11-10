@@ -321,7 +321,6 @@ img {
   padding: 10px;
   line-height: 1.428571429;
   background-color: #f7f8fa;
-  border: 1px solid #e6e7e8;
   border-radius: 1px;
   -webkit-transition: all 0.2s ease-in-out;
   -o-transition: all 0.2s ease-in-out;
@@ -3773,7 +3772,6 @@ button.close {
   margin-bottom: 20px;
   line-height: 1.428571429;
   background-color: #f7f8fa;
-  border: 1px solid #e6e7e8;
   border-radius: 1px;
   -webkit-transition: all 0.2s ease-in-out;
   -o-transition: all 0.2s ease-in-out;

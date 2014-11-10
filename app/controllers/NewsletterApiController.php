@@ -66,6 +66,32 @@ class NewsletterApiController extends BaseController {
 
     }
 
+    public function edit(){
+
+        $data = Input::all();
+        $new  = array('id' => $data['id']);
+
+        if(!empty($data))
+        {
+            foreach($data as $key => $input)
+            {
+                if(!empty($input)){
+                    $new[$key] = $input;
+                }
+            }
+        }
+
+        $contents = $this->content->update($new);
+
+        if($contents)
+        {
+            return Response::json( $contents, 200 );
+        }
+
+        return false;
+
+    }
+
     public function sorting(){
 
         $data = Input::all();
