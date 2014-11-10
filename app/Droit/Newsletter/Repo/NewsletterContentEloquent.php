@@ -87,10 +87,13 @@ class NewsletterContentEloquent implements NewsletterContentInterface{
 			return false;
 		}
 
-		$contents->titre                  = $data['titre'];
-        $contents->contenu                = $data['contenu'];
-        $contents->updated_at             = date('Y-m-d G:i:s');
+		$contents->titre      = $data['titre'];
+        $contents->updated_at = date('Y-m-d G:i:s');
 
+        // if there is a content
+        if(isset($data['contenu'])) {
+            $contents->contenu = $data['contenu'];
+        }
         // if we changed the image
         if(isset($data['image'])){
             $contents->image = $data['image'];

@@ -4,7 +4,7 @@ var App = angular.module('newsletter', ["cgNotify","ngDragDrop","ngResource","an
 
 }).config(function(redactorOptions) {
         /* Redactor wysiwyg editor configuration */
-        redactorOptions.minHeight = 200;
+        redactorOptions.minHeight = 150;
         redactorOptions.formattingTags = ['p', 'h2', 'h3','h4'];
 }).config(['flowFactoryProvider', function (flowFactoryProvider) {
         /* Flow image upload configuration */
@@ -104,7 +104,10 @@ App.controller("FormController",['$scope','$http','notify','myService', function
         var image    = $('.uploadImage').val();
         var campagne = $('#campagne_id').val();
 
-        notify.config({ duration: 1000 });
+        notify.config({
+            duration: 1000,
+            template: 'views/common/notification.html'
+        });
 
         var titre    = ( form.titre ? form.titre.$modelValue : '');
         var image    = ( image ? image : '');
@@ -125,7 +128,10 @@ App.controller("FormController",['$scope','$http','notify','myService', function
         .success(function(data)
         {
             if (!data.success) {
-                notify('Le bloc a bien été ajouté');
+                notify({
+                    templateUrl : 'notify',
+                    message  : 'Le bloc a bien été ajouté'
+                });
                 // remove arret template
                 myService.setBloc(0);
                 myService.changes();
@@ -140,17 +146,20 @@ App.controller("FormController",['$scope','$http','notify','myService', function
  */
 App.controller("EditController",['$scope','$http','notify','myService', function($scope,$http,notify,myService){
 
-    this.editable = 0;
+    $scope.editable = 0;
 
-    this.onedit = function(){
-
+    this.onedit = function(id){
+        return id == $scope.editable;
     };
 
     this.editContent = function(idItem){
 
         var w = $( document ).width();
-        w = w - 900;
-        console.log(w);
+        w = w - 880;
+
+        $scope.editable = idItem;
+        console.log(idItem);
+        console.log($scope.editable);
 
         $('.edit_content_form').hide();
 
@@ -183,9 +192,13 @@ App.controller("EditController",['$scope','$http','notify','myService', function
         .success(function(data)
         {
             if (!data.success) {
-                notify('Le bloc a bien été édité');
+                notify({
+                    templateUrl : 'notify',
+                    message  : 'Le bloc a bien été édité'
+                });
                 myService.changes();
                 $( "#sortable" ).sortable( "enable" );
+                $scope.editable = 0;
             }
             else {  notify('Problème avec l\'édition du bloc'); }
         });

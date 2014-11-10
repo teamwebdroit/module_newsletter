@@ -15,7 +15,9 @@
                                 <img style="max-width: 560px;max-height: 120px;" alt="Droit du travail" src="{{ asset('files/'.$bloc->image) }}" />
                             </a>
                         </p>
-                        <h2>{{ $bloc->titre }}</h2>
+                        @if( $bloc->titre )
+                            <h2>{{ $bloc->titre }}</h2>
+                        @endif
                     </td>
                 </tr>
             </table>

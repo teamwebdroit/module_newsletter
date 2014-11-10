@@ -6,7 +6,8 @@
 
         <div class="options" style="margin-bottom: 10px;">
             <div class="btn-toolbar">
-                <a href="{{ url('admin/campagne/'.$campagne->id.'/edit') }}" class="btn btn-info"><i class="fa fa-chevron-left"></i>  &nbsp;&Eacute;diter la campagne</a>
+                <a href="{{ url('admin/campagne/'.$campagne->id.'/edit') }}" class="btn btn-sky"><i class="fa fa-chevron-left"></i>  &nbsp;&Eacute;diter la campagne</a>
+                <a href="{{ url('admin/campagne') }}" class="btn btn-inverse"><i class="fa fa-chevron-left"></i>  Retour aux campagnes</a>
             </div>
         </div>
 
@@ -22,7 +23,7 @@
 
             <div class="component-build">
 
-                <div style="width: 600px;" ng-controller="ViewController as view">
+                <div id="viewBuild" ng-controller="ViewController as view">
 
                     <div id="bailNewsletter">
                         <div id="sortable">

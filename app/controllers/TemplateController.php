@@ -12,6 +12,11 @@ class TemplateController extends BaseController {
         return View::make('newsletter.templates.post-text');
     }
 
+    public function notify()
+    {
+        return View::make('newsletter.templates.notify');
+    }
+
     /**
      * Create templates
      */

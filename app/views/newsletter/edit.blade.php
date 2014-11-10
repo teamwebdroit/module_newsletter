@@ -2,17 +2,16 @@
 @section('content')
 
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-offset-2 col-md-8">
 
         <div class="options" style="margin-bottom: 10px;">
             <div class="btn-toolbar">
-                <a href="{{ url('admin/campagne') }}" class="btn btn-info"><i class="fa fa-chevron-left"></i> &nbsp;Retour aux campagnes</a>
-                <a href="{{ url('admin/campagne/'.$campagne->id) }}" class="btn btn-inverse pull-right">
-                Composer newsletter  &nbsp;<i class="fa fa-chevron-right"></i></a>
+                <a href="{{ url('admin/campagne') }}" class="btn btn-inverse"><i class="fa fa-chevron-left"></i> &nbsp;Retour aux campagnes</a>
+                <a href="{{ url('admin/campagne/'.$campagne->id) }}" class="btn btn-inverse pull-right"> Composer newsletter  &nbsp;<i class="fa fa-chevron-right"></i></a>
             </div>
         </div>
 
-        <div class="panel panel-success">
+        <div class="panel panel-sky">
 
             <!-- form start -->
             {{ Form::model($campagne ,array(

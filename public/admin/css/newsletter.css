@@ -2,11 +2,17 @@
     min-height: 300px;
 }
 
+#viewBuild{
+    width: 600px;
+    padding:0 20px;
+    background: #fff;
+}
+
 .component-menu{
    position: absolute;
-   top: -180px;
+   top: -90px;
    right: 0px;
-   width: 500px;
+   width: 100%;
    text-align: right;
 }
 
@@ -14,7 +20,7 @@
     display: block;
     float: right;
     height: 75px;
-    width: 135px;
+    width: 100px;
     text-align: center;
     padding: 5px 3px;
     margin-bottom: 5px;
@@ -34,7 +40,7 @@
 }
 
 .component-bloc a img{
-    width: 65px;
+    width: 45px;
     display: block;
     margin: 0 auto;
 }
@@ -64,4 +70,8 @@
     width: 480px;
     z-index: 100;
     display: none;
+}
+
+.panel .redactor-box {
+    margin-bottom: 0px;
 }

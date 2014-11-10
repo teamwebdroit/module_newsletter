@@ -22,7 +22,7 @@
             <td width="25" class="resetMarge"></td><!-- space -->
             <td valign="top" align="center" width="160" class="resetMarge">
                 <div class="uploadBtn" ng-if="!notedited">
-                    <span class="btn btn-xs btn-info" ng-hide="!edit.onedit( content.idItem )" flow-btn flow-attrs="{accept:'image/*'}">Changer image</span>
+                    <span class="btn btn-xs btn-info" ng-if="edit.onedit( content.idItem )" flow-btn flow-attrs="{accept:'image/*'}">Changer image</span>
                     <span class="btn btn-xs btn-warning" ng-show="$flow.files.length" flow-btn flow-attrs="{accept:'image/*'}">Changer</span>
                     <span class="btn btn-xs btn-danger" ng-show="$flow.files.length" ng-click="$flow.cancel()">Supprimer</span>
                 </div>
@@ -41,7 +41,6 @@
         <form name="editForm" class="form-horizontal" ng-submit="edit.updateContent(editForm,content.idItem)">
 
             <div class="panel panel-success">
-                <div class="panel-heading">Image à droite et texte</div>
                 <div class="panel-body">
                     <div class="form-group">
                         <label>Titre</label>
@@ -54,7 +53,10 @@
                     <div class="form-group">
                         <input type="hidden" ng-model="content.idItem" name="id">
                         <input type="hidden" id="editImage_{[{ content.idItem }]}" ng-model="content.image" id="editImage_{[{ content.idItem }]}" name="image" value="{{ $flow.files[0].name }}">
-                        <button type="submit" class="btn btn-default">Envoyer</button>
+                        <div class="btn-group">
+                            <button type="submit" class="btn btn-success">Envoyer</button>
+                            <button type="submit" class="btn btn-default">Annuler</button>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -27,7 +27,7 @@
     <div class="col-md-5">
 
         <div class="panel panel-success">
-            <div class="panel-heading">Contenu</div>
+            <div class="panel-heading">Arrêt</div>
             <div class="panel-body">
                 <div class="form-group">
                     <label>Sélectionner l'arrêt</label>
