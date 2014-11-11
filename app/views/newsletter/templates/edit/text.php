@@ -23,7 +23,6 @@
         <form name="editForm" class="form-horizontal" ng-submit="edit.updateContent(editForm,content.idItem)">
 
             <div class="panel panel-success">
-                <div class="panel-heading">Titre et texte</div>
                 <div class="panel-body">
                     <div class="form-group">
                         <label>Titre</label>
@@ -36,7 +35,10 @@
                     <div class="form-group">
                         <input type="hidden" ng-model="content.idItem" name="id">
                         <input type="hidden" class="uploadImage" name="image" ng-if="notedited" value="{{ $flow.files[0].name }}">
-                        <button type="submit" class="btn btn-default">Envoyer</button>
+                        <div class="btn-group">
+                            <button type="submit" class="btn btn-success">Envoyer</button>
+                            <button type="button" ng-click="edit.close()" class="btn btn-default">Annuler</button>
+                        </div>
                     </div>
                 </div>
             </div>

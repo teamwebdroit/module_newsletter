@@ -30,13 +30,11 @@ $(function() {
                 data    : { id: id },
                 type    : "POST",
                 success : function(data) {
-
                     if(data == 'ok')
                     {
                         console.log('ok remove');
                         $('#bloc_rang_'+id).remove();
                     }
-
                 }
             });
         }

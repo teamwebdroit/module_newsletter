@@ -109,9 +109,4 @@ class NewsletterController extends BaseController {
 
         return View::make('newsletter.show')->with(array('content' => $campagne));
     }
-
-    public function addUser(){
-
-    }
-
 }

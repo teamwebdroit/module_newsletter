@@ -104,10 +104,7 @@ App.controller("FormController",['$scope','$http','notify','myService', function
         var image    = $('.uploadImage').val();
         var campagne = $('#campagne_id').val();
 
-        notify.config({
-            duration: 1000,
-            template: 'views/common/notification.html'
-        });
+        notify.config({ duration: 1000 });
 
         var titre    = ( form.titre ? form.titre.$modelValue : '');
         var image    = ( image ? image : '');
@@ -129,14 +126,13 @@ App.controller("FormController",['$scope','$http','notify','myService', function
         {
             if (!data.success) {
                 notify({
-                    templateUrl : 'notify',
-                    message  : 'Le bloc a bien été ajouté'
+                    messageTemplate  : '<span>Le bloc a bien été ajouté</span>'
                 });
                 // remove arret template
                 myService.setBloc(0);
                 myService.changes();
             }
-            else {  notify('Problème avec l\'ajout du bloc'); }
+            else { notify({ messageTemplate:'Problème avec l\'édition du bloc'}); }
         });
     };
 }]);
@@ -152,10 +148,14 @@ App.controller("EditController",['$scope','$http','notify','myService', function
         return id == $scope.editable;
     };
 
+    this.close = function(){
+        $('.edit_content_form').hide();
+    };
+
     this.editContent = function(idItem){
 
         var w = $( document ).width();
-        w = w - 880;
+        w = w - 920;
 
         $scope.editable = idItem;
         console.log(idItem);
@@ -193,14 +193,13 @@ App.controller("EditController",['$scope','$http','notify','myService', function
         {
             if (!data.success) {
                 notify({
-                    templateUrl : 'notify',
-                    message  : 'Le bloc a bien été édité'
+                    messageTemplate  : '<span>Le bloc a bien été édité</span>'
                 });
                 myService.changes();
                 $( "#sortable" ).sortable( "enable" );
                 $scope.editable = 0;
             }
-            else {  notify('Problème avec l\'édition du bloc'); }
+            else {  notify({ messageTemplate:'Problème avec l\'édition du bloc'}); }
         });
 
     }

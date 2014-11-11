@@ -9,7 +9,7 @@
         <tr bgcolor="ffffff">
             <td colspan="3" height="35">
                 <div class="pull-right btn-group btn-group-xs">
-                    <button class="btn btn-orange" ng-click="edit.editContent(content.idItem)" type="button">éditer</button>
+                    <button class="btn btn-orange" ng-click="edit.editContent(content.idItem) && !$flow.files.length" type="button">éditer</button>
                     <button class="btn btn-danger deleteContent deleteContentBloc" data-id="{[{ content.idItem }]}" data-action="{[{ content.titre }]}" type="button">&nbsp;×&nbsp;</button>
                 </div>
             </td>
@@ -55,7 +55,7 @@
                         <input type="hidden" id="editImage_{[{ content.idItem }]}" ng-model="content.image" name="image"  value="{{ $flow.files[0].name }}">
                         <div class="btn-group">
                             <button type="submit" class="btn btn-success">Envoyer</button>
-                            <button type="submit" class="btn btn-default">Annuler</button>
+                            <button type="button" ng-click="edit.close()" class="btn btn-default">Annuler</button>
                         </div>
                     </div>
                 </div>

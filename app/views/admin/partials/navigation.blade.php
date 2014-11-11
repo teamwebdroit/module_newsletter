@@ -12,8 +12,7 @@
         <li class="<?php echo (Request::is('admin/newsletter/*') ? 'active' : '' ); ?>"><a href="javascript:;"><i class="fa fa-envelope"></i><span>Newsletter</span></a>
             <ul class="acc-menu">
                 <li><a href="{{ url('admin/campagne')  }}">Campagnes</a></li>
-                <li><a href="{{ url('admin/campagne/compose')  }}">Composer</a></li>
-                <li><a href="{{ url('admin/campagne/abonne')  }}">Abonnées</a></li>
+                <li><a href="{{ url('admin/abonne')  }}">Abonnées</a></li>
             </ul>
         </li>
     </ul>

@@ -17,7 +17,7 @@
         <tr>
             <td valign="top" align="center" width="100%" class="resetMarge">
                 <div class="uploadBtn" ng-if="!notedited">
-                    <span class="btn btn-xs btn-info" ng-if="edit.onedit( content.idItem )" flow-btn flow-attrs="{accept:'image/*'}">Changer image</span>
+                    <span class="btn btn-xs btn-info" ng-if="edit.onedit( content.idItem ) && !$flow.files.length" flow-btn flow-attrs="{accept:'image/*'}">Changer image</span>
                     <span class="btn btn-xs btn-warning" ng-show="$flow.files.length" flow-btn flow-attrs="{accept:'image/*'}">Changer</span>
                     <span class="btn btn-xs btn-danger" ng-show="$flow.files.length" ng-click="$flow.cancel()">Supprimer</span>
                 </div>
@@ -57,7 +57,7 @@
                         <input type="hidden" id="editImage_{[{ content.idItem }]}" ng-model="content.image"  name="image" value="{[{ $flow.files[0].name }]}">
                         <div class="btn-group">
                             <button type="submit" class="btn btn-success">Envoyer</button>
-                            <button type="submit" class="btn btn-default">Annuler</button>
+                            <button type="button" ng-click="edit.close()" class="btn btn-default">Annuler</button>
                         </div>
                     </div>
                 </div>

@@ -23,7 +23,6 @@ Route::get('gobuild', 'NewsletterController@index');
  */
 Route::get('building-blocs', 'TemplateController@buildingBlocs');
 Route::get('post-text', 'TemplateController@postText');
-Route::get('notify', 'TemplateController@notify');
 
     /**
      * Templates for js creation
@@ -88,6 +87,8 @@ Route::group(array('prefix' => 'admin'), function()
     Route::get('campagne/compose', 'CampagneController@compose');
     Route::get('campagne/view/{id}', 'CampagneController@view');
     Route::resource('campagne', 'CampagneController');
+
+    Route::resource('abonne', 'AbonneController');
 
     Route::match(array('GET', 'POST'), 'categorie/arretsExists', array('uses' => 'CategorieController@arretsExists'));
     Route::match(array('GET', 'POST'), 'search', array('uses' => 'SearchController@index'));
