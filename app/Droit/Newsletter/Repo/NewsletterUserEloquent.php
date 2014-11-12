@@ -26,7 +26,7 @@ class NewsletterUserEloquent implements NewsletterUserInterface{
 
 	public function find($id){
 				
-		return $this->user->with(array('subscription' => function($query)
+		return $this->user->with(array('newsletter','subscription' => function($query)
         {
             $query->join('newsletters', 'newsletters.id', '=', 'newsletter_subscriptions.newsletter_id');
         }))->findOrFail($id);

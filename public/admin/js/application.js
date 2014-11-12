@@ -4,6 +4,12 @@
 
 $(function () {
 
+    window.setTimeout(function() {
+        $(".flash").fadeTo(500, 0).slideUp(500, function(){
+            $(this).remove();
+        });
+    }, 3500);
+
     $("#threads,#comments,#users").niceScroll({horizrailenabled:false,railoffset: {left:0}});
 
     function showTooltip(x, y, contents) {

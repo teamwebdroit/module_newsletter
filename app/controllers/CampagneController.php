@@ -70,9 +70,10 @@ class CampagneController extends BaseController {
      */
     public function show($id)
     {
+        $infos    = $this->campagne->find($id);
         $campagne = $this->campagne->find($id);
 
-        return View::make('newsletter.show')->with(array( 'isNewsletter' => true , 'campagne' => $campagne ));
+        return View::make('newsletter.show')->with(array( 'isNewsletter' => true , 'campagne' => $campagne , 'infos' => $infos ));
     }
 
     /**

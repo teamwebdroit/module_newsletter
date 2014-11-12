@@ -26,7 +26,26 @@
                             {{ Form::text('email', null , array('class' => 'form-control') ) }}
                         </div>
                     </div>
-
+                    <div class="form-group">
+                        <label for="message" class="col-sm-3 control-label">Status</label>
+                        <div class="col-sm-6">
+                            {{ Form::select('activation', array('1' => 'Confirmé', '0' => 'Non confirmé'), 1 , array('class' => 'form-control')) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="message" class="col-sm-3 control-label">Abonnements</label>
+                        <div class="col-sm-6">
+                            @if(!$newsletter->isEmpty())
+                                @foreach($newsletter as $abonnement)
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="newsletter_id[]" value="{{ $abonnement->id }}">{{ $abonnement->titre }}
+                                    </label>
+                                </div>
+                                @endforeach
+                            @endif
+                        </div>
+                    </div>
                 </div>
                 <div class="panel-footer mini-footer ">
                     <div class="col-sm-3"></div>

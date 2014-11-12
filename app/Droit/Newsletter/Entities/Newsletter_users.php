@@ -19,4 +19,9 @@ class Newsletter_users extends \Eloquent {
         return $this->hasMany('Droit\Newsletter\Entities\Newsletter_subscriptions', 'user_id', 'id');
     }
 
+    public function newsletter(){
+
+        return $this->belongsToMany('Droit\Newsletter\Entities\Newsletter', 'newsletter_subscriptions', 'user_id', 'newsletter_id');
+    }
+
 }

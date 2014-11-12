@@ -3,7 +3,8 @@
     margin-top:20px;
 }
 
-#bailNewsletter{
+#bailNewsletter,
+#bailNewsletterCreate{
     font-family: Arial,Helvetica,sans-serif;
     font-size: 12px;
     text-align: justify;
@@ -12,16 +13,19 @@
     margin: 0 auto;
 }
 
-#bailNewsletter .resetMarge{
+#bailNewsletterCreate{
+    padding:20px;
+    margin: 0 0 0 10px;
+}
+
+#bailNewsletter .resetMarge ,
+#bailNewsletterCreate .resetMarge{
     padding: 0;
     margin: 0;
 }
 
-#bailNewsletter .headerInfos{
-
-}
-
-#bailNewsletter .resetTable{
+#bailNewsletter .resetTable,
+#bailNewsletterCreate .resetTable{
     border-collapse:collapse;
     mso-table-lspace:0pt;
     mso-table-rspace:0pt;
@@ -29,15 +33,18 @@
     padding: 0;
 }
 
-#bailNewsletter #sortable td{
+#bailNewsletter #sortable td,
+#bailNewsletterCreate #sortable td{
     background: #fff;
 }
 
-#bailNewsletter .redBail{
+#bailNewsletter .redBail,
+#bailNewsletterCreate .redBail{
     color: #cb2629;
 }
 
-#bailNewsletter .header{
+#bailNewsletter .header,
+#bailNewsletterCreate .header{
     color: #ffffff;
     font-size: 18px;
     font-weight: normal;
@@ -46,7 +53,8 @@
     font-family: Helvetica, Arial, sans-serif;
 }
 
-#bailNewsletter .header.headerSmall{
+#bailNewsletter .header.headerSmall,
+#bailNewsletterCreate .header.headerSmall{
     font-size: 15px;
 }
 
@@ -55,30 +63,35 @@
 #bailNewsletter .contentForm h4,
 #bailNewsletter .contentForm p,
 #bailNewsletter .contentForm a,
-#bailNewsletter .contentForm ul li{
+#bailNewsletter .contentForm ul li,
+#bailNewsletterCreate h2,
+#bailNewsletterCreate .contentForm h3,
+#bailNewsletterCreate .contentForm h4,
+#bailNewsletterCreate .contentForm p,
+#bailNewsletterCreate .contentForm a,
+#bailNewsletterCreate .contentForm ul li{
     margin: 0 0 10px 0;
     padding: 0;
 }
 
-#bailNewsletter h2 {
+#bailNewsletter h2,
+#bailNewsletterCreate h2{
     font-size:14px;
     font-weight:bold;
     color: #cb2629;
 }
 
-#bailNewsletter .contentForm h3 {
+#bailNewsletter .contentForm h3,
+#bailNewsletterCreate .contentForm h3,
+#bailNewsletter .contentForm h4,
+#bailNewsletterCreate .contentForm h4{
     font-size:13px;
     font-weight:bold;
     color: #cb2629;
 }
 
-#bailNewsletter .contentForm h4 {
-    font-weight:bold;
-    font-size:13px;
-    color: #cb2629;
-}
-
-#bailNewsletter .abstract{
+#bailNewsletter .abstract,
+#bailNewsletterCreate .abstract{
     color: #666;
     font-family: Arial,Helvetica,sans-serif;
     font-size: 12px;
@@ -89,14 +102,18 @@
     text-align: justify;
 }
 
-#bailNewsletter .contentForm a {
+#bailNewsletter .contentForm a,
+#bailNewsletterCreate .contentForm a{
     color: #000;
     text-decoration: underline;
 }
 
 #bailNewsletter .contentForm h4 ,
 #bailNewsletter .contentForm p ,
-#bailNewsletter .contentForm ul li{
+#bailNewsletter .contentForm ul li,
+#bailNewsletterCreate .contentForm h4 ,
+#bailNewsletterCreate .contentForm p ,
+#bailNewsletterCreate .contentForm ul li{
     font-size:12px;
     font-weight:normal;
 }
@@ -104,17 +121,23 @@
 #bailNewsletter  p,
 #bailNewsletter .contentForm p,
 #bailNewsletter .contentForm div,
-#bailNewsletter .contentForm .content {
+#bailNewsletter .contentForm .content,
+#bailNewsletterCreate  p,
+#bailNewsletterCreate .contentForm p,
+#bailNewsletterCreate .contentForm div,
+#bailNewsletterCreate .contentForm .content{
     font-family: Arial,Helvetica,sans-serif;
     font-size: 12px;
     text-align: justify;
 }
 
-#bailNewsletter .contentForm ul{
+#bailNewsletter .contentForm ul,
+#bailNewsletterCreate .contentForm ul{
     margin-left: 5px;
 }
 
-#bailNewsletter .contentForm ul li{
+#bailNewsletter .contentForm ul li,
+#bailNewsletterCreate .contentForm ul li{
     text-align:justify;
     font-family:Arial, Helvetica, sans-serif;
     font-size:12px;
@@ -123,7 +146,8 @@
     margin-bottom: 5px;
 }
 
-#bailNewsletter .thumbnail{
+#bailNewsletter .thumbnail,
+#bailNewsletterCreate .thumbnail{
     margin-bottom: 0;
     max-width: 130px;
     background: none;
@@ -131,13 +155,15 @@
     padding: 0;
 }
 
-#bailNewsletter .thumbnail.big{
+#bailNewsletter .thumbnail.big,
+#bailNewsletterCreate .thumbnail.big{
     margin-bottom: 0;
     max-width: 560px;
     max-height: 130px;
 }
 
-#bailNewsletter .upoadBtn a{
+#bailNewsletter .upoadBtn a,
+#bailNewsletterCreate .upoadBtn a{
     background: none repeat scroll 0 0 #ccc;
     border: medium none;
     border-radius: 0;
@@ -145,21 +171,25 @@
     padding: 5px 10px;
 }
 
-#bailNewsletter .linkGrey,#bailNewsletter a.linkGrey{
+#bailNewsletter .linkGrey,#bailNewsletter a.linkGrey,
+#bailNewsletterCreate .linkGrey,#bailNewsletterCreate a.linkGrey{
     color: #999;
     font-size: 11px;
     font-weight: normal;
     font-family: Helvetica, Arial, sans-serif;
 }
 
-#bailNewsletter .blocBorder{
+#bailNewsletter .blocBorder,
+#bailNewsletterCreate .blocBorder{
     border-bottom:1px solid #ededed;
 }
 
-#bailNewsletter .newsletterborder{
+#bailNewsletter .newsletterborder,
+#bailNewsletterCreate .newsletterborder{
     border:1px solid #ededed;
 }
 
-#bailNewsletter .contentForm .centerText,#bailNewsletter p.centerText,#bailNewsletter p.centerText a{
+#bailNewsletter .contentForm .centerText,#bailNewsletter p.centerText,#bailNewsletter p.centerText a,
+#bailNewsletterCreate .contentForm .centerText,#bailNewsletterCreate p.centerText,#bailNewsletterCreate p.centerText a{
     text-align: center;
 }

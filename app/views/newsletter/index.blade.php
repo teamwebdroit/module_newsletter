@@ -2,17 +2,23 @@
 @section('content')
 
 <div class="row">
-    <div class="col-md-12">
-
+    <div class="col-md-6">
+        <h3>Liste des campagnes </h3>
+    </div>
+    <div class="col-md-6">
         <div class="options text-right" style="margin-bottom: 10px;">
             <div class="btn-toolbar">
                 <a href="{{ url('admin/campagne/create') }}" class="btn btn-green"><i class="fa fa-plus"></i> &nbsp;Nouvelle campagne</a>
             </div>
         </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
 
         <div class="panel panel-inverse">
             <div class="panel-heading">
-                <h4><i class="fa fa-tasks"></i> &nbsp;Campagne Newsletter</h4>
+                <h4><i class="fa fa-tasks"></i> &nbsp;</h4>
             </div>
             <div class="panel-body">
                 <div class="table-responsive">

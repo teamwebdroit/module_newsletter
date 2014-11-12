@@ -4,7 +4,7 @@
       ng-controller="FormController as formCtrl"
       ng-submit="addContent(blocForm,'image')">
 
-    <div class="col-md-7" id="bailNewsletter">
+    <div class="col-md-7" id="bailNewsletterCreate">
         <!-- Bloc content-->
         <table border="0" width="560" align="center" cellpadding="0" cellspacing="0" class="resetTable">
             <tr>

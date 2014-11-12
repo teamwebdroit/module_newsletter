@@ -2,13 +2,20 @@
 @section('content')
 
 <div class="row">
-    <div class="col-md-12">
-
+    <div class="col-md-6">
+        <h3>Abonnés la newsletter</h3>
+    </div>
+    <div class="col-md-6">
         <div class="options text-right" style="margin-bottom: 10px;">
             <div class="btn-toolbar">
                 <a href="{{ url('admin/abonne/create') }}" class="btn btn-green"><i class="fa fa-plus"></i> &nbsp;Ajouter un abonné</a>
             </div>
         </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
 
         <div class="panel panel-inverse">
             <div class="panel-heading">
@@ -56,8 +63,8 @@
                                     @endif
                                 </td>
                                 <td class="text-right">
-                                    {{ Form::open(array('route' => array('admin.abonne.destroy', $abonne->id), 'method' => 'delete')) }}
-                                        <button data-action="Abonné {{ $abonne->email }}" class="btn btn-danger btn-sm deleteAction">Désabonner</button>
+                                    {{ Form::open(array('route' => array('admin.abonne.destroy', $abonne->email), 'method' => 'delete')) }}
+                                        <button data-action="Abonné {{ $abonne->email }}" class="btn btn-danger btn-xs deleteAction">Supprimer</button>
                                     {{ Form::close() }}
                                 </td>
                             </tr>

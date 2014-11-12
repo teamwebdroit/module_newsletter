@@ -42,16 +42,23 @@
                     <div class="form-group">
                         <label for="message" class="col-sm-3 control-label">Abonnements</label>
                         <div class="col-sm-6">
+
                             @if( !$abonne->subscription->isEmpty() )
-                                <?php $abos = $abonne->subscription->lists('titre','id'); ?>
+                                <?php $abos = $abonne->subscription->lists('newsletter_id'); ?>
+                            @else
+                                <?php $abos = array(); ?>
                             @endif
 
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" value="">
-                                    Option one is this and that&mdash;be sure to include why it's great
-                                </label>
-                            </div>
+                            @if(!$newsletter->isEmpty())
+                                @foreach($newsletter as $abonnement)
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="newsletter_id[]" <?php if(in_array($abonnement->id,$abos)){ echo 'checked'; } ?> value="{{ $abonnement->id }}">
+                                        {{ $abonnement->titre }}
+                                    </label>
+                                </div>
+                                @endforeach
+                            @endif
 
                         </div>
                     </div>

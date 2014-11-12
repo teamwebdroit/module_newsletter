@@ -6,6 +6,7 @@
 
 use Illuminate\Support\ServiceProvider;
 
+use Droit\Newsletter\Entities\Newsletter as Newsletter;
 use Droit\Newsletter\Entities\Newsletter_contents as Newsletter_contents;
 use Droit\Newsletter\Entities\Newsletter_types as Newsletter_types;
 use Droit\Newsletter\Entities\Newsletter_campagnes as Newsletter_campagnes;
@@ -21,7 +22,9 @@ class NewsletterServiceProvider extends ServiceProvider {
 	 * Register binding interface to implementation 
 	 */
     public function register()
-    {         	
+    {
+        $this->registerNewsletterService();
+
 		$this->registerContentService();
 
         $this->registerTypesService();
@@ -35,8 +38,19 @@ class NewsletterServiceProvider extends ServiceProvider {
         $this->registerSubscribeService();
     }
 
+    /**
+     * Newsletter Content service
+     */
+    protected function registerNewsletterService(){
+
+        $this->app->bind('Droit\Newsletter\Repo\NewsletterInterface', function()
+        {
+            return new \Droit\Newsletter\Repo\NewsletterEloquent( new Newsletter );
+        });
+    }
+
 	/**
-	 * Newsletter Content service
+	 * Newsletter service
 	 */     
     protected function registerContentService(){
     

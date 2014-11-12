@@ -1,5 +1,5 @@
 @if( $errors->has() || Session::has('status'))
-    <div class="row">
+    <div class="row fade in flash" id="alertMessage">
         <div class="col-sm-12">
             <div class="alert alert-dismissable alert-{{ Session::get('status') }}">
 

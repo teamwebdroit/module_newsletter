@@ -27,19 +27,15 @@ class NewsletterSubscriptionEloquent implements NewsletterSubscriptionInterface{
 
 	public function subscribe(array $data){
 
-		$subscribe = $this->subscribe->create(array(
-			'user_id'       => $data['user_id'],
-            'newsletter_id' => $data['newsletter_id'],
-			'created_at'    => date('Y-m-d G:i:s'),
-			'updated_at'    => date('Y-m-d G:i:s')
-		));
-		
-		if( ! $subscribe )
-		{
-			return false;
-		}
-
-		return $subscribe;
+        foreach($data['newsletter_id'] as $newsletter_id)
+        {
+            $this->subscribe->create(array(
+                'user_id'       => $data['user_id'],
+                'newsletter_id' => $newsletter_id,
+                'created_at'    => date('Y-m-d G:i:s'),
+                'updated_at'    => date('Y-m-d G:i:s')
+            ));
+        }
 	}
 
     public function delete($id){

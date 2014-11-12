@@ -22,10 +22,12 @@
             <input id="campagne_id" value="{{ $campagne->id }}" type="hidden">
 
             <div class="component-build">
-
-                <div id="viewBuild" ng-controller="ViewController as view">
-
-                    <div id="bailNewsletter">
+                <div id="bailNewsletter" class="onBuild">
+                    <!-- Logos -->
+                    @include('newsletter.send.logos')
+                    <!-- Header -->
+                    @include('newsletter.send.header')
+                    <div id="viewBuild" ng-controller="ViewController as view">
                         <div id="sortable">
                             <div ng-repeat="content in view.contents" id="bloc_rang_{[{ content.idItem }]}" data-rel="{[{ content.idItem }]}">
                                 <image-left-text-edit ng-if="isTemplate('image-left-text',content.type.template)"></image-left-text-edit>
@@ -37,16 +39,9 @@
                             </div>
                         </div>
                     </div>
-                    <!--<div id="newsletterView" ng-include src="template"></div>-->
                 </div>
 
                 <div id="build">
-
-                    <div class="component-menu">
-                        <div class="component-bloc" ng-repeat="bloc in build.blocs">
-                            <buiding-blocs></buiding-blocs>
-                        </div>
-                    </div>
 
                     <image-left-text ng-if="isBloc('image-left-text')"></image-left-text>
                     <image-right-text ng-if="isBloc('image-right-text')"></image-right-text>
@@ -54,6 +49,13 @@
                     <image-alone ng-if="isBloc('image')"></image-alone>
                     <text-alone ng-if="isBloc('text')"></text-alone>
                     <arret ng-if="isBloc('arret')"></arret>
+
+                    <div class="component-menu">
+                        <h5>Composants</h5>
+                        <div class="component-bloc" ng-repeat="bloc in build.blocs">
+                            <buiding-blocs></buiding-blocs>
+                        </div>
+                    </div>
 
                 </div>
 
