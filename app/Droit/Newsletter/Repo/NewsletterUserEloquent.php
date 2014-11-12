@@ -6,84 +6,107 @@ use Droit\Event\UserWasSubscribed;
 
 class NewsletterUserEloquent implements NewsletterUserInterface{
 
-	protected $subscribe;
+	protected $user;
 
 	/**
 	 * Construct a new SentryUser Object
 	 */
-	public function __construct(M $subscribe)
+	public function __construct(M $user)
 	{
-		$this->subscribe = $subscribe;
+		$this->user = $user;
 	}
 	
 	public function getAll(){
 		
-		return $this->subscribe->all();
+		return $this->user->with(array('subscription' => function($query)
+        {
+            $query->join('newsletters', 'newsletters.id', '=', 'newsletter_subscriptions.newsletter_id');
+        }))->get();
 	}
 
 	public function find($id){
 				
-		return $this->subscribe->findOrFail($id);
+		return $this->user->with(array('subscription' => function($query)
+        {
+            $query->join('newsletters', 'newsletters.id', '=', 'newsletter_subscriptions.newsletter_id');
+        }))->findOrFail($id);
 	}
 
     public function activate($token){
 
-        $subscribe = $this->subscribe->where('activation_token','=',$token)->get()->first();
+        $user = $this->user->where('activation_token','=',$token)->get()->first();
 
-        if( ! $subscribe )
+        if( ! $user )
         {
             return false;
         }
 
-        $subscribe->activated_at = date('Y-m-d G:i:s');
-        $subscribe->save();
+        $user->activated_at = date('Y-m-d G:i:s');
+        $user->save();
 
-        return $subscribe;
+        return $user;
 
     }
 
 	public function create(array $data){
 
-		$subscribe = $this->subscribe->create(array(
+		$user = $this->user->create(array(
 			'email'            => $data['email'],
             'activation_token' => $data['activation_token'],
 			'created_at'       => date('Y-m-d G:i:s'),
 			'updated_at'       => date('Y-m-d G:i:s')
 		));
 		
-		if( ! $subscribe )
+		if( ! $user )
 		{
 			return false;
 		}
 
-        $subscribe->raise(new UserWasSubscribed($subscribe));
+        $user->raise(new UserWasSubscribed($user));
 
-		return $subscribe;
+		return $user;
 		
 	}
 	
 	public function update(array $data){
 
-        $subscribe = $this->subscribe->findOrFail($data['id']);
+        $user = $this->user->findOrFail($data['id']);
 		
-		if( ! $subscribe )
+		if( ! $user )
 		{
 			return false;
 		}
 
-        $subscribe->email       = $data['email'];
-		$subscribe->updated_at  = date('Y-m-d G:i:s');
+        $user->activated_at = ($data['activated_at'] ? date('Y-m-d G:i:s') : null);
+        $user->email        = $data['email'];
+		$user->updated_at   = date('Y-m-d G:i:s');
 
-		$subscribe->save();
+		$user->save();
 		
-		return $subscribe;
+		return $user;
 	}
+
+    public function add(array $data){
+
+        $user = $this->user->create(array(
+            'email'            => $data['email'],
+            'activated_at'     => date('Y-m-d G:i:s'),
+            'created_at'       => date('Y-m-d G:i:s'),
+            'updated_at'       => date('Y-m-d G:i:s')
+        ));
+
+        if( ! $user )
+        {
+            return false;
+        }
+
+        return $user;
+    }
 
 	public function delete($email){
 
-		return $this->subscribe->where('email', '=', $email)->delete();
+		return $this->user->where('email', '=', $email)->delete();
 		
 	}
 
-					
 }

@@ -10,6 +10,7 @@ use Droit\Newsletter\Entities\Newsletter_contents as Newsletter_contents;
 use Droit\Newsletter\Entities\Newsletter_types as Newsletter_types;
 use Droit\Newsletter\Entities\Newsletter_campagnes as Newsletter_campagnes;
 use Droit\Newsletter\Entities\Newsletter_users as Newsletter_users;
+use Droit\Newsletter\Entities\Newsletter_subscriptions as Newsletter_subscriptions;
 
 /**
  *  NewsletterServiceProvider
@@ -30,6 +31,8 @@ class NewsletterServiceProvider extends ServiceProvider {
         $this->registerCampagneWorkerService();
 
         $this->registerInscriptionService();
+
+        $this->registerSubscribeService();
     }
 
 	/**
@@ -89,6 +92,17 @@ class NewsletterServiceProvider extends ServiceProvider {
         $this->app->bind('Droit\Newsletter\Repo\NewsletterUserInterface', function()
         {
             return new \Droit\Newsletter\Repo\NewsletterUserEloquent( new Newsletter_users );
+        });
+    }
+
+    /**
+     * Newsletter user abo service
+     */
+    protected function registerSubscribeService(){
+
+        $this->app->bind('Droit\Newsletter\Repo\NewsletterSubscriptionInterface', function()
+        {
+            return new \Droit\Newsletter\Repo\NewsletterSubscriptionEloquent( new Newsletter_subscriptions );
         });
     }
 

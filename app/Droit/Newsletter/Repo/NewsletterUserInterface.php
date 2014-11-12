@@ -7,6 +7,7 @@ interface NewsletterUserInterface {
     public function activate($token);
 	public function create(array $data);
 	public function update(array $data);
+    public function add(array $data);
 	public function delete($id);
 
 }

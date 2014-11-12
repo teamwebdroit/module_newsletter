@@ -18,8 +18,8 @@ class CreateNewsletterUsersTable extends Migration {
             $table->string('email');
             $table->string('prenom')->nullable();
             $table->string('nom')->nullable();
-            $table->timestamp('activated_at');
-            $table->string('activation_token', 100);
+            $table->timestamp('activated_at')->nullable();
+            $table->string('activation_token', 100)->nullable();
             $table->timestamps();
 		});
 	}
