@@ -8,9 +8,10 @@
     {
         return true;
     }
-    else if($email && $email->activated_at == '0000-00-00')
+
+    if($email && $email->activated_at)
     {
-         return false;
+       return false;
     }
     else
     {

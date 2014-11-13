@@ -6,6 +6,8 @@ var App = angular.module('newsletter', ["cgNotify","ngDragDrop","ngResource","an
         /* Redactor wysiwyg editor configuration */
         redactorOptions.minHeight = 150;
         redactorOptions.formattingTags = ['p', 'h2', 'h3','h4'];
+        redactorOptions.fileUpload = 'uploadRedactor';
+        redactorOptions.buttons    = ['html','|','formatting','bold','italic','|','unorderedlist','orderedlist','outdent','indent','|','image','file','link','alignment'];
 }).config(['flowFactoryProvider', function (flowFactoryProvider) {
         /* Flow image upload configuration */
         flowFactoryProvider.defaults = {
@@ -22,6 +24,7 @@ var App = angular.module('newsletter', ["cgNotify","ngDragDrop","ngResource","an
             return blocDrop;
         },
         setBloc : function(bloc) {
+            $('.edit_content_form').hide();
             blocDrop = bloc;
         },
         changes : function() {
@@ -68,7 +71,6 @@ App.controller('ViewController', ['$scope','$http','Contents',function($scope,$h
     var campagne    = $('#campagne_id').val();
     $scope.template = 'admin/campagne/view/' + campagne;
 
-
     /* assign empty values for blocs */
     this.contents = [];
     /* capture this (the controller scope ) as self */
@@ -97,6 +99,11 @@ App.controller('ViewController', ['$scope','$http','Contents',function($scope,$h
  * Form controller, controls the form for creating new content blocs
  */
 App.controller("FormController",['$scope','$http','notify','myService', function($scope,$http,notify,myService){
+
+    this.close = function(){
+        myService.setBloc(0);
+        $('.edit_content_form').hide();
+    };
 
     $scope.addContent = function(form, type, id) {
 
@@ -155,7 +162,9 @@ App.controller("EditController",['$scope','$http','notify','myService', function
     this.editContent = function(idItem){
 
         var w = $( document ).width();
-        w = w - 920;
+        w = w - 890;
+
+        myService.setBloc(0);
 
         $scope.editable = idItem;
         console.log(idItem);
@@ -229,6 +238,11 @@ App.controller('SelectController', ['$scope','$http','Arrets','notify','myServic
     if(self.arrets.length == 0){
         this.refresh();
     }
+
+    this.close = function(){
+        myService.setBloc(0);
+        $('.edit_content_form').hide();
+    };
 
     /* When one arret is selected in the dropdown */
     this.changed = function(){

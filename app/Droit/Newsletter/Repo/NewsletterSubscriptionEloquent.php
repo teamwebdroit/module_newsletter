@@ -25,19 +25,6 @@ class NewsletterSubscriptionEloquent implements NewsletterSubscriptionInterface{
 		return $this->subscribe->findOrFail($id);
 	}
 
-	public function subscribe(array $data){
-
-        foreach($data['newsletter_id'] as $newsletter_id)
-        {
-            $this->subscribe->create(array(
-                'user_id'       => $data['user_id'],
-                'newsletter_id' => $newsletter_id,
-                'created_at'    => date('Y-m-d G:i:s'),
-                'updated_at'    => date('Y-m-d G:i:s')
-            ));
-        }
-	}
-
     public function delete($id){
 
         $subscribe = $this->subscribe->find($id);

@@ -1,4 +1,3 @@
-
 #bailNewsletterCreate{
     font-family: Arial,Helvetica,sans-serif;
     font-size: 12px;
@@ -21,39 +20,48 @@
 }
 
 .component-menu{
-    background: none repeat scroll 0 0 #b7b7b7;
-    padding: 0 10px 5px;
+    background: none repeat scroll 0 0 #85c744;
+    padding: 5px 10px 5px;
+    border: 1px solid #6faf30;
     width: 600px;
     display: block;
-    height: 120px;
+    height: 150px;
+    color: #fff;
+    text-align: center;
+}
+
+.component-menu h5{
+    color: #fff;
+    font-size: 16px;
+    text-transform: uppercase;
 }
 
 .component-bloc a{
     background: none repeat scroll 0 0 #fff;
-    box-shadow: 1px 1px 1px 1px #ccc;
-    color: #333;
+    box-shadow: 1px 1px 1px 1px #417111;
+    color: #000;
     display: block;
     float: left;
-    font-size: 12px;
-    height: 75px;
+    font-size: 11px;
+    height: 80px;
     line-height: 12px;
-    margin-bottom: 5px;
-    margin-right: 5px;
-    padding: 5px 5px;
+    margin: 0 3px 5px 3px;
+    padding: 5px;
     text-align: center;
     text-decoration: none;
     width: 90px;
 }
 
 .component-bloc a:hover{
-    -webkit-box-shadow: 2px 2px 2px 2px #ccc;
-    box-shadow: 2px 2px 2px 2px #ccc;
+    -webkit-box-shadow: 2px 2px 2px 2px #2d5506;
+    box-shadow: 2px 2px 2px 2px #2d5506;
 }
 
 .component-bloc a img{
-    width: 45px;
+    width: 50px;
     display: block;
     margin: 0 auto;
+    color: #000;
 }
 
 #build{
@@ -73,14 +81,46 @@
     display: block;
 }
 
+.create_content_form{
+    margin-left: 20px;
+}
+
 .edit_content_form{
     position: absolute;;
-    left: 620px;
-    top: -20px;
+    left: 610px;
+    top: 0px;
     width: 480px;
     z-index: 100;
     display: none;
 }
+
+.edit_content_form .panel label, .create_content_form .panel label{
+    font-weight: bold;
+}
+
+.edit_content_form:before,
+.create_content_form:before {
+    color: #85c744;
+    content: "◄";
+    display: block;
+    font-size: 25px;
+    font-weight: bold;
+    height: 10px;
+    left: -21px;
+    position: absolute;
+    top: 0;
+    width: 10px;
+}
+
+.edit_content_form:before {
+    color: #efa131;
+}
+
+.create_content_form:before {
+    left: -11px;
+    top: -9px;
+}
+
 
 .panel .redactor-box {
     margin-bottom: 0px;
@@ -95,4 +135,8 @@
 
 .onBuild{
     margin: 0 !important;
+}
+
+.panel-body .form-group:last-child{
+    margin-bottom: 0;
 }

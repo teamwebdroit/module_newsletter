@@ -38,7 +38,7 @@ class NewsletterSubscribeCommandHandler implements CommandHandler {
 
         $suscribe = $this->newsletter->create( array('email' => $command->email, 'activation_token' => $activation_token) );
 
-        $this->subscribe->subscribe( array('user_id' => $suscribe->id, 'newsletter_id' => $command->newsletter_id) );
+        $suscribe->newsletter()->sync($command->newsletter_id);
 
         $this->dispatchEventsFor($suscribe);
 

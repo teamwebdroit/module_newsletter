@@ -52,8 +52,8 @@
 
                     <div class="component-menu">
                         <h5>Composants</h5>
-                        <div class="component-bloc" ng-repeat="bloc in build.blocs">
-                            <buiding-blocs></buiding-blocs>
+                        <div class="component-bloc">
+                            <buiding-blocs ng-repeat="bloc in build.blocs"></buiding-blocs>
                         </div>
                     </div>
 

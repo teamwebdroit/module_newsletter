@@ -30,10 +30,9 @@
         </table>
         <!-- Bloc content-->
     </div>
-    <div class="col-md-5">
+    <div class="col-md-5 create_content_form">
 
         <div class="panel panel-success">
-            <div class="panel-heading">Image à droite et texte</div>
             <div class="panel-body">
                 <div class="form-group">
                     <label>Titre</label>
@@ -44,7 +43,10 @@
                     <textarea redactor ng-model="formCtrl.form.contenu" required name="contenu" class="form-control" rows="10"></textarea>
                 </div>
                 <div class="form-group">
-                    <button type="submit" class="btn btn-success">Envoyer</button>
+                    <div class="btn-group">
+                        <button type="submit" class="btn btn-sm btn-success">Envoyer</button>
+                        <button type="button" ng-click="formCtrl.close()" class="btn btn-sm btn-default">Annuler</button>
+                    </div>
                 </div>
             </div>
         </div>

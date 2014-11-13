@@ -32,4 +32,23 @@ class UploadController extends BaseController {
 
     }
 
+
+    public function uploadRedactor()
+    {
+        $files = $this->upload->upload( Input::file('file') , 'files' );
+
+        if($files)
+        {
+            $array = array(
+                'filelink' => URL::to('/').'/files/'.$files['name'],
+                'filename' => $files['name']
+            );
+
+            return Response::json($array,200 );
+        }
+
+        return false;
+
+    }
+
 }

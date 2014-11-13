@@ -1,7 +1,9 @@
 $(function() {
 
     $('#content').redactor({
-        minHeight: 150
+        minHeight  : 150,
+        fileUpload : 'uploadRedactor',
+        buttons    : ['html','|','formatting','bold','italic','|','unorderedlist','orderedlist','outdent','indent','|','image','file','link','alignment']
     });
 
     $('body').on('click','.deleteAction',function(event){

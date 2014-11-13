@@ -48,6 +48,7 @@ Route::get('post-text', 'TemplateController@postText');
  * Upload routes
  */
 Route::post('uploadJS', 'UploadController@uploadJS');
+Route::post('uploadRedactor', 'UploadController@uploadRedactor');
 
 /**
  * API

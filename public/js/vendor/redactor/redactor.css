@@ -103,7 +103,7 @@ body .redactor-box-fullscreen {
   position: relative;
   overflow: auto;
   margin: 0 !important;
-  padding: 20px;
+  padding: 15px;
   outline: none;
   white-space: normal;
   border: 1px solid #eee;
@@ -786,7 +786,7 @@ body .redactor-box-fullscreen {
 .redactor-editor dl,
 .redactor-editor blockquote,
 .redactor-editor pre {
-  font-size: 14px;
+  font-size: 12px;
   line-height: 1.6em;
 }
 .redactor-editor a {
@@ -913,10 +913,14 @@ body .redactor-box-fullscreen {
   margin-bottom: .7em;
 }
 .redactor-editor h3 {
-  font-size: 21px;
+    font-size:13px;
+    font-weight:bold;
+    color: #cb2629;
 }
 .redactor-editor h4 {
-  font-size: 18px;
+    font-size:13px;
+    font-weight:bold;
+    color: #cb2629;
 }
 .redactor-editor h5 {
   font-size: 16px;

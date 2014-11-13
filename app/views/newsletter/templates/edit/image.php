@@ -39,9 +39,9 @@
     <!-- Bloc content-->
 
     <div class="edit_content_form">
-        <form name="editForm" class="form-horizontal" ng-submit="edit.updateContent(editForm,content.idItem)">
+        <form name="editForm" ng-submit="edit.updateContent(editForm,content.idItem)">
 
-            <div class="panel panel-success">
+            <div class="panel panel-orange">
                 <div class="panel-body">
                     <div class="form-group">
                         <label>Titre</label>
@@ -51,8 +51,8 @@
                         <input type="hidden" ng-model="content.idItem" name="id">
                         <input type="hidden" id="editImage_{[{ content.idItem }]}" ng-model="content.image" name="image" value="{{ $flow.files[0].name }}">
                         <div class="btn-group">
-                            <button type="submit" class="btn btn-success">Envoyer</button>
-                            <button type="button" ng-click="edit.close()" class="btn btn-default">Annuler</button>
+                            <button type="submit" class="btn btn-sm btn-orange">Envoyer</button>
+                            <button type="button" ng-click="edit.close()" class="btn btn-sm btn-default">Annuler</button>
                         </div>
                     </div>
                 </div>

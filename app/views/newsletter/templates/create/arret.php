@@ -1,5 +1,5 @@
 <form ng-controller="SelectController as select" class="row" name="arretForm" class="form-horizontal" ng-submit="addArret()">
-    <div class="col-md-7" id="bailNewsletter">
+    <div class="col-md-7" id="bailNewsletterCreate">
         <!-- Bloc content-->
         <table border="0" width="560" align="center" cellpadding="0" cellspacing="0" class="resetTable">
             <tr>
@@ -24,10 +24,9 @@
         </table>
         <!-- Bloc content-->
     </div>
-    <div class="col-md-5">
+    <div class="col-md-5 create_content_form">
 
         <div class="panel panel-success">
-            <div class="panel-heading">Arrêt</div>
             <div class="panel-body">
                 <div class="form-group">
                     <label>Sélectionner l'arrêt</label>
@@ -36,7 +35,10 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <button type="submit" class="btn btn-success">Envoyer</button>
+                    <div class="btn-group">
+                        <button type="submit" class="btn btn-sm btn-success">Envoyer</button>
+                        <button type="button" ng-click="select.close()" class="btn btn-sm btn-default">Annuler</button>
+                    </div>
                 </div>
             </div>
         </div>

@@ -166,7 +166,9 @@ $(".widget-body").on('shown.bs.collapse', function () {
 $('#multi-select').multiSelect();
 
 $('.redactor').redactor({
-    minHeight: 200
+    minHeight: 200,
+    fileUpload : 'uploadRedactor',
+    buttons    : ['html','|','formatting','bold','italic','|','unorderedlist','orderedlist','outdent','indent','|','image','file','link','alignment']
 });
 
 // -------------------------------

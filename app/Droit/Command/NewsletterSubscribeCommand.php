@@ -3,11 +3,11 @@
 class NewsletterSubscribeCommand {
 
     public $email;
-    public $newsletter;
+    public $newsletter_id;
 
-    public function __construct($email, $newsletter)
+    public function __construct($email, $newsletter_id)
     {
-        $this->email      = $email;
-        $this->newsletter = $newsletter;
+        $this->email         = $email;
+        $this->newsletter_id = $newsletter_id;
     }
 }

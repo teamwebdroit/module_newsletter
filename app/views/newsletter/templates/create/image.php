@@ -29,17 +29,19 @@
         </table>
         <!-- Bloc content-->
     </div>
-    <div class="col-md-5">
+    <div class="col-md-5 create_content_form">
 
         <div class="panel panel-success">
-            <div class="panel-heading">Image et titre</div>
             <div class="panel-body">
                 <div class="form-group">
                     <label>Titre</label>
                     <input type="text" ng-model="formCtrl.form.titre" name="titre" class="form-control">
                 </div>
                 <div class="form-group">
-                    <button type="submit" class="btn btn-success">Envoyer</button>
+                    <div class="btn-group">
+                        <button type="submit" class="btn btn-sm btn-success">Envoyer</button>
+                        <button type="button" ng-click="formCtrl.close()" class="btn btn-sm btn-default">Annuler</button>
+                    </div>
                 </div>
             </div>
         </div>
