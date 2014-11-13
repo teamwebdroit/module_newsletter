@@ -65,9 +65,9 @@
                                 <td><a class="btn btn-sky btn-sm" href="{{ url('admin/abonne/'.$abonne->id.'/edit') }}">&Eacute;diter</a></td>
                                 <td>
                                     @if( $abonne->activated_at )
-                                    <span class="label label-success">Confirmé</span>
+                                        <span class="label label-success">Confirmé</span>
                                     @else
-                                    <span class="label label-default">Email non confirmé</span>
+                                        <span class="label label-default">Email non confirmé</span>
                                     @endif
                                 </td>
                                 <td>{{ $abonne->email }}</td>

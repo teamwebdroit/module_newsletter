@@ -88,7 +88,7 @@
             <div class="section">
                 <div class="one text-align-center">Faculté de droit, Avenue du 1er-Mars 26, 2000 Neuchâtel</div><!--END ONE-->
                 <div class="one text-align-center">
-                    <p class="copyright">Copyright &copy; RJN <?php echo date('Y'); ?>. Tous droits réservés.</p>
+                    <p class="copyright">Copyright &copy; Droit du travail <?php echo date('Y'); ?>. Tous droits réservés.</p>
                 </div><!--END ONE-->
             </div><!--END SECTION-->
         </div><!--END FOOTER-->
