@@ -97,15 +97,14 @@ Route::group(array('prefix' => 'admin'), function()
 
 Route::get('testing', function()
 {
-    $email = \DB::table('newsletter_users')->where('email','=','cindy.leschaud@hotmail.fr')->first();
 
-    if($email)
-    {
-        return ( !starts_with($email->activated_at, '0000') ? 'confirme' : 'unconfirme');
-    }
-    else{
-        return 'non';
-    }
+    $send = new \Droit\Newsletter\Worker\CampagneWorker(
+        \App::make('Droit\Newsletter\Repo\NewsletterContentInterface'),
+        \App::make('Droit\Newsletter\Repo\NewsletterCampagneInterface'),
+        \App::make('Droit\Content\Repo\ArretInterface')
+    );
+
+    return $send->sendEmail();
 
 });
 

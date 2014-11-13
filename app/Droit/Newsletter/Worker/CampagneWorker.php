@@ -8,18 +8,16 @@ use Droit\Content\Repo\ArretInterface;
 class CampagneWorker implements CampagneInterface{
 
     protected $content;
-
     protected $campagne;
-
     protected $arret;
+    protected $mailjet;
 
 	public function __construct(NewsletterContentInterface $content,NewsletterCampagneInterface $campagne, ArretInterface $arret)
 	{
         $this->content  = $content;
-
-        $this->campagne  = $campagne;
-
+        $this->campagne = $campagne;
         $this->arret    = $arret;
+        $this->mailjet  = new \Droit\Newsletter\Service\Mailjet('345390d23793bc89d2237127a2f20b31','2c8f8269df093b24496329894e2ca438');
 	}
 
     public function getCampagne($id){
@@ -51,5 +49,27 @@ class CampagneWorker implements CampagneInterface{
 
         return $campagne;
 	}
+
+    function sendEmail() {
+
+        $params = array(
+            "method"  => "POST",
+            "from"    => "cindy.leschaud@gmail.com",
+            "to"      => "cindy.leschaud@gmail.com",
+            "subject" => "Hello World!",
+            "text"    => "Greetings from Mailjet."
+        );
+
+        $result = $this->mailjet->sendEmail($params);
+
+        if ($this->mailjet->_response_code == 200)
+            echo "success - email sent";
+        else
+            echo "error - ".$this->mailjet->_response_code;
+
+        //return $result;
+        return 'ok send';
+
+    }
 
 }
