@@ -95,6 +95,20 @@ Route::group(array('prefix' => 'admin'), function()
     Route::match(array('GET', 'POST'), 'search', array('uses' => 'SearchController@index'));
 });
 
+Route::get('testing', function()
+{
+    $email = \DB::table('newsletter_users')->where('email','=','cindy.leschaud@hotmail.fr')->first();
+
+    if($email)
+    {
+        return ( !starts_with($email->activated_at, '0000') ? 'confirme' : 'unconfirme');
+    }
+    else{
+        return 'non';
+    }
+
+});
+
 /**
  * LOG
  */

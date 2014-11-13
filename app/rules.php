@@ -1,21 +1,16 @@
 <?php
 
-\Validator::extend('unconfirmed', function($attribute, $value, $parameters)
+\Validator::extend('emailconfirmed', function($attribute, $value, $parameters)
 {
-    $email = DB::table('newsletter_users')->where($attribute,'=',$value)->first();
+    $email = \DB::table('newsletter_users')->where('email','=',$value)->first();
 
-    if(!$email)
+    if($email)
     {
-        return true;
-    }
-
-    if($email && $email->activated_at)
-    {
-       return false;
+        return ( !starts_with($email->activated_at, '0000') ? true : false);
     }
     else
     {
-       return false;
+        return true;
     }
 
 });

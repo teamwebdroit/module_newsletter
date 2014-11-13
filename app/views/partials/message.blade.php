@@ -8,12 +8,18 @@
         @foreach($errors->all() as $message)
         <p>{{ $message }}</p>
         @endforeach
-
+    
         @if( $errors->has())
+
             {{ Form::open(array('url' => 'inscription/resend')) }}
                 <input type="hidden" value="{{  Input::old('email') }}" name="email" />
-                <br/>
-                <button class="button small grey" type="submit">Renvoyer le lien d'activation</button>
+                @foreach( Input::old('newsletter_id') as $newsletter_id)
+                    <input type="hidden" value="{{ $newsletter_id }}" name="newsletter_id[]" />
+                @endforeach
+                @if(count($errors) > 1)
+                    <br/>
+                    <button class="button small grey" type="submit">Renvoyer le lien d'activation</button>
+                @endif
             {{ Form::close() }}
         @endif
 
