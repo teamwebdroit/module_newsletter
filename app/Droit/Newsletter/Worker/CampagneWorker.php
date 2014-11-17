@@ -4,6 +4,7 @@ use Droit\Newsletter\Worker\CampagneInterface;
 use Droit\Newsletter\Repo\NewsletterContentInterface;
 use Droit\Newsletter\Repo\NewsletterCampagneInterface;
 use Droit\Content\Repo\ArretInterface;
+use \InlineStyle\InlineStyle;
 
 class CampagneWorker implements CampagneInterface{
 
@@ -11,13 +12,16 @@ class CampagneWorker implements CampagneInterface{
     protected $campagne;
     protected $arret;
     protected $mailjet;
+    protected $list;
 
 	public function __construct(NewsletterContentInterface $content,NewsletterCampagneInterface $campagne, ArretInterface $arret)
 	{
         $this->content  = $content;
         $this->campagne = $campagne;
         $this->arret    = $arret;
+
         $this->mailjet  = new \Droit\Newsletter\Service\Mailjet('345390d23793bc89d2237127a2f20b31','2c8f8269df093b24496329894e2ca438');
+        $this->list     = '580978';
 	}
 
     public function getCampagne($id){
@@ -50,25 +54,131 @@ class CampagneWorker implements CampagneInterface{
         return $campagne;
 	}
 
-    function sendEmail() {
+    public function html($id)
+    {
+        $htmldoc = new InlineStyle(file_get_contents( url('admin/campagne/view/'.$id)));
+        $htmldoc->applyStylesheet($htmldoc->extractStylesheets());
+
+        $html = $htmldoc->getHTML();
+        $html = preg_replace('#<script(.*?)>(.*?)</script>#is', '', $html);
+
+        return $html;
+    }
+
+    /**
+     * get infos list
+     */
+    public function getListInfos(){
+
+        # Call
+        $response = $this->mailjet->listsAll();
+
+        # Result
+        return $response->lists;
+
+    }
+
+    /**
+     * get Subscribers
+     */
+    public function getSubscribers(){
+
+        # Parameters
+        $params = array('id' => $this->list);
+
+        # Call
+        $response = $this->mailjet->listsContacts($params);
+
+        # Result
+        /*
+        $contacts = $response->result;
+        $count    = $response->total_cnt;
+        */
+
+        return $response;
+    }
+
+    /**
+     * add new contact
+     */
+    public function addContact($email){
 
         $params = array(
-            "method"  => "POST",
-            "from"    => "cindy.leschaud@gmail.com",
-            "to"      => "cindy.leschaud@gmail.com",
-            "subject" => "Hello World!",
-            "text"    => "Greetings from Mailjet."
+            'method'  => 'POST',
+            'contact' => $email,
+            'id'      => $this->list
         );
 
-        $result = $this->mailjet->sendEmail($params);
+        $response = $this->mailjet->listsAddContact($params);
 
-        if ($this->mailjet->_response_code == 200)
-            echo "success - email sent";
-        else
-            echo "error - ".$this->mailjet->_response_code;
+        return ($response ? true : false);
 
-        //return $result;
-        return 'ok send';
+    }
+
+    /**
+     * remove contact
+     */
+    public function removeContact($email){
+
+        $params = array(
+            'method'  => 'POST',
+            'contact' => $email,
+            'id'      => $this->list
+        );
+
+        $response = $this->mailjet->listsRemoveContact($params);
+
+        return ($response ? true : false);
+
+    }
+
+    /**
+     * create new campagne
+     */
+    public function createCampagne($campagne){
+
+        # Parameters
+        $params = array(
+            'method'    => 'POST',
+            'subject'   => $campagne->sujet.' | '.$campagne->newsletter->titre,
+            'list_id'   => $this->list,
+            'lang'      => 'fr',
+            'from'      => 'info@leschaud.ch',
+            'from_name' => $campagne->newsletter->from_name,
+            'footer'    => 'default'
+        );
+
+        # Call
+        $response = $this->mailjet->messageCreateCampaign($params);
+
+        if($response)
+        {
+            $campagne->api_campagne_id = $response->campaign->id;
+            $campagne->save();
+
+            return true;
+        }
+
+        # Result
+        //$url = $response->campaign->url;
+
+        return false;
+
+    }
+
+    public function setHtml($html,$id){
+
+        # Parameters
+        $params = array(
+            'method' => 'POST',
+            'id'     => $id,
+            'html'   => $html,
+        );
+
+        # Call
+        $response = $this->mailjet->messageSetHtmlCampaign($params);
+
+        return ($response ? $response : false);
 
     }
 

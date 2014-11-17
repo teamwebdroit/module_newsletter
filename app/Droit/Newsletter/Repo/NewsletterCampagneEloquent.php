@@ -24,7 +24,7 @@ class NewsletterCampagneEloquent implements NewsletterCampagneInterface{
 
 	public function find($id){
 				
-		return $this->campagne->findOrFail($id);
+		return $this->campagne->with(array('newsletter'))->findOrFail($id);
 	}
 
 	public function create(array $data){

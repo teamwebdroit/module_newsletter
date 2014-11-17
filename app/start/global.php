@@ -73,6 +73,12 @@ App::error(function(Droit\Exceptions\TokenInscriptionException $exception, $code
     return Redirect::to('/')->with(array('status' => 'danger', 'message' => 'Le jeton d\'inscription n\'est pas valable'));
 });
 
+App::error(function(Droit\Exceptions\CampagneCreationException $exception, $code)
+{
+    return Redirect::back()->with(array('status' => 'danger', 'message' => 'Problème avec la création sur mailjet'));
+});
+
+
 /*App::error(function(Droit\Exceptions\FileUploadException $exception, $code)
 {
     return Redirect::back()->withInput()->withErrors( $exception->getErrors() );

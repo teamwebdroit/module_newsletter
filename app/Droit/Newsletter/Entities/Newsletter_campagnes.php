@@ -23,4 +23,9 @@ class Newsletter_campagnes extends BaseModel {
         'auteurs.required' => 'Le ou les auteur/s est/sont requis'
     );
 
+    public function newsletter(){
+
+        return $this->belongsTo('Droit\Newsletter\Entities\Newsletter', 'newsletter_id', 'id');
+    }
+
 }

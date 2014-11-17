@@ -4,4 +4,6 @@ class Newsletter_subscriptions extends \Eloquent {
 
 	protected $fillable = ['user_id','newsletter_id'];
 
+    public $timestamps = false;
+
 }

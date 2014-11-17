@@ -38,6 +38,7 @@ class NewsletterApiController extends BaseController {
         /* retrive type from database to set it right in content */
         $type = $this->types->findByPartial($data['type']);
         $rang = $this->content->getRang($campagne);
+        $rang = ($rang ? $rang : 0);
 
         $titre    = (isset($data['titre']) ? $data['titre'] : null);
         $contenu  = (isset($data['contenu']) ? $data['contenu'] : null);

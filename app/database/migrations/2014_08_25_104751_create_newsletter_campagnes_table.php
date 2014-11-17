@@ -19,6 +19,7 @@ class CreateNewsletterCampagnesTable extends Migration {
             $table->string('sujet');
             $table->string('auteurs');
             $table->integer('newsletter_id');
+            $table->integer('api_campagne_id');
             $table->enum('status', array('brouillon', 'envoyé'));
             $table->softDeletes();
 			$table->timestamps();

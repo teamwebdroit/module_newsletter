@@ -12,7 +12,7 @@ Route::get('newsletters/{id?}', 'HomeController@newsletters');
 /**
  * Newsletter
  */
-Route::get('html', 'NewsletterController@html');
+Route::get('html/{id}', 'NewsletterController@html');
 Route::get('test', 'NewsletterController@test');
 Route::get('convert', 'HomeController@convert');
 Route::get('campagne', 'NewsletterController@campagne');
@@ -104,7 +104,35 @@ Route::get('testing', function()
         \App::make('Droit\Content\Repo\ArretInterface')
     );
 
-    return $send->sendEmail();
+    //echo ($send->removeContact('cindy11@bluewin.ch') ? 'removed' : 'error');
+    print_r($send->getSubscribers());
+
+});
+
+Route::get('camp', function()
+{
+
+    $send = new \Droit\Newsletter\Worker\CampagneWorker(
+        \App::make('Droit\Newsletter\Repo\NewsletterContentInterface'),
+        \App::make('Droit\Newsletter\Repo\NewsletterCampagneInterface'),
+        \App::make('Droit\Content\Repo\ArretInterface')
+    );
+
+    $newsletter = new \Droit\Newsletter\Repo\NewsletterCampagneEloquent(new \Droit\Newsletter\Entities\Newsletter_campagnes);
+
+    $campagne   = $newsletter->find(5);
+
+    $result = $send->html($campagne->id);
+
+    if($result)
+    {
+        print_r($result);
+    }
+    else
+    {
+        echo 'problem';
+    }
+
 
 });
 

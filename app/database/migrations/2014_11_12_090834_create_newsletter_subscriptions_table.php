@@ -17,7 +17,6 @@ class CreateNewsletterSubscriptionsTable extends Migration {
 			$table->increments('id');
             $table->integer('newsletter_id');
             $table->integer('user_id');
-			$table->timestamps();
 		});
 	}
 

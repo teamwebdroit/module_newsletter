@@ -1,6 +1,5 @@
 <?php
 
-use \InlineStyle\InlineStyle;
 use Droit\Newsletter\Repo\NewsletterContentInterface;
 use Droit\Newsletter\Repo\NewsletterTypesInterface;
 use Droit\Content\Repo\ArretInterface;
@@ -52,38 +51,6 @@ class NewsletterController extends BaseController {
         return View::make('newsletter.html')->with(array('content' => $analyse));
     }
 
-    public function html()
-    {
-        $htmldoc = new InlineStyle(file_get_contents('http://newsletter.local/campagne'));
-        $htmldoc->applyStylesheet($htmldoc->extractStylesheets());
-
-        $html = $htmldoc->getHTML();
-
-        $html = preg_replace('#<script(.*?)>(.*?)</script>#is', '', $html);
-
-        echo $html;
-
-        try
-        {
-            $subject   =  'Newsletter RJN';
-            $fromEmail = 'info@rjne.ch';
-            $fromName  = 'RJN';
-
-            \Mail::send('emails.newsletter', array('html' => $html) , function($message) use ( $fromEmail,$fromName, $subject )
-            {
-                $message->to('cindy.leschaud@gmail.com', 'Cindy Leschaud');
-                $message->from($fromEmail, $fromName);
-                $message->subject($subject);
-            });
-
-            echo 'email envoyé!!';
-
-        }
-        catch (Exception $e)
-        {
-            echo 'problème!';
-        }
-    }
 
     public function campagne()
     {

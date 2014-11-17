@@ -1,21 +1,28 @@
 <?php
 
+use Laracasts\Commander\CommanderTrait;
 use Droit\Newsletter\Repo\NewsletterContentInterface;
 use Droit\Content\Repo\ArretInterface;
 use Droit\Newsletter\Repo\NewsletterCampagneInterface;
+use Droit\Newsletter\Worker\CampagneInterface;
+use Droit\Command\CreateCampagneCommandHandler;
 
 class CampagneController extends BaseController {
+
+    use CommanderTrait;
 
     protected $content;
     protected $arret;
     protected $campagne;
+    protected $worker;
 
     /* Inject dependencies */
-    public function __construct( NewsletterContentInterface $content, ArretInterface $arret, NewsletterCampagneInterface $campagne )
+    public function __construct( NewsletterContentInterface $content, ArretInterface $arret, NewsletterCampagneInterface $campagne, CampagneInterface $worker)
     {
         $this->content  = $content;
         $this->arret    = $arret;
         $this->campagne = $campagne;
+        $this->worker   = $worker;
 
         /*
          * Urls
@@ -51,12 +58,7 @@ class CampagneController extends BaseController {
      */
     public function store()
     {
-        // Data array
-        $data['sujet']         = Input::get('sujet');
-        $data['auteurs']       = Input::get('auteurs');
-        $data['newsletter_id'] = 1;
-
-        $campagne = $this->campagne->create( $data );
+        $campagne = $this->execute('Droit\Command\CreateCampagneCommand');
 
         return Redirect::to('admin/campagne/'.$campagne->id)->with( array('status' => 'success' , 'message' => 'Campagne crée') );
     }
@@ -145,6 +147,10 @@ class CampagneController extends BaseController {
     public function destroy($id)
     {
         //
+    }
+
+    public function sendCampagne($id){
+
     }
 
 
