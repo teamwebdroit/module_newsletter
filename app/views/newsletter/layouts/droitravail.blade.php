@@ -51,7 +51,7 @@
                             <tr><td height="15"></td></tr><!-- space -->
                             <tr>
                                 <td align="center" class="linkGrey">Si vous ne désirez plus recevoir cette newsletter, vous pouvez vous désinscrire à tout moment en
-                                    <a class="linkGrey" href="{{ $unsuscribe }}">cliquant ici</a>.
+                                    <a class="linkGrey" href="[[UNSUB_LINK_EN]]">cliquant ici</a>.
                                 </td>
                             </tr>
                             <tr><td height="15"></td></tr><!-- space bottom -->

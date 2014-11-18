@@ -2,15 +2,22 @@
 @section('content')
 
 <div class="row">
-    <div class="col-md-12">
-
+    <div class="col-md-4">
         <div class="options" style="margin-bottom: 10px;">
             <div class="btn-toolbar">
-                <a href="{{ url('admin/campagne/'.$campagne->id.'/edit') }}" class="btn btn-sky"><i class="fa fa-chevron-left"></i>  &nbsp;&Eacute;diter la campagne</a>
-                <a href="{{ url('admin/campagne') }}" class="btn btn-inverse"><i class="fa fa-chevron-left"></i>  Retour aux campagnes</a>
+                <a href="{{ url('admin/campagne') }}" class="btn btn-default"><i class="fa fa-list"></i>  &nbsp;&nbsp;Retour aux campagnes</a>
+                <a href="{{ url('admin/campagne/'.$campagne->id.'/edit') }}" class="btn btn-sky"><i class="fa fa-pencil"></i>  &nbsp;&Eacute;diter la campagne</a>
             </div>
         </div>
-
+    </div>
+    <div class="col-md-4">
+        {{ Form::open(array('url' => array('send/test') , 'class' => 'form-inline')) }}
+        <div class="form-group">
+            <input required name="email" value="" type="email" class="form-control">
+            <input name="campagne_id" value="{{ $campagne->id }}" type="hidden">
+        </div>
+        <button type="submit" class="btn btn-brown"><i class="fa fa-question-circle"></i>  &nbsp;&nbsp;Envoyer un test</button>
+        {{ Form::close() }}
     </div>
 </div>
 

@@ -20,9 +20,9 @@
 }
 
 .component-menu{
-    background: none repeat scroll 0 0 #85c744;
+    background: none repeat scroll 0 0 #4f5259;
     padding: 5px 10px 5px;
-    border: 1px solid #6faf30;
+    border: 1px solid #3d3f45;
     width: 600px;
     display: block;
     height: 150px;
@@ -38,7 +38,7 @@
 
 .component-bloc a{
     background: none repeat scroll 0 0 #fff;
-    box-shadow: 1px 1px 1px 1px #417111;
+    box-shadow: 1px 1px 1px 1px #4d5057;
     color: #000;
     display: block;
     float: left;
@@ -50,11 +50,12 @@
     text-align: center;
     text-decoration: none;
     width: 90px;
+    cursor: pointer;
 }
 
 .component-bloc a:hover{
-    -webkit-box-shadow: 2px 2px 2px 2px #2d5506;
-    box-shadow: 2px 2px 2px 2px #2d5506;
+    -webkit-box-shadow: 2px 2px 2px 2px #3d3f45;
+    box-shadow: 2px 2px 2px 2px #3d3f45;
 }
 
 .component-bloc a img{

@@ -43,6 +43,9 @@ $(document).ready(function() {
     $('#campagnes').dataTable({
         "sDom": "<''<'col-xs-6'l><'col-xs-6'f>r>t<''<'col-xs-6'i><'col-xs-6'p>>",
         "sPaginationType": "bootstrap",
+        "aoColumnDefs": [
+            { "aTargets": [ 0, 1 ], "bSortable": false }
+        ],
         "oLanguage": {
             "sLengthMenu": "_MENU_ par page",
             "sInfo"    : "Total de _TOTAL_ campagnes, _START_ sur _END_",

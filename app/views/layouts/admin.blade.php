@@ -73,7 +73,7 @@
                 @include('admin.partials.breadcrumbs')
 
                 <div id="page-heading">
-                    <h1>{{ $pageTitle or 'Administration' }}</h1>
+                    <h2>{{ $pageTitle or 'Administration' }}</h2>
 
                     <!-- messages and errors -->
                     @include('admin.partials.message')

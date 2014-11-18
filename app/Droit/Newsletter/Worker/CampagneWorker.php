@@ -182,4 +182,34 @@ class CampagneWorker implements CampagneInterface{
 
     }
 
+    public function sendTest($email,$id){
+
+        # Parameters
+        $params = array(
+            'method' => 'POST',
+            'id'     => $id,
+            'email'  => $email
+        );
+
+        # Call
+        $response = $this->mailjet->messageTestCampaign($params);
+
+        return ($response ? $response : false);
+
+    }
+
+    public function sendCampagne($id){
+
+        # Parameters
+        $params = array(
+            'method' => 'POST',
+            'id'     => $id
+        );
+
+        # Call
+        $response = $this->mailjet->messageSendCampaign($params);
+
+        return ($response ? $response : false);
+
+    }
 }

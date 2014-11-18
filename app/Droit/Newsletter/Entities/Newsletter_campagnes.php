@@ -7,6 +7,10 @@ class Newsletter_campagnes extends BaseModel {
 
 	protected $fillable = ['sujet','auteurs','newsletter_id'];
 
+    use SoftDeletingTrait;
+
+    protected $dates = ['deleted_at'];
+
     /*
     * Validation rules
    */

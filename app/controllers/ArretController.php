@@ -158,7 +158,6 @@ class ArretController extends \BaseController {
      */
     public function destroy($id)
     {
-
         $this->arret->delete($id);
 
         return Redirect::back()->with(array('status' => 'success', 'message' => 'Arrêt supprimée' ));

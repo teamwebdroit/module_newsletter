@@ -146,12 +146,9 @@ class CampagneController extends BaseController {
      */
     public function destroy($id)
     {
-        //
+        $this->campagne->delete($id);
+
+        return Redirect::back()->with(array('status' => 'success', 'message' => 'Campagne supprimée' ));
     }
-
-    public function sendCampagne($id){
-
-    }
-
 
 }

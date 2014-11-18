@@ -12,11 +12,15 @@ Route::get('newsletters/{id?}', 'HomeController@newsletters');
 /**
  * Newsletter
  */
+
+Route::get('test', 'NewsletterController@test');// test
+Route::get('convert', 'HomeController@convert');// test
+Route::get('campagne', 'NewsletterController@campagne');// test
+Route::get('gobuild', 'NewsletterController@index');// test
+
 Route::get('html/{id}', 'NewsletterController@html');
-Route::get('test', 'NewsletterController@test');
-Route::get('convert', 'HomeController@convert');
-Route::get('campagne', 'NewsletterController@campagne');
-Route::get('gobuild', 'NewsletterController@index');
+Route::post('send/campagne/{id}', 'SendController@campagne');
+Route::post('send/test', 'SendController@test');
 
 /**
  * Templates for js
@@ -109,7 +113,7 @@ Route::get('testing', function()
 
 });
 
-Route::get('camp', function()
+Route::get('setHmtlCampagne', function()
 {
 
     $send = new \Droit\Newsletter\Worker\CampagneWorker(
@@ -120,18 +124,16 @@ Route::get('camp', function()
 
     $newsletter = new \Droit\Newsletter\Repo\NewsletterCampagneEloquent(new \Droit\Newsletter\Entities\Newsletter_campagnes);
 
-    $campagne   = $newsletter->find(5);
+    $campagne   = $newsletter->find(4);
 
-    $result = $send->html($campagne->id);
+    //$sent = $send->sendCampagne($campagne->api_campagne_id);
+    //$html = $send->html($campagne->id);
+    //$sent = $send->setHtml($html,$campagne->api_campagne_id);
 
-    if($result)
-    {
-        print_r($result);
-    }
-    else
-    {
-        echo 'problem';
-    }
+    //print_r($campagne);
+    print_r($sent);
+
+
 
 
 });
