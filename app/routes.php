@@ -18,10 +18,6 @@ Route::get('convert', 'HomeController@convert');// test
 Route::get('campagne', 'NewsletterController@campagne');// test
 Route::get('gobuild', 'NewsletterController@index');// test
 
-Route::get('html/{id}', 'NewsletterController@html');
-Route::post('send/campagne/{id}', 'SendController@campagne');
-Route::post('send/test', 'SendController@test');
-
 /**
  * Templates for js
  */
@@ -86,7 +82,6 @@ Route::group(array('prefix' => 'admin'), function()
 {
     Route::get('dashboard', 'AdminController@index');
     Route::resource('arret', 'ArretController');
-
     Route::resource('categorie', 'CategorieController');
 
     Route::get('campagne/compose', 'CampagneController@compose');
@@ -94,6 +89,11 @@ Route::group(array('prefix' => 'admin'), function()
     Route::resource('campagne', 'CampagneController');
 
     Route::resource('abonne', 'AbonneController');
+
+    Route::get('html/{id}', 'NewsletterController@html');
+    Route::post('send/campagne', 'SendController@campagne');
+    Route::get('send/{id}', 'SendController@show');
+    Route::get('send/statistiques/{id}', 'SendController@statistiques');
 
     Route::match(array('GET', 'POST'), 'categorie/arretsExists', array('uses' => 'CategorieController@arretsExists'));
     Route::match(array('GET', 'POST'), 'search', array('uses' => 'SearchController@index'));

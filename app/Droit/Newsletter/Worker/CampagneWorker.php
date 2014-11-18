@@ -212,4 +212,30 @@ class CampagneWorker implements CampagneInterface{
         return ($response ? $response : false);
 
     }
+
+    public function statsCampagne($id){
+
+        # Parameters
+        $params = array( 'campaign_id' => $id );
+
+        # Call
+        $response = $this->mailjet->reportEmailsent();
+
+        return $response;
+        //return ($response ? $response->stats : false);
+
+    }
+
+    public function statsListe($id){
+
+        # Parameters
+        $params = array( 'id' => '580978' );
+
+        # Call
+        $response = $this->mailjet->listsStatistics($params);
+
+        return $response;
+        //return ($response ? $response->stats : false);
+
+    }
 }

@@ -65,6 +65,23 @@ class NewsletterCampagneEloquent implements NewsletterCampagneInterface{
 		return $campagne;
 	}
 
+    public function updateStatus($data){
+
+        $campagne = $this->campagne->findOrFail($data['id']);
+
+        if( ! $campagne )
+        {
+            return false;
+        }
+
+        $campagne->status      = $data['status'];
+        $campagne->updated_at  = date('Y-m-d G:i:s');
+
+        $campagne->save();
+
+        return $campagne;
+    }
+
 	public function delete($id){
 
         $campagne = $this->campagne->find($id);

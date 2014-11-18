@@ -1,9 +1,13 @@
 <?php
 
+use Laracasts\Commander\CommanderTrait;
 use Droit\Newsletter\Worker\CampagneInterface;
 use Droit\Exceptions\CampagneSendException;
+use Droit\Command\SendCampagneCommand;
 
 class SendController extends \BaseController {
+
+    use CommanderTrait;
 
     protected $worker;
 
@@ -13,76 +17,49 @@ class SendController extends \BaseController {
     }
 
     /**
-	 * Send test newsletter
-	 * GET /send/test/{$id}
-	 */
-	public function test()
-	{
-        $id    = Input::get('campagne_id');
-        $email = Input::get('email');
+     * Display the specified resource.
+     * GET /campagne/{id}
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function show($id)
+    {
+        $campagne     = $this->worker->getCampagne($id);
+        $statistiques = $this->worker->statsCampagne($campagne->api_campagne_id);
 
-        // Get campagne
-        $campagne = $this->worker->getCampagne($id);
+        return View::make('newsletter.send')->with(array( 'campagne' => $campagne , 'statistiques' => $statistiques ));
+    }
 
-        try
-        {
-            $this->worker->sendTest($email,$campagne->api_campagne_id);
+    /**
+     * Display the specified resource.
+     * GET /campagne/{id}
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function statistiques($id)
+    {
+        $campagne = $this->campagne->find($id);
 
-            return Redirect::to('admin/campagne/'.$campagne->id)->with( array('status' => 'success' , 'message' => 'Email de test envoyé!') );
-        }
-        catch (Exception $e)
-        {
-            throw new \Droit\Exceptions\CampagneSendException('Problème avec l\'envoi de la campagne', $e->getError() );
-        }
-
-        // $html = $this->worker->html($id);
-
-        /*
-        try
-        {
-            $subject   = $campagne->sujet.' | '.$campagne->newsletter->titre;
-            $fromEmail = $campagne->newsletter->from_email;
-            $fromName  = $campagne->newsletter->from_name;
-
-            \Mail::send('emails.newsletter', array('html' => $html) , function($message) use ( $email, $fromEmail,$fromName, $subject )
-            {
-                $message->to($email, '');
-                $message->from($fromEmail, $fromName);
-                $message->subject($subject);
-            });
-
-            return Redirect::to('admin/campagne/'.$campagne->id)->with( array('status' => 'success' , 'message' => 'Email de test envoyé!') );
-        }
-        catch (Exception $e)
-        {
-            throw new \Droit\Exceptions\CampagneSendException('Problème avec l\'envoi de la campagne', $e->getError() );
-        }*/
-
-	}
+        return View::make('newsletter.stats')->with(array( 'campagne' => $campagne , 'infos' => $infos ));
+    }
 
     /**
      * Send campagne newsletter
      * GET /send/campagne/{$id}
      */
-	public function campagne($id)
+	public function campagne()
 	{
-        // Get campagne
-        $campagne = $this->worker->getCampagne($id);
 
-        //set or update html
-        $html = $send->html($campagne->id);
-        $sent = $send->setHtml($html,$campagne->api_campagne_id);
+        $id    = Input::get('id');
+        $email = Input::get('email');
+        $email = ($email ? $email : false);
 
-        try
-        {
-            $this->worker->sendCampagne($campagne->api_campagne_id);
+        $message  = $this->execute('Droit\Command\SendCampagneCommand', array('id' => $id, 'email' => $email) );
 
-            return Redirect::to('admin/campagne/'.$campagne->id)->with( array('status' => 'success' , 'message' => 'Campagne envoyé!') );
-        }
-        catch (Exception $e)
-        {
-            throw new \Droit\Exceptions\CampagneSendException('Problème avec l\'envoi de la campagne', $e->getError() );
-        }
+        return Redirect::to('admin/campagne/'.$id)->with( array('status' => 'success' , 'message' => $message ) );
+
 	}
 
 }

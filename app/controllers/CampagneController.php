@@ -5,7 +5,7 @@ use Droit\Newsletter\Repo\NewsletterContentInterface;
 use Droit\Content\Repo\ArretInterface;
 use Droit\Newsletter\Repo\NewsletterCampagneInterface;
 use Droit\Newsletter\Worker\CampagneInterface;
-use Droit\Command\CreateCampagneCommandHandler;
+use Droit\Command\CreateCampagneCommand;
 
 class CampagneController extends BaseController {
 

@@ -11,12 +11,12 @@
         </div>
     </div>
     <div class="col-md-4">
-        {{ Form::open(array('url' => array('send/test') , 'class' => 'form-inline')) }}
-        <div class="form-group">
-            <input required name="email" value="" type="email" class="form-control">
-            <input name="campagne_id" value="{{ $campagne->id }}" type="hidden">
-        </div>
-        <button type="submit" class="btn btn-brown"><i class="fa fa-question-circle"></i>  &nbsp;&nbsp;Envoyer un test</button>
+        {{ Form::open(array('url' => array('admin/send/campagne') , 'class' => 'form-inline')) }}
+            <div class="form-group">
+                <input required name="email" value="" type="email" class="form-control">
+                <input name="id" value="{{ $campagne->id }}" type="hidden">
+            </div>
+            <button type="submit" class="btn btn-brown"><i class="fa fa-question-circle"></i>  &nbsp;&nbsp;Envoyer un test</button>
         {{ Form::close() }}
     </div>
 </div>

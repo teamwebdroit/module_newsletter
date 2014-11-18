@@ -61,10 +61,7 @@ class Mailjet
     
 	public function requestUrlBuilder($method,$params=array(),$request) {
 
-
-
 		$query_string = array('output'=>'output='.$this->output);
-
 
     	foreach($params as $key=>$value) {
 	    	if($request == "GET" || in_array($key,array('apikey','output'))) $query_string[$key] = $key.'='.urlencode($value);
@@ -97,6 +94,7 @@ class Mailjet
 
 		if($request == 'POST') :
 			curl_setopt($curl_handle, CURLOPT_POST, count($params));
+            curl_setopt($curl_handle, CURLOPT_HTTPHEADER, array('X-Mailjet-Campaign:'));
 			curl_setopt($curl_handle, CURLOPT_POSTFIELDS, http_build_query($params, '', '&'));
 			$this->_request_post = $params; 
 		endif;

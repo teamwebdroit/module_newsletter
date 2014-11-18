@@ -41,12 +41,23 @@
                                 @foreach($campagnes as $campagne)
                                 <tr>
                                     <td>
+                                        @if($campagne->status == 'brouillon')
                                         <div class="btn-group">
                                            <a class="btn btn-sky btn-sm" href="{{ url('admin/campagne/'.$campagne->id.'/edit') }}">&Eacute;diter</a>
                                            <a class="btn btn-inverse btn-sm" href="{{ url('admin/campagne/'.$campagne->id) }}">Composer</a>
                                         </div>
+                                        @else
+                                        <a class="btn btn-success btn-sm" href="{{ url('admin/send/'.$campagne->id) }}">Voir les statistiques</a>
+                                        @endif
                                     </td>
-                                    <td><a class="btn btn-orange btn-sm" href="{{ url('admin/campagne/'.$campagne->id) }}">Envoyer</a></td>
+                                    <td>
+                                        @if($campagne->status == 'brouillon')
+                                        {{ Form::open(array('url' => array('admin/send/campagne') , 'class' => 'form-inline')) }}
+                                            <input name="id" value="{{ $campagne->id }}" type="hidden">
+                                            <button type="submit" class="btn btn-sm btn-orange"><i class="fa fa-exclamation"></i>  &nbsp;&nbsp;Envoyer la campagne</button>
+                                        {{ Form::close() }}
+                                        @endif
+                                    </td>
                                     <td><strong>{{ $campagne->sujet }}</strong></td>
                                     <td>{{ $campagne->auteurs }}</td>
                                     <td>{{ $campagne->status }}</td>
