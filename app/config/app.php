@@ -127,7 +127,8 @@ return array(
         'Intervention\Image\ImageServiceProvider',
         'Way\Generators\GeneratorsServiceProvider',
         'Laracasts\Commander\CommanderServiceProvider',
-        'Laracasts\Validation\ValidationServiceProvider'
+        'Laracasts\Validation\ValidationServiceProvider',
+        'Laracasts\Utilities\UtilitiesServiceProvider'
 	),
 
 	/*

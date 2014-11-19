@@ -16,7 +16,7 @@
 
     <link rel='stylesheet' type='text/css' href="<?php echo asset('admin/plugins/datatables/dataTables.css');?>" />
     <link rel='stylesheet' type='text/css' href="<?php echo asset('admin/plugins/form-multiselect/css/multi-select.css');?>" />
-
+    <script src="<?php echo asset('js/jquery.js');?>"></script>
 
 	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries. Placeholdr.js enables the placeholder attribute -->
 	<!--[if lt IE 9]>
@@ -29,6 +29,14 @@
         <link rel="stylesheet" href="<?php echo asset('css/newsletter.css'); ?>">
         <link href="<?php echo asset('js/vendor/angular/angular-notify.css');?>" rel="stylesheet">
         <link href="<?php echo asset('js/vendor/angular/angular-xeditable.css');?>" rel="stylesheet">
+    @endif
+
+    @if(isset($isChart))
+        <script type='text/javascript' src="<?php echo asset('admin/plugins/easypiechart/jquery.easypiechart.min.js');?>"></script>
+        <script type='text/javascript' src="<?php echo asset('admin/plugins/sparklines/jquery.sparklines.min.js');?>"></script>
+        <script type='text/javascript' src="<?php echo asset('admin/plugins/form-toggle/toggle.min.js');?>"></script>
+        <script type='text/javascript' src="<?php echo asset('admin/plugins/charts-chartjs/Chart.min.js');?>"></script>
+        <script type="text/javascript" src="<?php echo asset('admin/js/chartjs.js');?>"></script>
     @endif
 
     <link rel='stylesheet' type='text/css' href='<?php echo asset('admin/plugins/form-toggle/toggles.css');?>' />
@@ -93,7 +101,7 @@
         <footer role="contentinfo">
             <div class="clearfix">
                 <ul class="list-unstyled list-inline pull-left">
-                    <li>RJN &copy; <?php echo date('Y'); ?></li>
+                    <li>Droit du travail &copy; <?php echo date('Y'); ?></li>
                 </ul>
                 <button class="pull-right btn btn-inverse-alt btn-xs hidden-print" id="back-to-top"><i class="fa fa-arrow-up"></i></button>
             </div>
@@ -101,7 +109,6 @@
 
     </div> <!-- page-container -->
 
-    <script src="<?php echo asset('js/jquery.js');?>"></script>
     <script src="<?php echo asset('js/vendor/jqueryui/jquery-ui.min.js');?>"></script>
 
     <script type="text/javascript" src="<?php echo asset('admin/js/bootstrap.min.js');?>"></script>

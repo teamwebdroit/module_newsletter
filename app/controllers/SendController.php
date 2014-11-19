@@ -10,10 +10,12 @@ class SendController extends \BaseController {
     use CommanderTrait;
 
     protected $worker;
+    protected $charts;
 
     public function __construct( CampagneInterface $worker)
     {
         $this->worker = $worker;
+        $this->charts = new \Charts;
     }
 
     /**
@@ -27,8 +29,13 @@ class SendController extends \BaseController {
     {
         $campagne     = $this->worker->getCampagne($id);
         $statistiques = $this->worker->statsCampagne($campagne->api_campagne_id);
+        $listStats    = $this->worker->campagneAggregate($campagne->api_campagne_id);
+        $senderList   = $this->worker->getAllSubscribers();
 
-        return View::make('newsletter.send')->with(array( 'campagne' => $campagne , 'statistiques' => $statistiques ));
+        $doughnut = $this->charts->chartDoughnut($statistiques);
+
+        return View::make('newsletter.send')->with(
+            array( 'isChart' => true , 'doughnut' => $doughnut,'campagne' => $campagne , 'statistiques' => $statistiques , 'listStats' => $listStats, 'senderList' => $senderList));
     }
 
     /**

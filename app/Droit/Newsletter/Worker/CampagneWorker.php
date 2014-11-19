@@ -97,6 +97,20 @@ class CampagneWorker implements CampagneInterface{
 
     }
 
+    public function getAllSubscribers(){
+        # Parameters
+        $params = array(
+            "method"       => "LIST",
+            "ContactsList" => $this->list
+        );
+
+        # Call
+        $response = $this->mailjet->contact($params);
+
+        return $response;
+        //return ($response ? $response->stats : false);
+    }
+
     /**
      * add new contact
      */
@@ -285,16 +299,30 @@ class CampagneWorker implements CampagneInterface{
 
     }
 
-    public function statsListe($id){
+    public function statsListe(){
 
         # Parameters
-        $params = array( 'id' => '580978' );
+        $params = array( "method" => "GET", 'ListRecipientID' => $this->list );
 
         # Call
-        $response = $this->mailjet->listsStatistics($params);
+        $response = $this->mailjet->listrecipientstatistics($params);
 
         return $response;
         //return ($response ? $response->stats : false);
 
     }
+
+    public function campagneAggregate($id){
+
+        # Parameters
+        $params = array( "method" => "LIST", 'CampaignID' => $id );
+
+        # Call
+        $response = $this->mailjet->clickstatistics($params);
+
+        return $response;
+        //return ($response ? $response->stats : false);
+
+    }
+
 }
