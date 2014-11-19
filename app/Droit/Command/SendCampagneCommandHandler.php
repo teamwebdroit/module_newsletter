@@ -31,24 +31,15 @@ class SendCampagneCommandHandler implements CommandHandler {
         {
             $this->worker->setHtml($html,$campagne->api_campagne_id);
 
-            if($command->email)
-            {
-                $this->worker->sendTest($command->email,$campagne->api_campagne_id);
-                $message = 'Email de test envoyé!';
-            }
-            else
-            {
-                $this->worker->sendCampagne($campagne->api_campagne_id);
+            $this->worker->sendCampagne($campagne->api_campagne_id,$campagne->id);
 
-                $campagne->status      = 'envoyé';
-                $campagne->updated_at  = date('Y-m-d G:i:s');
+            $campagne->status      = 'envoyé';
+            $campagne->updated_at  = date('Y-m-d G:i:s');
 
-                $campagne->save();
+            $campagne->save();
 
-                $message = 'Campagne envoyé!';
-            }
+            return 'Campagne envoyé!';
 
-            return $message;
         }
         catch (Exception $e)
         {

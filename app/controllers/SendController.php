@@ -51,15 +51,26 @@ class SendController extends \BaseController {
      */
 	public function campagne()
 	{
+        $id       = Input::get('id');
+        $message  = $this->execute('Droit\Command\SendCampagneCommand', array('id' => $id) );
+
+        return Redirect::to('admin/campagne')->with( array('status' => 'success' , 'message' => $message ) );
+	}
+
+    public function test(){
 
         $id    = Input::get('id');
         $email = Input::get('email');
-        $email = ($email ? $email : false);
 
-        $message  = $this->execute('Droit\Command\SendCampagneCommand', array('id' => $id, 'email' => $email) );
+        $campagne = $this->worker->getCampagne($id);
+        $sujet    = 'TEST | '.$campagne->sujet;
 
-        return Redirect::to('admin/campagne/'.$id)->with( array('status' => 'success' , 'message' => $message ) );
+        // GET html
+        $html = $this->worker->html($campagne->id);
 
-	}
+        $this->worker->sendTest($email,$html,$sujet);
+
+        return Redirect::to('admin/campagne/'.$id)->with( array('status' => 'success' , 'message' => 'Email de test envoyé!' ) );
+    }
 
 }

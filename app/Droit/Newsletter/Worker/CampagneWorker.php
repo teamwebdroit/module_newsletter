@@ -20,8 +20,8 @@ class CampagneWorker implements CampagneInterface{
         $this->campagne = $campagne;
         $this->arret    = $arret;
 
-        $this->mailjet  = new \Droit\Newsletter\Service\Mailjet('345390d23793bc89d2237127a2f20b31','2c8f8269df093b24496329894e2ca438');
-        $this->list     = '580978';
+        $this->mailjet  = new \Droit\Newsletter\Service\Mailjet();
+        $this->list     = '1';
 	}
 
     public function getCampagne($id){
@@ -83,19 +83,18 @@ class CampagneWorker implements CampagneInterface{
      */
     public function getSubscribers(){
 
-        # Parameters
-        $params = array('id' => $this->list);
+        $params = array(
+            "method" => "VIEW",
+            "ID"     => $this->list
+        );
 
-        # Call
-        $response = $this->mailjet->listsContacts($params);
+        $result = $this->mailjet->contactslist($params);
 
-        # Result
-        /*
-        $contacts = $response->result;
-        $count    = $response->total_cnt;
-        */
+        if ($this->mailjet->_response_code == 200)
+            return $result;
+        else
+            return $this->mailjet->_response_code;
 
-        return $response;
     }
 
     /**
@@ -104,14 +103,43 @@ class CampagneWorker implements CampagneInterface{
     public function addContact($email){
 
         $params = array(
-            'method'  => 'POST',
-            'contact' => $email,
-            'id'      => $this->list
+            'method' => 'POST',
+            'Email'  => $email
         );
 
-        $response = $this->mailjet->listsAddContact($params);
+        $result = $this->mailjet->contact($params);
 
-        return ($response ? true : false);
+        if ($this->mailjet->_response_code == 200)
+            return $result->Data[0]->ID;
+        else
+            return $this->getContactByEmail($email);
+
+    }
+
+    function getContactByEmail($contactEmail) {
+
+        $params = array(
+            "method" => "VIEW",
+            "ID"     => $contactEmail
+        );
+
+        $result = $this->mailjet->contact($params);
+
+        return ($this->mailjet->_response_code == 200 ? $result->Data[0]->ID : $result);
+    }
+
+    function addContactToList($contactID) {
+
+        $params = array(
+            "method"    => "POST",
+            "ContactID" => $contactID,
+            "ListID"    => $this->list,
+            "IsActive"  => "True"
+        );
+
+        $result = $this->mailjet->listrecipient($params);
+
+        return ($this->mailjet->_response_code == 201 ? $result : false);
 
     }
 
@@ -120,15 +148,36 @@ class CampagneWorker implements CampagneInterface{
      */
     public function removeContact($email){
 
+        $listRecipientID = $this->getListRecipient($email);
+
         $params = array(
-            'method'  => 'POST',
-            'contact' => $email,
-            'id'      => $this->list
+            "method" => "DELETE",
+            "ID"     => $listRecipientID
         );
 
-        $response = $this->mailjet->listsRemoveContact($params);
+        $this->mailjet->listrecipient($params);
 
-        return ($response ? true : false);
+        if (($this->mailjet->_response_code == 200) || ($this->mailjet->_response_code == 202) || ($this->mailjet->_response_code == 204))
+            return true;
+        else
+            return false;
+
+    }
+
+    public function getListRecipient($email){
+
+        $params = array(
+            "method"        => "GET",
+            "ContactsList"  => $this->list,
+            "ContactEmail"  => $email,
+        );
+
+        $listerecipient = $this->mailjet->listrecipient($params);
+
+        if ($this->mailjet->_response_code == 200)
+            return $listerecipient->Data[0]->ID;
+        else
+            return false;
 
     }
 
@@ -139,28 +188,27 @@ class CampagneWorker implements CampagneInterface{
 
         # Parameters
         $params = array(
-            'method'    => 'POST',
-            'subject'   => $campagne->sujet.' | '.$campagne->newsletter->titre,
-            'list_id'   => $this->list,
-            'lang'      => 'fr',
-            'from'      => 'info@leschaud.ch',
-            'from_name' => $campagne->newsletter->from_name,
-            'footer'    => 'default'
+            'method'         => 'POST',
+            'Title'          => $campagne->newsletter->titre,
+            'Subject'        => $campagne->sujet,
+            'ContactsListID' => $this->list,
+            'Locale'         => 'fr',
+            'Callback'       => url('/api'),
+            'HeaderLink'     => url('/'),
+            'SenderEmail'    => 'droitformation.web@gmail.com',
+            'Sender'         => $campagne->newsletter->from_name
         );
 
         # Call
-        $response = $this->mailjet->messageCreateCampaign($params);
+        $response = $this->mailjet->newsletter($params);
 
         if($response)
         {
-            $campagne->api_campagne_id = $response->campaign->id;
+            $campagne->api_campagne_id = $response->Data[0]->ID;
             $campagne->save();
 
             return true;
         }
-
-        # Result
-        //$url = $response->campaign->url;
 
         return false;
 
@@ -170,56 +218,67 @@ class CampagneWorker implements CampagneInterface{
 
         # Parameters
         $params = array(
-            'method' => 'POST',
-            'id'     => $id,
-            'html'   => $html,
+            'method'        => 'PUT',
+            '_newsletter_id' => $id,
+            'html_content'  => $html,
         );
 
         # Call
-        $response = $this->mailjet->messageSetHtmlCampaign($params);
+        $response = $this->mailjet->addHTMLbody($params);
 
         return ($response ? $response : false);
 
     }
 
-    public function sendTest($email,$id){
 
-        # Parameters
+    public function sendTest($email,$html,$sujet){
+
         $params = array(
-            'method' => 'POST',
-            'id'     => $id,
-            'email'  => $email
+            "method"  => "POST",
+            "from"    => "droitformation.web@gmail.com",
+            "to"      => $email,
+            "subject" => $sujet,
+            "html"    => $html
         );
 
-        # Call
-        $response = $this->mailjet->messageTestCampaign($params);
+        $result = $this->mailjet->sendEmail($params);
 
-        return ($response ? $response : false);
+        if ($this->mailjet->_response_code == 200)
+            return $result;
+        else
+            return $result;
 
     }
 
-    public function sendCampagne($id){
+    public function sendCampagne($id,$CampaignID){
 
-        # Parameters
         $params = array(
-            'method' => 'POST',
-            'id'     => $id
+            "method"     => "POST",
+            "Status"     => "upload",
+            "unique"     => 'camp_'.$CampaignID,
+            "JobType"    => "Send newsletter",
+            "RefID"      => $id
         );
 
-        # Call
-        $response = $this->mailjet->messageSendCampaign($params);
+        $result = $this->mailjet->batchjob($params);
 
-        return ($response ? $response : false);
+        if ($this->mailjet->_response_code == 201)
+           return true;
+        else
+           return $result;
 
     }
 
     public function statsCampagne($id){
 
         # Parameters
-        $params = array( 'campaign_id' => $id );
+        $params = array(
+            "method" => "VIEW",
+            "unique" => 'mj.nl='.$id
+        );
 
         # Call
-        $response = $this->mailjet->reportEmailsent();
+        $response = $this->mailjet->campaignstatistics($params);
 
         return $response;
         //return ($response ? $response->stats : false);

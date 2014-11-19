@@ -8,18 +8,12 @@ class SendCampagneCommand {
     public $id;
 
     /**
-     * @var string
-     */
-    public $email;
-
-    /**
      * @param string id
      * @param string email
      */
-    public function __construct($id, $email)
+    public function __construct($id)
     {
-        $this->id    = $id;
-        $this->email = $email;
+        $this->id = $id;
     }
 
 }

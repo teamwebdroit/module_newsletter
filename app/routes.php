@@ -92,6 +92,7 @@ Route::group(array('prefix' => 'admin'), function()
 
     Route::get('html/{id}', 'NewsletterController@html');
     Route::post('send/campagne', 'SendController@campagne');
+    Route::post('send/test', 'SendController@test');
     Route::get('send/{id}', 'SendController@show');
     Route::get('send/statistiques/{id}', 'SendController@statistiques');
 
@@ -127,14 +128,13 @@ Route::get('setHmtlCampagne', function()
     $campagne   = $newsletter->find(4);
 
     //$sent = $send->sendCampagne($campagne->api_campagne_id);
-    //$html = $send->html($campagne->id);
-    //$sent = $send->setHtml($html,$campagne->api_campagne_id);
-
+    $html = $send->html($campagne->id);
+    $sent = $send->setHtml($html,$campagne->api_campagne_id);
+    //$id = $send->removeContact('pruntrut@yahoo.fr');
+    //$sent = $send->addContactToList($id);
+    //$sent = $send->createCampagne($campagne);
     //print_r($campagne);
     print_r($sent);
-
-
-
 
 });
 
