@@ -37,7 +37,6 @@ $(function(){
                 data : [28,48,40,19,96,27,100]
             }
         ]
-
     }
 
     var myLine = new Chart(document.getElementById("bar-chart").getContext("2d")).Bar(barChartData);

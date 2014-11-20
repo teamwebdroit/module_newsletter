@@ -25,4 +25,35 @@ class Charts{
 
         return $doughnutData;
     }
+
+    public function myBarChart($stats){
+
+        $labels   = array("Janvier","Février","Mars","Avril","Mai","Juin","Juillet", "Août","Septembre","Octobre","Novembre","Décembre");
+        $barChart = array();
+        $list     = array();
+
+        if(!empty($stats))
+        {
+            foreach($stats as $stat)
+            {
+                $date  = new \Carbon\Carbon($stat->CampaignSendStartAt);
+                $month = $date->month -1;// compensate for array php start at 0
+                $list[$month][] = $date->month;
+            }
+        }
+
+        foreach (range(0, 11) as $i)
+        {
+            $barChart[$i] = (isset($list[$i]) ? count($list[$i]) : 0);
+        }
+
+        $data['labels']   = $labels;
+        $data['datasets'][] = array(
+            'fillColor'   => '#6faf30',
+            'strokeColor' => '#669d31',
+            'data'        => $barChart);
+
+        return $data;
+
+    }
 }

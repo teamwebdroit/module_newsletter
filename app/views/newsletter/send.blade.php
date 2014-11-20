@@ -18,11 +18,12 @@
 
                 <?php $charts = new \Charts; ?>
 
-                @if(!empty($statistiques))
+                @if(!empty($statscampagnes))
                     <?php
-                        echo $campagne->api_campagne_id;
+
                         echo '<pre>';
-                        print_r($charts->chartDoughnut($statistiques));
+                        print_r($charts->myBarChart($statscampagnes));
+                        //print_r($charts->chartDoughnut($statistiques));
                         echo '</pre>';
                     ?>
                 @endif
@@ -49,6 +50,14 @@
                         var doughnutData = <?php echo json_encode($doughnut); ?>;
                         console.log(doughnutData);
                         var myDoughnut   = new Chart(document.getElementById("donut-chart").getContext("2d")).Doughnut(doughnutData);
+                    };
+                </script>
+
+                <script type="text/javascript">
+                    window.onload = function(){
+                        var barChartData = <?php echo json_encode($charts->myBarChart($statscampagnes)); ?>;
+                        console.log(barChartData);
+                        var myLine = new Chart(document.getElementById("bar-chart").getContext("2d")).Bar(barChartData,{ scaleGridLineColor : "#d3d3d3"});
                     };
                 </script>
 

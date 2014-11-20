@@ -130,7 +130,7 @@ class CampagneWorker implements CampagneInterface{
 
     }
 
-    function getContactByEmail($contactEmail) {
+    public function getContactByEmail($contactEmail) {
 
         $params = array(
             "method" => "VIEW",
@@ -142,7 +142,7 @@ class CampagneWorker implements CampagneInterface{
         return ($this->mailjet->_response_code == 200 ? $result->Data[0]->ID : $result);
     }
 
-    function addContactToList($contactID) {
+    public function addContactToList($contactID) {
 
         $params = array(
             "method"    => "POST",
@@ -283,19 +283,17 @@ class CampagneWorker implements CampagneInterface{
 
     }
 
-    public function statsCampagne($id){
+    public function statsCampagne($id = null){
 
         # Parameters
-        $params = array(
-            "method" => "VIEW",
-            "unique" => 'mj.nl='.$id
-        );
+        $params = array( "method" => "VIEW");
+
+        if($id){ $params['unique'] = 'mj.nl='.$id; }
 
         # Call
         $response = $this->mailjet->campaignstatistics($params);
 
         return $response;
-        //return ($response ? $response->stats : false);
 
     }
 
