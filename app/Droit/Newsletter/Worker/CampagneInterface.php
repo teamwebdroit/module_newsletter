@@ -19,7 +19,7 @@ interface CampagneInterface {
     public function setHtml($html,$id);
     public function sendTest($email,$html,$sujet);
     public function sendCampagne($id,$CampaignID);
-    public function statsCampagne($id = null);
+    public function statsCampagne($id);
     public function statsListe();
     public function campagneAggregate($id);
 }

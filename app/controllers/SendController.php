@@ -34,19 +34,13 @@ class SendController extends \BaseController {
         $statistiques = $this->worker->statsCampagne($campagne->api_campagne_id);
         $listStats    = $this->worker->campagneAggregate($campagne->api_campagne_id);
         $senderList   = $this->worker->getAllSubscribers();
-
-        $stats     = $this->worker->statsCampagne();
-        $doughnut  = $this->charts->chartDoughnut($statistiques);
-
-        $statscampagnes = $this->statsworker->filterResponseStatistics($stats);
+        $statistiques = $this->statsworker->filterResponseStatistics($statistiques);
 
         return View::make('newsletter.send')->with(
             array(
                 'isChart'        => true ,
-                'doughnut'       => $doughnut,
                 'campagne'       => $campagne ,
                 'statistiques'   => $statistiques,
-                'statscampagnes' => $statscampagnes,
                 'listStats'      => $listStats,
                 'senderList'     => $senderList
             )

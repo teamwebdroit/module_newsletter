@@ -283,12 +283,10 @@ class CampagneWorker implements CampagneInterface{
 
     }
 
-    public function statsCampagne($id = null){
+    public function statsCampagne($id){
 
         # Parameters
-        $params = array( "method" => "VIEW");
-
-        if($id){ $params['unique'] = 'mj.nl='.$id; }
+        $params = array( "method" => "VIEW" , 'unique' => 'mj.nl='.$id);
 
         # Call
         $response = $this->mailjet->campaignstatistics($params);

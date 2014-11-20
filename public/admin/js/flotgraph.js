@@ -297,7 +297,7 @@ $(function () {
             });
 
     // INTERACTIVE
-        $.plot($("#interactive"), data,
+           $.plot($("#interactive"), data,
             {
                 series: {
                         pie: {
@@ -312,6 +312,7 @@ $(function () {
                     show: false
                 }
             });
+
             $("#interactive").bind("plothover", pieHover);
 
 

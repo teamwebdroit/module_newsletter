@@ -9,18 +9,10 @@ class StatsWorker{
 
     public function filterResponseStatistics($data){
 
-        $stats = $data->Data;
-        $stats = new \Illuminate\Support\Collection( (array) $stats);
+        $stats = $data->Data[0];
+        //$stats = new \Illuminate\Support\Collection( (array) $stats);
 
-        $statscampagnes = $stats->filter(function($campagne)
-        {
-            if(isset($campagne->NewsLetterID)){
-                return $campagne;
-            }
-        });
-
-        return $statscampagnes;
-
+        return $stats;
     }
 
 }
