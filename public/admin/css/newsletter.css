@@ -141,3 +141,88 @@
 .panel-body .form-group:last-child{
     margin-bottom: 0;
 }
+
+.chart{
+    border: solid thin silver;
+    width: 100%;
+    height: 300px;
+    display: block;
+    padding: 20px 10px 25px 35px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.chart-ruler{
+    width: 35px;
+    text-align: center;
+    display: block;
+    position: absolute;
+    border: solid thin silver;
+    left: 0;
+    top: 0;
+    height: 298px;
+    padding-top: 10px;
+    color: #000;
+    background: silver;
+}
+
+.chart-ruler span{
+    width: 100%;
+    height: 5%;
+    line-height: 5%;
+    color: #444;
+    display: block;
+}
+
+.chart-ruler span.min{
+    position: absolute;
+    bottom: 0;
+}
+
+.chart-ruler span.max{
+    position: absolute;
+    top: 15px;
+}
+
+.chart:after{
+    content: ".";
+    visibility: hidden;
+    clear: both;
+}
+
+.column{
+    width: 8.3%;
+    height: 100%;
+    margin: 2px 0;
+    float: left;
+    position: relative;
+}
+
+.inner-column{
+    width: 20%;
+    height: 100%;
+    margin: 0 5%;
+    float: left;
+    position: relative;
+}
+
+.column p{
+    bottom: -33px;
+    display: block;
+    padding: 5px 0;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    border-top: 1px solid #cccccc;
+}
+
+.column .fill{
+    width: 100%;
+    position: absolute;
+    bottom: 10px;
+    margin-right: 3px;
+    display: block;;
+}
+.label{
+    text-align: center;
+}

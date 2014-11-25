@@ -2,13 +2,25 @@
 
 class Charts{
 
-    protected $colors;
-    protected $labels;
+    public $colors;
+    public $labels;
 
     public function __construct()
     {
-        $this->colors = array('#f1c40f','#e73c3c','#4f5259','#c0392b','#4f8edc','#85c744','#2bbce0','#76c4ed','#34495e','#16a085','#e73c68','#b8c6d5');
-        $this->labels = array("Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Août","Septembre","Octobre","Novembre","Décembre");
+        $this->colors = array('#85c744','#f1c40f','#e73c3c','#4f5259','#c0392b','#4f8edc','#85c744','#2bbce0','#76c4ed','#34495e','#16a085','#e73c68','#b8c6d5');
+        $this->labels = array(
+            1  => "Janvier",
+            2  => "Février",
+            3  => "Mars",
+            4  => "Avril",
+            5  => "Mai",
+            6  => "Juin",
+            7  => "Juillet",
+            8  => "Août",
+            9  => "Septembre",
+            10 => "Octobre",
+            11 => "Novembre",
+            12 => "Décembre");
     }
 
     public function chartDoughnut($stats){
@@ -44,12 +56,11 @@ class Charts{
                     $date  = new \Carbon\Carbon($stat->CampaignSendStartAt);
                     $year  = $date->year;
                     $month = $date->month;
-                    $week  = $date->weekOfYear;
                     $day   = $date->day;
 
-                    $list[$year][$month][$week][$day][$stat->CampaignID]['DeliveredCount'] = $stat->DeliveredCount;
-                    $list[$year][$month][$week][$day][$stat->CampaignID]['ClickedCount']   = $stat->ClickedCount;
-                    $list[$year][$month][$week][$day][$stat->CampaignID]['OpenedCount']    = $stat->OpenedCount;
+                    $list[$year][$month][$day][$stat->CampaignID]['DeliveredCount'] = $stat->DeliveredCount;
+                    $list[$year][$month][$day][$stat->CampaignID]['ClickedCount']   = $stat->ClickedCount;
+                    $list[$year][$month][$day][$stat->CampaignID]['OpenedCount']    = $stat->OpenedCount;
 
                     // Set max if bigger
                     if($stat->DeliveredCount > $max ){
@@ -61,6 +72,8 @@ class Charts{
 
         return array($list, $max);
     }
+
+
 
     public function myPieChart($stats){
 
