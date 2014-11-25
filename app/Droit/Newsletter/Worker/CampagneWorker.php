@@ -295,6 +295,19 @@ class CampagneWorker implements CampagneInterface{
 
     }
 
+
+    public function statsAllCampagne(){
+
+        # Parameters
+        $params = array( "method" => "VIEW");
+
+        # Call
+        $response = $this->mailjet->campaignstatistics($params);
+
+        return $response;
+
+    }
+
     public function statsListe(){
 
         # Parameters

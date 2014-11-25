@@ -32,6 +32,7 @@ class SendController extends \BaseController {
     {
         $campagne     = $this->worker->getCampagne($id);
         $statistiques = $this->worker->statsCampagne($campagne->api_campagne_id);
+        $statsListe   = $this->worker->statsAllCampagne();
         $listStats    = $this->worker->campagneAggregate($campagne->api_campagne_id);
         $senderList   = $this->worker->getAllSubscribers();
         $statistiques = $this->statsworker->filterResponseStatistics($statistiques);
@@ -41,6 +42,7 @@ class SendController extends \BaseController {
                 'isChart'        => true ,
                 'campagne'       => $campagne ,
                 'statistiques'   => $statistiques,
+                'statsListe'     => $statsListe,
                 'listStats'      => $listStats,
                 'senderList'     => $senderList
             )

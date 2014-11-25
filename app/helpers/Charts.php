@@ -2,9 +2,13 @@
 
 class Charts{
 
+    protected $colors;
+    protected $labels;
+
     public function __construct()
     {
-        $this->colors = array('#4f8edc','#85c744','#2bbce0','#f1c40f','#e73c3c','#4f5259','#c0392b','#76c4ed','#34495e','#16a085','#e73c68','#b8c6d5');
+        $this->colors = array('#f1c40f','#e73c3c','#4f5259','#c0392b','#4f8edc','#85c744','#2bbce0','#76c4ed','#34495e','#16a085','#e73c68','#b8c6d5');
+        $this->labels = array("Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Août","Septembre","Octobre","Novembre","Décembre");
     }
 
     public function chartDoughnut($stats){
@@ -26,55 +30,36 @@ class Charts{
         return $doughnutData;
     }
 
-    public function myBarChart($stats){
+    public function allYearStats($stats){
 
-        $data['labels'] = array("Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Août","Septembre","Octobre","Novembre","Décembre");
-        $barChart       = array();
-        $list           = array();
+        $list = array();
+        $max  = 0;
 
-        if(!empty($stats))
+        if(!empty($stats->Data))
         {
-            foreach($stats as $stat)
+            foreach($stats->Data as $stat)
             {
-                $date  = new \Carbon\Carbon($stat->CampaignSendStartAt);
-                $month = $date->month -1;// compensate for array php start at 0
-                $list['DeliveredCount'][$month][$stat->CampaignID] = $stat->DeliveredCount;
-                $list['ClickedCount'][$month][$stat->CampaignID]   = $stat->ClickedCount;
-                $list['OpenedCount'][$month][$stat->CampaignID]    = $stat->OpenedCount;
-            }
-        }
-/*
-        $bars = array();
-
-        foreach($list as $name => $bar)
-        {
-            $data = array();
-
-            foreach (range(0, 11) as $i)
-            {
-                foreach($list as $month => $campagne)
+                if( isset($stat->NewsLetterID))
                 {
-                    if($month == $i)
-                    {
-                        foreach($campagne as $count){
-                            $barChart[] = $count;
-                        }
-                    }
-                    else{
+                    $date  = new \Carbon\Carbon($stat->CampaignSendStartAt);
+                    $year  = $date->year;
+                    $month = $date->month;
+                    $week  = $date->weekOfYear;
+                    $day   = $date->day;
+
+                    $list[$year][$month][$week][$day][$stat->CampaignID]['DeliveredCount'] = $stat->DeliveredCount;
+                    $list[$year][$month][$week][$day][$stat->CampaignID]['ClickedCount']   = $stat->ClickedCount;
+                    $list[$year][$month][$week][$day][$stat->CampaignID]['OpenedCount']    = $stat->OpenedCount;
+
+                    // Set max if bigger
+                    if($stat->DeliveredCount > $max ){
+                        $max = $stat->DeliveredCount;
                     }
                 }
             }
-
-            $data['datasets'][] = array( 'fillColor' => '#bad3a1', 'strokeColor' => '#669d31', 'data' => $barChart );
-            $bars[$name][] =
         }
-*/
 
-
-        //$data['datasets'][] = array( 'fillColor' => '#bad3a1', 'strokeColor' => '#669d31', 'data' => $barChart );
-
-        return $list;
-
+        return array($list, $max);
     }
 
     public function myPieChart($stats){
@@ -82,10 +67,12 @@ class Charts{
         if(!empty($stats))
         {
             // Calculations
-            $sent   = $stats->DeliveredCount;
-            $clic   = $stats->ClickedCount/$sent;
-            $open   = $stats->OpenedCount/$sent;
-            $bounce = $stats->BouncedCount/$sent;
+            $sent    = 10; // $stats->DeliveredCount;
+
+            $clic    = 4; // $stats->ClickedCount/$sent;
+            $open    = 6; // $stats->OpenedCount/$sent;
+            $bounce  = 1; // $stats->BouncedCount/$sent;
+            $nonopen = $sent - ($open + $bounce);
 
             if($open != $clic){
                 $data[] = array('label' => 'Cliqués', 'data' => $clic);
@@ -97,6 +84,7 @@ class Charts{
             }
 
             $data[] = array('label' => 'Refusés', 'data' => $bounce);
+            $data[] = array('label' => 'Non ouvert', 'data' => $nonopen);
         }
 
         return $data;

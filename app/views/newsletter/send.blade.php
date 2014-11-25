@@ -18,22 +18,14 @@
 
                 <?php $charts = new \Charts; ?>
 
-                @if(!empty($statistiques))
-                    <?php
-                        echo '<pre>';
-                        print_r($statistiques);
-                        echo '</pre>';
-                    ?>
-                @endif
+                <?php
+                    list($list,$max) = $charts->allYearStats($statsListe);
 
-                @if(!empty($senderList))
-                    <?php
-                        echo '<pre>';
-                        //print_r($senderList);
-                        echo '</pre>';
-                    ?>
-                @endif
-
+                    echo 'max: '.$max;
+                    echo '<pre>';
+                    print_r($list);
+                    echo '</pre>';
+                ?>
 
                 <script type="text/javascript">
                     window.onload = function(){
@@ -48,8 +40,53 @@
                             },
                             legend: { show: false }
                         });
+
+                        /////////////////////////////////////////
+                        var d1 = [];
+                        for (var i = 0; i <= 10; i += 1) {
+                            d1.push([i, parseInt(Math.random() * 30)]);
+                        }
+
+                        var d2 = [];
+                        for (var i = 0; i <= 10; i += 1) {
+                            d2.push([i, parseInt(Math.random() * 30)]);
+                        }
+
+                        var d3 = [];
+                        for (var i = 0; i <= 10; i += 1) {
+                            d3.push([i, parseInt(Math.random() * 30)]);
+                        }
+
+                        function plotWithOptions() {
+                            $.plot("#stacking", [ d1, d2, d3 ], {
+                                series: {
+                                    stack: true,
+                                    lines: {
+                                        show: true,
+                                        fill: true,
+                                        steps: false
+                                    }
+                                }
+                            });
+                        }
+
+                        plotWithOptions();
+                        /////////////////////////////////////////
                     };
                 </script>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <h4>Stacking</h4>
+                            </div>
+                            <div class="panel-body">
+                                <div id="stacking" style="height: 300px" class="centered"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
                 <div class="row">
                     <div class="col-md-4">
@@ -58,7 +95,7 @@
                                 <h4>Bar Chart</h4>
                             </div>
                             <div class="panel-body">
-                                <canvas id="bar-chart" height="300"  width="300"></canvas>
+                                <canvas id="bar-chart" height="300" width="300"></canvas>
                             </div>
                         </div>
                     </div>
