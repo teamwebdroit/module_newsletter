@@ -20,11 +20,8 @@ class NewsletterController extends BaseController {
     {
 
         $this->content = $content;
-
         $this->types   = $types;
-
         $this->arret   = $arret;
-
         $this->analyse = $analyse;
 
         /*

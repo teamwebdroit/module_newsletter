@@ -1,25 +1,29 @@
 <?php
 
+use Laracasts\Commander\CommanderTrait;
 use Droit\Newsletter\Repo\NewsletterUserInterface;
-use Droit\Newsletter\Repo\NewsletterSubscriptionInterface;
 use Droit\Newsletter\Repo\NewsletterInterface;
+use Droit\Newsletter\Worker\CampagneInterface;
+use Droit\Command\AdminSubscribeCommandHandler;
 use Laracasts\Validation\FormValidationException;
 use Droit\Form\AddUserValidation;
 
 
 class AbonneController extends \BaseController {
 
+    use CommanderTrait;
+
     protected $abonne;
     protected $newsletter;
-    protected $subscribe;
     protected $validator;
+    protected $worker;
 
-    public function __construct(NewsletterUserInterface $abonne, NewsletterInterface $newsletter, NewsletterSubscriptionInterface $subscribe, AddUserValidation $validator)
+    public function __construct(NewsletterUserInterface $abonne, NewsletterInterface $newsletter, AddUserValidation $validator, CampagneInterface $worker)
     {
         $this->abonne     = $abonne;
         $this->newsletter = $newsletter;
-        $this->subscribe  = $subscribe;
         $this->validator  = $validator;
+        $this->worker     = $worker;
     }
 
 	/**
@@ -56,17 +60,11 @@ class AbonneController extends \BaseController {
 	 */
 	public function store()
 	{
-        $activation    = Input::get('activation');
-        $newsletter_id = Input::get('newsletter_id');
+/*        echo '<pre>';
+        print_r(Input::all());
+        echo '</pre>';exit;*/
 
-        $activated_at  = ($activation ? true : false );
-        $newsletter_id = ( $newsletter_id ? Input::get('newsletter_id') : array() );
-
-        // Validate email
-        $this->validator->validate( array('email' => Input::get('email')) );
-
-        $abonne = $this->abonne->add( array('email' => Input::get('email'), 'activated_at' => $activated_at ) );
-        $abonne->newsletter()->sync($newsletter_id);
+        $this->execute('Droit\Command\AdminSubscribeCommand');
 
         return Redirect::to('admin/abonne')->with( array('status' => 'success' , 'message' => 'Abonné ajouté') );
 	}
@@ -98,13 +96,10 @@ class AbonneController extends \BaseController {
         $activation    = Input::get('activation');
         $newsletter_id = Input::get('newsletter_id');
 
-        $data['activated_at'] = ($activation ? true : false );
-        $newsletter_id = ( $newsletter_id ? Input::get('newsletter_id') : array() );
+        $activated_at  = ($activation ? true : false );
+        $newsletter_id = ( $newsletter_id ? $newsletter_id : array() );
 
-        $data['id']    = $id;
-        $data['email'] = Input::get('email');
-
-        $abonne = $this->abonne->update( $data );
+        $abonne = $this->abonne->update( array( 'id' => $id, 'email' => Input::get('email'), 'activated_at' => $activated_at ) );
 
         $abonne->newsletter()->sync($newsletter_id);
 

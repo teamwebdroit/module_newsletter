@@ -157,6 +157,13 @@ class CampagneWorker implements CampagneInterface{
 
     }
 
+    public function subscribeEmailToList($email)
+    {
+        $contactID = $this->addContact($email);
+
+        return $this->addContactToList($contactID);
+    }
+
     /**
      * remove contact
      */

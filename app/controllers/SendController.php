@@ -22,48 +22,6 @@ class SendController extends \BaseController {
     }
 
     /**
-     * Display the specified resource.
-     * GET /campagne/{id}
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function show($id)
-    {
-        $campagne     = $this->worker->getCampagne($id);
-        $statistiques = $this->worker->statsCampagne($campagne->api_campagne_id);
-        $statsListe   = $this->worker->statsAllCampagne();
-        $listStats    = $this->worker->campagneAggregate($campagne->api_campagne_id);
-        $senderList   = $this->worker->getAllSubscribers();
-        $statistiques = $this->statsworker->filterResponseStatistics($statistiques);
-
-        return View::make('newsletter.send')->with(
-            array(
-                'isChart'        => true ,
-                'campagne'       => $campagne ,
-                'statistiques'   => $statistiques,
-                'statsListe'     => $statsListe,
-                'listStats'      => $listStats,
-                'senderList'     => $senderList
-            )
-        );
-    }
-
-    /**
-     * Display the specified resource.
-     * GET /campagne/{id}
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function statistiques($id)
-    {
-        $campagne = $this->campagne->find($id);
-
-        return View::make('newsletter.stats')->with(array( 'campagne' => $campagne , 'infos' => $infos ));
-    }
-
-    /**
      * Send campagne newsletter
      * GET /send/campagne/{$id}
      */

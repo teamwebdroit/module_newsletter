@@ -83,6 +83,10 @@ App::error(function(Droit\Exceptions\CampagneSendException $exception, $code)
     return Redirect::back()->with(array('status' => 'danger', 'message' => 'Problème avec l\'envoi de la campagne'));
 });
 
+App::error(function(Droit\Exceptions\SubscribeUserException $exception, $code)
+{
+    return Redirect::back()->with(array('status' => 'danger', 'message' => 'Problème avec l\'inscription sur mailjet'));
+});
 
 /*App::error(function(Droit\Exceptions\FileUploadException $exception, $code)
 {
