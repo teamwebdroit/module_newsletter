@@ -47,7 +47,7 @@
                                            <a class="btn btn-inverse btn-sm" href="{{ url('admin/campagne/'.$campagne->id) }}">Composer</a>
                                         </div>
                                         @else
-                                        <a class="btn btn-success btn-sm" href="{{ url('admin/send/'.$campagne->id) }}">Voir les statistiques</a>
+                                        <a class="btn btn-success btn-sm" href="{{ url('admin/stats/'.$campagne->id) }}">Voir les statistiques</a>
                                         @endif
                                     </td>
                                     <td>

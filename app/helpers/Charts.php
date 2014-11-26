@@ -7,7 +7,7 @@ class Charts{
 
     public function __construct()
     {
-        $this->colors = array('#4f5259','#c0392b','#4f8edc','#85c744','#f1c40f','#4f8edc','#85c744','#2bbce0','#76c4ed','#34495e','#16a085','#e73c68','#b8c6d5');
+        $this->colors = array('#4f5259','#34495e','#4f8edc','#85c744','#f1c40f','#4f8edc','#85c744','#2bbce0','#76c4ed','#34495e','#16a085','#e73c68','#b8c6d5');
         $this->labels = array(
             1  => "Janvier",
             2  => "Février",
@@ -61,7 +61,7 @@ class Charts{
                     $list[$year][$month][$day][$stat->CampaignID]['DeliveredCount'] = $stat->DeliveredCount;
                     $list[$year][$month][$day][$stat->CampaignID]['ClickedCount']   = $stat->ClickedCount;
                     $list[$year][$month][$day][$stat->CampaignID]['OpenedCount']    = $stat->OpenedCount;
-
+                    $list[$year][$month][$day][$stat->CampaignID]['BouncedCount']   = $stat->BouncedCount;
                     // Set max if bigger
                     if($stat->DeliveredCount > $max ){
                         $max = $stat->DeliveredCount;

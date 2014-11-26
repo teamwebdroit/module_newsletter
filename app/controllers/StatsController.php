@@ -24,7 +24,14 @@ class StatsController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
+        $statistiques  = $this->worker->statsAllCampagne();
+
+        return View::make('stats.index')->with(
+            array(
+                'isChart'        => true ,
+                'statistiques'   => $statistiques
+            )
+        );
 	}
 
 	/**
@@ -62,7 +69,16 @@ class StatsController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		//
+        $campagne     = $this->worker->getCampagne($id);
+        $statistiques = $this->worker->statsCampagne($campagne->api_campagne_id);
+
+        return View::make('stats.show')->with(
+            array(
+                'isChart'        => true,
+                'campagne'       => $campagne ,
+                'statistiques'   => $statistiques
+            )
+        );
 	}
 
 	/**
