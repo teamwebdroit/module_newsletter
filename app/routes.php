@@ -94,10 +94,11 @@ Route::group(array('prefix' => 'admin'), function()
     Route::post('send/campagne', 'SendController@campagne');
     Route::post('send/test', 'SendController@test');
     Route::get('send/{id}', 'SendController@show');
-    Route::get('send/statistiques/{id}', 'SendController@statistiques');
+    //Route::get('send/statistiques/{id}', 'SendController@statistiques');
 
-    Route::get('stats/chartDoughnut/{id}', 'StatsController@chartDoughnut');
+    //Route::get('stats/chartDoughnut/{id}', 'StatsController@chartDoughnut');
 
+    Route::resource('stats', 'StatsController');
 
     Route::match(array('GET', 'POST'), 'categorie/arretsExists', array('uses' => 'CategorieController@arretsExists'));
     Route::match(array('GET', 'POST'), 'search', array('uses' => 'SearchController@index'));

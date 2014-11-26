@@ -1,15 +1,18 @@
 <?php
 
 use Droit\Newsletter\Worker\CampagneInterface;
+use Droit\Newsletter\Worker\StatsWorker;
 
 class StatsController extends \BaseController {
 
     protected $worker;
+    protected $statsworker;
     protected $charts;
 
-    public function __construct( CampagneInterface $worker)
+    public function __construct( CampagneInterface $worker, StatsWorker $statsworker)
     {
         $this->worker = $worker;
+        $this->statsworker  = $statsworker;
         $this->charts = new \Charts;
     }
 

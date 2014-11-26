@@ -7,7 +7,7 @@ class Charts{
 
     public function __construct()
     {
-        $this->colors = array('#85c744','#f1c40f','#e73c3c','#4f5259','#c0392b','#4f8edc','#85c744','#2bbce0','#76c4ed','#34495e','#16a085','#e73c68','#b8c6d5');
+        $this->colors = array('#4f5259','#c0392b','#4f8edc','#85c744','#f1c40f','#4f8edc','#85c744','#2bbce0','#76c4ed','#34495e','#16a085','#e73c68','#b8c6d5');
         $this->labels = array(
             1  => "Janvier",
             2  => "Février",
@@ -79,24 +79,21 @@ class Charts{
 
         if(!empty($stats))
         {
-            // Calculations
+            // Datas
             $sent    = 10; // $stats->DeliveredCount;
-
             $clic    = 4; // $stats->ClickedCount/$sent;
             $open    = 6; // $stats->OpenedCount/$sent;
             $bounce  = 1; // $stats->BouncedCount/$sent;
-            $nonopen = $sent - ($open + $bounce);
 
-            if($open != $clic){
-                $data[] = array('label' => 'Cliqués', 'data' => $clic);
-                $data[] = array('label' => 'Ouverts',  'data' => $open);
-            }
-            else
-            {
-                $data[] = array('label' => 'Ouverts et Cliqués', 'data' => $clic);
-            }
+            // Calculations
+            // We need bounce, non open, open+clic, only open
+            $nonopen  = $sent - ($open + $bounce);
+            $openclic = $clic;
+            $onlyopen = $open - $clic;
 
-            $data[] = array('label' => 'Refusés', 'data' => $bounce);
+            $data[] = array('label' => 'Ouverts et Cliqués', 'data' => $openclic);
+            $data[] = array('label' => 'Ouverts',  'data' => $onlyopen);
+            $data[] = array('label' => 'Refusés', 'data'    => $bounce);
             $data[] = array('label' => 'Non ouvert', 'data' => $nonopen);
         }
 
