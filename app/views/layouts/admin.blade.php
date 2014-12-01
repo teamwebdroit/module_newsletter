@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="<?php echo asset('admin/css/styles.css?=121');?>">
     <link rel="stylesheet" href="<?php echo asset('admin/css/newsletter.css');?>">
     <link rel="stylesheet" href="<?php echo asset('js/vendor/redactor/redactor.css'); ?>">
+    <link rel="stylesheet" href="<?php echo asset('admin/css/files.css'); ?>">
     <link rel="stylesheet" href="<?php echo asset('js/vendor/jqueryui/jquery-ui.min.css'); ?>">
     <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600' rel='stylesheet' type='text/css'>
 
@@ -132,6 +133,7 @@
     <script type="text/javascript" src="<?php echo asset('admin/js/datatables.js');?>"></script>
     <script type="text/javascript" src="<?php echo asset('admin/js/application.js');?>"></script>
     <script type="text/javascript" src="<?php echo asset('js/utils.js');?>"></script>
+    <script type="text/javascript" src="<?php echo asset('admin/js/files.js');?>"></script>
 
     @if(isset($isNewsletter))
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.2/angular.min.js"></script>

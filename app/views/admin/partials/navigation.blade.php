@@ -7,6 +7,7 @@
 
         <li class="divider"></li>
         <li class="<?php echo (Request::is('admin/dashboard') ? 'active' : '' ); ?>"><a href="{{ url('admin/dashboard') }}"><i class="fa fa-home"></i> <span>Accueil</span></a></li>
+        <li class="<?php echo (Request::is('admin/file') ? 'active' : '' ); ?>"><a href="{{ url('admin/file') }}"><i class="fa fa-folder"></i> <span>Fichiers</span></a></li>
         <li class="<?php echo (Request::is('admin/arret/*') ? 'active' : '' ); ?>"><a href="{{ url('admin/arret')  }}"><i class="fa fa-edit"></i> <span>Arrêts</span></a></li>
         <li class="<?php echo (Request::is('admin/categorie/*') ? 'active' : '' ); ?>"><a href="{{ url('admin/categorie')  }}"><i class="fa fa-tasks"></i> <span>Categories</span></a></li>
         <li class="<?php echo (Request::is('admin/campagne/*') or Request::is('admin/abonne/*') ? 'active' : '' ); ?>">
