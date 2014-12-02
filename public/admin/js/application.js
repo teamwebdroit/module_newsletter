@@ -5,7 +5,7 @@
 $(function () {
 
     window.setTimeout(function() {
-        $(".flash").fadeTo(500, 0).slideUp(500, function(){
+        $(".flash").animate({top: "52px"}).slideUp(500, function(){
             $(this).remove();
         });
     }, 3500);

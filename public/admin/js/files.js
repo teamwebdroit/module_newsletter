@@ -1,5 +1,7 @@
 $(function(){
 
+    var urlroot  = location.protocol + "//" + location.host+"/";
+
 	var filemanager = $('.filemanager'),
 		breadcrumbs = $('.breadcrumbs'),
 		fileList = filemanager.find('.data');
@@ -330,8 +332,21 @@ $(function(){
 
 					icon = '<span class="icon file f-'+fileType+'">.'+fileType+'</span>';
 
-					var file = $('<li class="files"><a href="'+ f.path+'" title="'+ f.path +'" class="files">'+icon+'<span class="name">'+ name +'</span> <span class="details">'+fileSize+'</span></a></li>');
-					file.appendTo(fileList);
+                    var pop    = '';
+
+                    if( (fileType === 'jpg') || (fileType === 'png') || (fileType === 'jpeg') || (fileType === 'JPG') || (fileType === 'PNG') ){
+                        pop = 'mix';
+                    }
+                    else{
+                        pop = ' target="_blank" ';
+                    }
+
+					var file   = $('<li class="files '+pop+'"><a "'+pop+'" href="'+ f.path+'" rel="'+name+'" title="'+ f.path +'" class="files">'+icon+'<span class="name">'+ name +'</span> <span class="details">'+fileSize+'</span> </a></li>');
+					var remove = $('<form method="post" action="'+urlroot+'admin/file"><input type="hidden" name="file" value="'+ f.path +'"><input type="hidden" name="_method" value="DELETE"><button type="submit" data-action="fichier" class="removeFile deleteAction"><i class="fa fa-times"></i></button></form>');
+
+                    file.append(remove);
+                    file.appendTo(fileList);
+
 				});
 
 			}
@@ -367,8 +382,11 @@ $(function(){
 			}
 
 			breadcrumbs.text('').append(url);
+
+            console.log(fileList);
 			// Show the generated elements
-			fileList.animate({'display':'inline-block'});
+			//fileList.animate({'display':'inline-block'});
+            fileList.css({'display':'inline-block'});
 
 		}
 

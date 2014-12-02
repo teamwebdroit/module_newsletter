@@ -85,6 +85,7 @@ Route::group(array('prefix' => 'admin'), function()
     Route::resource('categorie', 'CategorieController');
 
     Route::get('file/scan', 'FileController@scan');
+    Route::delete('file', 'FileController@destroy');
     Route::resource('file', 'FileController');
 
     Route::get('campagne/compose', 'CampagneController@compose');

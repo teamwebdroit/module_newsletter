@@ -128,10 +128,12 @@
 }
 
 #alertMessage{
+    left: 50%;
+    margin-left: -200px;
     position: absolute;
-    right: 20px;
-    top: 65px;
-    width: 50%;
+    text-align: center;
+    top: -50px;
+    width: 500px;
 }
 
 .onBuild{

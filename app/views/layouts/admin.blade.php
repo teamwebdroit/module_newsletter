@@ -132,6 +132,7 @@
     <script type='text/javascript' src="<?php echo asset('admin/plugins/datatables/dataTables.bootstrap.js');?>"></script>
     <script type="text/javascript" src="<?php echo asset('admin/js/datatables.js');?>"></script>
     <script type="text/javascript" src="<?php echo asset('admin/js/application.js');?>"></script>
+    <script type='text/javascript' src="<?php echo asset('admin/plugins/mixitup/jquery.mixitup.min.js');?>"></script>
     <script type="text/javascript" src="<?php echo asset('js/utils.js');?>"></script>
     <script type="text/javascript" src="<?php echo asset('admin/js/files.js');?>"></script>
 

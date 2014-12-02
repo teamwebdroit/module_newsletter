@@ -100,4 +100,21 @@ $(function() {
 
     $( ".datePicker" ).datepicker();
 
+    /* popup for files images */
+
+    $('body').on('click','.mix a',function(e){
+        e.preventDefault();
+        $('.modal-title').empty();
+        $('.modal-body').empty();
+
+        var title = $(this).attr('rel');
+        $('.modal-title').html(title);
+
+        var img = '<img class="img-responsive" style="max-height: 400px;" src=' +$(this).attr("href")+ '></img>';
+        $(img).appendTo('.modal-body');
+
+        $('#gallarymodal').modal({show:true});
+    });
+
+
 });

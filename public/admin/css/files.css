@@ -1,10 +1,8 @@
 @charset "utf-8";
 
 .filemanager {
-	width: 95%;
-	max-width:1340px;
+	width: 100%;
 	position: relative;
-	margin: 100px auto 50px;
 }
 
 @media all and (max-width: 965px) {
@@ -21,7 +19,7 @@
 
 
 .filemanager .breadcrumbs {
-	color: #ffffff;
+	color: #373743;
 	margin-left:20px;
 	font-size: 24px;
 	font-weight: 700;
@@ -29,7 +27,7 @@
 }
 
 .filemanager .breadcrumbs a:link, .breadcrumbs a:visited {
-	color: #ffffff;
+	color: #373743;
 	text-decoration: none;
 }
 
@@ -56,7 +54,7 @@
 	cursor: pointer;
 	right: 0;
 	font-size: 17px;
-	color: #ffffff;
+	color: #373743;
 	display: block;
 	width: 40px;
 	height: 40px;
@@ -69,7 +67,7 @@
 	width: 10px;
 	height: 11px;
 	border-radius: 50%;
-	border: 2px solid #ffffff;
+	border: 2px solid #373743;
 	right: 8px;
 }
 
@@ -77,7 +75,7 @@
 	content: '';
 	width: 3px;
 	height: 10px;
-	background-color: #ffffff;
+	background-color: #373743;
 	border-radius: 2px;
 	position: absolute;
 	top: 23px;
@@ -126,8 +124,10 @@
 -------------------------*/
 
 .filemanager .data {
-	margin-top: 60px;
+	margin: 0;
+    padding: 0;
 	z-index: -3;
+    width: 100%;
 }
 
 .filemanager .data.animated {
@@ -137,9 +137,9 @@
 
 .filemanager .data li {
 	border-radius: 3px;
-	background-color: #373743;
-	width: 307px;
-	height: 118px;
+	background-color: #34495e;
+    width: 23.1%;
+	height: 110px;
 	list-style-type: none;
 	margin: 10px;
 	display: inline-block;
@@ -153,8 +153,7 @@
 }
 
 .filemanager .data li:hover {
-	background-color: #42424E;
-
+	background-color: #2a3f54;
 }
 
 .filemanager .data li a {
@@ -163,14 +162,36 @@
 	left: 0;
 	width: 100%;
 	height: 100%;
+    z-index: 10;
+}
+
+.filemanager .data li button.removeFile{
+    bottom: 10px;
+    color: #fff;
+    display: block;
+    height: 20px;
+    line-height: 20px;
+    margin-left: 93%;
+    margin-top: 85px;
+    position: absolute;
+    right: 10px;
+    text-align: center;
+    width: 20px;
+    z-index: 100;
+    background: none;
+    border: none;
+}
+
+.filemanager .data li button.removeFile:hover{
+    text-decoration: none;
 }
 
 .filemanager .data li .name {
 	color: #ffffff;
-	font-size: 15px;
+	font-size: 12px;
 	font-weight: 700;
 	line-height: 20px;
-	width: 150px;
+	width: 64%;
 	white-space: nowrap;
 	display: inline-block;
 	position: absolute;
@@ -181,7 +202,7 @@
 
 .filemanager .data li .details {
 	color: #b6c1c9;
-	font-size: 13px;
+	font-size: 11px;
 	font-weight: 400;
 	width: 55px;
 	height: 10px;
@@ -189,6 +210,18 @@
 	white-space: nowrap;
 	position: absolute;
 	display: inline-block;
+}
+
+.filemanager .data li i {
+    color: #fff;
+    display: block;
+    height: 20px;
+    line-height: 20px;
+    width: 20px;
+}
+
+.filemanager .data li i:hover {
+    color: #ffcacc;
 }
 
 .filemanager .nothingfound {
@@ -263,7 +296,7 @@
 }
 .icon.folder {
 	display: inline-block;
-	margin: 1em;
+	margin: 1em 0.5em;
 	background-color: transparent;
 	overflow: hidden;
 }
@@ -271,10 +304,8 @@
 	content: '';
 	float: left;
 	background-color: #7ba1ad;
-
-	width: 1.5em;
+	width: 1.4em;
 	height: 0.45em;
-
 	margin-left: 0.07em;
 	margin-bottom: -0.07em;
 
@@ -287,11 +318,9 @@
 	content: '';
 	float: left;
 	clear: left;
-
 	background-color: #a0d4e4;
-	width: 3em;
+	width: 2.7em;
 	height: 2.25em;
-
 	border-radius: 0.1em;
 }
 .icon.folder.full:before {
@@ -303,14 +332,14 @@
 }
 
 .icon.file {
-	width: 2.5em;
+	width: 2.7em;
 	height: 3em;
 	line-height: 3em;
 	text-align: center;
 	border-radius: 0.25em;
 	color: #FFF;
 	display: inline-block;
-	margin: 0.9em 1.2em 0.8em 1.3em;
+	margin: 0.9em 0.5em 0.8em 0.5em;
 	position: relative;
 	overflow: hidden;
 	box-shadow: 1.74em -2.1em 0 0 #A4A7AC inset;
@@ -447,4 +476,8 @@
 
 @media (max-width: 1024px) {
 	#bsaHolder, footer{ display:none;}
+}
+
+.modal-body img{
+    margin:0 auto;
 }

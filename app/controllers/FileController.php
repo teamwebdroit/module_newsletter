@@ -80,14 +80,22 @@ class FileController extends \BaseController {
 
 	/**
 	 * Remove the specified resource from storage.
-	 * DELETE /file/{id}
+	 * DELETE /file
 	 *
-	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function destroy()
 	{
-		//
+        $filename = public_path().'/'.Input::get('file');
+
+        if( \File::delete($filename) )
+        {
+            return Redirect::back()->with( array('status' => 'success' , 'message' => 'Fichier supprimé') );
+        }
+        else
+        {
+            return Redirect::back()->with( array('status' => 'danger' , 'message' => 'Problème avec la suppression du fichier') );
+        }
 	}
 
     /**
