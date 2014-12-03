@@ -45,6 +45,9 @@ $(function() {
 
     });
 
+    /**
+     *  Modal for delete a categorie as warning if arrets linked
+     */
     $('body').on('click','.deleteCategorie',function(event){
 
         var $this      = $(this);
@@ -52,11 +55,10 @@ $(function() {
         $('#modalCategorie').empty();
 
         $.ajax({
-            url     : 'categorie/arretsExists',
+            url     : 'admin/categorie/arretsExists',
             data    : { id: id },
             type    : "POST",
             success : function(data) {
-
                 if(data.length > 0)
                 {
                     var references = '<p class="text-danger"><strong>Attention!</strong>Les arrêts suivant sont liés à cette catégorie</p><ul>';
@@ -68,15 +70,67 @@ $(function() {
 
                     $('#modalCategorie').append(references);
                 }
-
+                $('#deleteConfirm').data('categorie' , id);
                 $('#deleteCategorie').modal();
             }
         });
     });
 
     $('#deleteConfirm').click(function() {
-        $('#deleteCategorieForm').submit();
+        var cat = $(this).data('categorie');
+        console.log(cat);
+        $('#deleteCategorieForm_' + cat).submit();
     });
+
+    /**
+     *  Modal for delete a image as warning if arrets or newsletter content linked
+     */
+    $('body').on('click','.deleteImage',function(event){
+
+        var $this = $(this);
+        var file  = $this.data('file');
+        var index = $this.data('index');
+        $('#modalImage').empty();
+
+        $.ajax({
+            url     : 'admin/file/imageIsUsed',
+            data    : { file: file },
+            type    : "POST",
+            success : function(data) {
+
+                var isUsed = 0;
+                var warning    = '';
+                var references = '<ul>';
+                var elements   = { category: 'Categorie', newsletter: 'Newsletter', arret: 'Arrêts' };
+
+                $.each(data, function( index, value ) {
+
+                    console.log(index);
+                     if(value.length > 0)
+                     {
+                        isUsed = 1;
+                        references = references.concat('<li>'+ elements[index] +'</li>');
+                     }
+
+                    warning = ( isUsed ? '<p class="text-danger"><strong>Attention!</strong>L\'image est lié aux éléments suivant</p>' : '' );
+
+                });
+
+                references.concat('</ul>');
+                $('#modalImage').append(warning);
+                $('#modalImage').append(references);
+
+                $('#deleteImageConfirm').data('index' , index);
+                $('#deleteImage').modal();
+            }
+        });
+    });
+
+    $('#deleteImageConfirm').click(function() {
+        var index = $(this).data('index');
+        $('#deleteImageForm_'+index).submit();
+    });
+
 
     $.datepicker.regional['fr-CH'] = {
         closeText: 'Fermer',

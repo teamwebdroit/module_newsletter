@@ -61,14 +61,14 @@
 }
 
 .filemanager .search:before {
-	content: '';
-	position: absolute;
-	margin-top:12px;
-	width: 10px;
-	height: 11px;
-	border-radius: 50%;
-	border: 2px solid #373743;
-	right: 8px;
+    border: 2px solid #373743;
+    border-radius: 50%;
+    content: "";
+    height: 11px;
+    margin-top: 15px;
+    position: absolute;
+    right: 10px;
+    width: 10px;
 }
 
 .filemanager .search:after {
@@ -124,7 +124,7 @@
 -------------------------*/
 
 .filemanager .data {
-	margin: 0;
+	margin: 5px 0 0 0;
     padding: 0;
 	z-index: -3;
     width: 100%;
@@ -137,9 +137,9 @@
 
 .filemanager .data li {
 	border-radius: 3px;
-	background-color: #34495e;
+	background-color: #d2d3d6;
     width: 23.1%;
-	height: 110px;
+	height: 95px;
 	list-style-type: none;
 	margin: 10px;
 	display: inline-block;
@@ -154,6 +154,7 @@
 
 .filemanager .data li:hover {
 	background-color: #2a3f54;
+    color: #fff;
 }
 
 .filemanager .data li a {
@@ -167,12 +168,12 @@
 
 .filemanager .data li button.removeFile{
     bottom: 10px;
-    color: #fff;
+    color: #34495e;
     display: block;
     height: 20px;
     line-height: 20px;
     margin-left: 93%;
-    margin-top: 85px;
+    margin-top: 65px;
     position: absolute;
     right: 10px;
     text-align: center;
@@ -184,10 +185,11 @@
 
 .filemanager .data li button.removeFile:hover{
     text-decoration: none;
+    color: #c6393f;
 }
 
 .filemanager .data li .name {
-	color: #ffffff;
+	color: #34495e;
 	font-size: 12px;
 	font-weight: 700;
 	line-height: 20px;
@@ -197,31 +199,35 @@
 	position: absolute;
 	overflow: hidden;
 	text-overflow: ellipsis;
-	top: 40px;
+	top: 30px;
 }
 
 .filemanager .data li .details {
-	color: #b6c1c9;
+	color: #666;
 	font-size: 11px;
 	font-weight: 400;
 	width: 55px;
 	height: 10px;
-	top: 64px;
+	top: 50px;
 	white-space: nowrap;
 	position: absolute;
 	display: inline-block;
 }
 
-.filemanager .data li i {
+.filemanager .data li:hover .name, .filemanager .data li:hover .details, .filemanager .data li:hover i{
     color: #fff;
+}
+
+.filemanager .data li i {
+    color: #34495e;
     display: block;
     height: 20px;
     line-height: 20px;
     width: 20px;
 }
 
-.filemanager .data li i:hover {
-    color: #ffcacc;
+.filemanager .data li:hover button:hover {
+    background: #607993;
 }
 
 .filemanager .nothingfound {
@@ -296,67 +302,65 @@
 }
 .icon.folder {
 	display: inline-block;
-	margin: 1em 0.5em;
+	margin: 0.7em 0.5em 0 0.5em;
 	background-color: transparent;
 	overflow: hidden;
 }
 .icon.folder:before {
-	content: '';
-	float: left;
-	background-color: #7ba1ad;
-	width: 1.4em;
-	height: 0.45em;
-	margin-left: 0.07em;
-	margin-bottom: -0.07em;
-
-	border-top-left-radius: 0.1em;
-	border-top-right-radius: 0.1em;
-
-	box-shadow: 1.25em 0.25em 0 0em #7ba1ad;
+    background-color: #7ba1ad;
+    border-top-left-radius: 0.1em;
+    border-top-right-radius: 0.1em;
+    box-shadow: 1.25em 0.25em 0 0 #7ba1ad;
+    content: "";
+    float: left;
+    height: 0.35em;
+    margin-bottom: -0.07em;
+    margin-left: 0.07em;
+    width: 1.2em;
 }
 .icon.folder:after {
-	content: '';
-	float: left;
-	clear: left;
-	background-color: #a0d4e4;
-	width: 2.7em;
-	height: 2.25em;
-	border-radius: 0.1em;
+    background-color: #a0d4e4;
+    border-radius: 0.1em;
+    clear: left;
+    content: "";
+    float: left;
+    height: 0.4em;
+    width: 2.3em;
 }
 .icon.folder.full:before {
 	height: 0.55em;
 }
 .icon.folder.full:after {
-	height: 2.15em;
+    height: 2em;
 	box-shadow: 0 -0.12em 0 0 #ffffff;
 }
 
 .icon.file {
-	width: 2.7em;
-	height: 3em;
-	line-height: 3em;
-	text-align: center;
-	border-radius: 0.25em;
-	color: #FFF;
-	display: inline-block;
-	margin: 0.9em 0.5em 0.8em 0.5em;
-	position: relative;
-	overflow: hidden;
-	box-shadow: 1.74em -2.1em 0 0 #A4A7AC inset;
+    border-radius: 0.25em;
+    box-shadow: 1.74em -2.1em 0 0 #a4a7ac inset;
+    color: #fff;
+    display: inline-block;
+    height: 2.3em;
+    line-height: 3em;
+    margin: 0.9em 0.5em 0.8em;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    width: 2em;
 }
 .icon.file:first-line {
-	font-size: 13px;
+	font-size: 12px;
 	font-weight: 700;
 }
 .icon.file:after {
-	content: '';
-	position: absolute;
-	z-index: -1;
-	border-width: 0;
-	border-bottom: 2.6em solid #DADDE1;
-	border-right: 2.22em solid rgba(0, 0, 0, 0);
-	top: -34.5px;
-	right: -4px;
+    border-bottom: 1.3em solid #dadde1;
+    border-right: 1.22em solid rgba(0, 0, 0, 0);
+    border-width: 0 1.22em 1.3em 0;
+    content: "";
+    position: absolute;
+    right: -12px;
+    top: -23.5px;
+    z-index: -1;
 }
 
 .icon.file.f-avi,

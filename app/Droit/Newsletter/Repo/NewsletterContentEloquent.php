@@ -33,6 +33,11 @@ class NewsletterContentEloquent implements NewsletterContentInterface{
 		return $this->contents->where('id','=',$id)->with(array('campagne','newsletter'))->get()->first();
 	}
 
+    public function findyByImage($file){
+
+        return $this->contents->where('image','=',$file)->get();
+    }
+
     public function updateSorting(array $data){
 
         if(!empty($data))

@@ -4,8 +4,10 @@
 
 $(function () {
 
+    $(".flash").animate({top: "+=64"},500).fadeIn(1000);
+
     window.setTimeout(function() {
-        $(".flash").animate({top: "52px"}).slideUp(500, function(){
+        $(".flash").fadeTo(500, 0).slideUp(500, function(){
             $(this).remove();
         });
     }, 3500);

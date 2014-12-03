@@ -23,6 +23,11 @@ class CategorieEloquent implements CategorieInterface{
         return $this->categorie->with(array('categorie_arrets'))->findOrFail($id);
     }
 
+    public function findyByImage($file){
+
+        return $this->categorie->where('image','=',$file)->where('deleted', '=', 0)->get();
+    }
+
     public function create(array $data){
 
         $categorie = $this->categorie->create(array(

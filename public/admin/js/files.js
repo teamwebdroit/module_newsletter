@@ -321,7 +321,7 @@ $(function(){
 
 			if(scannedFiles.length) {
 
-				scannedFiles.forEach(function(f) {
+				scannedFiles.forEach(function(f,index) {
 
 					var fileSize = bytesToSize(f.size),
 						name = escapeHTML(f.name),
@@ -334,7 +334,7 @@ $(function(){
 
                     var pop    = '';
 
-                    if( (fileType === 'jpg') || (fileType === 'png') || (fileType === 'jpeg') || (fileType === 'JPG') || (fileType === 'PNG') ){
+                    if( (fileType === 'jpg') || (fileType === 'png') || (fileType === 'gif') || (fileType === 'jpeg') || (fileType === 'JPG') || (fileType === 'GIF') || (fileType === 'PNG') ){
                         pop = 'mix';
                     }
                     else{
@@ -342,7 +342,7 @@ $(function(){
                     }
 
 					var file   = $('<li class="files '+pop+'"><a "'+pop+'" href="'+ f.path+'" rel="'+name+'" title="'+ f.path +'" class="files">'+icon+'<span class="name">'+ name +'</span> <span class="details">'+fileSize+'</span> </a></li>');
-					var remove = $('<form method="post" action="'+urlroot+'admin/file"><input type="hidden" name="file" value="'+ f.path +'"><input type="hidden" name="_method" value="DELETE"><button type="submit" data-action="fichier" class="removeFile deleteAction"><i class="fa fa-times"></i></button></form>');
+					var remove = $('<form method="post" id="deleteImageForm_'+index+'" action="'+urlroot+'admin/file"><input type="hidden" name="file" value="'+ f.path +'"><input type="hidden" name="_method" value="DELETE"><button type="button" data-index="'+ index +'"  data-file="'+ name +'" data-action="fichier" class="removeFile deleteImage"><i class="fa fa-times"></i></button></form>');
 
                     file.append(remove);
                     file.appendTo(fileList);
@@ -358,7 +358,7 @@ $(function(){
 
 			if(filemanager.hasClass('searching')){
 
-				url = '<span>Search results: </span>';
+				url = '<span>Résultat de la recherche: </span>';
 				fileList.removeClass('animated');
 
 			}
@@ -383,7 +383,6 @@ $(function(){
 
 			breadcrumbs.text('').append(url);
 
-            console.log(fileList);
 			// Show the generated elements
 			//fileList.animate({'display':'inline-block'});
             fileList.css({'display':'inline-block'});

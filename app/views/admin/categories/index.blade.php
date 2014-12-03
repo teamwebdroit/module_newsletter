@@ -34,10 +34,9 @@
                                     <td><strong>{{ $categorie->title }}</strong></td>
                                     <td><img height="60" src="{{ asset('newsletter/pictos/'.$categorie->image) }}" alt="{{ $categorie->title }}" /></td>
                                     <td class="text-right">
-                                        {{ Form::open(array('id' => 'deleteCategorieForm', 'route' => array('admin.categorie.destroy', $categorie->id), 'method' => 'delete')) }}
+                                        {{ Form::open(array('id' => 'deleteCategorieForm_'.$categorie->id, 'route' => array('admin.categorie.destroy', $categorie->id), 'method' => 'delete')) }}
                                         {{ Form::close() }}
                                         <button data-id="{{ $categorie->id }}" class="btn btn-danger btn-sm deleteCategorie">Supprimer</button>
-
                                     </td>
                                 </tr>
                             @endforeach

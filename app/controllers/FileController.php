@@ -1,12 +1,17 @@
 <?php
 
 use Droit\Service\Worker\UploadInterface;
+use Droit\Service\Worker\FileWorker;
 
 class FileController extends \BaseController {
 
-    public function __construct( UploadInterface $upload )
+    protected $upload;
+    protected $worker;
+
+    public function __construct( UploadInterface $upload, FileWorker $worker )
     {
         $this->upload = $upload;
+        $this->worker = $worker;
     }
 
 	/**
@@ -17,7 +22,9 @@ class FileController extends \BaseController {
 	 */
 	public function index()
 	{
-        return View::make('admin.files.index');
+        $test = $this->worker->used( 'ass-maladie.jpg' );
+
+        return View::make('admin.files.index')->with(array('test' => $test));
 	}
 
 	/**
@@ -114,5 +121,16 @@ class FileController extends \BaseController {
         );
 
     }
+
+    /**
+     * Test if images linked to categories, arrets or newsletter content
+     *
+     * @return array
+     */
+    public function imageIsUsed(){
+
+        return Response::json( $this->worker->used(Input::get('file')) , 200 );
+    }
+
 
 }

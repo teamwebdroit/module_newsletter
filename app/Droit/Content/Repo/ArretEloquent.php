@@ -45,6 +45,11 @@ class ArretEloquent implements ArretInterface{
 		return $this->arret->where('id', '=' ,$id)->with(array('arrets_categories','arrets_analyses'))->get()->first();
 	}
 
+    public function findyByImage($file){
+
+        return $this->arret->where('file','=',$file)->get();
+    }
+
 	public function create(array $data){
 
 		$arret = $this->arret->create(array(
