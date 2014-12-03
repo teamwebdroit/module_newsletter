@@ -49,6 +49,7 @@ Route::get('post-text', 'TemplateController@postText');
  */
 Route::post('uploadJS', 'UploadController@uploadJS');
 Route::post('uploadRedactor', 'UploadController@uploadRedactor');
+Route::post('uploadJquery', 'UploadController@uploadJquery');
 
 /**
  * API
@@ -66,7 +67,6 @@ Route::get('prepareCampagne/{id}', 'NewsletterApiController@prepareCampagne');
 Route::get('arrets/{id}', 'NewsletterApiController@simple');
 Route::get('arrets', 'ArretController@arrets');
 Route::get('categories', 'CategorieController@categories');
-
 
 /**
  * Newsletter inscription routes

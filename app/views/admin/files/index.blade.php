@@ -6,22 +6,25 @@
     <div class="row">
         <div class="col-md-12">
 
+            <span class="btn btn-magenta fileinput-button">
+                <i class="fa fa-file"></i>&nbsp;
+                <span>Ajouter un fichier</span>
+                <!-- The file input field used as target for the file upload widget -->
+                <input id="fileupload" type="file" name="files[]" multiple>
+            </span>
+
+            <!-- The global progress bar -->
+            <div id="progress" class="progress">
+                <div class="progress-bar progress-bar-success"></div>
+            </div>
+            <!-- The container for the uploaded files -->
+            <div id="files" class="files"></div>
+
             <div class="panel panel-midnightblue">
                 <div class="panel-heading">
                     <h4><i class="fa fa-folder"></i> &nbsp;Fichiers</h4>
                 </div>
                 <div class="panel-body">
-
-                    <div class="btn-toolbar pull-right">
-                        <div class="btn-group btn-group-sm">
-                            <a href='#' class="btn btn-sky">
-                                <i class="fa fa-folder"></i> &nbsp;Ajouter un fichier</span>
-                            </a>
-                            <a href='#' class="btn btn-brown">
-                                <i class="fa fa-folder"></i> &nbsp;Ajouter un dossier</span>
-                            </a>
-                        </div>
-                    </div>
 
                    	<div class="filemanager">
                    		<div class="search">

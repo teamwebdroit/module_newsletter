@@ -18,7 +18,7 @@
     <link rel='stylesheet' type='text/css' href="<?php echo asset('admin/plugins/datatables/dataTables.css');?>" />
     <link rel='stylesheet' type='text/css' href="<?php echo asset('admin/plugins/form-multiselect/css/multi-select.css');?>" />
     <script src="<?php echo asset('js/jquery.js');?>"></script>
-
+    <link rel="stylesheet" href="<?php echo asset('admin/css/jquery.fileupload.css');?>">
 	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries. Placeholdr.js enables the placeholder attribute -->
 	<!--[if lt IE 9]>
         <link rel="stylesheet" href="<?php echo asset('admin/css/styles.ie8.css');?>">
@@ -134,7 +134,18 @@
     <script type="text/javascript" src="<?php echo asset('admin/js/application.js');?>"></script>
     <script type='text/javascript' src="<?php echo asset('admin/plugins/mixitup/jquery.mixitup.min.js');?>"></script>
     <script type="text/javascript" src="<?php echo asset('js/utils.js');?>"></script>
-    <script type="text/javascript" src="<?php echo asset('admin/js/files.js');?>"></script>
+
+    @if(isset($isFileManager))
+        <script type="text/javascript" src="<?php echo asset('admin/js/files.js');?>"></script>
+        <script type="text/javascript" src="<?php echo asset('admin/js/upload/upload.js');?>"></script>
+        <script src="//blueimp.github.io/JavaScript-Load-Image/js/load-image.all.min.js"></script>
+        <script src="//blueimp.github.io/JavaScript-Canvas-to-Blob/js/canvas-to-blob.min.js"></script>
+        <script src="<?php echo asset('admin/js/upload/jquery.iframe-transport.js');?>"></script>
+        <script src="<?php echo asset('admin/js/upload/jquery.fileupload.js');?>"></script>
+        <script src="<?php echo asset('admin/js/upload/jquery.fileupload-process.js');?>"></script>
+        <script src="<?php echo asset('admin/js/upload/jquery.fileupload-image.js');?>"></script>
+        <script src="<?php echo asset('admin/js/upload/jquery.fileupload-validate.js');?>"></script>
+    @endif
 
     @if(isset($isNewsletter))
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.2/angular.min.js"></script>

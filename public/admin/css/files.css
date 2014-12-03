@@ -3,7 +3,6 @@
 .filemanager {
 	width: 100%;
 	position: relative;
-    margin-top: 5px;
 }
 
 @media all and (max-width: 965px) {
@@ -11,6 +10,28 @@
 		margin: 30px auto 0;
 		padding: 1px;
 	}
+}
+
+#files div{
+    width: 150px;
+    text-align: center;
+    display: inline-block;
+    margin-left: 1%;
+}
+
+#files div p span{
+    font-size: 12px;
+    line-height: 13px;
+    margin: 5px 0;
+    display: block;
+}
+
+#files div p canvas{
+    border: 1px solid #ccc;
+}
+
+#files div p canvas img{
+    max-width: 100%;
 }
 
 
@@ -56,7 +77,7 @@
 	position: absolute;
 	padding-right: 30px;
 	cursor: pointer;
-	right: 0;
+	right: 10px;
 	font-size: 17px;
 	color: #373743;
 	display: block;
@@ -93,17 +114,17 @@
 	border-radius: 2px;
 	color: #4D535E;
 	background-color: #FFF;
-	width: 250px;
-	height: 44px;
-	margin-left: -215px;
-	padding-left: 20px;
+	width: 255px;
+	height: 40px;
+	margin-left: -205px;
+	padding-left: 15px;
 	text-decoration-color: #4d535e;
-	font-size: 16px;
+	font-size: 14px;
 	font-weight: 400;
 	line-height: 20px;
 	display: none;
 	outline: none;
-	border: none;
+	border: 1px solid #C6C6C6;
 	padding-right: 10px;
 	-webkit-appearance: none;
 }
@@ -129,7 +150,7 @@
 -------------------------*/
 
 .filemanager .data {
-	margin: 5px 0 0 0;
+	margin: 10px 0 0 0;
     padding: 0;
 	z-index: -3;
     width: 100%;
@@ -142,7 +163,7 @@
 
 .filemanager .data li {
 	border-radius: 3px;
-	background-color: #d2d3d6;
+	background-color: #e8e8e8;
     width: 23.1%;
 	height: 95px;
 	list-style-type: none;
@@ -195,7 +216,7 @@
 
 .filemanager .data li .name {
 	color: #34495e;
-	font-size: 12px;
+	font-size: 13px;
 	font-weight: 700;
 	line-height: 20px;
 	width: 64%;
@@ -312,7 +333,7 @@
 	overflow: hidden;
 }
 .icon.folder:before {
-    background-color: #7ba1ad;
+    background-color: #66b5df;
     border-top-left-radius: 0.1em;
     border-top-right-radius: 0.1em;
     box-shadow: 1.25em 0.25em 0 0 #7ba1ad;
@@ -324,7 +345,7 @@
     width: 1.2em;
 }
 .icon.folder:after {
-    background-color: #a0d4e4;
+    background-color: #76c4ed;
     border-radius: 0.1em;
     clear: left;
     content: "";
@@ -425,14 +446,14 @@
 .icon.file.f-jpeg,
 .icon.file.f-pdf,
 .icon.file.f-png {
-	box-shadow: 1.74em -2.1em 0 0 #e15955 inset;
+	box-shadow: 1.74em -2.1em 0 0 #e73c68 inset;
 }
 .icon.file.f-gif:after,
 .icon.file.f-jpg:after,
 .icon.file.f-jpeg:after,
 .icon.file.f-pdf:after,
 .icon.file.f-png:after {
-	border-bottom-color: #c6393f;
+	border-bottom-color: #e73c68;
 }
 
 .icon.file.f-deb,

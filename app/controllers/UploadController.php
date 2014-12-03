@@ -32,7 +32,6 @@ class UploadController extends BaseController {
 
     }
 
-
     public function uploadRedactor()
     {
         $files = $this->upload->upload( Input::file('file') , 'files' );
@@ -51,4 +50,40 @@ class UploadController extends BaseController {
 
     }
 
+    public function uploadJquery()
+    {
+        $allfiles = Input::file('files');
+        $uploaded = array();
+        $result   = array();
+
+        if(!empty($allfiles))
+        {
+            foreach($allfiles as $file)
+            {
+                $newfile = $this->upload->upload($file  , 'files' );
+
+                if($newfile)
+                {
+                    $uploaded[] =  array(
+                        "name" => $newfile['name'],
+                        "size" => $newfile['size'],
+                        "url"  => URL::to('/').'/files/'.$newfile['name']
+                    );
+                }
+                else
+                {
+                    $uploaded[] = array(
+                        "name"  => $newfile['name'],
+                        "size"  => $newfile['size'],
+                        "error" => "Problème avec l\'upload"
+                    );
+                }
+            }
+
+            $result = array('files' => $uploaded);
+        }
+
+        return Response::json($result,200 );
+
+    }
 }

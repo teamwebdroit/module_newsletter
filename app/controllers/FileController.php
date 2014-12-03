@@ -24,7 +24,7 @@ class FileController extends \BaseController {
 	{
         $test = $this->worker->used( 'ass-maladie.jpg' );
 
-        return View::make('admin.files.index')->with(array('test' => $test));
+        return View::make('admin.files.index')->with(array('test' => $test , 'isFileManager' => true));
 	}
 
 	/**
