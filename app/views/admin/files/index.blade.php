@@ -12,6 +12,17 @@
                 </div>
                 <div class="panel-body">
 
+                    <div class="btn-toolbar pull-right">
+                        <div class="btn-group btn-group-sm">
+                            <a href='#' class="btn btn-sky">
+                                <i class="fa fa-folder"></i> &nbsp;Ajouter un fichier</span>
+                            </a>
+                            <a href='#' class="btn btn-brown">
+                                <i class="fa fa-folder"></i> &nbsp;Ajouter un dossier</span>
+                            </a>
+                        </div>
+                    </div>
+
                    	<div class="filemanager">
                    		<div class="search">
                    			<input type="search" placeholder="Rechercher un Fichier..." />

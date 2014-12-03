@@ -3,6 +3,7 @@
 .filemanager {
 	width: 100%;
 	position: relative;
+    margin-top: 5px;
 }
 
 @media all and (max-width: 965px) {
@@ -20,19 +21,22 @@
 
 .filemanager .breadcrumbs {
 	color: #373743;
-	margin-left:20px;
+	margin:25px 10px 10px 10px;
 	font-size: 24px;
 	font-weight: 700;
 	line-height: 35px;
 }
 
 .filemanager .breadcrumbs a:link, .breadcrumbs a:visited {
-	color: #373743;
-	text-decoration: none;
+    background-color: #2a3f54;
+    color: #fff;
+    padding: 2px 10px;
 }
 
 .filemanager .breadcrumbs a:hover {
-	text-decoration: underline;
+    background-color: #d2d3d6;
+    text-decoration: none;
+    color: #2a3f54;
 }
 
 .filemanager .breadcrumbs .arrow {
@@ -57,6 +61,7 @@
 	color: #373743;
 	display: block;
 	width: 40px;
+    top: 10px;
 	height: 40px;
 }
 
