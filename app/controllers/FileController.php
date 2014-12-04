@@ -132,5 +132,20 @@ class FileController extends \BaseController {
         return Response::json( $this->worker->used(Input::get('file')) , 200 );
     }
 
+    /**
+     * Add new folder
+     *
+     * @return array
+     */
+    public function addFolder(){
+
+        if( \File::makeDirectory( Input::get('path').'/'.Input::get('folder') , 0775, true) )
+        {
+            return Redirect::back()->with( array('status' => 'success' , 'message' => 'Dossier crée') );
+        }
+
+        return Redirect::back()->with( array('status' => 'danger' , 'message' => 'Problème avec la création du dossier') );
+
+    }
 
 }

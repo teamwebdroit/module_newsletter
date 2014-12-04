@@ -26,6 +26,8 @@ $(function(){
 
                     goto(window.location.hash);
 
+                    $('#addFolderForm').val(getHash());
+
                     // We are triggering the event. This will execute
                     // this function on page load, so that we show the correct folder:
 
@@ -58,17 +60,13 @@ $(function(){
                     if(value.length) {
 
                         filemanager.addClass('searching');
-
                         // Update the hash on every key stroke
                         window.location.hash = 'search=' + value.trim();
-
                     }
 
                     else {
-
                         filemanager.removeClass('searching');
                         window.location.hash = encodeURIComponent(currentPath);
-
                     }
 
                 }).on('keyup', function(e){
@@ -78,9 +76,7 @@ $(function(){
                     var search = $(this);
 
                     if(e.keyCode == 27) {
-
                         search.trigger('focusout');
-
                     }
 
                 }).focusout(function(e){
@@ -90,11 +86,9 @@ $(function(){
                     var search = $(this);
 
                     if(!search.val().trim().length) {
-
                         window.location.hash = encodeURIComponent(currentPath);
                         search.hide();
                         search.parent().find('span').show();
-
                     }
 
                 });
@@ -263,24 +257,19 @@ $(function(){
                     if(Array.isArray(data)) {
 
                         data.forEach(function (d) {
-
                             if (d.type === 'folder') {
                                 scannedFolders.push(d);
                             }
                             else if (d.type === 'file') {
                                 scannedFiles.push(d);
                             }
-
                         });
 
                     }
                     else if(typeof data === 'object') {
-
                         scannedFolders = data.folders;
                         scannedFiles = data.files;
-
                     }
-
 
                     // Empty the old result and make the new one
 
@@ -414,9 +403,13 @@ $(function(){
     startFileManager();
 
     /******************************
-     * Add input for url hash
+     * Get hash
      ******************************/
 
+    function getHash() {
+        var hash = window.location.hash;
+        return hash.substring(1); // remove #
+    }
 
     /******************************
      * Upload manager
@@ -436,7 +429,6 @@ $(function(){
                 data.submit().always(function () {
                     $this.remove();
                 });
-
             });
 
     $('#fileupload').fileupload({
@@ -453,7 +445,14 @@ $(function(){
             .test(window.navigator.userAgent),
         previewMaxWidth: 100,
         previewMaxHeight: 90,
-        previewCrop: true
+        previewCrop: true,
+        stop:function (e,data) {
+
+        },
+        change:function (e, data) {
+
+        },
+        formData: {folder: getHash() }
 
     }).on('fileuploadadd', function (e, data) {
 
@@ -501,7 +500,6 @@ $(function(){
             {
                 var link = $('<a>').attr('target', '_blank').prop('href', file.url);
                 $(data.context.children()[index]).wrap(link);
-                console.log(data.context.children()[index]);
             }
             else if (file.error)
             {
@@ -511,8 +509,6 @@ $(function(){
 
         });
 
-        //$("#files").empty();
-        //$('#progress .progress-bar').hide(1000);
         // Reload filemanager
         startFileManager();
 

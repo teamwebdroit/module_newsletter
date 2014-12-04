@@ -6,25 +6,42 @@
     <div class="row">
         <div class="col-md-12">
 
-            <span class="btn btn-magenta fileinput-button">
-                <i class="fa fa-file"></i>&nbsp;
-                <span>Ajouter un fichier</span>
-                <!-- The file input field used as target for the file upload widget -->
-                <input id="fileupload" type="file" name="files[]" multiple>
-            </span>
-
-            <!-- The global progress bar -->
-            <div id="progress" class="progress">
-                <div class="progress-bar progress-bar-success"></div>
-            </div>
-            <!-- The container for the uploaded files -->
-            <div id="files" class="files"></div>
-
             <div class="panel panel-midnightblue">
                 <div class="panel-heading">
                     <h4><i class="fa fa-folder"></i> &nbsp;Fichiers</h4>
                 </div>
                 <div class="panel-body">
+
+                    <div class="row">
+                        <div class="col-md-8">
+
+                            <span class="btn btn-magenta fileinput-button">
+                                <i class="fa fa-file"></i>&nbsp;
+                                <span>Ajouter un fichier dans le dossier courant</span>
+                                <!-- The file input field used as target for the file upload widget -->
+                                <input id="fileupload" type="file" name="files[]" multiple>
+                            </span>
+
+                            <!-- The global progress bar -->
+                            <div id="progress" class="progress">
+                                <div class="progress-bar progress-bar-success"></div>
+                            </div>
+                            <!-- The container for the uploaded files -->
+                            <div id="files" class="files"></div>
+
+                        </div>
+                        <div class="col-md-4 text-right">
+                            {{ Form::open(array('url' => array('admin/file/addFolder'))) }}
+                            <div class="input-group">
+                                <input type="text" name="folder" class="form-control">
+                                <input type="hidden" id="addFolderForm" name="path">
+                                <span class="input-group-btn">
+                                   <button class="btn btn-sky" type="submit"><i class="fa fa-folder"></i>&nbsp; Ajouter un dossier</button>
+                                </span>
+                            </div><!-- /input-group -->
+                            {{ Form::close() }}
+                        </div>
+                    </div>
 
                    	<div class="filemanager">
                    		<div class="search">

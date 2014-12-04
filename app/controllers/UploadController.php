@@ -53,6 +53,7 @@ class UploadController extends BaseController {
     public function uploadJquery()
     {
         $allfiles = Input::file('files');
+        $folder   = Input::get('folder');
         $uploaded = array();
         $result   = array();
 
@@ -60,7 +61,7 @@ class UploadController extends BaseController {
         {
             foreach($allfiles as $file)
             {
-                $newfile = $this->upload->upload($file  , 'files' );
+                $newfile = $this->upload->upload($file  , $folder);
 
                 if($newfile)
                 {
