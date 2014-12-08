@@ -121,8 +121,7 @@ Filter.factory('Categories', ['$http', '$q', function($http, $q) {
     };
 }]);
 
-Filter.controller('ArretController', ['$scope','$timeout','$http','Arrets','selectionFilter',
-    function($scope,$timeout,$http,Arrets,selectionFilter){
+Filter.controller('ArretController', ['$scope','$timeout','$http','Arrets','selectionFilter',  function($scope,$timeout,$http,Arrets,selectionFilter){
 
     /* Set loading to true to hide all arrets during loading from server */
     this.loading  = true;
@@ -142,35 +141,35 @@ Filter.controller('ArretController', ['$scope','$timeout','$http','Arrets','sele
     /* prev page button */
     this.prevPage = function() {
         if ($scope.currentPage > 0) {
-            $scope.currentPage--;
+           // $scope.currentPage--;
         }
     };
 
     /* prev page button disabled if 0  */
     this.prevPageDisabled = function() {
-        return $scope.currentPage === 0 ? "disabled" : "";
+        //return $scope.currentPage === 0 ? "disabled" : "";
     };
 
     /* test if we are on the current page for styles in pagination links  */
     this.isCurrentPage = function(page) {
-        return $scope.currentPage === page ? "current" : "";
+        //return $scope.currentPage === page ? "current" : "";
     };
 
     /* next page button  */
     this.nextPage = function() {
         if ($scope.currentPage < self.pageCount() - 1) {
-            $scope.currentPage++;
+            //$scope.currentPage++;
         }
     };
 
     /* next page button disabled if 0  */
     this.nextPageDisabled = function() {
-        return $scope.currentPage === self.pageCount() - 1 ? "disabled" : "";
+        //return $scope.currentPage === self.pageCount() - 1 ? "disabled" : "";
     };
 
     /* calculate page count from total and itemPerPage  */
     this.pageCount = function() {
-        return Math.ceil(self.getTotal()/self.itemsPerPage);
+        //return Math.ceil(self.getTotal()/self.itemsPerPage);
     };
 
     /* *
@@ -181,9 +180,9 @@ Filter.controller('ArretController', ['$scope','$timeout','$http','Arrets','sele
      */
     $scope.$watch("currentPage", function(newValue) {
 
-        self.pagedItems = self.get(newValue * self.itemsPerPage, self.itemsPerPage);
+/*        self.pagedItems = self.get(newValue * self.itemsPerPage, self.itemsPerPage);
         self.total = self.getTotal();
-        $('body,html').animate({ scrollTop: 0 }, 600);
+        $('body,html').animate({ scrollTop: 0 }, 600);*/
 
     });
 
@@ -228,7 +227,7 @@ Filter.controller('ArretController', ['$scope','$timeout','$http','Arrets','sele
     };
 
     this.isEmpty = function(){
-        return (self.pagedItems.length == 0 ? true : false);
+        //return (self.pagedItems.length == 0 ? true : false);
     };
 
     /**
@@ -241,7 +240,7 @@ Filter.controller('ArretController', ['$scope','$timeout','$http','Arrets','sele
         Arrets.query().then(function (data) {
             self.allpost    = data;
             self.loading    = false;
-            self.pagedItems = self.get($scope.currentPage,self.itemsPerPage);
+            //self.pagedItems = self.get($scope.currentPage,self.itemsPerPage);
         });
     }
 
@@ -258,12 +257,14 @@ Filter.controller('ArretController', ['$scope','$timeout','$http','Arrets','sele
 
         var selectedCat = (selectionFilter.getSelected().length > 0 ? selectionFilter.getSelected() : null );
 
+    /*
         Arrets.query(selectedCat).then(function (data) {
             self.allpost    = data;
             self.pagedItems = self.get(0 * self.itemsPerPage, self.itemsPerPage);
             $scope.currentPage = 0;
             self.total = self.getTotal();
         });
+    */
 
     });
 
@@ -456,14 +457,14 @@ Filter.directive('postText', function($timeout) {
 /**
  * Pagination filter
  */
-Filter.filter('pagination', function()
+/*Filter.filter('pagination', function()
 {
     return function(input, start)
     {
         start = +start;
         return input.slice(start);
     };
-});
+});*/
 
 /**
  * AngularJS default filter with the following expression:

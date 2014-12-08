@@ -4,7 +4,7 @@ use Droit\Content\Repo\ArretInterface;
 use Droit\Categorie\Repo\CategorieInterface;
 use Droit\Newsletter\Repo\NewsletterCampagneInterface;
 use Droit\Newsletter\Worker\CampagneInterface;
-
+use Droit\Newsletter\Worker\NewsletterWorker;
 use Laracasts\Commander\CommanderTrait;
 use Droit\Command\MessageSendCommand;
 
@@ -13,26 +13,25 @@ class HomeController extends BaseController {
     use CommanderTrait;
 
     protected $arret;
-
     protected $categorie;
-
     protected $campagne;
-
+    protected $newsletter;
     protected $worker;
-
     protected $custom;
 
-    public function __construct( ArretInterface $arret, CategorieInterface $categorie, NewsletterCampagneInterface $campagne , CampagneInterface $worker )
+    public function __construct( ArretInterface $arret, CategorieInterface $categorie, NewsletterCampagneInterface $campagne, NewsletterWorker $newsletter , CampagneInterface $worker )
     {
-        $this->arret     = $arret;
+        $this->arret       = $arret;
 
-        $this->categorie = $categorie;
+        $this->categorie   = $categorie;
 
-        $this->campagne  = $campagne;
+        $this->campagne    = $campagne;
 
-        $this->worker    = $worker;
+        $this->newsletter  = $newsletter;
 
-        $this->custom    = new \Custom;
+        $this->worker      = $worker;
+
+        $this->custom      = new \Custom;
 
         $arrets = $this->arret->getPaginate(195,15);
         $latest = $arrets->take(5);
@@ -71,8 +70,10 @@ class HomeController extends BaseController {
     public function jurisprudence()
     {
         $required = true;
+        $arrets   = $this->newsletter->preparedArrets();
+        $annees   = $this->newsletter->preparedAnnees();
 
-        return View::make('jurisprudence')->with(array( 'required' => $required ));
+        return View::make('jurisprudence')->with(array( 'arrets' => $arrets, 'annees' => $annees , 'required' => $required ));
     }
 
     /**

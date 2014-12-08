@@ -171,4 +171,19 @@ $(function() {
     });
 
 
+    /*********************************
+     * Filtering isotope
+    **********************************/
+
+    var $container = $('#filtering');
+
+    $container.isotope({
+        filter: '*',
+        animationOptions: {
+            duration: 750,
+            easing: 'linear',
+            queue: false,
+        }
+    });
+
 });
