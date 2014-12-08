@@ -60,9 +60,6 @@ class AbonneController extends \BaseController {
 	 */
 	public function store()
 	{
-/*        echo '<pre>';
-        print_r(Input::all());
-        echo '</pre>';exit;*/
 
         $this->execute('Droit\Command\AdminSubscribeCommand');
 
@@ -93,17 +90,20 @@ class AbonneController extends \BaseController {
 	 */
 	public function update($id)
 	{
-        $activation    = Input::get('activation');
-        $newsletter_id = Input::get('newsletter_id');
 
-        $activated_at  = ($activation ? true : false );
-        $newsletter_id = ( $newsletter_id ? $newsletter_id : array() );
+        $newsletter_id = (Input::get('newsletter_id') ? Input::get('newsletter_id') : array() );
 
-        $abonne = $this->abonne->update( array( 'id' => $id, 'email' => Input::get('email'), 'activated_at' => $activated_at ) );
+        $command = array(
+            'id'            => Input::get('id') ,
+            'email'         => Input::get('email'),
+            'newsletter_id' => $newsletter_id,
+            'activation'    => Input::get('activation')
+        );
 
-        $abonne->newsletter()->sync($newsletter_id);
+        $this->execute('Droit\Command\UpdateSubscriberCommand', $command );
 
-        return Redirect::to('admin/abonne/'.$abonne->id.'/edit')->with( array('status' => 'success' , 'message' => 'Abonné édité') );
+        return Redirect::to('admin/abonne/'.$id.'/edit')->with( array('status' => 'success' , 'message' => 'Abonné édité') );
+
 	}
 
 	/**

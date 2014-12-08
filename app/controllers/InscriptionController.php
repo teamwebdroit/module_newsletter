@@ -2,6 +2,7 @@
 
 use Laracasts\Commander\CommanderTrait;
 use Droit\Newsletter\Repo\NewsletterUserInterface;
+use Droit\Newsletter\Worker\CampagneInterface;
 use Droit\Command\NewsletterSubscribeCommand;
 
 class InscriptionController extends \BaseController {
@@ -9,10 +10,12 @@ class InscriptionController extends \BaseController {
     use CommanderTrait;
 
     protected $abo;
+    protected $worker;
 
-    public function __construct(NewsletterUserInterface $abo)
+    public function __construct(CampagneInterface $worker, NewsletterUserInterface $abo)
     {
-        $this->abo = $abo;
+        $this->worker = $worker;
+        $this->abo    = $abo;
     }
 
     /**
@@ -23,11 +26,26 @@ class InscriptionController extends \BaseController {
 	 */
 	public function activation($token)
 	{
-		if($this->abo->activate($token))
+
+        // Activate the email on the website
+        $email = $this->abo->activate($token);
+
+		if($email)
         {
+            // Sync to mailjet or at least try
+            try
+            {
+                $this->worker->subscribeEmailToList( $email->email );
+            }
+            catch(\Droit\Exceptions\SubscribeUserException $e)
+            {
+                throw new \Droit\Exceptions\SubscribeUserException('Erreur synchronisation email vers mailjet', $e->getError() );
+            }
+
             return Redirect::to('/')->with( array('status' => 'success' , 'message' => 'Vous êtes maintenant abonné à la newsletter en droit du travail') );
         }
-        else{
+        else
+        {
             throw new \Droit\Exceptions\TokenInscriptionException('Token mismatch', array());
         }
 

@@ -13,6 +13,7 @@ interface CampagneInterface {
     public function addContact($email);
     public function getContactByEmail($contactEmail);
     public function addContactToList($contactID);
+    public function subscribeEmailToList($email);
     public function removeContact($email);
     public function getListRecipient($email);
     public function createCampagne($campagne);

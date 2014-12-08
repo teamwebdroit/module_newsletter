@@ -67,16 +67,20 @@ list($list,$max) = $charts->allYearStats($statistiques);
                                                     $BouncedCount   += $statday['BouncedCount'];
                                                 }
 
-                                                $data[1] = ($DeliveredCount/$DeliveredCount) * 100;
-                                                $data[2] = ($ClickedCount/$DeliveredCount) * 100;
-                                                $data[3] = ($OpenedCount/$DeliveredCount) * 100;
-                                                $data[4] = ($BouncedCount/$DeliveredCount) * 100;
-
-                                                foreach (range(1, 3) as $nbr)
+                                                if($DeliveredCount > 0)
                                                 {
-                                                    echo '<div class="inner-column">';
-                                                        echo '<div class="fill" style="height:'.$data[$nbr].'%;background: '.$charts->colors[$nbr].'"></div>';
-                                                    echo '</div>';
+                                                    $data[1] = ($DeliveredCount/$DeliveredCount) * 100;
+                                                    $data[2] = ($ClickedCount/$DeliveredCount) * 100;
+                                                    $data[3] = ($OpenedCount/$DeliveredCount) * 100;
+                                                    $data[4] = ($BouncedCount/$DeliveredCount) * 100;
+
+                                                    foreach (range(1, 3) as $nbr)
+                                                    {
+                                                        echo '<div class="inner-column">';
+                                                            echo '<div class="fill" style="height:'.$data[$nbr].'%;background: '.$charts->colors[$nbr].'"></div>';
+                                                        echo '</div>';
+                                                    }
+
                                                 }
                                             }
                                         }

@@ -66,6 +66,7 @@
                 <div class="panel-footer mini-footer ">
                     <div class="col-sm-3"></div>
                     <div class="col-sm-6">
+                        {{ Form::hidden('id', $abonne->id) }}
                         <button class="btn btn-primary" type="submit">Envoyer</button>
                     </div>
                 </div>

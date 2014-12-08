@@ -60,7 +60,13 @@
                                     </td>
                                     <td><strong>{{ $campagne->sujet }}</strong></td>
                                     <td>{{ $campagne->auteurs }}</td>
-                                    <td>{{ $campagne->status }}</td>
+                                    <td>
+                                        @if($campagne->status == 'brouillon')
+                                            <span class="label label-default">Brouillon</span>
+                                        @else
+                                            <span class="label label-success">Envoyé</span>
+                                        @endif
+                                    </td>
                                     <td>{{ $campagne->created_at->formatLocalized('%d %B %Y') }}</td>
                                     <td>{{ $campagne->updated_at->formatLocalized('%d %B %Y') }}</td>
                                     <td class="text-right">

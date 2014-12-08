@@ -77,7 +77,7 @@ class NewsletterUserEloquent implements NewsletterUserInterface{
 			return false;
 		}
 
-        $user->activated_at = ($data['activated_at'] ? date('Y-m-d G:i:s') : null);
+        $user->activated_at = ( $data['activated_at'] > 0 ? date('Y-m-d G:i:s') : '0000-00-00 00:00:00');
         $user->email        = $data['email'];
 		$user->updated_at   = date('Y-m-d G:i:s');
 

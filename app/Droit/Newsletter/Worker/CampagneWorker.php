@@ -159,9 +159,13 @@ class CampagneWorker implements CampagneInterface{
 
     public function subscribeEmailToList($email)
     {
+        // Add contact to our list and get id back
         $contactID = $this->addContact($email);
 
-        return $this->addContactToList($contactID);
+        // Attempt tu subscribe if fails we try to re subscribe
+        $result = $this->addContactToList($contactID);
+
+        return ($this->mailjet->_response_code == 201 ? $result : false);
     }
 
     /**
@@ -170,6 +174,10 @@ class CampagneWorker implements CampagneInterface{
     public function removeContact($email){
 
         $listRecipientID = $this->getListRecipient($email);
+
+        if(!$listRecipientID){
+            return false;
+        }
 
         $params = array(
             "method" => "DELETE",
@@ -195,7 +203,7 @@ class CampagneWorker implements CampagneInterface{
 
         $listerecipient = $this->mailjet->listrecipient($params);
 
-        if ($this->mailjet->_response_code == 200)
+        if ($this->mailjet->_response_code == 200 && isset($listerecipient->Data[0]))
             return $listerecipient->Data[0]->ID;
         else
             return false;

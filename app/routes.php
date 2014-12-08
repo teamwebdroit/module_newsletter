@@ -120,7 +120,9 @@ Route::get('testing', function()
     );
 
     //echo ($send->removeContact('cindy11@bluewin.ch') ? 'removed' : 'error');
-    print_r($send->getSubscribers());
+    //print_r($send->getSubscribers());
+
+    print_r($send->getListRecipient('cindy.leschaud@gmail.com'));
 
 });
 

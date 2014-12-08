@@ -523,4 +523,12 @@ class Custom {
 
     }
 
+    public function allInArray($newsletter_id,$abos){
+
+        foreach($newsletter_id as $id)
+        {
+            return (in_array($newsletter_id,$abos) ? true : false);
+        }
+    }
+
 }
