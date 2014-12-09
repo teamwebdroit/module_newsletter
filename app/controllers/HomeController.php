@@ -70,8 +70,16 @@ class HomeController extends BaseController {
     public function jurisprudence()
     {
         $required = true;
-        $arrets   = $this->newsletter->preparedArrets();
-        $annees   = $this->newsletter->preparedAnnees();
+
+        $arrets = Cache::rememberForever('arrets', function()
+        {
+            return $this->newsletter->preparedArrets();
+        });
+
+        $annees = Cache::rememberForever('annees', function()
+        {
+            return $this->newsletter->preparedAnnees();
+        });
 
         return View::make('jurisprudence')->with(array( 'arrets' => $arrets, 'annees' => $annees , 'required' => $required ));
     }

@@ -17,7 +17,6 @@ class NewsletterWorker{
         $this->custom     = new \Custom;
     }
 
-
     /**
      * Return response arrets prepared for filtered
      *
@@ -58,16 +57,16 @@ class NewsletterWorker{
             // categories for isotope
             if(!$arret->arrets_categories->isEmpty())
             {
-                foreach($arret->arrets_categories as $cat){ $cats[] = 'cat-'.$cat->id; }
+                foreach($arret->arrets_categories as $cat){ $cats[] = 'c'.$cat->id; }
 
-                $cats[]  = 'year-'.$arret->pub_date->year;
+                $cats[]  = 'y'.$arret->pub_date->year;
                 $arret->setAttribute('allcats',$cats);
 
                 return $arret;
             }
             else
             {
-                $cats[]  = 'year-'.$arret->pub_date->year;
+                $cats[]  = 'y'.$arret->pub_date->year;
                 $arret->setAttribute('allcats',$cats);
 
                 return $arret;

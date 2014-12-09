@@ -69,6 +69,10 @@ class ArretEloquent implements ArretInterface{
 		{
 			return false;
 		}
+
+        // Flush cache
+        Cache::forget('arrets');
+        Cache::forget('annees');
 		
 		return $arret;
 		
@@ -96,6 +100,10 @@ class ArretEloquent implements ArretInterface{
 		$arret->updated_at = date('Y-m-d G:i:s');
 
 		$arret->save();
+
+        // Flush cache
+        Cache::forget('arrets');
+        Cache::forget('annees');
 		
 		return $arret;
 	}
@@ -103,6 +111,10 @@ class ArretEloquent implements ArretInterface{
 	public function delete($id){
 
         $arret = $this->arret->find($id);
+
+        // Flush cache
+        Cache::forget('arrets');
+        Cache::forget('annees');
 
 		return $arret->delete();
 		

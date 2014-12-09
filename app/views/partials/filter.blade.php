@@ -1,24 +1,26 @@
 <div id="masterFilter">
 
-    <div class="widget">
+    <div class="widget list categories clear">
         <h3 class="title"><i class="icon-tasks"></i> &nbsp;Catégories</h3>
 
            @if(!empty($categories))
-              <select id="select2" name="category_check">
+              <select id="arret-chosen" name="category_check" data-placeholder="Choisir une catégorie" style="width:100%" multiple class="chosen-select category">
                   @foreach($categories as $categorie)
-                     <option value="{{ $categorie->id }}">{{ $categorie->title }}</option>
+                     <option value="c{{ $categorie->id }}">{{ $categorie->title }}</option>
                   @endforeach
               </select>
           @endif
 
     </div><!--END WIDGET-->
 
-    <div class="widget">
+    <div class="widget list annees clear">
         <h3 class="title"><i class="icon-calendar"></i> &nbsp;Années</h3>
         @if(!empty($annees))
+        <ul id="arret-annees" class="list annees clear">
             @foreach($annees as $annee)
-                <input type="radio" name="annee" value="{{ $annee }}"><label>{{ $annee }}</label>
+                <li><a rel="y{{ $annee }}" href="#">Paru en {{ $annee }}</a></li>
             @endforeach
+        </ul>
         @endif
     </div><!--END WIDGET-->
 

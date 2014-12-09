@@ -46,7 +46,7 @@ CSS overview:
 }
 
 #newsletter{
-    border: 1px solid #d6d6d6;
+    border: 1px solid #c2c2c2;
     margin-bottom: 15px;
     width: 100%;
 }
@@ -56,13 +56,13 @@ CSS overview:
 }
 
 .newsletter .grey{
-    background-color:#c5210d;
+    background-color:#dd0330;
     border: 1px solid #a61b0a;
 }
 
 .newsletter .grey:hover{
-    background-color:#444;
-    border: 1px solid #323232;
+    background-color:#5a101f;
+    border: 1px solid #3c0813;
 }
 
 .newsletter a:after{
@@ -86,12 +86,12 @@ CSS overview:
 .widget .title,.newsletter .title {
 	font-size:14px;
 	line-height: 20px;
-	font-weight: 700;
+	font-weight: 600;
 	text-transform: uppercase;
 	display: block;
 	padding: 0;
 	margin: 0 0 15px 0;
-	color: #676767;
+	color: #5a101f;
 }
 .widget ul {
 	padding: 0;
@@ -115,7 +115,7 @@ CSS overview:
 .widget a:hover {
 }
 .widget ul li span.date {
-	color: #aaa;
+	color: #ff7573;
 	display: block;
 	font-size: 11px;
 	text-transform: uppercase;
@@ -136,18 +136,18 @@ CSS overview:
 .widget .bra_recent_entries a {
 	text-transform: none;
 	font-weight: 600;
-    color: #c5210d;
+    color: #dd0330;
 }
 
 .widget .bra_recent_entries a:hover {
-    color: #c5210d;
+    color: #dd0330;
 }
 
 .widget .photostream li:last-child {
 	margin: 0 0 5px 5px;
 }
 /*--------------------------------------------------
-			POST 
+			POST
 ---------------------------------------------------*/
 .post {
 	border-bottom: 2px solid #eee;
@@ -175,7 +175,7 @@ CSS overview:
 }
 .blog1.content {
 	padding: 0;
-}	
+}
 .blog1 .post {
 	width: 100%;
 	margin: 0;
@@ -231,12 +231,12 @@ CSS overview:
 	width: 50%;
 	float: left;
 	text-align: left;
-} 
+}
 .blog1.two-half .format-quote .post-content, .blog1.two-half .format-quote .post-media {
 	width: 100%;
 	float: left;
 	text-align: left;
-} 
+}
 .blog1.two-half .post-date, .blog1.two-half .post-title, .blog1.two-half .post-meta {
 	text-align: left;
 }
@@ -249,7 +249,7 @@ CSS overview:
 .blog3 .post-content {
 	width: 45%;
 	float: left;
-} 
+}
 .blog-holder {
 	width: 105%;
 	margin-left: -3%;
@@ -258,8 +258,8 @@ CSS overview:
 }
 .blog-holder.blog5 .post, .blog-holder.blog6 .post, .blog-holder.blog7 .post {
 	float: left;
-	margin-left: 3%; 
-	margin-bottom: 3%; 
+	margin-left: 3%;
+	margin-bottom: 3%;
 	padding: 0;
 	background-color: #f5f5f5;
 	border-bottom: none;
@@ -273,7 +273,7 @@ CSS overview:
 .blog-holder.blog5 .post-content, .blog-holder.blog6 .post-content, .blog-holder.blog7 .post-content {
 	padding: 20px;
 	overflow: hidden;
-} 
+}
 .post-media.featured-image {
 	position: relative;
 }
@@ -291,7 +291,7 @@ CSS overview:
 	padding: 0;
 	list-style: none;
 	position: relative;
-} 
+}
 .timeline:before {
 	content: "";
 	position: absolute;
@@ -477,7 +477,7 @@ CSS overview:
 .post-title blockquote:before {
 	content: "";
 }
-.post-title blockquote p {	
+.post-title blockquote p {
 	font: 300 26px/32px 'Open Sans',Helvetica,Arial,sans-serif;
 	font-style: normal;
 	padding-left: 0;
@@ -525,15 +525,15 @@ CSS overview:
 			POST MEDIA
 ---------------------------------------------------*/
 .format-video iframe, .format-video object, .format-video embed {
-/*	position: absolute;           
-    top: 0;                      
-    left: 0;                        
-    width: 100%;                    
+/*	position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
     height: 100%;*/
 }
 .post-media {
     margin-bottom: 20px;
-	position: relative; 
+	position: relative;
 }
 .post-media img {
 	display: block;
@@ -655,7 +655,7 @@ CSS overview:
     margin-top: 17px;
 }
 /*--------------------------------------------------
-			WP-PAGINATION 
+			WP-PAGINATION
 ---------------------------------------------------*/
 .pagination {
     display: inline-block;
@@ -742,9 +742,9 @@ CSS overview:
     text-transform: uppercase;
 	border-radius: 22px 22px 22px 22px;
     border: 1px solid #fff;
-	-moz-transition:all 0.14s ease 0s; 
-	-webkit-transition:all 0.14s ease 0s;   
-	-o-transition:all 0.14s ease 0s; 
+	-moz-transition:all 0.14s ease 0s;
+	-webkit-transition:all 0.14s ease 0s;
+	-o-transition:all 0.14s ease 0s;
 }
 .wp-pagenavi a:hover {
 	color: #fff;
@@ -893,7 +893,7 @@ p.align-justify{
 }
 .comment .author a:hover, .comment .children .author a:hover {
 }
-.comment .date {    
+.comment .date {
 	color: #aaa;
 	font-size:10px;
 	text-transform: uppercase;
@@ -931,7 +931,7 @@ p.align-justify{
 .comment .children .author, .comment .children .author a {
 	color: #fff;
 }
-.comment .children .date {    
+.comment .children .date {
 	color: #999999;
 }
 .comment .children .comment {

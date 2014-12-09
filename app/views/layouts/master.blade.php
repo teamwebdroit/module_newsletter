@@ -14,16 +14,18 @@
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,700italic,700,800,800italic,300italic,300' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" type="text/css" href="<?php echo asset('css/style.css');?>" media="screen" />
         <link rel="stylesheet" type="text/css" href="<?php echo asset('css/blog.css');?>" media="screen" />
+        <link rel="stylesheet" type="text/css" href="<?php echo asset('css/filters.css');?>" media="screen" />
         <link rel="stylesheet" type="text/css" href="<?php echo asset('css/color-red.css');?>" media="screen" />
         <link rel="stylesheet" type="text/css" href="<?php echo asset('css/responsive.css');?>" media="screen" />
-        <link rel="stylesheet" type="text/css" href="<?php echo asset('css/select.css');?>">
-        <link rel="stylesheet" type="text/css" href="<?php echo asset('css/select2.css');?>">
+        <link rel="stylesheet" type="text/css" href="<?php echo asset('css/chosen.css');?>">
 
         <!-- Javascript Files
         ================================================== -->
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <script src="http://code.jquery.com/jquery-migrate-1.0.0.js"></script>
+        <script type="text/javascript" src="<?php echo asset('js/chosen.jquery.js');?>"></script>
         <script src="<?php echo asset('js/custom.js');?>"></script>
+        <script src="<?php echo asset('js/arrets.js');?>"></script>
         <script src="<?php echo asset('js/header.js');?>"></script>
         <script src="<?php echo asset('js/contact-form-validate.js');?>"></script>
 

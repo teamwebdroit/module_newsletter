@@ -7,9 +7,7 @@
 </div><!--END PAGE-HEADER-->
 
 <div class="content">
-
     <div class="section">
-
         <div id="inner-content">
 
             @include('partials.message')
@@ -17,17 +15,16 @@
             <div class="one" id="about">
                 <img width="100%" alt="Droit du travail" src="{{ asset('images/header.jpg') }}" />
             </div><!--END SECTION-->
-
             <div class="clear"></div>
 
             <div class="one">
                 <h3 class="title">Droit du travail</h3>
-                <p><strong>Etiam mattis tellus mltrices pretium. Donec phar maximus orci ultrices pretium. Donec pharets nisi</strong></p>
                 <p>
-                    Etiam mattis tellus maximus orci ultrices pretium. Donec pharetra massa id sem scelerisque, ac laoreet purus
-                    ultricies. Ut viverra enim sed congue faucibus. Etiam consequat cursus nisi, id varius nisi sagittis sed.
-                    Phasellus non finibus ligula. Etiam bibendum et enim sed porttitor. Aenean id ultricies sem. Integer
-                    fermentum massa vitae massa finibus tempor. In eget elementum lacus.
+                    Le site « droitdutravail.ch », créé sous l’égide de la Faculté de droit de <a href="http://www2.unine.ch/" target="_blank">l’Université de Neuchâtel</a> ,
+                    est dédié aux nouveautés en droit du travail, en particulier la jurisprudence du Tribunal fédéral.
+                    Le site est placé sous la responsabilité des professeurs François Bohnet (co-directeur du <a href="http://www2.unine.ch/cemaj" target="_blank">CEMAJ</a>),
+                    Jean-Philippe Dunand (co-directeur du <a href="http://www2.unine.ch/cert" target="_blank">CERT</a>) et Pascal Mahon (co-directeur du <a href="http://www2.unine.ch/cert" target="_blank">CERT</a>),
+                    avec la collaboration de Me Patricia Dietschy, docteure en droit.
                 </p>
             </div><!--END ONE-THIRD-->
 
@@ -35,19 +32,26 @@
             <div class="divider-border"></div>
 
             <div class="one-half">
-                <h3 class="title">Etiam mattis tellus</h3>
-                <p><strong>Etiam mattis tellus mltrices pretium. Donec phar maximus orci ultrices pretium. Donec pharets nisi</strong></p>
-                <p>Etiam mattis tellus maximus orci ultrices pretium. Donec pharetra massa id sem scelerisque, ac laoreet purus
-                    ultricies. Ut viverra enim sed congue faucibus. Etiam consequat cursus Aenean id ultricies sem. Integer
-                    fermentum massa vitae massa finibus tempor.  </p>
+                <h4 class="title">Le Centre d’étude des relations de travail (CERT)</h4>
+                <p>
+                    Le Centre d’étude des relations de travail, créé et dirigé par les prof. Jean-Philippe Dunand et Pascal Mahon est
+                    rattaché à la Faculté de droit de l’Université de Neuchâtel. Il a pour but d’étudier la relation de travail
+                    dans tous ses aspects, y compris les spécificités et les liens entre le droit privé et le droit public du travail.
+                </p>
+                <h4 class="title">Activités du CERT</h4>
+                <p>
+                    Les membres du CERT donnent des cours universitaires, mettent sur pied des séminaires de formation continue et des
+                    colloques, rédigent et publient diverses contributions, encouragent la publication de travaux scientifiques
+                    dans la collection juridique du Centre et rédigent des avis de droit (pour toute information : <a href="http://www2.unine.ch/cert" target="_blank">www.unine.ch/CERT</a> ).
+                </p>
             </div><!--END ONE-THIRD-->
 
             <div class="one-half last">
-                <h3 class="title">Perspiciatis unde omnist</h3>
-                <p><strong>Etiam eget mi enim, non ultricies nisi voluptatem, illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo nemo enim ipsam voluptatem.</strong></p>
-                <p>Etiam consequat cursus nisi, id varius nisi sagittis sed.
-                    Phasellus non finibus ligula. Etiam bibendum et enim sed porttitor. Aenean id ultricies sem. Integer
-                    fermentum massa vitae massa finibus tempor. In eget elementum lacus.</p>
+                <h4 class="title">CEMAJ</h4>
+                <p>Le <a href="http://www2.unine.ch/cemaj" target="_blank">CEMAJ</a>, Centre de recherche sur les modes amiables et juridictionnels de gestion des conflits, développe la
+                    recherche et la formation et propose ses services dans le domaine des modes amiables (négociation, médiation,
+                    conciliation et arbitrage) et juridictionnels (droit des procédures) de règlement des conflits, en mettant
+                    l'accent en particulier sur la question de l'harmonisation et de l'articulation de ces processus complémentaires.</p>
             </div><!--END ONE-THIRD-->
 
             <div class="divider-noborder"></div>
@@ -61,7 +65,6 @@
         <!-- END Sidebar  -->
 
     </div><!--END SECTION-->
-
 </div><!--END CONTENT-->
 
 @stop

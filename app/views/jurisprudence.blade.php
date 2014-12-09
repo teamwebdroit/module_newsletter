@@ -12,11 +12,13 @@
 
         <div id="inner-content">
             <div id="filtering">
-                @if(!empty($arrets))
-                    @foreach($arrets as $post)
-                        @include('newsletter.templates.post')
-                    @endforeach
-                @endif
+                <div class="arrets">
+                    @if(!empty($arrets))
+                        @foreach($arrets as $post)
+                            @include('newsletter.templates.post')
+                        @endforeach
+                    @endif
+                </div>
             </div>
         </div>
 

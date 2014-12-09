@@ -171,11 +171,12 @@ $(function() {
     });
 
 
+
     /*********************************
      * Filtering isotope
     **********************************/
 
-    var $container = $('#filtering');
+/*    var $container = $('#filtering');
 
     $container.isotope({
         filter: '*',
@@ -184,6 +185,6 @@ $(function() {
             easing: 'linear',
             queue: false,
         }
-    });
+    });*/
 
 });
