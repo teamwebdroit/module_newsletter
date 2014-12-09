@@ -59,8 +59,6 @@ class AnalyseEloquent implements AnalyseInterface{
 			return false;
 		}
 
-        $analyse->pid        = $data['pid'];
-		$analyse->user_id    = $data['user_id'];
         $analyse->authors    = $data['authors'];
         $analyse->pub_date   = $data['pub_date'];
         $analyse->abstract   = $data['abstract'];

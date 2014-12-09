@@ -81,7 +81,9 @@ Route::resource('inscription', 'InscriptionController');
 Route::group(array('prefix' => 'admin'), function()
 {
     Route::get('dashboard', 'AdminController@index');
+
     Route::resource('arret', 'ArretController');
+    Route::resource('analyse', 'AnalyseController');
     Route::resource('categorie', 'CategorieController');
 
     Route::get('file/scan', 'FileController@scan');

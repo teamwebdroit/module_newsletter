@@ -71,8 +71,8 @@ class ArretEloquent implements ArretInterface{
 		}
 
         // Flush cache
-        Cache::forget('arrets');
-        Cache::forget('annees');
+        \Cache::forget('arrets');
+        \Cache::forget('annees');
 		
 		return $arret;
 		
@@ -102,8 +102,8 @@ class ArretEloquent implements ArretInterface{
 		$arret->save();
 
         // Flush cache
-        Cache::forget('arrets');
-        Cache::forget('annees');
+        \Cache::forget('arrets');
+        \Cache::forget('annees');
 		
 		return $arret;
 	}
@@ -113,8 +113,8 @@ class ArretEloquent implements ArretInterface{
         $arret = $this->arret->find($id);
 
         // Flush cache
-        Cache::forget('arrets');
-        Cache::forget('annees');
+        \Cache::forget('arrets');
+        \Cache::forget('annees');
 
 		return $arret->delete();
 		

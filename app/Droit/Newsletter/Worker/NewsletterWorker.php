@@ -74,7 +74,7 @@ class NewsletterWorker{
 
         });
 
-        $prepared->sortBy('id');
+        $prepared->sortByDesc('pub_date');
         $prepared->values();
 
         return $prepared;

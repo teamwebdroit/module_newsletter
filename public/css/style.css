@@ -131,7 +131,6 @@ h1.title, h2.title, h3.title, h4.title, h5.title, h6.title {
 	letter-spacing: -0.5px;
 }
 h3.title{
-    color: #5a101f;
     font-weight: 500;
 }
 
@@ -245,7 +244,7 @@ a {
 }
 
 a:hover {
-	color: #aaa;
+	color: #878787;
 }
 .title, .title a {
 	text-decoration: none;
@@ -297,7 +296,7 @@ img {
 	border-top: 2px solid #eee;
 	float: left;
 	width: 100%;
-	margin:15px 0 30px 0;
+	margin:30px 0;
 }
 
 .divider-noborder {
@@ -603,7 +602,7 @@ img {
 .menu li a:hover, .menu li.sfHover a {
 }
 .menu li a.active {
-	color: #c5210d;
+	color: #dd0330;
 }
 .menu li ul {
 	position: absolute;

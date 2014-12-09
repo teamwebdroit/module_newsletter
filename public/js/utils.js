@@ -132,7 +132,7 @@ $(function() {
     });
 
 
-    $.datepicker.regional['fr-CH'] = {
+/*    $.datepicker.regional['fr-CH'] = {
         closeText: 'Fermer',
         prevText: '&#x3c;Préc',
         nextText: 'Suiv&#x3e;',
@@ -152,7 +152,22 @@ $(function() {
 
     $.datepicker.setDefaults($.datepicker.regional['fr-CH']);
 
-    $( ".datePicker" ).datepicker();
+    $( ".datePicker" ).datepicker();*/
+
+    $.fn.datepicker.dates['fr'] = {
+        days: ['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'],
+        daysShort: ['Dim','Lun','Mar','Mer','Jeu','Ven','Sam'],
+        daysMin: ['Di','Lu','Ma','Me','Je','Ve','Sa'],
+        months: ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'],
+        monthsShort: ['Jan','Fév','Mar','Avr','Mai','Jun','Jul','Aoû','Sep','Oct','Nov','Déc'],
+        today: "Aujourd'hui",
+        clear: "Clear"
+    };
+
+    $('.datePicker').datepicker({
+        format: 'yyyy-mm-dd',
+        language: 'fr'
+    });
 
     /* popup for files images */
 

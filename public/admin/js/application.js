@@ -166,6 +166,7 @@ $(".widget-body").on('shown.bs.collapse', function () {
 
 
 $('#multi-select').multiSelect();
+$('#multi-select2').multiSelect();
 
 $('.redactor').redactor({
     minHeight: 200,

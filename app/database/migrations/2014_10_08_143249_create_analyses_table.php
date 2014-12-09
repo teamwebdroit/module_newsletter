@@ -16,7 +16,7 @@ class CreateAnalysesTable extends Migration {
 		{
             $table->increments('id')->unsigned();
             $table->integer('pid');
-            $table->integer('user_id');
+            $table->integer('user_id')->nullable();
             $table->integer('deleted')->default(0);
             $table->string('authors')->nullable();
             $table->integer('pub_date');

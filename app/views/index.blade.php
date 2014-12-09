@@ -38,6 +38,9 @@
                     rattaché à la Faculté de droit de l’Université de Neuchâtel. Il a pour but d’étudier la relation de travail
                     dans tous ses aspects, y compris les spécificités et les liens entre le droit privé et le droit public du travail.
                 </p>
+            </div><!--END ONE-THIRD-->
+
+            <div class="one-half last">
                 <h4 class="title">Activités du CERT</h4>
                 <p>
                     Les membres du CERT donnent des cours universitaires, mettent sur pied des séminaires de formation continue et des
@@ -46,14 +49,16 @@
                 </p>
             </div><!--END ONE-THIRD-->
 
-            <div class="one-half last">
+            <div class="clear"></div>
+            <div class="divider-border"></div>
+
+            <div class="one">
                 <h4 class="title">CEMAJ</h4>
                 <p>Le <a href="http://www2.unine.ch/cemaj" target="_blank">CEMAJ</a>, Centre de recherche sur les modes amiables et juridictionnels de gestion des conflits, développe la
                     recherche et la formation et propose ses services dans le domaine des modes amiables (négociation, médiation,
                     conciliation et arbitrage) et juridictionnels (droit des procédures) de règlement des conflits, en mettant
                     l'accent en particulier sur la question de l'harmonisation et de l'articulation de ces processus complémentaires.</p>
-            </div><!--END ONE-THIRD-->
-
+            </div>
             <div class="divider-noborder"></div>
         </div>
 

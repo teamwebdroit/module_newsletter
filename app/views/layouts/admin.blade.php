@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="<?php echo asset('js/vendor/redactor/redactor.css'); ?>">
     <link rel="stylesheet" href="<?php echo asset('admin/css/files.css'); ?>">
     <link rel="stylesheet" href="<?php echo asset('js/vendor/jqueryui/jquery-ui.min.css'); ?>">
+    <link rel="stylesheet" href="<?php echo asset('js/vendor/jqueryui/jquery-ui.theme.css'); ?>">
     <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600' rel='stylesheet' type='text/css'>
 
     <link rel='stylesheet' type='text/css' href="<?php echo asset('admin/plugins/datatables/dataTables.css');?>" />
@@ -130,6 +131,7 @@
     <script type='text/javascript' src="<?php echo asset('admin/plugins/form-multiselect/js/jquery.multi-select.min.js');?>"></script>
     <script type='text/javascript' src="<?php echo asset('admin/plugins/datatables/jquery.dataTables.min.js');?>"></script>
     <script type='text/javascript' src="<?php echo asset('admin/plugins/datatables/dataTables.bootstrap.js');?>"></script>
+    <script type='text/javascript' src="<?php echo asset('admin/plugins/form-datepicker/js/bootstrap-datepicker.js');?>"></script>
     <script type="text/javascript" src="<?php echo asset('admin/js/datatables.js');?>"></script>
     <script type="text/javascript" src="<?php echo asset('admin/js/application.js');?>"></script>
     <script type='text/javascript' src="<?php echo asset('admin/plugins/mixitup/jquery.mixitup.min.js');?>"></script>

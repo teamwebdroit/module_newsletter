@@ -71,10 +71,6 @@ bra_sticky = true
 jQuery(document).ready(function($) {
 	bra_mobile_menu();
 	bra_add_sticky(bra_sticky);
-
-
-
-
 })
 
 jQuery(window).resize(function() {

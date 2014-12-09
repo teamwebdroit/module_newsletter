@@ -15,7 +15,7 @@ class CategorieEloquent implements CategorieInterface{
 
     public function getAll($pid){
 
-        return $this->categorie->where('pid','=',$pid)->where('deleted', '=', 0)->get();
+        return $this->categorie->where('pid','=',$pid)->where('deleted', '=', 0)->orderBy('title', 'ASC')->get();
     }
 
     public function find($id){

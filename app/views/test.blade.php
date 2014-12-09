@@ -37,6 +37,38 @@
                     }
                 }
 
+
+            //$arrets = GetArret::all();
+
+            if( !empty($arrets) )
+            {
+                foreach($arrets as $arret)
+                {
+                    $pubdate    = \Carbon\Carbon::createFromTimestamp($arret->pub_date)->toDateTimeString();
+                    $createdate = $arret->created_at->toDateTimeString();
+                    $updatedate = $arret->updated_at->toDateTimeString();
+
+                    $newarret = new \Droit\Content\Entities\Arret;
+                    $newarret->id         = $arret->id;
+                    $newarret->pid        = $arret->pid;
+                    $newarret->user_id    = $arret->cruser_id;
+                    $newarret->reference  = $arret->reference;
+                    $newarret->pub_date   = $pubdate;
+                    $newarret->abstract   = $arret->abstract;
+                    $newarret->pub_text   = $arret->pub_text;
+                    $newarret->categories = $arret->categories;
+                    $newarret->analysis   = $arret->analysis;
+                    $newarret->created_at = $createdate;
+                    $newarret->updated_at = $updatedate;
+
+                    $newarret->save();
+
+                    //print_r($arret);
+
+                }
+            }
+
+
                 //$categories = GetCategory::all();
 
                 if( !empty($categories) )

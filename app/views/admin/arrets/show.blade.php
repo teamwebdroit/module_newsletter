@@ -49,8 +49,9 @@
                     <label for="file" class="col-sm-3 control-label">Fichier</label>
                     <div class="col-sm-7">
                         <div class="list-group">
-                            <div class="list-group-item"><i class="fa fa-file"></i> &nbsp;&nbsp;
+                            <div class="list-group-item">
                                 <a target="_blank" href="{{ asset('files/arrets/'.$arret->file) }}">
+                                    <i class="fa fa-file"></i> &nbsp;&nbsp;
                                     {{ $arret->file }}
                                 </a>
                             </div>

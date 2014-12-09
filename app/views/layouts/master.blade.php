@@ -18,6 +18,7 @@
         <link rel="stylesheet" type="text/css" href="<?php echo asset('css/color-red.css');?>" media="screen" />
         <link rel="stylesheet" type="text/css" href="<?php echo asset('css/responsive.css');?>" media="screen" />
         <link rel="stylesheet" type="text/css" href="<?php echo asset('css/chosen.css');?>">
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
         <!-- Javascript Files
         ================================================== -->

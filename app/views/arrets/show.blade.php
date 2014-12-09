@@ -32,7 +32,7 @@
                     </div>
                     <div class="panel-body event-info">
 
-                        @if ( !empty($arret) )
+                        @if ( !empty(VD 08.05.2006) )
                         <h3>
                             @if ( $arret->pid == 195 )
                                 {{HTML::image('/images/bail/logo.png')}}

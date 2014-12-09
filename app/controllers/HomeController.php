@@ -71,12 +71,12 @@ class HomeController extends BaseController {
     {
         $required = true;
 
-        $arrets = Cache::rememberForever('arrets', function()
+        $arrets = \Cache::rememberForever('arrets', function()
         {
             return $this->newsletter->preparedArrets();
         });
 
-        $annees = Cache::rememberForever('annees', function()
+        $annees = \Cache::rememberForever('annees', function()
         {
             return $this->newsletter->preparedAnnees();
         });

@@ -10150,7 +10150,7 @@ body.collapse-leftbar #search.keep-open form button[type="submit"] {
   }
 }
 .navbar-fixed-top {
-  z-index: 1030;
+  z-index: 1130;
   top: 0;
 }
 .navbar-fixed-bottom {

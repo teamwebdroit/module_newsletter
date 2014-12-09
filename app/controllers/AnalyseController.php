@@ -1,54 +1,57 @@
 <?php
 
+use Droit\Content\Repo\AnalyseInterface;
 use Droit\Content\Repo\ArretInterface;
 use Droit\Categorie\Repo\CategorieInterface;
 use Droit\Service\Worker\UploadInterface;
 
-class ArretController extends \BaseController {
+class AnalyseController extends \BaseController {
 
+    protected $analyse;
     protected $arret;
     protected $categorie;
     protected $upload;
     protected $custom;
 
-    public function __construct( ArretInterface $arret, CategorieInterface $categorie , UploadInterface $upload )
+    public function __construct( AnalyseInterface $analyse, ArretInterface $arret, CategorieInterface $categorie , UploadInterface $upload )
     {
+        $this->analyse   = $analyse;
         $this->arret     = $arret;
         $this->categorie = $categorie;
         $this->upload    = $upload;
         $this->custom    = new \Custom;
 
-        View::share('pageTitle', 'Arrêts');
+        View::share('pageTitle', 'Analyses');
     }
 
 	/**
 	 * Display a listing of the resource.
-	 * GET /arret
+	 * GET /analyse
 	 *
 	 * @return Response
 	 */
 
     public function index()
     {
-        $arrets     = $this->arret->getAll(195);
+        $analyses   = $this->analyse->getAll(195);
         $categories = $this->categorie->getAll(195);
-        setlocale(LC_ALL, 'fr_FR');
 
-        return View::make('admin.arrets.index')->with(array( 'arrets' => $arrets , 'categories' => $categories ));
+        return View::make('admin.analyses.index')->with(array( 'analyses' => $analyses , 'categories' => $categories ));
     }
 
     /**
-     * Return one arret by id
+     * Return one analyse by id
      *
      * @return json
      */
     public function show($id)
     {
 
-        $arret      = $this->arret->find($id);
+        $arrets     = $this->arret->getAll(195);
+        $analyse    = $this->analyse->find($id);
         $categories = $this->categorie->getAll(195);
 
-        return View::make('admin.arrets.show')->with(array( 'arret' => $arret, 'categories' => $categories ));
+        return View::make('admin.analyses.show')->with(array( 'analyse' => $analyse, 'arrets' => $arrets, 'categories' => $categories ));
     }
 
     /**
@@ -58,9 +61,10 @@ class ArretController extends \BaseController {
      */
     public function create()
     {
+        $arrets     = $this->arret->getAll(195);
         $categories = $this->categorie->getAll(195);
 
-        return View::make('admin.arrets.create')->with( array( 'categories' => $categories ) );
+        return View::make('admin.analyses.create')->with( array( 'arrets' => $arrets, 'categories' => $categories ) );
     }
 
     /**
@@ -75,18 +79,20 @@ class ArretController extends \BaseController {
         // Files upload
         if( $_file && !empty( $_file ) )
         {
-            $file = $this->upload->upload( Input::file('file') , 'files/arrets' );
+            $file = $this->upload->upload( Input::file('file') , 'files/analyses' );
         }
 
         $categories = Input::get('categories');
+        $arrets     = Input::get('arrets');
 
         // Data array
         $data = array(
             'pid'        => 195,
             'user_id'    => Input::get('user_id'),
-            'reference'  => Input::get('reference'),
+            'authors'    => Input::get('authors'),
             'pub_date'   => Input::get('pub_date'),
             'abstract'   => Input::get('abstract'),
+            'arrets'     => count($arrets),
             'categories' => count($categories),
             'pub_text'   => Input::get('pub_text')
         );
@@ -94,13 +100,14 @@ class ArretController extends \BaseController {
         // Attach file if any
         $data['file'] = (!empty($file) ? $file['name'] : '');
 
-        // Create arret
-        $arret = $this->arret->create( $data );
+        // Create analyse
+        $analyse = $this->analyse->create( $data );
 
         // Insert related categories
-        $arret->arrets_categories()->sync($categories);
+        $analyse->analyses_categories()->sync($categories);
+        $analyse->analyses_arrets()->sync($arrets);
 
-        return Redirect::to('admin/arret/'.$arret->id)->with( array('status' => 'success' , 'message' => 'Arrêt crée') );
+        return Redirect::to('admin/analyse/'.$analyse->id)->with( array('status' => 'success' , 'message' => 'Analyse crée') );
 
     }
 
@@ -116,31 +123,34 @@ class ArretController extends \BaseController {
         // Files upload
         if( $_file && !empty( $_file ) )
         {
-            $file = $this->upload->upload( Input::file('file') , 'files/arrets' );
+            $file = $this->upload->upload( Input::file('file') , 'files/analyses' );
         }
 
         $categories = Input::get('categories');
+        $arrets     = Input::get('arrets');
 
         // Data array
         $data = array(
             'id'         => Input::get('id'),
-            'reference'  => Input::get('reference'),
+            'authors'    => Input::get('authors'),
             'pub_date'   => Input::get('pub_date'),
             'abstract'   => Input::get('abstract'),
             'categories' => count($categories),
+            'arrets'     => count($arrets),
             'pub_text'   => Input::get('pub_text')
         );
 
         // Attach file if any
         $data['file'] = (!empty($file) ? $file['name'] : null);
 
-        // Create arret
-        $arret = $this->arret->update( $data );
+        // Create analyse
+        $analyse = $this->analyse->update( $data );
 
         // Insert related categories
-        $arret->arrets_categories()->sync($categories);
+        $analyse->analyses_categories()->sync($categories);
+        $analyse->analyses_arrets()->sync($arrets);
 
-        return Redirect::to('admin/arret/'.$arret->id)->with( array('status' => 'success' , 'message' => 'Arrêt mis à jour') );
+        return Redirect::to('admin/analyse/'.$analyse->id)->with( array('status' => 'success' , 'message' => 'Analyse mise à jour') );
 
     }
 
@@ -153,22 +163,9 @@ class ArretController extends \BaseController {
      */
     public function destroy($id)
     {
-        $this->arret->delete($id);
+        $this->analyse->delete($id);
 
-        return Redirect::back()->with(array('status' => 'success', 'message' => 'Arrêt supprimée' ));
-    }
-
-
-    /**
-     * Return response arrets
-     *
-     * @return response
-     */
-    public function arrets()
-    {
-        $arrets = $this->arret->getAll(195);
-
-        return Response::json( $arrets, 200 );
+        return Redirect::back()->with(array('status' => 'success', 'message' => 'Analyse supprimée' ));
     }
 
 }

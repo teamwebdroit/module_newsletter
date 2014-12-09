@@ -11,14 +11,14 @@ class CategoriesTableSeeder extends Seeder {
 
 		foreach(range(1, 10) as $index)
 		{
-            \Droit\Categorie\Entities\Categories::create([
+          /*  \Droit\Categorie\Entities\Categories::create([
                 'pid'        => 195,
                 'user_id'    => 1,
                 'title'      => $data['title'],
                 'image'      => $data['image'],
                 'created_at' => date('Y-m-d G:i:s'),
                 'updated_at' => date('Y-m-d G:i:s')
-			]);
+			]);*/
 		}
 	}
 
