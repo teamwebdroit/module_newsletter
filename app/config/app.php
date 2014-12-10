@@ -26,7 +26,7 @@ return array(
 	|
 	*/
 
-	'url' => 'http://newsletter.local',
+	'url' => 'http://newsletter.leschaud.ch',
 
 	/*
 	|--------------------------------------------------------------------------

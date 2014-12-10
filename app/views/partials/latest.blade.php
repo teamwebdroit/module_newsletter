@@ -8,7 +8,7 @@
             @foreach($latest as $last)
                 <li>
                     <span class="date">{{ $last->pub_date->formatLocalized('%d %B %Y') }}</span>
-                    <a href="#">{{ $last->reference }}</a>
+                    <a href="{{ url('jurisprudence').'/#'.$last->reference }}">{{ $last->reference }}</a>
                     <p>{{ $custom->limit_words($last->abstract,15) }}</p>
                 </li>
             @endforeach
