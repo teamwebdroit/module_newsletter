@@ -14,7 +14,7 @@
             <table border="0" width="560" align="center" cellpadding="0" cellspacing="0" class="tableReset contentForm">
                 <tr>
                     <td valign="top" width="375" class="resetMarge">
-                        <?php setlocale(LC_ALL, 'fr_FR');  ?>
+                        <?php setlocale(LC_ALL, 'fr_FR.UTF-8');  ?>
                         <h3 style="text-align: left;">{{ $bloc->reference }} du {{ $bloc->pub_date->formatLocalized('%d %B %Y') }}</h3>
                         <p class="abstract">{{ $bloc->abstract }}</p>
                         <div>{{ $bloc->pub_text }}</div>

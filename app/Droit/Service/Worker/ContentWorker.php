@@ -66,7 +66,6 @@ class ContentWorker{
         {
             // format the title with the date
             setlocale(LC_ALL, 'fr_FR.UTF-8');
-            //setlocale (LC_TIME, 'fr_FR.UTF8');
 
             $arret->setAttribute('humanTitle',$arret->reference.' du '.$arret->pub_date->formatLocalized('%d %B %Y'));
             $arret->setAttribute('parsedText',$arret->pub_text);
@@ -110,7 +109,7 @@ class ContentWorker{
         $prepared = $analyses->filter(function($analyse)
         {
             // format the title with the date
-            setlocale(LC_ALL, 'fr_FR');
+            setlocale(LC_ALL, 'fr_FR.UTF-8');
 
             // categories for isotope
             if(!$analyse->analyses_categories->isEmpty())

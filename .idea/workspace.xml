@@ -53,10 +53,28 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ContentWorker.php" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="ContentWorker.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Droit/Service/Worker/ContentWorker.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="67" column="42" selection-start="1583" selection-end="1583" vertical-scroll-proportion="0.46524823" vertical-offset="1297" max-vertical-offset="3600">
+            <state line="111" column="45" selection-start="2788" selection-end="2788" vertical-scroll-proportion="-13.576923" vertical-offset="2372" max-vertical-offset="3575">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="analyse.blade.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/newsletter/templates/analyse.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="3" column="78" selection-start="163" selection-end="163" vertical-scroll-proportion="1.0769231" vertical-offset="103" max-vertical-offset="1400">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="arret.blade.php" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/views/newsletter/content/arret.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="16" column="63" selection-start="925" selection-end="925" vertical-scroll-proportion="0.40822786" vertical-offset="142" max-vertical-offset="1250">
               <folding />
             </state>
           </provider>
@@ -114,7 +132,6 @@
         <option value="$PROJECT_DIR$/public/js/build.js" />
         <option value="$PROJECT_DIR$/public/css/newsletter.css" />
         <option value="$PROJECT_DIR$/app/views/newsletter/templates/edit/arret.php" />
-        <option value="$PROJECT_DIR$/app/views/newsletter/content/arret.blade.php" />
         <option value="$PROJECT_DIR$/app/views/newsletter/templates/create/arret.php" />
         <option value="$PROJECT_DIR$/app/views/newsletter/send/arret.blade.php" />
         <option value="$PROJECT_DIR$/app/views/newsletter/templates/post.blade.php" />
@@ -141,6 +158,7 @@
         <option value="$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Workbench/stubs/gitignore.txt" />
         <option value="$PROJECT_DIR$/app/controllers/HomeController.php" />
         <option value="$PROJECT_DIR$/app/Droit/Service/Worker/ContentWorker.php" />
+        <option value="$PROJECT_DIR$/app/views/newsletter/content/arret.blade.php" />
       </list>
     </option>
   </component>
@@ -288,6 +306,32 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="newsletter" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="content" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="newsletter" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="newsletter" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="Droit" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -415,7 +459,7 @@
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14043035" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18233296" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -533,13 +577,6 @@
     <entry file="file://$PROJECT_DIR$/public/css/newsletter.css">
       <provider selected="true" editor-type-id="text-editor">
         <state line="89" column="18" selection-start="1819" selection-end="1819" vertical-scroll-proportion="0.49067432" vertical-offset="1883" max-vertical-offset="4975">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/newsletter/templates/analyse.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="78" selection-start="163" selection-end="163" vertical-scroll-proportion="0.10330579" vertical-offset="0" max-vertical-offset="1400">
           <folding />
         </state>
       </provider>
@@ -698,13 +735,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/newsletter/content/arret.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="65" selection-start="1707" selection-end="1707" vertical-scroll-proportion="1.0869565" vertical-offset="0" max-vertical-offset="1250">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/content/arret.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="19" column="46" selection-start="674" selection-end="674" vertical-scroll-proportion="0.6756757" vertical-offset="0" max-vertical-offset="750">
@@ -828,7 +858,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Droit/Service/Worker/ContentWorker.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="67" column="42" selection-start="1583" selection-end="1583" vertical-scroll-proportion="0.46524823" vertical-offset="1297" max-vertical-offset="3600">
+        <state line="111" column="45" selection-start="2788" selection-end="2788" vertical-scroll-proportion="-13.576923" vertical-offset="2372" max-vertical-offset="3575">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/newsletter/templates/analyse.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="78" selection-start="163" selection-end="163" vertical-scroll-proportion="1.0769231" vertical-offset="103" max-vertical-offset="1400">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/newsletter/content/arret.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="63" selection-start="925" selection-end="925" vertical-scroll-proportion="0.40822786" vertical-offset="142" max-vertical-offset="1250">
           <folding />
         </state>
       </provider>
