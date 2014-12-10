@@ -1,7 +1,7 @@
 <div class="analyses">
     <div class="three-fourth">
         @if(!empty($analyses))
-        <h5 class="title-section"><i class="fa fa-file-text"></i> &nbsp;Analyses</h5>
+        <h4 class="title-section"><i class="fa fa-file-text"></i> &nbsp;&nbsp;Analyses</h4>
 
             @foreach($analyses as $analyse)
 
@@ -45,4 +45,6 @@
     </div>
 
     <span class="clear"></span>
+
+    <div class="divider-border-nofloat"></div>
 </div>

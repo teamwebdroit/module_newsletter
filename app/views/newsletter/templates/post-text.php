@@ -11,8 +11,7 @@
 </div>
 <div class="one-fifth last listCat">
     <div ng-repeat="categorie in post.arrets_categories">
-        <img width="110" border="0" alt="{[{ categorie.title }]}" src="<?php echo asset('newsletter/pictos') ?>/{[{ categorie.image }]}">
-        <p class="centerText">{[{ categorie.title }]}</p>
+        <img width="130" border="0" alt="{[{ categorie.title }]}" src="<?php echo asset('newsletter/pictos') ?>/{[{ categorie.image }]}">
     </div>
 </div>
 <span class="clear"></span>

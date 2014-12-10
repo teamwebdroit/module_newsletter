@@ -17,8 +17,7 @@
         foreach($bloc->arrets_categories as $categorie)
         {
             // Categories
-            echo '<a href="#"><img width="140" height="107" border="0" alt="Loyer" src="'.asset('newsletter/pictos/'.$categorie->image).'"></a>';
-            echo '<p class="centerText">'.$categorie->title.'</p>';
+            echo '<a href="#"><img width="130" border="0" alt="Loyer" src="'.asset('newsletter/pictos/'.$categorie->image).'"></a>';
         }
     }
     ?>

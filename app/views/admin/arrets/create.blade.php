@@ -52,7 +52,7 @@
                 <div class="form-group">
                     <label for="message" class="col-sm-3 control-label">Résumé</label>
                     <div class="col-sm-7">
-                        {{ Form::textarea('abstract', null , array('class' => 'form-control redactor', 'cols' => '50' , 'rows' => '4' )) }}
+                        {{ Form::textarea('abstract', null , array('class' => 'form-control', 'cols' => '50' , 'rows' => '4' )) }}
                     </div>
                 </div>
 

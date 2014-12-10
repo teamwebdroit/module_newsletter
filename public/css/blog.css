@@ -156,7 +156,6 @@ CSS overview:
 			POST
 ---------------------------------------------------*/
 .post {
-	border-bottom: 2px solid #eee;
 	margin: 0 0 30px 0;
 	padding: 0 0 30px 0;
 	overflow: hidden;
@@ -472,13 +471,13 @@ CSS overview:
 }
 
 .title-section{
-    margin:0 0 20px 0;
+    margin:0 0 40px 0;
+    font-size: 20px;
 }
 
 .title-section-top{
-    margin:20px 0 20px 0;
+    margin:20px 0 40px 0;
 }
-
 
 .post-title p{
     font-style: italic;

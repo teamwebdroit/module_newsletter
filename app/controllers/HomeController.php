@@ -103,7 +103,7 @@ class HomeController extends BaseController {
     {
         $newsletter     = ($id ? $id : $this->campagne->getLastCampagne()->id );
 
-        $listCampagnes  = $this->campagne->getAll();
+        $listCampagnes  = $this->campagne->getAllSent();
         $campagne       = $this->worker->getCampagne($newsletter);
         $newsletter     = $this->worker->findCampagneById($newsletter);
 

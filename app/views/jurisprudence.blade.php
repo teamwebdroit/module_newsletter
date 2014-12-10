@@ -18,7 +18,7 @@
 
                     @if(!empty($arrets))
 
-                        <h5 class="title-section-top"><i class="fa fa-university"></i> &nbsp;Jurisprudence</h5>
+                        <h4 class="title-section-top"><i class="fa fa-university"></i> &nbsp;&nbsp;Jurisprudence</h4>
 
                         @foreach($arrets as $post)
                             @include('newsletter.templates.post')

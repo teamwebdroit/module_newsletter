@@ -21,9 +21,22 @@ class ContentWorker{
     }
 
     /**
-     * Return response arrets prepared for filtered
+     * Return collection arrets prepared for filtered
      *
-     * @return response
+     * @return collection
+     */
+    public function dispatchMainCategories($arrets)
+    {
+        $categories = $this->categories->getAllMain(195);
+
+
+
+    }
+
+    /**
+     * Return collection arrets prepared for filtered
+     *
+     * @return collection
      */
     public function preparedAnnees()
     {
@@ -42,7 +55,7 @@ class ContentWorker{
     /**
      * Return response arrets prepared for filtered
      *
-     * @return response
+     * @return collection
      */
     public function preparedArrets()
     {
@@ -84,23 +97,19 @@ class ContentWorker{
     }
 
     /**
-     * Return response analyses prepared for filtered
+     * Return collection analyses prepared for filtered
      *
-     * @return response
+     * @return collection
      */
     public function preparedAnalyses()
     {
 
-        $analyses   = $this->analyse->getAll(195);
+        $analyses = $this->analyse->getAll(195);
 
         $prepared = $analyses->filter(function($analyse)
         {
             // format the title with the date
             setlocale(LC_ALL, 'fr_FR');
-
-
-            //$analyse->setAttribute('humanTitle','Analyse de '.$analyse->authors);
-            //$analyse->setAttribute('humanTitle',$analyse->reference.' du '.$analyse->pub_date->formatLocalized('%d %B %Y'));
 
             // categories for isotope
             if(!$analyse->analyses_categories->isEmpty())
@@ -127,6 +136,5 @@ class ContentWorker{
 
         return $prepared;
     }
-
 
 }

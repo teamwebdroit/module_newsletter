@@ -6,17 +6,13 @@ use Droit\Service\Worker\UploadInterface;
 class CategorieController extends \BaseController {
 
     protected $categorie;
-
     protected $upload;
-
     protected $custom;
 
     public function __construct( CategorieInterface $categorie, UploadInterface $upload )
     {
         $this->categorie = $categorie;
-
         $this->upload    = $upload;
-
         $this->custom    = new \Custom;
     }
 
@@ -64,6 +60,7 @@ class CategorieController extends \BaseController {
 
         // Data array
         $data['title']   = Input::get('title');
+        $data['ismain']  = (Input::get('ismain') ? 1 : 0);
         $data['user_id'] = Input::get('user_id');
         $data['pid']     = 195;
         $data['image']   = (isset($file) && !empty($file) ? $file['name'] : null);
@@ -117,9 +114,10 @@ class CategorieController extends \BaseController {
         }
 
         // Data array
-        $data['id']    = $id;
-        $data['title'] = Input::get('title');
-        $data['image'] = (isset($file) && !empty($file) ? $file['name'] : null);
+        $data['id']     = $id;
+        $data['title']  = Input::get('title');
+        $data['ismain'] = (Input::get('ismain') ? 1 : 0);
+        $data['image']  = (isset($file) && !empty($file) ? $file['name'] : null);
 
         $this->categorie->update( $data );
 
