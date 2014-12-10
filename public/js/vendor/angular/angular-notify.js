@@ -148,7 +148,7 @@ angular.module('cgNotify').run(['$templateCache', function($templateCache) {
     "<div class=\"cg-notify-message\" ng-class=\"$classes\">\n" +
     "\n" +
     "    <div ng-show=\"!$messageTemplate\">\n" +
-    "        {{$message}}\n" +
+    "        {[{$message}]}\n" +
     "    </div>\n" +
     "\n" +
     "    <div ng-show=\"$messageTemplate\" class=\"cg-notify-message-template\">\n" +

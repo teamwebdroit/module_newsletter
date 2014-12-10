@@ -105,6 +105,7 @@ $( document ).ready(function(event) {
 			}
 
 			blockCat.removeClass('hidden');
+            $('.analyses').removeClass('hidden');
 
             console.log(activeSelectors);
 			
@@ -133,7 +134,13 @@ $( document ).ready(function(event) {
 					}
 					
 				});
-			}
+
+                if ( !$('.analyse:visible').length ) {
+                    console.log('all are hidden');
+                    $('.analyses').addClass('hidden');
+                }
+
+            }
 		};
 		
 		// Clean the filter to show all arrets 

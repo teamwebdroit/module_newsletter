@@ -45,6 +45,12 @@ CSS overview:
     float: right;
 }
 
+.fixed{
+    top: 230px;
+    width: 300px;
+    position: fixed;
+}
+
 #newsletter{
     border: 1px solid #c2c2c2;
     margin-bottom: 15px;
@@ -158,7 +164,7 @@ CSS overview:
 
 .listCat{
     text-align: center;
-    padding-top: 20px;
+    margin: 50px 0;
 }
 
 .listCat p{
@@ -454,16 +460,41 @@ CSS overview:
 	display: block;
 }
 .post-title h2.title, .post-title h2.title a {
-	font: 300 22px/30px 'Open Sans',Helvetica,Arial,sans-serif;
+	font: 300 20px/30px 'Open Sans',Helvetica,Arial,sans-serif;
 	text-transform: uppercase;
 	margin: 0 0 20px 0;
 }
+
+.post-title h3.title, .post-title h3.title a {
+    font: 300 18px/28px 'Open Sans',Helvetica,Arial,sans-serif;
+    text-transform: uppercase;
+    margin: 0 0 20px 0;
+}
+
+.title-section{
+    margin:0 0 20px 0;
+}
+
+.title-section-top{
+    margin:20px 0 20px 0;
+}
+
 
 .post-title p{
     font-style: italic;
     font-size: 15px;
     margin-bottom: 10px;
 }
+
+.post-title ul{
+    padding-left: 20px;
+}
+
+.post-title ul li{
+    line-height: 20px;
+}
+
+a.anchor{display: block; position: relative; top: -270px; visibility: hidden;}
 
 .post-title h2.title a:hover {
 	color: #676767;

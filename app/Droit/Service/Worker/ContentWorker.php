@@ -1,19 +1,22 @@
-<?php namespace Droit\Newsletter\Worker;
+<?php namespace Droit\Service\Worker;
 
 use Droit\Categorie\Repo\CategorieInterface;
 use Droit\Content\Repo\ArretInterface;
+use Droit\Content\Repo\AnalyseInterface;
 
-class NewsletterWorker{
+class ContentWorker{
 
     protected $categories;
     protected $arret;
+    protected $analyse;
     protected $custom;
 
     /* Inject dependencies */
-    public function __construct(  CategorieInterface $categories, ArretInterface $arret)
+    public function __construct(  CategorieInterface $categories, ArretInterface $arret, AnalyseInterface $analyse)
     {
         $this->categories = $categories;
         $this->arret      = $arret;
+        $this->analyse    = $analyse;
         $this->custom     = new \Custom;
     }
 
@@ -79,5 +82,51 @@ class NewsletterWorker{
 
         return $prepared;
     }
+
+    /**
+     * Return response analyses prepared for filtered
+     *
+     * @return response
+     */
+    public function preparedAnalyses()
+    {
+
+        $analyses   = $this->analyse->getAll(195);
+
+        $prepared = $analyses->filter(function($analyse)
+        {
+            // format the title with the date
+            setlocale(LC_ALL, 'fr_FR');
+
+
+            //$analyse->setAttribute('humanTitle','Analyse de '.$analyse->authors);
+            //$analyse->setAttribute('humanTitle',$analyse->reference.' du '.$analyse->pub_date->formatLocalized('%d %B %Y'));
+
+            // categories for isotope
+            if(!$analyse->analyses_categories->isEmpty())
+            {
+                foreach($analyse->analyses_categories as $cat){ $cats[] = 'c'.$cat->id; }
+
+                $cats[]  = 'y'.$analyse->pub_date->year;
+                $analyse->setAttribute('allcats',$cats);
+
+                return $analyse;
+            }
+            else
+            {
+                $cats[]  = 'y'.$analyse->pub_date->year;
+                $analyse->setAttribute('allcats',$cats);
+
+                return $analyse;
+            }
+
+        });
+
+        $prepared->sortByDesc('pub_date');
+        $prepared->values();
+
+        return $prepared;
+    }
+
 
 }

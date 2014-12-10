@@ -5,11 +5,11 @@ use Droit\Common\BaseModel as BaseModel;
 class Analyse extends BaseModel {
 
 	protected $guarded   = array();
-    public static $rules = array();
+    public static $rules    = array();
     public static $messages = array();
 
     protected $table    = 'analyses';
-    protected $fillable = ['pid','user_id','deleted','authors','pub_date','abstract','pub_text','file','categories','arrets'];
+    protected $fillable = ['pid','user_id','deleted','authors','pub_date','abstract','file','categories','arrets'];
     protected $dates    = ['pub_date','created_at','updated_at'];
 
     public function analyses_categories()

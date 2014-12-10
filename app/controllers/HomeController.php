@@ -4,7 +4,7 @@ use Droit\Content\Repo\ArretInterface;
 use Droit\Categorie\Repo\CategorieInterface;
 use Droit\Newsletter\Repo\NewsletterCampagneInterface;
 use Droit\Newsletter\Worker\CampagneInterface;
-use Droit\Newsletter\Worker\NewsletterWorker;
+use Droit\Service\Worker\ContentWorker;
 use Laracasts\Commander\CommanderTrait;
 use Droit\Command\MessageSendCommand;
 
@@ -15,26 +15,26 @@ class HomeController extends BaseController {
     protected $arret;
     protected $categorie;
     protected $campagne;
-    protected $newsletter;
+    protected $content;
     protected $worker;
     protected $custom;
 
-    public function __construct( ArretInterface $arret, CategorieInterface $categorie, NewsletterCampagneInterface $campagne, NewsletterWorker $newsletter , CampagneInterface $worker )
+    public function __construct( ArretInterface $arret, CategorieInterface $categorie, NewsletterCampagneInterface $campagne, ContentWorker $content , CampagneInterface $worker )
     {
-        $this->arret       = $arret;
+        $this->arret      = $arret;
 
-        $this->categorie   = $categorie;
+        $this->categorie  = $categorie;
 
-        $this->campagne    = $campagne;
+        $this->campagne   = $campagne;
 
-        $this->newsletter  = $newsletter;
+        $this->content    = $content;
 
-        $this->worker      = $worker;
+        $this->worker     = $worker;
 
-        $this->custom      = new \Custom;
+        $this->custom     = new \Custom;
 
         $arrets = $this->arret->getPaginate(195,15);
-        $latest = $arrets->take(5);
+        $latest = $arrets->take(3);
 
         $categories = $this->categorie->getAll(195);
 
@@ -71,17 +71,26 @@ class HomeController extends BaseController {
     {
         $required = true;
 
+        \Cache::forget('annees');
+        \Cache::forget('arrets');
+        \Cache::forget('analyses');
+
         $arrets = \Cache::rememberForever('arrets', function()
         {
-            return $this->newsletter->preparedArrets();
+            return $this->content->preparedArrets();
+        });
+
+        $analyses = \Cache::rememberForever('analyses', function()
+        {
+            return $this->content->preparedAnalyses();
         });
 
         $annees = \Cache::rememberForever('annees', function()
         {
-            return $this->newsletter->preparedAnnees();
+            return $this->content->preparedAnnees();
         });
 
-        return View::make('jurisprudence')->with(array( 'arrets' => $arrets, 'annees' => $annees , 'required' => $required ));
+        return View::make('jurisprudence')->with(array( 'arrets' => $arrets, 'analyses' => $analyses, 'annees' => $annees , 'required' => $required ));
     }
 
     /**

@@ -40,7 +40,7 @@
 
 #bailNewsletter .redBail,
 #bailNewsletterCreate .redBail{
-    color: #cb2629;
+    color: #dd0330;
 }
 
 #bailNewsletter .header,
@@ -78,7 +78,7 @@
 #bailNewsletterCreate h2{
     font-size:14px;
     font-weight:bold;
-    color: #cb2629;
+    color: #dd0330;
 }
 
 #bailNewsletter .contentForm h3,
@@ -87,7 +87,7 @@
 #bailNewsletterCreate .contentForm h4{
     font-size:13px;
     font-weight:bold;
-    color: #cb2629;
+    color: #dd0330;
 }
 
 #bailNewsletter .abstract,

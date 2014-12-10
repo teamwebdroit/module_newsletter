@@ -19,6 +19,8 @@
     text-decoration: none;
 }
 
-#filtering .arrets .arret.hidden {
+#filtering .arrets .arret.hidden,
+#filtering .analyses .arret.hidden,
+#filtering .analyses.hidden{
     display: none;
 }

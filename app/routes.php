@@ -124,7 +124,68 @@ Route::get('testing', function()
     //echo ($send->removeContact('cindy11@bluewin.ch') ? 'removed' : 'error');
     //print_r($send->getSubscribers());
 
-    print_r($send->getListRecipient('cindy.leschaud@gmail.com'));
+    //print_r($send->getListRecipient('cindy.leschaud@gmail.com'));
+    /*   $faker = \Faker\Factory::create();
+
+     foreach(range(1, 2) as $index)
+     {
+         $categories = array();
+
+         $count = $faker->numberBetween(1, 4);
+
+         for($i = 0; $i <= $count; $i++){
+             $categories[] = $faker->numberBetween(62, 92);
+         }
+
+         $cour = $faker->randomElement(array('A','C','E'));
+         $num  = $faker->randomDigit();
+         $rand = $faker->randomNumber(3);
+         $year = $faker->randomElement(array('2012','2013','2014'));
+
+         $text = '<p>'.$faker->text(1200).'</p>';
+         $text .= '<p>'.$faker->text(1200).'</p>';
+
+         $ref  = $cour.''.$num.'_'.$rand.'/'.$year;
+
+         $arret = [
+             'pid'        => 195,
+             'user_id'    => 1,
+             'reference'  => $ref,
+             'pub_date'   => $faker->dateTimeBetween('-3 years', 'now'),
+             'abstract'   => $faker->text(200),
+             'pub_text'   => $text,
+             'categories' => count($categories),
+             'file'       => 'Fichier_test.pdf',
+             'created_at' => date('Y-m-d G:i:s'),
+             'updated_at' => date('Y-m-d G:i:s')
+         ];
+
+         echo '<pre>';
+         print_r($arret);
+         echo '</pre>';
+
+       $arret = \Droit\Content\Entities\Arret::create([
+             'pid'        => 195,
+             'user_id'    => 1,
+             'reference'  => $ref,
+             'pub_date'   => $faker->dateTimeBetween('-3 years', 'now'),
+             'abstract'   => $faker->sentences(2),
+             'pub_text'   => $faker->paragraph(3),
+             'categories' => count($categories),
+             'file'       => 'Fichier_test.pdf',
+             'created_at' => date('Y-m-d G:i:s'),
+             'updated_at' => date('Y-m-d G:i:s')
+         ]);
+
+        //$arret->arrets_categories()->sync($categories);
+
+    }*/
+
+    $analyse = new Droit\Content\Entities\Analyse();
+
+    echo '<pre>';
+    print_r($analyse->where('id', '=',1)->with(array('analyses_categories','analyses_arrets'))->get()->first());
+    echo '</pre>';
 
 });
 

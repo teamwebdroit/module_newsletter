@@ -13,20 +13,27 @@
         <div id="inner-content">
             <div id="filtering">
                 <div class="arrets">
+
+                    @include('newsletter.templates.analyse')
+
                     @if(!empty($arrets))
+
+                        <h5 class="title-section-top"><i class="fa fa-university"></i> &nbsp;Jurisprudence</h5>
+
                         @foreach($arrets as $post)
                             @include('newsletter.templates.post')
                         @endforeach
                     @endif
                 </div>
+
             </div>
         </div>
 
         <!-- Sidebar  -->
         <div id="sidebar">
-            @include('partials.filter')
-            @include('partials.newsletter')
-            @include('partials.latest')
+            <div class="fixed">
+                @include('partials.filter')
+            </div>
         </div>
         <!-- END Sidebar  -->
 

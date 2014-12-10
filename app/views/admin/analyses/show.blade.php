@@ -72,13 +72,6 @@
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <label for="message" class="col-sm-3 control-label">Texte</label>
-                    <div class="col-sm-7">
-                        {{ Form::textarea('pub_text', $analyse->pub_text , array('class' => 'form-control  redactor', 'cols' => '50' , 'rows' => '4' )) }}
-                    </div>
-                </div>
-
                 <?php
 
                     $hasArrets    = array();

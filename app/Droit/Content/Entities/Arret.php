@@ -16,8 +16,7 @@ class Arret extends BaseModel {
     protected static $rules = array(
         'reference' => 'required',
         'pub_date'  => 'required',
-        'abstract'  => 'required',
-        'pub_text'  => 'required'
+        'abstract'  => 'required'
     );
 
     /*
@@ -26,8 +25,7 @@ class Arret extends BaseModel {
     protected static $messages = array(
         'reference.required' => 'La référence est requise',
         'pub_date.required'  => 'La date de publication est requise',
-        'abstract.required'  => 'Le résumé est requis',
-        'pub_text.required'  => 'Le texte est requis'
+        'abstract.required'  => 'Le résumé est requis'
     );
 
     public function arrets_categories()

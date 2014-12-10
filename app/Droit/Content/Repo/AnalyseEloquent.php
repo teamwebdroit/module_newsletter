@@ -17,7 +17,16 @@ class AnalyseEloquent implements AnalyseInterface{
 
     public function getAll(){
 
-        return $this->analyse->all();
+        return $this->analyse
+            ->where('analyses.deleted', '=', 0)
+            ->with( array('analyses_categories' => function ($query)
+                {
+                    $query->orderBy('sorting', 'ASC');
+                },'analyses_arrets' => function($query)
+                {
+
+                }))
+            ->orderBy('pub_date', 'DESC')->get();
     }
 
 	public function find($id){
@@ -33,7 +42,6 @@ class AnalyseEloquent implements AnalyseInterface{
             'authors'    => $data['authors'],
             'pub_date'   => $data['pub_date'],
             'abstract'   => $data['abstract'],
-            'pub_text'   => $data['pub_text'],
             'file'       => $data['file'],
             'categories' => $data['categories'],
             'arrets'     => $data['arrets'],
@@ -62,8 +70,11 @@ class AnalyseEloquent implements AnalyseInterface{
         $analyse->authors    = $data['authors'];
         $analyse->pub_date   = $data['pub_date'];
         $analyse->abstract   = $data['abstract'];
-        $analyse->pub_text   = $data['pub_text'];
-        $analyse->file       = $data['file'];
+
+        if(isset($data['file']) && !empty($data['file'])){
+            $analyse->file = $data['file'];
+        }
+
         $analyse->categories = $data['categories'];
         $analyse->arrets     = $data['arrets'];
 		$analyse->updated_at = date('Y-m-d G:i:s');

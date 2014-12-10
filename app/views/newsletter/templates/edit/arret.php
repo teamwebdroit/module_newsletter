@@ -13,7 +13,7 @@
             <td valign="top" width="375" class="resetMarge contentForm">
                 <div>
                     <h3>{{ content.reference }} <span ng-show="content.reference">du</span> {{ content.dateRef }}</h3>
-                    <p class="abstract">{{ content.abstract }}</p>
+                    <p class="abstract" ng-bind-html='content.abstract'></p>
                     <div class="content" ng-bind-html='content.pub_text'></div>
                 </div>
             </td>
@@ -22,9 +22,8 @@
                 <!-- Categories -->
                 <div class="resetMarge" ng-repeat="categorie in content.arrets_categories">
                     <a href="#">
-                        <img ng-show="categorie.image" width="140" height="107" border="0" alt="{[{ categorie.title }]}" ng-src="<?php echo asset('newsletter/pictos/{{ categorie.image }}') ?>">
+                        <img ng-show="categorie.image" width="130" border="0" alt="{[{ categorie.title }]}" ng-src="<?php echo asset('newsletter/pictos/{{ categorie.image }}') ?>">
                     </a>
-                    <p class="centerText">{[{ categorie.title }]}</p>
                 </div>
             </td>
         </tr>

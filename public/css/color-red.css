@@ -1,4 +1,7 @@
 a {color: #dd0330;}
+.post-title h3.title, .post-title h3.title a {
+    color: #dd0330;
+}
 blockquote.color {background: #dd0330;}
 .dropcap.color {background-color: #dd0330;}
 .parallax-background.color .item-mask {background: #dd0330;}
