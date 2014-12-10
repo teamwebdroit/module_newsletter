@@ -65,7 +65,8 @@ class ContentWorker{
         $prepared = $arrets->filter(function($arret)
         {
             // format the title with the date
-            setlocale(LC_ALL, 'fr_FR');
+            setlocale(LC_ALL, 'fr_FR.UTF-8');
+            //setlocale (LC_TIME, 'fr_FR.UTF8');
 
             $arret->setAttribute('humanTitle',$arret->reference.' du '.$arret->pub_date->formatLocalized('%d %B %Y'));
             $arret->setAttribute('parsedText',$arret->pub_text);
