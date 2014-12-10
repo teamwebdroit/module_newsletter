@@ -1,7 +1,7 @@
 <div class="three-fourth">
     <div class="post">
         <div class="post-title">
-            <?php setlocale(LC_ALL, 'fr_FR');  ?>
+            <?php setlocale(LC_ALL, 'fr_FR.UTF-8');  ?>
             <h2 class="title">{{ $bloc->reference }} du {{ $bloc->pub_date->formatLocalized('%d %B %Y') }}</h2>
             <p>{{ $bloc->abstract }}</p>
         </div><!--END POST-TITLE-->
