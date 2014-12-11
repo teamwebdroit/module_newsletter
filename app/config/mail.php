@@ -54,7 +54,7 @@ return array(
 	|
 	*/
 
-	'from' => array('address' => 'info@droitdutravail.ch', 'name' => 'Droit du travail'),
+	'from' => array('address' => 'info@leschaud.ch', 'name' => 'Droit du travail'),
 
 	/*
 	|--------------------------------------------------------------------------
