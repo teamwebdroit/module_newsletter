@@ -5,8 +5,8 @@
             <tr>
                 <td valign="top" width="375" class="resetMarge contentForm">
                     <div ng-show="select.arret" ng-model="select.arret">
-                        <h3>{{ select.arret.reference }} <span ng-show="select.arret.reference">du</span> {{ select.date | date: 'fullDate' }}</h3>
-                        <p class="abstract">{{ select.arret.abstract }}</p>
+                        <h3>{[{ select.arret.reference }]} <span ng-show="select.arret.reference">du</span> {[{ select.date | date: 'fullDate' }]}</h3>
+                        <p class="abstract">{[{ select.arret.abstract }]}</p>
                         <div class="content" ng-bind-html='select.arret.pub_text'></div>
                     </div>
                 </td>
@@ -15,7 +15,7 @@
                     <!-- Categories -->
                     <div class="resetMarge" ng-repeat="categorie in select.categories">
                         <a href="#">
-                            <img ng-show="categorie.image" width="130" border="0" alt="{{ categorie.title }}" ng-src="<?php echo asset('newsletter/pictos/{{ categorie.image }}') ?>">
+                            <img ng-show="categorie.image" width="130" border="0" alt="{[{ categorie.title }]}" ng-src="<?php echo asset('newsletter/pictos/{[{ categorie.image }]}') ?>">
                         </a>
                     </div>
                 </td>
