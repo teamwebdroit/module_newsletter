@@ -2,7 +2,3 @@ RewriteEngine On
 RewriteBase /
 RewriteCond %{REQUEST_URI} !^public
 RewriteRule ^(.*)$ public/$1 [L]
-AddHandler application/x-httpd-php54 .php
-<IfModule mod_suphp.c>
-    suPHP_ConfigPath "/home/leschaud/etc/php_settings/php54"
-</IfModule>
