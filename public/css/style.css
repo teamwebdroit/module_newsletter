@@ -313,11 +313,12 @@ img {
 }
 
 .one-third.one-small{
-    width: 28.5%;
+    width: 24.5%;
+    margin-right: 1%;
 }
 
 .one-third.one-big{
-    width: 35%;
+    width: 40%;
 }
 
 #footer .divider-border {
@@ -404,7 +405,7 @@ img {
 #logo, #logo a {
 	float: left;
     color: #dd0330;
-    font-size: 35px;
+    font-size: 33px;
     line-height: 60px;
     font-weight: 300;
     letter-spacing: -0.5px;
@@ -1086,6 +1087,7 @@ button.close {
 .three-fourth { width: 74%; }
 .one-fifth { width: 16.8%; }
 .last { margin-right: 0 !important; }
+.one-third.one-small.last{ width: 29%; margin-right: 0 !important; }
 .one.aligncenter, .one-half.aligncenter, .one-third.aligncenter, .two-third.aligncenter, .one-fourth.aligncenter, .three-fourth.aligncenter, .one-fifth.aligncenter { float:none; }
 /*--------------------------------------------------
 			TEAM
@@ -1357,7 +1359,7 @@ button.close {
 .rounded {
 	border-radius: 30px 30px 30px 30px;
 }
-.grey { background-color:#444;border: none; }
+.grey { background-color:#5a101f;border: none; }
 .grey:hover { color: #FFFFFF; }
 .yellow { background-color:#FEEB43; color: #707070; }
 .white { background-color:#fff; color: #444; }
@@ -1496,6 +1498,50 @@ button.close {
 .icon-caret-right {
 	font-size: 14px;
 }
+
+.dl-horizontal{
+    margin: 10px 0;
+}
+
+.dl-horizontal dd:before,
+.dl-horizontal dd:after{
+    display: table;
+    content: " ";
+}
+
+.dl-horizontal dd:after{
+    clear: both;
+}
+
+@media (min-width: 768px) {
+    .dl-horizontal dt {
+        float: left;
+        width: 160px;
+        overflow: hidden;
+        clear: left;
+        text-align: left;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-weight: bold;
+    }
+    .dl-horizontal dd {
+        margin-left: 180px;
+    }
+}
+
+#inner-content .text-left ,.text-left {
+    text-align: left;
+}
+#inner-content .text-right ,.text-right {
+    text-align: right;
+}
+#inner-content .text-center ,.text-center {
+    text-align: center;
+}
+#inner-content .text-justify ,.text-justify {
+    text-align: justify;
+}
+
 .border-list {
 	list-style:none;
 	margin:0;

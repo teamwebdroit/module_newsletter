@@ -48,6 +48,11 @@ class HomeController extends BaseController {
         return View::make('index');
     }
 
+    public function colloque()
+    {
+        return View::make('colloque');
+    }
+
     public function contact()
     {
         return View::make('contact');

@@ -161,6 +161,11 @@ CSS overview:
 	overflow: hidden;
 }
 
+.post.nomarg {
+    margin:  0 0 20px;
+    padding: 0;
+}
+
 .listCat{
     text-align: center;
     margin: 50px 0;
@@ -464,6 +469,11 @@ CSS overview:
 	margin: 0 0 20px 0;
 }
 
+.post-title h2.title strong, .post-title h2.title a strong{
+    font-size: 16px;
+    text-transform: none;
+}
+
 .post-title h3.title, .post-title h3.title a {
     font: 300 18px/28px 'Open Sans',Helvetica,Arial,sans-serif;
     text-transform: uppercase;
@@ -596,12 +606,14 @@ a.anchor{display: block; position: relative; top: -270px; visibility: hidden;}
 .post-date li {
 	display: inline;
     margin-right: 5px;
+    font-size: 16px;
+    color: #5a101f;
 }
 .post-date li:last-child {
     margin-right: 0;
 }
 .post-date span.day:after {
-	content: ",";
+	content: " ";
 }
 .post-date li:after {
 	content: "/";
