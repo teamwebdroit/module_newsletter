@@ -24,7 +24,7 @@
                     est dédié aux nouveautés en droit du travail, en particulier la jurisprudence du Tribunal fédéral.
                     Le site est placé sous la responsabilité des professeurs François Bohnet (co-directeur du <a href="http://www2.unine.ch/cemaj" target="_blank">CEMAJ</a>),
                     Jean-Philippe Dunand (co-directeur du <a href="http://www2.unine.ch/cert" target="_blank">CERT</a>) et Pascal Mahon (co-directeur du <a href="http://www2.unine.ch/cert" target="_blank">CERT</a>),
-                    avec la collaboration de Me Patricia Dietschy, docteure en droit.
+                    avec la collaboration de Mme Patricia Dietschy, docteure en droit et vice-présidente dans un tribunal de prud'hommes.
                 </p>
             </div><!--END ONE-THIRD-->
 

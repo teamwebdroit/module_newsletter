@@ -152,6 +152,7 @@ class InscriptionController extends \BaseController {
         $abonne->newsletter()->sync(array(Input::get('newsletter_id')));
 
         $this->worker->removeContact($abonne->email);
+        $this->abo->delete($abonne->email);
 
         return Redirect::to('/')->with(array('status' => 'success', 'message' => '<strong>Vous avez été désinscrit</strong>'));
 	}
