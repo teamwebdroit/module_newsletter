@@ -22,7 +22,7 @@ Route::get('gobuild', 'NewsletterController@index');// test
 /**
  * Templates for js
  */
-Route::get('buildingblocs', 'TemplateController@buildingBlocs');
+Route::get('building-blocs', 'TemplateController@buildingBlocs');
 Route::get('post-text', 'TemplateController@postText');
 
     /**

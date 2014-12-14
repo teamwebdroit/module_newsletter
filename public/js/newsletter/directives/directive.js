@@ -3,11 +3,11 @@ var Newsletter = angular.module('newsletter');
 /**
  * Build directive, display all types of content
  */
-Newsletter.directive("buidingBlocs", function() {
+Newsletter.directive("buildingBlocs", function() {
     return {
         restrict: "EA",
         scope:true,
-        template: "templates/building-blocs.php"
+        templateUrl: "building-blocs"
     };
 });
 
@@ -55,7 +55,7 @@ Newsletter.directive("imageLeftText", function() {
     return {
         restrict: "EA",
         scope   :{ngModel: '='},
-        templateUrl: "templates/create/image-left-text.php"
+        templateUrl: "image-left-text"
     };
 });
 
@@ -63,7 +63,7 @@ Newsletter.directive("imageRightText", function() {
     return {
         restrict: "EA",
         scope   :{ngModel: '='},
-        templateUrl: "templates/create/image-right-text.php"
+        templateUrl: "image-right-text"
     };
 });
 
@@ -71,7 +71,7 @@ Newsletter.directive("imageText", function() {
     return {
         restrict: "EA",
         scope   :{ngModel: '='},
-        templateUrl: "templates/create/image-text.php"
+        templateUrl: "image-text"
     };
 });
 
@@ -79,7 +79,7 @@ Newsletter.directive("imageAlone", function() {
     return {
         restrict: "EA",
         scope   :{ngModel: '='},
-        templateUrl: "templates/create/image.php"
+        templateUrl: "image"
     };
 });
 
@@ -87,7 +87,7 @@ Newsletter.directive("textAlone", function() {
     return {
         restrict: "EA",
         scope   :{ngModel: '='},
-        templateUrl: "templates/create/text.php"
+        templateUrl: "text"
     };
 });
 
@@ -98,41 +98,41 @@ Newsletter.directive("textAlone", function() {
 Newsletter.directive("arretEdit", function() {
     return {
         restrict: "EA",
-        templateUrl: "templates/edit/arret.php"
+        templateUrl: "arret-edit"
     };
 });
 
 Newsletter.directive("imageLeftTextEdit", function() {
     return {
         restrict: "EA",
-        templateUrl: "templates/edit/image-left-text.php"
+        templateUrl: "image-left-text-edit"
     };
 });
 
 Newsletter.directive("imageRightTextEdit", function() {
     return {
         restrict: "EA",
-        templateUrl: "templates/edit/image-right-text.php"
+        templateUrl: "image-right-text-edit"
     };
 });
 
 Newsletter.directive("imageTextEdit", function() {
     return {
         restrict: "EA",
-        templateUrl: "templates/edit/image-text.php"
+        templateUrl: "image-text-edit"
     };
 });
 
 Newsletter.directive("imageAloneEdit", function() {
     return {
         restrict: "EA",
-        templateUrl: "templates/edit/image.php"
+        templateUrl: "image-edit"
     };
 });
 
 Newsletter.directive("textAloneEdit", function() {
     return {
         restrict: "EA",
-        templateUrl: "templates/edit/text.php"
+        templateUrl: "text-edit"
     };
 });
