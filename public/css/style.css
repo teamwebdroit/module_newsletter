@@ -321,6 +321,10 @@ img {
     width: 40%;
 }
 
+#inner-content{
+	min-height: 400px;
+}
+
 #footer .divider-border {
 	border-top-color: #ddd;
     margin:10px 0;
@@ -2150,6 +2154,25 @@ ul.item-nav li.all a {
 .google-map-3 {
 	height: 450px;
 }
+
+#unsub-form p{
+	float: left;
+	width: auto;
+}
+
+#unsub-form p label{
+	width:80px;
+	display: inline-block;
+}
+
+#unsub-form p.form-submit-unsub input{
+	padding: 10px 18px !important;
+	-moz-border-radius-bottomleft: 0;
+	-moz-border-radius-topleft: 0;
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
+}
+
 .form, .contact-success {
 	overflow: hidden;
 }

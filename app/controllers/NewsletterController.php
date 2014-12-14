@@ -28,7 +28,7 @@ class NewsletterController extends BaseController {
          * Urls
         */
         $shared['unsuscribe']   = url('/');
-        $shared['browser']      = url('/');
+        $shared['browser']      = url('');
         $shared['isNewsletter'] = true;
 
         View::share( $shared );

@@ -23,14 +23,6 @@ class CampagneController extends BaseController {
         $this->arret    = $arret;
         $this->campagne = $campagne;
         $this->worker   = $worker;
-
-        /*
-         * Urls
-        */
-        $shared['unsuscribe']   = url('/');
-        $shared['browser']      = url('/');
-
-        View::share( $shared );
     }
 
     public function index()
@@ -94,6 +86,12 @@ class CampagneController extends BaseController {
 
     public function view($id){
 
+        /*
+         * Urls
+        */
+        $unsubscribe  = url('/unsubscribe/'.$id);
+        $browser      = url('/campagne/'.$id);
+
         $infos    = $this->campagne->find($id);
         $content  = $this->content->getByCampagne($id);
 
@@ -115,7 +113,7 @@ class CampagneController extends BaseController {
             }
         });
 
-        return View::make('newsletter.view')->with(array('content' => $campagne , 'infos' => $infos));
+        return View::make('newsletter.view')->with(array('content' => $campagne , 'infos' => $infos , 'unsubscribe' => $unsubscribe , 'browser' => $browser));
     }
     /**
      * Update the specified resource in storage.
@@ -149,6 +147,21 @@ class CampagneController extends BaseController {
         $this->campagne->delete($id);
 
         return Redirect::back()->with(array('status' => 'success', 'message' => 'Campagne supprimée' ));
+    }
+
+    /**
+     * Unsubcribe from newsletter
+     * Get /unsubscribe/{id}
+     *
+     * @param  int  $id
+     * @return Response
+     */
+
+    public function unsubscribe($id){
+
+        $campagne = $this->campagne->find($id);
+
+        return View::make('unsubscribe')->with(array('campagne' => $campagne));
     }
 
 }

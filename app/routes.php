@@ -18,6 +18,8 @@ Route::get('test', 'NewsletterController@test');// test
 Route::get('convert', 'HomeController@convert');// test
 Route::get('campagne', 'NewsletterController@campagne');// test
 Route::get('gobuild', 'NewsletterController@index');// test
+Route::get('campagne/{id}', 'CampagneController@view');
+Route::get('unsubscribe/{id}', 'CampagneController@unsubscribe');
 
 /**
  * Templates for js
@@ -74,6 +76,7 @@ Route::get('categories', 'CategorieController@categories');
  */
 Route::get('inscription/activation/{token}', 'InscriptionController@activation');
 Route::post('inscription/resend', 'InscriptionController@resend');
+Route::post('inscription/unsubscribe', 'InscriptionController@unsubscribe');
 Route::resource('inscription', 'InscriptionController');
 
 /**

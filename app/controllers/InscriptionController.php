@@ -129,15 +129,31 @@ class InscriptionController extends \BaseController {
 	}
 
 	/**
-	 * Remove the specified resource from storage.
-	 * DELETE /inscription/{id}
+	 * Remove the email from list - unsubscribe.
+	 * POST /inscription/unsubscribe
 	 *
-	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function unsubscribe()
 	{
-		//
+
+        $email = Input::get('email');
+
+        if(!$email){
+            return Redirect::back()->with(array('status' => 'danger', 'message' => '<strong>Veuillez indiquer un email</strong>'));
+        }
+
+        $abonne = $this->abo->findByEmail( $email );
+
+        if(!$abonne){
+            return Redirect::back()->with(array('status' => 'danger', 'message' => '<strong>Votre email n\'existe pas dans la base de données</strong>'));
+        }
+        // Sync the abos to newsletter we have
+        $abonne->newsletter()->sync(array(Input::get('newsletter_id')));
+
+        $this->worker->removeContact($abonne->email);
+
+        return Redirect::to('/')->with(array('status' => 'success', 'message' => '<strong>Vous avez été désinscrit</strong>'));
 	}
 
 }

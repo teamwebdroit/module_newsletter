@@ -32,7 +32,15 @@ class NewsletterUserEloquent implements NewsletterUserInterface{
         }))->findOrFail($id);
 	}
 
-    public function activate($token){
+	public function findByEmail($email){
+
+		return $this->user->with(array('newsletter','subscription' => function($query)
+		{
+			$query->join('newsletters', 'newsletters.id', '=', 'newsletter_subscriptions.newsletter_id');
+		}))->where('email','=',$email)->get()->first();
+	}
+
+	public function activate($token){
 
         $user = $this->user->where('activation_token','=',$token)->get()->first();
 
