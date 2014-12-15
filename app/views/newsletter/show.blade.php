@@ -6,7 +6,7 @@
         <div class="options" style="margin-bottom: 10px;">
             <div class="btn-toolbar">
                 <a href="{{ url('admin/campagne') }}" class="btn btn-default"><i class="fa fa-list"></i>  &nbsp;&nbsp;Retour aux campagnes</a>
-                <a href="{{ url('admin/campagne/'.$campagne->id.'/edit') }}" class="btn btn-sky"><i class="fa fa-pencil"></i>  &nbsp;&Eacute;diter la campagne</a>
+                <a href="{{ url('admin/campagne/'.$infos->id.'/edit') }}" class="btn btn-sky"><i class="fa fa-pencil"></i>  &nbsp;&Eacute;diter la campagne</a>
             </div>
         </div>
     </div>
@@ -14,7 +14,7 @@
         {{ Form::open(array('url' => array('admin/send/test') , 'class' => 'form-inline')) }}
             <div class="form-group">
                 <input required name="email" value="" type="email" class="form-control">
-                <input name="id" value="{{ $campagne->id }}" type="hidden">
+                <input name="id" value="{{ $infos->id }}" type="hidden">
             </div>
             <button type="submit" class="btn btn-brown"><i class="fa fa-question-circle"></i>  &nbsp;&nbsp;Envoyer un test</button>
         {{ Form::close() }}
@@ -26,7 +26,7 @@
     <div class="row" ng-controller="BuildController as build">
         <div class="col-md-12">
 
-            <input id="campagne_id" value="{{ $campagne->id }}" type="hidden">
+            <input id="campagne_id" value="{{ $infos->id }}" type="hidden">
 
             <div class="component-build">
                 <div id="bailNewsletter" class="onBuild">
@@ -36,16 +36,15 @@
                     @include('newsletter.send.header')
                     <div id="viewBuild" ng-controller="ViewController as view">
                         <div id="sortable">
-                            <div ng-repeat="content in view.contents track by content.id" id="bloc_rang_{[{ content.idItem }]}" data-rel="{[{ content.idItem }]}">
 
-                                <image-left-text-edit ng-if="isTemplate('image-left-text',content.type.template)"></image-left-text-edit>
-                                <image-right-text-edit ng-if="isTemplate('image-right-text',content.type.template)"></image-right-text-edit>
-                                <image-text-edit ng-if="isTemplate('image-text',content.type.template)"></image-text-edit>
-                                <image-alone-edit ng-if="isTemplate('image',content.type.template)"></image-alone-edit>
-                                <text-alone-edit ng-if="isTemplate('text',content.type.template)"></text-alone-edit>
-                                <arret-edit ng-if="isTemplate('arret',content.type.template)"></arret-edit>
+                            @if(!empty($campagne))
+                                @foreach($campagne as $camp)
+                                    <div id="bloc_rang_{{$camp->idItem}}">
+                                        <?php echo View::make('newsletter/templates/edit/'.$camp->type->partial)->with(array('bloc' => $camp)); ?>
+                                    </div>
+                                @endforeach
+                            @endif
 
-                            </div>
                         </div>
                     </div>
                 </div>

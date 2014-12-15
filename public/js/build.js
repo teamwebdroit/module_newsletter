@@ -178,10 +178,11 @@ App.controller("EditController",['$scope','$http','notify','myService', function
 
     };
 
-    this.updateContent = function(editForm,idItem){
+    this.updateContent = function(editForm){
 
         notify.config({ duration: 1000 });
 
+        var idItem    = ( editForm.idItem ? editForm.idItem.$modelValue : null);
         var image    = $('#editImage_'+ idItem ).val();
         var image    = ( image ? image : null);
         var titre    = ( editForm.titre ? editForm.titre.$modelValue : null);
@@ -207,6 +208,7 @@ App.controller("EditController",['$scope','$http','notify','myService', function
                 myService.changes();
                 $( "#sortable" ).sortable( "enable" );
                 $scope.editable = 0;
+
             }
             else {  notify({ messageTemplate:'Problème avec l\'édition du bloc'}); }
         });
@@ -308,3 +310,12 @@ App.controller('SelectController', ['$scope','$http','Arrets','notify','myServic
     };
 
 }]);
+
+App.directive('bindContent', function() {
+    return {
+        require: 'ngModel',
+        link: function ($scope, $element, $attrs, ngModelCtrl) {
+            ngModelCtrl.$setViewValue($element.text());
+        }
+    }
+});

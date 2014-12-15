@@ -65,7 +65,25 @@ class CampagneController extends BaseController {
     public function show($id)
     {
         $infos    = $this->campagne->find($id);
-        $campagne = $this->campagne->find($id);
+        $content  = $this->content->getByCampagne($id);
+
+        $campagne = $content->map(function($item)
+        {
+            if ($item->arret_id > 0)
+            {
+                $arret = $this->arret->find($item->arret_id);
+                $arret->setAttribute('type',$item->type);
+                $arret->setAttribute('rangItem',$item->rang);
+                $arret->setAttribute('idItem',$item->id);
+                return $arret;
+            }
+            else
+            {
+                $item->setAttribute('rangItem',$item->rang);
+                $item->setAttribute('idItem',$item->id);
+                return $item;
+            }
+        });
 
         return View::make('newsletter.show')->with(array( 'isNewsletter' => true , 'campagne' => $campagne , 'infos' => $infos ));
     }
