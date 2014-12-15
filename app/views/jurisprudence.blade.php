@@ -3,14 +3,18 @@
 
 <?php $custom = new \Custom; ?>
 
-<div class="page-header text-align-left">
-    <h1 class="title uppercase">Jurisprudence</h1>
-</div><!--END PAGE-HEADER-->
+<div class="row">
+    <div class="col-md-12">
+        <div class="page-header text-align-left">
+            <h1 class="title uppercase">Jurisprudence</h1>
+        </div><!--END PAGE-HEADER-->
+    </div>
+</div>
 
-<div class="content">
-    <div class="section" ng-app="filtering">
+<div class="row">
+    <div ng-app="filtering">
 
-        <div id="inner-content">
+        <div id="inner-content" class="col-md-8 col-xs-12">
             <div id="filtering">
                 <div class="arrets">
 
@@ -30,14 +34,13 @@
         </div>
 
         <!-- Sidebar  -->
-        <div id="sidebar">
+        <div id="sidebar" class="col-md-4 col-xs-12">
             <div class="fixed">
                 @include('partials.filter')
             </div>
         </div>
         <!-- END Sidebar  -->
 
-    </div><!--END SECTION-->
 </div><!--END CONTENT-->
 
 @stop

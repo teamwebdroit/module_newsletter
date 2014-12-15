@@ -7,6 +7,7 @@ use Illuminate\Support\ServiceProvider;
 use Droit\Content\Entities\Arret as Arret;
 use Droit\Content\Entities\Analyse as Analyse;
 use Droit\Categorie\Entities\Categories as Categorie;
+use Droit\Content\Entities\Content as Content;
 
 
 /**
@@ -22,6 +23,7 @@ class DroitServiceProvider extends ServiceProvider {
 		$this->registerArretService();
         $this->registerAnalyseService();
         $this->registerCategorieService();
+        $this->registerContentService();
         $this->registerSearchService();
     }
 
@@ -55,6 +57,17 @@ class DroitServiceProvider extends ServiceProvider {
         $this->app->bind('Droit\Categorie\Repo\CategorieInterface', function()
         {
             return new \Droit\Categorie\Repo\CategorieEloquent( new Categorie );
+        });
+    }
+
+    /**
+     * Content
+     */
+    protected function registerContentService(){
+
+        $this->app->bind('Droit\Content\Repo\ContentInterface', function()
+        {
+            return new \Droit\Content\Repo\ContentEloquent( new Content );
         });
     }
 

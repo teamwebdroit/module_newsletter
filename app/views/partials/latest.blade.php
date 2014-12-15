@@ -9,7 +9,7 @@
                 <li>
                     <span class="date">{{ $last->pub_date->formatLocalized('%d %B %Y') }}</span>
                     <a href="{{ url('jurisprudence').'/#'.$last->reference }}">{{ $last->reference }}</a>
-                    <p>{{ $custom->limit_words($last->abstract,15) }}</p>
+                    <p>{{ $custom->limit_words($last->abstract,10) }}</p>
                 </li>
             @endforeach
         @endif

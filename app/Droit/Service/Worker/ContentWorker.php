@@ -28,9 +28,6 @@ class ContentWorker{
     public function dispatchMainCategories($arrets)
     {
         $categories = $this->categories->getAllMain(195);
-
-
-
     }
 
     /**

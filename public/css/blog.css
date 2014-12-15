@@ -17,9 +17,8 @@ CSS overview:
 				RESET
 ---------------------------------------------------*/
 #inner-content {
-	width: 800px;
-	float: left;
     padding-top: 40px;
+	padding-bottom: 30px;
     text-align: justify;
 }
 
@@ -31,18 +30,17 @@ CSS overview:
     text-align: center;
 }
 
-#sidebar, .sidebar {
-    width: 300px;
-    float: right;
+#sidebar {
+	background: url("../images/sidebar.png") repeat-y scroll 12px 0 rgba(0, 0, 0, 0);
+	float: right;
+	padding-left: 30px;
 }
 #sidebar, #inner-contact{
     padding-top: 20px;
 }
 
-#sidebar {
-    padding-left: 15px;
-    background: url("../images/sidebar.png") repeat-y;
-    float: right;
+.media-body p{
+	margin-bottom: 0;
 }
 
 .fixed{
@@ -61,14 +59,21 @@ CSS overview:
     min-height: 100px;
 }
 
-.newsletter .grey{
+.newsletter .grey, .media .grey{
     background-color:#dd0330;
     border: 1px solid #cc002a;
+	color: #fff;
 }
 
-.newsletter .grey:hover{
+.media .grey{
+	margin-top: 10px;
+}
+
+.newsletter .grey:hover, .media .grey:hover{
     background-color:#5a101f;
     border: 1px solid #3c0813;
+	text-decoration: none;
+	color: #fff;
 }
 
 .newsletter a:after{
@@ -134,6 +139,10 @@ CSS overview:
 	padding-bottom: 10px;
 	border-bottom: 1px dashed #eee;
 }
+.widget .bra_recent_entries li p{
+	font-size: 12px;
+}
+
 .widget .bra_recent_entries li:last-child {
 	margin-bottom: 0;
 	padding-bottom: 0;
@@ -146,7 +155,7 @@ CSS overview:
 }
 
 .widget .bra_recent_entries a:hover {
-    color: #dd0330;
+    color: #878787;
 }
 
 .widget .photostream li:last-child {

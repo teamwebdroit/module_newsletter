@@ -46,6 +46,7 @@ return array(
     'CreateArretBaCategoriesTable' => $baseDir . '/app/database/migrations/2014_09_24_090343_create_arret_ba_categories_table.php',
     'CreateArretsTable' => $baseDir . '/app/database/migrations/2014_09_24_085719_create_arrets_table.php',
     'CreateBaCategoriesTable' => $baseDir . '/app/database/migrations/2014_09_24_090223_create_ba_categories_table.php',
+    'CreateContentsTable' => $baseDir . '/app/database/migrations/2014_12_15_104232_create_contents_table.php',
     'CreateNewsletterCampagnesTable' => $baseDir . '/app/database/migrations/2014_08_25_104751_create_newsletter_campagnes_table.php',
     'CreateNewsletterContentsTable' => $baseDir . '/app/database/migrations/2014_08_25_105041_create_newsletter_contents_table.php',
     'CreateNewsletterStylesTable' => $baseDir . '/app/database/migrations/2014_08_25_104939_create_newsletter_styles_table.php',

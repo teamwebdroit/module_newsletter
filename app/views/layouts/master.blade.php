@@ -12,6 +12,7 @@
         <!-- CSS Files
         ================================================== -->
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,700italic,700,800,800italic,300italic,300' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="<?php echo asset('css/style.css');?>" media="screen" />
         <link rel="stylesheet" type="text/css" href="<?php echo asset('css/blog.css');?>" media="screen" />
         <link rel="stylesheet" type="text/css" href="<?php echo asset('css/filters.css');?>" media="screen" />
@@ -48,55 +49,58 @@
     <body id="top">
 
         <div id="wrapper">
+            <!-- START container -->
+            <div class="container">
+                <!-- START HEADER -->
+                <div id="header-wrapper">
 
-            <!-- START HEADER -->
-            <div id="header-wrapper">
-                <div class="header clear">
+                    <div class="isSticky">
+                        <div class="row">
+                            <div class="col-md-4 col-xs-12">
+                                <div id="logo">
+                                    <a href="/">Droit du <strong>travail</strong>.ch</a>
+                                </div><!--END LOGO-->
+                            </div>
 
-                    <div class="one-third one-small">
-                        <div id="logo">
-                            <a href="/">Droit du <strong>travail</strong></a>
-                        </div><!--END LOGO-->
-                    </div>
+                            <div class="col-md-5 col-xs-12">
+                                <!-- Navigation  -->
+                                @include('partials.navigation')
+                            </div>
 
-                    <div class="one-third one-big">
-                        <!-- Navigation  -->
-                        @include('partials.navigation')
-                    </div>
+                            <div class="col-md-3 col-xs-12 logos">
+                                <a target="_blank" href="http://www2.unine.ch/droit"><img src="<?php echo asset('images/logos/logo.jpg');?>" alt="" /></a>
+                                <a target="_blank" href="http://www2.unine.ch/cemaj"><img src="<?php echo asset('images/logos/cemaj.jpg');?>" alt="" /></a>
+                                <a target="_blank" href="http://www2.unine.ch/cert"><img src="<?php echo asset('images/logos/cert.jpg');?>" alt="" /></a>
+                            </div>
+                        </div>
+                    </div><!--END HEADER-->
+                </div><!--END HEADER-WRAPPER-->
+                <!-- END HEADER -->
 
-                    <div class="one-third one-small last logos">
-                        <a target="_blank" href="http://www2.unine.ch/droit"><img src="<?php echo asset('images/logos/logo.png');?>" alt="" /></a>
-                        <a target="_blank" href="http://www2.unine.ch/cemaj"><img src="<?php echo asset('images/logos/cemaj.jpg');?>" alt="" /></a>
-                        <a target="_blank" href="http://www2.unine.ch/cert"><img src="<?php echo asset('images/logos/cert.jpg');?>" alt="" /></a>
-                    </div>
+                <!-- START BLOG -->
+                <div id="content-wrapper">
 
-                </div><!--END HEADER-->
-            </div><!--END HEADER-WRAPPER-->
-            <!-- END HEADER -->
+                    <!-- Contenu -->
+                    @yield('content')
+                    <!-- Fin contenu -->
 
-            <!-- START BLOG -->
-            <div id="content-wrapper">
+                </div><!--END CONTENT-WRAPPER-->
+                <!-- END BLOG -->
 
-                <!-- Contenu -->
-                @yield('content')
-                <!-- Fin contenu -->
+            </div><!--END WRAPPER-->
 
-            </div><!--END CONTENT-WRAPPER-->
-            <!-- END BLOG -->
+            <!-- START FOOTER -->
+            <div id="footer">
+                <div class="section row">
+                    <div class="col-md-12 text-align-center">Faculté de droit, Avenue du 1er-Mars 26, 2000 Neuchâtel</div><!--END ONE-->
+                    <div class="col-md-12 text-align-center">
+                        <p class="copyright">Copyright &copy; Droit du travail <?php echo date('Y'); ?>. Tous droits réservés.</p>
+                    </div><!--END ONE-->
+                </div><!--END SECTION-->
+            </div><!--END FOOTER-->
+            <!-- END FOOTER -->
 
-        </div><!--END WRAPPER-->
-
-        <!-- START FOOTER -->
-        <div id="footer">
-            <div class="section">
-                <div class="one text-align-center">Faculté de droit, Avenue du 1er-Mars 26, 2000 Neuchâtel</div><!--END ONE-->
-                <div class="one text-align-center">
-                    <p class="copyright">Copyright &copy; Droit du travail <?php echo date('Y'); ?>. Tous droits réservés.</p>
-                </div><!--END ONE-->
-            </div><!--END SECTION-->
-        </div><!--END FOOTER-->
-        <!-- END FOOTER -->
-
+        </div> <!-- END Container -->
         <a href="#" id="back-top">Top</a>
 
     </body>

@@ -1,5 +1,6 @@
 <?php
 
+use Droit\Content\Repo\ContentInterface;
 use Droit\Content\Repo\ArretInterface;
 use Droit\Categorie\Repo\CategorieInterface;
 use Droit\Newsletter\Repo\NewsletterCampagneInterface;
@@ -12,32 +13,33 @@ class HomeController extends BaseController {
 
     use CommanderTrait;
 
+    protected $content;
     protected $arret;
     protected $categorie;
     protected $campagne;
-    protected $content;
+    protected $jurisprudence;
     protected $worker;
     protected $custom;
 
-    public function __construct( ArretInterface $arret, CategorieInterface $categorie, NewsletterCampagneInterface $campagne, ContentWorker $content , CampagneInterface $worker )
+    public function __construct( ContentInterface $content, ArretInterface $arret, CategorieInterface $categorie, NewsletterCampagneInterface $campagne, ContentWorker $jurisprudence , CampagneInterface $worker )
     {
-        $this->arret      = $arret;
+        $this->content        = $content;
+        $this->arret          = $arret;
+        $this->categorie      = $categorie;
 
-        $this->categorie  = $categorie;
-
-        $this->campagne   = $campagne;
-
-        $this->content    = $content;
-
-        $this->worker     = $worker;
-
-        $this->custom     = new \Custom;
+        $this->campagne       = $campagne;
+        $this->jurisprudence  = $jurisprudence;
+        $this->worker         = $worker;
+        $this->custom         = new \Custom;
 
         $arrets = $this->arret->getPaginate(195,15);
         $latest = $arrets->take(3);
 
         $categories = $this->categorie->getAll(195);
 
+        $pub = $this->content->findyBySlug('pub');
+
+        View::share('pub', $pub);
         View::share('arrets', $arrets);
         View::share('latest', $latest);
         View::share('categories', $categories);
@@ -82,17 +84,17 @@ class HomeController extends BaseController {
 
         $arrets = \Cache::rememberForever('arrets', function()
         {
-            return $this->content->preparedArrets();
+            return $this->jurisprudence->preparedArrets();
         });
 
         $analyses = \Cache::rememberForever('analyses', function()
         {
-            return $this->content->preparedAnalyses();
+            return $this->jurisprudence->preparedAnalyses();
         });
 
         $annees = \Cache::rememberForever('annees', function()
         {
-            return $this->content->preparedAnnees();
+            return $this->jurisprudence->preparedAnnees();
         });
 
         return View::make('jurisprudence')->with(array( 'arrets' => $arrets, 'analyses' => $analyses, 'annees' => $annees , 'required' => $required ));

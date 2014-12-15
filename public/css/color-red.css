@@ -30,10 +30,9 @@ ul.item-nav li:hover {background: #dd0330;}
     width: 100%;
     padding: 10px 20px;
 }
-.tagcloud a:hover {background-color: #dd0330;}
 
 
-.widget a:hover {color: #fff;}
+.widget a:hover {text-decoration: underline; color: #878787;}
 .timeline .post-info a:hover {color: #dd0330;}
 .timeline .post-info li.comments a {color: #dd0330;}
 .post-title h2.title, .post-title h2.title a {color: #dd0330;}

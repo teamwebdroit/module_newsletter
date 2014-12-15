@@ -22,9 +22,14 @@ jQuery(window).load(function() {
         jQuery("#footer").addClass("fixed");
     }*/
 
+    var width = $( window ).width();
     var innerHeight = jQuery('#inner-content').outerHeight();
     innerHeight = innerHeight + 30;
-    jQuery('#sidebar').css('height',innerHeight);
+
+    if(width > 1024){
+        jQuery('#sidebar').css('height',innerHeight);
+    }
+
 
 });
 
