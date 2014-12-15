@@ -44,12 +44,14 @@ Newsletter.directive("newsletterView", ['Content' ,function(Content) {
     Templates for creation
   ========================= */
 
+/*
 Newsletter.directive("arret", function() {
     return {
         restrict: "EA",
         templateUrl: "arret"
     };
 });
+*/
 
 Newsletter.directive("imageLeftText", function() {
     return {
