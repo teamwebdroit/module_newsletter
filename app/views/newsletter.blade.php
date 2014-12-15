@@ -23,8 +23,8 @@
     <!-- Sidebar  -->
     <div id="sidebar" class="col-md-4 col-xs-12">
         @include('partials.liste')
-        @include('partials.newsletter')
-        @include('partials.latest')
+        @include('partials.pub')
+        @include('partials.soutiens')
     </div>
     <!-- END Sidebar  -->
 

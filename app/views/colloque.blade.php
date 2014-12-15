@@ -96,6 +96,8 @@
         <!-- Sidebar  -->
         <div id="sidebar" class="col-md-4 col-xs-12">
             @include('partials.newsletter')
+            @include('partials.pub')
+            @include('partials.soutiens')
             @include('partials.latest')
         </div>
         <!-- END Sidebar  -->
