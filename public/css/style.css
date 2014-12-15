@@ -517,8 +517,8 @@ img {
 #about {
     /* IE9 SVG, needs conditional override of 'filter' to 'none' */
 	color: #fff;
-    height: 290px;
-    margin-bottom: 40px;
+    height: 278px;
+    margin-bottom: 30px;
 }
 
 #about img {
