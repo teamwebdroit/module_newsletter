@@ -186,4 +186,45 @@ class CampagneController extends BaseController {
         return View::make('unsubscribe')->with(array('campagne' => $campagne));
     }
 
+    public function process(){
+
+        $data = Input::all();
+
+        echo '<pre>';
+        print_r($data);
+        echo '</pre>';exit;
+        $campagne = $data['campagne'];
+
+        /* retrive type from database to set it right in content */
+        $type = $data['type_id'];
+        $rang = $this->content->getRang($campagne);
+        $rang = ($rang ? $rang : 0);
+
+        $titre    = (isset($data['titre']) ? $data['titre'] : null);
+        $contenu  = (isset($data['contenu']) ? $data['contenu'] : null);
+        $image    = (isset($data['image']) ? $data['image'] : null);
+        $arret_id = (isset($data['arret_id']) ? $data['arret_id'] : 0);
+
+        $new = array(
+            'type_id'                => $type,
+            'titre'                  => $titre,
+            'contenu'                => $contenu,
+            'image'                  => $image,
+            'arret_id'               => $arret_id,
+            'categorie_id'           => 0,
+            'newsletter_campagne_id' => $campagne,
+            'rang'                   => $rang
+        );
+
+        $contents = $this->content->create($new);
+
+        if($contents)
+        {
+            return Redirect::back()->with(array('status' => 'success', 'message' => 'Bloc ajouté' ));
+        }
+
+        return Redirect::back()->with(array('status' => 'error', 'message' => 'Problème avec l\'ajout' ));
+
+    }
+
 }

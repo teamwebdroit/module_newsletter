@@ -21,7 +21,7 @@
     </div>
 </div>
 
-<div id="main"><!-- main div for app-->
+<div id="main" ng-app="newsletter"><!-- main div for app-->
 
     <div class="row">
         <div class="col-md-12">
@@ -34,7 +34,7 @@
                     @include('newsletter.send.logos')
                     <!-- Header -->
                     @include('newsletter.send.header')
-                    <div id="viewBuild" ng-controller="ViewController as view">
+                    <div id="viewBuild">
                         <div id="sortable">
 
                             @if(!empty($campagne))
@@ -51,12 +51,13 @@
 
                 <div id="build">
 
-                    <image-left-text ng-if="isBloc('image-left-text')"></image-left-text>
-                    <image-right-text ng-if="isBloc('image-right-text')"></image-right-text>
-                    <image-text ng-if="isBloc('image-text')"></image-text>
-                    <image-alone ng-if="isBloc('image')"></image-alone>
-                    <text-alone ng-if="isBloc('text')"></text-alone>
-                    <arret ng-if="isBloc('arret')"></arret>
+                    @if(!empty($blocs))
+                        @foreach($blocs as $bloc)
+                            <div class="create_bloc" id="create_{{ $bloc->id }}">
+                                <?php echo View::make('newsletter/templates/create/'.$bloc->template)->with(array('bloc' => $bloc, 'infos' => $infos))->__toString(); ?>
+                            </div>
+                        @endforeach
+                    @endif
 
                     <div class="component-menu">
                         <h5>Composants</h5>

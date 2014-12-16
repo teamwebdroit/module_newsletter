@@ -22,12 +22,6 @@
                 @endif
             </td>
         </tr>
-        <tr><td colspan="3" height="25"></td></tr>
-        <tr>
-            <td valign="top" align="center" width="100%" class="resetMarge contentForm">
-                <h2>{{ $bloc->titre }}</h2>
-            </td>
-        </tr>
         <tr bgcolor="ffffff"><td colspan="3" height="35" class="blocBorder"></td></tr><!-- space -->
     </table>
     <!-- Bloc content-->

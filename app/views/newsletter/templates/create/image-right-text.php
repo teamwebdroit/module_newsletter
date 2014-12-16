@@ -2,15 +2,15 @@
       flow-files-submitted="$flow.upload()"
       class="row" name="blocForm" class="form-horizontal"
       ng-controller="FormController as formCtrl"
-      ng-submit="addContent(blocForm,'imageRightText')">
+      method="post" action="<?php echo url('process'); ?>">
 
     <div class="col-md-7" id="bailNewsletterCreate">
         <!-- Bloc content-->
         <table border="0" width="560" align="center" cellpadding="0" cellspacing="0" class="resetTable">
             <tr>
                 <td valign="top" width="375" class="resetMarge contentForm">
-                    <h2>{{ formCtrl.form.titre }}</h2>
-                    <div ng-bind-html='formCtrl.form.contenu'></div>
+                    <h2 ng-bind="create.titre"></h2>
+                    <div ng-bind-html="create.contenu"></div>
                 </td>
                 <td width="25" class="resetMarge"></td><!-- space -->
                 <td valign="top" align="center" width="160" class="resetMarge">
@@ -23,7 +23,7 @@
                         <span class="btn btn-xs btn-danger" ng-show="$flow.files.length" ng-click="$flow.cancel()">Supprimer</span>
                     </div>
 
-                    <input type="hidden" class="uploadImage" name="image" value="{{ $flow.files[0].name }}">
+                    <input type="hidden" class="uploadImage" name="image" value="$flow.files[0].name">
                 </td>
             </tr>
 
@@ -36,16 +36,18 @@
             <div class="panel-body">
                 <div class="form-group">
                     <label>Titre</label>
-                    <input type="text" ng-model="formCtrl.form.titre" required name="titre" class="form-control">
+                    <input bind-content ng-model="create.titre" type="text" value="" required name="titre" class="form-control">
                 </div>
                 <div class="form-group">
                     <label>Texte</label>
-                    <textarea redactor ng-model="formCtrl.form.contenu" required name="contenu" class="form-control" rows="10"></textarea>
+                    <textarea bind-content redactor ng-model="create.contenu" required name="contenu" class="form-control" rows="10"></textarea>
                 </div>
                 <div class="form-group">
                     <div class="btn-group">
+                        <input type="hidden" value="<?php echo $infos->id; ?>" name="campagne">
+                        <input type="hidden" value="<?php echo $bloc->id; ?>" name="type_id">
                         <button type="submit" class="btn btn-sm btn-success">Envoyer</button>
-                        <button type="button" ng-click="formCtrl.close()" class="btn btn-sm btn-default">Annuler</button>
+                        <button type="button" class="btn btn-sm btn-default cancelCreate">Annuler</button>
                     </div>
                 </div>
             </div>

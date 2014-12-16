@@ -1,23 +1,8 @@
-var App = angular.module('newsletter', ["cgNotify","ngResource","angular-redactor","ngSanitize"] , function($interpolateProvider)
+var App = angular.module('createApp', ["cgNotify","ngResource","angular-redactor","ngSanitize"] , function($interpolateProvider)
 {
     $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
 
-}).config(function(redactorOptions) {
-        /* Redactor wysiwyg editor configuration */
-        redactorOptions.minHeight = 150;
-        redactorOptions.formattingTags = ['p', 'h2', 'h3','h4'];
-        redactorOptions.fileUpload = 'uploadRedactor';
-        redactorOptions.buttons    = ['html','|','formatting','bold','italic','|','unorderedlist','orderedlist','outdent','indent','|','image','file','link','alignment'];
-}).config(['flowFactoryProvider', function (flowFactoryProvider) {
-        /* Flow image upload configuration */
-        flowFactoryProvider.defaults = {
-            target: 'uploadJS',
-            testChunks:false,
-            singleFile: true,
-            permanentErrors: [404, 500, 501],
-            simultaneousUploads: 4
-        };
-}]).service('myService',  function ($rootScope) {
+}).service('myService',  function ($rootScope) {
     var blocDrop = 0;
     return {
         getBloc : function() {
@@ -33,153 +18,6 @@ var App = angular.module('newsletter', ["cgNotify","ngResource","angular-redacto
     };
 });
 
-
-/**
- * Build controller, controls all bloc for building the newsletter
- */
-App.controller('ViewController', ['$scope','$http','Contents',function($scope,$http,Contents){
-
-    var campagne    = $('#campagne_id').val();
-    $scope.template = 'admin/campagne/view/' + campagne;
-
-    /* assign empty values for blocs */
-    this.contents = [];
-    /* capture this (the controller scope ) as self */
-    var self = this;
-    /* function for refreshing the asynchronus retrival of contents */
-    this.refresh = function() {
-        Contents.query(campagne)
-            .then(function (data) {
-                console.log(data);
-                self.contents = data;
-            });
-    }
-    this.refresh();
-
-    $scope.$on('newsletter:updated', function() {
-        self.refresh();
-    });
-
-    $scope.isTemplate = function(template,content){
-        return template === content;
-    };
-
-}]);
-
-/**
- * Form controller, controls the form for creating new content blocs
- */
-App.controller("FormController",['$scope','$http','notify','myService', function($scope,$http,notify,myService){
-
-    $scope.addContent = function(form, type, id) {
-
-        /* gather all date to send to the server */
-        var image    = $('.uploadImage').val();
-        var campagne = $('#campagne_id').val();
-
-        notify.config({ duration: 1000 });
-
-        var titre    = ( form.titre ? form.titre.$modelValue : '');
-        var image    = ( image ? image : '');
-        var contenu  = ( form.contenu ? form.contenu.$modelValue : '');
-        var arret_id = (id ? id : 0);
-
-        var data = { titre : titre , image : image , contenu: contenu , type: type , arret_id: arret_id , campagne: campagne };
-
-        /* Send data */
-        var all = $.param( data);
-
-        $http({
-            method : 'POST',
-            url    : 'process',
-            data   : all, // pass in data as strings
-            headers: {'Content-Type': 'application/x-www-form-urlencoded'} // set the headers so angular passing info as form data (not request payload)
-        })
-        .success(function(data)
-        {
-            if (!data.success) {
-                notify({
-                    messageTemplate  : '<span>Le bloc a bien été ajouté</span>'
-                });
-                // remove arret template
-                myService.setBloc(0);
-                myService.changes();
-            }
-            else { notify({ messageTemplate:'Problème avec l\'édition du bloc'}); }
-        });
-    };
-}]);
-
-/**
- * Form controller, controls the form for creating new content blocs
- */
-App.controller("EditController",['$scope','$http','notify','myService', function($scope,$http,notify,myService){
-
-    $scope.editable = 0;
-
-    this.onedit = function(id){
-        return id == $scope.editable;
-    };
-
-    this.close = function(){
-        $('.edit_content_form').hide();
-    };
-
-    this.editContent = function(idItem){
-
-        var w = $( document ).width();
-        w = w - 890;
-
-        myService.setBloc(0);
-
-        $scope.editable = idItem;
-        console.log(idItem);
-        console.log($scope.editable);
-
-        $('.edit_content_form').hide();
-
-        var content = $('#bloc_rang_'+idItem);
-        content.find('.edit_content_form').css("width",w).show();
-        $( "#sortable" ).sortable( "disable" );
-
-    };
-
-    this.updateContent = function(editForm,idItem){
-
-        notify.config({ duration: 1000 });
-
-        var image    = $('#editImage_'+ idItem ).val();
-        var image    = ( image ? image : null);
-        var titre    = ( editForm.titre ? editForm.titre.$modelValue : null);
-        var contenu  = ( editForm.contenu ? editForm.contenu.$modelValue : null);
-
-        var data = { titre : titre , image : image , contenu: contenu , id:idItem  };
-
-        /* Send data */
-        var all = $.param( data);
-
-        $http({
-            method : 'POST',
-            url    : 'edit',
-            data   : all, // pass in data as strings
-            headers: {'Content-Type': 'application/x-www-form-urlencoded'} // set the headers so angular passing info as form data (not request payload)
-        })
-        .success(function(data)
-        {
-            if (!data.success) {
-                notify({
-                    messageTemplate  : '<span>Le bloc a bien été édité</span>'
-                });
-                myService.changes();
-                $( "#sortable" ).sortable( "enable" );
-                $scope.editable = 0;
-            }
-            else {  notify({ messageTemplate:'Problème avec l\'édition du bloc'}); }
-        });
-
-    }
-
-}]);
 /**
  * Select arret controller, select an arret and display's it
  */
@@ -261,16 +99,25 @@ App.controller('SelectController', ['$scope','$http','Arrets','notify','myServic
             data   : all, // pass in data as strings
             headers: {'Content-Type': 'application/x-www-form-urlencoded'} // set the headers so angular passing info as form data (not request payload)
         })
-        .success(function(data)
-        {
-            if (!data.success) {
-                notify('L\'arrêt a bien été ajouté');
-                // remove arret template
-                myService.setBloc(0);
-                myService.changes();
-            }
-            else { notify('Problème avec l\'ajout du bloc'); }
-        });
+            .success(function(data)
+            {
+                if (!data.success) {
+                    notify('L\'arrêt a bien été ajouté');
+                    // remove arret template
+                    myService.setBloc(0);
+                    myService.changes();
+                }
+                else { notify('Problème avec l\'ajout du bloc'); }
+            });
     };
+
+}]);
+/**
+ * Build controller, controls all bloc for building the newsletter
+ */
+App.controller('CreateController', ['$scope','$http',function($scope,$http){
+
+    this.titre = '';
+    this.contenu = '';
 
 }]);

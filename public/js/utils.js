@@ -200,6 +200,18 @@ $(function() {
         $('.edit_content_form').hide();
     });
 
+    $('body').on('click','.cancelCreate',function(event){
+        $('.create_bloc').hide();
+    });
 
+    $('body').on('click','.blocEdit',function(event){
+
+        var $this  = $(this);
+        var id     = $this.attr('rel');
+    console.log(id);
+        $('.create_bloc').hide();
+        $('#create_'+id).show();
+
+    });
 
 });

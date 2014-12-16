@@ -39,14 +39,10 @@
         <script type='text/javascript' src="<?php echo asset('admin/plugins/sparklines/jquery.sparklines.min.js');?>"></script>
         <!-- Charts -->
         <script type='text/javascript' src="<?php echo asset('admin/plugins/charts-chartjs/Chart.min.js');?>"></script>
-        <!--<script type="text/javascript" src="<?php /*echo asset('admin/js/chartjs.js');*/?>"></script>-->
-        <!-- Flot -->
         <script type='text/javascript' src="<?php echo asset('admin/plugins/charts-flot/jquery.flot.min.js');?>"></script>
         <script type='text/javascript' src="<?php echo asset('admin/plugins/charts-flot/jquery.flot.stack.min.js');?>"></script>
         <script type='text/javascript' src="<?php echo asset('admin/plugins/charts-flot/jquery.flot.pie.min.js');?>"></script>
         <script type='text/javascript' src="<?php echo asset('admin/plugins/charts-flot/jquery.flot.resize.min.js');?>"></script>
-        <!--<script type='text/javascript' src="<?php /*echo asset('admin/js/flotgraph.js');*/?>"></script>-->
-
     @endif
 
     <link rel='stylesheet' type='text/css' href='<?php echo asset('admin/plugins/form-toggle/toggles.css');?>' />
@@ -160,6 +156,7 @@
         <script type="text/javascript" src="<?php echo asset('js/vendor/angular/angular-notify.js');?>"></script>
         <script type="text/javascript" src="<?php echo asset('js/vendor/angular/angular-xeditable.js');?>"></script>
         <script type="text/javascript" src="<?php echo asset('js/build.js');?>"></script>
+        <script type="text/javascript" src="<?php echo asset('js/create.js');?>"></script>
         <script type="text/javascript" src="<?php echo asset('js/newsletter/directives/directive.js');?>"></script>
         <script type="text/javascript" src="<?php echo asset('js/newsletter/factories/factory.js');?>"></script>
         <script type="text/javascript" src="<?php echo asset('js/sorting.js');?>"></script>

@@ -1,4 +1,4 @@
-var App = angular.module('newsletter', ["cgNotify","ngDragDrop","ngResource","angular-redactor","flow","ngSanitize","xeditable"] , function($interpolateProvider)
+var App = angular.module('newsletter', ["cgNotify","ngResource","angular-redactor","flow","ngSanitize","xeditable"] , function($interpolateProvider)
 {
     $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
 
@@ -32,6 +32,33 @@ var App = angular.module('newsletter', ["cgNotify","ngDragDrop","ngResource","an
         }
     };
 });
+
+/**
+ * Retrive all arrets blocs for bloc arret
+ */
+App.factory('Arrets', ['$http', '$q', function($http, $q) {
+    return {
+        query: function() {
+            var deferred = $q.defer();
+            $http.get('/arrets', { cache: true }).success(function(data) {
+                deferred.resolve(data);
+            }).error(function(data) {
+                deferred.reject(data);
+            });
+            return deferred.promise;
+        },
+        simple: function(id) {
+            var deferred = $q.defer();
+            $http.get('/arrets/'+ id).success(function(data) {
+                deferred.resolve(data);
+            }).error(function(data) {
+                deferred.reject(data);
+            });
+            return deferred.promise;
+        }
+    };
+}]);
+
 
 /**
  * Build controller, controls all bloc for building the newsletter

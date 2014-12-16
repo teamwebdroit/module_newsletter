@@ -59,7 +59,7 @@ Route::post('uploadJquery', 'UploadController@uploadJquery');
  */
 Route::get('building', 'NewsletterApiController@building');
 Route::post('sorting', 'NewsletterApiController@sorting');
-Route::post('process', 'NewsletterApiController@process');
+Route::post('process', 'CampagneController@process');
 Route::post('edit', 'NewsletterApiController@edit');
 Route::post('remove', 'NewsletterApiController@remove');
 
