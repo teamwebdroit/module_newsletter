@@ -190,9 +190,6 @@ class CampagneController extends BaseController {
 
         $data = Input::all();
 
-        echo '<pre>';
-        print_r($data);
-        echo '</pre>';exit;
         $campagne = $data['campagne'];
 
         /* retrive type from database to set it right in content */

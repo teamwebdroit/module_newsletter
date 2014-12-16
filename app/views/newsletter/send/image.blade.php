@@ -12,14 +12,18 @@
                     <td align="center" valign="top" width="560" class="resetMarge">
                         <p class="centerText">
                             <a href="#">
-                                <img style="max-width: 560px;max-height: 120px;" alt="Droit du travail" src="{{ asset('files/'.$bloc->image) }}" />
+                                <img style="max-width: 560px;" alt="Droit du travail" src="{{ asset('files/'.$bloc->image) }}" />
                             </a>
                         </p>
-                        @if( $bloc->titre )
-                            <h2>{{ $bloc->titre }}</h2>
-                        @endif
                     </td>
                 </tr>
+                <tr bgcolor="ffffff">
+                    <td align="center" valign="top" width="560" class="resetMarge">
+                        @if( $bloc->titre )
+                            <h2 class="centerText">{{ $bloc->titre }}</h2>
+                        @endif
+                    </td>
+                </tr><!-- space -->
             </table>
             <!-- Bloc content-->
         </td>
