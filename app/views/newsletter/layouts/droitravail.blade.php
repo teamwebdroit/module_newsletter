@@ -36,7 +36,8 @@
                 @include('newsletter.send.logos')
                 <!-- Header -->
                 @include('newsletter.send.header')
-
+                <!-- Soutiens -->
+                @include('newsletter.send.soutiens')
                 <tr>
                     <td id="sortable" class="newsletterborder" width="560" align="center" valign="top">
                         <!-- Main content -->

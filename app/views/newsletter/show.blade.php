@@ -6,7 +6,7 @@
         <div class="options" style="margin-bottom: 10px;">
             <div class="btn-toolbar">
                 <a href="{{ url('admin/campagne') }}" class="btn btn-default"><i class="fa fa-list"></i>  &nbsp;&nbsp;Retour aux campagnes</a>
-                <a href="{{ url('admin/campagne/'.$campagne->id.'/edit') }}" class="btn btn-sky"><i class="fa fa-pencil"></i>  &nbsp;&Eacute;diter la campagne</a>
+                <a href="{{ url('admin/campagne/'.$infos->id.'/edit') }}" class="btn btn-sky"><i class="fa fa-pencil"></i>  &nbsp;&Eacute;diter la campagne</a>
             </div>
         </div>
     </div>
@@ -14,7 +14,7 @@
         {{ Form::open(array('url' => array('admin/send/test') , 'class' => 'form-inline')) }}
             <div class="form-group">
                 <input required name="email" value="" type="email" class="form-control">
-                <input name="id" value="{{ $campagne->id }}" type="hidden">
+                <input name="id" value="{{ $infos->id }}" type="hidden">
             </div>
             <button type="submit" class="btn btn-brown"><i class="fa fa-question-circle"></i>  &nbsp;&nbsp;Envoyer un test</button>
         {{ Form::close() }}
@@ -26,7 +26,7 @@
     <div class="row" ng-controller="BuildController as build">
         <div class="col-md-12">
 
-            <input id="campagne_id" value="{{ $campagne->id }}" type="hidden">
+            <input id="campagne_id" value="{{ $infos->id }}" type="hidden">
 
             <div class="component-build">
                 <div id="bailNewsletter" class="onBuild">
