@@ -5,6 +5,7 @@ use Droit\Newsletter\Repo\NewsletterContentInterface;
 use Droit\Content\Repo\ArretInterface;
 use Droit\Newsletter\Repo\NewsletterCampagneInterface;
 use Droit\Newsletter\Worker\CampagneInterface;
+use Droit\Newsletter\Repo\NewsletterTypesInterface;
 use Droit\Command\CreateCampagneCommand;
 
 class CampagneController extends BaseController {
@@ -13,14 +14,16 @@ class CampagneController extends BaseController {
 
     protected $content;
     protected $arret;
+    protected $types;
     protected $campagne;
     protected $worker;
 
     /* Inject dependencies */
-    public function __construct( NewsletterContentInterface $content, ArretInterface $arret, NewsletterCampagneInterface $campagne, CampagneInterface $worker)
+    public function __construct( NewsletterContentInterface $content, ArretInterface $arret, NewsletterTypesInterface $types, NewsletterCampagneInterface $campagne, CampagneInterface $worker)
     {
         $this->content  = $content;
         $this->arret    = $arret;
+        $this->types   = $types;
         $this->campagne = $campagne;
         $this->worker   = $worker;
     }
@@ -64,6 +67,7 @@ class CampagneController extends BaseController {
      */
     public function show($id)
     {
+        $blocs    = $this->types->getAll();
         $infos    = $this->campagne->find($id);
         $content  = $this->content->getByCampagne($id);
 
@@ -85,7 +89,7 @@ class CampagneController extends BaseController {
             }
         });
 
-        return View::make('newsletter.show')->with(array( 'isNewsletter' => true , 'campagne' => $campagne , 'infos' => $infos ));
+        return View::make('newsletter.show')->with(array( 'isNewsletter' => true , 'campagne' => $campagne , 'infos' => $infos, 'blocs' => $blocs ));
     }
 
     /**

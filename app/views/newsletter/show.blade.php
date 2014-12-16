@@ -21,9 +21,9 @@
     </div>
 </div>
 
-<div id="main" ng-app="newsletter"><!-- main div for app-->
+<div id="main"><!-- main div for app-->
 
-    <div class="row" ng-controller="BuildController as build">
+    <div class="row">
         <div class="col-md-12">
 
             <input id="campagne_id" value="{{ $infos->id }}" type="hidden">
@@ -36,16 +36,15 @@
                     @include('newsletter.send.header')
                     <div id="viewBuild" ng-controller="ViewController as view">
                         <div id="sortable">
-                            <div ng-repeat="content in view.contents track by content.id" id="bloc_rang_{[{ content.idItem }]}" data-rel="{[{ content.idItem }]}">
 
-                                <image-left-text-edit ng-if="isTemplate('image-left-text',content.type.template)"></image-left-text-edit>
-                                <image-right-text-edit ng-if="isTemplate('image-right-text',content.type.template)"></image-right-text-edit>
-                                <image-text-edit ng-if="isTemplate('image-text',content.type.template)"></image-text-edit>
-                                <image-alone-edit ng-if="isTemplate('image',content.type.template)"></image-alone-edit>
-                                <text-alone-edit ng-if="isTemplate('text',content.type.template)"></text-alone-edit>
-                                <arret-edit ng-if="isTemplate('arret',content.type.template)"></arret-edit>
+                            @if(!empty($campagne))
+                                @foreach($campagne as $bloc)
+                                    <div id="bloc_rang_{{ $bloc->idItem }}" data-rel="{{ $bloc->idItem }}">
+                                        <?php echo View::make('newsletter/build/edit/'.$bloc->type->partial)->with(array('bloc' => $bloc))->__toString(); ?>
+                                    </div>
+                                @endforeach
+                            @endif
 
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -62,7 +61,11 @@
                     <div class="component-menu">
                         <h5>Composants</h5>
                         <div class="component-bloc">
-                            <building-blocs ng-repeat="bloc in build.blocs"></building-blocs>
+                            @if(!empty($blocs))
+                                @foreach($blocs as $bloc)
+                                      <?php echo View::make('newsletter/build/blocs')->with(array('bloc' => $bloc))->__toString(); ?>
+                                @endforeach
+                            @endif
                         </div>
                     </div>
 
