@@ -5,7 +5,7 @@
     line-height: 20px;
     width: 600px;
     background: #fff;
-    margin: 0 0 0 10px;
+    margin: 0;
     padding:20px 0;
 }
 
@@ -74,7 +74,8 @@
 }
 
 .thumbnail.big img{
-    max-height: 100px;
+    max-height: 160px;
+    width: auto;
 }
 
 .edit_content{
@@ -86,7 +87,7 @@
     margin-left: 20px;
 }
 
-.edit_content_form{
+.edit_content_form,.create_content_form{
     position: absolute;;
     left: 610px;
     top: 0px;
@@ -95,9 +96,24 @@
     display: none;
 }
 
+.create_content_form{
+    display: block;
+}
+
+.create_bloc{
+    display: none;
+}
+
 .edit_content_form .panel label, .create_content_form .panel label{
     font-weight: bold;
 }
+
+.create_content{
+    clear: both;
+    display: block;
+    height: 300px;
+}
+
 
 .edit_content_form:before,
 .create_content_form:before {
@@ -121,7 +137,6 @@
     left: -11px;
     top: -9px;
 }
-
 
 .panel .redactor-box {
     margin-bottom: 0px;

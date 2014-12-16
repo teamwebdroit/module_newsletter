@@ -34,7 +34,9 @@
                         <textarea redactor ng-model="edit.contenu" required name="contenu" class="form-control" rows="10"></textarea>
                     </div>
                     <div class="form-group">
-                        <input type="hidden" name="idItem" ng-model="edit.idItem">
+                        <input type="hidden" value="{{ $bloc->type_id }}" name="type">
+                        <input type="hidden" ng-model="content.idItem" name="id">
+                        <input type="hidden" class="uploadImage" name="image" ng-if="notedited" value="{{ $flow.files[0].name }}">
                         <div class="btn-group">
                             <button type="submit" class="btn btn-sm btn-orange">Envoyer</button>
                             <button type="button" ng-click="edit.close()" class="btn btn-sm btn-default">Annuler</button>

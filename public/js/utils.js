@@ -186,20 +186,32 @@ $(function() {
     });
 
 
+    $('body').on('click','.editContent',function(event){
 
-    /*********************************
-     * Filtering isotope
-    **********************************/
+        var $this  = $(this);
+        var id     = $this.data('id');
 
-/*    var $container = $('#filtering');
+        $('.edit_content_form').hide();
+        $('#edit_'+id).show();
 
-    $container.isotope({
-        filter: '*',
-        animationOptions: {
-            duration: 750,
-            easing: 'linear',
-            queue: false,
-        }
-    });*/
+    });
+
+    $('body').on('click','.cancelEdit',function(event){
+        $('.edit_content_form').hide();
+    });
+
+    $('body').on('click','.cancelCreate',function(event){
+        $('.create_bloc').hide();
+    });
+
+    $('body').on('click','.blocEdit',function(event){
+
+        var $this  = $(this);
+        var id     = $this.attr('rel');
+    console.log(id);
+        $('.create_bloc').hide();
+        $('#create_'+id).show();
+
+    });
 
 });

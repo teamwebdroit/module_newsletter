@@ -5,6 +5,7 @@ use Droit\Newsletter\Repo\NewsletterContentInterface;
 use Droit\Content\Repo\ArretInterface;
 use Droit\Newsletter\Repo\NewsletterCampagneInterface;
 use Droit\Newsletter\Worker\CampagneInterface;
+use Droit\Newsletter\Repo\NewsletterTypesInterface;
 use Droit\Command\CreateCampagneCommand;
 
 class CampagneController extends BaseController {
@@ -13,14 +14,16 @@ class CampagneController extends BaseController {
 
     protected $content;
     protected $arret;
+    protected $types;
     protected $campagne;
     protected $worker;
 
     /* Inject dependencies */
-    public function __construct( NewsletterContentInterface $content, ArretInterface $arret, NewsletterCampagneInterface $campagne, CampagneInterface $worker)
+    public function __construct( NewsletterContentInterface $content, ArretInterface $arret, NewsletterTypesInterface $types, NewsletterCampagneInterface $campagne, CampagneInterface $worker)
     {
         $this->content  = $content;
         $this->arret    = $arret;
+        $this->types   = $types;
         $this->campagne = $campagne;
         $this->worker   = $worker;
     }
@@ -64,6 +67,7 @@ class CampagneController extends BaseController {
      */
     public function show($id)
     {
+        $blocs    = $this->types->getAll();
         $infos    = $this->campagne->find($id);
         $content  = $this->content->getByCampagne($id);
 
@@ -85,7 +89,7 @@ class CampagneController extends BaseController {
             }
         });
 
-        return View::make('newsletter.show')->with(array( 'isNewsletter' => true , 'campagne' => $campagne , 'infos' => $infos ));
+        return View::make('newsletter.show')->with(array( 'isNewsletter' => true , 'campagne' => $campagne , 'infos' => $infos, 'blocs' => $blocs ));
     }
 
     /**
@@ -180,6 +184,47 @@ class CampagneController extends BaseController {
         $campagne = $this->campagne->find($id);
 
         return View::make('unsubscribe')->with(array('campagne' => $campagne));
+    }
+
+    public function process(){
+
+        $data = Input::all();
+
+        echo '<pre>';
+        print_r($data);
+        echo '</pre>';exit;
+        $campagne = $data['campagne'];
+
+        /* retrive type from database to set it right in content */
+        $type = $data['type_id'];
+        $rang = $this->content->getRang($campagne);
+        $rang = ($rang ? $rang : 0);
+
+        $titre    = (isset($data['titre']) ? $data['titre'] : null);
+        $contenu  = (isset($data['contenu']) ? $data['contenu'] : null);
+        $image    = (isset($data['image']) ? $data['image'] : null);
+        $arret_id = (isset($data['arret_id']) ? $data['arret_id'] : 0);
+
+        $new = array(
+            'type_id'                => $type,
+            'titre'                  => $titre,
+            'contenu'                => $contenu,
+            'image'                  => $image,
+            'arret_id'               => $arret_id,
+            'categorie_id'           => 0,
+            'newsletter_campagne_id' => $campagne,
+            'rang'                   => $rang
+        );
+
+        $contents = $this->content->create($new);
+
+        if($contents)
+        {
+            return Redirect::back()->with(array('status' => 'success', 'message' => 'Bloc ajouté' ));
+        }
+
+        return Redirect::back()->with(array('status' => 'error', 'message' => 'Problème avec l\'ajout' ));
+
     }
 
 }
