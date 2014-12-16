@@ -14,11 +14,11 @@
                     </td>
                 </tr>
                 <tr>
-                    <td valign="top" width="405" class="resetMarge">
+                    <td valign="top" width="375" class="resetMarge">
                         <div>{{ $bloc->contenu }}</div>
                     </td>
                     <td width="25" class="resetMarge"></td><!-- space -->
-                    <td valign="top" align="center" width="130" class="resetMarge">
+                    <td valign="top" align="center" width="160" class="resetMarge">
                         <a href="#"><img style="max-width: 130px; max-height: 220px;" alt="Droit du travail" src="{{ asset('files/'.$bloc->image.'') }}" /></a>
                     </td>
                 </tr>
