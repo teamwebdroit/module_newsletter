@@ -18,18 +18,18 @@
             <div id="filtering">
                 <div class="arrets">
 
-                    @include('newsletter.templates.analyse')
+                    @include('content.analyse')
 
                     @if(!empty($arrets))
 
                         <h4 class="title-section-top"><i class="fa fa-university"></i> &nbsp;&nbsp;Jurisprudence</h4>
 
                         @foreach($arrets as $post)
-                            @include('newsletter.templates.post')
+                            @include('content.post')
                         @endforeach
                     @endif
-                </div>
 
+                </div>
             </div>
         </div>
 

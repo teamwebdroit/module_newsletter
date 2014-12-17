@@ -17,7 +17,7 @@
                 <td align="center" valign="top" width="160" class="resetMarge">
                     <!-- Categories -->
                     <div class="resetMarge" ng-repeat="categorie in select.categories">
-                        <a href="#">
+                        <a target="_blank" href="<?php echo url('jurisprudence').'#'.$bloc->reference; ?>">
                             <img ng-show="categorie.image" width="130" border="0" alt="{[{ categorie.title }]}" ng-src="<?php echo asset('newsletter/pictos/{[{ categorie.image }]}') ?>">
                         </a>
                     </div>

@@ -229,6 +229,12 @@ class CampagneController extends BaseController {
     public function editContent(){
 
         $data = Input::all();
+
+
+        echo '<pre>';
+        print_r($data);
+        echo '</pre>';exit;
+
         $new  = array('id' => $data['id']);
 
         if(!empty($data))
