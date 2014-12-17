@@ -1,4 +1,7 @@
-<form ng-controller="SelectController as select" class="row" name="arretForm" class="form-horizontal" ng-submit="addArret()">
+<form ng-controller="SelectController as select"
+      class="row form-horizontal" name="arretForm"
+      method="post" action="<?php echo url('process'); ?>">
+
     <div class="col-md-7" id="bailNewsletterCreate">
         <!-- Bloc content-->
         <table border="0" width="560" align="center" cellpadding="0" cellspacing="0" class="resetTable">
@@ -35,8 +38,11 @@
                 </div>
                 <div class="form-group">
                     <div class="btn-group">
+                        <input type="hidden" value="{[{ select.arret.id }]}" name="arret_id">
+                        <input type="hidden" value="<?php echo $bloc->id; ?>" name="type_id">
+                        <input type="hidden" value="<?php echo $infos->id; ?>" name="campagne">
                         <button type="submit" class="btn btn-sm btn-success">Envoyer</button>
-                        <button type="button" ng-click="select.close()" class="btn btn-sm btn-default">Annuler</button>
+                        <button type="button" class="btn btn-sm btn-default cancelCreate">Annuler</button>
                     </div>
                 </div>
             </div>

@@ -156,7 +156,6 @@
         <script type="text/javascript" src="<?php echo asset('js/vendor/angular/angular-notify.js');?>"></script>
         <script type="text/javascript" src="<?php echo asset('js/vendor/angular/angular-xeditable.js');?>"></script>
         <script type="text/javascript" src="<?php echo asset('js/build.js');?>"></script>
-        <script type="text/javascript" src="<?php echo asset('js/create.js');?>"></script>
         <script type="text/javascript" src="<?php echo asset('js/newsletter/directives/directive.js');?>"></script>
         <script type="text/javascript" src="<?php echo asset('js/newsletter/factories/factory.js');?>"></script>
         <script type="text/javascript" src="<?php echo asset('js/sorting.js');?>"></script>

@@ -57,7 +57,7 @@
                     @if(!empty($blocs))
                         @foreach($blocs as $bloc)
                             <div class="create_bloc" id="create_{{ $bloc->id }}">
-                                <?php echo View::make('newsletter/templates/create/'.$bloc->template)->with(array('bloc' => $bloc, 'infos' => $infos))->__toString(); ?>
+                                <?php echo View::make('newsletter/build/create/'.$bloc->template)->with(array('bloc' => $bloc, 'infos' => $infos))->__toString(); ?>
                             </div>
                         @endforeach
                     @endif

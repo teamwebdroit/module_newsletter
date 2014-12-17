@@ -195,8 +195,6 @@ App.controller("EditController",['$scope','$http','notify','myService', function
         myService.setBloc(0);
 
         $scope.editable = idItem;
-        console.log(idItem);
-        console.log($scope.editable);
 
         $('.edit_content_form').hide();
 

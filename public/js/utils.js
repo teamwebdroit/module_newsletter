@@ -207,14 +207,17 @@ $(function() {
     });
 
     $('body').on('click','.blocEdit',function(event){
-
         var $this  = $(this);
         var id     = $this.attr('rel');
+        var w = $( document ).width();
+        w = w - 890;
 
         $('.create_bloc').hide();
+        var content = $('#create_'+id);
+        content.find('.create_content_form').css("width",w);
+
         $('#create_'+id).show();
         $( "#sortable" ).sortable( "disable" );
-
     });
 
 });

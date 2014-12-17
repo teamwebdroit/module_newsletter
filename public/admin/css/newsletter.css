@@ -101,6 +101,7 @@
 
 .create_bloc{
     display: none;
+    min-height: 180px;
 }
 
 .edit_content_form .panel label, .create_content_form .panel label{
