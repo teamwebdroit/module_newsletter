@@ -1,28 +1,39 @@
-<div class="edit_content">
+<div class="edit_content" ng-controller="EditController as edit"
+     flow-init
+     flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]"
+     flow-complete="netedited = true"
+     flow-files-submitted="$flow.upload()">
 
     <!-- Bloc content-->
     <table border="0" width="560" align="center" cellpadding="0" cellspacing="0" class="resetTable">
         <tr bgcolor="ffffff">
             <td colspan="3" height="35">
                 <div class="pull-right btn-group btn-group-xs">
-                    <button class="btn btn-orange editContent" data-id="{{ $bloc->idItem }}" type="button">éditer</button>
+                    <button class="btn btn-orange editContent" ng-click="edit.editContent({{ $bloc->idItem }}) && !$flow.files.length" data-id="{{ $bloc->idItem }}" type="button">éditer</button>
                     <button class="btn btn-danger deleteContent deleteContentBloc" data-id="{{ $bloc->idItem }}" data-action="{{ $bloc->titre }}" type="button">&nbsp;×&nbsp;</button>
                 </div>
             </td>
         </tr><!-- space -->
         <tr>
             <td valign="top" align="center" width="100%" class="resetMarge">
-                <div class="thumbnail big">
-                    <a href="#">
-                        <img style="max-width: 560px;" alt="Droit du travail" src="{{ asset('files/'.$bloc->image) }}" />
-                    </a>
+                <div class="uploadBtn" ng-if="!notedited">
+                    <span class="btn btn-xs btn-info" ng-if="edit.onedit( {{ $bloc->idItem }} )" flow-btn flow-attrs="{accept:'image/*'}">Changer image</span>
+                    <span class="btn btn-xs btn-warning" ng-show="$flow.files.length" flow-btn flow-attrs="{accept:'image/*'}">Changer</span>
+                    <span class="btn btn-xs btn-danger" ng-show="$flow.files.length" ng-click="$flow.cancel()">Supprimer</span>
+                </div>
+                <div class="thumbnail big" ng-hide="$flow.files.length">
+                    <img flow-img="$flow.files[0]" ng-if="notedited"/>
+                    <img style="max-width: 560px;" alt="Droit du travail" src="{{ asset('files/'.$bloc->image) }}"  />
+                </div>
+                <div class="thumbnail big" ng-show="$flow.files.length">
+                    <img flow-img="$flow.files[0]" />
                 </div>
             </td>
         </tr>
         <tr bgcolor="ffffff">
             <td align="center" valign="top" width="560" class="resetMarge">
                 @if( $bloc->titre )
-                    <h2 class="centerText">{{ $bloc->titre }}</h2>
+                    <h2 ng-bind="edit.titre">{{ $bloc->titre }}</h2>
                 @endif
             </td>
         </tr><!-- space -->
@@ -31,17 +42,16 @@
     <!-- Bloc content-->
 
     <div class="edit_content_form" id="edit_{{ $bloc->idItem }}">
-        <form name="editForm">
+        <form name="editForm" method="post" action="{{ url('edit') }}">
             <div class="panel panel-orange">
                 <div class="panel-body">
                     <div class="form-group">
                         <label>Titre</label>
-                        <input type="text" name="titre" value="{{ $bloc->titre }}" class="form-control">
+                        <input type="text" value="{{ $bloc->titre }}" bind-content ng-model="edit.titre" required name="titre" class="form-control">
                     </div>
                     <div class="form-group">
-                        <input type="hidden" value="{{ $bloc->type_id }}" name="type">
                         <input type="hidden" value="{{ $bloc->idItem }}" name="id">
-                        <input type="file" id="editImage_{{ $bloc->idItem }}" name="image" value="">
+                        <input type="hidden" class="uploadImage" name="image" value="{[{ $flow.files[0].name }]}">
                         <div class="btn-group">
                             <button type="submit" class="btn btn-sm btn-orange">Envoyer</button>
                             <button type="button" class="btn btn-sm btn-default cancelEdit">Annuler</button>

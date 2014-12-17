@@ -186,7 +186,7 @@ class CampagneController extends BaseController {
         return View::make('unsubscribe')->with(array('campagne' => $campagne));
     }
 
-    public function process(){
+    public function addContent(){
 
         $data = Input::all();
 
@@ -221,6 +221,32 @@ class CampagneController extends BaseController {
         }
 
         return Redirect::back()->with(array('status' => 'error', 'message' => 'Problème avec l\'ajout' ));
+
+    }
+
+    public function editContent(){
+
+        $data = Input::all();
+        $new  = array('id' => $data['id']);
+
+        if(!empty($data))
+        {
+            foreach($data as $key => $input)
+            {
+                if(!empty($input)){
+                    $new[$key] = $input;
+                }
+            }
+        }
+
+        $contents = $this->content->update($new);
+
+        if($contents)
+        {
+            return Redirect::back()->with(array('status' => 'success', 'message' => 'Bloc édité' ));
+        }
+
+        return Redirect::back()->with(array('status' => 'error', 'message' => 'Problème avec l\'édition' ));
 
     }
 

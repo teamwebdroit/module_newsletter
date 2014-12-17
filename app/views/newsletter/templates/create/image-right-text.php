@@ -23,7 +23,7 @@
                         <span class="btn btn-xs btn-danger" ng-show="$flow.files.length" ng-click="$flow.cancel()">Supprimer</span>
                     </div>
 
-                    <input type="hidden" class="uploadImage" name="image" value="$flow.files[0].name">
+                    <input type="hidden" class="uploadImage" name="image" value="{[{ $flow.files[0].name }]}">
                 </td>
             </tr>
 

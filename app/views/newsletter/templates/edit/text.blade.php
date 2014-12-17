@@ -11,9 +11,8 @@
         </tr><!-- space -->
         <tr>
             <td valign="top" align="left" width="100%" class="resetMarge contentForm">
-                <h2 bind-content ng-model="edit.titre">{{ $bloc->titre }}</h2>
-                <div bind-content ng-model='edit.contenu'>{{ $bloc->contenu }}</div>
-                <p style="display: none;" bind-content ng-model="edit.idItem">{{ $bloc->idItem }}</p>
+                <h2 ng-bind="edit.titre">{{ $bloc->titre }}</h2>
+                <div ng-bind-html="edit.contenu">{{ $bloc->contenu }}</div>
             </td>
         </tr>
         <tr bgcolor="ffffff"><td colspan="3" height="35" class="blocBorder"></td></tr><!-- space -->
@@ -27,11 +26,11 @@
                 <div class="panel-body">
                     <div class="form-group">
                         <label>Titre</label>
-                        <input type="text" ng-model="edit.titre" required name="titre" class="form-control">
+                        <input type="text" value="{{ $bloc->titre }}" bind-content ng-model="edit.titre" required name="titre" class="form-control">
                     </div>
                     <div class="form-group">
                         <label>Texte</label>
-                        <textarea redactor ng-model="edit.contenu" required name="contenu" class="form-control" rows="10"></textarea>
+                        <textarea required redactor bind-content ng-model="edit.contenu" name="contenu" class="form-control" rows="10">{{ $bloc->contenu }}</textarea>
                     </div>
                     <div class="form-group">
                         <input type="hidden" value="{{ $bloc->type_id }}" name="type">

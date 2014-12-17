@@ -7,7 +7,6 @@
                 <div class="thumbnail big">
                     <img src="http://www.placehold.it/560x140/EFEFEF/AAAAAA&text=choisir+une+image" />
                 </div>
-                <h2 ng-bind="create.titre"></h2>
             </td>
         </tr>
         <tr bgcolor="ffffff">
@@ -25,7 +24,7 @@
                 <div class="panel-body">
                     <div class="form-group">
                         <label>Titre</label>
-                        <input bind-content ng-model="create.titre" type="text" value="" required name="titre" class="form-control">
+                        <input bind-content ng-model="create.titre" type="text" value="" name="titre" class="form-control">
                     </div>
                     <div class="form-group">
                         <input type="hidden" value="{{ $bloc->type_id }}" name="type">

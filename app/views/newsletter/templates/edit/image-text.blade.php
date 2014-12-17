@@ -9,55 +9,58 @@
         <tr bgcolor="ffffff">
             <td colspan="3" height="35">
                 <div class="pull-right btn-group btn-group-xs">
-                    <button class="btn btn-orange" ng-click="edit.editContent(content.idItem)" type="button">éditer</button>
-                    <button class="btn btn-danger deleteContent deleteContentBloc" data-id="{[{ content.idItem }]}" data-action="{[{ content.titre }]}" type="button">&nbsp;×&nbsp;</button>
+                    <button class="btn btn-orange editContent" data-id="{{ $bloc->idItem }}" type="button">éditer</button>
+                    <button class="btn btn-danger deleteContent deleteContentBloc" data-id="{{ $bloc->idItem }}" data-action="{{ $bloc->titre }}" type="button">&nbsp;×&nbsp;</button>
                 </div>
             </td>
         </tr><!-- space -->
         <tr>
             <td valign="top" align="center" width="100%" class="resetMarge">
                 <div class="uploadBtn" ng-if="!notedited">
-                    <span class="btn btn-xs btn-info" ng-if="edit.onedit( content.idItem ) && !$flow.files.length" flow-btn flow-attrs="{accept:'image/*'}">Changer image</span>
+                    <span class="btn btn-xs btn-info" ng-if="!$flow.files.length" flow-btn flow-attrs="{accept:'image/*'}">Changer image</span>
                     <span class="btn btn-xs btn-warning" ng-show="$flow.files.length" flow-btn flow-attrs="{accept:'image/*'}">Changer</span>
                     <span class="btn btn-xs btn-danger" ng-show="$flow.files.length" ng-click="$flow.cancel()">Supprimer</span>
                 </div>
                 <div class="thumbnail big" ng-hide="$flow.files.length">
                     <img flow-img="$flow.files[0]" ng-if="notedited"/>
-                    <img ng-src="<?php echo url('files'); ?>/{[{content.image}]}" ng-if="!notedited"/>
+                    <img style="max-width: 560px;max-height: 150px;" alt="Droit du travail" src="{{ asset('files/'.$bloc->image) }}"  ng-if="!notedited"/>
                 </div>
-                <div class="thumbnail big" ng-show="$flow.files.length"><img flow-img="$flow.files[0]" /></div>
+                <div class="thumbnail big" ng-show="$flow.files.length">
+                    <img flow-img="$flow.files[0]" />
+                    <input type="hidden" class="uploadImage" name="image" value="{[{ $flow.files[0].name }]}">
+                </div>
             </td>
         </tr>
         <tr><td colspan="3" height="25"></td></tr>
         <tr>
             <td valign="top" align="left" width="100%" class="resetMarge contentForm">
-                <h2>{[{ content.titre }]}</h2>
-                <div ng-bind-html='content.contenu'></div>
+                <h2 ng-bind="edit.titre">{{ $bloc->titre }}</h2>
+                <div ng-bind-html="edit.contenu">{{ $bloc->contenu }}</div>
             </td>
         </tr>
         <tr bgcolor="ffffff"><td colspan="3" height="35" class="blocBorder"></td></tr><!-- space -->
     </table>
     <!-- Bloc content-->
 
-    <div class="edit_content_form">
-        <form name="editForm" ng-submit="edit.updateContent(editForm,content.idItem)">
+    <div class="edit_content_form" id="edit_{{ $bloc->idItem }}">
+        <form name="editForm" method="post" action="{{ url('edit') }}">
 
             <div class="panel panel-orange">
                 <div class="panel-body">
                     <div class="form-group">
                         <label>Titre</label>
-                        <input type="text" ng-model="content.titre" required name="titre" class="form-control">
+                        <input type="text" bind-content ng-model="edit.titre" required name="titre" class="form-control">
                     </div>
                     <div class="form-group">
                         <label>Texte</label>
-                        <textarea redactor ng-model="content.contenu" required name="contenu" class="form-control" rows="10"></textarea>
+                        <textarea bind-content ng-model="edit.contenu" required name="contenu" class="form-control redactor" rows="10"></textarea>
                     </div>
                     <div class="form-group">
-                        <input type="hidden" ng-model="content.idItem" name="id">
-                        <input type="hidden" id="editImage_{[{ content.idItem }]}" ng-model="content.image"  name="image" value="{[{ $flow.files[0].name }]}">
+                        <input type="hidden" value="{{ $bloc->type_id }}" name="type">
+                        <input type="hidden" value="{{ $bloc->idItem }}" name="id">
                         <div class="btn-group">
                             <button type="submit" class="btn btn-sm btn-orange">Envoyer</button>
-                            <button type="button" ng-click="edit.close()" class="btn btn-sm btn-default">Annuler</button>
+                            <button type="button" class="btn btn-sm btn-default cancelEdit">Annuler</button>
                         </div>
                     </div>
                 </div>

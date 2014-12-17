@@ -34,6 +34,9 @@
                     @include('newsletter.send.logos')
                     <!-- Header -->
                     @include('newsletter.send.header')
+                    <!-- Soutiens -->
+                    @include('newsletter.send.soutiens')
+
                     <div id="viewBuild">
                         <div id="sortable">
 

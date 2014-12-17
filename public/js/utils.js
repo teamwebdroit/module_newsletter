@@ -193,24 +193,27 @@ $(function() {
 
         $('.edit_content_form').hide();
         $('#edit_'+id).show();
-
+        $( "#sortable" ).sortable( "disable" );
     });
 
     $('body').on('click','.cancelEdit',function(event){
         $('.edit_content_form').hide();
+        $( "#sortable" ).sortable( "enable" );
     });
 
     $('body').on('click','.cancelCreate',function(event){
         $('.create_bloc').hide();
+        $( "#sortable" ).sortable( "enable" );
     });
 
     $('body').on('click','.blocEdit',function(event){
 
         var $this  = $(this);
         var id     = $this.attr('rel');
-    console.log(id);
+
         $('.create_bloc').hide();
         $('#create_'+id).show();
+        $( "#sortable" ).sortable( "disable" );
 
     });
 

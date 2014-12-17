@@ -59,8 +59,8 @@ Route::post('uploadJquery', 'UploadController@uploadJquery');
  */
 Route::get('building', 'NewsletterApiController@building');
 Route::post('sorting', 'NewsletterApiController@sorting');
-Route::post('process', 'CampagneController@process');
-Route::post('edit', 'NewsletterApiController@edit');
+Route::post('process', 'CampagneController@addContent');
+Route::post('edit', 'CampagneController@editContent');
 Route::post('remove', 'NewsletterApiController@remove');
 
 Route::get('preparedArrets/{selected?}', 'NewsletterApiController@preparedArrets');

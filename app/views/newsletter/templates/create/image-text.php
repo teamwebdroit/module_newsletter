@@ -16,7 +16,7 @@
                     </div>
                     <div class="thumbnail big" ng-hide="$flow.files.length"><img src="http://www.placehold.it/560x160/EFEFEF/AAAAAA&text=choisir+une+image" /></div>
                     <div class="thumbnail big" ng-show="$flow.files.length"><img flow-img="$flow.files[0]" /></div>
-                    <input type="hidden" class="uploadImage" name="image" value="$flow.files[0].name">
+                    <input type="hidden" class="uploadImage" name="image" value="{[{ $flow.files[0].name }]}">
                 </td>
             </tr>
             <tr><td colspan="3" height="25"></td></tr>
