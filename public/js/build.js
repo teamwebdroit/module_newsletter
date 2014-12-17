@@ -178,6 +178,7 @@ App.controller("EditController",['$scope','$http','notify','myService', function
 
     $scope.editable = 0;
 
+
     this.onedit = function(id){
         return id == $scope.editable;
     };
@@ -194,7 +195,6 @@ App.controller("EditController",['$scope','$http','notify','myService', function
         myService.setBloc(0);
 
         $scope.editable = idItem;
-
         console.log(idItem);
         console.log($scope.editable);
 
@@ -315,7 +315,7 @@ App.controller('SelectController', ['$scope','$http','Arrets','notify','myServic
         var arret_id = ( self.arret ? self.arret.id : 0);
         var campagne = $('#campagne_id').val();
 
-        var data     = { type: 'arret' , arret_id: arret_id, campagne : campagne };
+        var data     = { type_id: 5 , arret_id: arret_id, campagne : campagne };
         /* Send data */
         var all = $.param( data);
 
@@ -332,6 +332,8 @@ App.controller('SelectController', ['$scope','$http','Arrets','notify','myServic
                 // remove arret template
                 myService.setBloc(0);
                 myService.changes();
+                $('.create_bloc').hide();
+                $( "#sortable" ).sortable( "enable" );
             }
             else { notify('Problème avec l\'ajout du bloc'); }
         });

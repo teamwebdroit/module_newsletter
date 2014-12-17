@@ -1,4 +1,4 @@
-<!--
+
 <div class="widget">
     <h3 class="title"><i class="glyphicon glyphicon-pushpin"></i> &nbsp;New</h3>
     @if(isset($pub))
@@ -17,9 +17,10 @@
     @endif
 </div><!--END WIDGET-->
 
+<!--
 <div class="widget">
     <h3 class="title"><i class="glyphicon glyphicon-pushpin"></i> &nbsp;New</h3>
     <img src="{{ url('images/holder2.jpg') }}" alt="" />
 </div>
-
+-->
 <p class="divider-border"></p>

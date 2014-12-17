@@ -16,7 +16,7 @@
                         <span class="btn btn-xs btn-warning" ng-show="$flow.files.length" flow-btn flow-attrs="{accept:'image/*'}">Changer</span>
                         <span class="btn btn-xs btn-danger" ng-show="$flow.files.length" ng-click="$flow.cancel()">Supprimer</span>
                     </div>
-                    <input type="hidden" class="uploadImage" name="image" value="$flow.files[0].name">
+                    <input type="hidden" class="uploadImage" name="image" value="{[{ $flow.files[0].name }]}">
                 </td>
                 <td width="25" class="resetMarge"></td><!-- space -->
                 <td valign="top" width="375" class="resetMarge contentForm">
@@ -34,6 +34,10 @@
                 <div class="form-group">
                     <label>Titre</label>
                     <input bind-content ng-model="create.titre" type="text" value="" required name="titre" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>Lien de l'image</label>
+                    <input type="text" value="" name="lien" class="form-control">
                 </div>
                 <div class="form-group">
                     <label>Texte</label>

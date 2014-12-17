@@ -11,7 +11,8 @@
                 <tr>
                     <td valign="top" width="560" class="resetMarge">
                         <p class="centerText">
-                            <a href="#">
+                            <?php $lien = (isset($bloc->lien) && !empty($bloc->lien) ? $bloc->lien : url('/') ); ?>
+                            <a target="_blank" href="<?php echo $lien; ?>">
                                 <img style="max-width: 560px;max-height: 150px;" alt="Droit du travail" src="{{ asset('files/'.$bloc->image) }}" />
                             </a>
                         </p>

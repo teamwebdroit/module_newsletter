@@ -200,6 +200,7 @@ class CampagneController extends BaseController {
         $titre    = (isset($data['titre']) ? $data['titre'] : null);
         $contenu  = (isset($data['contenu']) ? $data['contenu'] : null);
         $image    = (isset($data['image']) ? $data['image'] : null);
+        $lien     = (isset($data['lien']) ? $data['lien'] : null);
         $arret_id = (isset($data['arret_id']) ? $data['arret_id'] : 0);
 
         $new = array(
@@ -207,6 +208,7 @@ class CampagneController extends BaseController {
             'titre'                  => $titre,
             'contenu'                => $contenu,
             'image'                  => $image,
+            'lien'                   => $lien,
             'arret_id'               => $arret_id,
             'categorie_id'           => 0,
             'newsletter_campagne_id' => $campagne,

@@ -36,7 +36,7 @@
             <div class="divider-border"></div>
 
             <div class="col-md-6">
-                <h4 class="title">Le Centre d’étude des relations de travail (CERT)</h4>
+                <h4 class="title">Centre d’étude des relations de travail (CERT)<br/>&nbsp;</h4>
                 <p>Le <a href="http://www2.unine.ch/cert" target="_blank">CERT</a>, Centre d’étude des relations de travail, créé et dirigé par les prof. Jean-Philippe Dunand et Pascal Mahon est
                     rattaché à la Faculté de droit de l’Université de Neuchâtel. Il a pour but d’étudier la relation de travail
                     dans tous ses aspects, y compris les spécificités et les liens entre le droit privé et le droit public du travail.

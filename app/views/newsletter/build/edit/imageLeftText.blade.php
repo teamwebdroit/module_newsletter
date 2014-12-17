@@ -23,7 +23,10 @@
                 </div>
                 <div class="thumbnail big" ng-hide="$flow.files.length">
                     <img flow-img="$flow.files[0]" ng-if="notedited"/>
-                    <img style="max-width: 160px;" alt="Droit du travail" src="{{ asset('files/'.$bloc->image) }}"  />
+                    <?php $lien = (isset($bloc->lien) && !empty($bloc->lien) ? $bloc->lien : url('/') ); ?>
+                    <a style="border: none;padding: 0;margin: 0;" target="_blank" href="<?php echo $lien; ?>">
+                        <img style="max-width: 560px;" alt="Droit du travail" src="{{ asset('files/'.$bloc->image) }}" />
+                    </a>
                 </div>
                 <div class="thumbnail big" ng-show="$flow.files.length">
                     <img flow-img="$flow.files[0]" />
@@ -49,11 +52,14 @@
                         <input type="text" value="{{ $bloc->titre }}" bind-content ng-model="edit.titre" required name="titre" class="form-control">
                     </div>
                     <div class="form-group">
+                        <label>Lien de l'image</label>
+                        <input type="text" value="{{ $bloc->lien }}" name="lien" class="form-control">
+                    </div>
+                    <div class="form-group">
                         <label>Texte</label>
                         <textarea required redactor bind-content ng-model="edit.contenu" name="contenu" class="form-control" rows="10">{{ $bloc->contenu }}</textarea>
                     </div>
                     <div class="form-group">
-                        <input type="file" id="editImage_{{ $bloc->idItem }}" name="image" value="">
                         <div class="btn-group">
                             <input type="hidden" value="{{ $bloc->idItem }}" name="id">
                             <input type="hidden" class="uploadImage" name="image" value="{[{ $flow.files[0].name }]}">

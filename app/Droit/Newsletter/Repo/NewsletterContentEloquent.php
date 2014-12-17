@@ -66,6 +66,7 @@ class NewsletterContentEloquent implements NewsletterContentInterface{
 			'titre'                  => $data['titre'],
             'contenu'                => $data['contenu'],
             'image'                  => $data['image'],
+            'lien'                   => $data['lien'],
             'arret_id'               => $data['arret_id'],
             'categorie_id'           => $data['categorie_id'],
             'newsletter_campagne_id' => $data['newsletter_campagne_id'],
@@ -103,6 +104,10 @@ class NewsletterContentEloquent implements NewsletterContentInterface{
         // if we changed the image
         if(isset($data['image'])){
             $contents->image = $data['image'];
+        }
+        // if we changed the lien
+        if(isset($data['lien'])){
+            $contents->lien = $data['lien'];
         }
 
         $contents->updated_at = date('Y-m-d G:i:s');

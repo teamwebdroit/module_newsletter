@@ -38,6 +38,10 @@
                     <input bind-content ng-model="create.titre" type="text" value="" required name="titre" class="form-control">
                 </div>
                 <div class="form-group">
+                    <label>Lien de l'image</label>
+                    <input type="text" value="" name="lien" class="form-control">
+                </div>
+                <div class="form-group">
                     <label>Texte</label>
                     <textarea bind-content redactor ng-model="create.contenu" required name="contenu" class="form-control" rows="10"></textarea>
                 </div>

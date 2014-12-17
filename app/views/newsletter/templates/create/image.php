@@ -38,6 +38,10 @@
                     <input bind-content ng-model="create.titre" type="text" value="" name="titre" class="form-control">
                 </div>
                 <div class="form-group">
+                    <label>Lien de l'image</label>
+                    <input type="text" value="" name="lien" class="form-control">
+                </div>
+                <div class="form-group">
                     <div class="btn-group">
                         <input type="hidden" value="<?php echo $infos->id; ?>" name="campagne">
                         <input type="hidden" value="<?php echo $bloc->id; ?>" name="type_id">
