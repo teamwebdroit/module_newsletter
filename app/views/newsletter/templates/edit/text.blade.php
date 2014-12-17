@@ -4,15 +4,16 @@
         <tr bgcolor="ffffff">
             <td colspan="3" height="35">
                 <div class="pull-right btn-group btn-group-xs">
-                    <button class="btn btn-orange" ng-click="edit.editContent(content.idItem)" type="button">éditer</button>
-                    <button class="btn btn-danger deleteContent deleteContentBloc" data-id="{[{ content.idItem }]}" data-action="{[{ content.titre }]}" type="button">&nbsp;×&nbsp;</button>
+                    <button class="btn btn-orange" ng-click="edit.editContent({{ $bloc->idItem }})" type="button">éditer</button>
+                    <button class="btn btn-danger deleteContent deleteContentBloc" data-id="{{ $bloc->idItem }}" data-action="{{ $bloc->titre }}}" type="button">&nbsp;×&nbsp;</button>
                 </div>
             </td>
         </tr><!-- space -->
         <tr>
             <td valign="top" align="left" width="100%" class="resetMarge contentForm">
-                <h2>{[{ content.titre }]}</h2>
-                <div ng-bind-html='content.contenu'></div>
+                <h2 bind-content ng-model="edit.titre">{{ $bloc->titre }}</h2>
+                <div bind-content ng-model='edit.contenu'>{{ $bloc->contenu }}</div>
+                <p style="display: none;" bind-content ng-model="edit.idItem">{{ $bloc->idItem }}</p>
             </td>
         </tr>
         <tr bgcolor="ffffff"><td colspan="3" height="35" class="blocBorder"></td></tr><!-- space -->
@@ -26,11 +27,11 @@
                 <div class="panel-body">
                     <div class="form-group">
                         <label>Titre</label>
-                        <input type="text" ng-model="content.titre" required name="titre" class="form-control">
+                        <input type="text" ng-model="edit.titre" required name="titre" class="form-control">
                     </div>
                     <div class="form-group">
                         <label>Texte</label>
-                        <textarea redactor ng-model="content.contenu" required name="contenu" class="form-control" rows="10"></textarea>
+                        <textarea redactor ng-model="edit.contenu" required name="contenu" class="form-control" rows="10"></textarea>
                     </div>
                     <div class="form-group">
                         <input type="hidden" value="{{ $bloc->type_id }}" name="type">

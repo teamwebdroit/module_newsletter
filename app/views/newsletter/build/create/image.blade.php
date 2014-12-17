@@ -10,6 +10,11 @@
                 <h2 ng-bind="create.titre"></h2>
             </td>
         </tr>
+        <tr bgcolor="ffffff">
+            <td align="center" valign="top" width="560" class="resetMarge">
+                <h2 ng-bind="create.titre"></h2>
+            </td>
+        </tr><!-- space -->
         <tr bgcolor="ffffff"><td colspan="3" height="35" class="blocBorder"></td></tr><!-- space -->
     </table>
     <!-- Bloc content-->

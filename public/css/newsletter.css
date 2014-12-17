@@ -156,9 +156,8 @@
 
 #bailNewsletter .thumbnail.big,
 #bailNewsletterCreate .thumbnail.big{
-    margin-bottom: 0;
+    margin-bottom: 10px;
     max-width: 560px;
-    max-height: 130px;
 }
 
 #bailNewsletter .upoadBtn a,
