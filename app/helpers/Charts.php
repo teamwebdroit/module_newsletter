@@ -100,5 +100,31 @@ class Charts{
         return $data;
 
     }
+    public function compileStats($stats){
+
+        if(!empty($stats))
+        {
+            // Datas
+            $sent    =  $stats->DeliveredCount;
+            $clic    =  $stats->ClickedCount;
+            $open    =  $stats->OpenedCount;
+            $bounce  =  $stats->BouncedCount;
+
+            // Calculations
+            $nonopen  = ($sent - ($open + $bounce))/$sent;
+            $openclic = $clic/$sent;
+            $onlyopen = $open/$sent;
+            $bounce   = $bounce/$sent;
+
+            $data['total']     = $sent;
+            $data['clicked']   = round($openclic * 100, 2);
+            $data['opened']    = round($onlyopen * 100, 2);
+            $data['bounced']   = round($bounce * 100, 2);
+            $data['nonopened'] = round($nonopen * 100, 2);
+        }
+
+        return $data;
+
+    }
 
 }

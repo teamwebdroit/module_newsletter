@@ -349,4 +349,18 @@ class CampagneWorker implements CampagneInterface{
 
     }
 
+
+    public function clickStatistics($id){
+
+        # Parameters
+        $params = array( "method" => "LIST", 'CampaignID' => $id );
+
+        # Call
+        $response = $this->mailjet->clickstatistics($params);
+
+        return $response;
+        //return ($response ? $response->stats : false);
+
+    }
+
 }

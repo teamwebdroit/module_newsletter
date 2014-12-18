@@ -16,7 +16,7 @@
             <ul class="acc-menu">
                 <li class="<?php echo (Request::is('admin/campagne/*') ? 'active' : '' ); ?>"><a href="{{ url('admin/campagne')  }}">Campagnes</a></li>
                 <li class="<?php echo (Request::is('admin/abonne/*') ? 'active' : '' ); ?>"><a href="{{ url('admin/abonne')  }}">Abonnées</a></li>
-                <li class="<?php echo (Request::is('admin/stats/*') ? 'active' : '' ); ?>"><a href="{{ url('admin/stats')  }}">Statistiques sur l'année</a></li>
+                <!-- <li class="<?php /*echo (Request::is('admin/stats/*') ? 'active' : '' ); */?>"><a href="{{ url('admin/stats')  }}">Statistiques sur l'année</a></li>-->
             </ul>
         </li>
     </ul>

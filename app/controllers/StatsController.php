@@ -58,15 +58,23 @@ class StatsController extends \BaseController {
 	 */
 	public function show($id)
 	{
+        // Stats open, bounce etc.
         $campagne     = $this->worker->getCampagne($id);
         $statistiques = $this->worker->statsCampagne($campagne->api_campagne_id);
         $statistiques = $this->statsworker->filterResponseStatistics($statistiques);
+        $statistiques = $this->charts->compileStats($statistiques);
+
+        // Clicks
+        $clickStats = $this->worker->clickStatistics($id);
+        $clickStats = $this->statsworker->filterResponseStatisticsMany($clickStats);
+        $clickStats = $this->statsworker->aggregateStatsClicksLinks($clickStats);
 
         return View::make('admin.stats.show')->with(
             array(
-                'isChart'        => true,
-                'campagne'       => $campagne ,
-                'statistiques'   => $statistiques
+                'isChart'      => true,
+                'campagne'     => $campagne ,
+                'statistiques' => $statistiques,
+                'clickStats'   => $clickStats
             )
         );
 	}

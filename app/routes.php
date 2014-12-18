@@ -204,14 +204,14 @@ Route::get('setHmtlCampagne', function()
 
     $newsletter = new \Droit\Newsletter\Repo\NewsletterCampagneEloquent(new \Droit\Newsletter\Entities\Newsletter_campagnes);
 
-    $campagne   = $newsletter->find(4);
+    //$campagne   = $newsletter->find(12);
 
     //$sent = $send->sendCampagne($campagne->api_campagne_id);
-    $html = $send->html($campagne->id);
-    $sent = $send->setHtml($html,$campagne->api_campagne_id);
+    //$html = $send->html($campagne->id);
+    //$sent = $send->setHtml($html,$campagne->api_campagne_id);
     //$id = $send->removeContact('pruntrut@yahoo.fr');
     //$sent = $send->addContactToList($id);
-    //$sent = $send->createCampagne($campagne);
+    $sent = $send->clickStatistics(14);
     //print_r($campagne);
     print_r($sent);
 

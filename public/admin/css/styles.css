@@ -11231,10 +11231,15 @@ a.shortcut-tiles {
   color: rgba(255, 255, 255, 0.4);
 }
 .info-tiles .tiles-body {
-  font-size: 42px;
+  font-size: 38px;
   border-bottom-right-radius: 1px;
   border-bottom-left-radius: 1px;
 }
+
+.info-tiles .tiles-body span {
+    font-size: 32px;
+}
+
 .info-tiles .tiles-body-alt {
   font-size: 48px;
   border-bottom-right-radius: 0;

@@ -9,10 +9,30 @@ class StatsWorker{
 
     public function filterResponseStatistics($data){
 
-        $stats = $data->Data[0];
-        //$stats = new \Illuminate\Support\Collection( (array) $stats);
+        $stats = (isset($data->Data[0]) ? $data->Data[0] : false);
 
         return $stats;
     }
 
+    public function filterResponseStatisticsMany($data){
+
+        $stats = ($data->Data ? $data->Data : false);
+
+        return $stats;
+    }
+
+    public function aggregateStatsClicksLinks($data){
+
+        $clicks = array();
+
+        if(!empty($data))
+        {
+            foreach($data as $click)
+            {
+                $clicks[$click->Url][] = $click->ContactID;
+            }
+        }
+
+        return $clicks;
+    }
 }
