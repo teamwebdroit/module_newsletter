@@ -1,4 +1,9 @@
 <?php
+/**
+ * Send controller
+ *
+ * Send campagne, Send test campagne
+ */
 
 use Laracasts\Commander\CommanderTrait;
 use Droit\Newsletter\Worker\CampagneInterface;

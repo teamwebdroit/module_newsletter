@@ -78,7 +78,7 @@ class AbonneController extends \BaseController {
         $abonne     = $this->abonne->find($id);
         $newsletter = $this->newsletter->getAll();
 
-        return View::make('abonnes.edit')->with(array( 'abonne' => $abonne , 'newsletter' => $newsletter ));
+        return View::make('admin.abonnes.edit')->with(array( 'abonne' => $abonne , 'newsletter' => $newsletter ));
 	}
 
 	/**

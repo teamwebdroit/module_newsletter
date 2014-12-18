@@ -178,7 +178,6 @@ class CampagneController extends BaseController {
      * @param  int  $id
      * @return Response
      */
-
     public function unsubscribe($id){
 
         $campagne = $this->campagne->find($id);
@@ -251,6 +250,35 @@ class CampagneController extends BaseController {
 
         return Redirect::back()->with(array('status' => 'error', 'message' => 'Problème avec l\'édition' ));
 
+    }
+
+    /**
+     * Sorting bloc newsletter
+     * POST remove
+     *
+     * @return Response
+     */
+    public function sorting(){
+
+        $data = Input::all();
+
+        $contents = $this->content->updateSorting($data['bloc_rang']);
+
+        print_r($data);
+
+    }
+
+    /**
+     * Remove bloc from newsletter
+     * POST remove
+     *
+     * @return Response
+     */
+    public function remove(){
+
+        $this->content->delete(Input::get('id'));
+
+        return 'ok';
     }
 
 }

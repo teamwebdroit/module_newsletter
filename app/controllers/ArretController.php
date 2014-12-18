@@ -171,4 +171,15 @@ class ArretController extends \BaseController {
         return Response::json( $arrets, 200 );
     }
 
+
+    /**
+     * Return one arret by id
+     *
+     * @return json
+     */
+    public function simple($id)
+    {
+        return $this->arret->find($id);
+    }
+
 }

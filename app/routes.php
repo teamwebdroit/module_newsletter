@@ -13,39 +13,13 @@ Route::get('newsletters/{id?}', 'HomeController@newsletters');
 /**
  * Newsletter
  */
-
-Route::get('test', 'NewsletterController@test');// test
-Route::get('convert', 'HomeController@convert');// test
-Route::get('campagne', 'NewsletterController@campagne');// test
-Route::get('gobuild', 'NewsletterController@index');// test
 Route::get('campagne/{id}', 'CampagneController@view');
 Route::get('unsubscribe/{id?}', 'CampagneController@unsubscribe');
 
-/**
- * Templates for js
- */
-Route::get('building-blocs', 'TemplateController@buildingBlocs');
-Route::get('post-text', 'TemplateController@postText');
-
-    /**
-     * Templates for js creation
-     */
-    Route::get('image-left-text', 'TemplateController@imageLeftText');
-    Route::get('image-right-text', 'TemplateController@imageRightText');
-    Route::get('image-text', 'TemplateController@imageText');
-    Route::get('image', 'TemplateController@image');
-    Route::get('text', 'TemplateController@text');
-    Route::get('arret', 'TemplateController@arret');
-
-    /**
-     * Templates for js edit
-     */
-    Route::get('image-left-text-edit', 'TemplateController@imageLeftTextEdit');
-    Route::get('image-right-text-edit', 'TemplateController@imageRightTextEdit');
-    Route::get('image-text-edit', 'TemplateController@imageTextEdit');
-    Route::get('image-edit', 'TemplateController@imageEdit');
-    Route::get('text-edit', 'TemplateController@textEdit');
-    Route::get('arret-edit', 'TemplateController@arretEdit');
+Route::get('inscription/activation/{token}', 'InscriptionController@activation');
+Route::post('inscription/resend', 'InscriptionController@resend');
+Route::post('inscription/unsubscribe', 'InscriptionController@unsubscribe');
+Route::resource('inscription', 'InscriptionController');
 
 /**
  * Upload routes
@@ -57,27 +31,14 @@ Route::post('uploadJquery', 'UploadController@uploadJquery');
 /**
  * API
  */
-Route::get('building', 'NewsletterApiController@building');
-Route::post('sorting', 'NewsletterApiController@sorting');
+Route::post('sorting', 'CampagneController@sorting');
 Route::post('process', 'CampagneController@addContent');
 Route::post('edit', 'CampagneController@editContent');
-Route::post('remove', 'NewsletterApiController@remove');
+Route::post('remove', 'CampagneController@remove');
 
-Route::get('preparedArrets/{selected?}', 'NewsletterApiController@preparedArrets');
-Route::get('preparedAnnees', 'NewsletterApiController@preparedAnnees');
-Route::get('prepareCampagne/{id}', 'NewsletterApiController@prepareCampagne');
-
-Route::get('arrets/{id}', 'NewsletterApiController@simple');
+Route::get('arrets/{id}', 'ArretController@simple');
 Route::get('arrets', 'ArretController@arrets');
 Route::get('categories', 'CategorieController@categories');
-
-/**
- * Newsletter inscription routes
- */
-Route::get('inscription/activation/{token}', 'InscriptionController@activation');
-Route::post('inscription/resend', 'InscriptionController@resend');
-Route::post('inscription/unsubscribe', 'InscriptionController@unsubscribe');
-Route::resource('inscription', 'InscriptionController');
 
 /**
  * Admin routes
@@ -102,7 +63,6 @@ Route::group(array('prefix' => 'admin'), function()
 
     Route::resource('abonne', 'AbonneController');
 
-    Route::get('html/{id}', 'NewsletterController@html');
     Route::post('send/campagne', 'SendController@campagne');
     Route::post('send/test', 'SendController@test');
     Route::get('send/{id}', 'SendController@show');
@@ -241,5 +201,5 @@ Event::listen('illuminate.query', function($query, $bindings, $time, $name)
     $query = str_replace(array('%', '?'), array('%%', '%s'), $query);
     $query = vsprintf($query, $bindings);
 
-    Log::info($query, $data);
+    //Log::info($query, $data);
 });
