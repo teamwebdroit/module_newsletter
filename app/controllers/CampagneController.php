@@ -230,11 +230,6 @@ class CampagneController extends BaseController {
 
         $data = Input::all();
 
-
-        echo '<pre>';
-        print_r($data);
-        echo '</pre>';exit;
-
         $new  = array('id' => $data['id']);
 
         if(!empty($data))

@@ -80,10 +80,10 @@ class Charts{
         if(!empty($stats))
         {
             // Datas
-            $sent    = 10; // $stats->DeliveredCount;
-            $clic    = 4; // $stats->ClickedCount/$sent;
-            $open    = 6; // $stats->OpenedCount/$sent;
-            $bounce  = 1; // $stats->BouncedCount/$sent;
+            $sent    =  $stats->DeliveredCount;
+            $clic    =  $stats->ClickedCount/$sent;
+            $open    =  $stats->OpenedCount/$sent;
+            $bounce  =  $stats->BouncedCount/$sent;
 
             // Calculations
             // We need bounce, non open, open+clic, only open

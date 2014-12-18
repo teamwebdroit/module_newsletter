@@ -12,9 +12,15 @@
 <div class="row">
     <div class="col-md-12">
 
+        <?php
+            echo '<pre>';
+            print_r($statistiques);
+            echo '</pre>';
+        ?>
+        <?php echo json_encode($charts->myPieChart($statistiques)); ?>
         <script type="text/javascript">
             window.onload = function(){
-                $.plot($("#interactive"), <?php echo json_encode($charts->myPieChart($statistiques)); ?>,
+                /*$.plot($("#interactive"), <?php //echo json_encode($charts->myPieChart($statistiques)); ?>,
                     {
                         series: {
                             pie: { show: true}
@@ -24,7 +30,7 @@
                             clickable: true
                         },
                         legend: { show: false }
-                    });
+                    });*/
             };
         </script>
 

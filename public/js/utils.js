@@ -185,6 +185,9 @@ $(function() {
         $('#gallarymodal').modal({show:true});
     });
 
+    /**
+     *  Create and edit newsletter blocs
+     */
 
     $('body').on('click','.editContent',function(event){
 
@@ -218,6 +221,26 @@ $(function() {
 
         $('#create_'+id).show();
         $( "#sortable" ).sortable( "disable" );
+    });
+
+    $('#bootbox-demo-3').click(function(){
+        bootbox.dialog({
+            message: "Etes-vous sûr de vouloir envoyer la campagne",
+            title: "Envoyer la campagne",
+            buttons: {
+                success: {
+                    label: "Oui!",
+                    className: "btn-success",
+                    callback: function() {
+                        $("#sendCampagneForm").submit();
+                    }
+                },
+                main: {
+                    label: "Annuler",
+                    className: "btn-default"
+                }
+            }
+        });
     });
 
 });

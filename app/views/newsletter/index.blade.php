@@ -52,10 +52,10 @@
                                     </td>
                                     <td>
                                         @if($campagne->status == 'brouillon')
-                                        {{ Form::open(array('url' => array('admin/send/campagne') , 'class' => 'form-inline')) }}
-                                            <input name="id" value="{{ $campagne->id }}" type="hidden">
-                                            <button type="submit" class="btn btn-sm btn-orange"><i class="fa fa-exclamation"></i>  &nbsp;&nbsp;Envoyer la campagne</button>
-                                        {{ Form::close() }}
+                                            {{ Form::open(array('url' => array('admin/send/campagne') , 'id' => 'sendCampagneForm', 'class' => 'form-inline')) }}
+                                                <input name="id" value="{{ $campagne->id }}" type="hidden">
+                                                <a href="javascript:;" class="btn btn-sm btn-orange" id="bootbox-demo-3"><i class="fa fa-exclamation"></i> &nbsp;&nbsp;Envoyer la campagne</a>
+                                            {{ Form::close() }}
                                         @endif
                                     </td>
                                     <td><strong>{{ $campagne->sujet }}</strong></td>

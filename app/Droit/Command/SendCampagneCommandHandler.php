@@ -29,8 +29,8 @@ class SendCampagneCommandHandler implements CommandHandler {
 
         try
         {
-            $this->worker->setHtml($html,$campagne->api_campagne_id);
 
+            $this->worker->setHtml($html,$campagne->api_campagne_id);
             $this->worker->sendCampagne($campagne->api_campagne_id,$campagne->id);
 
             $campagne->status      = 'envoyé';

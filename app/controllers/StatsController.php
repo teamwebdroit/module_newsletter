@@ -11,9 +11,9 @@ class StatsController extends \BaseController {
 
     public function __construct( CampagneInterface $worker, StatsWorker $statsworker)
     {
-        $this->worker = $worker;
+        $this->worker       = $worker;
         $this->statsworker  = $statsworker;
-        $this->charts = new \Charts;
+        $this->charts       = new \Charts;
     }
 
     /**
@@ -60,6 +60,7 @@ class StatsController extends \BaseController {
 	{
         $campagne     = $this->worker->getCampagne($id);
         $statistiques = $this->worker->statsCampagne($campagne->api_campagne_id);
+        $statistiques = $this->statsworker->filterResponseStatistics($statistiques);
 
         return View::make('admin.stats.show')->with(
             array(

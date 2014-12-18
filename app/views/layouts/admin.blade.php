@@ -131,6 +131,7 @@
     <script type="text/javascript" src="<?php echo asset('admin/js/datatables.js');?>"></script>
     <script type="text/javascript" src="<?php echo asset('admin/js/application.js');?>"></script>
     <script type='text/javascript' src="<?php echo asset('admin/plugins/mixitup/jquery.mixitup.min.js');?>"></script>
+    <script type='text/javascript' src="<?php echo asset('admin/plugins/bootbox/bootbox.min.js');?>"></script>
     <script type="text/javascript" src="<?php echo asset('js/utils.js');?>"></script>
 
     @if(isset($isFileManager))
@@ -150,7 +151,6 @@
         <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.8/angular-route.js"></script>
         <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.8/angular-resource.js"></script>
         <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular-sanitize.js"></script>
-        <script type="text/javascript" src="<?php echo asset('js/vendor/angular/angular-dragdrop.js');?>"></script>
         <script type="text/javascript" src="<?php echo asset('js/vendor/angular/angular-redactor.js');?>"></script>
         <script type="text/javascript" src="<?php echo asset('js/vendor/angular/angular-flow.js');?>"></script>
         <script type="text/javascript" src="<?php echo asset('js/vendor/angular/angular-notify.js');?>"></script>
