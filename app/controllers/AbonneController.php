@@ -7,7 +7,7 @@ use Droit\Newsletter\Worker\CampagneInterface;
 use Droit\Command\AdminSubscribeCommandHandler;
 use Laracasts\Validation\FormValidationException;
 use Droit\Form\AddUserValidation;
-
+use Droit\Command\UnsubscribeCommand;
 
 class AbonneController extends \BaseController {
 
@@ -36,7 +36,7 @@ class AbonneController extends \BaseController {
 	{
         $abonnes = $this->abonne->getAll();
 
-        return View::make('abonnes.index')->with( array('abonnes' => $abonnes) );
+        return View::make('admin.abonnes.index')->with( array('abonnes' => $abonnes) );
 	}
 
 	/**
@@ -49,7 +49,7 @@ class AbonneController extends \BaseController {
 	{
         $newsletter = $this->newsletter->getAll();
 
-        return View::make('abonnes.create')->with(array( 'newsletter' => $newsletter ));
+        return View::make('admin.abonnes.create')->with(array( 'newsletter' => $newsletter ));
 	}
 
 	/**
@@ -113,9 +113,11 @@ class AbonneController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function destroy($email)
 	{
-        $this->abonne->delete($id);
+        $command = array('email' => $email, 'newsletter_id' => array(1));
+
+        $this->execute('Droit\Command\UnsubscribeCommand',$command);
 
         return Redirect::back()->with(array('status' => 'success', 'message' => 'Abonné supprimé' ));
 	}

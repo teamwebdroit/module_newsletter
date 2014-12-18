@@ -15,6 +15,6 @@ return array(
 
 	'debug' => true,
 
-    'url' => 'http://newsletter.local',
+    'url'   => 'http://newsletter.local',
 
 );

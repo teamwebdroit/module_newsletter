@@ -8,11 +8,8 @@ use Droit\Content\Repo\AnalyseInterface;
 class NewsletterController extends BaseController {
 
     protected $content;
-
     protected $types;
-
     protected $arret;
-
     protected $analyse;
 
     /* Inject dependencies */

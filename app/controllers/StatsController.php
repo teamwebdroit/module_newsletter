@@ -26,7 +26,7 @@ class StatsController extends \BaseController {
 	{
         $statistiques  = $this->worker->statsAllCampagne();
 
-        return View::make('stats.index')->with(
+        return View::make('admin.stats.index')->with(
             array(
                 'isChart'        => true ,
                 'statistiques'   => $statistiques
@@ -50,17 +50,6 @@ class StatsController extends \BaseController {
 	}
 
 	/**
-	 * Store a newly created resource in storage.
-	 * POST /stats
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		//
-	}
-
-	/**
 	 * Display the specified resource.
 	 * GET /stats/{id}
 	 *
@@ -72,7 +61,7 @@ class StatsController extends \BaseController {
         $campagne     = $this->worker->getCampagne($id);
         $statistiques = $this->worker->statsCampagne($campagne->api_campagne_id);
 
-        return View::make('stats.show')->with(
+        return View::make('admin.stats.show')->with(
             array(
                 'isChart'        => true,
                 'campagne'       => $campagne ,
@@ -81,40 +70,5 @@ class StatsController extends \BaseController {
         );
 	}
 
-	/**
-	 * Show the form for editing the specified resource.
-	 * GET /stats/{id}/edit
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
-
-	/**
-	 * Update the specified resource in storage.
-	 * PUT /stats/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
-
-	/**
-	 * Remove the specified resource from storage.
-	 * DELETE /stats/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
-	}
 
 }

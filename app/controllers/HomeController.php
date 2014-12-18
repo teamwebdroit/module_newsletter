@@ -114,7 +114,7 @@ class HomeController extends BaseController {
         $campagne       = $this->worker->getCampagne($newsletter);
         $newsletter     = $this->worker->findCampagneById($newsletter);
 
-        return View::make('newsletter')->with(array( 'listCampagnes' => $listCampagnes , 'campagne' => $campagne , 'newsletter' => $newsletter ));
+        return View::make('campagne')->with(array( 'listCampagnes' => $listCampagnes , 'campagne' => $campagne , 'newsletter' => $newsletter ));
     }
 
     /*

@@ -24,7 +24,7 @@
     <div id="sidebar" class="col-md-4 col-xs-12">
         @include('partials.liste')
         @include('partials.pub')
-        @include('partials.soutiens')
+        @include('partials.soutien')
     </div>
     <!-- END Sidebar  -->
 

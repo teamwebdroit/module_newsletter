@@ -85,7 +85,8 @@ App::error(function(Droit\Exceptions\CampagneSendException $exception, $code)
 
 App::error(function(Droit\Exceptions\SubscribeUserException $exception, $code)
 {
-    return Redirect::back()->with(array('status' => 'danger', 'message' => 'Problème avec l\'inscription sur mailjet'));
+    Log::error($exception);
+    return Redirect::back()->with(array('status' => 'danger', 'message' => 'Problème avec la synchronisation veuillez contacter info@droitdutravail.ch'));
 });
 
 /*App::error(function(Droit\Exceptions\FileUploadException $exception, $code)

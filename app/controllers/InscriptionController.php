@@ -4,6 +4,7 @@ use Laracasts\Commander\CommanderTrait;
 use Droit\Newsletter\Repo\NewsletterUserInterface;
 use Droit\Newsletter\Worker\CampagneInterface;
 use Droit\Command\NewsletterSubscribeCommand;
+use Droit\Command\UnsubscribeCommand;
 
 class InscriptionController extends \BaseController {
 
@@ -51,17 +52,6 @@ class InscriptionController extends \BaseController {
 
 	}
 
-	/**
-	 * Show the form for creating a new resource.
-	 * GET /inscription/create
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		//
-	}
-
     /**
      * Store a newly created resource in storage.
      * POST /inscription
@@ -92,41 +82,6 @@ class InscriptionController extends \BaseController {
 
         return Redirect::to('/')->with(array('status' => 'success', 'message' => '<strong>Lien d\'activation envoyé</strong>'));
     }
-	/**
-	 * Display the specified resource.
-	 * GET /inscription/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
-	}
-
-	/**
-	 * Show the form for editing the specified resource.
-	 * GET /inscription/{id}/edit
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
-
-	/**
-	 * Update the specified resource in storage.
-	 * PUT /inscription/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
 
 	/**
 	 * Remove the email from list - unsubscribe.
@@ -136,23 +91,7 @@ class InscriptionController extends \BaseController {
 	 */
 	public function unsubscribe()
 	{
-
-        $email = Input::get('email');
-
-        if(!$email){
-            return Redirect::back()->with(array('status' => 'danger', 'message' => '<strong>Veuillez indiquer un email</strong>'));
-        }
-
-        $abonne = $this->abo->findByEmail( $email );
-
-        if(!$abonne){
-            return Redirect::back()->with(array('status' => 'danger', 'message' => '<strong>Votre email n\'existe pas dans la base de données</strong>'));
-        }
-        // Sync the abos to newsletter we have
-        $abonne->newsletter()->sync(array(Input::get('newsletter_id')));
-
-        $this->worker->removeContact($abonne->email);
-        $this->abo->delete($abonne->email);
+        $this->execute('Droit\Command\UnsubscribeCommand');
 
         return Redirect::to('/')->with(array('status' => 'success', 'message' => '<strong>Vous avez été désinscrit</strong>'));
 	}

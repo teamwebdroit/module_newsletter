@@ -1,7 +1,8 @@
 <?php
 
 return [
-    'host' => 'localhost',
+    'driver'     => 'smtp',
+    'host'       => 'localhost',
     'encryption' => '',
-    'port' => '1025',
+    'port'       => '1025',
 ];

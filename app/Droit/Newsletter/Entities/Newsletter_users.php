@@ -21,7 +21,7 @@ class Newsletter_users extends \Eloquent {
 
     public function newsletter(){
 
-        return $this->belongsToMany('Droit\Newsletter\Entities\Newsletter', 'newsletter_subscriptions', 'user_id', 'newsletter_id');
+        return $this->belongsToMany('Droit\Newsletter\Entities\Newsletter', 'newsletter_subscriptions', 'user_id', 'newsletter_id')->withTimestamps();
     }
 
 }

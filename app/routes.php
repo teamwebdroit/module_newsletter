@@ -19,7 +19,7 @@ Route::get('convert', 'HomeController@convert');// test
 Route::get('campagne', 'NewsletterController@campagne');// test
 Route::get('gobuild', 'NewsletterController@index');// test
 Route::get('campagne/{id}', 'CampagneController@view');
-Route::get('unsubscribe/{id}', 'CampagneController@unsubscribe');
+Route::get('unsubscribe/{id?}', 'CampagneController@unsubscribe');
 
 /**
  * Templates for js
