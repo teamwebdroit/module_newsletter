@@ -6,9 +6,8 @@
  */
 
 use Laracasts\Commander\CommanderTrait;
-use Droit\Newsletter\Worker\CampagneInterface;
-use Droit\Newsletter\Worker\StatsWorker;
-use Droit\Exceptions\CampagneSendException;
+use Droit\Newsletter\Worker\MailjetInterface;
+
 use Droit\Command\SendCampagneCommand;
 
 class SendController extends \BaseController {
@@ -16,14 +15,10 @@ class SendController extends \BaseController {
     use CommanderTrait;
 
     protected $worker;
-    protected $statsworker;
-    protected $charts;
 
-    public function __construct( CampagneInterface $worker, StatsWorker $statsworker)
+    public function __construct( MailjetInterface $worker)
     {
-        $this->worker       = $worker;
-        $this->statsworker  = $statsworker;
-        $this->charts       = new \Charts;
+        $this->worker = $worker;
     }
 
     /**
@@ -32,8 +27,7 @@ class SendController extends \BaseController {
      */
 	public function campagne()
 	{
-        $id       = Input::get('id');
-        $message  = $this->execute('Droit\Command\SendCampagneCommand', array('id' => $id) );
+        $message  = $this->execute('Droit\Command\SendCampagneCommand', array('id' => Input::get('id')) );
 
         return Redirect::to('admin/campagne')->with( array('status' => 'success' , 'message' => $message ) );
 	}

@@ -1,12 +1,9 @@
 <?php namespace Droit\Command;
 
 use Laracasts\Commander\CommandHandler;
-use Laracasts\Validation\FormValidationException;
-
 use Droit\Newsletter\Repo\NewsletterUserInterface;
-use Droit\Newsletter\Worker\CampagneInterface;
+use Droit\Newsletter\Worker\MailjetInterface;
 
-use Droit\Exceptions\SubscribeUserException;
 use Droit\Form\UnsubscribeValidation;
 
 class UnsubscribeCommandHandler implements CommandHandler {
@@ -15,7 +12,7 @@ class UnsubscribeCommandHandler implements CommandHandler {
     protected $worker;
     protected $validator;
 
-    public function __construct(CampagneInterface $worker, NewsletterUserInterface $abo, UnsubscribeValidation $validator)
+    public function __construct(MailjetInterface $worker, NewsletterUserInterface $abo, UnsubscribeValidation $validator)
     {
         $this->worker    = $worker;
         $this->abo       = $abo;

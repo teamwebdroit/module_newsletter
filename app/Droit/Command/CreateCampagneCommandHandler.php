@@ -2,14 +2,14 @@
 
 use Laracasts\Commander\CommandHandler;
 use Droit\Newsletter\Repo\NewsletterCampagneInterface;
-use Droit\Newsletter\Worker\CampagneInterface;
+use Droit\Newsletter\Worker\MailjetInterface;
 
 class CreateCampagneCommandHandler implements CommandHandler {
 
     protected $campagne;
     protected $worker;
 
-    public function __construct(NewsletterCampagneInterface $campagne, CampagneInterface $worker)
+    public function __construct(NewsletterCampagneInterface $campagne, MailjetInterface $worker)
     {
         $this->campagne = $campagne;
         $this->worker   = $worker;

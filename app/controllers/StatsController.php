@@ -6,18 +6,21 @@
  * Campagne statistiques
  */
 
+use Droit\Newsletter\Worker\MailjetInterface;
 use Droit\Newsletter\Worker\CampagneInterface;
 use Droit\Newsletter\Worker\StatsWorker;
 
 class StatsController extends \BaseController {
 
     protected $worker;
+    protected $campagne;
     protected $statsworker;
     protected $charts;
 
-    public function __construct( CampagneInterface $worker, StatsWorker $statsworker)
+    public function __construct( MailjetInterface $worker,CampagneInterface $campagne, StatsWorker $statsworker)
     {
         $this->worker       = $worker;
+        $this->campagne     = $campagne;
         $this->statsworker  = $statsworker;
         $this->charts       = new \Charts;
     }
@@ -32,7 +35,8 @@ class StatsController extends \BaseController {
 	public function show($id)
 	{
         // Stats open, bounce etc.
-        $campagne     = $this->worker->getCampagne($id);
+        $campagne     = $this->campagne->getCampagne($id);
+
         $statistiques = $this->worker->statsCampagne($campagne->api_campagne_id);
         $statistiques = $this->statsworker->filterResponseStatistics($statistiques);
         $statistiques = $this->charts->compileStats($statistiques);

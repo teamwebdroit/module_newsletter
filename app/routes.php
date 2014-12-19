@@ -171,7 +171,7 @@ Route::get('setHmtlCampagne', function()
     //$sent = $send->setHtml($html,$campagne->api_campagne_id);
     //$id = $send->removeContact('pruntrut@yahoo.fr');
     //$sent = $send->addContactToList($id);
-    $sent = $send->clickStatistics(14);
+    $sent = $send->findCampagneById(10);
     //print_r($campagne);
     print_r($sent);
 

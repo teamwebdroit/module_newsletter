@@ -1,9 +1,10 @@
 <?php namespace Droit\Command;
 
 use Laracasts\Commander\CommandHandler;
-use Droit\Newsletter\Worker\CampagneInterface;
+use Droit\Newsletter\Worker\MailjetInterface;
 use Droit\Newsletter\Repo\NewsletterUserInterface;
-use Droit\Form\InscriptionValidation;
+
+use Droit\Form\AddUserValidation;
 use Droit\Exceptions\SubscribeUserException;
 
 class AdminSubscribeCommandHandler implements CommandHandler {
@@ -12,7 +13,7 @@ class AdminSubscribeCommandHandler implements CommandHandler {
     protected $worker;
     protected $validator;
 
-    public function __construct( NewsletterUserInterface $abonne, CampagneInterface $worker, InscriptionValidation $validator)
+    public function __construct( NewsletterUserInterface $abonne, MailjetInterface $worker, AddUserValidation $validator)
     {
         $this->abonne    = $abonne;
         $this->worker    = $worker;

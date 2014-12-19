@@ -3,10 +3,8 @@
 use Laracasts\Commander\CommanderTrait;
 use Droit\Newsletter\Repo\NewsletterUserInterface;
 use Droit\Newsletter\Repo\NewsletterInterface;
-use Droit\Newsletter\Worker\CampagneInterface;
+
 use Droit\Command\AdminSubscribeCommandHandler;
-use Laracasts\Validation\FormValidationException;
-use Droit\Form\AddUserValidation;
 use Droit\Command\UnsubscribeCommand;
 
 class AbonneController extends \BaseController {
@@ -15,15 +13,11 @@ class AbonneController extends \BaseController {
 
     protected $abonne;
     protected $newsletter;
-    protected $validator;
-    protected $worker;
 
-    public function __construct(NewsletterUserInterface $abonne, NewsletterInterface $newsletter, AddUserValidation $validator, CampagneInterface $worker)
+    public function __construct(NewsletterUserInterface $abonne, NewsletterInterface $newsletter)
     {
         $this->abonne     = $abonne;
         $this->newsletter = $newsletter;
-        $this->validator  = $validator;
-        $this->worker     = $worker;
     }
 
 	/**
@@ -60,7 +54,6 @@ class AbonneController extends \BaseController {
 	 */
 	public function store()
 	{
-
         $this->execute('Droit\Command\AdminSubscribeCommand');
 
         return Redirect::to('admin/abonne')->with( array('status' => 'success' , 'message' => 'Abonné ajouté') );
@@ -110,14 +103,12 @@ class AbonneController extends \BaseController {
 	 * Remove the specified resource from storage.
 	 * DELETE /abonne/{id}
 	 *
-	 * @param  int  $id
+	 * @param  int  $email
 	 * @return Response
 	 */
 	public function destroy($email)
 	{
-        $command = array('email' => $email, 'newsletter_id' => array(1));
-
-        $this->execute('Droit\Command\UnsubscribeCommand',$command);
+        $this->execute('Droit\Command\UnsubscribeCommand', array('email' => $email, 'newsletter_id' => array(1)));
 
         return Redirect::back()->with(array('status' => 'success', 'message' => 'Abonné supprimé' ));
 	}

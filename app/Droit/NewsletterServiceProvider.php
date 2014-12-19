@@ -24,17 +24,12 @@ class NewsletterServiceProvider extends ServiceProvider {
     public function register()
     {
         $this->registerNewsletterService();
-
 		$this->registerContentService();
-
         $this->registerTypesService();
-
         $this->registerCampagneService();
-
         $this->registerCampagneWorkerService();
-
+        $this->registerMailjetWorkerService();
         $this->registerInscriptionService();
-
         $this->registerSubscribeService();
     }
 
@@ -95,6 +90,17 @@ class NewsletterServiceProvider extends ServiceProvider {
                 \App::make('Droit\Newsletter\Repo\NewsletterCampagneInterface'),
                 \App::make('Droit\Content\Repo\ArretInterface')
             );
+        });
+    }
+
+    /**
+     * Newsletter Mailjet API worker
+     */
+    protected function registerMailjetWorkerService(){
+
+        $this->app->bind('Droit\Newsletter\Worker\MailjetInterface', function()
+        {
+            return new \Droit\Newsletter\Worker\MailjetWorker();
         });
     }
 

@@ -2,8 +2,6 @@
 
 use Laracasts\Commander\CommandHandler;
 use Laracasts\Commander\Events\DispatchableTrait;
-use Laracasts\Validation\FormValidationException;
-use Droit\Exceptions\SubscribeUserException;
 
 use Droit\Newsletter\Repo\NewsletterUserInterface;
 use Droit\Form\InscriptionValidation;

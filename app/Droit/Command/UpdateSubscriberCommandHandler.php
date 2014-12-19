@@ -2,7 +2,7 @@
 
 use Laracasts\Commander\CommandHandler;
 use Droit\Newsletter\Repo\NewsletterUserInterface;
-use Droit\Newsletter\Worker\CampagneInterface;
+use Droit\Newsletter\Worker\MailjetInterface;
 
 class UpdateSubscriberCommandHandler implements CommandHandler {
 
@@ -10,11 +10,11 @@ class UpdateSubscriberCommandHandler implements CommandHandler {
     protected $abonne;
     protected $custom;
 
-    public function __construct(NewsletterUserInterface $abonne, CampagneInterface $worker)
+    public function __construct(NewsletterUserInterface $abonne, MailjetInterface $worker)
     {
-        $this->abonne     = $abonne;
-        $this->worker     = $worker;
-        $this->custom    = new \Custom;
+        $this->abonne = $abonne;
+        $this->worker = $worker;
+        $this->custom = new \Custom;
     }
 
     /**

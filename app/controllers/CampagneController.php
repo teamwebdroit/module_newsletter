@@ -1,11 +1,11 @@
 <?php
 
 use Laracasts\Commander\CommanderTrait;
-use Droit\Newsletter\Repo\NewsletterContentInterface;
-use Droit\Content\Repo\ArretInterface;
-use Droit\Newsletter\Repo\NewsletterCampagneInterface;
 use Droit\Newsletter\Worker\CampagneInterface;
+use Droit\Newsletter\Repo\NewsletterContentInterface;
+use Droit\Newsletter\Repo\NewsletterCampagneInterface;
 use Droit\Newsletter\Repo\NewsletterTypesInterface;
+
 use Droit\Command\CreateCampagneCommand;
 
 class CampagneController extends BaseController {
@@ -13,19 +13,17 @@ class CampagneController extends BaseController {
     use CommanderTrait;
 
     protected $content;
-    protected $arret;
+    protected $worker;
     protected $types;
     protected $campagne;
-    protected $worker;
 
     /* Inject dependencies */
-    public function __construct( NewsletterContentInterface $content, ArretInterface $arret, NewsletterTypesInterface $types, NewsletterCampagneInterface $campagne, CampagneInterface $worker)
+    public function __construct( NewsletterContentInterface $content, CampagneInterface $worker, NewsletterTypesInterface $types, NewsletterCampagneInterface $campagne)
     {
         $this->content  = $content;
-        $this->arret    = $arret;
-        $this->types   = $types;
-        $this->campagne = $campagne;
         $this->worker   = $worker;
+        $this->types    = $types;
+        $this->campagne = $campagne;
     }
 
     public function index()
@@ -35,19 +33,20 @@ class CampagneController extends BaseController {
         return View::make('newsletter.index')->with( array('campagnes' => $campagnes) );
     }
 
+    /**
+     * Create form for a new campagne
+     * GET /admin/campagne/create
+     *
+     * @return Response
+     */
     public function create()
     {
         return View::make('newsletter.create');
     }
 
-    public function compose()
-    {
-        return View::make('newsletter.compose')->with(array( 'isNewsletter' => true ));
-    }
-
     /**
-     * Store a newly created resource in storage.
-     * POST /campagne
+     * Store a newly created campagne and sync to service.
+     * POST /admin/campagne
      *
      * @return Response
      */
@@ -59,8 +58,8 @@ class CampagneController extends BaseController {
     }
 
     /**
-     * Display the specified resource.
-     * GET /campagne/{id}
+     * Display the build of campagne in admin
+     * GET /admin/campagne/{id}
      *
      * @param  int  $id
      * @return Response
@@ -69,32 +68,14 @@ class CampagneController extends BaseController {
     {
         $blocs    = $this->types->getAll();
         $infos    = $this->campagne->find($id);
-        $content  = $this->content->getByCampagne($id);
-
-        $campagne = $content->map(function($item)
-        {
-            if ($item->arret_id > 0)
-            {
-                $arret = $this->arret->find($item->arret_id);
-                $arret->setAttribute('type',$item->type);
-                $arret->setAttribute('rangItem',$item->rang);
-                $arret->setAttribute('idItem',$item->id);
-                return $arret;
-            }
-            else
-            {
-                $item->setAttribute('rangItem',$item->rang);
-                $item->setAttribute('idItem',$item->id);
-                return $item;
-            }
-        });
+        $campagne = $this->worker->findCampagneById($id);
 
         return View::make('newsletter.show')->with(array( 'isNewsletter' => true , 'campagne' => $campagne , 'infos' => $infos, 'blocs' => $blocs ));
     }
 
     /**
-     * Show the form for editing the specified resource.
-     * GET /campagne/{id}/edit
+     * Show the form for editing the campagne.
+     * GET /admin/campagne/{id}/edit
      *
      * @param  int  $id
      * @return Response
@@ -106,6 +87,13 @@ class CampagneController extends BaseController {
         return View::make('newsletter.edit')->with(array( 'campagne' => $campagne ));
     }
 
+    /**
+     * View in browser of campagne
+     * GET /campagne/{id}
+     *
+     * @param  int  $id
+     * @return Response
+     */
     public function view($id){
 
         /*
@@ -115,31 +103,14 @@ class CampagneController extends BaseController {
         $browser      = url('/campagne/'.$id);
 
         $infos    = $this->campagne->find($id);
-        $content  = $this->content->getByCampagne($id);
-
-        $campagne = $content->map(function($item)
-        {
-            if ($item->arret_id > 0)
-            {
-                $arret = $this->arret->find($item->arret_id);
-                $arret->setAttribute('type',$item->type);
-                $arret->setAttribute('rangItem',$item->rang);
-                $arret->setAttribute('idItem',$item->id);
-                return $arret;
-            }
-            else
-            {
-                $item->setAttribute('rangItem',$item->rang);
-                $item->setAttribute('idItem',$item->id);
-                return $item;
-            }
-        });
+        $campagne = $this->worker->findCampagneById($id);
 
         return View::make('newsletter.view')->with(array('content' => $campagne , 'infos' => $infos , 'unsubscribe' => $unsubscribe , 'browser' => $browser));
     }
+
     /**
-     * Update the specified resource in storage.
-     * PUT /campagne/{id}
+     * Update the campagne infos.
+     * PUT /admin/campagne/{id}
      *
      * @param  int  $id
      * @return Response
@@ -159,7 +130,7 @@ class CampagneController extends BaseController {
 
     /**
      * Remove the specified resource from storage.
-     * DELETE /campagne/{id}
+     * DELETE /admin/campagne/{id}
      *
      * @param  int  $id
      * @return Response
@@ -172,7 +143,7 @@ class CampagneController extends BaseController {
     }
 
     /**
-     * Unsubcribe from newsletter
+     * Unsubcribe page newsletter
      * Get /unsubscribe/{id}
      *
      * @param  int  $id
@@ -185,6 +156,11 @@ class CampagneController extends BaseController {
         return View::make('unsubscribe')->with(array('campagne' => $campagne));
     }
 
+    /**
+     * Add bloc to newsletter
+     * POST data
+     * @return Response
+     */
     public function addContent(){
 
         $data = Input::all();
@@ -225,6 +201,11 @@ class CampagneController extends BaseController {
 
     }
 
+    /**
+     * Edit bloc from newsletter
+     * POST data
+     * @return Response
+     */
     public function editContent(){
 
         $data = Input::all();
@@ -255,7 +236,7 @@ class CampagneController extends BaseController {
     /**
      * Sorting bloc newsletter
      * POST remove
-     *
+     * AJAX
      * @return Response
      */
     public function sorting(){
@@ -271,7 +252,7 @@ class CampagneController extends BaseController {
     /**
      * Remove bloc from newsletter
      * POST remove
-     *
+     * AJAX
      * @return Response
      */
     public function remove(){

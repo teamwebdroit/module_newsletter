@@ -10,7 +10,7 @@ class AdminController extends \BaseController {
     protected $abonne;
     protected $categorie;
 
-    public function __construct( NewsletterUserInterface $abonne,ArretInterface $arret, CategorieInterface $categorie )
+    public function __construct( NewsletterUserInterface $abonne, ArretInterface $arret, CategorieInterface $categorie )
     {
         $this->arret     = $arret;
         $this->abonne    = $abonne;
@@ -21,8 +21,8 @@ class AdminController extends \BaseController {
     }
 
 	/**
-	 * Display a listing of the resource.
-	 * GET /adminconotroller
+	 * Display dashboard index of administration
+	 * GET /admin/dashboard
 	 *
 	 * @return Response
 	 */
@@ -33,20 +33,6 @@ class AdminController extends \BaseController {
         $abonnes    = $this->abonne->getAll();
 
         return View::make('admin.index')->with(array('arrets' => $arrets , 'categories' => $categories , 'abonnes' => $abonnes ));
-	}
-
-	/**
-	 * Show the form for creating a new resource.
-	 * GET /adminconotroller/create
-	 *
-	 * @return Response
-	 */
-	public function arret()
-	{
-        $arrets     = $this->arret->getAll(195);
-        $categories = $this->categorie->getAll(195);
-
-        return View::make('admin.index')->with(array('arrets' => $arrets , 'categories' => $categories));
 	}
 
 }

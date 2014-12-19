@@ -1,16 +1,18 @@
 <?php namespace Droit\Command;
 
 use Laracasts\Commander\CommandHandler;
+use Droit\Newsletter\Worker\MailjetInterface;
 use Droit\Newsletter\Worker\CampagneInterface;
-use Droit\Exceptions\CampagneSendException;
 
 class SendCampagneCommandHandler implements CommandHandler {
 
     protected $worker;
+    protected $campagne;
 
-    public function __construct( CampagneInterface $worker)
+    public function __construct( MailjetInterface $worker, CampagneInterface $campagne)
     {
-        $this->worker = $worker;
+        $this->worker   = $worker;
+        $this->campagne = $campagne;
     }
 
     /**
@@ -22,19 +24,20 @@ class SendCampagneCommandHandler implements CommandHandler {
     public function handle($command)
     {
         // Get campagne
-        $campagne = $this->worker->getCampagne($command->id);
+        $campagne = $this->campagne->getCampagne($command->id);
 
         //set or update html
-        $html = $this->worker->html($campagne->id);
+        $html = $this->campagne->html($campagne->id);
 
         try
         {
-
+            // Sync html content to api service and send!
             $this->worker->setHtml($html,$campagne->api_campagne_id);
             $this->worker->sendCampagne($campagne->api_campagne_id,$campagne->id);
 
-            $campagne->status      = 'envoyé';
-            $campagne->updated_at  = date('Y-m-d G:i:s');
+            // Update campagne status
+            $campagne->status     = 'envoyé';
+            $campagne->updated_at = date('Y-m-d G:i:s');
 
             $campagne->save();
 
