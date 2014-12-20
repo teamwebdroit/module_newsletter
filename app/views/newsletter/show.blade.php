@@ -28,8 +28,9 @@
 
             <input id="campagne_id" value="{{ $infos->id }}" type="hidden">
 
-            <div class="component-build">
+            <div class="component-build"><!-- Start component-build -->
                 <div id="bailNewsletter" class="onBuild">
+
                     <!-- Logos -->
                     @include('newsletter.send.logos')
                     <!-- Header -->
@@ -39,7 +40,6 @@
 
                     <div id="viewBuild">
                         <div id="sortable">
-
                             @if(!empty($campagne))
                                 @foreach($campagne as $bloc)
                                     <div id="bloc_rang_{{ $bloc->idItem }}" data-rel="{{ $bloc->idItem }}">
@@ -47,13 +47,11 @@
                                     </div>
                                 @endforeach
                             @endif
-
                         </div>
                     </div>
                 </div>
 
-                <div id="build">
-
+                <div id="build"><!-- Start build -->
                     @if(!empty($blocs))
                         @foreach($blocs as $bloc)
                             <div class="create_bloc" id="create_{{ $bloc->id }}">
@@ -71,16 +69,14 @@
                                 @endforeach
                             @endif
                         </div>
-                    </div>
+                    </div><!-- End build -->
 
                 </div>
-
-            </div>
+            </div><!-- End component-build -->
 
         </div><!-- end 12 col -->
     </div><!-- end row -->
 
 </div><!-- end main div for app-->
-
 
 @stop

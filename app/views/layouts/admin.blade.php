@@ -33,18 +33,6 @@
         <link href="<?php echo asset('js/vendor/angular/angular-xeditable.css');?>" rel="stylesheet">
     @endif
 
-    @if(isset($isChart))
-        <!-- Stats -->
-        <script type='text/javascript' src="<?php echo asset('admin/plugins/easypiechart/jquery.easypiechart.min.js');?>"></script>
-        <script type='text/javascript' src="<?php echo asset('admin/plugins/sparklines/jquery.sparklines.min.js');?>"></script>
-        <!-- Charts -->
-        <script type='text/javascript' src="<?php echo asset('admin/plugins/charts-chartjs/Chart.min.js');?>"></script>
-        <script type='text/javascript' src="<?php echo asset('admin/plugins/charts-flot/jquery.flot.min.js');?>"></script>
-        <script type='text/javascript' src="<?php echo asset('admin/plugins/charts-flot/jquery.flot.stack.min.js');?>"></script>
-        <script type='text/javascript' src="<?php echo asset('admin/plugins/charts-flot/jquery.flot.pie.min.js');?>"></script>
-        <script type='text/javascript' src="<?php echo asset('admin/plugins/charts-flot/jquery.flot.resize.min.js');?>"></script>
-    @endif
-
     <link rel='stylesheet' type='text/css' href='<?php echo asset('admin/plugins/form-toggle/toggles.css');?>' />
     <base href="/">
 
@@ -116,7 +104,6 @@
     </div> <!-- page-container -->
 
     <script src="<?php echo asset('js/vendor/jqueryui/jquery-ui.min.js');?>"></script>
-
     <script type="text/javascript" src="<?php echo asset('admin/js/bootstrap.min.js');?>"></script>
     <script type="text/javascript" src="<?php echo asset('admin/js/enquire.js');?>"></script>
     <script type="text/javascript" src="<?php echo asset('admin/js/jquery.cookie.js');?>"></script>
@@ -148,16 +135,10 @@
 
     @if(isset($isNewsletter))
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.2/angular.min.js"></script>
-        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.8/angular-route.js"></script>
-        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.8/angular-resource.js"></script>
         <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular-sanitize.js"></script>
         <script type="text/javascript" src="<?php echo asset('js/vendor/angular/angular-redactor.js');?>"></script>
         <script type="text/javascript" src="<?php echo asset('js/vendor/angular/angular-flow.js');?>"></script>
-        <script type="text/javascript" src="<?php echo asset('js/vendor/angular/angular-notify.js');?>"></script>
-        <script type="text/javascript" src="<?php echo asset('js/vendor/angular/angular-xeditable.js');?>"></script>
         <script type="text/javascript" src="<?php echo asset('js/build.js');?>"></script>
-        <script type="text/javascript" src="<?php echo asset('js/newsletter/directives/directive.js');?>"></script>
-        <script type="text/javascript" src="<?php echo asset('js/newsletter/factories/factory.js');?>"></script>
         <script type="text/javascript" src="<?php echo asset('js/sorting.js');?>"></script>
     @endif
 

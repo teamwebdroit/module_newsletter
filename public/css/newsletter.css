@@ -161,6 +161,12 @@
     max-width: 560px;
 }
 
+#bailNewsletter .thumbnail.mini,
+#bailNewsletterCreate .thumbnail.mini{
+    margin-bottom: 10px;
+    max-width: 130px;
+}
+
 #bailNewsletter .upoadBtn a,
 #bailNewsletterCreate .upoadBtn a{
     background: none repeat scroll 0 0 #ccc;

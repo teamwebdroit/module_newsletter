@@ -7,6 +7,7 @@
 
 use Laracasts\Commander\CommanderTrait;
 use Droit\Newsletter\Worker\MailjetInterface;
+use Droit\Newsletter\Worker\CampagneInterface;
 
 use Droit\Command\SendCampagneCommand;
 
@@ -15,10 +16,12 @@ class SendController extends \BaseController {
     use CommanderTrait;
 
     protected $worker;
+    protected $campagne;
 
-    public function __construct( MailjetInterface $worker)
+    public function __construct( MailjetInterface $worker, CampagneInterface $campagne)
     {
-        $this->worker = $worker;
+        $this->worker   = $worker;
+        $this->campagne = $campagne;
     }
 
     /**
@@ -37,11 +40,11 @@ class SendController extends \BaseController {
         $id    = Input::get('id');
         $email = Input::get('email');
 
-        $campagne = $this->worker->getCampagne($id);
+        $campagne = $this->campagne->getCampagne($id);
         $sujet    = 'TEST | '.$campagne->sujet;
 
         // GET html
-        $html = $this->worker->html($campagne->id);
+        $html = $this->campagne->html($campagne->id);
 
         $this->worker->sendTest($email,$html,$sujet);
 

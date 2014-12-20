@@ -1,7 +1,6 @@
 <form flow-init flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]"
       flow-files-submitted="$flow.upload()"
       class="row" name="blocForm" class="form-horizontal"
-      ng-controller="FormController as formCtrl"
       method="post" action="<?php echo url('process'); ?>">
 
     <div class="col-md-7" id="bailNewsletterCreate">
@@ -15,8 +14,8 @@
                 <td width="25" class="resetMarge"></td><!-- space -->
                 <td valign="top" align="center" width="160" class="resetMarge">
 
-                    <div class="thumbnail" ng-hide="$flow.files.length"><img src="http://www.placehold.it/130x140/EFEFEF/AAAAAA&text=choisir+une+image" /></div>
-                    <div class="thumbnail" ng-show="$flow.files.length"><img flow-img="$flow.files[0]" /></div>
+                    <div class="thumbnail mini" ng-hide="$flow.files.length"><img src="http://www.placehold.it/130x140/EFEFEF/AAAAAA&text=choisir+une+image" /></div>
+                    <div class="thumbnail mini" ng-show="$flow.files.length"><img flow-img="$flow.files[0]" /></div>
                     <div class="uploadBtn">
                         <span class="btn btn-xs btn-info" ng-hide="$flow.files.length" flow-btn flow-attrs="{accept:'image/*'}">Selectionner image</span>
                         <span class="btn btn-xs btn-warning" ng-show="$flow.files.length" flow-btn flow-attrs="{accept:'image/*'}">Changer</span>
