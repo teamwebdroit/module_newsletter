@@ -131,29 +131,6 @@ $(function() {
         $('#deleteImageForm_'+index).submit();
     });
 
-
-/*    $.datepicker.regional['fr-CH'] = {
-        closeText: 'Fermer',
-        prevText: '&#x3c;Préc',
-        nextText: 'Suiv&#x3e;',
-        currentText: 'Courant',
-        dateFormat: "yy-mm-dd",
-        monthNames: ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'],
-        monthNamesShort: ['Jan','Fév','Mar','Avr','Mai','Jun','Jul','Aoû','Sep','Oct','Nov','Déc'],
-        dayNames: ['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'],
-        dayNamesShort: ['Dim','Lun','Mar','Mer','Jeu','Ven','Sam'],
-        dayNamesMin: ['Di','Lu','Ma','Me','Je','Ve','Sa'],
-        weekHeader: 'Sm',
-        firstDay: 1,
-        isRTL: false,
-        showMonthAfterYear: false,
-        yearSuffix: ''
-    };
-
-    $.datepicker.setDefaults($.datepicker.regional['fr-CH']);
-
-    $( ".datePicker" ).datepicker();*/
-
     $.fn.datepicker.dates['fr'] = {
         days: ['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'],
         daysShort: ['Dim','Lun','Mar','Mer','Jeu','Ven','Sam'],
@@ -224,23 +201,41 @@ $(function() {
     });
 
     $('#bootbox-demo-3').click(function(){
-        bootbox.dialog({
-            message: "Etes-vous sûr de vouloir envoyer la campagne",
-            title: "Envoyer la campagne",
-            buttons: {
-                success: {
-                    label: "Oui!",
-                    className: "btn-success",
-                    callback: function() {
-                        $("#sendCampagneForm").submit();
+
+        var campagneId = $(this).data('campagne');
+        var sujet      = '';
+
+        /**
+         * Get campagne infos
+        */
+        $.get('admin/campagne/simple/' + campagneId , function( campagne ) {
+            sujet = campagne.sujet;
+            console.log(sujet);
+        }) .always(function() {
+
+            /**
+             * Modal
+             */
+            bootbox.dialog({
+                message: "Etes-vous sûr de vouloir envoyer la campagne : <strong>" + sujet + "</strong>?",
+                title: "Envoyer la campagne",
+                buttons: {
+                    success: {
+                        label: "Oui!",
+                        className: "btn-success",
+                        callback: function() {
+                            $("#sendCampagneForm").submit();
+                        }
+                    },
+                    main: {
+                        label: "Annuler",
+                        className: "btn-default"
                     }
-                },
-                main: {
-                    label: "Annuler",
-                    className: "btn-default"
                 }
-            }
+            });
+
         });
+
     });
 
 });

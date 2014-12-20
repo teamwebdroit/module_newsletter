@@ -7,6 +7,7 @@ use Droit\Newsletter\Entities\Newsletter_contents as M;
 class NewsletterContentEloquent implements NewsletterContentInterface{
 
 	protected $contents;
+    protected $custom;
 
 	/**
 	 * Construct a new SentryUser Object
@@ -14,6 +15,7 @@ class NewsletterContentEloquent implements NewsletterContentInterface{
 	public function __construct(M $contents)
 	{
 		$this->contents = $contents;
+        $this->custom   = new \Custom;
 	}
 	
 	public function getByCampagne($newsletter_campagne_id){
@@ -107,7 +109,7 @@ class NewsletterContentEloquent implements NewsletterContentInterface{
         }
         // if we changed the lien
         if(isset($data['lien'])){
-            $contents->lien = $data['lien'];
+            $contents->lien = $this->custom->sanitizeUrl($data['lien']);
         }
 
         $contents->updated_at = date('Y-m-d G:i:s');

@@ -59,6 +59,7 @@ Route::group(array('prefix' => 'admin'), function()
 
     Route::get('campagne/compose', 'CampagneController@compose');
     Route::get('campagne/view/{id}', 'CampagneController@view');
+    Route::get('campagne/simple/{id}', 'CampagneController@simple');
     Route::resource('campagne', 'CampagneController');
 
     Route::resource('abonne', 'AbonneController');

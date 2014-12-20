@@ -531,4 +531,13 @@ class Custom {
         }
     }
 
+	public function sanitizeUrl($url){
+
+		if (!preg_match("/^(http|https|ftp):/", $url)) {
+			$url = 'http://'.$url;
+		}
+
+		return $url;
+	}
+
 }

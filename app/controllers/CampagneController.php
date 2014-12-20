@@ -16,6 +16,7 @@ class CampagneController extends BaseController {
     protected $worker;
     protected $types;
     protected $campagne;
+    protected $custom;
 
     /* Inject dependencies */
     public function __construct( NewsletterContentInterface $content, CampagneInterface $worker, NewsletterTypesInterface $types, NewsletterCampagneInterface $campagne)
@@ -24,6 +25,7 @@ class CampagneController extends BaseController {
         $this->worker   = $worker;
         $this->types    = $types;
         $this->campagne = $campagne;
+        $this->custom = new \Custom;
     }
 
     public function index()
@@ -85,6 +87,11 @@ class CampagneController extends BaseController {
         $campagne = $this->campagne->find($id);
 
         return View::make('newsletter.edit')->with(array( 'campagne' => $campagne ));
+    }
+
+    public function simple($id){
+
+        return $this->campagne->find($id);
     }
 
     /**
@@ -175,7 +182,7 @@ class CampagneController extends BaseController {
         $titre    = (isset($data['titre']) ? $data['titre'] : null);
         $contenu  = (isset($data['contenu']) ? $data['contenu'] : null);
         $image    = (isset($data['image']) ? $data['image'] : null);
-        $lien     = (isset($data['lien']) ? $data['lien'] : null);
+        $lien     = (isset($data['lien']) ? $this->custom->sanitizeUrl($data['lien']) : null);
         $arret_id = (isset($data['arret_id']) ? $data['arret_id'] : 0);
 
         $new = array(

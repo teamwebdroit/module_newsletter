@@ -72,7 +72,6 @@ class CustomTest extends TestCase {
         $this->assertEquals($expected,$actual);
     }
 
-
     /**
      * Prepare terms for search
      *
@@ -84,6 +83,20 @@ class CustomTest extends TestCase {
 
         $expected = array('TF 4A_549/2013','bail');
         $actual   = $this->custom->prepareSearch($string);
+
+        $this->assertEquals($expected,$actual);
+    }
+
+    /**
+     * Prepare terms for search
+     *
+     * @return void
+     */
+    public function testSanitizeUrlForImageInNewsletter()
+    {
+        $string   = 'www.deignpond.ch';
+        $expected = 'http://www.deignpond.ch';
+        $actual   = $this->custom->sanitizeUrl($string);
 
         $this->assertEquals($expected,$actual);
     }
