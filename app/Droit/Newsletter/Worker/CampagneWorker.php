@@ -1,6 +1,5 @@
 <?php namespace Droit\Newsletter\Worker;
 
-use Droit\Newsletter\Worker\CampagneInterface;
 use Droit\Newsletter\Repo\NewsletterContentInterface;
 use Droit\Newsletter\Repo\NewsletterCampagneInterface;
 use Droit\Content\Repo\ArretInterface;
@@ -11,17 +10,12 @@ class CampagneWorker implements CampagneInterface{
     protected $content;
     protected $campagne;
     protected $arret;
-    protected $mailjet;
-    protected $list;
 
 	public function __construct(NewsletterContentInterface $content,NewsletterCampagneInterface $campagne, ArretInterface $arret)
 	{
         $this->content  = $content;
         $this->campagne = $campagne;
         $this->arret    = $arret;
-
-        $this->mailjet  = new \Droit\Newsletter\Service\Mailjet();
-        $this->list     = '1';
 	}
 
     public function getCampagne($id){

@@ -37,12 +37,12 @@ class StatsController extends \BaseController {
         // Stats open, bounce etc.
         $campagne     = $this->campagne->getCampagne($id);
 
-        $statistiques = $this->worker->statsCampagne($campagne->api_campagne_id);
-        $statistiques = $this->statsworker->filterResponseStatistics($statistiques);
-        $statistiques = $this->charts->compileStats($statistiques);
+        $campagneStats = $this->worker->statsCampagne($campagne->api_campagne_id);
+        $campagneStats = $this->statsworker->filterResponseStatistics($campagneStats);
+        $statistiques  = $this->charts->compileStats($campagneStats);
 
         // Clicks
-        $clickStats = $this->worker->clickStatistics($id);
+        $clickStats = $this->worker->clickStatistics($campagneStats->CampaignID);
         $clickStats = $this->statsworker->filterResponseStatisticsMany($clickStats);
         $clickStats = $this->statsworker->aggregateStatsClicksLinks($clickStats);
 

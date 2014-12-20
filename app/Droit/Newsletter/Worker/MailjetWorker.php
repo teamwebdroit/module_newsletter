@@ -145,6 +145,17 @@ class MailjetWorker implements MailjetInterface{
 
     }
 
+    public function getCampagne($CampaignID){
+
+        # Parameters
+        $params = array( "method" => "VIEW" , 'unique' => 'mj.nl='.$CampaignID);
+
+        # Call
+        $response = $this->mailjet->campaign($params);
+
+        return ($response ? $response : false);
+    }
+
     /**
      * create new campagne
      */
@@ -286,7 +297,7 @@ class MailjetWorker implements MailjetInterface{
     public function clickStatistics($id){
 
         # Parameters
-        $params = array( "method" => "LIST", 'CampaignID' => $id );
+        $params = array('CampaignID' => $id );
 
         # Call
         $response = $this->mailjet->clickstatistics($params);

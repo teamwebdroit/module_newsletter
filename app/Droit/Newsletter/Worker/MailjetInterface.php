@@ -21,6 +21,7 @@ interface MailjetInterface {
     /**
      * Campagnes
      */
+    public function getCampagne($CampaignID);
     public function createCampagne($campagne);
     public function setHtml($html,$id);
     public function sendTest($email,$html,$sujet);
