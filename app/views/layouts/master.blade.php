@@ -31,19 +31,6 @@
         <script src="<?php echo asset('js/header.js');?>"></script>
         <script src="<?php echo asset('js/contact-form-validate.js');?>"></script>
 
-        @if(isset($required))
-
-            <link href="<?php echo asset('js/vendor/angular/angular-notify.css');?>" rel="stylesheet">
-            <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-rc.1/angular.js"></script>
-            <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.8/angular-route.js"></script>
-            <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.8/angular-resource.js"></script>
-            <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular-sanitize.js"></script>
-            <script src="<?php echo asset('js/vendor/angular/dirPagination.js');?>"></script>
-            <script type="text/javascript" src="<?php echo asset('js/select.js');?>"></script>
-            <script type="text/javascript" src="<?php echo asset('js/filter.js');?>"></script>
-
-        @endif
-
     </head>
 
     <body id="top">

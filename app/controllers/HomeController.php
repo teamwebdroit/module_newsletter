@@ -76,8 +76,6 @@ class HomeController extends BaseController {
      */
     public function jurisprudence()
     {
-        $required = true;
-
         \Cache::forget('annees');
         \Cache::forget('arrets');
         \Cache::forget('analyses');
@@ -97,7 +95,7 @@ class HomeController extends BaseController {
             return $this->jurisprudence->preparedAnnees();
         });
 
-        return View::make('jurisprudence')->with(array( 'arrets' => $arrets, 'analyses' => $analyses, 'annees' => $annees , 'required' => $required ));
+        return View::make('jurisprudence')->with(array( 'arrets' => $arrets, 'analyses' => $analyses, 'annees' => $annees ));
     }
 
     /**

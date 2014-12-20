@@ -26,7 +26,7 @@ class NewsletterCampagneEloquent implements NewsletterCampagneInterface{
 
     public function getLastCampagne(){
 
-        return $this->campagne->orderBy('id','DESC')->get()->first();
+        return $this->campagne->where('status','=','envoyé')->orderBy('id','DESC')->get()->first();
     }
 
 	public function find($id){
