@@ -106,7 +106,8 @@ class HomeController extends BaseController {
      */
     public function newsletters($id = null)
     {
-        $newsletter     = ($id ? $id : $this->campagne->getLastCampagne()->id );
+        $newsletter = ($id ? $id : $this->campagne->getLastCampagne());
+        $newsletter = ( !empty($newsletter) ? $newsletter->first()->id : array());
 
         $listCampagnes  = $this->campagne->getAllSent();
         $campagne       = $this->worker->getCampagne($newsletter);
