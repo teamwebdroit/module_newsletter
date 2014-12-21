@@ -22,17 +22,14 @@ class CreateCampagneCommandHandler implements CommandHandler {
      */
     public function handle($command)
     {
-        $data['sujet']         = $command->sujet;
-        $data['auteurs']       = $command->auteurs;
-        $data['newsletter_id'] = 1;
+        $campagne = $this->campagne->create( array('sujet' => $command->sujet, 'auteurs' => $command->auteurs, 'newsletter_id' => 1 ) );
 
-        $campagne = $this->campagne->create( $data );
-
-        if($this->worker->createCampagne($campagne))
+        try
         {
+            $this->worker->createCampagne($campagne);
             return $campagne;
         }
-        else
+        catch (\Droit\Exceptions\CampagneCreationExceptio $e)
         {
             throw new \Droit\Exceptions\CampagneCreationException('Problème avec la création de campagne sur mailjet ', array('status' => 'error') );
         }
