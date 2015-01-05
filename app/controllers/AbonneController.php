@@ -18,6 +18,8 @@ class AbonneController extends \BaseController {
     {
         $this->abonne     = $abonne;
         $this->newsletter = $newsletter;
+
+        View::share('pageTitle', 'Abonnés');
     }
 
 	/**

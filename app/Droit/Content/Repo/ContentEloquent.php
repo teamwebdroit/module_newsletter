@@ -30,13 +30,21 @@ class ContentEloquent implements ContentInterface{
         return $this->content->where('slug','=',$slug)->get()->first();
     }
 
+	public function findyByType($type){
+
+		return $this->content->where('type','=',$type)->get();
+	}
+
 	public function create(array $data){
 
 		$content = $this->content->create(array(
 			'titre'      => $data['titre'],
 			'contenu'    => $data['contenu'],
             'image'      => $data['image'],
+			'url'        => $data['url'],
             'slug'       => $data['slug'],
+			'type'       => $data['type'],
+			'position'   => $data['position'],
 			'created_at' => date('Y-m-d G:i:s'),
 			'updated_at' => date('Y-m-d G:i:s')
 		));
@@ -59,9 +67,12 @@ class ContentEloquent implements ContentInterface{
 			return false;
 		}
 
-        $content->titre      = $data['titre'];
-        $content->contenu    = $data['contenu'];
-        $content->slug       = $data['slug'];
+        $content->titre    = $data['titre'];
+        $content->contenu  = $data['contenu'];
+        $content->url      = $data['url'];
+		$content->type     = $data['type'];
+		$content->position = $data['position'];
+		$content->slug     = $data['slug'];
 
         if($data['image']){
             $content->image = $data['image'];

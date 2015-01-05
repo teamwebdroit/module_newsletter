@@ -37,9 +37,11 @@ class HomeController extends BaseController {
 
         $categories = $this->categorie->getAll(195);
 
-        $pub = $this->content->findyBySlug('pub');
+        $pub      = $this->content->findyByType('pub');
+        $soutiens = $this->content->findyByType('soutien');
 
         View::share('pub', $pub);
+        View::share('soutiens', $soutiens);
         View::share('arrets', $arrets);
         View::share('latest', $latest);
         View::share('categories', $categories);

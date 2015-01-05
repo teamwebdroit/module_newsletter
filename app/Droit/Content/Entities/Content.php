@@ -4,7 +4,7 @@ use Droit\Common\BaseModel as BaseModel;
 
 class Content extends BaseModel {
 
-	protected $fillable = ['titre','contenu','image','slug'];
+	protected $fillable = ['titre','contenu','image','url','slug','type','position'];
 
 	/*
      * Validation rules

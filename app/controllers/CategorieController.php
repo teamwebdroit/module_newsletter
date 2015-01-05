@@ -14,6 +14,8 @@ class CategorieController extends \BaseController {
         $this->categorie = $categorie;
         $this->upload    = $upload;
         $this->custom    = new \Custom;
+
+        View::share('pageTitle', 'Catégories');
     }
 
     /**

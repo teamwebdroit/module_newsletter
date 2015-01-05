@@ -21,6 +21,7 @@ class CreateContentsTable extends Migration {
 			$table->string('url')->nullable();
 			$table->string('slug')->nullable();
 			$table->enum('type', array('pub','texte','soutien'));
+			$table->enum('position', array('sidebar','home-bloc','home-colonne'));
 			$table->timestamps();
 		});
 	}

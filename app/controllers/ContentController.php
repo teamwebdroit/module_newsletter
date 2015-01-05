@@ -1,16 +1,22 @@
 <?php
 
 use Droit\Content\Repo\ContentInterface;
+use Droit\Service\Worker\UploadInterface;
 
 class ContentController extends \BaseController {
 
     protected $content;
+    protected $upload;
     protected $custom;
 
-    public function __construct(ContentInterface $content)
+    public function __construct(ContentInterface $content, UploadInterface $upload )
     {
         $this->content   = $content;
+        $this->upload    = $upload;
         $this->custom    = new \Custom;
+
+        View::share('pageTitle', 'Contenus');
+        View::share('positions', array('sidebar' => 'Barre latérale', 'home-bloc' => 'Accueil bloc plein', 'home-colonne' => 'Accueil bloc colonne'));
     }
 
 	/**
@@ -24,7 +30,6 @@ class ContentController extends \BaseController {
         $content  = $this->content->getAll();
 
         return View::make('admin.content.index')->with(array( 'content' => $content ));
-
 	}
 
     /**
@@ -35,7 +40,7 @@ class ContentController extends \BaseController {
      */
     public function create()
     {
-        //
+        return View::make('admin.content.create');
     }
 
     /**
@@ -46,7 +51,26 @@ class ContentController extends \BaseController {
      */
     public function store()
     {
-        //
+        $_file = Input::file('file', null);
+
+        // Files upload
+        if(isset($_file) )
+        {
+            $file = $this->upload->upload( Input::file('file') , 'files');
+        }
+
+        // Data array
+        $data['titre']    = Input::get('titre');
+        $data['contenu']  = Input::get('contenu');
+        $data['url']      = Input::get('url');
+        $data['slug']     = Input::get('slug');
+        $data['type']     = Input::get('type');
+        $data['position'] = Input::get('position');
+        $data['image']    = (isset($file) && !empty($file) ? $file['name'] : null);
+
+        $content = $this->content->create( $data );
+
+        return Redirect::to('admin/contenu/'.$content->id)->with( array('status' => 'success' , 'message' => 'Contenu crée') );
     }
 
     /**
@@ -58,7 +82,9 @@ class ContentController extends \BaseController {
      */
     public function show($id)
     {
-        //
+        $contenu = $this->content->find($id);
+
+        return View::make('admin.content.show')->with(array( 'contenu' => $contenu ));
     }
 
     /**
@@ -82,7 +108,28 @@ class ContentController extends \BaseController {
      */
     public function update($id)
     {
-        //
+
+        $_file = Input::file('file', null);
+
+        // Files upload
+        if(isset($_file) )
+        {
+            $file = $this->upload->upload( Input::file('file') , 'files');
+        }
+
+        // Data array
+        $data['id']       = $id;
+        $data['titre']    = Input::get('titre');
+        $data['contenu']  = Input::get('contenu');
+        $data['url']      = Input::get('url');
+        $data['slug']     = Input::get('slug');
+        $data['type']     = Input::get('type');
+        $data['position'] = Input::get('position');
+        $data['image']    = (isset($file) && !empty($file) ? $file['name'] : null);
+
+        $content = $this->content->update( $data );
+
+        return Redirect::to('admin/contenu/'.$content->id)->with( array('status' => 'success' , 'message' => 'Contenu mis à jour') );
     }
 
     /**
@@ -93,7 +140,9 @@ class ContentController extends \BaseController {
      */
     public function destroy($id)
     {
+        $this->content->delete($id);
 
+        return Redirect::back()->with(array('status' => 'success', 'message' => 'Contenu supprimée' ));
     }
 
 }

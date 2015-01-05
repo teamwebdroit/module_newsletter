@@ -26,6 +26,8 @@ class CampagneController extends BaseController {
         $this->types    = $types;
         $this->campagne = $campagne;
         $this->custom = new \Custom;
+
+        View::share('pageTitle', 'Campagnes');
     }
 
     public function index()

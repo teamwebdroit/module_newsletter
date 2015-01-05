@@ -123,6 +123,12 @@ CSS overview:
 .widget ul li a {
 	color: #676767;
 }
+
+.widget.soutiens a {
+	display: block;
+	margin 5px;
+}
+
 .widget a:hover {
 }
 .widget ul li span.date {

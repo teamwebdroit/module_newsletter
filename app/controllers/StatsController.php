@@ -23,6 +23,8 @@ class StatsController extends \BaseController {
         $this->campagne     = $campagne;
         $this->statsworker  = $statsworker;
         $this->charts       = new \Charts;
+
+        View::share('pageTitle', 'Statistiques');
     }
 
 	/**

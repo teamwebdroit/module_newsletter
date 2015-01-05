@@ -12,6 +12,8 @@ class FileController extends \BaseController {
     {
         $this->upload = $upload;
         $this->worker = $worker;
+
+        View::share('pageTitle', 'Fichiers');
     }
 
 	/**

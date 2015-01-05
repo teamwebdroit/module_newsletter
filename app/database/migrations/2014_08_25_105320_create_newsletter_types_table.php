@@ -21,7 +21,6 @@ class CreateNewsletterTypesTable extends Migration {
             $table->string('partial');
             $table->string('template');
             $table->enum('elements', array('titre','titre,texte','titre,texte,image','texte','image','titre,image','arret','categorie'));
-
 		});
 	}
 
