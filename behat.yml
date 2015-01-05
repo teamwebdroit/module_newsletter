@@ -1,0 +1,13 @@
+default:
+  paths:
+    features: %behat.paths.base%/app/tests/features/site
+    bootstrap: %behat.paths.base%/app/tests/features/bootstrap
+  context:
+    parameters:
+        base_url: http://newsletter.local
+        guzzle: true
+  extensions:
+    Behat\MinkExtension\Extension:
+      files_path: '/Applications/MAMP/htdocs/newsletter/public/files/arrets'
+      goutte: ~
+      base_url: http://newsletter.local

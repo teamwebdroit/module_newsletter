@@ -62,6 +62,7 @@
 
                     <div class="component-menu">
                         <h5>Composants</h5>
+                        <a name="componant"></a>
                         <div class="component-bloc">
                             @if(!empty($blocs))
                                 @foreach($blocs as $bloc)

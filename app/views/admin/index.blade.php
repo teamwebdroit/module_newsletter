@@ -23,14 +23,14 @@
                             <tbody class="selects">
 
                             @if(!empty($arrets))
-                            @foreach($arrets as $arret)
-                            <tr>
-                                <td><a class="btn btn-sky btn-sm" href="{{ url('admin/arret/'.$arret->id) }}">&Eacute;diter</a></td>
-                                <td><strong>{{ $arret->reference }}</strong></td>
-                                <td>{{ $arret->pub_date->formatLocalized('%d %B %Y') }}</td>
-                                <td>{{ $custom->limit_words($arret->abstract, 10) }}</td>
-                            </tr>
-                            @endforeach
+                                @foreach($arrets as $arret)
+                                    <tr>
+                                        <td><a class="btn btn-sky btn-sm" href="{{ url('admin/arret/'.$arret->id) }}">&Eacute;diter</a></td>
+                                        <td><strong>{{ $arret->reference }}</strong></td>
+                                        <td>{{ $arret->pub_date->formatLocalized('%d %B %Y') }}</td>
+                                        <td>{{ $custom->limit_words($arret->abstract, 10) }}</td>
+                                    </tr>
+                                @endforeach
                             @endif
 
                             </tbody>

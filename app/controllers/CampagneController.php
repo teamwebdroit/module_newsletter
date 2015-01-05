@@ -201,7 +201,7 @@ class CampagneController extends BaseController {
 
         if($contents)
         {
-            return Redirect::back()->with(array('status' => 'success', 'message' => 'Bloc ajouté' ));
+            return Redirect::to('admin/campagne/'.$campagne.'#componant')->with(array('status' => 'success', 'message' => 'Bloc ajouté' ));
         }
 
         return Redirect::back()->with(array('status' => 'error', 'message' => 'Problème avec l\'ajout' ));
