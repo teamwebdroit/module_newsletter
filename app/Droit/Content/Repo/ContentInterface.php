@@ -2,7 +2,7 @@
 
 interface ContentInterface {
 
-    public function getAll($pid);
+    public function getAll();
 	public function find($id);
     public function findyBySlug($file);
 	public function create(array $data);

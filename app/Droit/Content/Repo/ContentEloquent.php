@@ -15,7 +15,7 @@ class ContentEloquent implements ContentInterface{
 		$this->content = $content;
 	}
 
-    public function getAll($pid){
+    public function getAll(){
 
         return $this->content->all();
     }

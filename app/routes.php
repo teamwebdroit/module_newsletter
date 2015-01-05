@@ -50,6 +50,7 @@ Route::group(array('prefix' => 'admin'), function()
     Route::resource('arret', 'ArretController');
     Route::resource('analyse', 'AnalyseController');
     Route::resource('categorie', 'CategorieController');
+    Route::resource('content', 'ContentController');
 
     Route::get('file/scan', 'FileController@scan');
     Route::post('file/imageIsUsed', 'FileController@imageIsUsed');

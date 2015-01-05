@@ -20,6 +20,7 @@ class CreateContentsTable extends Migration {
 			$table->string('image')->nullable();
 			$table->string('url')->nullable();
 			$table->string('slug')->nullable();
+			$table->enum('type', array('pub','texte','soutien'));
 			$table->timestamps();
 		});
 	}
