@@ -20,15 +20,6 @@ require_once( dirname(dirname(dirname(dirname(dirname(__FILE__))))).'/vendor/php
  */
 class FeatureContext extends MinkContext
 {
-    /**
-     * The Guzzle HTTP Client.
-     */
-    protected $client;
-
-    /**
-     * The current resource
-     */
-    protected $resource;
 
     /**
      * The Guzzle HTTP Response.
@@ -46,6 +37,49 @@ class FeatureContext extends MinkContext
         $driver        = new \Behat\Mink\Driver\GoutteDriver();
         $this->session = new \Behat\Mink\Session($driver);
         $this->session->start();
+    }
+
+    /**
+     * @static
+     * @beforeSuite
+     */
+    public static function bootstrapLaravel()
+    {
+        $unitTesting     = true;
+        $testEnvironment = 'testing';
+
+        $app = require_once __DIR__ . '/../../../../bootstrap/start.php';
+        $app->boot();
+    }
+
+    /**
+     * @AfterFeature
+     */
+    public static function prepare($scope)
+    {
+        $arret = new \Droit\Content\Entities\Arret;
+        $arret = $arret->where('reference','=','TEST_A234')->get();
+        if(!$arret->isEmpty())
+        {
+            $arret = $arret->first();
+            $arret->delete();
+        }
+
+        $analyse = new \Droit\Content\Entities\Analyse;
+        $analyse = $analyse->where('authors','=','TEST_ANALYSE_A234')->get();
+        if(!$analyse->isEmpty())
+        {
+            $analyse = $analyse->first();
+            $analyse->delete();
+        }
+
+        $content = new \Droit\Content\Entities\Content;
+        $content = $content->where('titre','=','TEST_Contenu')->get();
+        if(!$content->isEmpty())
+        {
+            $content = $content->first();
+            $content->delete();
+        }
     }
 
     /**
@@ -79,7 +113,7 @@ class FeatureContext extends MinkContext
     {
         $this->fillField('reference', 'TEST_A234');
         $this->fillField('pub_date', '2015-01-05');
-        $this->fillField('file', 'Fichier_test.pdf');
+        $this->attachFileToField('file', 'Fichier_test.pdf');
         $this->fillField('abstract', 'Un arrets de test');
         $this->fillField('pub_text', 'un peu de texte pour le petit test');
         $this->fillField('categories[]', 75);
@@ -91,7 +125,7 @@ class FeatureContext extends MinkContext
      */
     public function iShouldSeeTheNewCreatedArret2($arg1)
     {
-        $this->assertPageNotContainsText($arg1);
+        $this->assertPageContainsText($arg1);
     }
 
 
@@ -102,20 +136,47 @@ class FeatureContext extends MinkContext
     {
         $this->fillField('authors', 'TEST_ANALYSE_A234');
         $this->fillField('pub_date', '2015-01-05');
-        $this->fillField('file', 'Fichier_test.pdf');
+        $this->attachFileToField('file', 'Fichier_test.pdf');
         $this->fillField('abstract', 'Un arrets de test');
         $this->fillField('categories[]', 75);
-        $this->fillField('arrets[]', 835);
+        $this->fillField('arrets[]', 818);
 
         $this->pressButton("Envoyer");
     }
+
+    /**
+     * @Given /^I fill out the form to create a new contenu$/
+     */
+    public function iFillOutTheFormToCreateANewContenu()
+    {
+        $this->fillField('titre', 'TEST_Contenu');
+        $this->fillField('contenu', 'Lorem ipsum');
+        $this->attachFileToField('file', 'image.jpg');
+        $this->fillField('url', 'http://www.designpond.ch');
+        $this->fillField('type', 'pub');
+        $this->fillField('position', 'sidebar');
+
+        $this->pressButton("Envoyer");
+    }
+
+    /**
+     * @Given /^I fill out the form to create a new categorie$/
+     */
+    public function iFillOutTheFormToCreateANewCategorie()
+    {
+        $this->fillField('title', 'TEST_categorie');
+        $this->attachFileToField('file', 'image.jpg');
+
+        $this->pressButton("Envoyer");
+    }
+
 
     /**
      * @Then /^I should see "([^"]*)" a new analyse$/
      */
     public function iShouldSeeANewAnalyse($arg1)
     {
-        $this->assertPageNotContainsText($arg1);
+        $this->assertPageContainsText($arg1);
     }
 
 

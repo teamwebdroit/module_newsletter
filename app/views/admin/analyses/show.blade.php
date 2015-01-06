@@ -26,7 +26,7 @@
             }}
 
             <div class="panel-heading">
-                <h4>&Eacute;diter analyse</h4>
+                <h4>&Eacute;diter l'analyse de {{ $analyse->authors }}</h4>
             </div>
             <div class="panel-body event-info">
 
