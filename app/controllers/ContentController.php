@@ -66,6 +66,7 @@ class ContentController extends \BaseController {
         $data['slug']     = Input::get('slug');
         $data['type']     = Input::get('type');
         $data['position'] = Input::get('position');
+        $data['rang']     = Input::get('rang');
         $data['image']    = (isset($file) && !empty($file) ? $file['name'] : null);
 
         $content = $this->content->create( $data );
@@ -125,6 +126,7 @@ class ContentController extends \BaseController {
         $data['slug']     = Input::get('slug');
         $data['type']     = Input::get('type');
         $data['position'] = Input::get('position');
+        $data['rang']     = Input::get('rang');
         $data['image']    = (isset($file) && !empty($file) ? $file['name'] : null);
 
         $content = $this->content->update( $data );

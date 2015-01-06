@@ -23,11 +23,14 @@ jQuery(window).load(function() {
     }*/
 
     var width = $( window ).width();
-    var innerHeight = jQuery('#inner-content').outerHeight();
+    var innerHeight   = jQuery('#inner-content').outerHeight();
+    var sidebarHeight = jQuery('#sidebar').outerHeight();
     innerHeight = innerHeight + 30;
 
     if(width > 1024){
-        jQuery('#sidebar').css('height',innerHeight);
+        if(sidebarHeight < innerHeight){
+            jQuery('#sidebar').css('height',innerHeight);
+        }
     }
 
 

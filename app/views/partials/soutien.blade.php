@@ -5,9 +5,11 @@
 
         @foreach($soutiens as $soutien)
             @if(isset($soutien->url) && isset($soutien->image))
-                <a target="_blank" href="{{{ $soutien->url or '#' }}}">
-                    <img src="{{ url('files/'.$soutien->image.'')}}" alt="Soutiens" />
-                </a>
+                <div class="media">
+                    <a target="_blank" href="{{{ $soutien->url or '#' }}}">
+                        <img src="{{ url('files/'.$soutien->image.'')}}" alt="Soutiens" />
+                    </a>
+                </div>
             @endif
         @endforeach
 
@@ -15,4 +17,3 @@
 
     <p class="divider-border"></p>
 @endif
-

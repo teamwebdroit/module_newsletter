@@ -49,7 +49,10 @@ class HomeController extends BaseController {
 
     public function index()
     {
-        return View::make('index');
+        $homepage = $this->content->findyByPosition(array('home-bloc','home-colonne'));
+        $homepage = $this->custom->prepareBlocsHomepage($homepage);
+
+        return View::make('index')->with(array('homepage' => $homepage));
     }
 
     public function colloque()
@@ -108,12 +111,26 @@ class HomeController extends BaseController {
      */
     public function newsletters($id = null)
     {
-        $newsletter = ($id ? $id : $this->campagne->getLastCampagne());
-        $newsletter = (!empty($newsletter) ? $newsletter->first()->id : array());
+        if($id){
+            $newsletter_id = $id;
+        }
+        else
+        {
+            $newsletter    = $this->campagne->getLastCampagne();
+            $newsletter_id = (!$newsletter->isEmpty() ? $newsletter->first()->id : null);
+        }
+
+        if(!empty($newsletter_id))
+        {
+            $campagne       = $this->worker->getCampagne($newsletter_id);
+            $newsletter     = $this->worker->findCampagneById($newsletter_id);
+        }
+        else{
+            $campagne   = [];
+            $newsletter = [];
+        }
 
         $listCampagnes  = $this->campagne->getAllSent();
-        $campagne       = $this->worker->getCampagne($newsletter);
-        $newsletter     = $this->worker->findCampagneById($newsletter);
 
         return View::make('campagne')->with(array( 'listCampagnes' => $listCampagnes , 'campagne' => $campagne , 'newsletter' => $newsletter ));
     }

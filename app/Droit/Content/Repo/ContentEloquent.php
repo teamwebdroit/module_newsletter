@@ -25,14 +25,14 @@ class ContentEloquent implements ContentInterface{
 		return $this->content->findOrFail($id);
 	}
 
-    public function findyBySlug($slug){
+    public function findyByPosition(array $positions){
 
-        return $this->content->where('slug','=',$slug)->get()->first();
+        return $this->content->whereIn('position', $positions)->orderBy('rang','ASC')->get();
     }
 
 	public function findyByType($type){
 
-		return $this->content->where('type','=',$type)->get();
+		return $this->content->where('type','=',$type)->orderBy('rang','ASC')->get();
 	}
 
 	public function create(array $data){
@@ -45,6 +45,7 @@ class ContentEloquent implements ContentInterface{
             'slug'       => $data['slug'],
 			'type'       => $data['type'],
 			'position'   => $data['position'],
+            'rang'       => $data['rang'],
 			'created_at' => date('Y-m-d G:i:s'),
 			'updated_at' => date('Y-m-d G:i:s')
 		));
@@ -72,6 +73,7 @@ class ContentEloquent implements ContentInterface{
         $content->url      = $data['url'];
 		$content->type     = $data['type'];
 		$content->position = $data['position'];
+        $content->rang     = $data['rang'];
 		$content->slug     = $data['slug'];
 
         if($data['image']){

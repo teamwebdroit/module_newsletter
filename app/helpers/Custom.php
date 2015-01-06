@@ -144,7 +144,7 @@ class Custom {
 	}
 
 	/**
-	 * Format name with hyphens or lisaisons 
+	 * Format name with hyphens or liaisons
 	 *
 	 * @return string
 	 */			
@@ -539,5 +539,30 @@ class Custom {
 
 		return $url;
 	}
+
+    /**
+     * Content fonctions
+     */
+
+    public function prepareBlocsHomepage($data){
+
+        $home = [];
+
+        if(!$data->isEmpty()){
+
+            foreach($data as $bloc)
+            {
+                $rang[$bloc->rang][] = $bloc;
+            }
+
+            foreach($rang as $index => $homebloc){
+                $home[$index]['count']    = count($homebloc);
+                $home[$index]['position'] = $homebloc[0]->position;
+                $home[$index]['blocs']    = $homebloc;
+            }
+        }
+
+        return $home;
+    }
 
 }

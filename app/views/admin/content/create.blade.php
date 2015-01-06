@@ -76,6 +76,13 @@
                     </div>
                 </div>
 
+                <div class="form-group">
+                    <label for="message" class="col-sm-3 control-label">Rang</label>
+                    <div class="col-sm-2">
+                        {{ Form::text('rang', null , array('class' => 'form-control') ) }}
+                    </div>
+                </div>
+
             </div>
             <div class="panel-footer mini-footer ">
                 <div class="col-sm-3"></div>
