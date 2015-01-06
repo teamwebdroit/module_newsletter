@@ -1,4 +1,4 @@
-@if(!empty($pub))
+@if(!$pub->isEmpty())
 
 <div class="widget">
     <h3 class="title"><i class="glyphicon glyphicon-pushpin"></i> &nbsp;New</h3>

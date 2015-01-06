@@ -1,4 +1,4 @@
-@if(!empty($soutiens))
+@if(!$soutiens->isEmpty())
 
     <div class="widget soutiens">
         <h3 class="title"><i class="glyphicon glyphicon-star-empty"></i> &nbsp;Avec le soutien de</h3>
