@@ -41,9 +41,16 @@ Route::get('arrets', 'ArretController@arrets');
 Route::get('categories', 'CategorieController@categories');
 
 /**
+ * Login routes
+ */
+Route::get('logout', 'LoginController@destroy');
+Route::resource('login', 'LoginController');
+Route::controller('password', 'RemindersController');
+
+/**
  * Admin routes
  */
-Route::group(array('prefix' => 'admin'), function()
+Route::group(array('prefix' => 'admin', 'before' => 'auth'), function()
 {
     Route::get('dashboard', 'AdminController@index');
 

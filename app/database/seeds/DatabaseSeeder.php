@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder {
         $this->call('AnalysesArretTableSeeder');
         $this->call('ArretBaCategoriesTableSeeder');
         $this->call('AnalyseBaCategoriesTableSeeder');
+        $this->call('UserTableSeeder');
 	}
 
 }

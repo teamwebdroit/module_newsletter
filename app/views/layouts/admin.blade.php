@@ -5,8 +5,8 @@
 	<title>Administration | Droit du travail</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="RJN administration">
-	<meta name="author" content="DesignPond">
+	<meta name="description" content="Droit du travail | administration">
+    <meta name="author" content="Cindy Leschaud | @DesignPond">
 
     <link rel="stylesheet" href="<?php echo asset('admin/css/styles.css?=121');?>">
     <link rel="stylesheet" href="<?php echo asset('admin/css/newsletter.css');?>">
@@ -40,6 +40,10 @@
 
 <body flow-prevent-drop>
 
+<?php
+ $current_user = (isset(Auth::user()->prenom) ? Auth::user()->prenom : '').' '.(isset(Auth::user()->prenom) ? Auth::user()->nom : '');
+?>
+
     <header class="navbar navbar-inverse navbar-fixed-top" role="banner">
 
         <a id="leftmenu-trigger" class="tooltips" data-toggle="tooltip" data-placement="right" title="Toggle Sidebar"></a>
@@ -48,14 +52,18 @@
 
         <ul class="nav navbar-nav pull-right toolbar">
             <li class="dropdown">
-                <a href="#" class="dropdown-toggle username" data-toggle="dropdown"><span class="hidden-xs">John McCartney <i class="fa fa-caret-down"></i></span></a>
+                <a href="#" class="dropdown-toggle username" data-toggle="dropdown">
+                    <span class="hidden-xs">
+                        {{ $current_user }}
+                        <i class="fa fa-caret-down"></i></span>
+                </a>
                 <ul class="dropdown-menu userinfo arrow">
                     <li class="username">
-                        <a href="#"><div class="pull-right"><h5>Howdy, John!</h5><small>Logged in as <span>john2751212121</span></small></div></a>
+                        <a href="#"><div class="pull-right"><h5>Bonjour, {{ $current_user }}!</h5></div></a>
                     </li>
                     <li class="userlinks">
                         <ul class="dropdown-menu">
-                            <li><a href="#" class="text-right">Sign Out</a></li>
+                            <li><a href="{{ url('logout') }}"><i class="pull-right fa  fa-power-off"></i> Logout</a></li>
                         </ul>
                     </li>
                 </ul>

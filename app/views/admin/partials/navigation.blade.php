@@ -3,7 +3,7 @@
     <!-- BEGIN SIDEBAR MENU -->
     <ul class="acc-menu" id="sidebar">
         <!-- Recherche globale -->
-        @include('admin.partials.search')
+       <!-- @include('admin.partials.search')-->
 
         <li class="divider"></li>
         <li class="<?php echo (Request::is('admin/dashboard') ? 'active' : '' ); ?>"><a href="{{ url('admin/dashboard') }}"><i class="fa fa-home"></i> <span>Accueil</span></a></li>

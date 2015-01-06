@@ -11,6 +11,8 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 
 	use UserTrait, RemindableTrait;
 
+    protected $fillable = ['prenom','nom','email','password'];
+
 	/**
 	 * The database table used by the model.
 	 *
@@ -24,5 +26,22 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 	 * @var array
 	 */
 	protected $hidden = array('password', 'remember_token');
+
+    /*
+   * Validation rules
+  */
+    protected static $rules = array(
+        'email'     => 'required|email',
+        'password'  => 'required'
+    );
+
+    /*
+     * Validation messages
+    */
+    protected static $messages = array(
+        'email.required'     => 'L\'email est requis',
+        'email.email'        => 'L\'email n\'est pas valide',
+        'password.required'  => 'Le mot de passe est requis'
+    );
 
 }
