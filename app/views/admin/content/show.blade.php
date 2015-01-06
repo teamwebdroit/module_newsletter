@@ -33,7 +33,7 @@
                 <div class="form-group">
                     <label for="message" class="col-sm-3 control-label">Titre</label>
                     <div class="col-sm-4">
-                        {{ Form::text('titre', $contenu->titre  , array('class' => 'form-control') ) }}
+                        {{ Form::text('titre', $contenu->titre , array('class' => 'form-control') ) }}
                     </div>
                 </div>
 

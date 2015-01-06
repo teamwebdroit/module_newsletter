@@ -30,7 +30,7 @@
                         @if($index == 1)
                             <h3 class="title">{{ $bloc->titre }}</h3>
                         @else
-                            <h4 class="title">{{ $bloc->titre }}</h4>
+                            <h4 class="title <?php echo ( $contenu['count'] > 1 ? 'home-bloc' : ''); ?>">{{ $bloc->titre }}</h4>
                         @endif
                             <p>{{ $bloc->contenu }}</p>
                     </div>
