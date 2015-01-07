@@ -10,7 +10,7 @@ class LoginController extends \BaseController {
 	 */
 	public function index()
 	{
-        return View::make('admin.login.index');
+        return View::make('login.index');
 	}
 
 	/**
@@ -38,12 +38,12 @@ class LoginController extends \BaseController {
         );
 
         if (Auth::attempt($user)) {
-            return Redirect::to('admin/dashboard')->with('success', 'Vous êtes connecté');
+            return Redirect::intended('admin/dashboard')->with('success', 'Vous êtes connecté');
         }
 
         // authentication failure! lets go back to the login page
         return Redirect::to('login')
-            ->with(array('status' => 'danger' , 'message' => 'Les identifiants email / mot de passe sont incorrects') )
+            ->with(array('status' => '!' , 'message' => 'Les identifiants email / mot de passe sont incorrects') )
             ->withInput();
 
 	}

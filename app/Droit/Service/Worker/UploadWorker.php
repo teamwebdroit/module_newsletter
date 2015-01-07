@@ -8,7 +8,7 @@ class UploadWorker implements UploadInterface {
 	 * upload selected file 
 	 * @return array
 	*/	
-	public function upload( $file , $destination ){
+	public function upload( $file , $destination , $type = null ){
 
         try
         {
@@ -19,8 +19,14 @@ class UploadWorker implements UploadInterface {
             $size = $new->getSize();
             $mime = $new->getMimeType();
             $path = $new->getRealPath();
-            // test resize
-            //$this->resize( $path, $path , 200 , null , true );
+
+            $image_name =  basename($name,'.'.$ext);
+            //resize
+            if($type){
+                $sizes = \Config::get('size.'.$type);
+                $this->resize( $path, $image_name, $sizes['width'], $sizes['height']);
+            }
+            //$this->resize( $path, $path , 130, null , true );
             //$this->rename( $path, $name , 'files/test/' );
             $newfile = array( 'name' => $name ,'ext' => $ext ,'size' => $size ,'mime' => $mime ,'path' => $path  );
 
@@ -41,16 +47,24 @@ class UploadWorker implements UploadInterface {
 		
 		$newpath = $path.$name;
 		
-		return Image::make( $file )->save($newpath);
+		return \Image::make( $file )->save($newpath);
 	}
 	
 	/*
 	 * resize file 
 	 * @return instance
 	*/	
-	public function resize( $path, $name , $width = null , $height = null, $ratio ){
-		
-		return Image::make( $path )->resize($width, $height , $ratio)->save($name);		
+	public function resize( $path, $name , $width = null , $height = null){
+
+        $img = \Image::make($path);
+
+        // prevent possible upsizing
+        $img->resize($width, $height, function ($constraint) {
+            $constraint->aspectRatio();
+            $constraint->upsize();
+        });
+
+        $img->save($path);
 	}
 
     /*

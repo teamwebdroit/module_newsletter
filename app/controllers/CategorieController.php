@@ -58,7 +58,7 @@ class CategorieController extends \BaseController {
             return Redirect::back()->with( array('status' => 'danger' , 'message' => 'L\'image est requise') );
         }
 
-        $file = $this->upload->upload( Input::file('file') , 'newsletter/pictos' );
+        $file = $this->upload->upload( Input::file('file') , 'newsletter/pictos' , 'categorie');
 
         // Data array
         $data['title']   = Input::get('title');

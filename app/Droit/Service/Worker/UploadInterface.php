@@ -18,6 +18,6 @@ interface UploadInterface{
 	 * resize file 
 	 * @return array
 	*/	
-	public function resize( $path, $name , $width = null , $height = null , $ratio  );
+	public function resize( $path, $name , $width = null , $height = null);
     
 }

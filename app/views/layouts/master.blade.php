@@ -79,10 +79,14 @@
             <!-- START FOOTER -->
             <div id="footer">
                 <div class="section row">
-                    <div class="col-md-12 text-align-center">Faculté de droit, Avenue du 1er-Mars 26, 2000 Neuchâtel</div><!--END ONE-->
-                    <div class="col-md-12 text-align-center">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8 text-align-center">
+                        <p><strong>Faculté de droit, Avenue du 1er-Mars 26, 2000 Neuchâtel</strong></p>
                         <p class="copyright">Copyright &copy; Droit du travail <?php echo date('Y'); ?>. Tous droits réservés.</p>
                     </div><!--END ONE-->
+                    <div class="col-md-2 text-align-center">
+                        <a class="btn btn-xs btn-default" href="{{ url('admin/dashboard') }}">administration</a>
+                    </div>
                 </div><!--END SECTION-->
             </div><!--END FOOTER-->
             <!-- END FOOTER -->

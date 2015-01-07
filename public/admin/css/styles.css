@@ -8735,6 +8735,7 @@ footer #back-to-top {
   left: 50%;
   margin-top: -186px;
   margin-left: -200px;
+  width: 400px;
 }
 @media (max-width: 767px) {
   .focusedform .panel {

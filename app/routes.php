@@ -1,14 +1,18 @@
 <?php
 
-/**
- * Site pages
- */
-Route::get('/', array('as' => 'home', 'uses' => 'HomeController@index'));
-Route::get('contact', 'HomeController@contact');
-Route::get('colloque', 'HomeController@colloque');
-Route::post('sendMessage', 'HomeController@sendMessage');
-Route::get('jurisprudence', 'HomeController@jurisprudence');
-Route::get('newsletters/{id?}', 'HomeController@newsletters');
+Route::group(array('before' => 'auth'), function()
+{
+    /**
+     * Site pages
+     */
+    Route::get('/', array('as' => 'home', 'uses' => 'HomeController@index'));
+    Route::get('contact', 'HomeController@contact');
+    Route::get('colloque', 'HomeController@colloque');
+    Route::post('sendMessage', 'HomeController@sendMessage');
+    Route::get('jurisprudence', 'HomeController@jurisprudence');
+    Route::get('newsletters/{id?}', 'HomeController@newsletters');
+
+});
 
 /**
  * Newsletter
