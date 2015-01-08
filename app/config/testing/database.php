@@ -6,9 +6,9 @@ return array(
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-			'database'  => 'newsletter',
-			'username'  => 'root',
-			'password'  => 'root',
+            'database'  => 'leschaud_newsletter',
+            'username'  => 'leschaud_newslet',
+            'password'  => 'Ze!6fA%2mmE*2a',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',

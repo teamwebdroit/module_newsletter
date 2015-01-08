@@ -21,6 +21,13 @@ class UsersTableSeeder extends Seeder {
             'password' => Hash::make('droitdutravail')
         ));
 
+        \Droit\User\Entities\User::create(array(
+            'prenom'   => 'Invité',
+            'nom'      => 'Site',
+            'email'    => 'info@droitdutravail.ch',
+            'password' => Hash::make('droitdutravail')
+        ));
+
     }
 
 }
