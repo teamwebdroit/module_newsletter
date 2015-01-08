@@ -7,7 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Droit du travail | administration">
     <meta name="author" content="Cindy Leschaud | @DesignPond">
-
+    <meta name="token" content="<?php echo csrf_token(); ?>">
     <link rel="stylesheet" href="<?php echo asset('admin/css/styles.css?=121');?>">
     <link rel="stylesheet" href="<?php echo asset('admin/css/newsletter.css');?>">
     <link rel="stylesheet" href="<?php echo asset('js/vendor/redactor/redactor.css'); ?>">
@@ -119,6 +119,7 @@
     <script type="text/javascript" src="<?php echo asset('admin/plugins/form-toggle/toggle.min.js');?>"></script>
     <script type="text/javascript" src="<?php echo asset('admin/js/placeholdr.js');?>"></script>
     <script type="text/javascript" src="<?php echo asset('js/vendor/redactor/redactor.js');?>"></script>
+    <script type="text/javascript" src="<?php echo asset('js/vendor/redactor/fr.js');?>"></script>
     <script type='text/javascript' src="<?php echo asset('admin/plugins/form-multiselect/js/jquery.multi-select.min.js');?>"></script>
     <script type='text/javascript' src="<?php echo asset('admin/plugins/datatables/jquery.dataTables.min.js');?>"></script>
     <script type='text/javascript' src="<?php echo asset('admin/plugins/datatables/dataTables.bootstrap.js');?>"></script>

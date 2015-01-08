@@ -23,13 +23,14 @@ $(function() {
         var $this  = $(this);
         var action = $this.data('action');
         var id     = $this.data('id');
+        var _token = $("meta[name='token']").attr('content');
         var answer = confirm('Voulez-vous vraiment supprimer : '+ action +' ?');
 
         if (answer)
         {
             $.ajax({
                 url     : 'remove',
-                data    : { id: id },
+                data    : { id: id , _token : _token},
                 type    : "POST",
                 success : function(data) {
                     if(data == 'ok')
@@ -53,10 +54,11 @@ $(function() {
         var $this      = $(this);
         var id         = $this.data('id');
         $('#modalCategorie').empty();
+        var _token = $("meta[name='token']").attr('content');
 
         $.ajax({
             url     : 'admin/categorie/arretsExists',
-            data    : { id: id },
+            data    : { id: id, _token: _token },
             type    : "POST",
             success : function(data) {
                 if(data.length > 0)
@@ -90,11 +92,13 @@ $(function() {
         var $this = $(this);
         var file  = $this.data('file');
         var index = $this.data('index');
+        var _token = $("meta[name='token']").attr('content');
+
         $('#modalImage').empty();
 
         $.ajax({
             url     : 'admin/file/imageIsUsed',
-            data    : { file: file },
+            data    : { file: file, _token: _token  },
             type    : "POST",
             success : function(data) {
 
@@ -171,6 +175,7 @@ $(function() {
         var $this  = $(this);
         var id     = $this.data('id');
 
+        $('.create_bloc').hide();
         $('.edit_content_form').hide();
         $('#edit_'+id).show();
         $( "#sortable" ).sortable( "disable" );
@@ -193,6 +198,8 @@ $(function() {
         w = w - 890;
 
         $('.create_bloc').hide();
+        $('.edit_content_form').hide();
+
         var content = $('#create_'+id);
         content.find('.create_content_form').css("width",w);
 

@@ -15,6 +15,8 @@ class AnalyseController extends \BaseController {
 
     public function __construct( AnalyseInterface $analyse, ArretInterface $arret, CategorieInterface $categorie , UploadInterface $upload )
     {
+        $this->beforeFilter('csrf', array('on' => 'post'));
+
         $this->analyse   = $analyse;
         $this->arret     = $arret;
         $this->categorie = $categorie;

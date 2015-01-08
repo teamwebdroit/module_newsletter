@@ -12,6 +12,7 @@ Route::group(array('before' => 'islive'), function()
     Route::get('jurisprudence', 'HomeController@jurisprudence');
     Route::get('newsletters/{id?}', 'HomeController@newsletters');
 
+    // 'before' => 'csrf'
 });
 
 /**
@@ -25,20 +26,25 @@ Route::post('inscription/resend', 'InscriptionController@resend');
 Route::post('inscription/unsubscribe', 'InscriptionController@unsubscribe');
 Route::resource('inscription', 'InscriptionController');
 
-/**
- * Upload routes
- */
-Route::post('uploadJS', 'UploadController@uploadJS');
-Route::post('uploadRedactor', 'UploadController@uploadRedactor');
-Route::post('uploadJquery', 'UploadController@uploadJquery');
+Route::group(array('before' => array('admin','csrf')), function()
+{
+    /**
+     * Upload routes
+     */
+    Route::post('uploadJS', 'UploadController@uploadJS');
+    Route::post('uploadRedactor', 'UploadController@uploadRedactor');
+    Route::post('uploadJquery', 'UploadController@uploadJquery');
 
-/**
- * API
- */
-Route::post('sorting', 'CampagneController@sorting');
-Route::post('process', 'CampagneController@addContent');
-Route::post('edit', 'CampagneController@editContent');
-Route::post('remove', 'CampagneController@remove');
+    /**
+     * API
+     */
+    Route::post('sorting', 'CampagneController@sorting');
+    Route::post('process', 'CampagneController@addContent');
+    Route::post('edit', 'CampagneController@editContent');
+    Route::post('remove', 'CampagneController@remove');
+
+});
+
 
 Route::get('arrets/{id}', 'ArretController@simple');
 Route::get('arrets', 'ArretController@arrets');
@@ -54,7 +60,7 @@ Route::controller('password', 'RemindersController');
 /**
  * Admin routes
  */
-Route::group(array('prefix' => 'admin', 'before' => 'auth'), function()
+Route::group(array('prefix' => 'admin', 'before' => array('auth','admin')), function()
 {
     Route::get('dashboard', 'AdminController@index');
 
@@ -85,8 +91,6 @@ Route::group(array('prefix' => 'admin', 'before' => 'auth'), function()
     Route::match(array('GET', 'POST'), 'categorie/arretsExists', array('uses' => 'CategorieController@arretsExists'));
     Route::match(array('GET', 'POST'), 'search', array('uses' => 'SearchController@index'));
 });
-
-
 
 
 Route::get('testing', function()
@@ -164,11 +168,6 @@ Route::get('testing', function()
     print_r($analyse->where('id', '=',1)->with(array('analyses_categories','analyses_arrets'))->get()->first());
     echo '</pre>';
 
-});
-
-Route::get('404', function()
-{
-    return View::make('admin.404');
 });
 
 Route::get('setHmtlCampagne', function()

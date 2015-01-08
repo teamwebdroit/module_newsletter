@@ -11,6 +11,8 @@ class CategorieController extends \BaseController {
 
     public function __construct( CategorieInterface $categorie, UploadInterface $upload )
     {
+        $this->beforeFilter('csrf', array('only' => array('store','update')));
+
         $this->categorie = $categorie;
         $this->upload    = $upload;
         $this->custom    = new \Custom;
@@ -135,7 +137,6 @@ class CategorieController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-
         $this->categorie->delete($id);
 
         return Redirect::back()->with(array('status' => 'success', 'message' => 'Catégorie supprimée' ));

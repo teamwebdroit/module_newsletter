@@ -44,4 +44,22 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
         'password.required'  => 'Le mot de passe est requis'
     );
 
+    /**
+     * Get the roles a user has
+     */
+    public function roles()
+    {
+        return $this->belongsToMany('\Droit\User\Entities\Role', 'users_roles');
+    }
+
+    /**
+     * Find out if user has a specific role
+     *
+     * $return boolean
+     */
+    public function hasRole($check)
+    {
+        return in_array($check, array_fetch($this->roles->toArray(), 'name'));
+    }
+
 }

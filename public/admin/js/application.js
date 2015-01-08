@@ -170,6 +170,7 @@ $('#multi-select2').multiSelect();
 
 $('.redactor').redactor({
     minHeight: 200,
+    lang: 'fr',
     fileUpload : 'uploadRedactor',
     buttons    : ['html','|','formatting','bold','italic','|','unorderedlist','orderedlist','outdent','indent','|','image','file','link','alignment']
 });

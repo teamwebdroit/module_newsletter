@@ -11,6 +11,8 @@ class ContentController extends \BaseController {
 
     public function __construct(ContentInterface $content, UploadInterface $upload )
     {
+        $this->beforeFilter('csrf', array('on' => 'post'));
+
         $this->content   = $content;
         $this->upload    = $upload;
         $this->custom    = new \Custom;

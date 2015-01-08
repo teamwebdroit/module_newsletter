@@ -13,6 +13,8 @@ class ArretController extends \BaseController {
 
     public function __construct( ArretInterface $arret, CategorieInterface $categorie , UploadInterface $upload )
     {
+        $this->beforeFilter('csrf', array('on' => 'post'));
+
         $this->arret     = $arret;
         $this->categorie = $categorie;
         $this->upload    = $upload;

@@ -17,21 +17,14 @@
 .redactor-box {
   position: relative;
   overflow: visible;
-  background: #fff;
   margin-bottom: 24px;
 }
-.redactor-box iframe,
 .redactor-box textarea {
   display: block;
   position: relative;
   margin: 0;
   padding: 0;
   width: 100%;
-}
-.redactor-box iframe {
-  border: 1px solid #eee;
-}
-.redactor-box textarea {
   overflow: auto;
   outline: none;
   border: none;
@@ -49,21 +42,25 @@
 	Z-index setup
 */
 .redactor-editor,
+.redactor-box {
+  background: #fff;
+}
+.redactor-editor,
 .redactor-box,
 .redactor-box textarea {
   z-index: auto !important;
 }
 .redactor-box-fullscreen {
-  z-index: 952 !important;
+  z-index: 1052 !important;
 }
 .redactor-toolbar,
 .redactor-dropdown {
-  z-index: 953 !important;
+  z-index: 1053 !important;
 }
 #redactor-modal-overlay,
 #redactor-modal-box,
 #redactor-modal {
-  z-index: 954 !important;
+  z-index: 1054 !important;
 }
 /*
 	Resize
@@ -93,7 +90,7 @@ body .redactor-box-fullscreen {
 /*
 	Utils
 */
-.body-hidden {
+.body-redactor-hidden {
   overflow: hidden;
 }
 /*
@@ -103,7 +100,7 @@ body .redactor-box-fullscreen {
   position: relative;
   overflow: auto;
   margin: 0 !important;
-  padding: 15px;
+  padding: 20px;
   outline: none;
   white-space: normal;
   border: 1px solid #eee;
@@ -345,7 +342,7 @@ body .redactor-box-fullscreen {
 */
 .redactor-toolbar-tooltip {
   position: absolute;
-  z-index: 100;
+  z-index: 1054;
   text-align: center;
   top: 0;
   left: 0;
@@ -786,7 +783,7 @@ body .redactor-box-fullscreen {
 .redactor-editor dl,
 .redactor-editor blockquote,
 .redactor-editor pre {
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1.6em;
 }
 .redactor-editor a {
@@ -823,9 +820,6 @@ body .redactor-box-fullscreen {
 .redactor-editor object,
 .redactor-editor hr {
   margin-bottom: 15px;
-}
-.redactor-editor iframe {
-  width: auto;
 }
 .redactor-editor blockquote {
   margin-left: 1.6em !important;
@@ -893,7 +887,7 @@ body .redactor-box-fullscreen {
 .redactor-editor h5,
 .redactor-editor h6 {
   font-weight: bold;
-  color: #0000;
+  color: #000;
   padding: 0;
   background: none;
   text-rendering: optimizeLegibility;
@@ -913,14 +907,10 @@ body .redactor-box-fullscreen {
   margin-bottom: .7em;
 }
 .redactor-editor h3 {
-    font-size:13px;
-    font-weight:bold;
-    color: #cb2629;
+  font-size: 21px;
 }
 .redactor-editor h4 {
-    font-size:13px;
-    font-weight:bold;
-    color: #cb2629;
+  font-size: 18px;
 }
 .redactor-editor h5 {
   font-size: 16px;

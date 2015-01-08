@@ -22,6 +22,8 @@ class CampagneController extends BaseController {
     /* Inject dependencies */
     public function __construct( ContentInterface $contentSite, NewsletterContentInterface $content, CampagneInterface $worker, NewsletterTypesInterface $types, NewsletterCampagneInterface $campagne)
     {
+        $this->beforeFilter('csrf', array('on' => 'post'));
+
         $this->content      = $content;
         $this->contentSite  = $contentSite;
         $this->worker       = $worker;

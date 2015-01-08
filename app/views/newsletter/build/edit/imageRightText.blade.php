@@ -46,7 +46,7 @@
 
     <div class="edit_content_form" id="edit_{{ $bloc->idItem }}">
         <form name="editForm" method="post" action="{{ url('edit') }}">
-
+            <?php echo Form::token(); ?>
             <div class="panel panel-orange">
                 <div class="panel-body">
                     <div class="form-group">

@@ -4,9 +4,10 @@ var App = angular.module('newsletter', ["angular-redactor","flow","ngSanitize"] 
 
 }).config(function(redactorOptions) {
         /* Redactor wysiwyg editor configuration */
-        redactorOptions.minHeight      = 150;
+        redactorOptions.minHeight      = 120;
         redactorOptions.formattingTags = ['p', 'h2', 'h3','h4'];
         redactorOptions.fileUpload     = 'uploadRedactor';
+        redactorOptions.lang           = 'fr';
         redactorOptions.buttons        = ['html','|','formatting','bold','italic','|','unorderedlist','orderedlist','outdent','indent','|','image','file','link','alignment'];
 }).config(['flowFactoryProvider', function (flowFactoryProvider) {
         /* Flow image upload configuration */
