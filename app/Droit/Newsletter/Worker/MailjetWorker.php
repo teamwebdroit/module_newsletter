@@ -210,7 +210,7 @@ class MailjetWorker implements MailjetInterface{
 
         $params = array(
             "method"  => "POST",
-            "from"    => "droitformation.web@gmail.com",
+            "from"    => "info@droitdutravail.ch",
             "to"      => $email,
             "subject" => $sujet,
             "html"    => $html
