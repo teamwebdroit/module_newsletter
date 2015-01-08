@@ -1,6 +1,6 @@
 <?php
 
-Route::group(array('before' => 'auth'), function()
+Route::group(array('before' => 'islive'), function()
 {
     /**
      * Site pages

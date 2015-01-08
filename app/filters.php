@@ -48,6 +48,18 @@ Route::filter('auth', function()
 	}
 });
 
+Route::filter('islive', function()
+{
+    $environment = app('env');
+
+    if ($environment == 'production')
+    {
+        if (Auth::guest())
+        {
+             return Redirect::guest('login');
+        }
+    }
+});
 
 Route::filter('auth.basic', function()
 {
