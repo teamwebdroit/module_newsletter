@@ -30,8 +30,7 @@
                                 <th class="col-sm-3">Sujet</th>
                                 <th class="col-sm-2">Auteurs</th>
                                 <th class="col-sm-1">Status</th>
-                                <th class="col-sm-1">Création</th>
-                                <th class="col-sm-1">Mise à jour</th>
+                                <th class="col-sm-2">Création</th>
                                 <th class="col-sm-1"></th>
                             </tr>
                         </thead>
@@ -58,6 +57,8 @@
                                                     <i class="fa fa-exclamation"></i> &nbsp;&nbsp;Envoyer la campagne
                                                 </a>
                                             {{ Form::close() }}
+                                        @else
+                                            Le {{ $campagne->updated_at->formatLocalized('%d %B %Y') }} à {{ $campagne->updated_at->toTimeString() }}
                                         @endif
                                     </td>
                                     <td><strong>{{ $campagne->sujet }}</strong></td>
@@ -70,7 +71,6 @@
                                         @endif
                                     </td>
                                     <td>{{ $campagne->created_at->formatLocalized('%d %B %Y') }}</td>
-                                    <td>{{ $campagne->updated_at->formatLocalized('%d %B %Y') }}</td>
                                     <td class="text-right">
                                         {{ Form::open(array('route' => array('admin.campagne.destroy', $campagne->id), 'method' => 'delete')) }}
                                          <button data-action="campagne {{ $campagne->sujet }}" class="btn btn-danger btn-xs deleteAction">×</button>

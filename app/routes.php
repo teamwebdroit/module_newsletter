@@ -18,7 +18,7 @@ Route::group(array('before' => 'auth'), function()
  * Newsletter
  */
 Route::get('campagne/{id}', 'CampagneController@view');
-Route::get('unsubscribe/{id?}', 'CampagneController@unsubscribe');
+Route::get('unsubscribe', 'CampagneController@unsubscribe');
 
 Route::get('inscription/activation/{token}', 'InscriptionController@activation');
 Route::post('inscription/resend', 'InscriptionController@resend');

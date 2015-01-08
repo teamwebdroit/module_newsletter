@@ -5,6 +5,7 @@ use Droit\Newsletter\Worker\CampagneInterface;
 use Droit\Newsletter\Repo\NewsletterContentInterface;
 use Droit\Newsletter\Repo\NewsletterCampagneInterface;
 use Droit\Newsletter\Repo\NewsletterTypesInterface;
+use Droit\Content\Repo\ContentInterface;
 
 use Droit\Command\CreateCampagneCommand;
 
@@ -19,15 +20,21 @@ class CampagneController extends BaseController {
     protected $custom;
 
     /* Inject dependencies */
-    public function __construct( NewsletterContentInterface $content, CampagneInterface $worker, NewsletterTypesInterface $types, NewsletterCampagneInterface $campagne)
+    public function __construct( ContentInterface $contentSite, NewsletterContentInterface $content, CampagneInterface $worker, NewsletterTypesInterface $types, NewsletterCampagneInterface $campagne)
     {
-        $this->content  = $content;
-        $this->worker   = $worker;
-        $this->types    = $types;
-        $this->campagne = $campagne;
-        $this->custom = new \Custom;
+        $this->content      = $content;
+        $this->contentSite  = $contentSite;
+        $this->worker       = $worker;
+        $this->types        = $types;
+        $this->campagne     = $campagne;
+        $this->custom       = new \Custom;
+
+        $pub      = $this->contentSite->findyByType('pub');
+        $soutiens = $this->contentSite->findyByType('soutien');
 
         View::share('pageTitle', 'Campagnes');
+        View::share('pub', $pub);
+        View::share('soutiens', $soutiens);
     }
 
     public function index()
@@ -108,7 +115,7 @@ class CampagneController extends BaseController {
         /*
          * Urls
         */
-        $unsubscribe  = url('/unsubscribe/'.$id);
+        $unsubscribe  = url('/unsubscribe');
         $browser      = url('/campagne/'.$id);
 
         $infos    = $this->campagne->find($id);
@@ -158,11 +165,9 @@ class CampagneController extends BaseController {
      * @param  int  $id
      * @return Response
      */
-    public function unsubscribe($id){
+    public function unsubscribe(){
 
-        $campagne = $this->campagne->find($id);
-
-        return View::make('unsubscribe')->with(array('campagne' => $campagne));
+        return View::make('unsubscribe');
     }
 
     /**

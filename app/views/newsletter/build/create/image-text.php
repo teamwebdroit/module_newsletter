@@ -37,7 +37,7 @@
                     <input bind-content ng-model="create.titre" type="text" value="" required name="titre" class="form-control">
                 </div>
                 <div class="form-group">
-                    <label>Lien de l'image</label>
+                    <label>Ajouter un lien sur l'image</label>
                     <input type="text" value="" name="lien" class="form-control">
                 </div>
                 <div class="form-group">

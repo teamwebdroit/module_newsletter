@@ -53,7 +53,7 @@
                         <input type="text" value="{{ $bloc->titre }}" bind-content ng-model="edit.titre" name="titre" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label>Lien de l'image</label>
+                        <label>Ajouter un lien sur l'image</label>
                         <input type="text" value="{{ $bloc->lien }}" name="lien" class="form-control">
                     </div>
                     <div class="form-group">
