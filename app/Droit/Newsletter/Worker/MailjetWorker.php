@@ -170,7 +170,7 @@ class MailjetWorker implements MailjetInterface{
             'Locale'         => 'fr',
             'Callback'       => url('/api'),
             'HeaderLink'     => url('/'),
-            'SenderEmail'    => 'droitformation.web@gmail.com',
+            'SenderEmail'    => 'info@droitdutravail.ch',
             'Sender'         => $campagne->newsletter->from_name
         );
 
