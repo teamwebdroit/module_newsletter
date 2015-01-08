@@ -34,6 +34,13 @@ class Mailjet
             $this->secretKey = $secretKey;
         }
         $this->apiUrl = (($this->secure) ? 'https' : 'http') . '://api.mailjet.com/v3/REST';
+
+        // ENV test for debug
+
+        $environment = app('env');
+
+        $this->debug = (!$environment == 'production' ? 2 : 0);
+
     }
 
     public function curl_setopt_custom_postfields($curl_handle, $postfields, $headers = null) {

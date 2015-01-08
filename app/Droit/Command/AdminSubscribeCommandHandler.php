@@ -29,7 +29,6 @@ class AdminSubscribeCommandHandler implements CommandHandler {
     public function handle($command)
     {
         $activated_at  = ( $command->activation ? true : false );
-        $newsletter_id = ( $command->newsletter_id ? $command->newsletter_id : array() );
 
         // Validate email
         $this->validator->validate( array('email' => $command->email ) );

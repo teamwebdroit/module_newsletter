@@ -52,8 +52,17 @@ App::error(function(Exception $exception, $code)
     {
         Log::error($exception);
     }
+    else if (App::environment('testing'))
+    {
+        Log::error($exception);
+    }
     else
     {
+        if (Auth::check() && Request::is('admin/*'))
+        {
+            return View::make('admin.404');
+        }
+
         return View::make('404');
     }
 });

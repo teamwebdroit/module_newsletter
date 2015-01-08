@@ -56,7 +56,15 @@ class AbonneController extends \BaseController {
 	 */
 	public function store()
 	{
-        $this->execute('Droit\Command\AdminSubscribeCommand');
+        $newsletter_id = (Input::get('newsletter_id') ? Input::get('newsletter_id') : array() );
+
+        $command = array(
+            'email'         => Input::get('email'),
+            'newsletter_id' => $newsletter_id,
+            'activation'    => Input::get('activation')
+        );
+
+        $this->execute('Droit\Command\AdminSubscribeCommand', $command);
 
         return Redirect::to('admin/abonne')->with( array('status' => 'success' , 'message' => 'Abonné ajouté') );
 	}
