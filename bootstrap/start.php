@@ -26,8 +26,23 @@ $app = new Illuminate\Foundation\Application;
 
 $env = $app->detectEnvironment(function()
 {
-    // Default to local if LARAVEL_ENV is not set
-    return getenv('LARAVEL_ENV') ?: 'local';
+    $domain = strtolower($_SERVER['HTTP_HOST']);
+
+    switch($domain) {
+        case 'droitdutravail.ch' :
+            return 'production';
+            break;
+
+        case 'newsletter.leschaud.ch' :
+            //our staging server
+            return 'testing';
+            break;
+
+        default :
+            return 'local';
+            break;
+    }
+
 });
 
 
