@@ -26,7 +26,7 @@ return array(
 	|
 	*/
 
-	'url' => 'http://newsletter.leschaud.ch',
+	'url' => 'http://droitdutravail.ch',
 
 	/*
 	|--------------------------------------------------------------------------
