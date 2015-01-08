@@ -5,3 +5,4 @@ composer.lock
 .htaccess
 .idea/
 links.txt
+environment.php

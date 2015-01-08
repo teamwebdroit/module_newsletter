@@ -26,23 +26,7 @@ $app = new Illuminate\Foundation\Application;
 
 $env = $app->detectEnvironment(function()
 {
-    $domain = strtolower($_SERVER['HTTP_HOST']);
-
-    switch($domain) {
-        case 'droitdutravail.ch' :
-            return 'production';
-            break;
-
-        case 'newsletter.leschaud.ch' :
-            //our staging server
-            return 'testing';
-            break;
-
-        default :
-            return 'local';
-            break;
-    }
-
+    return require __DIR__.'/environment.php';
 });
 
 
