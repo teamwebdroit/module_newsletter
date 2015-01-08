@@ -2379,3 +2379,17 @@ ul.item-nav li.all a {
 .tagcloud a:hover {
     color: #FFFFFF !important;
 }
+
+#pagepastrouve{
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    display: block;
+}
+
+#pagepastrouve img{
+    width: 20%;
+    display: block;
+    text-align: center;
+    margin: 20px auto 40px auto;
+}

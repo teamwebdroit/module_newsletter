@@ -59,7 +59,7 @@ CSS overview:
     min-height: 100px;
 }
 
-.newsletter .grey, .media .grey{
+.newsletter .grey, .media .grey, #pagepastrouve .grey{
     background-color:#dd0330;
     border: 1px solid #cc002a;
 	color: #fff;
@@ -69,7 +69,7 @@ CSS overview:
 	margin-top: 10px;
 }
 
-.newsletter .grey:hover, .media .grey:hover{
+.newsletter .grey:hover, .media .grey:hover, #pagepastrouve .grey:hover{
     background-color:#5a101f;
     border: 1px solid #3c0813;
 	text-decoration: none;

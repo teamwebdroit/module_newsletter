@@ -166,6 +166,11 @@ Route::get('testing', function()
 
 });
 
+Route::get('404', function()
+{
+    return View::make('404');
+});
+
 Route::get('setHmtlCampagne', function()
 {
 
