@@ -12,7 +12,6 @@ Route::group(array('before' => 'islive'), function()
     Route::get('jurisprudence', 'HomeController@jurisprudence');
     Route::get('newsletters/{id?}', 'HomeController@newsletters');
 
-    // 'before' => 'csrf'
 });
 
 /**
@@ -44,7 +43,6 @@ Route::group(array('before' => array('admin','csrf')), function()
     Route::post('remove', 'CampagneController@remove');
 
 });
-
 
 Route::get('arrets/{id}', 'ArretController@simple');
 Route::get('arrets', 'ArretController@arrets');
@@ -90,6 +88,7 @@ Route::group(array('prefix' => 'admin', 'before' => array('auth','admin')), func
 
     Route::match(array('GET', 'POST'), 'categorie/arretsExists', array('uses' => 'CategorieController@arretsExists'));
     Route::match(array('GET', 'POST'), 'search', array('uses' => 'SearchController@index'));
+
 });
 
 
