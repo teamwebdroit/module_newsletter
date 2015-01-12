@@ -96,6 +96,14 @@ Route::group(array('prefix' => 'admin', 'before' => array('auth','admin')), func
 Route::get('testing', function()
 {
 
+    $colloques = new \Droit\Service\Worker\ColloqueWorker;
+    $actifs = $colloques->getColloques();
+
+
+    echo '<pre>';
+    print_r($actifs);
+    echo '</pre>';
+
     $send = new \Droit\Newsletter\Worker\CampagneWorker(
         \App::make('Droit\Newsletter\Repo\NewsletterContentInterface'),
         \App::make('Droit\Newsletter\Repo\NewsletterCampagneInterface'),
@@ -162,11 +170,11 @@ Route::get('testing', function()
 
     }*/
 
-    $analyse = new Droit\Content\Entities\Analyse();
+/*    $analyse = new Droit\Content\Entities\Analyse();
 
     echo '<pre>';
     print_r($analyse->where('id', '=',1)->with(array('analyses_categories','analyses_arrets'))->get()->first());
-    echo '</pre>';
+    echo '</pre>';*/
 
 });
 
@@ -195,29 +203,3 @@ Route::get('setHmtlCampagne', function()
 
 });
 
-/**
- * LOG
- */
-Event::listen('illuminate.query', function($query, $bindings, $time, $name)
-{
-    $data = compact('bindings', 'time', 'name');
-
-    // Format binding data for sql insertion
-    foreach ($bindings as $i => $binding)
-    {
-        if ($binding instanceof \DateTime)
-        {
-            $bindings[$i] = $binding->format('\'Y-m-d H:i:s\'');
-        }
-        else if (is_string($binding))
-        {
-            $bindings[$i] = "'$binding'";
-        }
-    }
-
-    // Insert bindings into query
-    $query = str_replace(array('%', '?'), array('%%', '%s'), $query);
-    $query = vsprintf($query, $bindings);
-
-    //Log::info($query, $data);
-});

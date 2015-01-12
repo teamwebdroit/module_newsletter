@@ -4,7 +4,7 @@
         <h3 class="title"><i class="icon-tasks"></i> &nbsp;Catégories</h3>
 
            @if(!empty($categories))
-              <select id="arret-chosen" name="category_check" data-placeholder="Choisir une catégorie" style="width:100%" multiple class="chosen-select category">
+              <select id="arret-chosen" name="category_check" data-placeholder="Choisir une ou plusieurs catégories" style="width:100%" multiple class="chosen-select category">
                   @foreach($categories as $categorie)
                      <option value="c{{ $categorie->id }}">{{ $categorie->title }}</option>
                   @endforeach

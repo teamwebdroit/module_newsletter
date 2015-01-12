@@ -936,13 +936,7 @@ button.close {
 }
 .alert-dismissable .close,
 .alert-dismissible .close {
-    background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
-    border: medium none;
-    color: inherit;
-    font-size: 15px;
-    position: absolute;
-    right: 5px;
-    top: 5px;
+
 }
 .alert-success {
     background-color: #dff0d8;

@@ -7,53 +7,75 @@
 </div><!--END PAGE-HEADER-->
 
 <div class="row">
-
     <div id="inner-content" class="col-md-8 col-xs-12">
 
-            <h4 class="title-section">
-                <a target="_blank" href="http://www2.unine.ch/cert"><img src="<?php echo asset('images/logos/cert.jpg');?>" alt="" /></a>
-            </h4>
-            <div class="post">
-                <div class="post-holder">
-                    <div class="post-content">
+        @if(!$colloques->isEmpty())
 
-                        <div class="post-date">
-                            <ul>
-                                <li class="date"><span class="day">12</span><span class="month">Février</span> <span class="year">2015</span></li>
-                            </ul>
-                        </div><!--END POST-DATE-->
+            @foreach($colloques as $name => $centre)
 
-                        <div class="post-title">
-                            <h2 class="title">
-                                <a target="_blank" href="http://www.publications-droit.ch/index.php?id=275#/item/59">Conflits au travail<br/>
-                                <strong>prévention, gestion, sanctions</strong></a>
-                            </h2>
-                        </div><!--END POST-TITLE-->
+                <h4 class="title-section">
+                    <a target="_blank" href="http://www2.unine.ch/cert"><img src="<?php echo asset('images/logos/'.$name.'.jpg');?>" alt="{{ $name }}" /></a>
+                </h4>
 
-                        <div class="post-entry">
-                            <p>Le but du séminaire est de répondre aux principales questions juridiques  concernant les conflits sur le lieu de travail en Suisse.</p>
-                            <a target="_blank" href="http://www.publications-droit.ch/fileadmin/admin_unine/files/25848d41de2b2c8827ca7236954afbe8.pdf">
-                                &nbsp;<i class="fa fa-file-o"></i> &nbsp;&nbsp;Le programme
-                            </a>
-                            <dl class="dl-horizontal">
-                                <dt>Lieu:</dt>
-                                    <dd>Aula des Jeunes Rives, Espace Louis-Agassiz 1, 2000 Neuchâtel</dd>
-                                <dt>Date:</dt>
-                                    <dd>12/02/15</dd>
-                                <dt>Délai d'inscription:</dt>
-                                    <dd>25/01/15</dd>
-                                <dt>Prix d'inscription:</dt>
-                                    <dd>Normal <strong>CHF 280.00</strong></dd>
-                                    <dd>Stagiaires <strong>CHF 120.00</strong> </dd>
-                            </dl>
-                            <p><a target="_blank" href="http://www.publications-droit.ch/index.php?id=275#/item/59" class="button small grey">Inscription</a></p>
+                @foreach($centre as $colloque)
 
-                        </div><!--END POST-ENTRY-->
+                    <div class="post">
+                        <div class="post-holder">
+                            <div class="post-content">
 
-                    </div><!--END POST-CONTENT -->
-                </div><!--END POST-HOLDER -->
+                                <?php
+                                    setlocale(LC_ALL, 'fr_FR.UTF-8');
+                                    $date  = \Carbon\Carbon::createFromFormat('Y-m-d', $colloque['event']['dateDebut']);
+                                    $delai = \Carbon\Carbon::createFromFormat('Y-m-d', $colloque['event']['DelaiInscription']);
+                                ?>
 
-            </div><!--END POST-->
+                                <div class="post-date">
+                                    <ul>
+                                        <li class="date">
+                                            <span class="day">{{ $date->day }}</span><span class="month">{{ $date->formatLocalized('%B') }}</span> <span class="year">{{ $date->year }}</span>
+                                        </li>
+                                    </ul>
+                                </div><!--END POST-DATE-->
+
+                                <div class="post-title">
+                                    <h2 class="title">
+                                        <a target="_blank" href="http://www.publications-droit.ch/index.php?id=275#/item/59">{{ $colloque['event']['titre'] }}<br/>
+                                            <strong>{{ $colloque['event']['soustitre'] }}</strong></a>
+                                    </h2>
+                                </div><!--END POST-TITLE-->
+
+                                <div class="post-entry">
+                                    <p>{{ $colloque['event']['description'] }}</p>
+                                    <a target="_blank" href="{{ $colloque['programme']['url'].$colloque['programme']['filename'] }}">
+                                        &nbsp;<i class="fa fa-file-o"></i> &nbsp;&nbsp;Le programme
+                                    </a>
+                                    <dl class="dl-horizontal">
+                                        <dt>Lieu:</dt>
+                                        <dd>{{ $colloque['event']['endroit'] }}</dd>
+                                        <dt>Date:</dt>
+                                        <dd>{{ $date->format('d/m/y') }}</dd>
+                                        <dt>Délai d'inscription:</dt>
+                                        <dd>{{ $delai->format('d/m/y') }}</dd>
+
+                                        <dt>Prix d'inscription:</dt>
+                                        @if(!empty($colloque['prix']))
+                                            @foreach($colloque['prix'] as $prix)
+                                                <dd>{{ $prix['remarquePrix'] }} <strong>CHF {{ $prix['Prix'] }}</strong></dd>
+                                            @endforeach
+                                        @endif
+                                    </dl>
+                                    <p><a target="_blank" href="http://www.publications-droit.ch/index.php?id=275#/item/{{ $colloque['event']['id_Colloque'] }}" class="button small grey">Inscription</a></p>
+
+                                </div><!--END POST-ENTRY-->
+
+                            </div><!--END POST-CONTENT -->
+                        </div><!--END POST-HOLDER -->
+                    </div><!--END POST-->
+
+                @endforeach
+            @endforeach
+
+        @endif
 
             <h4 class="title-section">
                 <a target="_blank" href="http://www2.unine.ch/cemaj"><img src="<?php echo asset('images/logos/cemaj.jpg');?>" alt="" /></a>

@@ -8,6 +8,7 @@ use Droit\Newsletter\Worker\CampagneInterface;
 use Droit\Service\Worker\ContentWorker;
 use Laracasts\Commander\CommanderTrait;
 use Droit\Command\MessageSendCommand;
+use Droit\Service\Worker\ColloqueWorker;
 
 class HomeController extends BaseController {
 
@@ -20,8 +21,9 @@ class HomeController extends BaseController {
     protected $jurisprudence;
     protected $worker;
     protected $custom;
+    protected $colloque;
 
-    public function __construct( ContentInterface $content, ArretInterface $arret, CategorieInterface $categorie, NewsletterCampagneInterface $campagne, ContentWorker $jurisprudence , CampagneInterface $worker )
+    public function __construct( ContentInterface $content, ArretInterface $arret, CategorieInterface $categorie, NewsletterCampagneInterface $campagne, ContentWorker $jurisprudence , CampagneInterface $worker, ColloqueWorker $colloque )
     {
         $this->content        = $content;
         $this->arret          = $arret;
@@ -30,6 +32,7 @@ class HomeController extends BaseController {
         $this->campagne       = $campagne;
         $this->jurisprudence  = $jurisprudence;
         $this->worker         = $worker;
+        $this->colloque       = $colloque;
         $this->custom         = new \Custom;
 
         $arrets = $this->arret->getPaginate(195,15);
@@ -57,7 +60,9 @@ class HomeController extends BaseController {
 
     public function colloque()
     {
-        return View::make('colloque');
+        $colloques = $this->colloque->getColloques();
+
+        return View::make('colloque')->with(array('colloques' => $colloques));
     }
 
     public function contact()
@@ -70,7 +75,6 @@ class HomeController extends BaseController {
         $this->execute('Droit\Command\MessageSendCommand');
 
         return Redirect::to('/')->with(array('status' => 'success', 'message' => '<strong>Merci pour votre message</strong><br/>Nous vous contacterons dès que possible.'));
-
     }
 
     /**

@@ -6,9 +6,7 @@ class UploadController extends BaseController {
 
     public function __construct( UploadInterface $upload )
     {
-
         $this->upload = $upload;
-
     }
 
     public function uploadJS()
