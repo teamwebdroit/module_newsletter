@@ -14,18 +14,20 @@ class Arret extends BaseModel {
      * Validation rules
     */
     protected static $rules = array(
-        'reference' => 'required',
-        'pub_date'  => 'required',
-        'abstract'  => 'required'
+        'reference'  => 'required',
+        'categories' => 'required',
+        'pub_date'   => 'required',
+        'abstract'   => 'required'
     );
 
     /*
      * Validation messages
     */
     protected static $messages = array(
-        'reference.required' => 'La référence est requise',
-        'pub_date.required'  => 'La date de publication est requise',
-        'abstract.required'  => 'Le résumé est requis'
+        'reference.required'   => 'La référence est requise',
+        'pub_date.required'    => 'La date de publication est requise',
+        'abstract.required'    => 'Le résumé est requis',
+        'categories.required'  => 'Au moins une catégorie est requise'
     );
 
     public function arrets_categories()

@@ -39,7 +39,7 @@ class Mailjet
 
         $environment = app('env');
 
-        $this->debug = ($environment != 'production' ? 2 : 0);
+        $this->debug = ($environment != 'production' ? 1 : 0);
 
     }
 

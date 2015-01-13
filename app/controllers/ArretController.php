@@ -80,7 +80,8 @@ class ArretController extends \BaseController {
             $file = $this->upload->upload( Input::file('file') , 'files/arrets' );
         }
 
-        $categories = Input::get('categories');
+        $cats = Input::get('categories');
+        $categories = (!empty($cats) ? Input::get('categories') : array());
 
         // Data array
         $data = array(
@@ -121,7 +122,8 @@ class ArretController extends \BaseController {
             $file = $this->upload->upload( Input::file('file') , 'files/arrets' );
         }
 
-        $categories = Input::get('categories');
+        $cats = Input::get('categories');
+        $categories = (!empty($cats) ? Input::get('categories') : array());
 
         // Data array
         $data = array(
