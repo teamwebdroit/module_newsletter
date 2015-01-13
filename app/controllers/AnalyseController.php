@@ -84,8 +84,11 @@ class AnalyseController extends \BaseController {
             $file = $this->upload->upload( Input::file('file') , 'files/analyses' );
         }
 
-        $categories = Input::get('categories');
-        $arrets     = Input::get('arrets');
+        $cats = Input::get('categories');
+        $categories = (!empty($cats) ? Input::get('categories') : array());
+
+        $arrs = Input::get('arrets');
+        $arrets = (!empty($arrs) ? Input::get('arrets') : array());
 
         // Data array
         $data = array(
@@ -128,8 +131,11 @@ class AnalyseController extends \BaseController {
             $file = $this->upload->upload( Input::file('file') , 'files/analyses' );
         }
 
-        $categories = Input::get('categories');
-        $arrets     = Input::get('arrets');
+        $cats = Input::get('categories');
+        $categories = (!empty($cats) ? Input::get('categories') : array());
+
+        $arrs = Input::get('arrets');
+        $arrets = (!empty($arrs) ? Input::get('arrets') : array());
 
         // Data array
         $data = array(
