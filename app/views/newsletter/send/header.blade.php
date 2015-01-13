@@ -1,23 +1,31 @@
 <tr>
     <td align="center">
-
         <!-- Title -->
-        <table width="600" bgcolor="#5a101f" border="0" cellpadding="0" cellspacing="0" align="center" class="resetTable headerInfos">
-            <tr bgcolor="#5a101f"><td colspan="3" height="10"></td></tr><!-- space -->
+        <table bgcolor="#5a101f" width="600" border="0" cellpadding="0" cellspacing="0" align="center" class="resetTable headerInfos">
+            <tr bgcolor="#5a101f"><td colspan="4" height="10"></td></tr><!-- space -->
             <tr bgcolor="#5a101f">
-                <td width="20"></td>
-                <td align="left"><h1 class="header">{{ $infos->sujet  }}</h1></td>
-                <td width="20"></td>
-            </tr>
-
-            <tr bgcolor="#5a101f">
-                <td width="20"></td>
-                <td align="left"><h2 class="header headerSmall">Editée par {{ $infos->auteurs }}</h2></td>
-                <td width="20"></td>
-            </tr>
-            <tr bgcolor="#5a101f"><td colspan="3" height="10"></td></tr><!-- space -->
+                <td width="430">
+                    <table width="430" bgcolor="#5a101f" border="0" cellpadding="0" cellspacing="0" align="center" class="resetTable">
+                        <tr bgcolor="#5a101f">
+                            <td width="20"></td>
+                            <td colspan="2" align="left"><h1 class="header">{{ $infos->sujet  }}</h1></td>
+                            <td width="20"></td>
+                        </tr>
+                        <tr bgcolor="#5a101f">
+                            <td width="20"></td>
+                            <td align="left"><h2 class="header headerSmall">Editée par {{ $infos->auteurs }}</h2></td>
+                            <td width="20"></td>
+                        </tr>
+                    </table>
+                </td>
+                <td width="130">
+                    <a target="_blank" href="http://www.staempfliverlag.com">
+                        <img width="130" alt="Staempfli Verlag" src="{{ asset('files/stampfli.jpg') }}" />
+                    </a>
+                </td>
+            </tr><!-- space -->
+            <tr bgcolor="#5a101f"><td colspan="4" height="10"></td></tr><!-- space -->
         </table>
         <!-- End title -->
-
     </td>
 </tr>

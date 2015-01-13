@@ -3,7 +3,11 @@
 
 <div class="row">
     <div class="col-md-offset-2 col-md-8">
-
+        <div class="options" style="margin-bottom: 10px;">
+            <div class="btn-toolbar">
+                <a href="{{ url('admin/abonne') }}" class="btn btn-inverse"><i class="fa fa-chevron-left"></i> &nbsp;Retour aux abonnés</a>
+            </div>
+        </div>
         <div class="panel panel-green">
 
             <!-- form start -->

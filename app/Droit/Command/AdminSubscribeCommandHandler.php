@@ -33,7 +33,7 @@ class AdminSubscribeCommandHandler implements CommandHandler {
         // Validate email
         $this->validator->validate( array('email' => $command->email ) );
 
-        if(!empty($newsletter_id) && $activated_at)
+        if(!empty($command->newsletter_id) && $activated_at)
         {
             // Sync to mailjet
             try
@@ -45,12 +45,12 @@ class AdminSubscribeCommandHandler implements CommandHandler {
                 throw new \Droit\Exceptions\SubscribeUserException('Erreur synchronisation email vers mailjet', $e->getError() );
             }
         }
+
         // Add email to listsSubscribe and activate to selected newsletter
         $abonne = $this->abonne->add( array('email' => $command->email, 'activated_at' => $activated_at ) );
-        $abonne->newsletter()->sync($newsletter_id);
+        $abonne->newsletter()->sync($command->newsletter_id);
 
         return true;
-
     }
 
 }
