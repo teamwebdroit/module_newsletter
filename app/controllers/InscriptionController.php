@@ -14,6 +14,8 @@ class InscriptionController extends \BaseController {
 
     public function __construct(NewsletterUserInterface $abo)
     {
+        $this->beforeFilter('csrf', array('only' => array('store','unsubscribe')));
+
         $this->abo = $abo;
     }
 
