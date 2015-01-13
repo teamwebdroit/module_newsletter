@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="page-header text-align-left">
-    <h1 class="title uppercase">Colloque</h1>
+    <h1 class="title uppercase">Colloques</h1>
 </div><!--END PAGE-HEADER-->
 
 <div class="row">
