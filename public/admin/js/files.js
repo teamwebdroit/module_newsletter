@@ -26,7 +26,10 @@ $(function(){
 
                     goto(window.location.hash);
 
-                    $('#addFolderForm').val(getHash());
+                    var newhash = window.location.hash;
+                    newhash     = newhash.substring(1);
+
+                    $('#addFolderForm').val(newhash);
 
                     // We are triggering the event. This will execute
                     // this function on page load, so that we show the correct folder:
@@ -403,15 +406,6 @@ $(function(){
     startFileManager();
 
     /******************************
-     * Get hash
-     ******************************/
-
-    function getHash() {
-        var hash = window.location.hash;
-        return hash.substring(1); // remove #
-    }
-
-    /******************************
      * Upload manager
     *******************************/
 
@@ -431,7 +425,8 @@ $(function(){
                 });
             });
 
-    var _token = $("meta[name='token']").attr('content');
+    var _token  = $("meta[name='token']").attr('content');
+    var current = window.location.hash.substring(1);
 
     $('#fileupload').fileupload({
         url: url,
@@ -454,11 +449,17 @@ $(function(){
         change:function (e, data) {
 
         },
-        formData: {folder: getHash(), _token: _token  }
+        formData: {folder: $('#addFolderForm').val() , _token: _token  }
 
     }).on('fileuploadadd', function (e, data) {
 
+        $('#files').empty();
+
         data.context = $('<div/>').appendTo('#files');
+
+        var newhash = location.hash.substring(1);
+
+        $('#addFolderForm').val(newhash);
 
         $.each(data.files, function (index, file) {
 
