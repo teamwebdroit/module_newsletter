@@ -5,7 +5,7 @@
         <meta charset="utf-8" />
         <title>Droit du travail</title>
 
-        <meta name="description" content="RJN">
+        <meta name="description" content="Le site droitdutravail.ch, créé sous l'égide de la Faculté de droit de l'Université de Neuchâtel, est dédié aux nouveautés en droit du travail, en particulier la jurisprudence du Tribunal fédéral.">
         <meta name="author" content="Cindy Leschaud">
         <meta name="viewport" content="width=device-width">
 

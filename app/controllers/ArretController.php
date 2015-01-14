@@ -83,6 +83,10 @@ class ArretController extends \BaseController {
         $cats = Input::get('categories');
         $categories = (!empty($cats) ? Input::get('categories') : array());
 
+        echo '<pre>';
+        print_r($categories);
+        echo '</pre>';
+exit;
         // Data array
         $data = array(
             'pid'        => 195,

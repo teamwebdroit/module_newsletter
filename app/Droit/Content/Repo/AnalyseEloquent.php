@@ -21,7 +21,7 @@ class AnalyseEloquent implements AnalyseInterface{
             ->where('analyses.deleted', '=', 0)
             ->with( array('analyses_categories' => function ($query)
                 {
-                    $query->orderBy('sorting', 'ASC');
+                    $query->orderBy('sorting', 'DESC');
                 },'analyses_arrets' => function($query)
                 {
 

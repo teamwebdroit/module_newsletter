@@ -120,7 +120,7 @@
     <script type="text/javascript" src="<?php echo asset('admin/js/placeholdr.js');?>"></script>
     <script type="text/javascript" src="<?php echo asset('js/vendor/redactor/redactor.js');?>"></script>
     <script type="text/javascript" src="<?php echo asset('js/vendor/redactor/fr.js');?>"></script>
-    <script type='text/javascript' src="<?php echo asset('admin/plugins/form-multiselect/js/jquery.multi-select.min.js');?>"></script>
+    <script type='text/javascript' src="<?php echo asset('admin/plugins/form-multiselect/js/jquery.multi-select.js');?>"></script>
     <script type='text/javascript' src="<?php echo asset('admin/plugins/datatables/jquery.dataTables.min.js');?>"></script>
     <script type='text/javascript' src="<?php echo asset('admin/plugins/datatables/dataTables.bootstrap.js');?>"></script>
     <script type='text/javascript' src="<?php echo asset('admin/plugins/form-datepicker/js/bootstrap-datepicker.js');?>"></script>

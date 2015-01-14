@@ -163,10 +163,37 @@ $(".widget-body").on('shown.bs.collapse', function () {
 // Sidebars Positionings
 // -------------------------------
 
+$('#multi-select').multiSelect({
+    keepOrder : true ,
+    afterSelect: function(value){
 
+        var list = $('#ms-multi-select .ms-selection .ms-list li.ms-selected');
+        var resultArray = [];
 
-$('#multi-select').multiSelect();
-$('#multi-select2').multiSelect();
+        $('#ms-multi-select .ms-selection .ms-list li.ms-selected').each(function(n, i) {
+            var id = $(this).attr("id");
+            id = id.replace("-selection", "");
+            resultArray.push( id )
+        });
+
+        console.log(resultArray);
+        $("#multiple_categories").val(resultArray.join(','));
+    },
+    afterDeselect: function(){
+        var list = $('#ms-multi-select .ms-selection .ms-list li.ms-selected');
+        var resultArray = [];
+
+        $('#ms-multi-select .ms-selection .ms-list li.ms-selected').each(function(n, i) {
+            var id = $(this).attr("id");
+            id = id.replace("-selection", "");
+            resultArray.push( id )
+        });
+
+        console.log(resultArray);
+        $("#multiple_categories").val(resultArray.join(','));
+    }
+});
+$('#multi-select2').multiSelect({ keepOrder : true });
 
 $('.redactor').redactor({
     minHeight: 200,

@@ -565,4 +565,21 @@ class Custom {
         return $home;
     }
 
+    public function prepareCategories($data){
+
+        $categories = array();
+
+        if(!empty($data))
+        {
+            $keys_id = array_keys($data);
+
+            foreach($data as $index => $key){
+                $categories[$key] = ['sorting' => $index];
+            }
+        }
+
+        return $categories;
+
+    }
+
 }

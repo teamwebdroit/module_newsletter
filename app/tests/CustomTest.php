@@ -100,4 +100,23 @@ class CustomTest extends TestCase {
 
         $this->assertEquals($expected,$actual);
     }
+
+    /**
+     * Prepare categories for sync
+     *
+     * @return void
+     */
+    public function testPrepareCategorieForSync()
+    {
+        $string   = array(5,2,1);
+        $expected = array(
+            5 => ['sorting' => 0],
+            2 => ['sorting' => 1],
+            1 => ['sorting' => 2]
+        );
+        $actual = $this->custom->prepareCategories($string);
+
+        $this->assertEquals($expected,$actual);
+    }
+
 }

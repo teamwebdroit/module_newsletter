@@ -83,16 +83,23 @@
 
                 <?php
 
-                    $arrets_categories = $arret->arrets_categories;
-                    $hasCategorie      = array();
+                    $hasCategorie = array();
+                    $hasIds       = array();
 
-                    if( !$arrets_categories->isEmpty() )
+                    $isCategories = $categories->lists('title','id');
+
+                    if( !$arret->arrets_categories->isEmpty() )
                     {
-                        foreach($arrets_categories as $arrets_categorie)
-                        {
-                            $hasCategorie[] = $arrets_categorie->id;
-                        }
+                        $hasCategorie = $arret->arrets_categories->lists('title','id');
+                        $hasIds       = $arret->arrets_categories->lists('id');
                     }
+
+                echo '<pre>';
+                print_r($hasCategorie);
+                echo '</pre>';
+
+                    $categories = array_diff_key($isCategories,$hasCategorie);
+
                 ?>
 
                 <div class="form-group">
@@ -100,19 +107,22 @@
                     <div class="col-sm-6">
                         <select multiple="multiple" name="categories[]" id="multi-select">
                             <?php
-                                foreach($categories as $categorie)
+
+                                if(!empty($hasCategorie))
                                 {
-                                    echo '<option value="'.$categorie->id.'" ';
-
-                                    if(in_array($categorie->id, $hasCategorie))
+                                    foreach($hasCategorie as $hasid => $has)
                                     {
-                                        echo 'selected';
+                                        echo '<option value="'.$hasid.'" selected >'.$has.'</option>';
                                     }
+                                }
 
-                                    echo ' >'.$categorie->title.'</option>';
+                                foreach($categories as $id => $categorie)
+                                {
+                                    echo '<option value="'.$id.'" >'.$categorie.'</option>';
                                 }
                             ?>
                         </select>
+                        <input type="hidden" value="<?php echo implode(',',$hasIds); ?>" name="multiple_categories" id="multiple_categories"/>
                     </div>
                 </div>
 
