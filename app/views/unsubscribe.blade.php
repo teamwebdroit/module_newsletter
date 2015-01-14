@@ -15,7 +15,7 @@
         @include('partials.message')
 
         <p>Désinscription de la newsletter en droit du travail.</p>
-        <form action="{{ url('inscription/unsubscribe') }}" method="post" id="unsub-form" role="form">
+        {{ Form::open(array('url' => 'inscription/unsubscribe' ,'method' => 'post', 'id' => 'unsub-form')) }}
             <p class="form-email-unsub">
                 <label for="email">Votre email</label>
                 <input id="email" class="requiredField email" type="email" size="30"  name="email">
@@ -24,7 +24,7 @@
                 <input type="hidden" name="newsletter_id[]" value="1">
                 <input id="submitted" class="submit button medium grey" type="submit" value="Se désinscrire">
             </p>
-        </form>
+        {{ Form::close() }}
 
     </div>
 

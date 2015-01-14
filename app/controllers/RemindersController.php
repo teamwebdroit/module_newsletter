@@ -2,6 +2,11 @@
 
 class RemindersController extends Controller {
 
+	public function __construct()
+	{
+		$this->beforeFilter('csrf', array('only' => array('postRemind','postReset')));
+	}
+
 	/**
 	 * Display the password reminder view.
 	 *

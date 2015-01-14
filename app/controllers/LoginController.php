@@ -2,6 +2,10 @@
 
 class LoginController extends \BaseController {
 
+	public function __construct()
+	{
+		$this->beforeFilter('csrf', array('only' => array('store')));
+	}
 	/**
 	 * Display a listing of the resource.
 	 * GET /login
