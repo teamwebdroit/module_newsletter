@@ -431,12 +431,14 @@ $(function(){
                 });
             });
 
+    var _token = $("meta[name='token']").attr('content');
+
     $('#fileupload').fileupload({
         url: url,
         dataType: 'json',
         autoUpload: false,
         singleFileUploads:true,
-        acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
+        acceptFileTypes: /(\.|\/)(gif|jpe?g|png|pdf)$/i,
         maxFileSize: 5000000, // 5 MB
         // Enable image resizing, except for Android and Opera,
         // which actually support image resizing, but fail to
@@ -452,7 +454,7 @@ $(function(){
         change:function (e, data) {
 
         },
-        formData: {folder: getHash() }
+        formData: {folder: getHash(), _token: _token  }
 
     }).on('fileuploadadd', function (e, data) {
 
