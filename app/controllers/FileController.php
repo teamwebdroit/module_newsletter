@@ -141,7 +141,10 @@ class FileController extends \BaseController {
      */
     public function addFolder(){
 
-        if( \File::makeDirectory( Input::get('path').'/'.Input::get('folder') , 0775, true) )
+        $path = Input::get('path');
+        $path = (!empty($path) ? $path : 'files');
+
+        if( \File::makeDirectory($path.'/'.Input::get('folder') , 0775, true) )
         {
             return Redirect::back()->with( array('status' => 'success' , 'message' => 'Dossier crée') );
         }

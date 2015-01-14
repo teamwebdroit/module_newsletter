@@ -457,10 +457,6 @@ $(function(){
 
         data.context = $('<div/>').appendTo('#files');
 
-        var newhash = location.hash.substring(1);
-
-        $('#addFolderForm').val(newhash);
-
         $.each(data.files, function (index, file) {
 
             var node = $('<p/>').append($('<span/>').text(file.name));
