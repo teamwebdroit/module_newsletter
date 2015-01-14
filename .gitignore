@@ -6,3 +6,4 @@ composer.lock
 .idea/
 links.txt
 environment.php
+public/files/
