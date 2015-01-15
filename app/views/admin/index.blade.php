@@ -21,7 +21,7 @@
                             </tr>
                             </thead>
                             <tbody class="selects">
-
+                            <?php setlocale(LC_ALL, 'fr_FR.UTF-8');  ?>
                             @if(!empty($arrets))
                                 @foreach($arrets as $arret)
                                     <tr>

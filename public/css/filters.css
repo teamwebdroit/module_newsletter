@@ -24,3 +24,7 @@
 #filtering .analyses.hidden{
     display: none;
 }
+
+.arrets .arret{
+    margin-bottom: 20px;
+}

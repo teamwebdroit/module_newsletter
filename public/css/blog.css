@@ -200,6 +200,7 @@ CSS overview:
 .listCat{
     text-align: center;
     margin: 0;
+    margin-top: 20px;
 }
 
 .listCat p{
