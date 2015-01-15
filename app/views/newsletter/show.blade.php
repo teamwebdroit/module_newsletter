@@ -40,7 +40,7 @@
                         <div id="sortable">
                             @if(!empty($campagne))
                                 @foreach($campagne as $bloc)
-                                    <div id="bloc_rang_{{ $bloc->idItem }}" data-rel="{{ $bloc->idItem }}">
+                                    <div class="bloc_rang" id="bloc_rang_{{ $bloc->idItem }}" data-rel="{{ $bloc->idItem }}">
                                         <?php echo View::make('newsletter/build/edit/'.$bloc->type->partial)->with(array('bloc' => $bloc))->__toString(); ?>
                                     </div>
                                 @endforeach

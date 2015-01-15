@@ -178,12 +178,20 @@ $(function() {
         $('.create_bloc').hide();
         $('.edit_content_form').hide();
         $('#edit_'+id).show();
+
+        // height
+        var h = $('#edit_'+id).height();
+        $('#bloc_rang_'+ id).css("height",h);
+
         $( "#sortable" ).sortable( "disable" );
     });
 
     $('body').on('click','.cancelEdit',function(event){
+
         $('.edit_content_form').hide();
         $( "#sortable" ).sortable( "enable" );
+
+        $('.bloc_rang').height('auto');
     });
 
     $('body').on('click','.cancelCreate',function(event){
@@ -196,6 +204,7 @@ $(function() {
         var id     = $this.attr('rel');
         var w = $( document ).width();
         w = w - 890;
+        var h = $( document ).height();
 
         $('.create_bloc').hide();
         $('.edit_content_form').hide();
