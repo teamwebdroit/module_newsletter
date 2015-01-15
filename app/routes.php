@@ -26,7 +26,7 @@ Route::post('inscription/resend', 'InscriptionController@resend');
 Route::post('inscription/unsubscribe', 'InscriptionController@unsubscribe');
 Route::resource('inscription', 'InscriptionController');
 
-Route::group(array('before' => array('admin','csrf')), function()
+Route::group(array('before' => array('admin')), function()
 {
     /**
      * Upload routes
@@ -34,7 +34,10 @@ Route::group(array('before' => array('admin','csrf')), function()
     Route::post('uploadJS', 'UploadController@uploadJS');
     Route::post('uploadRedactor', 'UploadController@uploadRedactor');
     Route::post('uploadJquery', 'UploadController@uploadJquery');
+});
 
+Route::group(array('before' => array('admin','csrf')), function()
+{
     /**
      * API
      */
