@@ -26,7 +26,7 @@ Route::post('inscription/resend', 'InscriptionController@resend');
 Route::post('inscription/unsubscribe', 'InscriptionController@unsubscribe');
 Route::resource('inscription', 'InscriptionController');
 
-Route::group(array('before' => array('admin')), function()
+Route::group(array('before' => array('auth')), function()
 {
     /**
      * Upload routes
