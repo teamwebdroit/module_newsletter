@@ -85,10 +85,21 @@ class AnalyseController extends \BaseController {
         }
 
         $cats = Input::get('categories');
-        $categories = (!empty($cats) ? Input::get('categories') : array());
+        if(!empty($cats)){
+            $categories = $this->custom->prepareCategories($cats);
+        }
+        else{
+            $categories = array();
+        }
 
         $arrs = Input::get('arrets');
-        $arrets = (!empty($arrs) ? Input::get('arrets') : array());
+
+        if(!empty($arrs)){
+            $arrets = $this->custom->prepareCategories($arrs);
+        }
+        else{
+            $arrets = array();
+        }
 
         // Data array
         $data = array(
@@ -132,10 +143,21 @@ class AnalyseController extends \BaseController {
         }
 
         $cats = Input::get('categories');
-        $categories = (!empty($cats) ? Input::get('categories') : array());
+        if(!empty($cats)){
+            $categories = $this->custom->prepareCategories($cats);
+        }
+        else{
+            $categories = array();
+        }
 
         $arrs = Input::get('arrets');
-        $arrets = (!empty($arrs) ? Input::get('arrets') : array());
+
+        if(!empty($arrs)){
+            $arrets = $this->custom->prepareCategories($arrs);
+        }
+        else{
+            $arrets = array();
+        }
 
         // Data array
         $data = array(

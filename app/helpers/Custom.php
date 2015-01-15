@@ -571,8 +571,6 @@ class Custom {
 
         if(!empty($data))
         {
-            $keys_id = array_keys($data);
-
             foreach($data as $index => $key){
                 $categories[$key] = ['sorting' => $index];
             }

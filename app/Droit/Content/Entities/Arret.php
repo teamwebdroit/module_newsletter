@@ -32,12 +32,12 @@ class Arret extends BaseModel {
 
     public function arrets_categories()
     {
-        return $this->belongsToMany('\Droit\Categorie\Entities\Categories', 'arret_categories', 'arret_id', 'categories_id');
+        return $this->belongsToMany('\Droit\Categorie\Entities\Categories', 'arret_categories', 'arret_id', 'categories_id')->withPivot('sorting')->orderBy('sorting', 'asc');
     }
 
     public function arrets_analyses()
     {
-        return $this->belongsToMany('\Droit\Content\Entities\Analyse', 'analyses_arret', 'arret_id', 'analyse_id');
+        return $this->belongsToMany('\Droit\Content\Entities\Analyse', 'analyses_arret', 'arret_id', 'analyse_id')->withPivot('sorting')->orderBy('sorting', 'asc');
     }
 
 }

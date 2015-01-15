@@ -118,6 +118,7 @@
     <script type="text/javascript" src="<?php echo asset('admin/js/jquery.nicescroll.min.js');?>"></script>
     <script type="text/javascript" src="<?php echo asset('admin/plugins/form-toggle/toggle.min.js');?>"></script>
     <script type="text/javascript" src="<?php echo asset('admin/js/placeholdr.js');?>"></script>
+    <script type="text/javascript" src="<?php echo asset('admin/js/fieldChooser.js');?>"></script>
     <script type="text/javascript" src="<?php echo asset('js/vendor/redactor/redactor.js');?>"></script>
     <script type="text/javascript" src="<?php echo asset('js/vendor/redactor/fr.js');?>"></script>
     <script type='text/javascript' src="<?php echo asset('admin/plugins/form-multiselect/js/jquery.multi-select.js');?>"></script>

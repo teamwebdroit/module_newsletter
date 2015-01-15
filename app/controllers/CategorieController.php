@@ -114,7 +114,7 @@ class CategorieController extends \BaseController {
         // Files upload
         if( $_file )
         {
-            $file = $this->upload->upload( Input::file('file') , 'newsletter/pictos' );
+            $file = $this->upload->upload( Input::file('file') , 'newsletter/pictos' , 'categorie');
         }
 
         // Data array

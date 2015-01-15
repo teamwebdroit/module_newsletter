@@ -93,46 +93,85 @@
                         }
                     }
 
-                ?>
+                    $hasCategorie = array();
+                    $hasArrets    = array();
+                    $hasCatIds    = array();
+                    $hasArretIds  = array();
 
+                    $isCategories = $categories->lists('title','id');
+                    $isArrets     = $arrets->lists('reference','id');
+
+                    if( !$analyse->analyses_categories->isEmpty() )
+                    {
+                        $hasCategorie = $analyse->analyses_categories->lists('title','id');
+                        $hasCatIds    = $analyse->analyses_categories->lists('id');
+                    }
+
+                    if( !$analyse->analyses_arrets->isEmpty() )
+                    {
+                        $hasArrets   = $analyse->analyses_arrets->lists('reference','id');
+                        $hasArretIds = $analyse->analyses_arrets->lists('id');
+                    }
+
+                    $categories = array_diff_key($isCategories,$hasCatIds);
+                    $arrets     = array_diff_key($isArrets,$hasArretIds);
+
+                ?>
                 <div class="form-group">
                     <label class="col-sm-3 control-label">Catégories</label>
-                    <div class="col-sm-6">
-                        <select name="categories[]" multiple="multiple" id="multi-select">
-                            <?php
-                                if(!empty($categories)){
-                                    foreach($categories as $categorie)
+                    <div class="col-sm-9">
+
+                        <div id="fieldChooser" tabIndex="1">
+                            <div id="sourceFields">
+                                <?php
+                                foreach($categories as $id => $categorie)
+                                {
+                                    echo '<div>'.$categorie.'<input type="hidden" disabled="disabled" value="'.$id.'" name="categories[]"></div>';
+                                }
+                                ?>
+                            </div>
+                            <div id="destinationFields">
+                                <?php
+                                if(!empty($hasCategorie))
+                                {
+                                    foreach($hasCategorie as $hasid => $has)
                                     {
-                                        echo '<option value="'.$categorie->id.'" ';
-                                        if(in_array($categorie->id, $hasCategorie))
-                                        {
-                                            echo 'selected';
-                                        }
-                                        echo ' >'.$categorie->title.'</option>';
+                                        echo '<div>'.$has.'<input type="hidden" value="'.$hasid.'" name="categories[]"></div>';
                                     }
                                 }
-                            ?>
-                        </select>
+                                ?>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
+
                 <div class="form-group">
                     <label class="col-sm-3 control-label">Arrêts</label>
-                    <div class="col-sm-6">
-                        <select name="arrets[]" multiple="multiple" id="multi-select2">
-                            <?php
-                            if(!empty($arrets)){
-                                foreach($arrets as $arret)
+                    <div class="col-sm-9">
+
+                        <div id="fieldChooser2" tabIndex="1">
+                            <div id="sourceFields2">
+                                <?php
+                                foreach($arrets as $id => $arret)
                                 {
-                                    echo '<option value="'.$arret->id.'" ';
-                                    if(in_array($arret->id, $hasArrets))
-                                    {
-                                        echo 'selected';
-                                    }
-                                    echo ' >'.$arret->reference.'</option>';
+                                    echo '<div>'.$arret.'<input type="hidden" disabled="disabled" value="'.$id.'" name="arrets[]"></div>';
                                 }
-                            }
-                            ?>
-                        </select>
+                                ?>
+                            </div>
+                            <div id="destinationFields2">
+                                <?php
+                                if(!empty($hasArrets))
+                                {
+                                    foreach($hasArrets as $hasarretid => $hasArret)
+                                    {
+                                        echo '<div>'.$hasArret.'<input type="hidden" value="'.$hasarretid.'" name="arrets[]"></div>';
+                                    }
+                                }
+                                ?>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
 

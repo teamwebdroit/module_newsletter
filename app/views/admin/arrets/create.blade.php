@@ -65,15 +65,23 @@
 
                 <div class="form-group">
                     <label class="col-sm-3 control-label">Catégories</label>
-                    <div class="col-sm-6">
-                        <select multiple="multiple" name="categories[]" id="multi-select">
-                            <?php
+                    <div class="col-sm-9">
+
+                        <div id="fieldChooser" tabIndex="1">
+                            <div id="sourceFields">
+                                <?php
                                 foreach($categories as $categorie)
                                 {
-                                    echo '<option value="'.$categorie->id.'">'.$categorie->title.'</option>';
+                                    echo '<div>';
+                                    echo $categorie->title;
+                                    echo '<input type="hidden" disabled="disabled" value="'.$categorie->id.'" name="categories[]">';
+                                    echo '</div>';
                                 }
-                            ?>
-                        </select>
+                                ?>
+                            </div>
+                            <div id="destinationFields"></div>
+                        </div>
+
                     </div>
                 </div>
 

@@ -277,3 +277,47 @@
 #build label{
     margin-bottom: 2px;
 }
+
+div#fieldChooser,div#fieldChooser2 {
+    width: 630px;
+    height: 300px;
+}
+
+.fc-field {
+    width: 280px;
+    height: 28px;
+    padding: 5px;
+    box-shadow: 0px 0px 2px 0px rgba(222, 222, 222, 1.0);
+}
+
+.fc-field:hover {
+    outline: #cacaca solid 1px;
+}
+
+.fc-selected {
+    background-color: #ffe284;
+}
+
+.fc-selected:hover {
+    background-color: #ffd448;
+}
+
+.fc-field-list {
+    width: 300px;
+    height: 300px;
+    margin: 0px;
+    padding: 3px;
+    overflow: scroll;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+    transition: border 0.2s linear 0s, box-shadow 0.2s linear 0s;
+}
+
+.fc-source-fields {
+    float: left;
+}
+
+.fc-destination-fields {
+    float: right;
+}

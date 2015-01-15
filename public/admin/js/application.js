@@ -195,6 +195,18 @@ $('#multi-select').multiSelect({
 });
 $('#multi-select2').multiSelect({ keepOrder : true });
 
+if ( $( "#sourceFields" ).length ) {
+
+    var $sourceFields      = $("#sourceFields");
+    var $destinationFields = $("#destinationFields");
+    var $chooser           = $("#fieldChooser").fieldChooser(sourceFields, destinationFields);
+}
+if ( $( "#sourceFields2" ).length ) {
+    var $sourceFields2      = $("#sourceFields2");
+    var $destinationFields2 = $("#destinationFields2");
+    var $chooser2           = $("#fieldChooser2").fieldChooser(sourceFields2, destinationFields2);
+}
+
 $('.redactor').redactor({
     minHeight: 200,
     lang: 'fr',

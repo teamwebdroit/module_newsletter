@@ -3,7 +3,7 @@
 
 <div class="row"><!-- row -->
     <div class="col-md-12"><!-- col -->
-        <p><a class="btn btn-default" href="{{ url('admin/arret') }}"><i class="fa fa-reply"></i> &nbsp;Retour à la liste</a></p>
+        <p><a class="btn btn-default" href="{{ url('admin/analyse') }}"><i class="fa fa-reply"></i> &nbsp;Retour à la liste</a></p>
     </div>
 </div>
 
@@ -58,36 +58,45 @@
 
                 <div class="form-group">
                     <label class="col-sm-3 control-label">Catégories</label>
-                    <div class="col-sm-6">
-                        <select name="categories[]" multiple="multiple" id="multi-select">
-                            <?php
-                                if(!empty($categories)){
-                                    foreach($categories as $categorie)
-                                    {
-                                        echo '<option value="'.$categorie->id.'">'.$categorie->title.'</li>';
+                    <div class="col-sm-9">
+
+                        <div id="fieldChooser" tabIndex="1">
+                            <div id="sourceFields">
+                                <?php
+                                    if(!empty($categories)){
+                                        foreach($categories as  $categorie)
+                                        {
+                                            echo '<div>'.$categorie->title.'<input type="hidden" disabled="disabled" value="'.$categorie->id.'" name="categories[]"></div>';
+                                        }
                                     }
-                                }
-                            ?>
-                        </select>
+                                ?>
+                            </div>
+                            <div id="destinationFields"></div>
+                        </div>
+
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="col-sm-3 control-label">Arrêts</label>
-                    <div class="col-sm-6">
-                        <select name="arrets[]" multiple="multiple" id="multi-select2">
-                            <?php
+                    <div class="col-sm-9">
+
+                        <div id="fieldChooser2" tabIndex="1">
+                            <div id="sourceFields2">
+                                <?php
                                 if(!empty($arrets)){
                                     foreach($arrets as $arret)
                                     {
-                                        echo '<option value="'.$arret->id.'">'.$arret->reference.'</option>';
+                                        echo '<div>'.$arret->reference.'<input type="hidden" disabled="disabled" value="'.$arret->id.'" name="arrets[]"></div>';
                                     }
                                 }
-                            ?>
-                        </select>
+                                ?>
+                            </div>
+                            <div id="destinationFields2"></div>
+
+                        </div>
                     </div>
                 </div>
-
             </div>
             <div class="panel-footer mini-footer ">
                 <div class="col-sm-3">{{ Form::hidden('user_id', 1 )}}</div>
