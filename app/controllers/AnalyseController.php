@@ -35,6 +35,7 @@ class AnalyseController extends \BaseController {
 
     public function index()
     {
+        setlocale(LC_ALL, 'fr_FR');
         $analyses   = $this->analyse->getAll(195);
         $categories = $this->categorie->getAll(195);
 
