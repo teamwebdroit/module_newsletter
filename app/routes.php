@@ -43,7 +43,7 @@ Route::group(array('before' => array('admin','csrf')), function()
      */
     Route::post('sorting', 'CampagneController@sorting');
     Route::post('process', 'CampagneController@addContent');
-    Route::post('edit', 'CampagneController@editContent');
+    Route::post('editContent', 'CampagneController@editContent');
     Route::post('remove', 'CampagneController@remove');
 
 });
