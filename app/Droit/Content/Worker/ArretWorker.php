@@ -1,7 +1,10 @@
 <?php namespace Droit\Content\Worker;
 
+use Droit\Content\Repo\GroupeInterface;
 
 class ArretWorker{
+
+    protected $custom;
 
     public function __construct()
     {

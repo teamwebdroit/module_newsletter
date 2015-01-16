@@ -3,7 +3,7 @@
 use Droit\Newsletter\Repo\NewsletterContentInterface;
 use Droit\Newsletter\Repo\NewsletterCampagneInterface;
 use Droit\Content\Repo\ArretInterface;
-use Droit\Content\Worker\ArretWorker;
+use Droit\Content\Repo\GroupeInterface;
 use \InlineStyle\InlineStyle;
 
 class CampagneWorker implements CampagneInterface{
@@ -12,13 +12,15 @@ class CampagneWorker implements CampagneInterface{
     protected $campagne;
     protected $arret;
     protected $worker;
+    protected $groupe;
 
-	public function __construct(NewsletterContentInterface $content,NewsletterCampagneInterface $campagne, ArretInterface $arret)
+	public function __construct(NewsletterContentInterface $content,NewsletterCampagneInterface $campagne, ArretInterface $arret, GroupeInterface $groupe)
 	{
         $this->content  = $content;
         $this->campagne = $campagne;
         $this->arret    = $arret;
-        $this->worker   = new \Droit\Content\Worker\ArretWorker;
+        $this->groupe   = $groupe;
+        $this->worker   = new \Droit\Content\Worker\ArretWorker();
 	}
 
     public function getCampagne($id){

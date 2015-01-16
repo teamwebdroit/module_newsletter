@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateArretsGroupeTable extends Migration {
+class CreateGroupesTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,12 +12,10 @@ class CreateArretsGroupeTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('arrets_groupes', function(Blueprint $table)
+		Schema::create('groupes', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->string('groupe_id');
-			$table->string('arret_id');
-			$table->string('sorting');
+			$table->integer('categorie_id');
 		});
 	}
 
@@ -29,7 +27,7 @@ class CreateArretsGroupeTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('arrets_groupes');
+		Schema::drop('groupes');
 	}
 
 }

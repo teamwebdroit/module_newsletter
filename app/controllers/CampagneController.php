@@ -6,6 +6,7 @@ use Droit\Newsletter\Repo\NewsletterContentInterface;
 use Droit\Newsletter\Repo\NewsletterCampagneInterface;
 use Droit\Newsletter\Repo\NewsletterTypesInterface;
 use Droit\Content\Repo\ContentInterface;
+use Droit\Content\Repo\GroupeInterface;
 
 use Droit\Command\CreateCampagneCommand;
 
@@ -18,9 +19,11 @@ class CampagneController extends BaseController {
     protected $types;
     protected $campagne;
     protected $custom;
+    protected $arrets;
+    protected $groupe;
 
     /* Inject dependencies */
-    public function __construct( ContentInterface $contentSite, NewsletterContentInterface $content, CampagneInterface $worker, NewsletterTypesInterface $types, NewsletterCampagneInterface $campagne)
+    public function __construct( ContentInterface $contentSite, NewsletterContentInterface $content, CampagneInterface $worker, NewsletterTypesInterface $types, NewsletterCampagneInterface $campagne, GroupeInterface $groupe)
     {
         $this->beforeFilter('csrf', array('only' => array('store','update')));
 
@@ -29,6 +32,8 @@ class CampagneController extends BaseController {
         $this->worker       = $worker;
         $this->types        = $types;
         $this->campagne     = $campagne;
+        $this->groupe       = $groupe;
+        $this->arrets       = new \Droit\Content\Worker\ArretWorker();
         $this->custom       = new \Custom;
 
         $pub      = $this->contentSite->findyByType('pub');
@@ -188,20 +193,24 @@ class CampagneController extends BaseController {
         $rang = $this->content->getRang($campagne);
         $rang = ($rang ? $rang : 0);
 
-        $titre    = (isset($data['titre']) ? $data['titre'] : null);
-        $contenu  = (isset($data['contenu']) ? $data['contenu'] : null);
-        $image    = (isset($data['image']) ? $data['image'] : null);
-        $lien     = (isset($data['lien']) ? $this->custom->sanitizeUrl($data['lien']) : null);
-        $arret_id = (isset($data['arret_id']) ? $data['arret_id'] : 0);
+        $lien         = (isset($data['lien']) ? $this->custom->sanitizeUrl($data['lien']) : null);
+        $categorie_id = (isset($data['categorie_id']) ? $data['categorie_id'] : 0);
+
+        if($type == 7)
+        {
+            $groupe = $this->groupe->create(array('categorie_id' => $categorie_id));
+            $arrets = $this->custom->prepareCategories($data['arrets']);
+            $groupe->arrets_groupes->sync($arrets);
+        }
 
         $new = array(
             'type_id'                => $type,
-            'titre'                  => $titre,
-            'contenu'                => $contenu,
-            'image'                  => $image,
+            'titre'                  => $data['titre'],
+            'contenu'                => $data['contenu'],
+            'image'                  => $data['image'],
             'lien'                   => $lien,
-            'arret_id'               => $arret_id,
-            'categorie_id'           => 0,
+            'arret_id'               => $data['arret_id'],
+            'groupe_id'              => (isset($groupe->id) ? $groupe->id : 0),
             'newsletter_campagne_id' => $campagne,
             'rang'                   => $rang
         );

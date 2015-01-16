@@ -91,6 +91,7 @@ App.controller("EditController",['$scope','$http','myService', function($scope,$
     };
 
 }]);
+
 /**
  * Select arret controller, select an arret and display's it
  */
@@ -129,6 +130,28 @@ App.controller('SelectController', ['$scope','$http','Arrets','myService',functi
 
         /* Get the id of arret */
         var id = $scope.selected.id
+
+        /* Get the selected arret infos */
+        Arrets.simple(id)
+            .then(function (data) {
+                self.arret = data;
+                self.categories = data.arrets_categories;
+
+                //get substring
+                var jsonObject = self.arret.pub_date.substr(0,10);
+                var newdate    = new Date(jsonObject);
+                self.date      = self.convertDate(newdate)
+            });
+    };
+
+    // when multiple arrets are selected
+    this.multichanged = function(){
+
+        /* hide arret */
+        self.arrets = [];
+
+        /* Get the id of arret */
+        var ids = $scope.selected.id
 
         /* Get the selected arret infos */
         Arrets.simple(id)

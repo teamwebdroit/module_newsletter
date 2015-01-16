@@ -8,7 +8,7 @@ use Droit\Content\Entities\Arret as Arret;
 use Droit\Content\Entities\Analyse as Analyse;
 use Droit\Categorie\Entities\Categories as Categorie;
 use Droit\Content\Entities\Content as Content;
-
+use Droit\Content\Entities\Groupe as Groupe;
 
 /**
  *  DroitServiceProvider
@@ -24,6 +24,7 @@ class DroitServiceProvider extends ServiceProvider {
         $this->registerAnalyseService();
         $this->registerCategorieService();
         $this->registerContentService();
+        $this->registerGroupeService();
         $this->registerSearchService();
     }
 
@@ -72,6 +73,17 @@ class DroitServiceProvider extends ServiceProvider {
     }
 
     /**
+     * Groupe
+     */
+    protected function registerGroupeService(){
+
+        $this->app->bind('Droit\Content\Repo\GroupeInterface', function()
+        {
+            return new \Droit\Content\Repo\GroupeEloquent( new Groupe );
+        });
+    }
+
+    /**
      * Search service
      */
     protected function registerSearchService(){
@@ -83,4 +95,5 @@ class DroitServiceProvider extends ServiceProvider {
             );
         });
     }
+
 }

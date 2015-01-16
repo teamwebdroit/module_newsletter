@@ -50,7 +50,7 @@
     padding: 5px;
     text-align: center;
     text-decoration: none;
-    width: 90px;
+    width: 76px;
     cursor: pointer;
 }
 
@@ -320,4 +320,9 @@ div#fieldChooser,div#fieldChooser2 {
 
 .fc-destination-fields {
     float: right;
+}
+
+select[multiple], select[size] {
+    height: auto;
+    min-height: 200px;
 }
