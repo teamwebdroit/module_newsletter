@@ -35,6 +35,13 @@
                     <div class="col-sm-3">
                         {{ Form::text('reference', $arret->reference , array('class' => 'form-control') ) }}
                     </div>
+                    <div class="col-sm-2">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" value="1" <?php echo ($arret->dumois ? 'checked' : ''); ?> name="dumois"> Arrêt du mois
+                            </label>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="form-group">

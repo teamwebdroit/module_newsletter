@@ -30,8 +30,15 @@
 
                 <div class="form-group">
                     <label for="message" class="col-sm-3 control-label">Référence</label>
-                    <div class="col-sm-3">
+                    <div class="col-sm-4">
                         {{ Form::text('reference', null , array('class' => 'form-control') ) }}
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="checkbox">
+                            <label>
+                                {{ Form::checkbox('dumois', '1') }} Arrêt du mois
+                            </label>
+                        </div>
                     </div>
                 </div>
 

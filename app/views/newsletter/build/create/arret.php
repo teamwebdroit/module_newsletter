@@ -26,6 +26,7 @@
             </tr>
         </table>
         <!-- Bloc content-->
+
     </div>
     <div class="col-md-5 create_content_form">
 
