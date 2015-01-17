@@ -322,10 +322,6 @@ div#fieldChooser,div#fieldChooser2 {
     float: right;
 }
 
-select[multiple], select[size] {
-    height: auto;
-    min-height: 200px;
-}
 
 /**
  * For the correct positioning of the placeholder element, the dnd-list and

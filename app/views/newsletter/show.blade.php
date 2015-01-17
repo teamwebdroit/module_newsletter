@@ -50,6 +50,7 @@
                 </div>
 
                 <div id="build"><!-- Start build -->
+
                     @if(!empty($blocs))
                         @foreach($blocs as $bloc)
                             <div class="create_bloc" id="create_{{ $bloc->id }}">

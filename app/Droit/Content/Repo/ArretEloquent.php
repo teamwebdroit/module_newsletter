@@ -44,7 +44,7 @@ class ArretEloquent implements ArretInterface{
 
         if(is_array($id))
         {
-            $this->arret->whereIn('id', $id)->with(array('arrets_categories','arrets_analyses'))->get();
+            return $this->arret->whereIn('id', $id)->with(array('arrets_categories','arrets_analyses'))->get();
         }
 
 		return $this->arret->where('id', '=' ,$id)->with(array('arrets_categories','arrets_analyses'))->get()->first();

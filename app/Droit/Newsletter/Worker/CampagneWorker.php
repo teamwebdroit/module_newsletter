@@ -59,6 +59,25 @@ class CampagneWorker implements CampagneInterface{
 
                     return $arret;
                 }
+                elseif($item->groupe_id > 0){
+
+                    $groupe       = $this->groupe->find($item->groupe_id);
+                    $group_arrets = $groupe->arrets_groupes->lists('id');
+
+                    $arrets    = $this->arret->find($group_arrets);
+                    $categorie = $groupe->categorie_id;
+
+                    $image = $this->categorie->find($categorie);
+                    $image = $image->image;
+
+                    $item->setAttribute('arrets',$arrets);
+                    $item->setAttribute('categorie',$categorie);
+                    $item->setAttribute('image',$image);
+                    $item->setAttribute('rangItem',$item->rang);
+                    $item->setAttribute('idItem',$item->id);
+
+                    return $item;
+                }
                 else
                 {
                     $item->setAttribute('rangItem',$item->rang);
