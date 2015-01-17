@@ -89,6 +89,7 @@ class NewsletterServiceProvider extends ServiceProvider {
                 \App::make('Droit\Newsletter\Repo\NewsletterContentInterface'),
                 \App::make('Droit\Newsletter\Repo\NewsletterCampagneInterface'),
                 \App::make('Droit\Content\Repo\ArretInterface'),
+                \App::make('Droit\Categorie\Repo\CategorieInterface'),
                 \App::make('Droit\Content\Repo\GroupeInterface')
             );
         });

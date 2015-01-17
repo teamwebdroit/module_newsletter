@@ -148,6 +148,7 @@
         <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular-sanitize.js"></script>
         <script type="text/javascript" src="<?php echo asset('js/vendor/angular/angular-redactor.js');?>"></script>
         <script type="text/javascript" src="<?php echo asset('js/vendor/angular/angular-flow.js');?>"></script>
+        <script src="http://angular.local/angular-drag-and-drop-lists.js"></script>
         <script type="text/javascript" src="<?php echo asset('js/build.js');?>"></script>
         <script type="text/javascript" src="<?php echo asset('js/sorting.js');?>"></script>
     @endif

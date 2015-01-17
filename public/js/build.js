@@ -1,4 +1,4 @@
-var App = angular.module('newsletter', ["angular-redactor","flow","ngSanitize"] , function($interpolateProvider)
+var App = angular.module('newsletter', ["angular-redactor","flow","ngSanitize","dndLists"] , function($interpolateProvider)
 {
     $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
 
@@ -27,6 +27,20 @@ var App = angular.module('newsletter', ["angular-redactor","flow","ngSanitize"] 
         setBloc : function(bloc) {
             $('.edit_content_form').hide();
             blocDrop = bloc;
+        },
+        convertDateArret: function(date){
+
+            var jsonObject  = date.substr(0,10);
+            var convertdate = new Date(jsonObject);
+
+            var months  = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"];
+            var newdate = convertdate.getDate();
+            if (newdate < 10)
+            {
+                newdate = "0" + newdate;
+            }
+            var output = newdate + " " + months[convertdate.getMonth()] + " " + convertdate.getFullYear();
+            return output;
         }
     };
 });
@@ -144,28 +158,6 @@ App.controller('SelectController', ['$scope','$http','Arrets','myService',functi
             });
     };
 
-    // when multiple arrets are selected
-    this.multichanged = function(){
-
-        /* hide arret */
-        self.arrets = [];
-
-        /* Get the id of arret */
-        var ids = $scope.selected.id
-
-        /* Get the selected arret infos */
-        Arrets.simple(id)
-            .then(function (data) {
-                self.arret = data;
-                self.categories = data.arrets_categories;
-
-                //get substring
-                var jsonObject = self.arret.pub_date.substr(0,10);
-                var newdate    = new Date(jsonObject);
-                self.date      = self.convertDate(newdate)
-            });
-    };
-
     this.convertDate = function(date){
 
         var months  = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"];
@@ -179,6 +171,58 @@ App.controller('SelectController', ['$scope','$http','Arrets','myService',functi
     };
 
 }]);
+
+App.controller("SimpleDemoController",['$scope',"Arrets","myService", function($scope,Arrets,myService){
+
+    this.arrets = [];
+    /* capture this (the controller scope ) as self */
+    var self = this;
+
+    $scope.models = {
+        selected: null,
+        lists: {"A": [], "B": []}
+    };
+
+    /* function for refreshing the asynchronus retrival of blocs */
+    this.refresh = function() {
+        Arrets.query()
+            .then(function (data) {
+
+                self.arrets = data;
+
+                angular.forEach( self.arrets , function(value, key){
+                    $scope.models.lists.A.push({
+                        reference    : value.reference,
+                        isSelected   : false,
+                        itemId       : value.id,
+                        itemDate     : myService.convertDateArret(value.pub_date),
+                        abstract     : value.abstract,
+                        pub_text     : value.pub_text,
+                        categories   : value.arrets_categories
+                    });
+                });
+
+                console.log($scope.models);
+            });
+    }
+
+    if(self.arrets.length == 0){
+        this.refresh();
+    }
+
+    $scope.dropped = function(item){
+
+        angular.forEach($scope.models.lists.B, function(value, key){
+            value.isSelected = true;
+        });
+        angular.forEach($scope.models.lists.A, function(value, key){
+            value.isSelected = false;
+        });
+    };
+
+}]);
+
+
 
 App.directive('bindContent', function() {
     return {

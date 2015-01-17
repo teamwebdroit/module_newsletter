@@ -201,10 +201,17 @@ if ( $( "#sourceFields" ).length ) {
     var $destinationFields = $("#destinationFields");
     var $chooser           = $("#fieldChooser").fieldChooser(sourceFields, destinationFields);
 }
+
 if ( $( "#sourceFields2" ).length ) {
     var $sourceFields2      = $("#sourceFields2");
     var $destinationFields2 = $("#destinationFields2");
     var $chooser2           = $("#fieldChooser2").fieldChooser(sourceFields2, destinationFields2);
+}
+
+if ( $( "#sourceFields3" ).length ) {
+    var $sourceFields3      = $("#sourceFields3");
+    var $destinationFields3 = $("#destinationFields3");
+    var $chooser3           = $("#fieldChooser3").fieldChooser(sourceFields3, destinationFields3);
 }
 
 $('.redactor').redactor({

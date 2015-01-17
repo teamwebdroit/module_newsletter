@@ -36,12 +36,14 @@ class CampagneController extends BaseController {
         $this->arrets       = new \Droit\Content\Worker\ArretWorker();
         $this->custom       = new \Custom;
 
-        $pub      = $this->contentSite->findyByType('pub');
-        $soutiens = $this->contentSite->findyByType('soutien');
+        $pub        = $this->contentSite->findyByType('pub');
+        $soutiens   = $this->contentSite->findyByType('soutien');
+        $allcategories = $this->worker->getCategoriesArrets();
 
         View::share('pageTitle', 'Campagnes');
         View::share('pub', $pub);
         View::share('soutiens', $soutiens);
+        View::share('allcategories', $allcategories);
     }
 
     public function index()
@@ -84,11 +86,11 @@ class CampagneController extends BaseController {
      */
     public function show($id)
     {
-        $blocs    = $this->types->getAll();
-        $infos    = $this->campagne->find($id);
-        $campagne = $this->worker->findCampagneById($id);
+        $blocs       = $this->types->getAll();
+        $infos       = $this->campagne->find($id);
+        $campagne    = $this->worker->findCampagneById($id);
 
-        return View::make('newsletter.show')->with(array( 'isNewsletter' => true , 'campagne' => $campagne , 'infos' => $infos, 'blocs' => $blocs ));
+        return View::make('newsletter.show')->with(array( 'isNewsletter' => true , 'campagne' => $campagne , 'infos' => $infos, 'blocs' => $blocs));
     }
 
     /**
@@ -198,19 +200,27 @@ class CampagneController extends BaseController {
 
         if($type == 7)
         {
-            $groupe = $this->groupe->create(array('categorie_id' => $categorie_id));
             $arrets = $this->custom->prepareCategories($data['arrets']);
-            $groupe->arrets_groupes->sync($arrets);
+            $groupe = $this->groupe->create(array('categorie_id' => $categorie_id));
+            $groupe_id = $groupe->id;
+            $groupe = $this->groupe->find($groupe_id);
+            $groupe->arrets_groupes()->sync($arrets);
+
+/*            echo '<pre>';
+            print_r($groupe_id);
+            echo '</pre>';exit;*/
+
         }
 
         $new = array(
             'type_id'                => $type,
-            'titre'                  => $data['titre'],
-            'contenu'                => $data['contenu'],
-            'image'                  => $data['image'],
+            'titre'                  => (isset($data['titre']) ? $data['titre'] : null),
+            'contenu'                => (isset($data['contenu']) ? $data['contenu'] : null),
+            'image'                  => (isset($data['image']) ? $data['image'] : null),
             'lien'                   => $lien,
-            'arret_id'               => $data['arret_id'],
-            'groupe_id'              => (isset($groupe->id) ? $groupe->id : 0),
+            'arret_id'               => (isset($data['arret_id']) ? $data['arret_id'] : 0),
+            'groupe_id'              => (isset($groupe_id) && !empty($groupe_id) ? $groupe_id : 0),
+            'categorie_id'           => 0,
             'newsletter_campagne_id' => $campagne,
             'rang'                   => $rang
         );

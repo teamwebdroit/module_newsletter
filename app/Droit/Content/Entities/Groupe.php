@@ -4,7 +4,10 @@ use Droit\Common\BaseModel as BaseModel;
 
 class Groupe extends BaseModel {
 
-
+    /**
+     * Set timestamps off
+     */
+    public $timestamps = false;
 
 	protected $fillable = ['categorie_id'];
 

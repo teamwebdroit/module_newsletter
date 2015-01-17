@@ -3,6 +3,7 @@
 use Droit\Newsletter\Repo\NewsletterContentInterface;
 use Droit\Newsletter\Repo\NewsletterCampagneInterface;
 use Droit\Content\Repo\ArretInterface;
+use Droit\Categorie\Repo\CategorieInterface;
 use Droit\Content\Repo\GroupeInterface;
 use \InlineStyle\InlineStyle;
 
@@ -11,21 +12,27 @@ class CampagneWorker implements CampagneInterface{
     protected $content;
     protected $campagne;
     protected $arret;
+    protected $categorie;
     protected $worker;
     protected $groupe;
 
-	public function __construct(NewsletterContentInterface $content,NewsletterCampagneInterface $campagne, ArretInterface $arret, GroupeInterface $groupe)
+	public function __construct(NewsletterContentInterface $content,NewsletterCampagneInterface $campagne, ArretInterface $arret, CategorieInterface $categorie , GroupeInterface $groupe)
 	{
-        $this->content  = $content;
-        $this->campagne = $campagne;
-        $this->arret    = $arret;
-        $this->groupe   = $groupe;
-        $this->worker   = new \Droit\Content\Worker\ArretWorker();
+        $this->content   = $content;
+        $this->campagne  = $campagne;
+        $this->arret     = $arret;
+        $this->categorie = $categorie;
+        $this->groupe    = $groupe;
+        $this->worker    = new \Droit\Content\Worker\ArretWorker();
 	}
 
     public function getCampagne($id){
 
         return $this->campagne->find($id);
+    }
+
+    public function getCategoriesArrets(){
+        return $this->categorie->getAll(195)->lists('title','id');
     }
 
 	public function findCampagneById($id){
