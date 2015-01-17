@@ -26,7 +26,7 @@
             <div class="panel-heading">
                 <h4>Créer analyse</h4>
             </div>
-            <div class="panel-body event-info">
+            <div class="panel-body event-info" ng-app="selection">
 
                 <div class="form-group">
                     <label for="message" class="col-sm-3 control-label">Auteurs</label>
@@ -58,44 +58,55 @@
 
                 <div class="form-group">
                     <label class="col-sm-3 control-label">Catégories</label>
+
                     <div class="col-sm-9">
-
-                        <div id="fieldChooser" tabIndex="1">
-                            <div id="sourceFields">
-                                <?php
-                                    if(!empty($categories)){
-                                        foreach($categories as  $categorie)
-                                        {
-                                            echo '<div>'.$categorie->title.'<input type="hidden" disabled="disabled" value="'.$categorie->id.'" name="categories[]"></div>';
-                                        }
-                                    }
-                                ?>
+                        <div ng-controller="MultiSelectionController as selectcat">
+                            <div class="listArrets forArrets">
+                                <div ng-repeat="(listName, list) in selectcat.categoriemodels.lists">
+                                    <ul class="list-arrets" dnd-list="list">
+                                        <li ng-repeat="item in list"
+                                            dnd-draggable="item"
+                                            dnd-moved="list.splice($index, 1); logEvent('Container moved', event); selectcat.dropped(item)"
+                                            dnd-effect-allowed="move"
+                                            dnd-selected="models.selected = item"
+                                            ng-class="{'selected': models.selected === item}" >
+                                            {[{ item.title }]}
+                                            <input type="hidden" name="categories[]" ng-if="item.isSelected" value="{[{ item.itemId }]}" />
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div view-source="simple"></div>
                             </div>
-                            <div id="destinationFields"></div>
                         </div>
-
                     </div>
+
                 </div>
 
                 <div class="form-group">
                     <label class="col-sm-3 control-label">Arrêts</label>
+
                     <div class="col-sm-9">
+                        <div ng-controller="ArretSelectionController as selectarret">
 
-                        <div id="fieldChooser2" tabIndex="1">
-                            <div id="sourceFields2">
-                                <?php
-                                if(!empty($arrets)){
-                                    foreach($arrets as $arret)
-                                    {
-                                        echo '<div>'.$arret->reference.'<input type="hidden" disabled="disabled" value="'.$arret->id.'" name="arrets[]"></div>';
-                                    }
-                                }
-                                ?>
+                            <div class="listArrets forArrets">
+                                <div ng-repeat="(listName, list) in selectarret.arretmodels.lists">
+                                    <ul class="list-arrets" dnd-list="list">
+                                        <li ng-repeat="item in list"
+                                            dnd-draggable="item"
+                                            dnd-moved="list.splice($index, 1); logEvent('Container moved', event); selectarret.dropped(item)"
+                                            dnd-effect-allowed="move"
+                                            dnd-selected="models.selected = item"
+                                            ng-class="{'selected': models.selected === item}" >
+                                            {[{ item.reference }]}
+                                            <input type="hidden" name="arrets[]" ng-if="item.isSelected" value="{[{ item.itemId }]}" />
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div view-source="simple"></div>
                             </div>
-                            <div id="destinationFields2"></div>
-
                         </div>
                     </div>
+
                 </div>
             </div>
             <div class="panel-footer mini-footer ">

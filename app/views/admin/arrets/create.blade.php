@@ -72,24 +72,28 @@
 
                 <div class="form-group">
                     <label class="col-sm-3 control-label">Catégories</label>
-                    <div class="col-sm-9">
 
-                        <div id="fieldChooser" tabIndex="1">
-                            <div id="sourceFields">
-                                <?php
-                                foreach($categories as $categorie)
-                                {
-                                    echo '<div>';
-                                    echo $categorie->title;
-                                    echo '<input type="hidden" disabled="disabled" value="'.$categorie->id.'" name="categories[]">';
-                                    echo '</div>';
-                                }
-                                ?>
+                    <div class="col-sm-9" ng-app="selection">
+                        <div ng-controller="MultiSelectionController as selectcat">
+                            <div class="listArrets forArrets">
+                                <div ng-repeat="(listName, list) in selectcat.categoriemodels.lists">
+                                    <ul class="list-arrets" dnd-list="list">
+                                        <li ng-repeat="item in list"
+                                            dnd-draggable="item"
+                                            dnd-moved="list.splice($index, 1); logEvent('Container moved', event); selectcat.dropped(item)"
+                                            dnd-effect-allowed="move"
+                                            dnd-selected="models.selected = item"
+                                            ng-class="{'selected': models.selected === item}" >
+                                            {[{ item.title }]}
+                                            <input type="hidden" name="categories[]" ng-if="item.isSelected" value="{[{ item.itemId }]}" />
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div view-source="simple"></div>
                             </div>
-                            <div id="destinationFields"></div>
                         </div>
-
                     </div>
+
                 </div>
 
             </div>

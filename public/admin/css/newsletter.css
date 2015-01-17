@@ -322,7 +322,6 @@ div#fieldChooser,div#fieldChooser2 {
     float: right;
 }
 
-
 /**
  * For the correct positioning of the placeholder element, the dnd-list and
  * it's children must have position: relative
@@ -348,6 +347,18 @@ div#fieldChooser,div#fieldChooser2 {
     border-radius: 3px;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
     transition: border 0.2s linear 0s, box-shadow 0.2s linear 0s;
+}
+
+/**
+ * The dnd-list should always have a min-height,
+ * otherwise you can't drop to it once it's empty
+ */
+.listArrets.forArrets ul[dnd-list] {
+    width: 300px;
+}
+
+.listArrets.forArrets ul[dnd-list]:first-child {
+    margin-right: 30px;
 }
 
 /**

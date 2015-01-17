@@ -205,11 +205,6 @@ class CampagneController extends BaseController {
             $groupe_id = $groupe->id;
             $groupe = $this->groupe->find($groupe_id);
             $groupe->arrets_groupes()->sync($arrets);
-
-/*            echo '<pre>';
-            print_r($groupe_id);
-            echo '</pre>';exit;*/
-
         }
 
         $new = array(
