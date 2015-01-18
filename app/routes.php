@@ -51,6 +51,7 @@ Route::group(array('before' => array('admin','csrf')), function()
 });
 
 Route::get('arrets/{id}', 'ArretController@simple');
+Route::get('analyses/{id}', 'AnalyseController@simple');
 Route::get('arrets', 'ArretController@arrets');
 Route::get('categories', 'CategorieController@categories');
 

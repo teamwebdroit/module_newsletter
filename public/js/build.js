@@ -176,7 +176,7 @@ App.controller('SelectController', ['$scope','$http','Arrets','myService',functi
                 self.categories = data.arrets_categories;
 
                 //get substring
-                self.date      = myService.convertDateArret(self.arret.pub_date)
+                self.date = myService.convertDateArret(self.arret.pub_date)
             });
     };
 
