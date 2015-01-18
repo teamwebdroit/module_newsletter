@@ -3,31 +3,6 @@
 
     <div class="col-md-7" id="bailNewsletterCreate">
 
-        <!-- Bloc content-->
-        <table ng-repeat="arret in models.lists.B track by $index" border="0" width="560" align="center" cellpadding="0" cellspacing="0" class="resetTable">
-            <tr bgcolor="ffffff"><td colspan="3" height="35"></td></tr><!-- space -->
-            <tr>
-                <td valign="top" width="375" class="resetMarge contentForm">
-                    <div>
-                        <h3>{[{ arret.reference }]} <span ng-show="arret.reference">du</span> {[{ arret.itemDate | date: 'fullDate' }]}</h3>
-                        <p class="abstract">{[{ arret.abstract }]}</p>
-                        <div class="content" ng-bind-html='arret.pub_text'></div>
-                    </div>
-                </td>
-                <td width="25" class="resetMarge"></td><!-- space -->
-                <td align="center" valign="top" width="160" class="resetMarge">
-                    <!-- Categories -->
-                    <div class="resetMarge" ng-repeat="categorie in arret.categories">
-                        <a target="_blank" href="#">
-                            <img ng-show="categorie.image" width="130" border="0" alt="{[{ categorie.title }]}" ng-src="<?php echo asset('newsletter/pictos/{[{ categorie.image }]}') ?>">
-                        </a>
-                    </div>
-                </td>
-            </tr>
-            <tr bgcolor="ffffff"><td colspan="3" height="35" class="blocBorder"></td></tr><!-- space -->
-        </table>
-        <!-- Bloc content-->
-
     </div>
     <div class="col-md-5 create_content_form">
         <div class="panel panel-success">

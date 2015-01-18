@@ -21,9 +21,13 @@ var App = angular.module('selection', ["dndLists"] , function($interpolateProvid
 
             angular.forEach( data , function(value, key) {
 
-                var result = $.grep(selected, function (e) {
-                    return e.id == value.id;
-                });
+                var result = [];
+
+                if(selected){
+                    result = $.grep(selected, function (e) {
+                        return e.id == value.id;
+                    });
+                }
 
                 if (result.length == 0){
                     models.lists.A.push({
@@ -50,9 +54,13 @@ var App = angular.module('selection', ["dndLists"] , function($interpolateProvid
 
             angular.forEach(data, function (value, key) {
 
-                var result = $.grep(selected, function (e) {
-                    return e.id == value.id;
-                });
+                var result = [];
+
+                if(selected){
+                    result = $.grep(selected, function (e) {
+                        return e.id == value.id;
+                    });
+                }
 
                 if (result.length == 0) {
                     models.lists.A.push({

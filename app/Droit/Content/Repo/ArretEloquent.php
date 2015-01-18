@@ -25,7 +25,7 @@ class ArretEloquent implements ArretInterface{
             {
                 $query->where('analyses.deleted', '=', 0);
             }))
-            ->orderBy('pub_date', 'DESC')->get();
+            ->orderBy('reference', 'ASC')->get();
     }
 
     public function getPaginate($pid,$nbr){

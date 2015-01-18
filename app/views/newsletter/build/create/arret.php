@@ -12,6 +12,7 @@
                         <h3>{[{ select.arret.reference }]} <span ng-show="select.arret.reference">du</span> {[{ select.date | date: 'fullDate' }]}</h3>
                         <p class="abstract">{[{ select.arret.abstract }]}</p>
                         <div class="content" ng-bind-html='select.arret.pub_text'></div>
+                        <p><a href="{{ asset('files/arrets/') }}{[{ select.arret.file }]}">Télécharger en pdf</a></p>
                     </div>
                 </td>
                 <td width="25" class="resetMarge"></td><!-- space -->
