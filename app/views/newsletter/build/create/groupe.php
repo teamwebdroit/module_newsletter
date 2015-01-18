@@ -1,4 +1,4 @@
-<form ng-controller="SimpleDemoController" class="row form-horizontal" name="arretForm" method="post" action="<?php echo url('process'); ?>">
+<form class="row form-horizontal" name="arretForm" method="post" action="<?php echo url('process'); ?>">
     <?php echo Form::token(); ?>
 
     <div class="col-md-7" id="bailNewsletterCreate">
@@ -54,22 +54,24 @@
                 <div class="form-group">
                     <label>Sélectionner des arrêts</label>
 
-                    <div class="listArrets">
-                        <div ng-repeat="(listName, list) in models.lists">
-                            <ul class="list-arrets" dnd-list="list">
-                                <li ng-repeat="item in list"
-                                    dnd-draggable="item"
-                                    dnd-moved="list.splice($index, 1); logEvent('Container moved', event); dropped(item)"
-                                    dnd-effect-allowed="move"
-                                    dnd-selected="models.selected = item"
-                                    ng-class="{'selected': models.selected === item}" >
-                                    {[{item.reference}]}
-                                    <input type="hidden" name="arrets[]" ng-if="item.isSelected" value="{[{ item.itemId }]}" />
-                                </li>
-                            </ul>
-                        </div>
-                        <div view-source="simple"></div>
+                    <div ng-controller="MultiSelectionController as selectarret">
 
+                        <div class="listArrets forArrets" ng-init="typeItem='arrets'">
+                            <div ng-repeat="(listName, list) in selectarret.models.lists">
+                                <ul class="list-arrets" dnd-list="list">
+                                    <li ng-repeat="item in list"
+                                        dnd-draggable="item"
+                                        dnd-moved="list.splice($index, 1); logEvent('Container moved', event); selectarret.dropped(item)"
+                                        dnd-effect-allowed="move"
+                                        dnd-selected="models.selected = item"
+                                        ng-class="{'selected': models.selected === item}" >
+                                        {[{ item.reference }]}
+                                        <input type="hidden" name="arrets[]" ng-if="item.isSelected" value="{[{ item.itemId }]}" />
+                                    </li>
+                                </ul>
+                            </div>
+                            <div view-source="simple"></div>
+                        </div>
                     </div>
 
                 </div>

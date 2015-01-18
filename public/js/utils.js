@@ -212,6 +212,14 @@ $(function() {
         var content = $('#create_'+id);
         content.find('.create_content_form').css("width",w);
 
+        setTimeout(function() {
+            // height
+            var h = $('#create_'+id + ' .create_content_form').height();
+            console.log(h);
+            $('#create_'+id).css("height",h-100);
+
+        }, 100);
+
         $('#create_'+id).show();
         $( "#sortable" ).sortable( "disable" );
     });

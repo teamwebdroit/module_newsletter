@@ -61,8 +61,8 @@
 
                     <div class="col-sm-9">
                         <div ng-controller="MultiSelectionController as selectcat">
-                            <div class="listArrets forArrets">
-                                <div ng-repeat="(listName, list) in selectcat.categoriemodels.lists">
+                            <div class="listArrets forArrets" ng-init="typeItem='categories'">
+                                <div ng-repeat="(listName, list) in selectcat.models.lists">
                                     <ul class="list-arrets" dnd-list="list">
                                         <li ng-repeat="item in list"
                                             dnd-draggable="item"
@@ -86,10 +86,10 @@
                     <label class="col-sm-3 control-label">Arrêts</label>
 
                     <div class="col-sm-9">
-                        <div ng-controller="ArretSelectionController as selectarret">
+                        <div ng-controller="MultiSelectionController as selectarret">
 
-                            <div class="listArrets forArrets">
-                                <div ng-repeat="(listName, list) in selectarret.arretmodels.lists">
+                            <div class="listArrets forArrets" ng-init="typeItem='arrets'">
+                                <div ng-repeat="(listName, list) in selectarret.models.lists">
                                     <ul class="list-arrets" dnd-list="list">
                                         <li ng-repeat="item in list"
                                             dnd-draggable="item"

@@ -41,6 +41,30 @@ var App = angular.module('newsletter', ["angular-redactor","flow","ngSanitize","
             }
             var output = newdate + " " + months[convertdate.getMonth()] + " " + convertdate.getFullYear();
             return output;
+        },
+        convertArret: function(data, models){
+
+            angular.forEach( data , function(value, key){
+                models.lists.A.push({
+                    reference    : value.reference,
+                    isSelected   : false,
+                    itemId       : value.id
+                });
+            });
+
+            return models;
+        },
+        convertCategories: function(data, models){
+
+            angular.forEach( data , function(value, key){
+                models.lists.A.push({
+                    title      : value.title,
+                    isSelected : false,
+                    itemId     : value.id
+                });
+            });
+
+            return models;
         }
     };
 });
@@ -158,55 +182,50 @@ App.controller('SelectController', ['$scope','$http','Arrets','myService',functi
 
 }]);
 
-App.controller("SimpleDemoController",['$scope',"Arrets","myService", function($scope,Arrets,myService){
 
-    this.arrets = [];
+App.controller("MultiSelectionController",['$scope',"Arrets","myService", function($scope,Arrets,myService){
+
     /* capture this (the controller scope ) as self */
     var self = this;
 
-    $scope.models = {
+    this.items = [];
+    this.type  = '';
+
+    self.models = {
         selected: null,
         lists: {"A": [], "B": []}
     };
 
     /* function for refreshing the asynchronus retrival of blocs */
     this.refresh = function() {
+
         Arrets.query()
             .then(function (data) {
 
-                self.arrets = data;
+                self.items  = data;
+                console.log(self.items);
+                self.models = myService.convertArret(self.items, self.models);
 
-                angular.forEach( self.arrets , function(value, key){
-                    $scope.models.lists.A.push({
-                        reference    : value.reference,
-                        isSelected   : false,
-                        itemId       : value.id,
-                        itemDate     : myService.convertDateArret(value.pub_date),
-                        abstract     : value.abstract,
-                        pub_text     : value.pub_text,
-                        categories   : value.arrets_categories
-                    });
-                });
-
-                console.log($scope.models);
             });
     }
 
-    if(self.arrets.length == 0){
-        this.refresh();
+    if(self.items.length == 0){
+        self.refresh();
     }
 
-    $scope.dropped = function(item){
+    this.dropped = function(item){
 
-        angular.forEach($scope.models.lists.B, function(value, key){
+        angular.forEach(self.models.lists.B, function(value, key){
             value.isSelected = true;
         });
-        angular.forEach($scope.models.lists.A, function(value, key){
+        angular.forEach(self.models.lists.A, function(value, key){
             value.isSelected = false;
         });
+
     };
 
 }]);
+
 
 App.directive('bindContent', function() {
     return {

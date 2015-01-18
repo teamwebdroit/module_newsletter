@@ -16,6 +16,30 @@ var App = angular.module('selection', ["dndLists"] , function($interpolateProvid
             }
             var output = newdate + " " + months[convertdate.getMonth()] + " " + convertdate.getFullYear();
             return output;
+        },
+        convertArret: function(data, models){
+
+            angular.forEach( data , function(value, key){
+                models.lists.A.push({
+                    reference    : value.reference,
+                    isSelected   : false,
+                    itemId       : value.id
+                });
+            });
+
+            return models;
+        },
+        convertCategories: function(data, models){
+
+            angular.forEach( data , function(value, key){
+                models.lists.A.push({
+                    title      : value.title,
+                    isSelected : false,
+                    itemId     : value.id
+                });
+            });
+
+            return models;
         }
     };
 });
@@ -54,13 +78,15 @@ App.factory('Categories', ['$http', '$q', function($http, $q) {
     };
 }]);
 
-App.controller("MultiSelectionController",['$scope',"Categories","myService", function($scope,Categories,myService){
+App.controller("MultiSelectionController",['$scope',"Categories","Arrets","myService", function($scope,Categories,Arrets,myService){
 
-    this.categories = [];
     /* capture this (the controller scope ) as self */
     var self = this;
 
-    self.categoriemodels = {
+    this.items = [];
+    this.type  = '';
+
+    self.models = {
         selected: null,
         lists: {"A": [], "B": []}
     };
@@ -68,82 +94,45 @@ App.controller("MultiSelectionController",['$scope',"Categories","myService", fu
     /* function for refreshing the asynchronus retrival of blocs */
     this.refresh = function() {
 
-        Categories.query()
-            .then(function (data) {
+        if( $scope.typeItem == 'categories'){
 
-                self.categories = data;
+            Categories.query()
+                .then(function (data) {
 
-                angular.forEach( self.categories , function(value, key){
-                    self.categoriemodels.lists.A.push({
-                        title      : value.title,
-                        isSelected : false,
-                        itemId     : value.id
-                    });
+                    self.items  = data;
+                    self.models = myService.convertCategories(self.items, self.models);
                 });
+        }
 
-            });
+        if( $scope.typeItem == 'arrets'){
+
+            Arrets.query()
+                .then(function (data) {
+
+                    self.items  = data;
+                    self.models = myService.convertArret(self.items, self.models);
+
+                });
+        }
+
     }
 
-    if(self.categories.length == 0){
-        this.refresh();
+    if(self.items.length == 0){
+        $scope.$watch("typeItem", function(){
+            self.refresh();
+        });
     }
 
     this.dropped = function(item){
 
-        angular.forEach(self.categoriemodels.lists.B, function(value, key){
+        angular.forEach(self.models.lists.B, function(value, key){
             value.isSelected = true;
         });
-        angular.forEach(self.categoriemodels.lists.A, function(value, key){
+        angular.forEach(self.models.lists.A, function(value, key){
             value.isSelected = false;
         });
+
     };
 
 }]);
 
-
-App.controller("ArretSelectionController",['$scope',"Arrets","myService", function($scope,Arrets,myService){
-
-    this.arrets = [];
-    /* capture this (the controller scope ) as self */
-    var self = this;
-
-    self.arretmodels = {
-        selected: null,
-        lists: {"A": [], "B": []}
-    };
-
-    /* function for refreshing the asynchronus retrival of blocs */
-    this.refresh = function() {
-        Arrets.query()
-            .then(function (data) {
-
-                self.arrets = data;
-
-                angular.forEach( self.arrets , function(value, key){
-                    self.arretmodels.lists.A.push({
-                        reference    : value.reference,
-                        isSelected   : false,
-                        itemId       : value.id
-                    });
-                });
-
-                console.log(self.arretmodels);
-
-            });
-    }
-
-    if(self.arrets.length == 0){
-        this.refresh();
-    }
-
-    self.dropped = function(item){
-
-        angular.forEach(self.arretmodels.lists.B, function(value, key){
-            value.isSelected = true;
-        });
-        angular.forEach(self.arretmodels.lists.A, function(value, key){
-            value.isSelected = false;
-        });
-    };
-
-}]);
