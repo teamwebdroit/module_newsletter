@@ -237,8 +237,6 @@ $(function() {
         $( "#sortable" ).sortable( "disable" );
     });
 
-    $('#accordion-example').bra_accordion({active: 0});
-
     $('#bootbox-demo-3').click(function(){
         var campagneId = $(this).data('campagne');
         var sujet      = '';
