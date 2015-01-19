@@ -1,4 +1,4 @@
-var App = angular.module('newsletter', ["angular-redactor","flow","ngSanitize"] , function($interpolateProvider)
+var App = angular.module('newsletter', ["angular-redactor","flow","ngSanitize","dndLists"] , function($interpolateProvider)
 {
     $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
 
@@ -27,6 +27,44 @@ var App = angular.module('newsletter', ["angular-redactor","flow","ngSanitize"] 
         setBloc : function(bloc) {
             $('.edit_content_form').hide();
             blocDrop = bloc;
+        },
+        convertDateArret: function(date){
+
+            var jsonObject  = date.substr(0,10);
+            var convertdate = new Date(jsonObject);
+
+            var months  = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"];
+            var newdate = convertdate.getDate();
+            if (newdate < 10)
+            {
+                newdate = "0" + newdate;
+            }
+            var output = newdate + " " + months[convertdate.getMonth()] + " " + convertdate.getFullYear();
+            return output;
+        },
+        convertArret: function(data, models){
+
+            angular.forEach( data , function(value, key){
+                models.lists.A.push({
+                    reference    : value.reference,
+                    isSelected   : false,
+                    itemId       : value.id
+                });
+            });
+
+            return models;
+        },
+        convertCategories: function(data, models){
+
+            angular.forEach( data , function(value, key){
+                models.lists.A.push({
+                    title      : value.title,
+                    isSelected : false,
+                    itemId     : value.id
+                });
+            });
+
+            return models;
         }
     };
 });
@@ -91,6 +129,7 @@ App.controller("EditController",['$scope','$http','myService', function($scope,$
     };
 
 }]);
+
 /**
  * Select arret controller, select an arret and display's it
  */
@@ -137,25 +176,56 @@ App.controller('SelectController', ['$scope','$http','Arrets','myService',functi
                 self.categories = data.arrets_categories;
 
                 //get substring
-                var jsonObject = self.arret.pub_date.substr(0,10);
-                var newdate    = new Date(jsonObject);
-                self.date      = self.convertDate(newdate)
+                self.date = myService.convertDateArret(self.arret.pub_date)
             });
     };
 
-    this.convertDate = function(date){
+}]);
 
-        var months  = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"];
-        var newdate = date.getDate();
-        if (newdate < 10)
-        {
-            newdate = "0" + newdate;
-        }
-        var output = newdate + " " + months[date.getMonth()] + " " + date.getFullYear();
-        return output;
+
+App.controller("MultiSelectionController",['$scope',"Arrets","myService", function($scope,Arrets,myService){
+
+    /* capture this (the controller scope ) as self */
+    var self = this;
+
+    this.items = [];
+    this.type  = '';
+
+    self.models = {
+        selected: null,
+        lists: {"A": [], "B": []}
+    };
+
+    /* function for refreshing the asynchronus retrival of blocs */
+    this.refresh = function() {
+
+        Arrets.query()
+            .then(function (data) {
+
+                self.items  = data;
+                console.log(self.items);
+                self.models = myService.convertArret(self.items, self.models);
+
+            });
+    }
+
+    if(self.items.length == 0){
+        self.refresh();
+    }
+
+    this.dropped = function(item){
+
+        angular.forEach(self.models.lists.B, function(value, key){
+            value.isSelected = true;
+        });
+        angular.forEach(self.models.lists.A, function(value, key){
+            value.isSelected = false;
+        });
+
     };
 
 }]);
+
 
 App.directive('bindContent', function() {
     return {

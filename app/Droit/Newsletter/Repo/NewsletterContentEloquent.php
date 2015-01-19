@@ -71,6 +71,7 @@ class NewsletterContentEloquent implements NewsletterContentInterface{
             'lien'                   => $data['lien'],
             'arret_id'               => $data['arret_id'],
             'categorie_id'           => $data['categorie_id'],
+            'groupe_id'              => $data['groupe_id'],
             'newsletter_campagne_id' => $data['newsletter_campagne_id'],
             'rang'                   => $data['rang'],
 			'created_at'             => date('Y-m-d G:i:s'),
@@ -110,6 +111,10 @@ class NewsletterContentEloquent implements NewsletterContentInterface{
         // if we changed the lien
         if(isset($data['lien'])){
             $contents->lien = $this->custom->sanitizeUrl($data['lien']);
+        }
+        // if we changed the group
+        if(isset($data['groupe_id'])){
+            $contents->groupe_id = $data['groupe_id'];
         }
 
         $contents->updated_at = date('Y-m-d G:i:s');

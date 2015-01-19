@@ -48,7 +48,7 @@ Log::useFiles(storage_path().'/logs/laravel.log');
 
 App::error(function(Exception $exception, $code)
 {
-    if (App::environment('local') || App::environment('testing'))
+    if (App::environment('local') || App::environment('staging'))
     {
         Log::error($exception);
     }

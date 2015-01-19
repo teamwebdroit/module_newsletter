@@ -143,8 +143,11 @@
         <script src="<?php echo asset('admin/js/upload/jquery.fileupload-validate.js');?>"></script>
     @endif
 
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.2/angular.min.js"></script>
+    <script src="http://angular.local/angular-drag-and-drop-lists.js"></script>
+    <script type="text/javascript" src="<?php echo asset('js/multiselection.js');?>"></script>
+
     @if(isset($isNewsletter))
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.2/angular.min.js"></script>
         <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular-sanitize.js"></script>
         <script type="text/javascript" src="<?php echo asset('js/vendor/angular/angular-redactor.js');?>"></script>
         <script type="text/javascript" src="<?php echo asset('js/vendor/angular/angular-flow.js');?>"></script>

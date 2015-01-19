@@ -25,7 +25,7 @@ class ArretEloquent implements ArretInterface{
             {
                 $query->where('analyses.deleted', '=', 0);
             }))
-            ->orderBy('pub_date', 'DESC')->get();
+            ->orderBy('reference', 'ASC')->get();
     }
 
     public function getPaginate($pid,$nbr){
@@ -41,7 +41,12 @@ class ArretEloquent implements ArretInterface{
     }
 
 	public function find($id){
-				
+
+        if(is_array($id))
+        {
+            return $this->arret->whereIn('id', $id)->with(array('arrets_categories','arrets_analyses'))->get();
+        }
+
 		return $this->arret->where('id', '=' ,$id)->with(array('arrets_categories','arrets_analyses'))->get()->first();
 	}
 
@@ -61,6 +66,7 @@ class ArretEloquent implements ArretInterface{
             'pub_text'   => $data['pub_text'],
             'categories' => $data['categories'],
             'file'       => $data['file'],
+            'dumois'     => $data['dumois'],
 			'created_at' => date('Y-m-d G:i:s'),
 			'updated_at' => date('Y-m-d G:i:s')
 		));
@@ -92,6 +98,7 @@ class ArretEloquent implements ArretInterface{
         $arret->abstract   = $data['abstract'];
         $arret->pub_text   = $data['pub_text'];
         $arret->categories = $data['categories'];
+        $arret->dumois     = $data['dumois'];
 
         if($data['file']){
             $arret->file = $data['file'];

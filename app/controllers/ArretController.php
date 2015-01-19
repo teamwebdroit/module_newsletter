@@ -97,7 +97,8 @@ class ArretController extends \BaseController {
             'pub_date'   => Input::get('pub_date'),
             'abstract'   => Input::get('abstract'),
             'categories' => count($categories),
-            'pub_text'   => Input::get('pub_text')
+            'pub_text'   => Input::get('pub_text'),
+            'dumois'     => Input::get('dumois')
         );
 
         // Attach file if any
@@ -144,7 +145,8 @@ class ArretController extends \BaseController {
             'pub_date'   => Input::get('pub_date'),
             'abstract'   => Input::get('abstract'),
             'categories' => count($categories),
-            'pub_text'   => Input::get('pub_text')
+            'pub_text'   => Input::get('pub_text'),
+            'dumois'     => Input::get('dumois')
         );
 
         // Attach file if any

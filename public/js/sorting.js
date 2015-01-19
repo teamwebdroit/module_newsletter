@@ -1,6 +1,7 @@
 var url  = location.protocol + "//" + location.host+"/";
 
 $(function() {
+
     $( "#sortable" ).sortable({
         axis: 'y',
         update: function (event, ui) {
@@ -14,4 +15,5 @@ $(function() {
             });
         }
     });
+
 });

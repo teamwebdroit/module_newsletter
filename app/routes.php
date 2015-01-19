@@ -34,6 +34,9 @@ Route::group(array('before' => array('auth')), function()
     Route::post('uploadJS', 'UploadController@uploadJS');
     Route::post('uploadRedactor', 'UploadController@uploadRedactor');
     Route::post('uploadJquery', 'UploadController@uploadJquery');
+    Route::post('sorting', 'CampagneController@sorting');
+    Route::post('sortinggroupe', 'CampagneController@sortinggroupe');
+
 });
 
 Route::group(array('before' => array('admin','csrf')), function()
@@ -41,15 +44,14 @@ Route::group(array('before' => array('admin','csrf')), function()
     /**
      * API
      */
-    Route::post('sorting', 'CampagneController@sorting');
     Route::post('process', 'CampagneController@addContent');
-    Route::post('edit', 'CampagneController@editContent');
+    Route::post('editContent', 'CampagneController@editContent');
     Route::post('remove', 'CampagneController@remove');
 
 });
 
-
 Route::get('arrets/{id}', 'ArretController@simple');
+Route::get('analyses/{id}', 'AnalyseController@simple');
 Route::get('arrets', 'ArretController@arrets');
 Route::get('categories', 'CategorieController@categories');
 

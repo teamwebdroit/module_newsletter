@@ -199,4 +199,13 @@ class AnalyseController extends \BaseController {
         return Redirect::back()->with(array('status' => 'success', 'message' => 'Analyse supprimée' ));
     }
 
+    /**
+     * Return one analyse by id
+     *
+     * @return json
+     */
+    public function simple($id)
+    {
+        return $this->analyse->find($id);
+    }
 }

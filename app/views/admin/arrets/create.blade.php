@@ -30,8 +30,15 @@
 
                 <div class="form-group">
                     <label for="message" class="col-sm-3 control-label">Référence</label>
-                    <div class="col-sm-3">
+                    <div class="col-sm-4">
                         {{ Form::text('reference', null , array('class' => 'form-control') ) }}
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="checkbox">
+                            <label>
+                                {{ Form::checkbox('dumois', '1') }} Arrêt du mois
+                            </label>
+                        </div>
                     </div>
                 </div>
 
@@ -65,24 +72,30 @@
 
                 <div class="form-group">
                     <label class="col-sm-3 control-label">Catégories</label>
-                    <div class="col-sm-9">
 
-                        <div id="fieldChooser" tabIndex="1">
-                            <div id="sourceFields">
-                                <?php
-                                foreach($categories as $categorie)
-                                {
-                                    echo '<div>';
-                                    echo $categorie->title;
-                                    echo '<input type="hidden" disabled="disabled" value="'.$categorie->id.'" name="categories[]">';
-                                    echo '</div>';
-                                }
-                                ?>
+                    <div class="col-sm-9" ng-app="selection">
+
+                        <div ng-controller="MultiSelectionController as selectcat">
+                            <div class="listArrets forArrets" ng-init="typeItem='categories'">
+                                <div ng-repeat="(listName, list) in selectcat.models.lists">
+                                    <ul class="list-arrets" dnd-list="list">
+                                        <li ng-repeat="item in list"
+                                            dnd-draggable="item"
+                                            dnd-moved="list.splice($index, 1); logEvent('Container moved', event); selectcat.dropped(item)"
+                                            dnd-effect-allowed="move"
+                                            dnd-selected="models.selected = item"
+                                            ng-class="{'selected': models.selected === item}" >
+                                            {[{ item.title }]}
+                                            <input type="hidden" name="categories[]" ng-if="item.isSelected" value="{[{ item.itemId }]}" />
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div view-source="simple"></div>
                             </div>
-                            <div id="destinationFields"></div>
                         </div>
 
                     </div>
+
                 </div>
 
             </div>
