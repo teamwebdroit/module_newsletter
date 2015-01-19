@@ -144,7 +144,7 @@
     @endif
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.2/angular.min.js"></script>
-    <script src="http://angular.local/angular-drag-and-drop-lists.js"></script>
+    <script type="text/javascript" src="<?php echo asset('js/vendor/angular/angular-drag-and-drop-lists.js');?>"></script>
     <script type="text/javascript" src="<?php echo asset('js/multiselection.js');?>"></script>
 
     @if(isset($isNewsletter))
