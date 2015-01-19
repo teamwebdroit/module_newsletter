@@ -56,7 +56,7 @@
                                 <h3 style="text-align: left;">Analyse de l'arrêt {{ $bloc->reference }}</h3>
                                 <h4 style="text-align: left;">{{ $analyse->authors }}</h4>
                                 <p class="abstract">{{ $analyse->abstract }}</p>
-                                <p><a href="{{ asset('files/analyse/'.$analyse->file) }}">Télécharger en pdf</a></p>
+                                <p><a href="{{ asset('files/analyses/'.$analyse->file) }}">Télécharger en pdf</a></p>
                             </td>
                         </tr>
 
