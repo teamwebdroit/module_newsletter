@@ -10,7 +10,7 @@
                 <tr>
                     <td valign="top" width="375" class="resetMarge">
                         <?php setlocale(LC_ALL, 'fr_FR.UTF-8');  ?>
-                        <h3 style="text-align: left;">{{ $bloc->reference }} du {{ $bloc->pub_date->formatLocalized('%d %B %Y') }}</h3>
+                        <h3 style="text-align: left;font-family: sans-serif;">{{ $bloc->reference }} du {{ $bloc->pub_date->formatLocalized('%d %B %Y') }}</h3>
                         <p class="abstract">{{ $bloc->abstract }}</p>
                         <div>{{ $bloc->pub_text }}</div>
                         <p><a href="{{ asset('files/arrets/'.$bloc->file) }}">Télécharger en pdf</a></p>
@@ -53,8 +53,8 @@
                         <tr>
                             <td valign="top" width="375" class="resetMarge contentForm">
                                 <?php setlocale(LC_ALL, 'fr_FR.UTF-8');  ?>
-                                <h3 style="text-align: left;">Analyse de l'arrêt {{ $bloc->reference }}</h3>
-                                <h4 style="text-align: left;">{{ $analyse->authors }}</h4>
+                                <h3 style="text-align: left;font-family: sans-serif;">Analyse de l'arrêt {{ $bloc->reference }}</h3>
+                                <h4 style="text-align: left;font-family: sans-serif;">{{ $analyse->authors }}</h4>
                                 <p class="abstract">{{ $analyse->abstract }}</p>
                                 <p><a href="{{ asset('files/analyses/'.$analyse->file) }}">Télécharger en pdf</a></p>
                             </td>
