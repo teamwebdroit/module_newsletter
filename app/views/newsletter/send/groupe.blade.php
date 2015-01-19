@@ -4,7 +4,7 @@
         <tr bgcolor="ffffff">
             <td colspan="3" height="35"> </td>
         </tr><!-- space -->
-        <tr bgcolor="ffffff">
+        <tr bgcolor="ffffff" class="blocBorder">
             <td width="400" align="left" class="resetMarge contentForm" valign="top">
                 <h3 style="text-align: left;">{{ $allcategories[$bloc->categorie] }}</h3>
             </td>

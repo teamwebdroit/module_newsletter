@@ -18,6 +18,20 @@ $(function() {
         return false;
     });
 
+
+    // Match page height with Sidebar Height
+    function checkpageheightAgain() {
+        var sh = $("#page-leftbar").height();
+        var ch = $("#wrap").height();
+
+        if (sh > ch){
+            $("#page-content").css("min-height",ch+"px");
+        }
+        else{
+            $("#page-content").css("min-height",sh+"px");
+        }
+    }
+
     $('body').on('click','.deleteContentBloc',function(event){
 
         var $this  = $(this);
@@ -37,6 +51,7 @@ $(function() {
                     {
                         console.log('ok remove');
                         $('#bloc_rang_'+id).remove();
+                        checkpageheightAgain();
                     }
                 }
             });
@@ -170,6 +185,7 @@ $(function() {
      *  Create and edit newsletter blocs
      */
 
+
     $('body').on('click','.editContent',function(event){
 
         var $this  = $(this);
@@ -182,7 +198,6 @@ $(function() {
         // height
         var h = $('#edit_'+id).height();
         $('#bloc_rang_'+ id).css("height",h);
-
         $( "#sortable" ).sortable( "disable" );
     });
 
@@ -190,7 +205,6 @@ $(function() {
 
         $('.edit_content_form').hide();
         $( "#sortable" ).sortable( "enable" );
-
         $('.bloc_rang').height('auto');
     });
 
