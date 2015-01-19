@@ -28,7 +28,7 @@
                         <h3 style="text-align: left;">{{ $arret->reference }} du {{ $arret->pub_date->formatLocalized('%d %B %Y') }}</h3>
                         <p class="abstract">{{ $arret->abstract }}</p>
                         <div>{{ $arret->pub_text }}</div>
-                        <p><a href="{{ asset('files/arrets/'.$bloc->file) }}">Télécharger en pdf</a></p>
+                        <p><a href="{{ asset('files/arrets/'.$arret->file) }}">Télécharger en pdf</a></p>
                     </div>
                 </td>
                 <td width="25" class="resetMarge"></td><!-- space -->
