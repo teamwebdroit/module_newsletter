@@ -16,7 +16,7 @@ class CampagneWorker implements CampagneInterface{
     protected $worker;
     protected $groupe;
 
-	public function __construct(NewsletterContentInterface $content,NewsletterCampagneInterface $campagne, ArretInterface $arret, CategorieInterface $categorie , GroupeInterface $groupe)
+	public function __construct(NewsletterContentInterface $content,NewsletterCampagneInterface $campagne, ArretInterface $arret, CategorieInterface $categorie, GroupeInterface $groupe)
 	{
         $this->content   = $content;
         $this->campagne  = $campagne;
@@ -102,5 +102,4 @@ class CampagneWorker implements CampagneInterface{
 
         return $html;
     }
-
 }

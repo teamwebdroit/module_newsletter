@@ -9,8 +9,19 @@ use Droit\User\Entities\Professions as Professions;
 use Droit\User\Entities\Pays as Pays;
 use Droit\User\Entities\Membres as Membres;
 use Droit\User\Entities\Specialisations as Specialisations;
+use Droit\Service\Worker\UploadInterface;
 
 class Custom {
+
+    protected $upload;
+
+    /**
+     * Construct a new SentryUser Object
+     */
+    public function __construct()
+    {
+        $this->upload = \App::make('Droit\Service\Worker\UploadInterface');
+    }
 
 	/*
 	 * Dates functions
@@ -579,5 +590,18 @@ class Custom {
         return $categories;
 
     }
+
+
+    public function resizeImage($image,$type){
+
+        $toResize = array(3,4);
+
+        if(in_array($type,$toResize)){
+            $this->upload->resize( public_path('files/'.$image), $image , 130);
+        }
+
+        return true;
+    }
+
 
 }

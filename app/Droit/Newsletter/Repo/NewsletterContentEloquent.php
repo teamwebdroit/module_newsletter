@@ -106,6 +106,10 @@ class NewsletterContentEloquent implements NewsletterContentInterface{
         }
         // if we changed the image
         if(isset($data['image'])){
+
+            $type = $contents->type_id;
+            $this->custom->resizeImage($data['image'],$type);
+
             $contents->image = $data['image'];
         }
         // if we changed the lien

@@ -207,11 +207,17 @@ class CampagneController extends BaseController {
             $groupe->arrets_groupes()->sync($arrets);
         }
 
+        // image resize
+
+        $image = (isset($data['image']) ? $data['image'] : null);
+
+        $this->custom->resizeImage($image,$type);
+
         $new = array(
             'type_id'                => $type,
             'titre'                  => (isset($data['titre']) ? $data['titre'] : null),
             'contenu'                => (isset($data['contenu']) ? $data['contenu'] : null),
-            'image'                  => (isset($data['image']) ? $data['image'] : null),
+            'image'                  => $image,
             'lien'                   => $lien,
             'arret_id'               => (isset($data['arret_id']) ? $data['arret_id'] : 0),
             'groupe_id'              => (isset($groupe_id) && !empty($groupe_id) ? $groupe_id : 0),
