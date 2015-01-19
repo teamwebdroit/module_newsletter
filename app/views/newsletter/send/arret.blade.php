@@ -13,6 +13,7 @@
                         <h3 style="text-align: left;">{{ $bloc->reference }} du {{ $bloc->pub_date->formatLocalized('%d %B %Y') }}</h3>
                         <p class="abstract">{{ $bloc->abstract }}</p>
                         <div>{{ $bloc->pub_text }}</div>
+                        <p><a href="{{ asset('files/arrets/'.$bloc->file) }}">Télécharger en pdf</a></p>
                     </td>
                     <td width="25" class="resetMarge"></td><!-- space -->
                     <td align="center" valign="top" width="160" class="resetMarge">
