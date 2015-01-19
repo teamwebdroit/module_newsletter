@@ -113,6 +113,50 @@
                     </div><!--END POST-CONTENT -->
                 </div><!--END POST-HOLDER -->
             </div><!--END POST-->
+
+            @if(!$archives->isEmpty())
+
+            <h3>Archives</h3>
+            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+
+                @foreach($archives as $year => $colloques)
+                <div class="panel panel-default">
+                    <div class="panel-heading accordion-panel" role="tab" id="headingOne">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse_{{ $year }}" aria-expanded="true" aria-controls="collapseOne">
+                                Année {{ $year }}
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapse_{{ $year }}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                        <div class="panel-body">
+                            @if($colloques)
+                                @foreach($colloques as $organisateur => $list)
+
+                                    <h4>{{ $organisateur }}</h4>
+
+                                    @foreach($list as $colloque)
+                                        <p>
+                                            <?php
+                                                setlocale(LC_ALL, 'fr_FR.UTF-8');
+                                                $date  = \Carbon\Carbon::createFromFormat('Y-m-d', $colloque['event']['dateDebut']);
+                                            ?>
+
+                                            <a target="_blank" href="http://www.publications-droit.ch/index.php?id=275#/item/{{ $colloque['event']['id_Colloque'] }}">
+                                                <i class="glyphicon glyphicon-inbox"></i> &nbsp;{{ $colloque['event']['titre'] }}
+                                            </a>
+                                            | <small>{{ $date->formatLocalized('%d %B %Y') }}</small>
+                                        </p>
+                                    @endforeach
+                                @endforeach
+                            @endif
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+            </div>
+            @endif
+
         </div><!--END CONTENT-->
 
         <!-- Sidebar  -->

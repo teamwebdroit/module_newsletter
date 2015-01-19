@@ -1639,6 +1639,19 @@ ul.colored-counter-list > li:before {
 /*--------------------------------------------------
 	     ACCORDION
 ---------------------------------------------------*/
+
+.panel-heading.accordion-panel {
+    padding: 5px 10px;
+    text-decoration: none;
+}
+
+.panel-heading.accordion-panel h4 a:hover,
+.panel-heading.accordion-panel h4 a:focus,
+.panel-body a:hover,
+.panel-body a:focus{
+    text-decoration: none;
+}
+
 .trigger-button {
 	font-weight: bold;
 	float: left;

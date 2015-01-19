@@ -22,6 +22,16 @@ class ColloqueWorker{
         return $collection;
     }
 
+    public function getArchives(){
+
+        $response   = $this->client->get('http://www.publications-droit.ch/fileadmin/admin_unine/api/archives');
+        $data       = $response->json();
+        $data       = $this->organiseYear($data);
+        $collection = new \Illuminate\Support\Collection($data);
+
+        return $collection;
+    }
+
     public function organise($data){
 
         if(!empty($data))
@@ -38,4 +48,27 @@ class ColloqueWorker{
         return [];
     }
 
+    public function organiseYear($data){
+
+        if(!empty($data))
+        {
+            foreach($data as $colloque)
+            {
+                $date = $colloque['event']['dateDebut'];
+                $year = \Carbon\Carbon::createFromFormat('Y-m-d', $date);
+                $years[$year->year][] = $colloque;
+            }
+
+            ksort($years);
+
+            foreach($years as $year => $event)
+            {
+                $organise[$year] = $this->organise($event);
+            }
+
+            return $organise;
+        }
+
+        return [];
+    }
 }

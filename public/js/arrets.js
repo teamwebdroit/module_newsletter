@@ -1,5 +1,17 @@
 $( document ).ready(function(event) {
 
+    /*
+    * Inner height on filter
+    */
+
+    function calculHeightOnFilter(){
+
+        var innerHeight = $('#inner-content').outerHeight();
+        innerHeight     = innerHeight + 30;
+
+        $('#sidebar').css('height',innerHeight);
+    }
+
 	if($('#filtering')) {
 
 		// Chosen init
@@ -41,6 +53,7 @@ $( document ).ready(function(event) {
 		chosenSelect.on('change', function(event) {
 			categoryChange( $(this) );
 			filter();
+            calculHeightOnFilter();
 		});
 		
 		var categoryChange = function( obj ) {

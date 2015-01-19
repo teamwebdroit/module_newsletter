@@ -7,21 +7,6 @@ function is_touch_device() {
 ---------------------------------------------------*/
 jQuery(window).load(function() {  
 
-   /* var footer_fixed = true;
-
-    if( is_touch_device() || !footer_fixed){
-        jQuery('#footer, #wrapper').css({'position':'static', 'z-index':'0'});
-        jQuery('#wrapper:last').css("margin-bottom", "0");
-        jQuery("#footer").removeClass("fixed");
-    }
-    else
-    {
-        var margin = jQuery('#footer').outerHeight() + 25;
-        var wrapper_margin_bottom = margin+'px';
-        jQuery("#wrapper").after('<div style="height:' + wrapper_margin_bottom + '; float:left; width:100%;"></div>');
-        jQuery("#footer").addClass("fixed");
-    }*/
-
     var width = $( window ).width();
     var innerHeight   = jQuery('#inner-content').outerHeight();
     var sidebarHeight = jQuery('#sidebar').outerHeight();
@@ -32,10 +17,47 @@ jQuery(window).load(function() {
             jQuery('#sidebar').css('height',innerHeight);
         }
     }
-
-
 });
 
+/*--------------------------------------------------
+ ACCORDION PLUGIN
+ ---------------------------------------------------*/
+(function($){
+    $.fn.extend({
+        bra_accordion: function(options) {
+
+            var defaults = {
+                active: 1 //which tab should be openned by default. 0 for all closed.
+            };
+
+            var options = $.extend(defaults, options);
+
+            return this.each(function() {
+                var o = options;
+                var obj = $(this);
+                var obj_id = "#" + obj.attr("id");
+
+                active_plus = o.active - 1;
+                $(this).find('.accordion').hide();
+
+                if (o.active > 0) {
+                    $(this).find(".trigger-button:eq(" + active_plus + ")").addClass("active"); //Activate tab and content from declaration
+                    $(this).find(".accordion:eq(" + active_plus + ")").slideDown('normal');;
+                }
+
+                $(this).find('.trigger-button').click(function() {
+                    $(obj_id + " .trigger-button").removeClass("active")
+                    $(obj_id + ' .accordion').slideUp('normal');
+                    if($(this).next().is(':hidden') == true) {
+                        $(this).next().slideDown('normal');
+                        $(this).addClass("active");
+                    }
+                });
+
+            }); // return this.each
+        }
+    });
+})(jQuery);
 
 /*--------------------------------------------------
 	 BACK TO TOP
@@ -61,7 +83,6 @@ jQuery(document).ready(function($){
 	});
 
 });
-
 
 /*!
  * Bootstrap v3.2.0 (http://getbootstrap.com)
