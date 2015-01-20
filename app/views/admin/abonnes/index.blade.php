@@ -50,6 +50,7 @@
                                 </td>
                                 <td>
                                     @if( $abonne->activated_at)
+                                        <?php setlocale(LC_ALL, 'fr_FR.UTF-8');  ?>
                                         {{ $abonne->activated_at->formatLocalized('%d %B %Y') }}
                                     @endif
                                 </td>

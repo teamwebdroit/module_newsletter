@@ -58,6 +58,7 @@
                                                 </a>
                                             {{ Form::close() }}
                                         @else
+                                            <?php setlocale(LC_ALL, 'fr_FR.UTF-8');  ?>
                                             Le {{ $campagne->updated_at->formatLocalized('%d %B %Y') }} à {{ $campagne->updated_at->toTimeString() }}
                                         @endif
                                     </td>
