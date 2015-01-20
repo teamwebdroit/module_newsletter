@@ -85,7 +85,7 @@
                                             dnd-effect-allowed="move"
                                             dnd-selected="models.selected = item"
                                             ng-class="{'selected': models.selected === item}" >
-                                            {[{ item.title }]}
+                                            {[{ item.title }]}  <small ng-show="selectcat.showImageName(item.title)"> - {[{ item.image }]}</small>
                                             <input type="hidden" name="categories[]" ng-if="item.isSelected" value="{[{ item.itemId }]}" />
                                         </li>
                                     </ul>

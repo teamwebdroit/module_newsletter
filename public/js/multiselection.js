@@ -65,6 +65,7 @@ var App = angular.module('selection', ["dndLists"] , function($interpolateProvid
                 if (result.length == 0) {
                     models.lists.A.push({
                         title: value.title,
+                        image: value.image.slice(0, -4),
                         isSelected: false,
                         itemId: value.id
                     });
@@ -76,6 +77,7 @@ var App = angular.module('selection', ["dndLists"] , function($interpolateProvid
                 angular.forEach( selected , function(value, key){
                     models.lists.B.push({
                         title      : value.title,
+                        image      : value.image.slice(0, -4),
                         isSelected : true,
                         itemId : value.id
                     });
@@ -247,11 +249,21 @@ App.controller("MultiSelectionController",['$scope',"$filter","Categories","Arre
     }
 
     if(self.items.length == 0){
-
         $scope.$watch("typeItem", function(){
             self.refresh();
         });
+    }
 
+    this.showImageName = function (needle) {
+
+        var haystack = ['CO','CCT','LEg','LTr','Fonction publique']
+
+        var length = haystack.length;
+
+        for(var i = 0; i < length; i++) {
+            if(haystack[i] == needle) return true;
+        }
+        return false;
     }
 
     this.dropped = function(item){
