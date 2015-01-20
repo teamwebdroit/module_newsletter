@@ -21,7 +21,8 @@
                                         $haystack = ['CO','CCT','LEg','LTr','Fonction publique'];
 
                                         if(in_array($categorie,$haystack)){
-                                            echo '<option value="'.$idcat.'">'.$categorie.'<small> - '.$imgcategories[$idcat].'</li>';
+                                            $withoutExt = preg_replace('/\\.[^.\\s]{3,4}$/', '', $imgcategories[$idcat]);
+                                            echo '<option value="'.$idcat.'">'.$categorie.'<small> - '.$withoutExt.'</li>';
                                         }
                                         else{
                                             echo '<option value="'.$idcat.'">'.$categorie.'</small></li>';
