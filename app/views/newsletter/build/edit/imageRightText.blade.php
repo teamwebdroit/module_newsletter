@@ -66,7 +66,7 @@
                             <input type="hidden" value="{{ $bloc->idItem }}" name="id">
                             <input type="hidden" class="uploadImage" name="image" value="{[{ $flow.files[0].name }]}">
                             <button type="submit" class="btn btn-sm btn-orange">Envoyer</button>
-                            <button type="button" class="btn btn-sm btn-default cancelEdit">Annuler</button>
+                            <button type="button" data-id="{{ $bloc->idItem }}" class="btn btn-sm btn-default cancelEdit">Annuler</button>
                         </div>
                     </div>
                 </div>

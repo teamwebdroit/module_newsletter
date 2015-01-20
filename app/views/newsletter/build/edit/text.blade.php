@@ -37,7 +37,7 @@
                         <input type="hidden" value="{{ $bloc->idItem }}" name="id">
                         <div class="btn-group">
                             <button type="submit" class="btn btn-sm btn-orange">Envoyer</button>
-                            <button type="button" class="btn btn-sm btn-default cancelEdit">Annuler</button>
+                            <button type="button" data-id="{{ $bloc->idItem }}" class="btn btn-sm btn-default cancelEdit">Annuler</button>
                         </div>
                     </div>
                 </div>

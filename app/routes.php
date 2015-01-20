@@ -35,7 +35,7 @@ Route::group(array('before' => array('auth')), function()
     Route::post('uploadRedactor', 'UploadController@uploadRedactor');
     Route::post('uploadJquery', 'UploadController@uploadJquery');
     Route::post('sorting', 'CampagneController@sorting');
-    Route::post('sortinggroupe', 'CampagneController@sortinggroupe');
+    Route::post('sortingGroup', 'CampagneController@sortingGroup');
 
 });
 

@@ -288,6 +288,29 @@ class CampagneController extends BaseController {
     }
 
     /**
+     * Sorting bloc newsletter
+     * POST remove
+     * AJAX
+     * @return Response
+     */
+    public function sortingGroup(){
+
+        $data = Input::all();
+
+        $groupe_rang = $data['groupe_rang'];
+        $groupe_id   = $data['groupe_id'];
+
+        $arrets = $this->custom->prepareCategories($groupe_rang);
+
+        $groupe = $this->groupe->find($groupe_id);
+        $groupe->arrets_groupes()->sync($arrets);
+
+        print_r($groupe->arrets_groupes);
+
+    }
+
+
+    /**
      * Remove bloc from newsletter
      * POST remove
      * AJAX

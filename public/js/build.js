@@ -111,6 +111,15 @@ App.controller("EditController",['$scope','$http','myService', function($scope,$
         $('.edit_content_form').hide();
     };
 
+    this.finishEdit = function(){
+
+        $('.edit_content_form').hide();
+        $( "#sortGroupe" ).sortable( "disable" );
+        $('.finishEdit').hide();
+        $('.editContent').show();
+        $( "#sortGroupe").css({ "border":"1px solid #000"});
+    }
+
     this.editContent = function(idItem){
 
         var w = $( document ).width();
@@ -124,7 +133,26 @@ App.controller("EditController",['$scope','$http','myService', function($scope,$
 
         var content = $('#bloc_rang_'+idItem);
         content.find('.edit_content_form').css("width",w).show();
+
         $( "#sortable" ).sortable( "disable" );
+        $('.finishEdit').show();
+
+        var groupe_id = $( "#sortGroupe").data('group');
+
+        $( "#sortGroupe" ).sortable({
+            axis: 'y',
+            update: function (event, ui) {
+                var data = $(this).sortable('serialize') +"&groupe_id="+ groupe_id;
+                // POST to server using $.post or $.ajax
+                $.ajax({
+                    data: data,
+                    type: 'POST',
+                    url: url+ 'sortingGroup'
+                });
+            }
+        });
+
+        $( "#sortGroupe" ).sortable( "enable" );
 
     };
 
@@ -203,7 +231,7 @@ App.controller("MultiSelectionController",['$scope',"Arrets","myService", functi
             .then(function (data) {
 
                 self.items  = data;
-                console.log(self.items);
+                //console.log(self.items);
                 self.models = myService.convertArret(self.items, self.models);
 
             });

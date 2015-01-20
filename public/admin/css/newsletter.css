@@ -278,6 +278,10 @@
     margin-bottom: 2px;
 }
 
+.finishEdit{
+    display: none;
+}
+
 div#fieldChooser,div#fieldChooser2 {
     width: 630px;
     height: 300px;
