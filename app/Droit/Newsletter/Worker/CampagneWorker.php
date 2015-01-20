@@ -35,6 +35,10 @@ class CampagneWorker implements CampagneInterface{
         return $this->categorie->getAll(195)->lists('title','id');
     }
 
+    public function getCategoriesImagesArrets(){
+        return $this->categorie->getAll(195)->lists('image','id');
+    }
+
 	public function findCampagneById($id){
 
         $content  = $this->content->getByCampagne($id);

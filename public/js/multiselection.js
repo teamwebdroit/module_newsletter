@@ -256,7 +256,7 @@ App.controller("MultiSelectionController",['$scope',"$filter","Categories","Arre
 
     this.showImageName = function (needle) {
 
-        var haystack = ['CO','CCT','LEg','LTr','Fonction publique']
+        var haystack = ['CO','CCT','LEg','LTr','Fonction publique'];
 
         var length = haystack.length;
 

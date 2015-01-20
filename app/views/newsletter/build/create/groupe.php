@@ -18,7 +18,14 @@
                                 {
                                     foreach($allcategories as $idcat => $categorie)
                                     {
-                                        echo '<option value="'.$idcat.'">'.$categorie.'</li>';
+                                        $haystack = ['CO','CCT','LEg','LTr','Fonction publique'];
+
+                                        if(in_array($categorie,$haystack)){
+                                            echo '<option value="'.$idcat.'">'.$categorie.'<small> - '.$imgcategories[$idcat].'</li>';
+                                        }
+                                        else{
+                                            echo '<option value="'.$idcat.'">'.$categorie.'</small></li>';
+                                        }
                                     }
                                 }
                             ?>

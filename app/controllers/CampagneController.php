@@ -36,14 +36,16 @@ class CampagneController extends BaseController {
         $this->arrets       = new \Droit\Content\Worker\ArretWorker();
         $this->custom       = new \Custom;
 
-        $pub        = $this->contentSite->findyByType('pub');
-        $soutiens   = $this->contentSite->findyByType('soutien');
+        $pub           = $this->contentSite->findyByType('pub');
+        $soutiens      = $this->contentSite->findyByType('soutien');
         $allcategories = $this->worker->getCategoriesArrets();
+        $imgcategories = $this->worker->getCategoriesImagesArrets();
 
         View::share('pageTitle', 'Campagnes');
         View::share('pub', $pub);
         View::share('soutiens', $soutiens);
         View::share('allcategories', $allcategories);
+        View::share('imgcategories', $imgcategories);
     }
 
     public function index()
