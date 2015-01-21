@@ -43,6 +43,17 @@ CSS overview:
 	margin-bottom: 0;
 }
 
+.soutien-media{
+margin: 0;
+}
+
+.soutiens{
+    position: absolute;
+    top: -25px;
+    right: 25px;
+    width: 120px;
+}
+
 .fixed{
     top: 230px;
     width: 300px;

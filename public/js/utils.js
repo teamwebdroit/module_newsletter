@@ -202,8 +202,7 @@ $(function() {
 
         $( "#sortable" ).sortable( "disable" );
         $( "#sortGroupe" ).sortable( "enable" );
-        $( "#sortGroupe").css({ "border":"1px solid #000"});
-
+        $( "#sortGroupe .groupe_rang").css({ "border":"1px solid #bfe4ad"});
 
     });
 

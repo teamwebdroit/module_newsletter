@@ -5,7 +5,16 @@
 <div class="row">
     <div class="col-md-12">
         <div class="page-header text-align-left">
-            <h1 class="title uppercase">Nouveautés dans le domaine du droit du travail</h1>
+
+            <div class="row">
+                <div class="col-md-8">
+                    <h1 class="title uppercase">Nouveautés dans le domaine du droit du travail</h1>
+                </div>
+                <div class="col-md-4 text-right">
+                    @include('partials.soutien')
+                </div>
+            </div>
+
         </div><!--END PAGE-HEADER-->
     </div>
 </div>
@@ -48,7 +57,6 @@
     <div id="sidebar" class="col-md-4 col-xs-12">
         @include('partials.newsletter')
         @include('partials.pub')
-        @include('partials.soutien')
         @include('partials.latest')
     </div>
     <!-- END Sidebar  -->

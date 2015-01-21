@@ -4,7 +4,16 @@
 <div class="row">
     <div class="col-md-12">
         <div class="page-header text-align-left">
-            <h1 class="title uppercase">Désinscription</h1>
+
+            <div class="row">
+                <div class="col-md-8">
+                    <h1 class="title uppercase">Désinscription</h1>
+                </div>
+                <div class="col-md-4 text-right">
+                    @include('partials.soutien')
+                </div>
+            </div>
+
         </div><!--END PAGE-HEADER-->
     </div>
 </div>
@@ -31,7 +40,6 @@
     <!-- Sidebar  -->
     <div id="sidebar" class="col-md-4 col-xs-12">
         @include('partials.pub')
-        @include('partials.soutien')
     </div>
     <!-- END Sidebar  -->
 </div><!--END CONTENT-->

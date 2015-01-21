@@ -63,11 +63,12 @@ class CategorieController extends \BaseController {
         $file = $this->upload->upload( Input::file('file') , 'newsletter/pictos' , 'categorie');
 
         // Data array
-        $data['title']   = Input::get('title');
-        $data['ismain']  = (Input::get('ismain') ? 1 : 0);
-        $data['user_id'] = Input::get('user_id');
-        $data['pid']     = 195;
-        $data['image']   = (isset($file) && !empty($file) ? $file['name'] : null);
+        $data['title']      = Input::get('title');
+        $data['ismain']     = (Input::get('ismain') ? 1 : 0);
+        $data['hideOnSite'] = (Input::get('hideOnSite') ? 1 : 0);
+        $data['user_id']    = Input::get('user_id');
+        $data['pid']        = 195;
+        $data['image']      = (isset($file) && !empty($file) ? $file['name'] : null);
 
         $categorie = $this->categorie->create( $data );
 
@@ -118,10 +119,11 @@ class CategorieController extends \BaseController {
         }
 
         // Data array
-        $data['id']     = $id;
-        $data['title']  = Input::get('title');
-        $data['ismain'] = (Input::get('ismain') ? 1 : 0);
-        $data['image']  = (isset($file) && !empty($file) ? $file['name'] : null);
+        $data['id']         = $id;
+        $data['title']      = Input::get('title');
+        $data['ismain']     = (Input::get('ismain') ? 1 : 0);
+        $data['hideOnSite'] = (Input::get('hideOnSite') ? 1 : 0);
+        $data['image']      = (isset($file) && !empty($file) ? $file['name'] : null);
 
         $this->categorie->update( $data );
 

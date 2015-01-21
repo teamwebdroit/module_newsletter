@@ -18,6 +18,10 @@ class CategorieEloquent implements CategorieInterface{
         return $this->categorie->where('pid','=',$pid)->where('deleted', '=', 0)->orderBy('title', 'ASC')->get();
     }
 
+    public function getAllOnSite($pid){
+        return $this->categorie->where('pid','=',$pid)->where('deleted', '=', 0)->where('hideOnSite', '=', 0)->orderBy('title', 'ASC')->get();
+    }
+
     public function getAllMain($pid){
 
         return $this->categorie->where('pid','=',$pid)->where('ismain','=', 1)->where('deleted', '=', 0)->orderBy('title', 'ASC')->get();
@@ -41,6 +45,7 @@ class CategorieEloquent implements CategorieInterface{
             'title'      => $data['title'],
             'image'      => $data['image'],
             'ismain'     => $data['ismain'],
+            'hideOnSite' => $data['hideOnSite'],
             'created_at' => date('Y-m-d G:i:s'),
             'updated_at' => date('Y-m-d G:i:s')
         ));
@@ -63,8 +68,9 @@ class CategorieEloquent implements CategorieInterface{
             return false;
         }
 
-        $categorie->title  = $data['title'];
-        $categorie->ismain = $data['ismain'];
+        $categorie->title      = $data['title'];
+        $categorie->ismain     = $data['ismain'];
+        $categorie->hideOnSite = $data['hideOnSite'];
 
         if(!empty($data['image'])){
             $categorie->image = $data['image'];

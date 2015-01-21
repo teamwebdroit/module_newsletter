@@ -6,6 +6,7 @@ use Droit\Content\Repo\ArretInterface;
 use Droit\Categorie\Repo\CategorieInterface;
 use Droit\Content\Repo\GroupeInterface;
 use \InlineStyle\InlineStyle;
+use Illuminate\Support\Collection;
 
 class CampagneWorker implements CampagneInterface{
 
@@ -66,9 +67,15 @@ class CampagneWorker implements CampagneInterface{
                 elseif($item->groupe_id > 0){
 
                     $groupe       = $this->groupe->find($item->groupe_id);
-                    $group_arrets = $groupe->arrets_groupes->lists('id');
+                    $group_arrets = $groupe->arrets_groupes;
 
-                    $arrets    = $this->arret->find($group_arrets);
+                    if(isset($group_arrets)){
+                        foreach($group_arrets as $arretId){
+                            $arrets[] =  $this->arret->find($arretId->id);
+                        }
+                    }
+
+                    $arrets    = new Collection($arrets);
                     $categorie = $groupe->categorie_id;
 
                     $image = $this->categorie->find($categorie);

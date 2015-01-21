@@ -137,6 +137,10 @@ h3.title{
     font-weight: 500;
 }
 
+h3.title.soutien{
+    font-size: 10px;
+}
+
 h4.title{
     color: #dd0330;
 	font-size: 18px;

@@ -5,8 +5,17 @@
 <div class="row">
     <div class="col-md-12">
         <div class="page-header text-align-left">
-            <h1 class="title uppercase">Contactez-nous</h1>
-            <h2 class="subtitle">Une question? Une demande? N'hésitez pas à nous écrire.</h2>
+
+            <div class="row">
+                <div class="col-md-8">
+                    <h1 class="title uppercase">Contactez-nous</h1>
+                    <h2 class="subtitle">Une question? Une demande? N'hésitez pas à nous écrire.</h2>
+                </div>
+                <div class="col-md-4 text-right">
+                    @include('partials.soutien')
+                </div>
+            </div>
+
         </div><!--END PAGE-HEADER-->
     </div>
 </div>

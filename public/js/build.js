@@ -117,7 +117,7 @@ App.controller("EditController",['$scope','$http','myService', function($scope,$
         $( "#sortGroupe" ).sortable( "disable" );
         $('.finishEdit').hide();
         $('.editContent').show();
-        $( "#sortGroupe").css({ "border":"1px solid #000"});
+        $( "#sortGroupe .groupe_rang").css({ "border":"none"});
     }
 
     this.editContent = function(idItem){
