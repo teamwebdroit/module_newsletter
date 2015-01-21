@@ -18,9 +18,10 @@
                         </tr>
                     </table>
                 </td>
-                <td width="130">
+                <td width="110" style="text-align: left; ">
+                    <small style="text-align: left; font-family: sans-serif;color: #fff;font-size: 11px;">Avec le soutien de</small>
                     <a target="_blank" href="http://www.staempfliverlag.com">
-                        <img width="130" alt="Staempfli Verlag" src="{{ asset('files/stampfli.jpg') }}" />
+                        <img width="105px" alt="Staempfli Verlag" src="{{ asset('images/staempfli_small.png') }}" />
                     </a>
                 </td>
             </tr><!-- space -->
