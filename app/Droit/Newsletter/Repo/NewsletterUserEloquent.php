@@ -40,19 +40,32 @@ class NewsletterUserEloquent implements NewsletterUserInterface{
 		}))->where('email','=',$email)->get()->first();
 	}
 
-    public function get_ajax( $sEcho , $iDisplayStart , $iDisplayLength , $iSortCol_0, $sSortDir_0){
+    public function get_ajax( $sEcho , $iDisplayStart , $iDisplayLength , $iSortCol_0, $sSortDir_0, $sSearch ){
 
         $columns = array('id','status','activated_at','email','abo','delete');
 
         $iTotal  = $this->user->get()->count();
 
-        $data = $this->user->with(array('subscription' => function($query)
+        if($sSearch)
+        {
+            $data = $this->user->where('email','LIKE','%'.$sSearch.'%')->with(array('subscription' => function($query)
             {
-                $query->join('newsletters', 'newsletters.id', '=', 'newsletter_subscriptions.newsletter_id');
+                    $query->join('newsletters', 'newsletters.id', '=', 'newsletter_subscriptions.newsletter_id');
 
             }))->orderBy($columns[$iSortCol_0], $sSortDir_0)->take($iDisplayLength)->skip($iDisplayStart)->get();
 
-        $iTotalDisplayRecords = $iTotal;
+            $iTotalDisplayRecords = $this->user->whereRaw('( prenom LIKE "%'.$sSearch.'%" OR nom LIKE "%'.$sSearch.'%" )')->get()->count();
+        }
+        else
+        {
+            $data = $this->user->with(array('subscription' => function($query)
+                {
+                    $query->join('newsletters', 'newsletters.id', '=', 'newsletter_subscriptions.newsletter_id');
+
+                }))->orderBy($columns[$iSortCol_0], $sSortDir_0)->take($iDisplayLength)->skip($iDisplayStart)->get();
+
+            $iTotalDisplayRecords = $iTotal;
+        }
 
         $output = array(
             "sEcho"                => $sEcho,

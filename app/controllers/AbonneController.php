@@ -43,6 +43,12 @@ class AbonneController extends \BaseController {
      */
     public function getAllAbos()
     {
+        $sSearch = NULL;
+
+        if(Input::get('sSearch'))
+        {
+            $sSearch = Input::get('sSearch');
+        }
 
         $sEcho          = Input::get('sEcho');
         $iDisplayStart  = Input::get('iDisplayStart');
@@ -50,7 +56,7 @@ class AbonneController extends \BaseController {
         $iSortCol_0     = Input::get('iSortCol_0');
         $sSortDir_0     = Input::get('sSortDir_0');
 
-        return $this->abonne->get_ajax( $sEcho , $iDisplayStart , $iDisplayLength , $iSortCol_0, $sSortDir_0);
+        return $this->abonne->get_ajax( $sEcho , $iDisplayStart , $iDisplayLength , $iSortCol_0, $sSortDir_0,$sSearch);
 
     }
 
