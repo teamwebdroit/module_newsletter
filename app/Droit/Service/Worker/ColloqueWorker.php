@@ -42,6 +42,9 @@ class ColloqueWorker{
                 $organise[$centre][] = $colloque;
             }
 
+            $sorting  = array('cert','cemaj');
+            $organise = $this->custom->sortArrayByArray($organise,$sorting);
+
             return $organise;
         }
 

@@ -119,4 +119,30 @@ class CustomTest extends TestCase {
         $this->assertEquals($expected,$actual);
     }
 
+    /**
+     * Prepare categories for sync
+     *
+     * @return void
+     */
+    public function testSortArrayByArrayKeys()
+    {
+        $sorting   = array('cert','cemaj');
+
+        $array = array(
+            'cemaj' => ['sorting' => 0],
+            'cert'  => ['sorting' => 1]
+        );
+
+        $expected = array(
+            'cert'  => ['sorting' => 1],
+            'cemaj' => ['sorting' => 0]
+        );
+
+        $actual = $this->custom->sortArrayByArray($array,$sorting);
+
+        $this->assertEquals($expected,$actual);
+    }
+
+
+
 }

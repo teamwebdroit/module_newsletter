@@ -267,40 +267,6 @@ class Custom {
 	}
 	
 	/*
-	 * Format phone number 	like +41 78 990 90 09 or 0041 78 990 90 09 or 078 990 90 09 
-	*/
-	
-	public function format_phone($num)
-	{
-		$num = preg_replace('/[^0-9]/', '', $num);
-		 
-			$len = strlen($num);
-			if($len == 11)
-			$num = preg_replace('/([0-9]{2})([0-9]{2})([0-9]{3})([0-9]{2})([0-9]{2})/', '+$1 $2 $3 $4 $5', $num);
-			elseif($len == 10)
-			$num = preg_replace('/([0-9]{3})([0-9]{3})([0-9]{2})([0-9]{2})/', '$1 $2 $3 $4', $num);
-			elseif($len == 1)
-			$num = '';
-			elseif($len == 13)
-			$num = preg_replace('/([0-9]{4})([0-9]{2})([0-9]{3})([0-9]{2})([0-9]{2})/', '$1 $2 $3 $4 $5', $num);
-		 
-		return $num;
-	}
-	
-   	/* Strip the case postale or other cp string */ 
-	public function stripCp($string )
-	{
-		$wordlist = array("CP", "case", "postale","Case","Postale","cp","Cp","Postfach","postfach", "C. P." , "PF" , "PO Box");
-		
-		foreach($wordlist as $word)
-		{  
-			$string = str_replace($word, "", $string); 
-		}
-		
-		return $string;
-	}
-	
-	/*
 	 * Array functions
 	*/	
 	
@@ -369,91 +335,6 @@ class Custom {
 		}
 		
 		return FALSE;	
-	}
-	
-	/**
-	 *  Get all shared variables and list for users and adresses controllers
-	 *
-	 *  @return array
-	*/
-	
-	public function sharedVariables(){
-		
-	    $civilites   = Civilites::all()->lists('titre','id');
-	    $professions = Professions::all()->lists('titre','id');
-		$cantons     = Cantons::all()->lists('titre','id');
-		$pays        = Pays::all()->lists('nom','id');
-		
-		$allmembres          = Membres::all()->lists('titre','id');
-		$allSpecialisations  = Specialisations::all()->lists('titre','id');
-
-		$professions = $this->insertFirstInArray( 0 , 'Choix' , $professions );
-		$cantons     = $this->insertFirstInArray( 0 , 'Choix' , $cantons );
-		$pays        = $this->insertFirstInArray( 0 , 'Choix' , $pays );
-		
-		return array( 'civilites' => $civilites , 'professions' => $professions ,'cantons' => $cantons ,'pays' => $pays ,'allmembres' => $allmembres,'allSpecialisations' => $allSpecialisations );	
-		
-	}
-	
-	/**
-	 * Return the name of the title (civilité)
-	 *
-	 * @return string
-	 */	
-	public function whatCivilite($title){
-		
-		$civilites = Civilites::all()->lists('titre','id');
-		
-		return (isset($civilites[$title]) ? $civilites[$title] : "");		
-	}
-	
-	/**
-	 * Return the name of the title (professsion)
-	 *
-	 * @return string 
-	 */	
-	public function whatProfession($title){
-		
-		$professions = Professions::all()->lists('titre','id');
-
-		return (isset($professions[$title]) ? $professions[$title] : "");			
-	}    
-		
-	/**
-	 * Return the name of the title (canton)
-	 *
-	 * @return string 
-	 */	
-	public function whatCanton($title){
-		
-		$cantons = Cantons::all()->lists('titre','id');
-
-		return (isset($cantons[$title]) ? $cantons[$title] : "");	
-	} 
-			
-	/**
-	 * Return the name of the title (canton)
-	 *
-	 * @return string 
-	 */	
-	public function whatPays($title){
-		
-		$pays = Pays::all()->lists('nom','id');
-
-		return (isset($pays[$title]) ? $pays[$title] : "");	
-	} 
-	
-			
-	/**
-	 * Return the name of the title (type of adresse)
-	 *
-	 * @return string 
-	 */	
-	public function whatType($title){
-		
-		$types = Adresse_types::all()->lists('type','id');
-
-		return (isset($types[$title]) ? $types[$title] : "");	
 	}
 
     public function convertLink($link){
@@ -601,6 +482,19 @@ class Custom {
         }
 
         return true;
+    }
+
+    public function sortArrayByArray(Array $array, Array $orderArray) {
+        $ordered = array();
+
+        foreach($orderArray as $key) {
+            if(array_key_exists($key,$array)) {
+                $ordered[$key] = $array[$key];
+                unset($array[$key]);
+            }
+        }
+
+        return $ordered + $array;
     }
 
 
