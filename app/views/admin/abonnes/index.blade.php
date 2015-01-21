@@ -35,44 +35,7 @@
                             <th class="col-sm-1"></th>
                         </tr>
                         </thead>
-                        <tbody class="selects">
-
-                        @if(!empty($abonnes))
-                            @foreach($abonnes as $abonne)
-                            <tr>
-                                <td><a class="btn btn-sky btn-sm" href="{{ url('admin/abonne/'.$abonne->id.'/edit') }}">&Eacute;diter</a></td>
-                                <td>
-                                    @if( $abonne->activated_at )
-                                        <span class="label label-success">Confirmé</span>
-                                    @else
-                                        <span class="label label-default">Email non confirmé</span>
-                                    @endif
-                                </td>
-                                <td>
-                                    @if( $abonne->activated_at)
-                                        <?php setlocale(LC_ALL, 'fr_FR.UTF-8');  ?>
-                                        {{ $abonne->activated_at->formatLocalized('%d %B %Y') }}
-                                    @endif
-                                </td>
-                                <td>{{ $abonne->email }}</td>
-                                <td>
-                                    @if( !$abonne->subscription->isEmpty() )
-                                        <?php
-                                            $abos = $abonne->subscription->lists('titre');
-                                            echo implode(',',$abos);
-                                        ?>
-                                    @endif
-                                </td>
-                                <td class="text-right">
-                                    {{ Form::open(array('route' => array('admin.abonne.destroy', $abonne->email), 'method' => 'delete')) }}
-                                        <button data-action="Abonné {{ $abonne->email }}" class="btn btn-danger btn-xs deleteAction">Supprimer</button>
-                                    {{ Form::close() }}
-                                </td>
-                            </tr>
-                            @endforeach
-                        @endif
-
-                        </tbody>
+                        <tbody class="selects"></tbody>
                     </table>
                 </div>
             </div>

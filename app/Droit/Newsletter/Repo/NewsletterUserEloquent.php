@@ -40,6 +40,58 @@ class NewsletterUserEloquent implements NewsletterUserInterface{
 		}))->where('email','=',$email)->get()->first();
 	}
 
+    public function get_ajax( $sEcho , $iDisplayStart , $iDisplayLength , $iSortCol_0, $sSortDir_0){
+
+        $columns = array('id','status','activated_at','email','abo','delete');
+
+        $iTotal  = $this->user->get()->count();
+
+        $data = $this->user->with(array('subscription' => function($query)
+            {
+                $query->join('newsletters', 'newsletters.id', '=', 'newsletter_subscriptions.newsletter_id');
+
+            }))->orderBy($columns[$iSortCol_0], $sSortDir_0)->take($iDisplayLength)->skip($iDisplayStart)->get();
+
+        $iTotalDisplayRecords = $iTotal;
+
+        $output = array(
+            "sEcho"                => $sEcho,
+            "iTotalRecords"        => $iTotal,
+            "iTotalDisplayRecords" => $iTotalDisplayRecords,
+            "aaData"               => array()
+        );
+
+        foreach($data as $abonne)
+        {
+            $row = array();
+
+            $row['id']     = '<a class="btn btn-sky btn-sm" href="'.url('admin/abonne/'.$abonne->id.'/edit').'">&Eacute;diter</a>';
+            $status = ( $abonne->activated_at ? '<span class="label label-success">Confirmé</span>' : ' <span class="label label-default">Email non confirmé</span>');
+            $row['status']       = $status;
+
+            setlocale(LC_ALL, 'fr_FR.UTF-8');
+            $row['activated_at'] = ( $abonne->activated_at ? $abonne->activated_at->formatLocalized('%d %B %Y') : '' );
+            $row['email']        = $abonne->email;
+
+            if( !$abonne->subscription->isEmpty() )
+            {
+                $abos = $abonne->subscription->lists('titre');
+                $row['abo'] = implode(',',$abos);
+            }
+
+            $row['delete']  = \Form::open(array('route' => array('admin.abonne.destroy', $abonne->email), 'method' => 'delete'));
+            $row['delete'] .= '<button data-action="Abonné '.$abonne->email.'" class="btn btn-danger btn-xs deleteAction">Supprimer</button>';
+            $row['delete'] .= \Form::close();
+
+            $row = array_values($row);
+
+            $output['aaData'][] = $row;
+        }
+
+        return json_encode( $output );
+
+    }
+
 	public function activate($token){
 
         $user = $this->user->where('activation_token','=',$token)->get()->first();

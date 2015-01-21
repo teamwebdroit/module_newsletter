@@ -50,6 +50,12 @@ Route::group(array('before' => array('admin','csrf')), function()
 
 });
 
+/*
+ * AJAX
+ */
+Route::get('abonne/getAllAbos', 'AbonneController@getAllAbos');
+
+
 Route::get('arrets/{id}', 'ArretController@simple');
 Route::get('analyses/{id}', 'AnalyseController@simple');
 Route::get('arrets', 'ArretController@arrets');

@@ -30,10 +30,29 @@ class AbonneController extends \BaseController {
 	 */
 	public function index()
 	{
-        $abonnes = $this->abonne->getAll();
+        //$abonnes = $this->abonne->getAll();
 
-        return View::make('admin.abonnes.index')->with( array('abonnes' => $abonnes) );
+        return View::make('admin.abonnes.index');
 	}
+
+    /**
+     * Display a listing of tabonnes for ajax
+     * GET /abonne/getAllAbos
+     *
+     * @return Response
+     */
+    public function getAllAbos()
+    {
+
+        $sEcho          = Input::get('sEcho');
+        $iDisplayStart  = Input::get('iDisplayStart');
+        $iDisplayLength = Input::get('iDisplayLength');
+        $iSortCol_0     = Input::get('iSortCol_0');
+        $sSortDir_0     = Input::get('sSortDir_0');
+
+        return $this->abonne->get_ajax( $sEcho , $iDisplayStart , $iDisplayLength , $iSortCol_0, $sSortDir_0);
+
+    }
 
 	/**
 	 * Show the form for creating a new resource.

@@ -79,9 +79,14 @@ $(document).ready(function() {
         }
     });
 
+    var base_url = location.protocol + "//" + location.host+"/";
+
     $('#abonnes').dataTable({
         "sDom": "<''<'col-xs-6'l><'col-xs-6'f>r>t<''<'col-xs-6'i><'col-xs-6'p>>",
         "sPaginationType": "bootstrap",
+        "sAjaxSource": "/abonne/getAllAbos",
+        "bProcessing": true,
+        "bServerSide": true,
         "oLanguage": {
             "sLengthMenu": "_MENU_ par page",
             "sInfo"    : "Total de _TOTAL_ abonnés, _START_ sur _END_",
