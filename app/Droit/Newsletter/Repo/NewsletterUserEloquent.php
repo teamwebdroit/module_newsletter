@@ -44,7 +44,7 @@ class NewsletterUserEloquent implements NewsletterUserInterface{
 
         $columns = array('id','status','activated_at','email','abo','delete');
 
-        $iTotal  = $this->user->get()->count();
+        $iTotal  = $this->user->get(array('id'))->count();
 
         if($sSearch)
         {
@@ -54,7 +54,7 @@ class NewsletterUserEloquent implements NewsletterUserInterface{
 
             }))->orderBy($columns[$iSortCol_0], $sSortDir_0)->take($iDisplayLength)->skip($iDisplayStart)->get();
 
-            $iTotalDisplayRecords = $this->user->whereRaw('( prenom LIKE "%'.$sSearch.'%" OR nom LIKE "%'.$sSearch.'%" )')->get()->count();
+            $iTotalDisplayRecords = $data->count();
         }
         else
         {

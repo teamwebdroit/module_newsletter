@@ -43,12 +43,8 @@ class AbonneController extends \BaseController {
      */
     public function getAllAbos()
     {
-        $sSearch = NULL;
-
-        if(Input::get('sSearch'))
-        {
-            $sSearch = Input::get('sSearch');
-        }
+        $sSearch = Input::get('sSearch');
+        $sSearch = ($sSearch && !empty($sSearch) ? $sSearch : null);
 
         $sEcho          = Input::get('sEcho');
         $iDisplayStart  = Input::get('iDisplayStart');
