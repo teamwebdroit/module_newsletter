@@ -42,12 +42,14 @@ class HomeController extends BaseController {
 
         $pub      = $this->content->findyByType('pub');
         $soutiens = $this->content->findyByType('soutien');
+        $allcategories = $this->worker->getCategoriesArrets();
 
         View::share('pub', $pub);
         View::share('soutiens', $soutiens);
         View::share('arrets', $arrets);
         View::share('latest', $latest);
         View::share('categories', $categories);
+        View::share('allcategories', $allcategories);
     }
 
     public function index()
