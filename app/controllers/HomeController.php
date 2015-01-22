@@ -35,8 +35,8 @@ class HomeController extends BaseController {
         $this->colloque       = $colloque;
         $this->custom         = new \Custom;
 
-        $arrets = $this->arret->getPaginate(195,15);
-        $latest = $arrets->take(3);
+        $arrets = $this->arret->find(array(830,831));
+        $latest = $arrets;
 
         $categories    = $this->categorie->getAllOnSite(195);
         $allcategories = $this->worker->getCategoriesArrets();
