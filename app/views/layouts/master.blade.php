@@ -7,7 +7,7 @@
 
         <meta name="description" content="Le site droitdutravail.ch, créé sous l'égide de la Faculté de droit de l'Université de Neuchâtel, est dédié aux nouveautés en droit du travail, en particulier la jurisprudence du Tribunal fédéral.">
         <meta name="author" content="Cindy Leschaud">
-        <meta name="viewport" content="width=device-width">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <!-- CSS Files
         ================================================== -->
@@ -79,7 +79,7 @@
 
             <!-- START FOOTER -->
             <div id="footer">
-                <div class="section row">
+                <div class="row">
                     <div class="col-md-2"></div>
                     <div class="col-md-8 text-align-center">
                         <p><strong>Faculté de droit, Avenue du 1er-Mars 26, 2000 Neuchâtel</strong></p>

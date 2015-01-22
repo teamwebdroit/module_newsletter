@@ -21,7 +21,7 @@
 </div>
 
 <div class="row">
-    <div ng-app="filtering">
+    <div id="filteringApp" ng-app="filtering">
 
         <div id="inner-content" class="col-md-8 col-xs-12">
             <div id="filtering">

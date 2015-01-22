@@ -803,7 +803,7 @@ li.open a .sf-sub-indicator:after, li.open li.open a .sf-sub-indicator:after, li
 		  PAGE HEADER
 ---------------------------------------------------*/
 .page-header {
-	overflow: hidden;
+
 	margin: 0 auto;
 	padding: 30px 0;
 	border-top: 2px solid #eee;
