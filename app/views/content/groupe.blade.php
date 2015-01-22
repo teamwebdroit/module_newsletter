@@ -32,8 +32,9 @@
                     {
                         foreach($arret->arrets_categories as $categorie)
                         {
-                            // Categories
-                            echo '<a target="_blank" href="'.url('jurisprudence').'#'.$arret->reference.'"><img width="130" border="0" alt="Loyer" src="'.asset('newsletter/pictos/'.$categorie->image).'"></a>';
+                            if($categorie->id != $bloc->categorie){
+                                echo '<a target="_blank" href="'.url('jurisprudence').'#'.$arret->reference.'"><img width="130" border="0" alt="Loyer" src="'.asset('newsletter/pictos/'.$categorie->image).'"></a>';
+                            }
                         }
                     }
                     ?>
