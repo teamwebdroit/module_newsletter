@@ -392,7 +392,7 @@ img {
 	padding: 0;
 	z-index:9999;
 	background-color: #fff;
-	padding: 20px 0;
+	padding: 10px 0;
 	transition-duration: 0.35s;
 }
 #header-wrapper.sticky {
@@ -527,8 +527,8 @@ img {
 #about {
     /* IE9 SVG, needs conditional override of 'filter' to 'none' */
 	color: #fff;
-    height: 278px;
-    margin-bottom: 30px;
+    height: 258px;
+    margin-bottom: 20px;
 }
 
 #about img {
