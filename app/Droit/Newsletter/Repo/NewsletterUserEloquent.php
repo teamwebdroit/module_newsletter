@@ -24,6 +24,13 @@ class NewsletterUserEloquent implements NewsletterUserInterface{
         }))->get();
 	}
 
+    public function getAllNbr($nbr){
+        return $this->user->with(array('subscription' => function($query)
+            {
+                $query->join('newsletters', 'newsletters.id', '=', 'newsletter_subscriptions.newsletter_id');
+            }))->take(5)->orderBy('id', 'desc')->get();
+    }
+
 	public function find($id){
 				
 		return $this->user->with(array('newsletter','subscription' => function($query)

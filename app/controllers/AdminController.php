@@ -30,7 +30,7 @@ class AdminController extends \BaseController {
 	{
         $arrets     = $this->arret->getAll(195)->take(5);
         $categories = $this->categorie->getAll(195);
-        $abonnes    = $this->abonne->getAll();
+        $abonnes    = $this->abonne->getAllNbr(5);
 
         return View::make('admin.index')->with(array('arrets' => $arrets , 'categories' => $categories , 'abonnes' => $abonnes ));
 	}
