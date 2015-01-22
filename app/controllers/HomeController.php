@@ -38,8 +38,8 @@ class HomeController extends BaseController {
         $arrets = $this->arret->getPaginate(195,15);
         $latest = $arrets->take(3);
 
-        $categories = $this->categorie->getAllOnSite(195);
-
+        $categories    = $this->categorie->getAllOnSite(195);
+        $allcategories = $this->worker->getCategoriesArrets();
         $pub      = $this->content->findyByType('pub');
         $soutiens = $this->content->findyByType('soutien');
 
@@ -48,6 +48,7 @@ class HomeController extends BaseController {
         View::share('arrets', $arrets);
         View::share('latest', $latest);
         View::share('categories', $categories);
+        View::share('allcategories', $allcategories);
     }
 
     public function index()
