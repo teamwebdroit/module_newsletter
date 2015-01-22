@@ -1,7 +1,5 @@
 <?php
 
-Route::group(array('before' => 'islive'), function()
-{
     /**
      * Site pages
      */
@@ -11,9 +9,6 @@ Route::group(array('before' => 'islive'), function()
     Route::post('sendMessage', 'HomeController@sendMessage');
     Route::get('jurisprudence', 'HomeController@jurisprudence');
     Route::get('newsletters/{id?}', 'HomeController@newsletters');
-
-    // 'before' => 'csrf'
-});
 
 /**
  * Newsletter

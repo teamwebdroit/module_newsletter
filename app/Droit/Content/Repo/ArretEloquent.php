@@ -36,8 +36,8 @@ class ArretEloquent implements ArretInterface{
         },'arrets_analyses' => function($query)
         {
             $query->where('analyses.deleted', '=', 0);
-        }))
-            ->orderBy('pub_date', 'DESC')->paginate($nbr);
+
+        }))->orderBy('pub_date', 'DESC')->paginate($nbr);
     }
 
 	public function find($id){
