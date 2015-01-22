@@ -139,16 +139,6 @@
         position: relative;
     }
 
-    #inner-content{
-        margin-top: 200px;
-    }
-
-    #sidebar{
-        position: absolute;
-        top: 0;
-        width: 100%;
-        background: none;
-    }
 
     #sidebar #arret-annees li{
         display: inline-block;
