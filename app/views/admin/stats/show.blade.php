@@ -68,6 +68,12 @@
                 <div class="row"><!-- start row -->
                     <div class="col-md-8">
                         <ul class="list-group">
+
+                            <?php
+                            echo '<pre>';
+                            print_r($clickStats);
+                            echo '</pre>';
+                            ?>
                             @if(!empty($clickStats))
                                 @foreach($clickStats as $url => $click)
                                 <li class="list-group-item">

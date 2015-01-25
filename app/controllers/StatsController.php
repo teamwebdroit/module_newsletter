@@ -45,15 +45,16 @@ class StatsController extends \BaseController {
 
         // Clicks
         $clickStats = $this->worker->clickStatistics($campagneStats->CampaignID);
-        $clickStats = $this->statsworker->filterResponseStatisticsMany($clickStats);
-        $clickStats = $this->statsworker->aggregateStatsClicksLinks($clickStats);
+        //$clickStats = $this->statsworker->filterResponseStatisticsMany($clickStats);
+        //$clickStats = $this->statsworker->aggregateStatsClicksLinks($clickStats);
 
         return View::make('admin.stats.show')->with(
             array(
                 'isChart'      => true,
-                'campagne'     => $campagne ,
+                'campagne'     => $campagne,
                 'statistiques' => $statistiques,
-                'clickStats'   => $clickStats
+                'clickStats'   => $clickStats,
+                'campagneStats' => $campagneStats
             )
         );
 	}

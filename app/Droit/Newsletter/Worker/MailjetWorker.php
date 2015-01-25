@@ -297,7 +297,7 @@ class MailjetWorker implements MailjetInterface{
     public function clickStatistics($id){
 
         # Parameters
-        $params = array('CampaignID' => $id );
+        $params = array("method" => "GET",'CampaignID' => $id );
 
         # Call
         $response = $this->mailjet->clickstatistics($params);
