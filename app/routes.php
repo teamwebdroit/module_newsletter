@@ -176,17 +176,12 @@ Route::get('testing', function()
 
 });
 
-Route::get('setHmtlCampagne', function()
+Route::get('statscampagne', function()
 {
 
-    $send = new \Droit\Newsletter\Worker\CampagneWorker(
-        \App::make('Droit\Newsletter\Repo\NewsletterContentInterface'),
-        \App::make('Droit\Newsletter\Repo\NewsletterCampagneInterface'),
-        \App::make('Droit\Content\Repo\ArretInterface')
-    );
 
     $mailjet = new \Droit\Newsletter\Worker\MailjetWorker();
-    $newsletter = new \Droit\Newsletter\Repo\NewsletterCampagneEloquent(new \Droit\Newsletter\Entities\Newsletter_campagnes);
+    //$newsletter = new \Droit\Newsletter\Repo\NewsletterCampagneEloquent(new \Droit\Newsletter\Entities\Newsletter_campagnes);
 
     //$campagne   = $newsletter->find(12);
 
@@ -195,8 +190,9 @@ Route::get('setHmtlCampagne', function()
     //$sent = $send->setHtml($html,$campagne->api_campagne_id);
     //$id = $send->removeContact('pruntrut@yahoo.fr');
     //$sent = $send->addContactToList($id);
-    $sent = $mailjet->clickStatistics(11);
+    $sent = $mailjet->clickStatistics(120);
     //print_r($campagne);
+    echo '<pre>';
     print_r($sent);
-
+    echo '</pre>';
 });

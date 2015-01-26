@@ -29,7 +29,8 @@ class StatsWorker{
         {
             foreach($data as $click)
             {
-                $clicks[$click->Url][] = $click->ContactID;
+                $url = trim($click->Url);
+                $clicks[$url][] = $click->ContactID;
             }
         }
 

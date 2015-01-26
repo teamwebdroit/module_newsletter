@@ -297,7 +297,7 @@ class MailjetWorker implements MailjetInterface{
     public function clickStatistics($id){
 
         # Parameters
-        $params = array('CustomCampaign' => 'mj.nl='.$id );
+        $params = array("method" => "GET", 'CampaignID' => $id ,'Limit' => 1000);
 
         # Call
         $response = $this->mailjet->clickstatistics($params);
@@ -306,4 +306,19 @@ class MailjetWorker implements MailjetInterface{
 
     }
 
+
+    public function openStats($campaignID){
+
+        $params = array(
+            "method"     => "GET",
+            "CampaignID" => $campaignID,
+            'Limit' => 1000,
+            'Offset' => 200
+        );
+
+        $response = $this->mailjet->openinformation ($params);
+
+        return ($response ? $response : false);
+
+    }
 }
