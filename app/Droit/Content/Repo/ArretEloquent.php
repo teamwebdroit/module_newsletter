@@ -40,6 +40,24 @@ class ArretEloquent implements ArretInterface{
         }))->orderBy('pub_date', 'DESC')->paginate($nbr);
     }
 
+    public function getLatest(){
+
+        $arrets = $this->arret->with( array('arrets_analyses' => function($query)
+            {
+                $query->where('analyses.deleted', '=', 0);
+            }))->orderBy('id', 'ASC')->get();
+
+        $new = $arrets->filter(function($item)
+        {
+            if (!$item->arrets_analyses->isEmpty()) {
+                return true;
+            }
+        });
+
+        return $new->take(5);
+
+    }
+
 	public function find($id){
 
         if(is_array($id))

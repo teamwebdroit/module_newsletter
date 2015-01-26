@@ -35,8 +35,7 @@ class HomeController extends BaseController {
         $this->colloque       = $colloque;
         $this->custom         = new \Custom;
 
-        $arrets = $this->arret->find(array(830,831));
-        $latest = $arrets;
+        $latest = $this->arret->getLatest();
 
         $categories    = $this->categorie->getAllOnSite(195);
         $allcategories = $this->worker->getCategoriesArrets();
@@ -45,7 +44,6 @@ class HomeController extends BaseController {
 
         View::share('pub', $pub);
         View::share('soutiens', $soutiens);
-        View::share('arrets', $arrets);
         View::share('latest', $latest);
         View::share('categories', $categories);
         View::share('allcategories', $allcategories);

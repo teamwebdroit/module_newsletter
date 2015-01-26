@@ -102,11 +102,6 @@ Route::group(array('prefix' => 'admin', 'before' => array('auth','admin')), func
 Route::get('testing', function()
 {
 
-    $send = new \Droit\Newsletter\Worker\CampagneWorker(
-        \App::make('Droit\Newsletter\Repo\NewsletterContentInterface'),
-        \App::make('Droit\Newsletter\Repo\NewsletterCampagneInterface'),
-        \App::make('Droit\Content\Repo\ArretInterface')
-    );
 
     //echo ($send->removeContact('cindy11@bluewin.ch') ? 'removed' : 'error');
     //print_r($send->getSubscribers());
@@ -168,10 +163,24 @@ Route::get('testing', function()
 
     }*/
 
-    $analyse = new Droit\Content\Entities\Analyse();
+    $arrets = new Droit\Content\Entities\Arret();
+
+    $arrets = $arrets->with( array('arrets_analyses' => function($query)
+            {
+                $query->where('analyses.deleted', '=', 0);
+            }))->orderBy('id', 'ASC')->take(10)->get();
 
     echo '<pre>';
-    print_r($analyse->where('id', '=',1)->with(array('analyses_categories','analyses_arrets'))->get()->first());
+
+    $new = $arrets->filter(function($item)
+    {
+        if (!$item->arrets_analyses->isEmpty()) {
+            return true;
+        }
+    });
+
+    print_r($new->take(5)->toArray());
+
     echo '</pre>';
 
 });
