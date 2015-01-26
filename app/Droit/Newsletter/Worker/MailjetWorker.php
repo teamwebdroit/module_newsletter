@@ -294,10 +294,10 @@ class MailjetWorker implements MailjetInterface{
     }
 
 
-    public function clickStatistics($id){
+    public function clickStatistics($id, $offset = 0){
 
         # Parameters
-        $params = array("method" => "GET", 'CampaignID' => $id ,'Limit' => 1000);
+        $params = array("method" => "GET", 'CampaignID' => $id ,'Limit' => 500, 'Offset' => $offset);
 
         # Call
         $response = $this->mailjet->clickstatistics($params);

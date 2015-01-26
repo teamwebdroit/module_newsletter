@@ -45,18 +45,40 @@ class StatsController extends \BaseController {
 
         // Clicks
         $clickStats = $this->worker->clickStatistics($campagneStats->CampaignID);
-        $clickStats = $this->statsworker->filterResponseStatisticsMany($clickStats);
-        $clickStats = $this->statsworker->aggregateStatsClicksLinks($clickStats);
+
+        $allclicks[] = $this->sumStatsClicksLinks($campagneStats->CampaignID);
+        $allclicks   = $this->statsworker->statsClicksLinks($allclicks);
 
         return View::make('admin.stats.show')->with(
             array(
                 'isChart'      => true,
                 'campagne'     => $campagne ,
                 'statistiques' => $statistiques,
-                'clickStats'   => $clickStats
+                'clickStats'   => $allclicks
             )
         );
 	}
 
+    public function sumStatsClicksLinks( $CampaignID, $offset = 0){
+
+        $result = array();
+
+        $data  = $this->worker->clickStatistics($CampaignID, $offset);
+        $count = $this->statsworker->getTotalCount($data);
+
+        if($count == 500)
+        {
+            $result[] = $data->Data;
+            $offset   = $offset + 500;
+
+            $result   = array_merge($result,$this->sumStatsClicksLinks($CampaignID, $offset));
+        }
+        else
+        {
+            $result[] = $data->Data;
+        }
+
+        return $result;
+    }
 
 }

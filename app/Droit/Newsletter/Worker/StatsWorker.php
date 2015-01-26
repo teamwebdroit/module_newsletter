@@ -36,4 +36,27 @@ class StatsWorker{
 
         return $clicks;
     }
+
+    public function statsClicksLinks($datas){
+
+        $clicks = array();
+
+        if(!empty($datas))
+        {
+            foreach($datas as $data)
+            {
+                foreach($data as $click)
+                {
+                    foreach($click as $urlclick)
+                    {
+                        $url = trim($urlclick->Url);
+                        $clicks[$url][] = $urlclick->ContactID;
+                    }
+                }
+            }
+        }
+
+        return $clicks;
+    }
+
 }
