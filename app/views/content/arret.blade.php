@@ -43,14 +43,14 @@
                     <div class="post-entry">
                         <h4>{{ $analyse->authors }}</h4>
                         <p>{{ $analyse->abstract }}</p>
-                        <p><a href="{{ asset('files/analyses/'.$analyse->file) }}">Télécharger en pdf</a></p>
+                        <p><a target="_blank" href="{{ asset('files/analyses/'.$analyse->file) }}">Télécharger en pdf</a></p>
                     </div>
             </div><!--END POST-->
         @endforeach
 
     </div>
     <div class="col-md-3 listCat">
-        <a target="_blank" href="{{ url('jurisprudence') }}">
+        <a href="{{ url('jurisprudence') }}">
             <img width="130" border="0" alt="Analyse" src="{{ asset('images/analyse.png') }}">
         </a>
     </div>
