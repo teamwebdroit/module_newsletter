@@ -26,8 +26,8 @@
                         <thead>
                             <tr>
                                 <th class="col-sm-2"></th>
-                                <th class="col-sm-1"></th>
-                                <th class="col-sm-3">Sujet</th>
+                                <th class="col-sm-2"></th>
+                                <th class="col-sm-2">Sujet</th>
                                 <th class="col-sm-2">Auteurs</th>
                                 <th class="col-sm-1">Status</th>
                                 <th class="col-sm-2">Création</th>
@@ -46,7 +46,8 @@
                                            <a class="btn btn-inverse btn-sm" href="{{ url('admin/campagne/'.$campagne->id) }}">Composer</a>
                                         </div>
                                         @else
-                                        <a class="btn btn-success btn-sm" href="{{ url('admin/stats/'.$campagne->id) }}">Voir les statistiques</a>
+                                        <a class="btn btn-success btn-sm" href="{{ url('admin/stats/'.$campagne->id) }}">Statistiques</a>
+                                        <a href="javascript:;" class="btn btn-default btn-sm sendEmailNewsletter" data-campagne="{{ $campagne->id }}">Envoyer par email</a>
                                         @endif
                                     </td>
                                     <td>

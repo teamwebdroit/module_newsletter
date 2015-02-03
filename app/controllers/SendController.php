@@ -48,7 +48,16 @@ class SendController extends \BaseController {
 
         $this->worker->sendTest($email,$html,$sujet);
 
+        $ajax = Input::get('send_type', 'normal');
+
+        if($ajax == 'ajax'){
+            echo 'ok';
+            exit;
+        }
+
         return Redirect::to('admin/campagne/'.$id)->with( array('status' => 'success' , 'message' => 'Email de test envoyé!' ) );
     }
+
+
 
 }

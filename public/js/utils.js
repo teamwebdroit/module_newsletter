@@ -244,6 +244,56 @@ $(function() {
         $( "#sortable" ).sortable( "disable" );
     });
 
+    bootbox.setDefaults({
+        /**
+         * @optional String
+         * @default: en
+         * which locale settings to use to translate the three
+         * standard button labels: OK, CONFIRM, CANCEL
+         */
+        locale: "fr"
+    });
+
+    $('.sendEmailNewsletter').click(function(){
+
+        var campagneId = $(this).data('campagne');
+        var message =  $('#messageAlert');
+
+        bootbox.prompt("Envoyer à cette adresse email", function(result) {
+            if (result === null) {
+
+            }
+            else{
+
+                message.find('.alert').addClass('alert-warning');
+                message.find('.alert p').html('Email de test en cours d\'envoi &nbsp;<i class="fa fa-spinner fa-spin"></i>');
+                message.show();
+
+                $.ajax({
+                    url     : 'admin/send/test',
+                    data    : { id: campagneId , email: result, send_type : 'ajax'},
+                    type    : "POST",
+                    success : function(data) {
+                        if(data)
+                        {
+                            message.find('.alert').removeClass('alert-warning');
+                            message.find('.alert').addClass('alert-success');
+                            message.find('.alert p').text('Email de test envoyé!');
+
+                            window.setTimeout(function() {
+                                $(message).fadeTo(500, 0).slideUp(500, function(){
+                                    $(this).remove();
+                                });
+                            }, 3500);
+
+                        }
+                    }
+                });
+
+            }
+        });
+    });
+
     $('#bootbox-demo-3').click(function(){
         var campagneId = $(this).data('campagne');
         var sujet      = '';
