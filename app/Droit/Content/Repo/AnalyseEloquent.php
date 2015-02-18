@@ -15,10 +15,11 @@ class AnalyseEloquent implements AnalyseInterface{
 		$this->analyse = $analyse;
 	}
 
-    public function getAll(){
+    public function getAll($include = []){
 
         return $this->analyse
             ->where('analyses.deleted', '=', 0)
+            ->whereIn('id', $include)
             ->with( array('analyses_categories' => function ($query)
                 {
                     $query->orderBy('sorting', 'ASC');

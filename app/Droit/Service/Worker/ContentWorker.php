@@ -61,6 +61,17 @@ class ContentWorker{
         return $arrets;
     }
 
+    public function showAnalyses(){
+
+        $arrets = $this->showArrets();
+
+        if(!empty($arrets)){
+            $analyses = \DB::table('analyses_arret')->whereIn('arret_id', $arrets)->lists('analyse_id');
+        }
+
+        return ($analyses ? $analyses : []);
+    }
+
     /**
      * Return response arrets prepared for filtered
      *
@@ -115,7 +126,8 @@ class ContentWorker{
     public function preparedAnalyses()
     {
 
-        $analyses = $this->analyse->getAll(195);
+        $include  = $this->showAnalyses();
+        $analyses = $this->analyse->getAll($include);
 
         $prepared = $analyses->filter(function($analyse)
         {
