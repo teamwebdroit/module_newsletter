@@ -30,20 +30,19 @@ class ArretEloquent implements ArretInterface{
 
     public function getAllActives($pid,$include){
 
-        $arrets = $this->arret;
+        $arrets = $this->arret->with( array('arrets_categories' => function ($query)
+            {
+                $query->orderBy('sorting', 'ASC');
+            },'arrets_analyses' => function($query)
+            {
+                $query->where('analyses.deleted', '=', 0);
+            }));
 
         if(!empty($include)){
             $arrets->whereIn('id', $include);
         }
 
-        return $arrets->with( array('arrets_categories' => function ($query)
-                {
-                    $query->orderBy('sorting', 'ASC');
-                },'arrets_analyses' => function($query)
-                {
-                    $query->where('analyses.deleted', '=', 0);
-                }))
-            ->orderBy('reference', 'ASC')->get();
+        return $arrets->orderBy('reference', 'ASC')->get();
 
     }
 
