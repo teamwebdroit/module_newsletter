@@ -27,6 +27,46 @@ class CampagneWorker implements CampagneInterface{
         $this->worker    = new \Droit\Content\Worker\ArretWorker();
 	}
 
+    public function getSentCampagneArrets(){
+
+        $campagnes = $this->campagne->getAllSent();
+
+        if(!$campagnes->isEmpty())
+        {
+            foreach($campagnes as $campagne){
+                $sent[] = $campagne->id;
+            }
+
+            foreach($sent as $send)
+            {
+                $content = $this->content->getArretsByCampagne($send);
+
+                $arrets  = $content->map(function($item)
+                {
+                    if ($item->arret_id > 0)
+                    {
+                        return $item->arret_id;
+                    }
+                    elseif($item->groupe_id > 0){
+
+                        $groupe = $this->groupe->find($item->groupe_id);
+
+                        if(isset($groupe->arrets_groupes)){
+                            foreach($groupe->arrets_groupes as $arretId){
+                                $arrets[] = $arretId->id;
+                            }
+                        }
+
+                        return $arrets;
+                    }
+                });
+
+                return $arrets;
+            }
+        }
+
+    }
+
     public function getCampagne($id){
 
         return $this->campagne->find($id);
@@ -42,7 +82,7 @@ class CampagneWorker implements CampagneInterface{
 
 	public function findCampagneById($id){
 
-        $content  = $this->content->getByCampagne($id);
+        $content = $this->content->getByCampagne($id);
 
         if(!$content->isEmpty()){
 

@@ -35,12 +35,13 @@ class HomeController extends BaseController {
         $this->colloque       = $colloque;
         $this->custom         = new \Custom;
 
-        $latest = $this->arret->getLatest();
+        $include = $this->jurisprudence->showArrets();
+        $latest  = $this->arret->getLatest($include);
 
         $categories    = $this->categorie->getAllOnSite(195);
         $allcategories = $this->worker->getCategoriesArrets();
-        $pub      = $this->content->findyByType('pub');
-        $soutiens = $this->content->findyByType('soutien');
+        $pub           = $this->content->findyByType('pub');
+        $soutiens      = $this->content->findyByType('soutien');
 
         View::share('pub', $pub);
         View::share('soutiens', $soutiens);
@@ -105,7 +106,7 @@ class HomeController extends BaseController {
             return $this->jurisprudence->preparedAnnees();
         });
 
-        return View::make('jurisprudence')->with(array( 'arrets' => $arrets, 'analyses' => $analyses, 'annees' => $annees ));
+        return View::make('jurisprudence')->with(array('arrets' => $arrets, 'analyses' => $analyses, 'annees' => $annees ));
     }
 
     /**

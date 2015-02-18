@@ -497,5 +497,16 @@ class Custom {
         return $ordered + $array;
     }
 
+    public function array_flatten($array) {
+
+        $output = array();
+
+        array_walk_recursive($array, function ($current) use (&$output) {
+            $output[] = $current;
+        });
+
+        return $output;
+    }
+
 
 }

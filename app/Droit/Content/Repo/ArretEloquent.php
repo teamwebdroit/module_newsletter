@@ -28,6 +28,21 @@ class ArretEloquent implements ArretInterface{
             ->orderBy('reference', 'ASC')->get();
     }
 
+    public function getAllActives($pid,$include){
+
+        return $this->arret
+            ->whereIn('id', $include)
+            ->with( array('arrets_categories' => function ($query)
+                {
+                    $query->orderBy('sorting', 'ASC');
+                },'arrets_analyses' => function($query)
+                {
+                    $query->where('analyses.deleted', '=', 0);
+                }))
+            ->orderBy('reference', 'ASC')->get();
+
+    }
+
     public function getPaginate($pid,$nbr){
 
         return $this->arret->with( array('arrets_categories' => function ($query)
@@ -40,9 +55,11 @@ class ArretEloquent implements ArretInterface{
         }))->orderBy('pub_date', 'DESC')->paginate($nbr);
     }
 
-    public function getLatest(){
+    public function getLatest($include){
 
-        $arrets = $this->arret->with( array('arrets_analyses' => function($query)
+        $arrets = $this->arret
+            ->whereIn('id', $include)
+            ->with( array('arrets_analyses' => function($query)
             {
                 $query->where('analyses.deleted', '=', 0);
             }))->orderBy('id', 'ASC')->get();

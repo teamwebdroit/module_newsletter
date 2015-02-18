@@ -1,5 +1,6 @@
 <?php namespace Droit\Service\Worker;
 
+use Droit\Newsletter\Worker\CampagneWorker;
 use Droit\Categorie\Repo\CategorieInterface;
 use Droit\Content\Repo\ArretInterface;
 use Droit\Content\Repo\AnalyseInterface;
@@ -10,10 +11,12 @@ class ContentWorker{
     protected $arret;
     protected $analyse;
     protected $custom;
+    protected $campagne;
 
     /* Inject dependencies */
-    public function __construct(  CategorieInterface $categories, ArretInterface $arret, AnalyseInterface $analyse)
+    public function __construct( CampagneWorker $campagne, CategorieInterface $categories, ArretInterface $arret, AnalyseInterface $analyse)
     {
+        $this->campagne   = $campagne;
         $this->categories = $categories;
         $this->arret      = $arret;
         $this->analyse    = $analyse;
@@ -49,6 +52,15 @@ class ContentWorker{
 
     }
 
+    public function showArrets(){
+
+        $arrets = $this->campagne->getSentCampagneArrets();
+
+        $arrets = $this->custom->array_flatten($arrets, array());
+
+        return $arrets;
+    }
+
     /**
      * Return response arrets prepared for filtered
      *
@@ -57,7 +69,9 @@ class ContentWorker{
     public function preparedArrets()
     {
 
-        $arrets   = $this->arret->getAll(195);
+        $include = $this->showArrets();
+
+        $arrets  = $this->arret->getAllActives(195,$include);
 
         $prepared = $arrets->filter(function($arret)
         {
