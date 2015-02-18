@@ -17,17 +17,19 @@ class AnalyseEloquent implements AnalyseInterface{
 
     public function getAll($include = []){
 
-        return $this->analyse
-            ->where('analyses.deleted', '=', 0)
-            ->whereIn('id', $include)
-            ->with( array('analyses_categories' => function ($query)
+        $analyse = $this->analyse->where('analyses.deleted', '=', 0);
+
+        if(!empty($include)){
+            $analyse->whereIn('id', $include);
+        }
+
+        return $analyse->with( array('analyses_categories' => function ($query)
                 {
                     $query->orderBy('sorting', 'ASC');
                 },'analyses_arrets' => function($query)
                 {
 
-                }))
-            ->orderBy('pub_date', 'DESC')->get();
+                }))->orderBy('pub_date', 'DESC')->get();
     }
 
 	public function find($id){

@@ -58,7 +58,7 @@ class ContentWorker{
 
         $arrets = $this->custom->array_flatten($arrets, array());
 
-        return $arrets;
+        return ($arrets ? $arrets : []);
     }
 
     public function showAnalyses(){
