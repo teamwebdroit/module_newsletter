@@ -41,7 +41,7 @@ class SendController extends \BaseController {
         $email = Input::get('email');
 
         $campagne = $this->campagne->getCampagne($id);
-        $sujet    = 'TEST | '.$campagne->sujet;
+        $sujet    = ($campagne->status == 'brouillon' ? 'TEST | '.$campagne->sujet : $campagne->sujet );
 
         // GET html
         $html = $this->campagne->html($campagne->id);

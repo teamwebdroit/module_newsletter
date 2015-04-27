@@ -257,7 +257,7 @@ $(function() {
     $('.sendEmailNewsletter').click(function(){
 
         var campagneId = $(this).data('campagne');
-        var message =  $('#messageAlert');
+        var message    = $('#messageAlert');
 
         bootbox.prompt("Envoyer à cette adresse email", function(result) {
             if (result === null) {
