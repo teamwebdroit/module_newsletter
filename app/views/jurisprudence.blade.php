@@ -50,6 +50,7 @@
         </div>
         <!-- END Sidebar  -->
 
+    </div><!--END CONTENT-->
 </div><!--END CONTENT-->
 
 @stop
