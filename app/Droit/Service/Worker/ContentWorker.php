@@ -64,6 +64,7 @@ class ContentWorker{
     public function showAnalyses(){
 
         $arrets = $this->showArrets();
+        $analyses = false;
 
         if(!empty($arrets)){
             $analyses = \DB::table('analyses_arret')->whereIn('arret_id', $arrets)->lists('analyse_id');

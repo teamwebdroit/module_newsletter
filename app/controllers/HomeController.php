@@ -117,7 +117,9 @@ class HomeController extends BaseController {
      */
     public function newsletters($id = null)
     {
-        if($id){
+
+        if($id)
+        {
             $newsletter_id = $id;
         }
         else
@@ -131,12 +133,13 @@ class HomeController extends BaseController {
             $campagne       = $this->worker->getCampagne($newsletter_id);
             $newsletter     = $this->worker->findCampagneById($newsletter_id);
         }
-        else{
+        else
+        {
             $campagne   = [];
             $newsletter = [];
         }
 
-        $listCampagnes  = $this->campagne->getAllSent();
+        $listCampagnes  = $this->campagne->getLastCampagne();
 
         return View::make('campagne')->with(array( 'listCampagnes' => $listCampagnes , 'campagne' => $campagne , 'newsletter' => $newsletter ));
     }

@@ -60,22 +60,26 @@ class ArretEloquent implements ArretInterface{
 
     public function getLatest($include){
 
-        $arrets = $this->arret
-            ->whereIn('id', $include)
-            ->with( array('arrets_analyses' => function($query)
-            {
-                $query->where('analyses.deleted', '=', 0);
-            }))->orderBy('id', 'ASC')->get();
-
-        $new = $arrets->filter(function($item)
+        if(!empty($include))
         {
-            if (!$item->arrets_analyses->isEmpty()) {
-                return true;
-            }
-        });
+            $arrets = $this->arret
+                ->whereIn('id', $include)
+                ->with( array('arrets_analyses' => function($query)
+                    {
+                        $query->where('analyses.deleted', '=', 0);
+                    }))->orderBy('id', 'ASC')->get();
 
-        return $new->take(5);
+            $new = $arrets->filter(function($item)
+            {
+                if (!$item->arrets_analyses->isEmpty()) {
+                    return true;
+                }
+            });
 
+            return $new->take(5);
+        }
+
+        return false;
     }
 
 	public function find($id){

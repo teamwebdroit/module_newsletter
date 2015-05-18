@@ -501,9 +501,11 @@ class Custom {
 
         $output = array();
 
-        array_walk_recursive($array, function ($current) use (&$output) {
-            $output[] = $current;
-        });
+        if(!empty($array)){
+            array_walk_recursive($array, function ($current) use (&$output) {
+                $output[] = $current;
+            });
+        }
 
         return $output;
     }
