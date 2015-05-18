@@ -143,7 +143,7 @@ App.controller("EditController",['$scope','$http','myService', function($scope,$
         content.find('.edit_content_form').css("width",w).show();
 
         $( "#sortable" ).sortable( "disable" );
-        $('.finishEdit').show();
+        content.find('.finishEdit').show();
 
         var groupe_id = content.find('.sortGroupe').data('group');
 
