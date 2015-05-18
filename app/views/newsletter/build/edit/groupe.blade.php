@@ -6,7 +6,7 @@
             <tr bgcolor="ffffff">
                 <td colspan="3" height="35">
                     <div class="pull-right btn-group btn-group-xs">
-                        <button class="btn btn-success finishEdit" ng-click="edit.finishEdit()" data-id="{{ $bloc->idItem }}" type="button">Terminer</button>
+                        <button class="btn btn-success finishEdit" ng-click="edit.finishEdit({{ $bloc->groupe_id }})" data-id="{{ $bloc->idItem }}" type="button">Terminer</button>
                         <button class="btn btn-orange editContent" ng-click="edit.editContent({{ $bloc->idItem }})" data-id="{{ $bloc->idItem }}" type="button">éditer</button>
                         <button class="btn btn-danger deleteContent deleteContentBloc" data-id="{{ $bloc->idItem }}" data-action="groupe" type="button">&nbsp;×&nbsp;</button>
                     </div>
@@ -23,7 +23,7 @@
         </table>
 
         <!-- Bloc content-->
-        <div id="sortGroupe" data-group="{{ $bloc->groupe_id }}">
+        <div id="sortGroupe_{{ $bloc->groupe_id }}" class="sortGroupe" data-group="{{ $bloc->groupe_id }}">
 
 
         @foreach($bloc->arrets as $arret)
