@@ -42,7 +42,7 @@
                             {
                                 if($categorie->id != $bloc->categorie){
                                     echo '<a target="_blank" href="'.url('jurisprudence').'#'.$arret->reference.'" style="margin:0;padding:0;">
-                                            <img style="margin:0;padding:0;" width="130" border="0" alt="'.$categorie->title.'" src="'.asset('newsletter/pictos/'.$categorie->image).'">
+                                            <img style="margin:0;padding:0;" width="130" height="158" border="0" alt="'.$categorie->title.'" src="'.asset('newsletter/pictos/'.$categorie->image).'">
                                         </a>';
                                 }
                             }
