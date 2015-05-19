@@ -24,7 +24,9 @@
                            foreach($bloc->arrets_categories as $categorie)
                             {
                                 // Categories
-                                echo '<a target="_blank" href="'.url('jurisprudence').'#'.$bloc->reference.'"><img width="130" border="0" alt="'.$categorie->title.'" src="'.asset('newsletter/pictos/'.$categorie->image).'"></a>';
+                                echo '<a target="_blank" href="'.url('jurisprudence').'#'.$bloc->reference.'" style="margin:0;padding:0;">
+                                        <img width="130" style="margin:0;padding:0;" border="0" alt="'.$categorie->title.'" src="'.asset('newsletter/pictos/'.$categorie->image).'">
+                                      </a>';
                             }
                         }
                         ?>
