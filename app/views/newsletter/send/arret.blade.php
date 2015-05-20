@@ -15,7 +15,7 @@
                         <div>{{ $bloc->pub_text }}</div>
                         <p><a href="{{ asset('files/arrets/'.$bloc->file) }}">Télécharger en pdf</a></p>
                     </td>
-                    <td width="25" height="100%" class="resetMarge" valign="top"></td><!-- space -->
+                    <td width="25" height="1" class="resetMarge" valign="top" style="font-size: 1px; line-height: 1px;margin: 0;padding: 0;"></td><!-- space -->
                     <td align="center" valign="top" width="160" class="resetMarge">
 
                        <?php
