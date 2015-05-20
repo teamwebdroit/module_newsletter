@@ -31,7 +31,7 @@
                         <p><a href="{{ asset('files/arrets/'.$arret->file) }}">Télécharger en pdf</a></p>
                     </div>
                 </td>
-                <td width="25" class="resetMarge"></td><!-- space -->
+                <td width="25" height="100%" class="resetMarge" valign="top"></td><!-- space -->
                 <td align="center" valign="top" width="160" class="resetMarge">
                     <!-- Categories -->
                     <div class="resetMarge">
