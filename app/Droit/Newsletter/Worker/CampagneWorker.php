@@ -37,6 +37,8 @@ class CampagneWorker implements CampagneInterface{
                 $sent[] = $campagne->id;
             }
 
+            $all_arrets = [];
+
             foreach($sent as $send)
             {
                 $content = $this->content->getArretsByCampagne($send);
@@ -61,8 +63,11 @@ class CampagneWorker implements CampagneInterface{
                     }
                 });
 
-                return $arrets;
+                $all_arrets = array_merge($all_arrets, $arrets->toArray()) ;
+
             }
+
+            return $all_arrets;
         }
 
     }
