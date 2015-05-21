@@ -112,7 +112,7 @@ class Charts{
 
             // Calculations
             $nonopen  = ($sent - ($open + $bounce))/$sent;
-            $openclic = $clic/$sent;
+            $openclic = ($open-$clic-$bounce)/$sent;
             $onlyopen = $open/$sent;
             $bounce   = $bounce/$sent;
 

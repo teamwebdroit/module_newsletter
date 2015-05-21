@@ -1,5 +1,6 @@
 <?php namespace Droit\Service\Worker;
 
+use Droit\Newsletter\Worker\CampagneWorker;
 use Droit\Categorie\Repo\CategorieInterface;
 use Droit\Content\Repo\ArretInterface;
 use Droit\Content\Repo\AnalyseInterface;
@@ -10,10 +11,12 @@ class ContentWorker{
     protected $arret;
     protected $analyse;
     protected $custom;
+    protected $campagne;
 
     /* Inject dependencies */
-    public function __construct(  CategorieInterface $categories, ArretInterface $arret, AnalyseInterface $analyse)
+    public function __construct( CampagneWorker $campagne, CategorieInterface $categories, ArretInterface $arret, AnalyseInterface $analyse)
     {
+        $this->campagne   = $campagne;
         $this->categories = $categories;
         $this->arret      = $arret;
         $this->analyse    = $analyse;
@@ -49,6 +52,27 @@ class ContentWorker{
 
     }
 
+    public function showArrets(){
+
+        $arrets = $this->campagne->getSentCampagneArrets();
+
+        $arrets = $this->custom->array_flatten($arrets, array());
+
+        return ($arrets ? $arrets : []);
+    }
+
+    public function showAnalyses(){
+
+        $arrets = $this->showArrets();
+        $analyses = false;
+
+        if(!empty($arrets)){
+            $analyses = \DB::table('analyses_arret')->whereIn('arret_id', $arrets)->lists('analyse_id');
+        }
+
+        return ($analyses ? $analyses : []);
+    }
+
     /**
      * Return response arrets prepared for filtered
      *
@@ -57,7 +81,9 @@ class ContentWorker{
     public function preparedArrets()
     {
 
-        $arrets   = $this->arret->getAll(195);
+        $include = $this->showArrets();
+
+        $arrets  = $this->arret->getAllActives(195,$include);
 
         $prepared = $arrets->filter(function($arret)
         {
@@ -101,7 +127,8 @@ class ContentWorker{
     public function preparedAnalyses()
     {
 
-        $analyses = $this->analyse->getAll(195);
+        $include  = $this->showAnalyses();
+        $analyses = $this->analyse->getAll($include);
 
         $prepared = $analyses->filter(function($analyse)
         {

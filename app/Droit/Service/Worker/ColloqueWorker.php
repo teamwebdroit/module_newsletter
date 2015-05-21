@@ -69,6 +69,8 @@ class ColloqueWorker{
                 $organise[$year] = $this->organise($event);
             }
 
+            krsort($organise);
+
             return $organise;
         }
 

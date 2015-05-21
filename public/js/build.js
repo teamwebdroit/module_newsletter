@@ -111,13 +111,21 @@ App.controller("EditController",['$scope','$http','myService', function($scope,$
         $('.edit_content_form').hide();
     };
 
-    this.finishEdit = function(){
+    this.finishEdit = function(idItem){
 
         $('.edit_content_form').hide();
-        $( "#sortGroupe" ).sortable( "disable" );
+
+        if(idItem)
+        {
+            console.log(idItem);
+
+            $( "#sortGroupe_" + idItem ).sortable( "disable" );
+            $( ".sortGroupe .groupe_rang").css({ "border":"none"});
+        }
+
         $('.finishEdit').hide();
         $('.editContent').show();
-        $( "#sortGroupe .groupe_rang").css({ "border":"none"});
+        $( "#sortable" ).sortable( "enable" );
     }
 
     this.editContent = function(idItem){
@@ -135,11 +143,11 @@ App.controller("EditController",['$scope','$http','myService', function($scope,$
         content.find('.edit_content_form').css("width",w).show();
 
         $( "#sortable" ).sortable( "disable" );
-        $('.finishEdit').show();
+        content.find('.finishEdit').show();
 
-        var groupe_id = $( "#sortGroupe").data('group');
+        var groupe_id = content.find('.sortGroupe').data('group');
 
-        $( "#sortGroupe" ).sortable({
+        $( "#sortGroupe_" + groupe_id ).sortable({
             axis: 'y',
             update: function (event, ui) {
                 var data = $(this).sortable('serialize') +"&groupe_id="+ groupe_id;
@@ -152,7 +160,8 @@ App.controller("EditController",['$scope','$http','myService', function($scope,$
             }
         });
 
-        $( "#sortGroupe" ).sortable( "enable" );
+        $( "#sortGroupe_" + groupe_id ).sortable( "enable" );
+        $( "#sortGroupe_" + groupe_id).find('.groupe_rang').css('border','1px solid #bfe4ad');
 
     };
 

@@ -4,7 +4,7 @@
     <h3 class="title"><i class="icon-edit"></i> &nbsp;Derniers arrêts commentés</h3>
     <ul class="bra_recent_entries">
 
-        @if(!$latest->isEmpty())
+        @if($latest && !$latest->isEmpty())
             @foreach($latest as $last)
                 <li>
                     <?php setlocale(LC_ALL, 'fr_FR.UTF-8');  ?>

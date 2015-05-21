@@ -35,18 +35,16 @@ class HomeController extends BaseController {
         $this->colloque       = $colloque;
         $this->custom         = new \Custom;
 
-        $arrets = $this->arret->find(array(830,831));
-        $latest = $arrets;
+        $include = $this->jurisprudence->showArrets();
+        $latest  = $this->arret->getLatest($include);
 
         $categories    = $this->categorie->getAllOnSite(195);
         $allcategories = $this->worker->getCategoriesArrets();
-        $pub      = $this->content->findyByType('pub');
-        $soutiens = $this->content->findyByType('soutien');
-        $allcategories = $this->worker->getCategoriesArrets();
+        $pub           = $this->content->findyByType('pub');
+        $soutiens      = $this->content->findyByType('soutien');
 
         View::share('pub', $pub);
         View::share('soutiens', $soutiens);
-        View::share('arrets', $arrets);
         View::share('latest', $latest);
         View::share('categories', $categories);
         View::share('allcategories', $allcategories);
@@ -108,7 +106,7 @@ class HomeController extends BaseController {
             return $this->jurisprudence->preparedAnnees();
         });
 
-        return View::make('jurisprudence')->with(array( 'arrets' => $arrets, 'analyses' => $analyses, 'annees' => $annees ));
+        return View::make('jurisprudence')->with(array('arrets' => $arrets, 'analyses' => $analyses, 'annees' => $annees ));
     }
 
     /**
@@ -119,7 +117,9 @@ class HomeController extends BaseController {
      */
     public function newsletters($id = null)
     {
-        if($id){
+
+        if($id)
+        {
             $newsletter_id = $id;
         }
         else
@@ -133,12 +133,13 @@ class HomeController extends BaseController {
             $campagne       = $this->worker->getCampagne($newsletter_id);
             $newsletter     = $this->worker->findCampagneById($newsletter_id);
         }
-        else{
+        else
+        {
             $campagne   = [];
             $newsletter = [];
         }
 
-        $listCampagnes  = $this->campagne->getAllSent();
+        $listCampagnes  = $this->campagne->getLastCampagne();
 
         return View::make('campagne')->with(array( 'listCampagnes' => $listCampagnes , 'campagne' => $campagne , 'newsletter' => $newsletter ));
     }

@@ -36,7 +36,8 @@ class AnalyseController extends \BaseController {
     public function index()
     {
         setlocale(LC_ALL, 'fr_FR');
-        $analyses   = $this->analyse->getAll(195);
+
+        $analyses   = $this->analyse->getAll();
         $categories = $this->categorie->getAll(195);
 
         return View::make('admin.analyses.index')->with(array( 'analyses' => $analyses , 'categories' => $categories ));

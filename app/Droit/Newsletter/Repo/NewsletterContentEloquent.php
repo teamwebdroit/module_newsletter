@@ -25,6 +25,11 @@ class NewsletterContentEloquent implements NewsletterContentInterface{
                               ->orderBy('newsletter_contents.rang','ASC')->get();
 	}
 
+    public function getArretsByCampagne($brouillon){
+
+        return $this->contents->where('newsletter_campagne_id','=',$brouillon)->get();
+    }
+
     public function getRang($newsletter_campagne_id){
 
         return $this->contents->where('newsletter_campagne_id','=',$newsletter_campagne_id)->max('rang');

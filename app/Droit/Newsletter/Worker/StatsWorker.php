@@ -29,10 +29,34 @@ class StatsWorker{
         {
             foreach($data as $click)
             {
-                $clicks[$click->Url][] = $click->ContactID;
+                $url = trim($click->Url);
+                $clicks[$url][] = $click->ContactID;
             }
         }
 
         return $clicks;
     }
+
+    public function statsClicksLinks($datas){
+
+        $clicks = array();
+
+        if(!empty($datas))
+        {
+            foreach($datas as $data)
+            {
+                foreach($data as $click)
+                {
+                    foreach($click as $urlclick)
+                    {
+                        $url = trim($urlclick->Url);
+                        $clicks[$url][] = $urlclick->ContactID;
+                    }
+                }
+            }
+        }
+
+        return $clicks;
+    }
+
 }

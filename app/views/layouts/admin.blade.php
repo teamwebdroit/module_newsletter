@@ -29,8 +29,6 @@
 
     @if(isset($isNewsletter))
         <link rel="stylesheet" href="<?php echo asset('css/newsletter.css'); ?>">
-        <link href="<?php echo asset('js/vendor/angular/angular-notify.css');?>" rel="stylesheet">
-        <link href="<?php echo asset('js/vendor/angular/angular-xeditable.css');?>" rel="stylesheet">
     @endif
 
     <link rel='stylesheet' type='text/css' href='<?php echo asset('admin/plugins/form-toggle/toggles.css');?>' />
