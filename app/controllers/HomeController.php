@@ -61,6 +61,7 @@ class HomeController extends BaseController {
     public function colloque()
     {
         $colloques = $this->colloque->getColloques();
+
         $archives  = $this->colloque->getArchives();
 
         return View::make('colloque')->with(array('colloques' => $colloques, 'archives' => $archives ));

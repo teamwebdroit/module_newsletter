@@ -10,13 +10,17 @@ class ColloqueWorker{
     {
         $this->custom  = new \Custom;
         $this->client  = new \GuzzleHttp\Client();
+
+        $environment    = \App::environment();
+        $this->base_url = ($environment == 'local' ? 'http://lux.local' : 'http://www.publications-droit.ch/fileadmin/lux');
     }
 
     public function getColloques(){
 
-        $response   = $this->client->get('http://www.publications-droit.ch/fileadmin/admin_unine/api/event');
+        $response   = $this->client->get( $this->base_url.'/event', ['query' => ['centres' => ['cemaj','cert'] ]]);
         $data       = $response->json();
-        $data       = $this->organise($data);
+        $data       = $this->organise($data['data']);
+
         $collection = new \Illuminate\Support\Collection($data);
 
         return $collection;
@@ -24,9 +28,9 @@ class ColloqueWorker{
 
     public function getArchives(){
 
-        $response   = $this->client->get('http://www.publications-droit.ch/fileadmin/admin_unine/api/archives');
+        $response   = $this->client->get( $this->base_url.'/event', ['query' => ['archive' => 'archive', 'centres' => ['cemaj','cert'] ]]);
         $data       = $response->json();
-        $data       = $this->organiseYear($data);
+        $data       = $this->organiseYear($data['data']);
         $collection = new \Illuminate\Support\Collection($data);
 
         return $collection;

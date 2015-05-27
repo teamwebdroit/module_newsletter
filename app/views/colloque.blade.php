@@ -54,10 +54,12 @@
                                     </div><!--END POST-TITLE-->
 
                                     <div class="post-entry">
-                                        <p>{{ $colloque['event']['description'] }}</p>
-                                        <a target="_blank" href="{{ $colloque['programme']['url'].$colloque['programme']['filename'] }}">
-                                            &nbsp;<i class="fa fa-file-o"></i> &nbsp;&nbsp;Le programme
-                                        </a>
+                                        <p>{{ $colloque['event']['remarques'] }}</p>
+                                        @if(isset($colloque['programme']['url']))
+                                            <a target="_blank" href="{{ $colloque['programme']['url'].$colloque['programme']['filename'] }}">
+                                                &nbsp;<i class="fa fa-file-o"></i> &nbsp;&nbsp;Le programme
+                                            </a>
+                                        @endif
                                         <dl class="dl-horizontal">
                                             <dt>Lieu:</dt>
                                             <dd>{{ $colloque['event']['endroit'] }}</dd>
@@ -86,9 +88,6 @@
 
             @endif
 
-            <h4 class="title-section">
-                <a target="_blank" href="http://www2.unine.ch/cemaj"><img src="<?php echo asset('images/logos/cemaj.jpg');?>" alt="" /></a>
-            </h4>
             <div class="post nomarg">
                 <div class="post-holder">
                     <div class="post-content">
@@ -102,23 +101,6 @@
                                 Formation continue des avocats
                             </h2>
                         </div><!--END POST-TITLE-->
-                    </div><!--END POST-CONTENT -->
-                </div><!--END POST-HOLDER -->
-            </div><!--END POST-->
-            <div class="post nomarg">
-                <div class="post-holder">
-                    <div class="post-content">
-                        <div class="post-date">
-                            <ul>
-                                <li class="date"><span class="day">13</span><span class="month">Novembre</span> <span class="year">2015</span></li>
-                            </ul>
-                        </div><!--END POST-DATE-->
-                        <div class="post-title">
-                            <h2 class="title">
-                                New Developments in International Commercial Arbitration
-                            </h2>
-                        </div><!--END POST-TITLE-->
-
                     </div><!--END POST-CONTENT -->
                 </div><!--END POST-HOLDER -->
             </div><!--END POST-->
