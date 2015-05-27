@@ -85,7 +85,8 @@ class ArretController extends \BaseController {
         if(!empty($cats)){
             $categories = $this->custom->prepareCategories($cats);
         }
-        else{
+        else
+        {
             $categories = array();
         }
 

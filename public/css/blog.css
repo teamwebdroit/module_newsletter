@@ -220,6 +220,62 @@ margin: 0;
 }
 
 /*--------------------------------------------------
+			BIO AUTHOR CONTENT
+---------------------------------------------------*/
+
+.bio_auteur{
+    margin-bottom: 15px;
+}
+
+.bio-body h3{
+    font-size:20px;
+    font-weight: 600;
+}
+
+.bio-body h5{
+    font-size: 16px;
+}
+
+.bio_auteur h1,
+.bio_auteur h2,
+.bio_auteur h3,
+.bio_auteur h4,
+.bio_auteur h5,
+.bio_auteur h6{
+    margin-bottom: 10px;
+}
+
+.bio_auteur h1{ font-size: 24px; }
+.bio_auteur h2{ font-size: 21px; }
+.bio_auteur h3{ font-size: 18px; }
+.bio_auteur h4{ font-size: 16px; }
+.bio_auteur h5{ font-size: 13px; }
+.bio_auteur h6{ font-size: 11px; }
+
+.analyse_auteur{
+    margin-left: 10px;
+    padding-left: 5px;
+}
+
+.analyse_auteur li{
+    list-style-type: square;
+    margin-left: 0;
+    padding-left: 0;
+    margin-bottom: 10px;
+}
+
+.analyse_auteur li p a{
+    margin-bottom: 5px;
+    display: block;
+    text-decoration: underline;
+}
+
+.analyse_auteur h4{
+    margin-bottom: 5px;
+    font-size: 16px;
+}
+
+/*--------------------------------------------------
 			POST CONTENT
 ---------------------------------------------------*/
 .blog1 {

@@ -38,6 +38,20 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="message" class="col-sm-3 control-label">Auteur</label>
+                    <div class="col-sm-3">
+                        <select class="form-control" id="author" name="author_id">
+                            <option value="">Choisir</option>
+                            @if(!empty($auteurs))
+                                @foreach($auteurs as $auteur)
+                                <option <?php echo ($analyse->author_id == $auteur->id ? 'selected' : ''); ?> value="{{ $auteur->id }}">{{ $auteur->name }}</option>
+                                @endforeach
+                            @endif
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
                     <label for="message" class="col-sm-3 control-label">Date de publication</label>
                     <div class="col-sm-2">
                         {{ Form::text('pub_date', $analyse->pub_date->format('Y-m-d') , array('class' => 'form-control datePicker') ) }}

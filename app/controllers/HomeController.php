@@ -6,6 +6,7 @@ use Droit\Categorie\Repo\CategorieInterface;
 use Droit\Newsletter\Repo\NewsletterCampagneInterface;
 use Droit\Newsletter\Worker\CampagneInterface;
 use Droit\Service\Worker\ContentWorker;
+use Droit\Author\Repo\AuthorInterface;
 use Laracasts\Commander\CommanderTrait;
 use Droit\Command\MessageSendCommand;
 use Droit\Service\Worker\ColloqueWorker;
@@ -22,13 +23,23 @@ class HomeController extends BaseController {
     protected $worker;
     protected $custom;
     protected $colloque;
+    protected $author;
 
-    public function __construct( ContentInterface $content, ArretInterface $arret, CategorieInterface $categorie, NewsletterCampagneInterface $campagne, ContentWorker $jurisprudence , CampagneInterface $worker, ColloqueWorker $colloque)
+    public function __construct(
+        ContentInterface $content,
+        ArretInterface $arret,
+        CategorieInterface $categorie,
+        NewsletterCampagneInterface $campagne,
+        ContentWorker $jurisprudence ,
+        CampagneInterface $worker,
+        ColloqueWorker $colloque,
+        AuthorInterface $author
+    )
     {
         $this->content        = $content;
         $this->arret          = $arret;
         $this->categorie      = $categorie;
-
+        $this->author         = $author;
         $this->campagne       = $campagne;
         $this->jurisprudence  = $jurisprudence;
         $this->worker         = $worker;
@@ -61,10 +72,16 @@ class HomeController extends BaseController {
     public function colloque()
     {
         $colloques = $this->colloque->getColloques();
-
         $archives  = $this->colloque->getArchives();
 
         return View::make('colloque')->with(array('colloques' => $colloques, 'archives' => $archives ));
+    }
+
+    public function auteur()
+    {
+        $auteurs = $this->author->getAll();
+
+        return View::make('auteur')->with(array('auteurs' => $auteurs));
     }
 
     public function contact()

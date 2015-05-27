@@ -4,19 +4,22 @@ use Droit\Content\Repo\AnalyseInterface;
 use Droit\Content\Repo\ArretInterface;
 use Droit\Categorie\Repo\CategorieInterface;
 use Droit\Service\Worker\UploadInterface;
+use Droit\Author\Repo\AuthorInterface;
 
 class AnalyseController extends \BaseController {
 
     protected $analyse;
+    protected $author;
     protected $arret;
     protected $categorie;
     protected $upload;
     protected $custom;
 
-    public function __construct( AnalyseInterface $analyse, ArretInterface $arret, CategorieInterface $categorie , UploadInterface $upload )
+    public function __construct(AuthorInterface $author, AnalyseInterface $analyse, ArretInterface $arret, CategorieInterface $categorie , UploadInterface $upload )
     {
         $this->beforeFilter('csrf', array('on' => 'post'));
 
+        $this->author    = $author;
         $this->analyse   = $analyse;
         $this->arret     = $arret;
         $this->categorie = $categorie;
@@ -54,8 +57,9 @@ class AnalyseController extends \BaseController {
         $arrets     = $this->arret->getAll(195);
         $analyse    = $this->analyse->find($id);
         $categories = $this->categorie->getAll(195);
+        $auteurs    = $this->author->getAll();
 
-        return View::make('admin.analyses.show')->with(array( 'analyse' => $analyse, 'arrets' => $arrets, 'categories' => $categories ));
+        return View::make('admin.analyses.show')->with(array( 'analyse' => $analyse, 'arrets' => $arrets, 'categories' => $categories, 'auteurs' => $auteurs ));
     }
 
     /**
@@ -103,11 +107,12 @@ class AnalyseController extends \BaseController {
             $arrets = array();
         }
 
-        // Data array
+        // Data array author_id
         $data = array(
             'pid'        => 195,
             'user_id'    => Input::get('user_id'),
             'authors'    => Input::get('authors'),
+            'author_id'  => Input::get('author_id'),
             'pub_date'   => Input::get('pub_date'),
             'abstract'   => Input::get('abstract'),
             'arrets'     => count($arrets),
@@ -165,6 +170,7 @@ class AnalyseController extends \BaseController {
         $data = array(
             'id'         => Input::get('id'),
             'authors'    => Input::get('authors'),
+            'author_id'  => Input::get('author_id'),
             'pub_date'   => Input::get('pub_date'),
             'abstract'   => Input::get('abstract'),
             'categories' => count($categories),

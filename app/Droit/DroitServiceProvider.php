@@ -9,6 +9,7 @@ use Droit\Content\Entities\Analyse as Analyse;
 use Droit\Categorie\Entities\Categories as Categorie;
 use Droit\Content\Entities\Content as Content;
 use Droit\Content\Entities\Groupe as Groupe;
+use Droit\Author\Entities\Author as Author;
 
 /**
  *  DroitServiceProvider
@@ -26,6 +27,7 @@ class DroitServiceProvider extends ServiceProvider {
         $this->registerContentService();
         $this->registerGroupeService();
         $this->registerSearchService();
+        $this->registerAuthorService();
     }
 
 	/**
@@ -47,6 +49,17 @@ class DroitServiceProvider extends ServiceProvider {
         $this->app->bind('Droit\Content\Repo\AnalyseInterface', function()
         {
             return new \Droit\Content\Repo\AnalyseEloquent( new Analyse );
+        });
+    }
+
+    /**
+     * Author
+     */
+    protected function registerAuthorService(){
+
+        $this->app->bind('Droit\Author\Repo\AuthorInterface', function()
+        {
+            return new \Droit\Author\Repo\AuthorEloquent( new Author );
         });
     }
 

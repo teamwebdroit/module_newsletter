@@ -25,7 +25,7 @@ class Analyse extends BaseModel {
     );
 
     protected $table    = 'analyses';
-    protected $fillable = ['pid','user_id','deleted','authors','pub_date','abstract','file','categories','arrets'];
+    protected $fillable = ['pid','user_id','deleted','authors','author_id','pub_date','abstract','file','categories','arrets'];
     protected $dates    = ['pub_date','created_at','updated_at'];
 
     public function analyses_categories()
@@ -36,6 +36,11 @@ class Analyse extends BaseModel {
 	public function analyses_arrets()
     {     
         return $this->belongsToMany('Droit\Content\Entities\Arret', 'analyses_arret', 'analyse_id', 'arret_id')->withPivot('sorting')->orderBy('sorting', 'asc');
+    }
+
+    public function auteur()
+    {
+        return $this->belongsTo('Droit\Author\Entities\Author','author_id');
     }
 
 }

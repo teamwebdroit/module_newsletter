@@ -6,6 +6,7 @@
     Route::get('/', array('as' => 'home', 'uses' => 'HomeController@index'));
     Route::get('contact', 'HomeController@contact');
     Route::get('colloque', 'HomeController@colloque');
+    Route::get('auteur', 'HomeController@auteur');
     Route::post('sendMessage', 'HomeController@sendMessage');
     Route::get('jurisprudence', 'HomeController@jurisprudence');
     Route::get('newsletters/{id?}', 'HomeController@newsletters');
@@ -74,7 +75,7 @@ Route::group(array('prefix' => 'admin', 'before' => array('auth','admin')), func
     Route::resource('analyse', 'AnalyseController');
     Route::resource('categorie', 'CategorieController');
     Route::resource('contenu', 'ContentController');
-
+    Route::resource('author', 'AuthorController');
     Route::get('file/scan', 'FileController@scan');
     Route::post('file/imageIsUsed', 'FileController@imageIsUsed');
     Route::post('file/addFolder', 'FileController@addFolder');
