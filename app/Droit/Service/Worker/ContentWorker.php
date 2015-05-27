@@ -58,6 +58,8 @@ class ContentWorker{
 
         $arrets = $this->custom->array_flatten($arrets, array());
 
+        $arrets = array_filter($arrets);
+
         return ($arrets ? $arrets : []);
     }
 
