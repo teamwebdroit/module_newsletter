@@ -47,7 +47,7 @@
 
                             @if(isset($analyse->analyses_arrets) && $analyse->analyses_arrets->count() > 0)
                             <li>
-                                <p><a href="{{ url('jurisprudence#'.$analyse->analyses_arrets->first()->reference) }}">{{ $analyse->analyses_arrets->first()->reference }}</a></p>
+                                <p><a href="{{ url('jurisprudence#analyse_'.$analyse->id) }}">{{ $analyse->analyses_arrets->first()->reference }}</a></p>
 
                                 <!--
                                 <div class="row">

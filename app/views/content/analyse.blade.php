@@ -10,6 +10,7 @@
                     <div class="analyse arret <?php echo $cats; ?> clear">
                         <div class="post">
                             <div class="post-title">
+                                <a class="anchor_top" name="analyse_{{ $analyse->id }}"></a>
                                 <h3 class="title">Analyse de {{ $analyse->authors }}</h3>
                                 @if(!$analyse->analyses_arrets->isEmpty())
                                     <ul>
