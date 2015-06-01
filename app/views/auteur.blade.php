@@ -29,8 +29,8 @@
             @foreach($auteurs as $auteur)
             <div class="media">
                 <div class="media-left">
-                    <?php $photo = (!empty($auteur->photo)); ?>
-                    <img width="130" class="media-object" src="{{ asset('authors/'.$auteur->photo) }}" alt="{{ $auteur->name }}">
+                    <?php $photo = (!empty($auteur->photo) ? $auteur->photo : 'avatar.png'); ?>
+                    <img width="130" class="media-object" src="{{ asset('authors/'.$photo) }}" alt="{{ $auteur->name }}">
 
                 </div>
                 <div class="media-body bio-body">
