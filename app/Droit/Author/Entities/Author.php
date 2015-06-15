@@ -4,7 +4,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Author extends Model {
 
-	protected $fillable = ['first_name','last_name','occupation','bio','photo'];
+	protected $fillable = ['first_name','last_name','occupation','bio','photo','rang'];
     public $timestamps  = false;
 
     public static $rules = array(

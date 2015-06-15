@@ -14,7 +14,7 @@ class AuthorEloquent implements AuthorInterface{
 
     public function getAll(){
 
-        return $this->author->with(['analyses'])->get();
+        return $this->author->with(['analyses'])->orderBy('rang', 'desc')->get();
     }
 
     public function find($id){
@@ -29,7 +29,8 @@ class AuthorEloquent implements AuthorInterface{
             'last_name'  => $data['last_name'],
             'occupation' => $data['occupation'],
             'bio'        => $data['bio'],
-            'photo'      => (isset($data['photo']) ? $data['photo'] : null)
+            'photo'      => (isset($data['photo']) ? $data['photo'] : null),
+            'rang'       => (isset($data['rang']) ? $data['rang'] : 0),
         ));
 
         if( ! $author )
@@ -57,6 +58,10 @@ class AuthorEloquent implements AuthorInterface{
 
         if(isset($data['photo']) && !empty($data['photo'])){
             $author->photo  = $data['photo'];
+        }
+
+        if(isset($data['rang']) && !empty($data['rang'])){
+            $author->rang  = $data['rang'];
         }
 
         $author->save();
