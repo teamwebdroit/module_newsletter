@@ -14,7 +14,7 @@ class AuthorEloquent implements AuthorInterface{
 
     public function getAll(){
 
-        return $this->author->with(['analyses'])->orderBy('rang', 'desc')->get();
+        return $this->author->with(['analyses'])->orderBy('last_name', 'asc')->get();
     }
 
     public function find($id){
