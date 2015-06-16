@@ -58,7 +58,21 @@
                                 <td valign="top" width="375" class="resetMarge contentForm">
                                     <?php setlocale(LC_ALL, 'fr_FR.UTF-8');  ?>
                                     <h3 style="text-align: left;">Analyse de l'arrêt {{ $bloc->reference }}</h3>
-                                    <h4 style="text-align: left;">{{ $analyse->authors }}</h4>
+
+                                    <table border="0" width="375" align="left" cellpadding="0" cellspacing="0" class="resetTable">
+                                        <tr>
+                                            <td valign="top" width="60" class="resetMarge">
+                                                <img width="60" border="0" alt="{{ $analyse->auteur->name }}" src="{{ asset('authors/'.$analyse->auteur->photo) }}">
+                                            </td>
+                                            <td valign="top" width="10" class="resetMarge"></td>
+                                            <td valign="top" width="305" class="resetMarge">
+                                                <h3 style="text-align: left;">{{ $analyse->auteur->name }}</h3>
+                                                <p style="text-align: left;">{{ $analyse->auteur->occupation }}</p>
+                                            </td>
+                                        </tr>
+                                        <tr bgcolor="ffffff"><td colspan="3" height="15" class=""></td></tr><!-- space -->
+                                    </table>
+
                                     <p class="abstract">{{ $analyse->abstract }}</p>
                                     <p><a href="{{ asset('files/analyses/'.$analyse->file) }}">Télécharger en pdf</a></p>
                                 </td>

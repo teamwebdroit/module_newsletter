@@ -15,6 +15,7 @@ class ArretWorker{
 
         if(!$arret->arrets_analyses->isEmpty()){
 
+            $arret->arrets_analyses->load('auteur');
             return $arret->arrets_analyses;
         }
 
