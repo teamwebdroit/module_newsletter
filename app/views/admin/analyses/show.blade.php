@@ -64,7 +64,8 @@
                     <div class="col-sm-7">
                         <div class="list-group">
                             <div class="list-group-item">
-                                <a target="_blank" href="{{ asset('files/analyses/'.$analyse->file) }}">
+                                <?php $rand = rand(200,1000); ?>
+                                <a target="_blank" href="{{ asset('files/analyses/'.$analyse->file.'?'.$rand) }}">
                                 <i class="fa fa-file"></i> &nbsp;&nbsp;{{ $analyse->file }}</a>
                             </div>
                         </div>

@@ -71,8 +71,9 @@ class AnalyseController extends \BaseController {
     {
         $arrets     = $this->arret->getAll(195);
         $categories = $this->categorie->getAll(195);
+        $auteurs    = $this->author->getAll();
 
-        return View::make('admin.analyses.create')->with( array( 'arrets' => $arrets, 'categories' => $categories ) );
+        return View::make('admin.analyses.create')->with( array( 'arrets' => $arrets, 'categories' => $categories, 'auteurs' => $auteurs ) );
     }
 
     /**

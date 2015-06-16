@@ -35,14 +35,19 @@
                     </div>
                 </div>
 
-                <select class="form-control" id="author" name="author_id">
-                    <option value="">Choisir</option>
-                    @if(!empty($auteurs))
-                        @foreach($auteurs as $auteur)
-                        <option value="{{ $auteur->id }}">{{ $auteur->name }}</option>
-                        @endforeach
-                    @endif
-                </select>
+                <div class="form-group">
+                    <label for="message" class="col-sm-3 control-label">Auteur</label>
+                    <div class="col-sm-3">
+                        <select class="form-control" id="author" name="author_id">
+                            <option value="">Choisir</option>
+                                @if(!empty($auteurs))
+                                    @foreach($auteurs as $auteur)
+                                    <option value="{{ $auteur->id }}">{{ $auteur->name }}</option>
+                                    @endforeach
+                                @endif
+                        </select>
+                    </div>
+                </div>
 
                 <div class="form-group">
                     <label for="message" class="col-sm-3 control-label">Date de publication</label>
