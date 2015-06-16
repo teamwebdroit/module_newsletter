@@ -6,30 +6,18 @@
 
                 @foreach($analyses as $analyse)
 
-                    <?php $analyse->load('auteur'); ?>
-                    <?php $cats = implode(' ',$analyse->allcats); ?>
-
+                    <?php  $cats = implode(' ',$analyse->allcats); ?>
                     <div class="analyse arret <?php echo $cats; ?> clear">
                         <div class="post">
                             <div class="post-title">
                                 <a class="anchor_top" name="analyse_{{ $analyse->id }}"></a>
-
-                                @if(isset($analyse->auteur))
-                                <div class="media">
-                                    <div class="media-left">
-                                        <img width="55" border="0" alt="{{ $analyse->auteur->name }}" src="{{ asset('authors/'.$analyse->auteur->photo) }}">
-                                    </div>
-                                    <div class="media-body bio-body">
-                                        <h3 class="media-heading">{{ $analyse->auteur->name }}</h3>
-                                        <h5>{{ $analyse->auteur->occupation }}</h5>
-                                    </div>
-                                </div><br/>
-                                @endif
-
+                                <h3 class="title">Analyse de {{ $analyse->authors }}</h3>
                                 @if(!$analyse->analyses_arrets->isEmpty())
                                     <ul>
                                         @foreach($analyse->analyses_arrets as $arret)
-                                            <li><a href="#{{ $arret->reference }}">{{ $arret->reference.' du '.$arret->pub_date->formatLocalized('%d %B %Y') }}</a></li>
+                                            <li>
+                                                <a href="#{{ $arret->reference }}">{{ $arret->reference.' du '.$arret->pub_date->formatLocalized('%d %B %Y') }}</a>
+                                            </li>
                                         @endforeach
                                     </ul>
                                 @endif
