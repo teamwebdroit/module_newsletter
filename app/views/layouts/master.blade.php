@@ -44,13 +44,13 @@
 
                     <div class="isSticky">
                         <div class="row">
-                            <div class="col-md-4 col-xs-12">
+                            <div class="col-md-3 col-xs-12">
                                 <div id="logo">
                                     <a href="/">Droit du <strong>travail</strong>.ch</a>
                                 </div><!--END LOGO-->
                             </div>
 
-                            <div class="col-md-5 col-xs-12">
+                            <div class="col-md-6 col-xs-12">
                                 <!-- Navigation  -->
                                 @include('partials.navigation')
                             </div>

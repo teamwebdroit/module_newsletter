@@ -42,12 +42,15 @@
 
                             @if(isset($analyse->analyses_arrets) && $analyse->analyses_arrets->count() > 0)
                             <li>
-                                <p><a href="{{ url('jurisprudence#analyse_'.$analyse->id) }}">{{ $analyse->analyses_arrets->first()->reference }}</a></p>
+                                <p>
+                                    <a href="{{ url('jurisprudence#analyse_'.$analyse->id) }}">{{ $analyse->analyses_arrets->first()->reference }}</a>
+                                    <i>{{ $analyse->remarque }}</i>
+                                </p>
 
                                 <!--
                                 <div class="row">
                                    <div class="col-md-9">
-                                      <p>{{ $analyse->abstract }}</p>
+
                                    </div>
                                    <div class="col-md-3">
                                        <a class="button small grey" href="{{ asset('files/analyses/'.$analyse->file) }}">Télécharger en pdf</a>
