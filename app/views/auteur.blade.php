@@ -19,12 +19,7 @@
 
 <div class="row">
     <div id="inner-content" class="col-md-8 col-xs-12">
-        <?php
-            echo '<pre>';
-            //print_r($auteurs);
-            echo '</pre>';
 
-        ?>
         @if(!$auteurs->isEmpty())
             @foreach($auteurs as $auteur)
             <div class="media">
