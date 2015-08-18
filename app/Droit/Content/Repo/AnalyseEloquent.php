@@ -23,7 +23,7 @@ class AnalyseEloquent implements AnalyseInterface{
             $analyse->whereIn('id', $include);
         }
 
-        return $analyse->with( array('auteur','analyses_categories' => function ($query)
+        return $analyse->with( array('analyse_authors','analyses_categories' => function ($query)
                 {
                     $query->orderBy('sorting', 'ASC');
                 },'analyses_arrets' => function($query)
@@ -34,7 +34,7 @@ class AnalyseEloquent implements AnalyseInterface{
 
 	public function find($id){
 				
-		return $this->analyse->where('id', '=' ,$id)->with(array('auteur','analyses_categories','analyses_arrets'))->get()->first();
+		return $this->analyse->where('id', '=' ,$id)->with(array('analyse_authors','analyses_categories','analyses_arrets'))->get()->first();
 	}
 
 	public function create(array $data){
@@ -43,7 +43,6 @@ class AnalyseEloquent implements AnalyseInterface{
 			'pid'        => $data['pid'],
 			'user_id'    => $data['user_id'],
             'authors'    => $data['authors'],
-            'author_id'  => $data['author_id'],
             'pub_date'   => $data['pub_date'],
             'abstract'   => $data['abstract'],
             'file'       => $data['file'],
@@ -57,6 +56,11 @@ class AnalyseEloquent implements AnalyseInterface{
 		{
 			return false;
 		}
+
+        if(isset($data['author_id']) && !empty($data['author_id']))
+        {
+            $analyse->analyse_authors()->sync($data['author_id']);
+        }
 		
 		return $analyse;
 		
@@ -72,7 +76,6 @@ class AnalyseEloquent implements AnalyseInterface{
 		}
 
         $analyse->authors    = $data['authors'];
-        $analyse->author_id  = $data['author_id'];
         $analyse->pub_date   = $data['pub_date'];
         $analyse->abstract   = $data['abstract'];
 
@@ -85,6 +88,11 @@ class AnalyseEloquent implements AnalyseInterface{
 		$analyse->updated_at = date('Y-m-d G:i:s');
 
 		$analyse->save();
+
+        if(isset($data['author_id']) && !empty($data['author_id']))
+        {
+            $analyse->analyse_authors()->sync($data['author_id']);
+        }
 		
 		return $analyse;
 	}

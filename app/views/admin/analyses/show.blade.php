@@ -31,20 +31,20 @@
             <div class="panel-body event-info" ng-app="selection">
 
                 <div class="form-group">
-                    <label for="message" class="col-sm-3 control-label">Auteurs</label>
+                    <label for="message" class="col-sm-3 control-label">Titre</label>
                     <div class="col-sm-3">
                         {{ Form::text('authors', $analyse->authors , array('class' => 'form-control') ) }}
                     </div>
                 </div>
-
+                <?php $authors = (isset($analyse->analyse_authors) ? $analyse->analyse_authors->lists('id') : []); ?>
                 <div class="form-group">
-                    <label for="message" class="col-sm-3 control-label">Auteur</label>
+                    <label for="message" class="col-sm-3 control-label">Auteurs</label>
                     <div class="col-sm-3">
-                        <select class="form-control" id="author" name="author_id">
+                        <select multiple class="form-control" id="author" name="author_id[]">
                             <option value="">Choisir</option>
                             @if(!empty($auteurs))
                                 @foreach($auteurs as $auteur)
-                                <option <?php echo ($analyse->author_id == $auteur->id ? 'selected' : ''); ?> value="{{ $auteur->id }}">{{ $auteur->name }}</option>
+                                    <option <?php echo (in_array($auteur->id,$authors) ? 'selected' : ''); ?> value="{{ $auteur->id }}">{{ $auteur->name }}</option>
                                 @endforeach
                             @endif
                         </select>

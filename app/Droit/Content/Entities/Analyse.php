@@ -38,9 +38,9 @@ class Analyse extends BaseModel {
         return $this->belongsToMany('Droit\Content\Entities\Arret', 'analyses_arret', 'analyse_id', 'arret_id')->withPivot('sorting')->orderBy('sorting', 'asc');
     }
 
-    public function auteur()
+    public function analyse_authors()
     {
-        return $this->belongsTo('Droit\Author\Entities\Author','author_id');
+        return $this->belongsToMany('Droit\Author\Entities\Author', 'analyse_authors', 'analyse_id', 'author_id')->withPivot('sorting')->orderBy('sorting', 'asc');
     }
 
 }
