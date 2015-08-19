@@ -210,10 +210,13 @@ class CampagneController extends BaseController {
         }
 
         // image resize
+        $image = null;
 
-        $image = (isset($data['image']) ? $data['image'] : null);
-
-        $this->custom->resizeImage($image,$type);
+        if(isset($data['image']) && !empty($data['image']))
+        {
+            $image = $data['image'];
+            $this->custom->resizeImage($data['image'],$type);
+        }
 
         $new = array(
             'type_id'                => $type,
