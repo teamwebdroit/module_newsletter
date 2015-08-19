@@ -5,6 +5,7 @@ var App = angular.module('newsletter', ["angular-redactor","flow","ngSanitize","
 }).config(function(redactorOptions) {
         /* Redactor wysiwyg editor configuration */
         redactorOptions.minHeight      = 120;
+        redactorOptions.maxHeight      = 240;
         redactorOptions.formattingTags = ['p', 'h2', 'h3','h4'];
         redactorOptions.fileUpload     = 'uploadRedactor';
         redactorOptions.lang           = 'fr';

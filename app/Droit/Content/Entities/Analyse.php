@@ -40,7 +40,7 @@ class Analyse extends BaseModel {
 
     public function analyse_authors()
     {
-        return $this->belongsToMany('Droit\Author\Entities\Author', 'analyse_authors', 'analyse_id', 'author_id')->withPivot('sorting')->orderBy('sorting', 'asc');
+        return $this->belongsToMany('Droit\Author\Entities\Author', 'analyse_authors', 'analyse_id', 'author_id')->withPivot('sorting')->orderBy('last_name', 'asc');
     }
 
 }
