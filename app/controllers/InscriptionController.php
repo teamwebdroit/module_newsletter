@@ -47,7 +47,7 @@ class InscriptionController extends \BaseController {
 
         return Redirect::to('/')
             ->with(array('status' => 'success', 'message' => '<strong>Merci pour votre inscription!</strong>
-                                                              <br/>Veuillez confirmer votre adresse email en cliquant le lien qui vous à été envoyé par email'));
+                                                              <br/>Veuillez confirmer votre adresse email en cliquant le lien qui vous a été envoyé par email'));
     }
 
     /**
