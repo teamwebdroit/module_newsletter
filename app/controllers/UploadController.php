@@ -89,4 +89,47 @@ class UploadController extends BaseController {
         return Response::json($result,200 );
 
     }
+
+    public function imageJson()
+    {
+        $files = File::files('files');
+
+        $data   = [];
+        $except = ['.DS_Store'];
+
+        if(!empty($files))
+        {
+            foreach($files as $file)
+            {
+                if(!in_array($file,$except))
+                {
+                    $data[] = ['image' => url('/').'/'.$file, 'thumb' => url('/').'/'.$file, 'title' => $file];
+                }
+            }
+        }
+
+        return Response::json($data);
+    }
+
+    public function fileJson()
+    {
+        $files = File::files('files');
+
+        $data   = [];
+        $except = ['.DS_Store'];
+
+        if(!empty($files))
+        {
+            foreach($files as $file)
+            {
+                if(!in_array($file,$except))
+                {
+                    $data[] = ['name' => $file, 'link' => url('/').'/'.$file, 'title' => $file];
+                }
+            }
+        }
+
+        return Response::json($data);
+    }
+
 }

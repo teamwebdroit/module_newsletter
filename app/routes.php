@@ -27,8 +27,13 @@ Route::group(array('before' => array('auth')), function()
     /**
      * Upload routes
      */
+
     Route::post('uploadJS', 'UploadController@uploadJS');
     Route::post('uploadRedactor', 'UploadController@uploadRedactor');
+
+    Route::get('imageJson/{id?}', ['uses' => 'UploadController@imageJson']);
+    Route::get('fileJson/{id?}', ['uses' => 'UploadController@fileJson']);
+
     Route::post('uploadJquery', 'UploadController@uploadJquery');
     Route::post('sorting', 'CampagneController@sorting');
     Route::post('sortingGroup', 'CampagneController@sortingGroup');

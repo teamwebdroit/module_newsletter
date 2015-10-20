@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateAnalysesBaCategoryTable extends Migration {
+class CreateAnalysesCategoryTable extends Migration {
 
 	/**
 	 * Run the migrations.
