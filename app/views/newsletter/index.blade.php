@@ -40,15 +40,16 @@
                                 @foreach($campagnes as $campagne)
                                 <tr>
                                     <td>
-                                        @if($campagne->status == 'brouillon')
-                                        <div class="btn-group">
+                                        <div class="btn-group-vertical">
                                            <a class="btn btn-sky btn-sm" href="{{ url('admin/campagne/'.$campagne->id.'/edit') }}">&Eacute;diter</a>
                                            <a class="btn btn-inverse btn-sm" href="{{ url('admin/campagne/'.$campagne->id) }}">Composer</a>
                                         </div>
-                                        @else
-                                        <a class="btn btn-success btn-sm" href="{{ url('admin/stats/'.$campagne->id) }}">Statistiques</a>
-                                        <a href="javascript:;" class="btn btn-default btn-sm sendEmailNewsletter" data-campagne="{{ $campagne->id }}">Envoyer par email</a>
-                                        @endif
+                                        <div class="btn-group-vertical">
+                                            @if($campagne->status == 'envoyé')
+                                                <a class="btn btn-success btn-sm" href="{{ url('admin/stats/'.$campagne->id) }}">Statistiques</a>
+                                                <a href="javascript:;" class="btn btn-default btn-sm sendEmailNewsletter" data-campagne="{{ $campagne->id }}">Envoyer par email</a>
+                                            @endif
+                                        </div>
                                     </td>
                                     <td>
                                         @if($campagne->status == 'brouillon')
