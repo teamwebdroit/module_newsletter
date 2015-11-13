@@ -29,10 +29,14 @@ class Author extends Model {
         return $this->first_name.' '.$this->last_name.', '.$this->occupation;
     }
 
-    public function analyses()
+/*    public function analyses()
     {
         return $this->hasMany('Droit\Content\Entities\Analyse','author_id');
-    }
+    }*/
 
+    public function analyses()
+    {
+        return $this->belongsToMany('Droit\Content\Entities\Analyse', 'analyse_authors','author_id','analyse_id');
+    }
 }
 
