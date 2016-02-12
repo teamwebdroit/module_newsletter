@@ -1,9 +1,13 @@
 default:
   suites:
-    phpspec:
-      contexts: [ PhpSpecContext ]
-  gherkin:
-    filters:
-      tags: ~@wip
+    application:
+      contexts: [ ApplicationContext, FilesystemContext ]
   formatters:
-    progress : ~
+    progress: ~
+
+smoke:
+  suites:
+    smoke:
+      contexts: [ IsolatedProcessContext, FilesystemContext ]
+      filters: { tags: @smoke }
+

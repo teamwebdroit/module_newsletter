@@ -13,6 +13,7 @@
 
 namespace PhpSpec\Console;
 
+use PhpSpec\Console\Prompter\Factory;
 use Symfony\Component\Console\Application as BaseApplication;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -57,9 +58,16 @@ class Application extends BaseApplication
      */
     public function doRun(InputInterface $input, OutputInterface $output)
     {
+        $helperSet = $this->getHelperSet();
         $this->container->set('console.input', $input);
         $this->container->set('console.output', $output);
-        $this->container->set('console.helper.dialog', $this->getHelperSet()->get('dialog'));
+        $this->container->setShared('console.prompter.factory', function ($c) use ($helperSet) {
+            return new Factory(
+                $c->get('console.input'),
+                $c->get('console.output'),
+                $helperSet
+            );
+        });
 
         $assembler = new ContainerAssembler();
         $assembler->build($this->container);
@@ -71,6 +79,8 @@ class Application extends BaseApplication
         }
 
         $this->setDispatcher($this->container->get('console_event_dispatcher'));
+
+        $this->container->get('console.io')->setConsoleWidth($this->getTerminalWidth());
 
         return parent::doRun($input, $output);
     }
@@ -158,7 +168,7 @@ class Application extends BaseApplication
 
         $config = array();
         foreach ($paths as $path) {
-            if ($path && file_exists($path) && $parsedConfig = Yaml::parse($path)) {
+            if ($path && file_exists($path) && $parsedConfig = Yaml::parse(file_get_contents($path))) {
                 $config = $parsedConfig;
                 break;
             }
@@ -166,7 +176,7 @@ class Application extends BaseApplication
 
         if ($homeFolder = getenv('HOME')) {
             $localPath = $homeFolder.'/.phpspec.yml';
-            if (file_exists($localPath) && $parsedConfig = Yaml::parse($localPath)) {
+            if (file_exists($localPath) && $parsedConfig = Yaml::parse(file_get_contents($localPath))) {
                 $config = array_replace_recursive($parsedConfig, $config);
             }
         }

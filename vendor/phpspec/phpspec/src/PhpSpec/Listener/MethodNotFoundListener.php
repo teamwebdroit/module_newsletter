@@ -53,7 +53,8 @@ class MethodNotFoundListener implements EventSubscriberInterface
             return;
         }
 
-        $this->methods[get_class($exception->getSubject()).'::'.$exception->getMethodName()] = $exception->getArguments();
+        $classname = get_class($exception->getSubject());
+        $this->methods[$classname .'::'.$exception->getMethodName()] = $exception->getArguments();
     }
 
     public function afterSuite(SuiteEvent $event)
@@ -72,7 +73,6 @@ class MethodNotFoundListener implements EventSubscriberInterface
                 continue;
             }
 
-            $this->io->writeln();
             if ($this->io->askConfirmation($message)) {
                 $this->generator->generate($resource, 'method', array(
                     'name'      => $method,

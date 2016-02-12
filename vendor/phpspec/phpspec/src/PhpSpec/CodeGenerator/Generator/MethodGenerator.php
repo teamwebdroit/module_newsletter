@@ -73,14 +73,15 @@ class MethodGenerator implements GeneratorInterface
         $arguments = $data['arguments'];
 
         $argString = count($arguments)
-            ? '$argument'.implode(', $argument',  range(1, count($arguments)))
+            ? '$argument'.implode(', $argument', range(1, count($arguments)))
             : ''
         ;
 
         $values = array('%name%' => $name, '%arguments%' => $argString);
         if (!$content = $this->templates->render('method', $values)) {
             $content = $this->templates->renderString(
-                $this->getTemplate(), $values
+                $this->getTemplate(),
+                $values
             );
         }
 
@@ -89,8 +90,9 @@ class MethodGenerator implements GeneratorInterface
         $this->filesystem->putFileContents($filepath, $code);
 
         $this->io->writeln(sprintf(
-            "\n<info>Method <value>%s::%s()</value> has been created.</info>",
-            $resource->getSrcClassname(), $name
+            "<info>Method <value>%s::%s()</value> has been created.</info>\n",
+            $resource->getSrcClassname(),
+            $name
         ), 2);
     }
 

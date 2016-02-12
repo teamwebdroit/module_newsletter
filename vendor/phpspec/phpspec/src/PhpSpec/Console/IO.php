@@ -15,15 +15,21 @@ namespace PhpSpec\Console;
 
 use PhpSpec\IO\IOInterface;
 use Symfony\Component\Console\Helper\DialogHelper;
+use Symfony\Component\Console\Helper\QuestionHelper;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use PhpSpec\Config\OptionsConfig;
+use Symfony\Component\Console\Question\ConfirmationQuestion;
 
 /**
  * Class IO deals with input and output from command line interaction
  */
 class IO implements IOInterface
 {
+    const COL_MIN_WIDTH = 40;
+    const COL_DEFAULT_WIDTH = 60;
+    const COL_MAX_WIDTH = 80;
+
     /**
      * @var \Symfony\Component\Console\Input\InputInterface
      */
@@ -33,11 +39,6 @@ class IO implements IOInterface
      * @var \Symfony\Component\Console\Output\OutputInterface
      */
     private $output;
-
-    /**
-     * @var \Symfony\Component\Console\Helper\DialogHelper
-     */
-    private $dialogHelper;
 
     /**
      * @var string
@@ -55,17 +56,31 @@ class IO implements IOInterface
     private $config;
 
     /**
+     * @var integer
+     */
+    private $consoleWidth;
+
+    /**
+     * @var Prompter
+     */
+    private $prompter;
+
+    /**
      * @param InputInterface  $input
      * @param OutputInterface $output
-     * @param DialogHelper    $dialogHelper
      * @param OptionsConfig   $config
+     * @param Prompter        $prompter
      */
-    public function __construct(InputInterface $input, OutputInterface $output, DialogHelper $dialogHelper, OptionsConfig $config)
-    {
+    public function __construct(
+        InputInterface $input,
+        OutputInterface $output,
+        OptionsConfig $config,
+        Prompter $prompter
+    ) {
         $this->input   = $input;
         $this->output  = $output;
-        $this->dialogHelper = $dialogHelper;
         $this->config  = $config;
+        $this->prompter = $prompter;
     }
 
     /**
@@ -206,6 +221,10 @@ class IO implements IOInterface
             $message = $this->indentText($message, $indent);
         }
 
+        if ($message === $this->lastMessage) {
+            return;
+        }
+
         $commonPrefix = $this->getCommonPrefix($message, $this->lastMessage);
         $newSuffix = substr($message, strlen($commonPrefix));
         $oldSuffix = substr($this->lastMessage, strlen($commonPrefix));
@@ -230,7 +249,7 @@ class IO implements IOInterface
 
     private function getCommonPrefix($stringA, $stringB)
     {
-        for ($i = 0; $i<min(strlen($stringA), strlen($stringB)); $i++) {
+        for ($i = 0, $len = min(strlen($stringA), strlen($stringB)); $i<$len; $i++) {
             if ($stringA[$i] != $stringB[$i]) {
                 break;
             }
@@ -246,17 +265,6 @@ class IO implements IOInterface
     }
 
     /**
-     * @param string      $question
-     * @param string|null $default
-     *
-     * @return string
-     */
-    public function ask($question, $default = null)
-    {
-        return $this->dialogHelper->ask($this->output, $question, $default);
-    }
-
-    /**
      * @param string $question
      * @param bool   $default
      *
@@ -265,29 +273,16 @@ class IO implements IOInterface
     public function askConfirmation($question, $default = true)
     {
         $lines   = array();
-        $lines[] = '<question>'.str_repeat(' ', 70)."</question>";
-        foreach (explode("\n", wordwrap($question), 50) as $line) {
-            $lines[] = '<question>  '.str_pad($line, 68).'</question>';
+        $lines[] = '<question>'.str_repeat(' ', $this->getBlockWidth())."</question>";
+        foreach (explode("\n", wordwrap($question, $this->getBlockWidth() - 4, "\n", true)) as $line) {
+            $lines[] = '<question>  '.str_pad($line, $this->getBlockWidth() - 2).'</question>';
         }
-        $lines[] = '<question>'.str_repeat(' ', 62).'</question> <value>'.
+        $lines[] = '<question>'.str_repeat(' ', $this->getBlockWidth() - 8).'</question> <value>'.
             ($default ? '[Y/n]' : '[y/N]').'</value> ';
 
-        return $this->dialogHelper->askConfirmation(
-            $this->output, implode("\n", $lines), $default
-        );
-    }
+        $formattedQuestion = implode("\n", $lines) . "\n";
 
-    /**
-     * @param string      $question
-     * @param callable    $validator
-     * @param int|false   $attempts
-     * @param string|null $default
-     *
-     * @return string
-     */
-    public function askAndValidate($question, $validator, $attempts = false, $default = null)
-    {
-        return $this->dialogHelper->askAndValidate($this->output, $question, $validator, $attempts, $default);
+        return $this->prompter->askConfirmation($formattedQuestion, $default);
     }
 
     /**
@@ -326,5 +321,28 @@ class IO implements IOInterface
             return $path;
         }
         return false;
+    }
+
+    /**
+     * @param integer $width
+     */
+    public function setConsoleWidth($width)
+    {
+        $this->consoleWidth = $width;
+    }
+
+    /**
+     * @return integer
+     */
+    public function getBlockWidth()
+    {
+        $width = self::COL_DEFAULT_WIDTH;
+        if ($this->consoleWidth && ($this->consoleWidth - 10) > self::COL_MIN_WIDTH) {
+            $width = $this->consoleWidth - 10;
+        }
+        if ($width > self::COL_MAX_WIDTH) {
+            $width = self::COL_MAX_WIDTH;
+        }
+        return $width;
     }
 }

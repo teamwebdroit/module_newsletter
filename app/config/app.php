@@ -128,7 +128,8 @@ return array(
         'Way\Generators\GeneratorsServiceProvider',
         'Laracasts\Commander\CommanderServiceProvider',
         'Laracasts\Validation\ValidationServiceProvider',
-        'Laracasts\Utilities\UtilitiesServiceProvider'
+        'Laracasts\Utilities\UtilitiesServiceProvider',
+		'Maatwebsite\Excel\ExcelServiceProvider',
 	),
 
 	/*
@@ -196,6 +197,7 @@ return array(
 		'Validator'       => 'Illuminate\Support\Facades\Validator',
 		'View'            => 'Illuminate\Support\Facades\View',
         'Image'           => 'Intervention\Image\Facades\Image',
+		'Excel'           => 'Maatwebsite\Excel\Facades\Excel',
 	),
 
 );

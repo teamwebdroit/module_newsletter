@@ -45,6 +45,9 @@ class MatchersMaintainer implements MaintainerInterface
     {
         $this->presenter = $presenter;
         $this->defaultMatchers = $matchers;
+        @usort($this->defaultMatchers, function ($matcher1, $matcher2) {
+            return $matcher2->getPriority() - $matcher1->getPriority();
+        });
     }
 
     /**
@@ -63,12 +66,14 @@ class MatchersMaintainer implements MaintainerInterface
      * @param MatcherManager         $matchers
      * @param CollaboratorManager    $collaborators
      */
-    public function prepare(ExampleNode $example, SpecificationInterface $context,
-                            MatcherManager $matchers, CollaboratorManager $collaborators)
-    {
-        foreach ($this->defaultMatchers as $matcher) {
-            $matchers->add($matcher);
-        }
+    public function prepare(
+        ExampleNode $example,
+        SpecificationInterface $context,
+        MatcherManager $matchers,
+        CollaboratorManager $collaborators
+    ) {
+
+        $matchers->replace($this->defaultMatchers);
 
         if (!$context instanceof Matcher\MatchersProviderInterface) {
             return;
@@ -79,7 +84,9 @@ class MatchersMaintainer implements MaintainerInterface
                 $matchers->add($matcher);
             } else {
                 $matchers->add(new Matcher\CallbackMatcher(
-                    $name, $matcher, $this->presenter
+                    $name,
+                    $matcher,
+                    $this->presenter
                 ));
             }
         }
@@ -91,9 +98,12 @@ class MatchersMaintainer implements MaintainerInterface
      * @param MatcherManager         $matchers
      * @param CollaboratorManager    $collaborators
      */
-    public function teardown(ExampleNode $example, SpecificationInterface $context,
-                             MatcherManager $matchers, CollaboratorManager $collaborators)
-    {
+    public function teardown(
+        ExampleNode $example,
+        SpecificationInterface $context,
+        MatcherManager $matchers,
+        CollaboratorManager $collaborators
+    ) {
     }
 
     /**

@@ -53,7 +53,8 @@ class NamedConstructorNotFoundListener implements EventSubscriberInterface
             return;
         }
 
-        $this->methods[get_class($exception->getSubject()).'::'.$exception->getMethodName()] = $exception->getArguments();
+        $className = get_class($exception->getSubject());
+        $this->methods[$className .'::'.$exception->getMethodName()] = $exception->getArguments();
     }
 
     public function afterSuite(SuiteEvent $event)
@@ -72,7 +73,6 @@ class NamedConstructorNotFoundListener implements EventSubscriberInterface
                 continue;
             }
 
-            $this->io->writeln();
             if ($this->io->askConfirmation($message)) {
                 $this->generator->generate($resource, 'named_constructor', array(
                     'name'      => $method,

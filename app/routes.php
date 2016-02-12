@@ -93,6 +93,7 @@ Route::group(array('prefix' => 'admin', 'before' => array('auth','admin')), func
     Route::resource('campagne', 'CampagneController');
 
     Route::resource('abonne', 'AbonneController');
+    Route::resource('import', 'ImportController');
 
     Route::post('send/campagne', 'SendController@campagne');
     Route::post('send/test', 'SendController@test');

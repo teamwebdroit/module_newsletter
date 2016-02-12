@@ -4,6 +4,8 @@ use Droit\Service\Worker\UploadInterface;
 
 class UploadController extends BaseController {
 
+    protected $upload;
+
     public function __construct( UploadInterface $upload )
     {
 
