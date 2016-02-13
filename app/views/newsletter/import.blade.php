@@ -6,7 +6,7 @@
             <div class="panel panel-primary">
 
                 <form action="{{ url('admin/import') }}" data-validate="parsley" method="POST" enctype="multipart/form-data" class="validate-form form-horizontal">
-                    {!! csrf_field() !!}
+                    {{ Form::token() }}
                     <div class="panel-heading">
                         <h4>Importer une liste</h4>
                     </div>

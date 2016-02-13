@@ -32,10 +32,10 @@ class ImportController extends \BaseController {
 		return View::make('newsletter.import')->with(['newsletters' => $newsletters]);
 	}
 
-	public function store(Request $request)
+	public function store()
 	{
-		$files = $this->upload->upload( $request->file('file') , 'files' );
-		$list  = $request->input('newsletter_id');
+		$files = $this->upload->upload( Input::file('file') , 'files' );
+		$list  = Input::get('newsletter_id');
 
 		if($files)
 		{
@@ -53,19 +53,18 @@ class ImportController extends \BaseController {
 
 				if(!$subscriber)
 				{
-					$subscriber = $this->subscriber->create([
+					$subscriber = $this->subscriber->add([
 						'email'         => $email->email,
-						'activated_at'  => \Carbon\Carbon::now(),
 						'newsletter_id' => $list
 					]);
 				}
 
-				$relation = $subscriber->subscriptions()->lists('newsletter_id');
-				$contains = $relation->contains($list);
+				$relation = $subscriber->subscription()->lists('newsletter_id');
+				$contains = in_array($list,$relation);
 
 				if(!$contains)
 				{
-					$subscriber->subscriptions()->attach($list);
+					$subscriber->newsletter()->attach($list);
 				}
 
 				$users[] = $subscriber->email;
@@ -76,8 +75,8 @@ class ImportController extends \BaseController {
 
 			})->store('csv', public_path('files/import'));
 
-			// Import csv to mailjet
-			//$this->mailjet->setList(1545458); // testing list
+			// Import csv to mailjet ONLY TESTING
+			$this->mailjet->setList(1545504); // testing list
 
 			$filename = basename($files['name'], ".xlsx");
 

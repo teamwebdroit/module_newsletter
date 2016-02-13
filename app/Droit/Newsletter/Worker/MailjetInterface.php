@@ -2,6 +2,7 @@
 
 interface MailjetInterface {
 
+    public function setList($list);
     public function getList();
     public function getAllLists();
 

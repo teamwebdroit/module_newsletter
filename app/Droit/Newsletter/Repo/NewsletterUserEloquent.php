@@ -132,7 +132,7 @@ class NewsletterUserEloquent implements NewsletterUserInterface{
 
 		$user = $this->user->create(array(
 			'email'            => $data['email'],
-            'activation_token' => $data['activation_token'],
+            'activation_token' => (isset($data['activation_token']) ? $data['activation_token'] : null),
 			'created_at'       => date('Y-m-d G:i:s'),
 			'updated_at'       => date('Y-m-d G:i:s')
 		));

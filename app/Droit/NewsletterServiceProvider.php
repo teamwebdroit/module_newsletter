@@ -102,7 +102,11 @@ class NewsletterServiceProvider extends ServiceProvider {
 
         $this->app->bind('Droit\Newsletter\Worker\MailjetInterface', function()
         {
-            return new \Droit\Newsletter\Worker\MailjetWorker();
+            return new \Droit\Newsletter\Worker\MailjetWorker(
+                new \Droit\Newsletter\Service\Mailjet(
+                    \Config::get('services.mailjet.api'),\Config::get('services.mailjet.secret')
+                )
+            );
         });
     }
 

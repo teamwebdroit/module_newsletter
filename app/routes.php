@@ -196,8 +196,26 @@ Route::get('statscampagne', function()
 {
 
 
-    $mailjet = new \Droit\Newsletter\Worker\MailjetWorker();
+    $csv    = public_path('files/test.csv');
+
+    // echo file_get_contents($csv);exit;
+
+    $mailjet = \App::make('Droit\Newsletter\Worker\MailjetInterface');
+    $mailjet->setList(1545504); // testing list
+
+    echo '<pre>';
+    //print_r(file_get_contents($csv));
+    echo '</pre>';
+
+    $dataID = $mailjet->uploadCSVContactslistData(file_get_contents($csv));
+
+    $result = $mailjet->importCSVContactslistData($dataID->ID);
+    
+    echo '<pre>';
+    print_r($result);
+    echo '</pre>';exit;
     //$newsletter = new \Droit\Newsletter\Repo\NewsletterCampagneEloquent(new \Droit\Newsletter\Entities\Newsletter_campagnes);
+
 
     //$campagne   = $newsletter->find(12);
 
@@ -206,9 +224,7 @@ Route::get('statscampagne', function()
     //$sent = $send->setHtml($html,$campagne->api_campagne_id);
     //$id = $send->removeContact('pruntrut@yahoo.fr');
     //$sent = $send->addContactToList($id);
-    $sent = $mailjet->clickStatistics(120);
+    //$sent = $mailjet->clickStatistics(120);
     //print_r($campagne);
-    echo '<pre>';
-    print_r($sent);
-    echo '</pre>';
+
 });

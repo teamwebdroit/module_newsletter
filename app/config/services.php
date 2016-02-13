@@ -23,6 +23,11 @@ return array(
 		'secret' => '',
 	),
 
+	'mailjet' => [
+		'api'    => '1fcc01cd3b91600867d8758f43d29e9d',
+		'secret' => '6c6078e1aadf033d263fb121144a2925',
+	],
+
 	'stripe' => array(
 		'model'  => 'User',
 		'secret' => '',

@@ -1,16 +1,24 @@
 <?php namespace Droit\Newsletter\Worker;
 
 use Droit\Newsletter\Worker\MailjetInterface;
+use Droit\Newsletter\Service\Mailjet;
 
 class MailjetWorker implements MailjetInterface{
 
     protected $mailjet;
-    protected $list;
+    protected $list = '1';
 
-    public function __construct()
+    public function __construct(Mailjet $mailjet)
     {
-        $this->mailjet  = new \Droit\Newsletter\Service\Mailjet();
-        $this->list     = '1';
+        $this->mailjet  = $mailjet;;
+    }
+
+    /*
+     * Set the ID of list
+    */
+    public function setList($list)
+    {
+        $this->list = $list;
     }
 
     public function getList()
@@ -354,7 +362,8 @@ class MailjetWorker implements MailjetInterface{
         return ($response ? $response : false);
     }
 
-    function importCSVContactslistData($dataID) {
+    function importCSVContactslistData($dataID)
+    {
 
         $params = [
             "method"         => "POST",
