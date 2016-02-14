@@ -44,7 +44,7 @@
                             <li>
                                 <p>
                                     <a href="{{ url('jurisprudence#analyse_'.$analyse->id) }}">{{ $analyse->analyses_arrets->first()->reference }}</a>
-                                    <i>{{ $analyse->abstract }}</i>
+                                    <i>{{ $analyse->remarque }}</i>
                                 </p>
 
                                 <!--
