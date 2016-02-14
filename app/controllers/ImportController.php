@@ -74,7 +74,7 @@ class ImportController extends \BaseController {
 			})->store('csv', public_path('files/import'));
 
 			// Import csv to mailjet ONLY TESTING
-			$this->mailjet->setList(1545504); // testing list
+			//$this->mailjet->setList(1545504); // testing list
 
 			$filename = preg_replace('/\\.[^.\\s]{3,4}$/', '', $files['name']);
 
