@@ -200,20 +200,17 @@ Route::get('statscampagne', function()
 
     // echo file_get_contents($csv);exit;
 
-    $mailjet = \App::make('Droit\Newsletter\Worker\MailjetInterface');
-    $mailjet->setList(1545504); // testing list
+    //$mailjet = \App::make('Droit\Newsletter\Worker\MailjetInterface');
+   // $mailjet->setList(1545504); // testing list
 
     echo '<pre>';
-    //print_r(file_get_contents($csv));
+    $filename = preg_replace('/\\.[^.\\s]{3,4}$/', '', 'file.xlsx');
+    print_r($filename);
     echo '</pre>';
 
-    $dataID = $mailjet->uploadCSVContactslistData(file_get_contents($csv));
+/*    $dataID = $mailjet->uploadCSVContactslistData(file_get_contents($csv));
+    $result = $mailjet->importCSVContactslistData($dataID->ID);*/
 
-    $result = $mailjet->importCSVContactslistData($dataID->ID);
-    
-    echo '<pre>';
-    print_r($result);
-    echo '</pre>';exit;
     //$newsletter = new \Droit\Newsletter\Repo\NewsletterCampagneEloquent(new \Droit\Newsletter\Entities\Newsletter_campagnes);
 
 

@@ -66,8 +66,6 @@ class ImportController extends \BaseController {
 				{
 					$subscriber->newsletter()->attach($list);
 				}
-
-				$users[] = $subscriber->email;
 			}
 
 			// Convert to csv
@@ -78,7 +76,7 @@ class ImportController extends \BaseController {
 			// Import csv to mailjet ONLY TESTING
 			$this->mailjet->setList(1545504); // testing list
 
-			$filename = basename($files['name'], ".xlsx");
+			$filename = preg_replace('/\\.[^.\\s]{3,4}$/', '', $files['name']);
 
 			$dataID   = $this->mailjet->uploadCSVContactslistData(file_get_contents(public_path('files/import/'.$filename.'.csv')));
 			$response = $this->mailjet->importCSVContactslistData($dataID->ID);

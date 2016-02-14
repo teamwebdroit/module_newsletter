@@ -150,6 +150,8 @@ class CampagneWorker implements CampagneInterface{
 
     public function html($id)
     {
+        libxml_use_internal_errors(true);
+
         $htmldoc = new InlineStyle(file_get_contents( url('campagne/'.$id)));
         $htmldoc->applyStylesheet($htmldoc->extractStylesheets());
 
