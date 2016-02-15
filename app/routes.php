@@ -74,6 +74,12 @@ Route::controller('password', 'RemindersController');
  */
 Route::group(array('prefix' => 'admin', 'before' => array('auth','admin')), function()
 {
+    Route::get('exemple', function()
+    {
+        $file = public_path(). '/files/exemple_import.xlsx';
+        return \Response::download($file, 'exemple_import.xlsx');
+    });
+
     Route::get('dashboard', 'AdminController@index');
 
     Route::resource('arret', 'ArretController');

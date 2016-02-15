@@ -13,6 +13,13 @@
                     <div class="panel-body">
 
                         <div class="form-group">
+                            <label for="message" class="col-sm-3 control-label">Format d'importation</label>
+                            <div class="col-sm-6">
+                                <p><a class="btn btn-default" target="_blank" href="{{ url('admin/exemple') }}"><i class="fa fa-download"></i> &nbsp;Liste d'exemple</a></p>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
                             <label for="message" class="col-sm-3 control-label">Fichier excel</label>
                             <div class="col-sm-6">
                                 <input type="file" required name="file">
