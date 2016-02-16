@@ -32,8 +32,8 @@
                         <td valign="top" width="375" class="resetMarge contentForm">
                             <div>
                                 <?php
-                                    $title = ($arret->dumois ? 'Arrêt du mois : ' : '');
-                                    setlocale(LC_ALL, 'fr_FR.UTF-8');
+                                $title = ($arret->dumois ? 'Arrêt du mois : ' : '');
+                                setlocale(LC_ALL, 'fr_FR.UTF-8');
                                 ?>
                                 <h3 style="text-align: left;font-family: sans-serif;">{{ $title }}{{ $arret->reference }} du {{ $arret->pub_date->formatLocalized('%d %B %Y') }}</h3>
                                 <p class="abstract">{{ $arret->abstract }}</p>
