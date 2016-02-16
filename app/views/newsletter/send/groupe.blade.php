@@ -2,7 +2,7 @@
 
 <!-- Bloc -->
 <table border="0" width="600" align="center" cellpadding="0" cellspacing="0" class="tableReset">
-    <tr bgcolor="ffffff"><td colspan="3" height="35"></td></tr><!-- space -->
+    <tr bgcolor="ffffff"><td height="35"></td></tr><!-- space -->
     <tr align="center" class="resetMarge">
         <td class="resetMarge">
             <table border="0" width="560" align="center" cellpadding="0" cellspacing="0" class="resetTable">
@@ -18,7 +18,7 @@
             </table>
         </td>
     </tr>
-    <tr bgcolor="ffffff"><td colspan="3" height="20" class="blocBorder"></td></tr><!-- space -->
+    <tr bgcolor="ffffff"><td height="20" class="blocBorder"></td></tr><!-- space -->
 
     @foreach($bloc->arrets as $arret)
 
@@ -65,7 +65,18 @@
                 </table>
             </td>
         </tr>
-        <tr bgcolor="ffffff"><td colspan="3" height="35" class="blocBorder"></td></tr><!-- space -->
+        <tr bgcolor="ffffff"><td height="35" class="blocBorder"></td></tr><!-- space -->
+
+        <!-- Analyses if any -->
+        @if(isset($arret->arrets_analyses) && !$arret->arrets_analyses->isEmpty())
+            <tr align="center" class="resetMarge">
+                <td class="resetMarge">
+                    @include('newsletter.build.edit.analyse',['arret' => $arret])
+                </td>
+            </tr>
+            <tr bgcolor="ffffff"><td height="35" class="blocBorder"></td></tr><!-- space -->
+        @endif
+
     @endforeach
 
 </table>

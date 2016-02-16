@@ -60,8 +60,17 @@
                     </td>
                 </tr>
                 <tr bgcolor="ffffff"><td colspan="3" height="35" class="blocBorder"></td></tr><!-- space -->
+                <!-- Analyses if any -->
+                @if(isset($arret->arrets_analyses) && !$arret->arrets_analyses->isEmpty())
+                    <tr align="center" class="resetMarge">
+                        <td class="resetMarge" colspan="3">
+                            @include('newsletter.build.edit.analyse',['arret' => $arret])
+                        </td>
+                    </tr>
+                    <tr bgcolor="ffffff"><td height="35" class="blocBorder"></td></tr><!-- space -->
+                @endif
+
             </table>
-            <!-- Bloc content-->
 
         @endforeach
 
