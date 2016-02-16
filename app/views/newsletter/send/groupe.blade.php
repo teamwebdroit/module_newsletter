@@ -51,7 +51,7 @@
                                         if($categorie->id != $bloc->categorie){
                                             echo '<tr align="center" style="margin: 0;padding: 0;"><td style="margin: 0;padding: 0;page-break-before: always;" valign="top">';
                                             echo '<a target="_blank" href="'.url('jurisprudence').'#'.$arret->reference.'" style="margin:0;padding:0;display: block;">
-                                                    <img style="margin:0;padding:0;display: block;" width="130" height="158" border="0" alt="'.$categorie->title.'" src="'.asset('newsletter/pictos/'.$categorie->image).'">
+                                                    <img style="margin:0;padding:0;display: block;" width="130" border="0" alt="'.$categorie->title.'" src="'.asset('newsletter/pictos/'.$categorie->image).'">
                                                 </a>';
                                             echo '</td></tr>';
                                         }
