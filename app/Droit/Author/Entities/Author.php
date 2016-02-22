@@ -31,7 +31,8 @@ class Author extends Model {
 
     public function analyses()
     {
-        return $this->hasMany('Droit\Content\Entities\Analyse','author_id');
+        //return $this->belongsToMany('Droit\Content\Entities\Analyse','author_id');
+        return $this->belongsToMany('\Droit\Content\Entities\Analyse', 'analyse_authors', 'author_id', 'analyse_id');
     }
 
 }

@@ -37,6 +37,7 @@
                     <?php $pluriel = ($auteur->analyses->count() > 1 ? 'Analyses des arrêts' : 'Analyse de l\'arrêt'); ?>
                     <h5>{{ $pluriel }}</h5>
                     <ul class="analyse_auteur">
+
                         @foreach($auteur->analyses as $analyse)
                             <?php $analyse->load('analyses_arrets'); ?>
 
@@ -46,17 +47,6 @@
                                     <a href="{{ url('jurisprudence#analyse_'.$analyse->id) }}">{{ $analyse->analyses_arrets->first()->reference }}</a>
                                     <i>{{ $analyse->remarque }}</i>
                                 </p>
-
-                                <!--
-                                <div class="row">
-                                   <div class="col-md-9">
-
-                                   </div>
-                                   <div class="col-md-3">
-                                       <a class="button small grey" href="{{ asset('files/analyses/'.$analyse->file) }}">Télécharger en pdf</a>
-                                   </div>
-                               </div>
-                               -->
                             </li>
                             @endif
                         @endforeach
