@@ -115,85 +115,20 @@ Route::group(array('prefix' => 'admin', 'before' => array('auth','admin')), func
 Route::get('testing', function()
 {
 
+    $worker   = App::make('Droit\Newsletter\Worker\CampagneInterface');
+    $campagne = $worker->findCampagneById(13);
 
-    //echo ($send->removeContact('cindy11@bluewin.ch') ? 'removed' : 'error');
-    //print_r($send->getSubscribers());
-
-    //print_r($send->getListRecipient('cindy.leschaud@gmail.com'));
-    /*   $faker = \Faker\Factory::create();
-
-     foreach(range(1, 2) as $index)
-     {
-         $categories = array();
-
-         $count = $faker->numberBetween(1, 4);
-
-         for($i = 0; $i <= $count; $i++){
-             $categories[] = $faker->numberBetween(62, 92);
-         }
-
-         $cour = $faker->randomElement(array('A','C','E'));
-         $num  = $faker->randomDigit();
-         $rand = $faker->randomNumber(3);
-         $year = $faker->randomElement(array('2012','2013','2014'));
-
-         $text = '<p>'.$faker->text(1200).'</p>';
-         $text .= '<p>'.$faker->text(1200).'</p>';
-
-         $ref  = $cour.''.$num.'_'.$rand.'/'.$year;
-
-         $arret = [
-             'pid'        => 195,
-             'user_id'    => 1,
-             'reference'  => $ref,
-             'pub_date'   => $faker->dateTimeBetween('-3 years', 'now'),
-             'abstract'   => $faker->text(200),
-             'pub_text'   => $text,
-             'categories' => count($categories),
-             'file'       => 'Fichier_test.pdf',
-             'created_at' => date('Y-m-d G:i:s'),
-             'updated_at' => date('Y-m-d G:i:s')
-         ];
-
-         echo '<pre>';
-         print_r($arret);
-         echo '</pre>';
-
-       $arret = \Droit\Content\Entities\Arret::create([
-             'pid'        => 195,
-             'user_id'    => 1,
-             'reference'  => $ref,
-             'pub_date'   => $faker->dateTimeBetween('-3 years', 'now'),
-             'abstract'   => $faker->sentences(2),
-             'pub_text'   => $faker->paragraph(3),
-             'categories' => count($categories),
-             'file'       => 'Fichier_test.pdf',
-             'created_at' => date('Y-m-d G:i:s'),
-             'updated_at' => date('Y-m-d G:i:s')
-         ]);
-
-        //$arret->arrets_categories()->sync($categories);
-
-    }*/
-
-    $arrets = new Droit\Content\Entities\Arret();
-
-    $arrets = $arrets->with( array('arrets_analyses' => function($query)
-            {
-                $query->where('analyses.deleted', '=', 0);
-            }))->orderBy('id', 'ASC')->take(10)->get();
-
-    echo '<pre>';
-
-    $new = $arrets->filter(function($item)
+    $sommaire = $campagne->map(function($item)
     {
-        if (!$item->arrets_analyses->isEmpty()) {
-            return true;
+        if($item->type->id == 7){
+           return $item->arrets->lists('reference');
         }
+        return $item->type->id == 5 ? $item->reference : $item->titre;
     });
 
-    print_r($new->take(5)->toArray());
 
+    echo '<pre>';
+    print_r(array_flatten($sommaire->toArray()));
     echo '</pre>';
 
 });
