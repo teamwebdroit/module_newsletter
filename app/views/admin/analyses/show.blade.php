@@ -36,6 +36,13 @@
                         {{ Form::text('authors', $analyse->authors , array('class' => 'form-control') ) }}
                     </div>
                 </div>
+                <div class="form-group">
+                    <label for="message" class="col-sm-3 control-label">Titre alternatif (remplace analyse du...)</label>
+                    <div class="col-sm-3">
+                        {{ Form::text('title', $analyse->title , array('class' => 'form-control') ) }}
+                    </div>
+                </div>
+
                 <?php $authors = (isset($analyse->analyse_authors) ? $analyse->analyse_authors->lists('id') : []); ?>
                 <div class="form-group">
                     <label for="message" class="col-sm-3 control-label">Auteurs</label>

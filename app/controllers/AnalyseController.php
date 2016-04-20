@@ -116,6 +116,7 @@ class AnalyseController extends \BaseController {
             'author_id'  => Input::get('author_id'),
             'pub_date'   => Input::get('pub_date'),
             'abstract'   => Input::get('abstract'),
+            'title'      => Input::get('title'),
             'arrets'     => count($arrets),
             'categories' => count($categories),
             'pub_text'   => Input::get('pub_text')
@@ -174,6 +175,7 @@ class AnalyseController extends \BaseController {
             'author_id'  => Input::get('author_id'),
             'pub_date'   => Input::get('pub_date'),
             'abstract'   => Input::get('abstract'),
+            'title'      => Input::get('title'),
             'categories' => count($categories),
             'arrets'     => count($arrets),
             'pub_text'   => Input::get('pub_text')

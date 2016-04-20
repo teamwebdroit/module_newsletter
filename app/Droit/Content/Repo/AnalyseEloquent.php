@@ -48,6 +48,7 @@ class AnalyseEloquent implements AnalyseInterface{
             'file'       => $data['file'],
             'categories' => $data['categories'],
             'arrets'     => $data['arrets'],
+			'title'      => isset($data['title']) && !empty($data['title']) ? $data['title'] : null,
 			'created_at' => date('Y-m-d G:i:s'),
 			'updated_at' => date('Y-m-d G:i:s')
 		));
@@ -78,6 +79,11 @@ class AnalyseEloquent implements AnalyseInterface{
         $analyse->authors    = $data['authors'];
         $analyse->pub_date   = $data['pub_date'];
         $analyse->abstract   = $data['abstract'];
+
+		if(isset($data['title']))
+		{
+			$analyse->title = !empty($data['title']) ? $data['title'] : null;
+		}
 
         if(isset($data['file']) && !empty($data['file'])){
             $analyse->file = $data['file'];

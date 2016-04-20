@@ -9,7 +9,14 @@
                     <tr>
                         <td valign="top" width="375" class="resetMarge contentForm">
                             <?php setlocale(LC_ALL, 'fr_FR.UTF-8');  ?>
-                            <h3 style="text-align: left;font-family: sans-serif;">Analyse de l'arrêt {{ $arret->reference }}</h3>
+
+                            <!-- overwrite analyse title if any -->
+                            @if(!empty($analyse->title))
+                                <h3 style="text-align: left;font-family: sans-serif;">{{ $analyse->title }}</h3>
+                            @else
+                                <h3 style="text-align: left;font-family: sans-serif;">Analyse de l'arrêt {{ $arret->reference }}</h3>
+                            @endif
+                            <!-- overwrite analyse title if any -->
 
                             <?php $analyse->load('analyse_authors'); ?>
 

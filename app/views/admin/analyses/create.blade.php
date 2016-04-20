@@ -36,6 +36,13 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="message" class="col-sm-3 control-label">Titre alternatif (remplace analyse du...)</label>
+                    <div class="col-sm-3">
+                        {{ Form::text('title', null , array('class' => 'form-control') ) }}
+                    </div>
+                </div>
+
+                <div class="form-group">
                     <label for="message" class="col-sm-3 control-label">Auteurs</label>
                     <div class="col-sm-3">
                         <select multiple class="form-control" id="author" name="author_id[]">

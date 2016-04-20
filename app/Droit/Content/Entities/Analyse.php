@@ -25,7 +25,7 @@ class Analyse extends BaseModel {
     );
 
     protected $table    = 'analyses';
-    protected $fillable = ['pid','user_id','deleted','authors','author_id','pub_date','abstract','file','categories','arrets'];
+    protected $fillable = ['pid','user_id','deleted','authors','author_id','pub_date','abstract','file','categories','arrets','title'];
     protected $dates    = ['pub_date','created_at','updated_at'];
 
     public function analyses_categories()

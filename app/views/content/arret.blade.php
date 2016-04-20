@@ -38,7 +38,15 @@
             <div class="post">
                     <div class="post-title">
                         <?php setlocale(LC_ALL, 'fr_FR.UTF-8');  ?>
-                        <h2 class="title">Analyse de l'arrêt {{ $bloc->reference }}</h2>
+
+                        <!-- overwrite analyse title if any -->
+                        @if(!empty($analyse->title))
+                            <h2 class="title">{{ $analyse->title }}</h2>
+                        @else
+                            <h2 class="title">Analyse de l'arrêt {{ $bloc->reference }}</h2>
+                        @endif
+                        <!-- overwrite analyse title if any -->
+
                     </div><!--END POST-TITLE-->
                     <div class="post-entry">
                         <h4>{{ $analyse->authors }}</h4>
