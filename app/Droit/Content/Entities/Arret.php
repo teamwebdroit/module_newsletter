@@ -7,7 +7,7 @@ class Arret extends BaseModel {
 
     use SoftDeletingTrait;
 
-	protected $fillable = ['pid','user_id','reference','pub_date','abstract','pub_text','file','categories'];
+	protected $fillable = ['pid','user_id','reference','pub_date','abstract','pub_text','file','categories','dumois'];
     protected $dates    = ['pub_date','created_at','updated_at','deleted_at'];
 
     /*

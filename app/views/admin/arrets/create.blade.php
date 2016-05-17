@@ -36,7 +36,7 @@
                     <div class="col-sm-2">
                         <div class="checkbox">
                             <label>
-                                {{ Form::checkbox('dumois', '1') }} Arrêt du mois
+                                <input type="checkbox" value="1" name="dumois"> Arrêt du mois
                             </label>
                         </div>
                     </div>
