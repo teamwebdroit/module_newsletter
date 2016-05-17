@@ -23,7 +23,7 @@
         @if(!$auteurs->isEmpty())
             @foreach($auteurs as $auteur)
             <div class="media">
-                <div class="media-left">
+                <div class="media-left" style="width:105px;">
                     <?php $photo = (!empty($auteur->photo) ? $auteur->photo : 'avatar.png'); ?>
                     <img width="100" class="media-object" src="{{ asset('authors/'.$photo) }}" alt="{{ $auteur->name }}">
 
