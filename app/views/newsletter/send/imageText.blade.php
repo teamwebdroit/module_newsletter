@@ -16,6 +16,7 @@
                                 <img style="max-width: 560px;" alt="Droit du travail" src="{{ asset('files/'.$bloc->image) }}" />
                             </a>
                         </p>
+                        <h2 style="font-family: Sans-Serif;">{{ $bloc->titre }}</h2>
                         <div>{{ $bloc->contenu }}</div>
                     </td>
                 </tr>
