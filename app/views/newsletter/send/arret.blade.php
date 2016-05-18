@@ -46,7 +46,10 @@
             <!-- Bloc content-->
         </td>
     </tr>
-    <tr bgcolor="ffffff"><td colspan="3" height="35" class="blocBorder"></td></tr><!-- space -->
+
+    @if(!isset($bloc->analyses))
+        <tr bgcolor="ffffff"><td colspan="3" height="35" class="blocBorder"></td></tr><!-- space -->
+    @endif
 
     @if(isset($bloc->analyses))
         <tr align="center" class="resetMarge">

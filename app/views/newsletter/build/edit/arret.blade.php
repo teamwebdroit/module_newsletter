@@ -39,7 +39,11 @@
                 </div>
             </td>
         </tr>
-        <tr bgcolor="ffffff"><td colspan="3" height="35" class="blocBorder"></td></tr><!-- space -->
+
+        @if(!isset($bloc->analyses))
+            <tr bgcolor="ffffff"><td colspan="3" height="35" class=""></td></tr><!-- space -->
+        @endif
+
     </table>
     <!-- Bloc content-->
 
