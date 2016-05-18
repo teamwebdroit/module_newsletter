@@ -81,9 +81,8 @@
                     @include('newsletter.build.edit.analyse',['arret' => $arret])
                 </td>
             </tr>
-            <tr bgcolor="ffffff"><td colspan="3" height="35" class="blocBorder"></td></tr><!-- space -->
         @endif
-
+        <tr bgcolor="ffffff"><td colspan="3" height="35" class="blocBorder"></td></tr><!-- space -->
     @endforeach
 
 </table>
