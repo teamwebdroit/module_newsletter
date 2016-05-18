@@ -63,7 +63,7 @@
                     </td>
                 </tr>
                 @if(!isset($arret->arrets_analyses))
-                    <tr bgcolor="ffffff"><td colspan="3" height="35" class=""></td></tr><!-- space -->
+                    <tr bgcolor="ffffff"><td colspan="3" height="35" class="blocBorder"></td></tr><!-- space -->
                 @endif
                 <!-- Analyses if any -->
                 @if(isset($arret->arrets_analyses) && !$arret->arrets_analyses->isEmpty())
