@@ -47,7 +47,7 @@
         </td>
     </tr>
 
-    @if(!isset($bloc->analyses))
+    @if(empty($bloc->analyses))
         <tr bgcolor="ffffff"><td colspan="3" height="35" class="blocBorder"></td></tr><!-- space -->
     @endif
 

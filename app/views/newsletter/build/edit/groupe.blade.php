@@ -62,9 +62,11 @@
                         </div>
                     </td>
                 </tr>
-                @if(!isset($arret->arrets_analyses))
+
+                @if($arret->arrets_analyses->isEmpty())
                     <tr bgcolor="ffffff"><td colspan="3" height="35" class="blocBorder"></td></tr><!-- space -->
                 @endif
+
                 <!-- Analyses if any -->
                 @if(isset($arret->arrets_analyses) && !$arret->arrets_analyses->isEmpty())
                     <tr align="center" class="resetMarge">
@@ -72,8 +74,9 @@
                             @include('newsletter.build.edit.analyse',['arret' => $arret])
                         </td>
                     </tr>
+                    <tr bgcolor="ffffff"><td height="35" colspan="3" class="blocBorder"></td></tr><!-- space -->
                 @endif
-                <tr bgcolor="ffffff"><td colspan="3" height="35" class="blocBorder"></td></tr><!-- space -->
+
             </table>
 
         @endforeach
