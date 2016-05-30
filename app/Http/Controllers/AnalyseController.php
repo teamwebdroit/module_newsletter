@@ -1,5 +1,12 @@
 <?php
 
+
+
+namespace App\Http\Controllers;
+
+use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redirect;
 use Droit\Content\Repo\AnalyseInterface;
 use Droit\Content\Repo\ArretInterface;
 use Droit\Categorie\Repo\CategorieInterface;

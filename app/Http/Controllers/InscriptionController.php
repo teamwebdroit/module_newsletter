@@ -1,5 +1,10 @@
 <?php
 
+
+
+namespace App\Http\Controllers;
+
+use Illuminate\Support\Facades\Input;
 use Laracasts\Commander\CommanderTrait;
 use Droit\Newsletter\Repo\NewsletterUserInterface;
 use Droit\Command\NewsletterSubscribeCommand;

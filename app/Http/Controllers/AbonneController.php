@@ -1,9 +1,16 @@
 <?php
 
+
+
+
+namespace App\Http\Controllers;
+
+use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redirect;
 use Laracasts\Commander\CommanderTrait;
 use Droit\Newsletter\Repo\NewsletterUserInterface;
 use Droit\Newsletter\Repo\NewsletterInterface;
-
 use Droit\Command\AdminSubscribeCommandHandler;
 use Droit\Command\UnsubscribeCommand;
 

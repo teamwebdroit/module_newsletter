@@ -6,6 +6,11 @@
  * Campagne statistiques
  */
 
+
+
+namespace App\Http\Controllers;
+
+use Illuminate\Support\Facades\View;
 use Droit\Newsletter\Worker\MailjetInterface;
 use Droit\Newsletter\Worker\CampagneInterface;
 use Droit\Newsletter\Worker\StatsWorker;

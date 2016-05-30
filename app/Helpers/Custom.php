@@ -1,7 +1,11 @@
 <?php
 
-use Carbon\Carbon;
 
+
+
+namespace App\Helpers;
+
+use Carbon\Carbon;
 use Droit\User\Entities\Adresse_types as Adresse_types;
 use Droit\User\Entities\Civilites as Civilites;
 use Droit\User\Entities\Cantons as Cantons;

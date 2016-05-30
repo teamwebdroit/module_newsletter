@@ -1,5 +1,13 @@
 <?php
 
+
+
+
+namespace App\Http\Controllers;
+
+use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redirect;
 use Laracasts\Commander\CommanderTrait;
 use Droit\Newsletter\Worker\CampagneInterface;
 use Droit\Newsletter\Repo\NewsletterContentInterface;
@@ -7,7 +15,6 @@ use Droit\Newsletter\Repo\NewsletterCampagneInterface;
 use Droit\Newsletter\Repo\NewsletterTypesInterface;
 use Droit\Content\Repo\ContentInterface;
 use Droit\Content\Repo\GroupeInterface;
-
 use Droit\Command\CreateCampagneCommand;
 
 class CampagneController extends Controller

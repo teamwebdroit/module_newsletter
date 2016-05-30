@@ -1,5 +1,11 @@
 <?php
 
+
+
+namespace App\Http\Controllers;
+
+use Illuminate\Support\Facades\View;
+use App\Http\Requests\Request;
 use Droit\Service\Worker\SearchInterface;
 
 class SearchController extends Controller

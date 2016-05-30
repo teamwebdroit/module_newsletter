@@ -1,5 +1,11 @@
 <?php
 
+
+
+namespace App\Http\Controllers;
+
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redirect;
 use Droit\Newsletter\Repo\NewsletterInterface;
 use Droit\Service\Worker\UploadInterface;
 use Droit\Newsletter\Worker\MailjetInterface;

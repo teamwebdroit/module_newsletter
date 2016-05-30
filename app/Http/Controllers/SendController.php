@@ -5,10 +5,15 @@
  * Send campagne, Send test campagne
  */
 
+
+
+
+namespace App\Http\Controllers;
+
+use Illuminate\Support\Facades\Input;
 use Laracasts\Commander\CommanderTrait;
 use Droit\Newsletter\Worker\MailjetInterface;
 use Droit\Newsletter\Worker\CampagneInterface;
-
 use Droit\Command\SendCampagneCommand;
 
 class SendController extends \BaseController

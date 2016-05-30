@@ -1,5 +1,10 @@
 <?php
 
+
+
+namespace App\Http\Controllers;
+
+use Illuminate\Support\Facades\Input;
 use Droit\Author\Repo\AuthorInterface;
 use Droit\Service\Worker\UploadInterface;
 

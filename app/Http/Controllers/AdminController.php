@@ -1,5 +1,10 @@
 <?php
 
+
+
+namespace App\Http\Controllers;
+
+use Illuminate\Support\Facades\View;
 use Droit\Content\Repo\ArretInterface;
 use Droit\Categorie\Repo\CategorieInterface;
 use Droit\Newsletter\Repo\NewsletterUserInterface;
