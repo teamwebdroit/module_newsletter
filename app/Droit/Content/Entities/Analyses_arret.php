@@ -2,10 +2,11 @@
 
 use Droit\Common\BaseModel as BaseModel;
 
-class Analyses_arret extends BaseModel {
+class Analyses_arret extends BaseModel
+{
 
-	protected $guarded   = array('id');
-	public static $rules = array();
-	public $timestamps   = false;
-	protected $table     = 'analyses_arret';
+    protected $guarded   = array('id');
+    public static $rules = array();
+    public $timestamps   = false;
+    protected $table     = 'analyses_arret';
 }

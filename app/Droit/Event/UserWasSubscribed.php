@@ -2,7 +2,8 @@
 
 use Droit\Newsletter\Entities\Newsletter_users;
 
-class UserWasSubscribed {
+class UserWasSubscribed
+{
 
     public $subscribe;
 
@@ -10,5 +11,4 @@ class UserWasSubscribed {
     {
         $this->subscribe = $subscribe;
     }
-
 }

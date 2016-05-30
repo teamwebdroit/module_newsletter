@@ -4,12 +4,13 @@ use Laracasts\Commander\CommandHandler;
 use Droit\Newsletter\Worker\MailjetInterface;
 use Droit\Newsletter\Worker\CampagneInterface;
 
-class SendCampagneCommandHandler implements CommandHandler {
+class SendCampagneCommandHandler implements CommandHandler
+{
 
     protected $worker;
     protected $campagne;
 
-    public function __construct( MailjetInterface $worker, CampagneInterface $campagne)
+    public function __construct(MailjetInterface $worker, CampagneInterface $campagne)
     {
         $this->worker   = $worker;
         $this->campagne = $campagne;
@@ -29,11 +30,10 @@ class SendCampagneCommandHandler implements CommandHandler {
         //set or update html
         $html = $this->campagne->html($campagne->id);
 
-        try
-        {
+        try {
             // Sync html content to api service and send!
-            $this->worker->setHtml($html,$campagne->api_campagne_id);
-            $this->worker->sendCampagne($campagne->api_campagne_id,$campagne->id);
+            $this->worker->setHtml($html, $campagne->api_campagne_id);
+            $this->worker->sendCampagne($campagne->api_campagne_id, $campagne->id);
 
             // Update campagne status
             $campagne->status     = 'envoyé';
@@ -43,11 +43,8 @@ class SendCampagneCommandHandler implements CommandHandler {
 
             return 'Campagne envoyé!';
 
-        }
-        catch (Exception $e)
-        {
-            throw new \Droit\Exceptions\CampagneSendException('Problème avec l\'envoi', $e->getError() );
+        } catch (Exception $e) {
+            throw new \Droit\Exceptions\CampagneSendException('Problème avec l\'envoi', $e->getError());
         }
     }
-
 }

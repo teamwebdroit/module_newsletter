@@ -5,19 +5,15 @@ Event::listen('Droit.*', 'Droit\Listener\EmailNotifier');
 /**
  * LOG
  */
-Event::listen('illuminate.query', function($query, $bindings, $time, $name)
-{
+Event::listen('illuminate.query', function ($query, $bindings, $time, $name) {
+
     $data = compact('bindings', 'time', 'name');
 
     // Format binding data for sql insertion
-    foreach ($bindings as $i => $binding)
-    {
-        if ($binding instanceof \DateTime)
-        {
+    foreach ($bindings as $i => $binding) {
+        if ($binding instanceof \DateTime) {
             $bindings[$i] = $binding->format('\'Y-m-d H:i:s\'');
-        }
-        else if (is_string($binding))
-        {
+        } else if (is_string($binding)) {
             $bindings[$i] = "'$binding'";
         }
     }

@@ -6,7 +6,8 @@ use Droit\Newsletter\Worker\MailjetInterface;
 
 use Droit\Form\UnsubscribeValidation;
 
-class UnsubscribeCommandHandler implements CommandHandler {
+class UnsubscribeCommandHandler implements CommandHandler
+{
 
     protected $abo;
     protected $worker;
@@ -28,26 +29,22 @@ class UnsubscribeCommandHandler implements CommandHandler {
     public function handle($command)
     {
         // Validate the email
-        $this->validator->validate( array('email' => $command->email) );
+        $this->validator->validate(array('email' => $command->email));
 
         // find the abo
-        $abonne = $this->abo->findByEmail( $command->email );
+        $abonne = $this->abo->findByEmail($command->email);
 
         // Sync the abos to newsletter we have
         $abonne->newsletter()->sync($command->newsletter_id);
 
-        try
-        {
+        try {
             // remove contact from list mailjet
             $this->worker->removeContact($abonne->email);
             // Delete the abonné from DB
             return $this->abo->delete($abonne->email);
-        }
-        catch(\Droit\Exceptions\SubscribeUserException $e)
-        {
-            throw new \Droit\Exceptions\SubscribeUserException('Erreur synchronisation email vers mailjet', $e->getError() );
+        } catch (\Droit\Exceptions\SubscribeUserException $e) {
+            throw new \Droit\Exceptions\SubscribeUserException('Erreur synchronisation email vers mailjet', $e->getError());
         }
 
     }
-
 }

@@ -1,6 +1,7 @@
 <?php namespace Droit\Categorie\Repo;
 
-interface CategorieInterface {
+interface CategorieInterface
+{
 
     public function getAll($pid);
     public function getAllMain($pid);
@@ -10,5 +11,4 @@ interface CategorieInterface {
     public function create(array $data);
     public function update(array $data);
     public function delete($id);
-
 }

@@ -1,13 +1,14 @@
 <?php namespace Droit\Content\Entities;
 
 use Droit\Common\BaseModel as BaseModel;
-use Illuminate\Database\Eloquent\SoftDeletingTrait;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Arret extends BaseModel {
+class Arret extends BaseModel
+{
 
-    use SoftDeletingTrait;
+    use SoftDeletes;
 
-	protected $fillable = ['pid','user_id','reference','pub_date','abstract','pub_text','file','categories','dumois'];
+    protected $fillable = ['pid','user_id','reference','pub_date','abstract','pub_text','file','categories','dumois'];
     protected $dates    = ['pub_date','created_at','updated_at','deleted_at'];
 
     /*
@@ -39,5 +40,4 @@ class Arret extends BaseModel {
     {
         return $this->belongsToMany('\Droit\Content\Entities\Analyse', 'analyses_arret', 'arret_id', 'analyse_id')->withPivot('sorting')->orderBy('sorting', 'asc');
     }
-
 }

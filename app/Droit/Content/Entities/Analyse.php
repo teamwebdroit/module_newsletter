@@ -2,9 +2,10 @@
 
 use Droit\Common\BaseModel as BaseModel;
 
-class Analyse extends BaseModel {
+class Analyse extends BaseModel
+{
 
-	protected $guarded   = array();
+    protected $guarded   = array();
 
     /*
      * Validation rules
@@ -33,8 +34,8 @@ class Analyse extends BaseModel {
         return $this->belongsToMany('\Droit\Categorie\Entities\Categories', 'analyse_categories', 'analyse_id', 'categories_id')->withPivot('sorting')->orderBy('sorting', 'asc');
     }
     
-	public function analyses_arrets()
-    {     
+    public function analyses_arrets()
+    {
         return $this->belongsToMany('Droit\Content\Entities\Arret', 'analyses_arret', 'analyse_id', 'arret_id')->withPivot('sorting')->orderBy('sorting', 'asc');
     }
 
@@ -42,5 +43,4 @@ class Analyse extends BaseModel {
     {
         return $this->belongsToMany('Droit\Author\Entities\Author', 'analyse_authors', 'analyse_id', 'author_id')->withPivot('sorting')->orderBy('last_name', 'asc');
     }
-
 }

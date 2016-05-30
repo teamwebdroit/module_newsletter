@@ -1,14 +1,14 @@
 <?php namespace Droit\Newsletter\Repo;
 
-interface NewsletterCampagneInterface {
+interface NewsletterCampagneInterface
+{
 
-	public function getAll();
+    public function getAll();
     public function getAllSent();
     public function getLastCampagne();
-	public function find($data);
-	public function create(array $data);
-	public function update(array $data);
+    public function find($data);
+    public function create(array $data);
+    public function update(array $data);
     public function updateStatus($data);
-	public function delete($id);
-
+    public function delete($id);
 }

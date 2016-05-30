@@ -1,6 +1,7 @@
 <?php namespace Droit\Command;
 
-class UpdateSubscriberCommand {
+class UpdateSubscriberCommand
+{
 
     /**
      * @var string
@@ -34,5 +35,4 @@ class UpdateSubscriberCommand {
         $this->newsletter_id = $newsletter_id;
         $this->activation    = $activation;
     }
-
 }

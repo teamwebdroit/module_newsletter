@@ -1,6 +1,7 @@
 <?php namespace Droit\Newsletter\Worker;
 
-interface MailjetInterface {
+interface MailjetInterface
+{
 
     public function setList($list);
     public function getList();
@@ -27,9 +28,9 @@ interface MailjetInterface {
      */
     public function getCampagne($CampaignID);
     public function createCampagne($campagne);
-    public function setHtml($html,$id);
-    public function sendTest($email,$html,$sujet);
-    public function sendCampagne($id,$CampaignID);
+    public function setHtml($html, $id);
+    public function sendTest($email, $html, $sujet);
+    public function sendCampagne($id, $CampaignID);
 
     /**
      * Statistiques

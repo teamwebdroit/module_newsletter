@@ -2,7 +2,8 @@
 
 use Laracasts\Validation\FormValidator;
 
-class UnsubscribeValidation extends FormValidator {
+class UnsubscribeValidation extends FormValidator
+{
 
     /*
      * Validation rules
@@ -19,5 +20,4 @@ class UnsubscribeValidation extends FormValidator {
         'email.email'          => 'Veuillez entrer une adresse email valide',
         'email.exists'         => 'Cet email n\'existe pas dans la base de données'
     );
-
 }

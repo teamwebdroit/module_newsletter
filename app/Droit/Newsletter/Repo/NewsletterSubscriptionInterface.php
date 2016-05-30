@@ -1,9 +1,9 @@
 <?php namespace Droit\Newsletter\Repo;
 
-interface NewsletterSubscriptionInterface {
+interface NewsletterSubscriptionInterface
+{
 
-	public function getAll($newsletter_id);
-	public function find($id);
-	public function delete($id);
-
+    public function getAll($newsletter_id);
+    public function find($id);
+    public function delete($id);
 }

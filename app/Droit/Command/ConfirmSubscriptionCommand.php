@@ -1,6 +1,7 @@
 <?php namespace Droit\Command;
 
-class ConfirmSubscriptionCommand {
+class ConfirmSubscriptionCommand
+{
 
     /**
      * @var string
@@ -14,5 +15,4 @@ class ConfirmSubscriptionCommand {
     {
         $this->token = $token;
     }
-
 }

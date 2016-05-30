@@ -8,7 +8,8 @@ use Droit\Content\Repo\GroupeInterface;
 use \InlineStyle\InlineStyle;
 use Illuminate\Support\Collection;
 
-class CampagneWorker implements CampagneInterface{
+class CampagneWorker implements CampagneInterface
+{
 
     protected $content;
     protected $campagne;
@@ -17,44 +18,41 @@ class CampagneWorker implements CampagneInterface{
     protected $worker;
     protected $groupe;
 
-	public function __construct(NewsletterContentInterface $content,NewsletterCampagneInterface $campagne, ArretInterface $arret, CategorieInterface $categorie, GroupeInterface $groupe)
-	{
+    public function __construct(NewsletterContentInterface $content, NewsletterCampagneInterface $campagne, ArretInterface $arret, CategorieInterface $categorie, GroupeInterface $groupe)
+    {
         $this->content   = $content;
         $this->campagne  = $campagne;
         $this->arret     = $arret;
         $this->categorie = $categorie;
         $this->groupe    = $groupe;
         $this->worker    = new \Droit\Content\Worker\ArretWorker();
-	}
+    }
 
-    public function getSentCampagneArrets(){
+    public function getSentCampagneArrets()
+    {
 
         $campagnes = $this->campagne->getAllSent();
 
-        if(!$campagnes->isEmpty())
-        {
-            foreach($campagnes as $campagne){
+        if (!$campagnes->isEmpty()) {
+            foreach ($campagnes as $campagne) {
                 $sent[] = $campagne->id;
             }
 
             $all_arrets = [];
 
-            foreach($sent as $send)
-            {
+            foreach ($sent as $send) {
                 $content = $this->content->getArretsByCampagne($send);
 
-                $arrets  = $content->map(function($item)
-                {
-                    if ($item->arret_id > 0)
-                    {
+                $arrets  = $content->map(function ($item) {
+                
+                    if ($item->arret_id > 0) {
                         return $item->arret_id;
-                    }
-                    elseif($item->groupe_id > 0){
+                    } elseif ($item->groupe_id > 0) {
 
                         $groupe = $this->groupe->find($item->groupe_id);
 
-                        if(isset($groupe->arrets_groupes)){
-                            foreach($groupe->arrets_groupes as $arretId){
+                        if (isset($groupe->arrets_groupes)) {
+                            foreach ($groupe->arrets_groupes as $arretId) {
                                 $arrets[] = $arretId->id;
                             }
                         }
@@ -72,50 +70,51 @@ class CampagneWorker implements CampagneInterface{
 
     }
 
-    public function getCampagne($id){
+    public function getCampagne($id)
+    {
 
         return $this->campagne->find($id);
     }
 
-    public function getCategoriesArrets(){
-        return $this->categorie->getAll(195)->lists('title','id');
+    public function getCategoriesArrets()
+    {
+        return $this->categorie->getAll(195)->lists('title', 'id');
     }
 
-    public function getCategoriesImagesArrets(){
-        return $this->categorie->getAll(195)->lists('image','id');
+    public function getCategoriesImagesArrets()
+    {
+        return $this->categorie->getAll(195)->lists('image', 'id');
     }
 
-	public function findCampagneById($id){
+    public function findCampagneById($id)
+    {
 
         $content = $this->content->getByCampagne($id);
 
-        if(!$content->isEmpty()){
+        if (!$content->isEmpty()) {
 
-            $campagne = $content->map(function($item)
-            {
-                if ($item->arret_id > 0)
-                {
+            $campagne = $content->map(function ($item) {
+            
+                if ($item->arret_id > 0) {
                     $arret = $this->arret->find($item->arret_id);
 
-                    if($arret->dumois)
-                    {
+                    if ($arret->dumois) {
                         $analyses = $this->worker->getAnalyseForArret($arret);
-                        $arret->setAttribute('analyses',$analyses);
+                        $arret->setAttribute('analyses', $analyses);
                     }
 
-                    $arret->setAttribute('type',$item->type);
-                    $arret->setAttribute('rangItem',$item->rang);
-                    $arret->setAttribute('idItem',$item->id);
+                    $arret->setAttribute('type', $item->type);
+                    $arret->setAttribute('rangItem', $item->rang);
+                    $arret->setAttribute('idItem', $item->id);
 
                     return $arret;
-                }
-                elseif($item->groupe_id > 0){
+                } elseif ($item->groupe_id > 0) {
 
                     $groupe       = $this->groupe->find($item->groupe_id);
                     $group_arrets = $groupe->arrets_groupes;
 
-                    if(isset($group_arrets)){
-                        foreach($group_arrets as $arretId){
+                    if (isset($group_arrets)) {
+                        foreach ($group_arrets as $arretId) {
                             $arrets[] =  $this->arret->find($arretId->id);
                         }
                     }
@@ -126,18 +125,16 @@ class CampagneWorker implements CampagneInterface{
                     $image = $this->categorie->find($categorie);
                     $image = $image->image;
 
-                    $item->setAttribute('arrets',$arrets);
-                    $item->setAttribute('categorie',$categorie);
-                    $item->setAttribute('image',$image);
-                    $item->setAttribute('rangItem',$item->rang);
-                    $item->setAttribute('idItem',$item->id);
+                    $item->setAttribute('arrets', $arrets);
+                    $item->setAttribute('categorie', $categorie);
+                    $item->setAttribute('image', $image);
+                    $item->setAttribute('rangItem', $item->rang);
+                    $item->setAttribute('idItem', $item->id);
 
                     return $item;
-                }
-                else
-                {
-                    $item->setAttribute('rangItem',$item->rang);
-                    $item->setAttribute('idItem',$item->id);
+                } else {
+                    $item->setAttribute('rangItem', $item->rang);
+                    $item->setAttribute('idItem', $item->id);
                     return $item;
                 }
             });
@@ -146,13 +143,13 @@ class CampagneWorker implements CampagneInterface{
         }
 
         return [];
-	}
+    }
 
     public function html($id)
     {
         libxml_use_internal_errors(true);
 
-        $htmldoc = new InlineStyle(file_get_contents( url('campagne/'.$id)));
+        $htmldoc = new InlineStyle(file_get_contents(url('campagne/'.$id)));
         $htmldoc->applyStylesheet($htmldoc->extractStylesheets());
 
         $html = $htmldoc->getHTML();

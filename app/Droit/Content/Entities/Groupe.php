@@ -2,14 +2,15 @@
 
 use Droit\Common\BaseModel as BaseModel;
 
-class Groupe extends BaseModel {
+class Groupe extends BaseModel
+{
 
     /**
      * Set timestamps off
      */
     public $timestamps = false;
 
-	protected $fillable = ['categorie_id'];
+    protected $fillable = ['categorie_id'];
 
     /*
      * Validation rules
@@ -25,5 +26,4 @@ class Groupe extends BaseModel {
     {
         return $this->belongsToMany('Droit\Content\Entities\Arret', 'arrets_groupes', 'groupe_id', 'arret_id')->withPivot('sorting')->orderBy('sorting', 'asc');
     }
-
 }

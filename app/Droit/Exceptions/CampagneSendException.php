@@ -1,6 +1,7 @@
 <?php namespace Droit\Exceptions;
 
-class CampagneSendException extends \Exception {
+class CampagneSendException extends \Exception
+{
 
     /**
      * @var mixed
@@ -27,5 +28,4 @@ class CampagneSendException extends \Exception {
     {
         return $this->errors;
     }
-
 }

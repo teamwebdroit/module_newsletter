@@ -1,6 +1,7 @@
 <?php namespace Droit\Exceptions;
 
-class SubscribeUserException extends \Exception {
+class SubscribeUserException extends \Exception
+{
 
     /**
      * @var mixed
@@ -27,5 +28,4 @@ class SubscribeUserException extends \Exception {
     {
         return $this->errors;
     }
-
 }

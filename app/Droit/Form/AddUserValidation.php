@@ -2,7 +2,8 @@
 
 use Laracasts\Validation\FormValidator;
 
-class AddUserValidation extends FormValidator {
+class AddUserValidation extends FormValidator
+{
 
     /*
      * Validation rules
@@ -19,5 +20,4 @@ class AddUserValidation extends FormValidator {
         'email.email'       => 'Veuillez entrer une adresse email valide',
         'email.unique'      => 'Cet email existe déjà'
     );
-
 }

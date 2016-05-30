@@ -2,7 +2,8 @@
 
 use Laracasts\Validation\FormValidator;
 
-class InscriptionValidation extends FormValidator {
+class InscriptionValidation extends FormValidator
+{
 
     /*
      * Validation rules
@@ -20,5 +21,4 @@ class InscriptionValidation extends FormValidator {
         'email.unique'         => 'Cet email existe déjà',
         'email.emailconfirmed' => 'Cet email est en attente de confirmation'
     );
-
 }

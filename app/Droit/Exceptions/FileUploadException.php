@@ -1,6 +1,7 @@
 <?php namespace Droit\Exceptions;
 
-class FileUploadException extends \Exception {
+class FileUploadException extends \Exception
+{
 
     /**
      * @var mixed
@@ -27,5 +28,4 @@ class FileUploadException extends \Exception {
     {
         return $this->errors;
     }
-
 }

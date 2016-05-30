@@ -1,6 +1,7 @@
 <?php namespace Droit\Command;
 
-class UnsubscribeCommand {
+class UnsubscribeCommand
+{
 
     /**
      * @var string
@@ -21,5 +22,4 @@ class UnsubscribeCommand {
         $this->email = $email;
         $this->newsletter_id = $newsletter_id;
     }
-
 }

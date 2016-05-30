@@ -2,7 +2,8 @@
 
 use Laracasts\Validation\FormValidator;
 
-class MessageValidation extends FormValidator {
+class MessageValidation extends FormValidator
+{
 
     /*
      * Validation rules
@@ -22,5 +23,4 @@ class MessageValidation extends FormValidator {
         'nom.required'     => 'Le nom est requis',
         'remarque.required'=> 'Le message est requis',
     );
-
 }
