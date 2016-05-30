@@ -28,7 +28,7 @@ class SearchController extends Controller
             $arrets  = $this->search->find($search);
         }
 
-        return View::make('admin.search.index')->with(array('arrets' => $arrets , 'search' => $search ));
+        return view('admin.search.index')->with(array('arrets' => $arrets , 'search' => $search ));
                 
     }
 }

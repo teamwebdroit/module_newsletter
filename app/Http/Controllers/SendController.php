@@ -33,7 +33,7 @@ class SendController extends \BaseController
     {
         $message  = $this->execute('Droit\Command\SendCampagneCommand', array('id' => Input::get('id')));
 
-        return Redirect::to('admin/campagne')->with(array('status' => 'success' , 'message' => $message ));
+        return redirect('admin/campagne')->with(array('status' => 'success' , 'message' => $message ));
     }
 
     public function test()
@@ -57,6 +57,6 @@ class SendController extends \BaseController
             exit;
         }
 
-        return Redirect::to('admin/campagne/'.$id)->with(array('status' => 'success' , 'message' => 'Email de test envoyé!' ));
+        return redirect('admin/campagne/'.$id)->with(array('status' => 'success' , 'message' => 'Email de test envoyé!' ));
     }
 }

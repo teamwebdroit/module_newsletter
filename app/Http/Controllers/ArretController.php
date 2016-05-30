@@ -37,7 +37,7 @@ class ArretController extends \BaseController
         $categories = $this->categorie->getAll(195);
         setlocale(LC_ALL, 'fr_FR');
 
-        return View::make('admin.arrets.index')->with(array( 'arrets' => $arrets , 'categories' => $categories ));
+        return view('admin.arrets.index')->with(array( 'arrets' => $arrets , 'categories' => $categories ));
     }
 
     /**
@@ -51,7 +51,7 @@ class ArretController extends \BaseController
         $arret      = $this->arret->find($id);
         $categories = $this->categorie->getAll(195);
 
-        return View::make('admin.arrets.show')->with(array( 'arret' => $arret, 'categories' => $categories ));
+        return view('admin.arrets.show')->with(array( 'arret' => $arret, 'categories' => $categories ));
     }
 
     /**
@@ -63,7 +63,7 @@ class ArretController extends \BaseController
     {
         $categories = $this->categorie->getAll(195);
 
-        return View::make('admin.arrets.create')->with(array( 'categories' => $categories ));
+        return view('admin.arrets.create')->with(array( 'categories' => $categories ));
     }
 
     /**
@@ -109,7 +109,7 @@ class ArretController extends \BaseController
         // Insert related categories
         $arret->arrets_categories()->sync($categories);
 
-        return Redirect::to('admin/arret/'.$arret->id)->with(array('status' => 'success' , 'message' => 'Arrêt crée'));
+        return redirect('admin/arret/'.$arret->id)->with(array('status' => 'success' , 'message' => 'Arrêt crée'));
 
     }
 
@@ -155,7 +155,7 @@ class ArretController extends \BaseController
         // Insert related categories
         $arret->arrets_categories()->sync($categories);
 
-        return Redirect::to('admin/arret/'.$arret->id)->with(array('status' => 'success' , 'message' => 'Arrêt mis à jour'));
+        return redirect('admin/arret/'.$arret->id)->with(array('status' => 'success' , 'message' => 'Arrêt mis à jour'));
 
     }
 

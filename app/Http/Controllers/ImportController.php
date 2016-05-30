@@ -30,7 +30,7 @@ class ImportController extends \BaseController
     {
         $newsletters = $this->newsletter->getAll();
 
-        return View::make('newsletter.import')->with(['newsletters' => $newsletters]);
+        return view('newsletter.import')->with(['newsletters' => $newsletters]);
     }
 
     public function store()

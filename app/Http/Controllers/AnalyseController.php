@@ -44,7 +44,7 @@ class AnalyseController extends \BaseController
         $analyses   = $this->analyse->getAll();
         $categories = $this->categorie->getAll(195);
 
-        return View::make('admin.analyses.index')->with(array( 'analyses' => $analyses , 'categories' => $categories ));
+        return view('admin.analyses.index')->with(array( 'analyses' => $analyses , 'categories' => $categories ));
     }
 
     /**
@@ -60,7 +60,7 @@ class AnalyseController extends \BaseController
         $categories = $this->categorie->getAll(195);
         $auteurs    = $this->author->getAll();
 
-        return View::make('admin.analyses.show')->with(array( 'analyse' => $analyse, 'arrets' => $arrets, 'categories' => $categories, 'auteurs' => $auteurs ));
+        return view('admin.analyses.show')->with(array( 'analyse' => $analyse, 'arrets' => $arrets, 'categories' => $categories, 'auteurs' => $auteurs ));
     }
 
     /**
@@ -74,7 +74,7 @@ class AnalyseController extends \BaseController
         $categories = $this->categorie->getAll(195);
         $auteurs    = $this->author->getAll();
 
-        return View::make('admin.analyses.create')->with(array( 'arrets' => $arrets, 'categories' => $categories, 'auteurs' => $auteurs ));
+        return view('admin.analyses.create')->with(array( 'arrets' => $arrets, 'categories' => $categories, 'auteurs' => $auteurs ));
     }
 
     /**
@@ -130,7 +130,7 @@ class AnalyseController extends \BaseController
         $analyse->analyses_categories()->sync($categories);
         $analyse->analyses_arrets()->sync($arrets);
 
-        return Redirect::to('admin/analyse/'.$analyse->id)->with(array('status' => 'success' , 'message' => 'Analyse crée'));
+        return redirect('admin/analyse/'.$analyse->id)->with(array('status' => 'success' , 'message' => 'Analyse crée'));
 
     }
 
@@ -186,7 +186,7 @@ class AnalyseController extends \BaseController
         $analyse->analyses_categories()->sync($categories);
         $analyse->analyses_arrets()->sync($arrets);
 
-        return Redirect::to('admin/analyse/'.$analyse->id)->with(array('status' => 'success' , 'message' => 'Analyse mise à jour'));
+        return redirect('admin/analyse/'.$analyse->id)->with(array('status' => 'success' , 'message' => 'Analyse mise à jour'));
 
     }
 

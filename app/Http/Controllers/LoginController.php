@@ -11,7 +11,7 @@ class LoginController extends \BaseController
      */
     public function index()
     {
-        return View::make('login.index');
+        return view('login.index');
     }
 
     /**
@@ -43,7 +43,7 @@ class LoginController extends \BaseController
         }
 
         // authentication failure! lets go back to the login page
-        return Redirect::to('login')
+        return redirect('login')
             ->with(array('status' => '!' , 'message' => 'Les identifiants email / mot de passe sont incorrects'))
             ->withInput();
 
@@ -95,6 +95,6 @@ class LoginController extends \BaseController
     public function destroy()
     {
         Auth::logout();
-        return Redirect::to('/');
+        return redirect('/');
     }
 }

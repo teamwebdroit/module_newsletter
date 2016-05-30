@@ -32,7 +32,7 @@ class ContentController extends \BaseController
     {
         $content  = $this->content->getAll();
 
-        return View::make('admin.content.index')->with(array( 'content' => $content ));
+        return view('admin.content.index')->with(array( 'content' => $content ));
     }
 
     /**
@@ -43,7 +43,7 @@ class ContentController extends \BaseController
      */
     public function create()
     {
-        return View::make('admin.content.create');
+        return view('admin.content.create');
     }
 
     /**
@@ -73,7 +73,7 @@ class ContentController extends \BaseController
 
         $content = $this->content->create($data);
 
-        return Redirect::to('admin/contenu/'.$content->id)->with(array('status' => 'success' , 'message' => 'Contenu crée'));
+        return redirect('admin/contenu/'.$content->id)->with(array('status' => 'success' , 'message' => 'Contenu crée'));
     }
 
     /**
@@ -87,7 +87,7 @@ class ContentController extends \BaseController
     {
         $contenu = $this->content->find($id);
 
-        return View::make('admin.content.show')->with(array( 'contenu' => $contenu ));
+        return view('admin.content.show')->with(array( 'contenu' => $contenu ));
     }
 
     /**
@@ -132,7 +132,7 @@ class ContentController extends \BaseController
 
         $content = $this->content->update($data);
 
-        return Redirect::to('admin/contenu/'.$content->id)->with(array('status' => 'success' , 'message' => 'Contenu mis à jour'));
+        return redirect('admin/contenu/'.$content->id)->with(array('status' => 'success' , 'message' => 'Contenu mis à jour'));
     }
 
     /**

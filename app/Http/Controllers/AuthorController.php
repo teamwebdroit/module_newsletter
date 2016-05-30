@@ -29,7 +29,7 @@ class AuthorController extends \BaseController
     {
         $authors = $this->author->getAll();
 
-        return View::make('admin.authors.index')->with(array('authors' => $authors ));
+        return view('admin.authors.index')->with(array('authors' => $authors ));
     }
 
     /**
@@ -39,7 +39,7 @@ class AuthorController extends \BaseController
      */
     public function create()
     {
-        return View::make('admin.authors.create');
+        return view('admin.authors.create');
     }
 
     /**
@@ -59,7 +59,7 @@ class AuthorController extends \BaseController
 
         $author = $this->author->create($all);
 
-        return Redirect::to('admin/author/'.$author->id);
+        return redirect('admin/author/'.$author->id);
     }
 
     /**
@@ -72,7 +72,7 @@ class AuthorController extends \BaseController
     {
         $author = $this->author->find($id);
 
-        return View::make('admin.authors.show')->with(array( 'author' => $author ));
+        return view('admin.authors.show')->with(array( 'author' => $author ));
     }
 
     /**
@@ -93,7 +93,7 @@ class AuthorController extends \BaseController
 
         $author = $this->author->update($all);
 
-        return Redirect::to('admin/author/'.$author->id);
+        return redirect('admin/author/'.$author->id);
     }
 
     /**
@@ -106,6 +106,6 @@ class AuthorController extends \BaseController
     {
         $this->author->delete($id);
 
-        return Redirect::to('admin/author')->with(array('status' => 'success', 'message' => 'Auteur supprimé' ));
+        return redirect('admin/author')->with(array('status' => 'success', 'message' => 'Auteur supprimé' ));
     }
 }

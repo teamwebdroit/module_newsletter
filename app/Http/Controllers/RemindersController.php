@@ -15,7 +15,7 @@ class RemindersController extends Controller
      */
     public function getRemind()
     {
-        return View::make('login.remind');
+        return view('login.remind');
     }
 
     /**
@@ -46,7 +46,7 @@ class RemindersController extends Controller
             App::abort(404);
         }
 
-        return View::make('login.reset')->with('token', $token);
+        return view('login.reset')->with('token', $token);
     }
 
     /**
@@ -77,7 +77,7 @@ class RemindersController extends Controller
                 return Redirect::back()->with('error', Lang::get($response));
 
             case Password::PASSWORD_RESET:
-                return Redirect::to('/');
+                return redirect('/');
         }
     }
 }

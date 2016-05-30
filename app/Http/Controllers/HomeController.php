@@ -67,7 +67,7 @@ class HomeController extends Controller
         $homepage = $this->content->findyByPosition(array('home-bloc','home-colonne'));
         $homepage = $this->custom->prepareBlocsHomepage($homepage);
 
-        return View::make('index')->with(array('homepage' => $homepage));
+        return view('index')->with(array('homepage' => $homepage));
     }
 
     public function colloque()
@@ -75,19 +75,19 @@ class HomeController extends Controller
         $colloques = $this->colloque->getColloques();
         $archives  = $this->colloque->getArchives();
 
-        return View::make('colloque')->with(array('colloques' => $colloques, 'archives' => $archives ));
+        return view('colloque')->with(array('colloques' => $colloques, 'archives' => $archives ));
     }
 
     public function auteur()
     {
         $auteurs = $this->author->getAll();
 
-        return View::make('auteur')->with(array('auteurs' => $auteurs));
+        return view('auteur')->with(array('auteurs' => $auteurs));
     }
 
     public function contact()
     {
-        return View::make('contact');
+        return view('contact');
     }
 
     public function sendMessage()
@@ -95,7 +95,7 @@ class HomeController extends Controller
 
         $this->execute('Droit\Command\MessageSendCommand');
 
-        return Redirect::to('/')->with(array('status' => 'success', 'message' => '<strong>Merci pour votre message</strong><br/>Nous vous contacterons dès que possible.'));
+        return redirect('/')->with(array('status' => 'success', 'message' => '<strong>Merci pour votre message</strong><br/>Nous vous contacterons dès que possible.'));
 
     }
 
@@ -126,7 +126,7 @@ class HomeController extends Controller
             return $this->jurisprudence->preparedAnnees();
         });
 
-        return View::make('jurisprudence')->with(array('arrets' => $arrets, 'analyses' => $analyses, 'annees' => $annees ));
+        return view('jurisprudence')->with(array('arrets' => $arrets, 'analyses' => $analyses, 'annees' => $annees ));
     }
 
     /**
@@ -155,6 +155,6 @@ class HomeController extends Controller
 
         $listCampagnes  = $this->campagne->getLastCampagne();
 
-        return View::make('campagne')->with(array( 'listCampagnes' => $listCampagnes , 'campagne' => $campagne , 'newsletter' => $newsletter ));
+        return view('campagne')->with(array( 'listCampagnes' => $listCampagnes , 'campagne' => $campagne , 'newsletter' => $newsletter ));
     }
 }

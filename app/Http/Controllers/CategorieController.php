@@ -31,7 +31,7 @@ class CategorieController extends \BaseController
     {
         $categories = $this->categorie->getAll(195);
 
-        return View::make('admin.categories.index')->with(array( 'categories' => $categories));
+        return view('admin.categories.index')->with(array( 'categories' => $categories));
     }
 
     /**
@@ -42,7 +42,7 @@ class CategorieController extends \BaseController
      */
     public function create()
     {
-        return View::make('admin.categories.create');
+        return view('admin.categories.create');
     }
 
     /**
@@ -72,7 +72,7 @@ class CategorieController extends \BaseController
 
         $categorie = $this->categorie->create($data);
 
-        return Redirect::to('admin/categorie/'.$categorie->id)->with(array('status' => 'success' , 'message' => 'Catégorie crée'));
+        return redirect('admin/categorie/'.$categorie->id)->with(array('status' => 'success' , 'message' => 'Catégorie crée'));
     }
 
     /**
@@ -86,7 +86,7 @@ class CategorieController extends \BaseController
     {
         $categorie = $this->categorie->find($id);
 
-        return View::make('admin.categories.show')->with(array( 'categorie' => $categorie));
+        return view('admin.categories.show')->with(array( 'categorie' => $categorie));
     }
 
     /**
@@ -126,7 +126,7 @@ class CategorieController extends \BaseController
 
         $this->categorie->update($data);
 
-        return Redirect::to('admin/categorie/'.$id)->with(array('status' => 'success' , 'message' => 'Catégorie mise à jour'));
+        return redirect('admin/categorie/'.$id)->with(array('status' => 'success' , 'message' => 'Catégorie mise à jour'));
     }
 
     /**

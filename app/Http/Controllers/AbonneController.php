@@ -33,7 +33,7 @@ class AbonneController extends \BaseController
     {
         //$abonnes = $this->abonne->getAll();
 
-        return View::make('admin.abonnes.index');
+        return view('admin.abonnes.index');
     }
 
     /**
@@ -67,7 +67,7 @@ class AbonneController extends \BaseController
     {
         $newsletter = $this->newsletter->getAll();
 
-        return View::make('admin.abonnes.create')->with(array( 'newsletter' => $newsletter ));
+        return view('admin.abonnes.create')->with(array( 'newsletter' => $newsletter ));
     }
 
     /**
@@ -88,7 +88,7 @@ class AbonneController extends \BaseController
 
         $this->execute('Droit\Command\AdminSubscribeCommand', $command);
 
-        return Redirect::to('admin/abonne')->with(array('status' => 'success' , 'message' => 'Abonné ajouté'));
+        return redirect('admin/abonne')->with(array('status' => 'success' , 'message' => 'Abonné ajouté'));
     }
 
     /**
@@ -103,7 +103,7 @@ class AbonneController extends \BaseController
         $abonne     = $this->abonne->find($id);
         $newsletter = $this->newsletter->getAll();
 
-        return View::make('admin.abonnes.edit')->with(array( 'abonne' => $abonne , 'newsletter' => $newsletter ));
+        return view('admin.abonnes.edit')->with(array( 'abonne' => $abonne , 'newsletter' => $newsletter ));
     }
 
     /**
@@ -127,7 +127,7 @@ class AbonneController extends \BaseController
 
         $this->execute('Droit\Command\UpdateSubscriberCommand', $command);
 
-        return Redirect::to('admin/abonne/'.$id.'/edit')->with(array('status' => 'success' , 'message' => 'Abonné édité'));
+        return redirect('admin/abonne/'.$id.'/edit')->with(array('status' => 'success' , 'message' => 'Abonné édité'));
 
     }
 

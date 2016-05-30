@@ -53,7 +53,7 @@ class CampagneController extends Controller
     {
         $campagnes = $this->campagne->getAll();
 
-        return View::make('newsletter.index')->with(array('campagnes' => $campagnes));
+        return view('newsletter.index')->with(array('campagnes' => $campagnes));
     }
 
     /**
@@ -64,7 +64,7 @@ class CampagneController extends Controller
      */
     public function create()
     {
-        return View::make('newsletter.create');
+        return view('newsletter.create');
     }
 
     /**
@@ -77,7 +77,7 @@ class CampagneController extends Controller
     {
         $campagne = $this->execute('Droit\Command\CreateCampagneCommand');
 
-        return Redirect::to('admin/campagne/'.$campagne->id)->with(array('status' => 'success' , 'message' => 'Campagne crée'));
+        return redirect('admin/campagne/'.$campagne->id)->with(array('status' => 'success' , 'message' => 'Campagne crée'));
     }
 
     /**
@@ -93,7 +93,7 @@ class CampagneController extends Controller
         $infos       = $this->campagne->find($id);
         $campagne    = $this->worker->findCampagneById($id);
 
-        return View::make('newsletter.show')->with(array( 'isNewsletter' => true , 'campagne' => $campagne , 'infos' => $infos, 'blocs' => $blocs));
+        return view('newsletter.show')->with(array( 'isNewsletter' => true , 'campagne' => $campagne , 'infos' => $infos, 'blocs' => $blocs));
     }
 
     /**
@@ -107,7 +107,7 @@ class CampagneController extends Controller
     {
         $campagne = $this->campagne->find($id);
 
-        return View::make('newsletter.edit')->with(array( 'campagne' => $campagne ));
+        return view('newsletter.edit')->with(array( 'campagne' => $campagne ));
     }
 
     public function simple($id)
@@ -135,7 +135,7 @@ class CampagneController extends Controller
         $infos    = $this->campagne->find($id);
         $campagne = $this->worker->findCampagneById($id);
 
-        return View::make('newsletter.view')->with(array('content' => $campagne , 'infos' => $infos , 'unsubscribe' => $unsubscribe , 'browser' => $browser));
+        return view('newsletter.view')->with(array('content' => $campagne , 'infos' => $infos , 'unsubscribe' => $unsubscribe , 'browser' => $browser));
     }
 
     /**
@@ -155,7 +155,7 @@ class CampagneController extends Controller
 
         $campagne = $this->campagne->update($data);
 
-        return Redirect::to('admin/campagne/'.$campagne->id)->with(array('status' => 'success' , 'message' => 'Campagne éditée'));
+        return redirect('admin/campagne/'.$campagne->id)->with(array('status' => 'success' , 'message' => 'Campagne éditée'));
     }
 
     /**
@@ -182,7 +182,7 @@ class CampagneController extends Controller
     public function unsubscribe()
     {
 
-        return View::make('unsubscribe');
+        return view('unsubscribe');
     }
 
     /**
@@ -237,7 +237,7 @@ class CampagneController extends Controller
         $contents = $this->content->create($new);
 
         if ($contents) {
-            return Redirect::to('admin/campagne/'.$campagne.'#componant')->with(array('status' => 'success', 'message' => 'Bloc ajouté' ));
+            return redirect('admin/campagne/'.$campagne.'#componant')->with(array('status' => 'success', 'message' => 'Bloc ajouté' ));
         }
 
         return Redirect::back()->with(array('status' => 'error', 'message' => 'Problème avec l\'ajout' ));

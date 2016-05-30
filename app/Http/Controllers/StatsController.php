@@ -50,7 +50,7 @@ class StatsController extends \BaseController
         $allclicks[] = $this->sumStatsClicksLinks($campagneStats->CampaignID);
         $allclicks   = $this->statsworker->statsClicksLinks($allclicks);
 
-        return View::make('admin.stats.show')->with(
+        return view('admin.stats.show')->with(
             array(
                 'isChart'      => true,
                 'campagne'     => $campagne ,

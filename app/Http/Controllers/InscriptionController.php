@@ -31,7 +31,7 @@ class InscriptionController extends \BaseController
 
         $this->execute('Droit\Command\ConfirmSubscriptionCommand', array('token' => $token));
 
-        return Redirect::to('/')
+        return redirect('/')
             ->with(array('status' => 'success', 'message' => 'Vous êtes maintenant abonné à la newsletter en droit du travail'));
 
     }
@@ -46,7 +46,7 @@ class InscriptionController extends \BaseController
     {
         $this->execute('Droit\Command\NewsletterSubscribeCommand');
 
-        return Redirect::to('/')
+        return redirect('/')
             ->with(array('status' => 'success', 'message' => '<strong>Merci pour votre inscription!</strong>
                                                               <br/>Veuillez confirmer votre adresse email en cliquant le lien qui vous a été envoyé par email'));
     }
@@ -64,7 +64,7 @@ class InscriptionController extends \BaseController
 
         $this->execute('Droit\Command\NewsletterSubscribeCommand');
 
-        return Redirect::to('/')->with(array('status' => 'success', 'message' => '<strong>Lien d\'activation envoyé</strong>'));
+        return redirect('/')->with(array('status' => 'success', 'message' => '<strong>Lien d\'activation envoyé</strong>'));
     }
 
     /**
@@ -77,6 +77,6 @@ class InscriptionController extends \BaseController
     {
         $this->execute('Droit\Command\UnsubscribeCommand');
 
-        return Redirect::to('/')->with(array('status' => 'success', 'message' => '<strong>Vous avez été désinscrit</strong>'));
+        return redirect('/')->with(array('status' => 'success', 'message' => '<strong>Vous avez été désinscrit</strong>'));
     }
 }
