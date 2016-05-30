@@ -5,10 +5,10 @@
  *  Documents for event
 */
 return array(
-	'pid' => array(
-		195 => 'bail',
-		207 => 'matrimonial'
-	),
+    'pid' => array(
+        195 => 'bail',
+        207 => 'matrimonial'
+    ),
     'images' => array(
         'carte',
         'vignette',
@@ -32,4 +32,3 @@ return array(
         array('prenom', 'nom')
     )
 );
-

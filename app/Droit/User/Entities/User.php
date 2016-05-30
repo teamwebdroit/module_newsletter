@@ -7,25 +7,26 @@ use Illuminate\Auth\Reminders\RemindableInterface;
 
 use Droit\Common\BaseModel as BaseModel;
 
-class User extends BaseModel implements UserInterface, RemindableInterface {
+class User extends BaseModel implements UserInterface, RemindableInterface
+{
 
-	use UserTrait, RemindableTrait;
+    use UserTrait, RemindableTrait;
 
     protected $fillable = ['prenom','nom','email','password'];
 
-	/**
-	 * The database table used by the model.
-	 *
-	 * @var string
-	 */
-	protected $table = 'users';
+    /**
+     * The database table used by the model.
+     *
+     * @var string
+     */
+    protected $table = 'users';
 
-	/**
-	 * The attributes excluded from the model's JSON form.
-	 *
-	 * @var array
-	 */
-	protected $hidden = array('password', 'remember_token');
+    /**
+     * The attributes excluded from the model's JSON form.
+     *
+     * @var array
+     */
+    protected $hidden = array('password', 'remember_token');
 
     /*
    * Validation rules
@@ -61,5 +62,4 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
     {
         return in_array($check, array_fetch($this->roles->toArray(), 'name'));
     }
-
 }

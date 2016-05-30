@@ -1,6 +1,7 @@
 <?php namespace Droit\Presenter;
 
-class WpNavi extends \Illuminate\Pagination\Presenter {
+class WpNavi extends \Illuminate\Pagination\Presenter
+{
 
     public function getActivePageWrapper($text)
     {
@@ -16,5 +17,4 @@ class WpNavi extends \Illuminate\Pagination\Presenter {
     {
         return '<a href="'.$url.'">'.$page.'</a>';
     }
-
 }

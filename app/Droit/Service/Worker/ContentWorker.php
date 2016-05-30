@@ -5,7 +5,8 @@ use Droit\Categorie\Repo\CategorieInterface;
 use Droit\Content\Repo\ArretInterface;
 use Droit\Content\Repo\AnalyseInterface;
 
-class ContentWorker{
+class ContentWorker
+{
 
     protected $categories;
     protected $arret;
@@ -14,7 +15,7 @@ class ContentWorker{
     protected $campagne;
 
     /* Inject dependencies */
-    public function __construct( CampagneWorker $campagne, CategorieInterface $categories, ArretInterface $arret, AnalyseInterface $analyse)
+    public function __construct(CampagneWorker $campagne, CategorieInterface $categories, ArretInterface $arret, AnalyseInterface $analyse)
     {
         $this->campagne   = $campagne;
         $this->categories = $categories;
@@ -43,8 +44,7 @@ class ContentWorker{
         $arrets   = $this->arret->getAll(195);
         $prepared = $arrets->lists('pub_date');
 
-        foreach($prepared as $arret)
-        {
+        foreach ($prepared as $arret) {
             $years[] = $arret->year;
         }
 
@@ -52,7 +52,8 @@ class ContentWorker{
 
     }
 
-    public function showArrets(){
+    public function showArrets()
+    {
 
         $arrets = $this->campagne->getSentCampagneArrets();
 
@@ -63,12 +64,13 @@ class ContentWorker{
         return ($arrets ? $arrets : []);
     }
 
-    public function showAnalyses(){
+    public function showAnalyses()
+    {
 
         $arrets = $this->showArrets();
         $analyses = false;
 
-        if(!empty($arrets)){
+        if (!empty($arrets)) {
             $analyses = \DB::table('analyses_arret')->whereIn('arret_id', $arrets)->lists('analyse_id');
         }
 
@@ -85,30 +87,29 @@ class ContentWorker{
 
         $include = $this->showArrets();
 
-        $arrets  = $this->arret->getAllActives(195,$include);
+        $arrets  = $this->arret->getAllActives(195, $include);
 
-        $prepared = $arrets->filter(function($arret)
-        {
+        $prepared = $arrets->filter(function ($arret) {
+        
             // format the title with the date
             setlocale(LC_ALL, 'fr_FR.UTF-8');
 
-            $arret->setAttribute('humanTitle',$arret->reference.' du '.$arret->pub_date->formatLocalized('%d %B %Y'));
-            $arret->setAttribute('parsedText',$arret->pub_text);
+            $arret->setAttribute('humanTitle', $arret->reference.' du '.$arret->pub_date->formatLocalized('%d %B %Y'));
+            $arret->setAttribute('parsedText', $arret->pub_text);
 
             // categories for isotope
-            if(!$arret->arrets_categories->isEmpty())
-            {
-                foreach($arret->arrets_categories as $cat){ $cats[] = 'c'.$cat->id; }
+            if (!$arret->arrets_categories->isEmpty()) {
+                foreach ($arret->arrets_categories as $cat) {
+                    $cats[] = 'c'.$cat->id;
+                }
 
                 $cats[]  = 'y'.$arret->pub_date->year;
-                $arret->setAttribute('allcats',$cats);
+                $arret->setAttribute('allcats', $cats);
 
                 return $arret;
-            }
-            else
-            {
+            } else {
                 $cats[]  = 'y'.$arret->pub_date->year;
-                $arret->setAttribute('allcats',$cats);
+                $arret->setAttribute('allcats', $cats);
 
                 return $arret;
             }
@@ -132,25 +133,24 @@ class ContentWorker{
         $include  = $this->showAnalyses();
         $analyses = $this->analyse->getAll($include);
 
-        $prepared = $analyses->filter(function($analyse)
-        {
+        $prepared = $analyses->filter(function ($analyse) {
+        
             // format the title with the date
             setlocale(LC_ALL, 'fr_FR.UTF-8');
 
             // categories for isotope
-            if(!$analyse->analyses_categories->isEmpty())
-            {
-                foreach($analyse->analyses_categories as $cat){ $cats[] = 'c'.$cat->id; }
+            if (!$analyse->analyses_categories->isEmpty()) {
+                foreach ($analyse->analyses_categories as $cat) {
+                    $cats[] = 'c'.$cat->id;
+                }
 
                 $cats[]  = 'y'.$analyse->pub_date->year;
-                $analyse->setAttribute('allcats',$cats);
+                $analyse->setAttribute('allcats', $cats);
 
                 return $analyse;
-            }
-            else
-            {
+            } else {
                 $cats[]  = 'y'.$analyse->pub_date->year;
-                $analyse->setAttribute('allcats',$cats);
+                $analyse->setAttribute('allcats', $cats);
 
                 return $analyse;
             }
@@ -162,5 +162,4 @@ class ContentWorker{
 
         return $prepared;
     }
-
 }

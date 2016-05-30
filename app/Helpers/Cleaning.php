@@ -1,8 +1,10 @@
 <?php
 
-class Cleaning{
+class Cleaning
+{
 
-    public function cleanInput($input) {
+    public function cleanInput($input)
+    {
 
         $search = array(
             '@<script[^>]*?>.*?</script>@si',   // Strip out javascript
@@ -15,13 +17,13 @@ class Cleaning{
         return $output;
     }
 
-    public function sanitize($input) {
+    public function sanitize($input)
+    {
         if (is_array($input)) {
-            foreach($input as $var=>$val) {
+            foreach ($input as $var => $val) {
                 $output[$var] = sanitize($val);
             }
-        }
-        else {
+        } else {
             if (get_magic_quotes_gpc()) {
                 $input = stripslashes($input);
             }
@@ -30,5 +32,4 @@ class Cleaning{
         }
         return $output;
     }
-
 }

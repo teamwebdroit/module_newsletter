@@ -3,42 +3,45 @@
 use Droit\Content\Repo\ArretInterface;
 use Droit\Content\Entities\Arret as M;
 
-class ArretEloquent implements ArretInterface{
+class ArretEloquent implements ArretInterface
+{
 
-	protected $arret;
+    protected $arret;
 
-	/**
-	 * Construct a new SentryUser Object
-	 */
-	public function __construct(M $arret)
-	{
-		$this->arret = $arret;
-	}
+    /**
+     * Construct a new SentryUser Object
+     */
+    public function __construct(M $arret)
+    {
+        $this->arret = $arret;
+    }
 
-    public function getAll($pid){
+    public function getAll($pid)
+    {
 
         return $this->arret
-            ->with( array('arrets_categories' => function ($query)
-            {
+            ->with(array('arrets_categories' => function ($query) {
+            
                 $query->orderBy('sorting', 'ASC');
-            },'arrets_analyses' => function($query)
-            {
+            },'arrets_analyses' => function ($query) {
+            
                 $query->where('analyses.deleted', '=', 0);
             }))
             ->orderBy('reference', 'ASC')->get();
     }
 
-    public function getAllActives($pid,$include){
+    public function getAllActives($pid, $include)
+    {
 
-        $arrets = $this->arret->with( array('arrets_categories' => function ($query)
-            {
+        $arrets = $this->arret->with(array('arrets_categories' => function ($query) {
+            
                 $query->orderBy('sorting', 'ASC');
-            },'arrets_analyses' => function($query)
-            {
-                $query->where('analyses.deleted', '=', 0);
-            }));
+        },'arrets_analyses' => function ($query) {
+            
+            $query->where('analyses.deleted', '=', 0);
+        }));
 
-        if(!empty($include)){
+        if (!empty($include)) {
             $arrets->whereIn('id', $include);
         }
 
@@ -46,31 +49,32 @@ class ArretEloquent implements ArretInterface{
 
     }
 
-    public function getPaginate($pid,$nbr){
+    public function getPaginate($pid, $nbr)
+    {
 
-        return $this->arret->with( array('arrets_categories' => function ($query)
-        {
+        return $this->arret->with(array('arrets_categories' => function ($query) {
+        
             $query->orderBy('sorting', 'ASC');
-        },'arrets_analyses' => function($query)
-        {
+        },'arrets_analyses' => function ($query) {
+        
             $query->where('analyses.deleted', '=', 0);
 
         }))->orderBy('pub_date', 'DESC')->paginate($nbr);
     }
 
-    public function getLatest($include){
+    public function getLatest($include)
+    {
 
-        if(!empty($include))
-        {
+        if (!empty($include)) {
             $arrets = $this->arret
                 ->whereIn('id', $include)
-                ->with( array('arrets_analyses' => function($query)
-                    {
+                ->with(array('arrets_analyses' => function ($query) {
+                    
                         $query->where('analyses.deleted', '=', 0);
-                    }))->orderBy('id', 'ASC')->get();
+                }))->orderBy('id', 'ASC')->get();
 
-            $new = $arrets->filter(function($item)
-            {
+            $new = $arrets->filter(function ($item) {
+            
                 if (!$item->arrets_analyses->isEmpty()) {
                     return true;
                 }
@@ -82,29 +86,31 @@ class ArretEloquent implements ArretInterface{
         return false;
     }
 
-	public function find($id){
+    public function find($id)
+    {
 
-        if(is_array($id))
-        {
-            return $this->arret->whereIn('id', $id)->with(array('arrets_categories'=> function ($query)
-                {
+        if (is_array($id)) {
+            return $this->arret->whereIn('id', $id)->with(array('arrets_categories'=> function ($query) {
+                
                     $query->orderBy('sorting', 'ASC');
-                },'arrets_analyses'))->get();
+            },'arrets_analyses'))->get();
         }
 
-		return $this->arret->where('id', '=' ,$id)->with(array('arrets_categories','arrets_analyses'))->get()->first();
-	}
-
-    public function findyByImage($file){
-
-        return $this->arret->where('file','=',$file)->get();
+        return $this->arret->where('id', '=', $id)->with(array('arrets_categories','arrets_analyses'))->get()->first();
     }
 
-	public function create(array $data){
+    public function findyByImage($file)
+    {
 
-		$arret = $this->arret->create(array(
-			'pid'        => $data['pid'],
-			'user_id'    => $data['user_id'],
+        return $this->arret->where('file', '=', $file)->get();
+    }
+
+    public function create(array $data)
+    {
+
+        $arret = $this->arret->create(array(
+            'pid'        => $data['pid'],
+            'user_id'    => $data['user_id'],
             'reference'  => $data['reference'],
             'pub_date'   => $data['pub_date'],
             'abstract'   => $data['abstract'],
@@ -112,31 +118,30 @@ class ArretEloquent implements ArretInterface{
             'categories' => $data['categories'],
             'file'       => $data['file'],
             'dumois'     => isset($data['dumois']) && $data['dumois'] > 0 ? 1 : null,
-			'created_at' => date('Y-m-d G:i:s'),
-			'updated_at' => date('Y-m-d G:i:s')
-		));
+            'created_at' => date('Y-m-d G:i:s'),
+            'updated_at' => date('Y-m-d G:i:s')
+        ));
 
-		if( ! $arret )
-		{
-			return false;
-		}
+        if (! $arret) {
+            return false;
+        }
 
         // Flush cache
         \Cache::forget('arrets');
         \Cache::forget('annees');
-		
-		return $arret;
-		
-	}
-	
-	public function update(array $data){
+        
+        return $arret;
+        
+    }
+    
+    public function update(array $data)
+    {
 
         $arret = $this->arret->findOrFail($data['id']);
-		
-		if( ! $arret )
-		{
-			return false;
-		}
+        
+        if (! $arret) {
+            return false;
+        }
 
         $arret->reference  = $data['reference'];
         $arret->pub_date   = $data['pub_date'];
@@ -145,22 +150,23 @@ class ArretEloquent implements ArretInterface{
         $arret->categories = $data['categories'];
         $arret->dumois     = $data['dumois'];
 
-        if($data['file']){
+        if ($data['file']) {
             $arret->file = $data['file'];
         }
 
-		$arret->updated_at = date('Y-m-d G:i:s');
+        $arret->updated_at = date('Y-m-d G:i:s');
 
-		$arret->save();
+        $arret->save();
 
         // Flush cache
         \Cache::forget('arrets');
         \Cache::forget('annees');
-		
-		return $arret;
-	}
+        
+        return $arret;
+    }
 
-	public function delete($id){
+    public function delete($id)
+    {
 
         $arret = $this->arret->find($id);
 
@@ -168,8 +174,7 @@ class ArretEloquent implements ArretInterface{
         \Cache::forget('arrets');
         \Cache::forget('annees');
 
-		return $arret->delete();
-		
-	}
-
+        return $arret->delete();
+        
+    }
 }

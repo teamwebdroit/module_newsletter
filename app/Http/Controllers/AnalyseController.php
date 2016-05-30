@@ -6,7 +6,8 @@ use Droit\Categorie\Repo\CategorieInterface;
 use Droit\Service\Worker\UploadInterface;
 use Droit\Author\Repo\AuthorInterface;
 
-class AnalyseController extends \BaseController {
+class AnalyseController extends \BaseController
+{
 
     protected $analyse;
     protected $author;
@@ -15,7 +16,7 @@ class AnalyseController extends \BaseController {
     protected $upload;
     protected $custom;
 
-    public function __construct(AuthorInterface $author, AnalyseInterface $analyse, ArretInterface $arret, CategorieInterface $categorie , UploadInterface $upload )
+    public function __construct(AuthorInterface $author, AnalyseInterface $analyse, ArretInterface $arret, CategorieInterface $categorie, UploadInterface $upload)
     {
         $this->beforeFilter('csrf', array('on' => 'post'));
 
@@ -29,12 +30,12 @@ class AnalyseController extends \BaseController {
         View::share('pageTitle', 'Analyses');
     }
 
-	/**
-	 * Display a listing of the resource.
-	 * GET /analyse
-	 *
-	 * @return Response
-	 */
+    /**
+     * Display a listing of the resource.
+     * GET /analyse
+     *
+     * @return Response
+     */
 
     public function index()
     {
@@ -73,7 +74,7 @@ class AnalyseController extends \BaseController {
         $categories = $this->categorie->getAll(195);
         $auteurs    = $this->author->getAll();
 
-        return View::make('admin.analyses.create')->with( array( 'arrets' => $arrets, 'categories' => $categories, 'auteurs' => $auteurs ) );
+        return View::make('admin.analyses.create')->with(array( 'arrets' => $arrets, 'categories' => $categories, 'auteurs' => $auteurs ));
     }
 
     /**
@@ -86,25 +87,22 @@ class AnalyseController extends \BaseController {
         $_file = Input::file('file');
 
         // Files upload
-        if( $_file && !empty( $_file ) )
-        {
-            $file = $this->upload->upload( Input::file('file') , 'files/analyses' );
+        if ($_file && !empty($_file)) {
+            $file = $this->upload->upload(Input::file('file'), 'files/analyses');
         }
 
         $cats = Input::get('categories');
-        if(!empty($cats)){
+        if (!empty($cats)) {
             $categories = $this->custom->prepareCategories($cats);
-        }
-        else{
+        } else {
             $categories = array();
         }
 
         $arrs = Input::get('arrets');
 
-        if(!empty($arrs)){
+        if (!empty($arrs)) {
             $arrets = $this->custom->prepareCategories($arrs);
-        }
-        else{
+        } else {
             $arrets = array();
         }
 
@@ -126,13 +124,13 @@ class AnalyseController extends \BaseController {
         $data['file'] = (!empty($file) ? $file['name'] : '');
 
         // Create analyse
-        $analyse = $this->analyse->create( $data );
+        $analyse = $this->analyse->create($data);
 
         // Insert related categories
         $analyse->analyses_categories()->sync($categories);
         $analyse->analyses_arrets()->sync($arrets);
 
-        return Redirect::to('admin/analyse/'.$analyse->id)->with( array('status' => 'success' , 'message' => 'Analyse crée') );
+        return Redirect::to('admin/analyse/'.$analyse->id)->with(array('status' => 'success' , 'message' => 'Analyse crée'));
 
     }
 
@@ -146,25 +144,22 @@ class AnalyseController extends \BaseController {
         $_file = Input::file('file');
 
         // Files upload
-        if( $_file && !empty( $_file ) )
-        {
-            $file = $this->upload->upload( Input::file('file') , 'files/analyses' );
+        if ($_file && !empty($_file)) {
+            $file = $this->upload->upload(Input::file('file'), 'files/analyses');
         }
 
         $cats = Input::get('categories');
-        if(!empty($cats)){
+        if (!empty($cats)) {
             $categories = $this->custom->prepareCategories($cats);
-        }
-        else{
+        } else {
             $categories = array();
         }
 
         $arrs = Input::get('arrets');
 
-        if(!empty($arrs)){
+        if (!empty($arrs)) {
             $arrets = $this->custom->prepareCategories($arrs);
-        }
-        else{
+        } else {
             $arrets = array();
         }
 
@@ -185,13 +180,13 @@ class AnalyseController extends \BaseController {
         $data['file'] = (!empty($file) ? $file['name'] : null);
 
         // Create analyse
-        $analyse = $this->analyse->update( $data );
+        $analyse = $this->analyse->update($data);
 
         // Insert related categories
         $analyse->analyses_categories()->sync($categories);
         $analyse->analyses_arrets()->sync($arrets);
 
-        return Redirect::to('admin/analyse/'.$analyse->id)->with( array('status' => 'success' , 'message' => 'Analyse mise à jour') );
+        return Redirect::to('admin/analyse/'.$analyse->id)->with(array('status' => 'success' , 'message' => 'Analyse mise à jour'));
 
     }
 

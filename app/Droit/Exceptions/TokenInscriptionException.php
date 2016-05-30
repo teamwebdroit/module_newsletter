@@ -1,6 +1,7 @@
 <?php namespace Droit\Exceptions;
 
-class TokenInscriptionException extends \Exception {
+class TokenInscriptionException extends \Exception
+{
 
     /**
      * @var mixed
@@ -27,5 +28,4 @@ class TokenInscriptionException extends \Exception {
     {
         return $this->errors;
     }
-
 }

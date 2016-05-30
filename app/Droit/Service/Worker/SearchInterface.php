@@ -1,18 +1,18 @@
 <?php namespace Droit\Service\Worker;
+
 /**
- * Repo Interface 
+ * Repo Interface
  */
 
 /**
  * Search Interface
  * Custom search by keywords in the database for user or adresse
  */
-interface SearchInterface {
+interface SearchInterface
+{
 
-	/**
-	 * Find data by keywords
-	 */
-	public function find($data);
-	
+    /**
+     * Find data by keywords
+     */
+    public function find($data);
 }
-

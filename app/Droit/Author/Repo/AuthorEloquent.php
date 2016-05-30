@@ -3,7 +3,8 @@
 use Droit\Author\Repo\AuthorInterface;
 use Droit\Author\Entities\Author as M;
 
-class AuthorEloquent implements AuthorInterface{
+class AuthorEloquent implements AuthorInterface
+{
 
     protected $author;
 
@@ -12,17 +13,20 @@ class AuthorEloquent implements AuthorInterface{
         $this->author = $author;
     }
 
-    public function getAll(){
+    public function getAll()
+    {
 
         return $this->author->with(['analyses'])->orderBy('last_name', 'asc')->get();
     }
 
-    public function find($id){
+    public function find($id)
+    {
 
         return $this->author->with(['analyses'])->findOrFail($id);
     }
 
-    public function create(array $data){
+    public function create(array $data)
+    {
 
         $author = $this->author->create(array(
             'first_name' => $data['first_name'],
@@ -33,8 +37,7 @@ class AuthorEloquent implements AuthorInterface{
             'rang'       => (isset($data['rang']) ? $data['rang'] : 0),
         ));
 
-        if( ! $author )
-        {
+        if (! $author) {
             return false;
         }
 
@@ -42,12 +45,12 @@ class AuthorEloquent implements AuthorInterface{
 
     }
 
-    public function update(array $data){
+    public function update(array $data)
+    {
 
         $author = $this->author->findOrFail($data['id']);
 
-        if( ! $author )
-        {
+        if (! $author) {
             return false;
         }
 
@@ -56,11 +59,11 @@ class AuthorEloquent implements AuthorInterface{
         $author->occupation = $data['occupation'];
         $author->bio        = $data['bio'];
 
-        if(isset($data['photo']) && !empty($data['photo'])){
+        if (isset($data['photo']) && !empty($data['photo'])) {
             $author->photo  = $data['photo'];
         }
 
-        if(isset($data['rang']) && !empty($data['rang'])){
+        if (isset($data['rang']) && !empty($data['rang'])) {
             $author->rang  = $data['rang'];
         }
 
@@ -69,11 +72,11 @@ class AuthorEloquent implements AuthorInterface{
         return $author;
     }
 
-    public function delete($id){
+    public function delete($id)
+    {
 
         $author = $this->author->find($id);
 
         return $author->delete();
     }
-
 }

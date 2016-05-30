@@ -11,7 +11,8 @@ use Laracasts\Commander\CommanderTrait;
 use Droit\Command\MessageSendCommand;
 use Droit\Service\Worker\ColloqueWorker;
 
-class HomeController extends BaseController {
+class HomeController extends BaseController
+{
 
     use CommanderTrait;
 
@@ -30,12 +31,12 @@ class HomeController extends BaseController {
         ArretInterface $arret,
         CategorieInterface $categorie,
         NewsletterCampagneInterface $campagne,
-        ContentWorker $jurisprudence ,
+        ContentWorker $jurisprudence,
         CampagneInterface $worker,
         ColloqueWorker $colloque,
         AuthorInterface $author
-    )
-    {
+    ) {
+    
         $this->content        = $content;
         $this->arret          = $arret;
         $this->categorie      = $categorie;
@@ -89,7 +90,8 @@ class HomeController extends BaseController {
         return View::make('contact');
     }
 
-    public function sendMessage(){
+    public function sendMessage()
+    {
 
         $this->execute('Droit\Command\MessageSendCommand');
 
@@ -109,18 +111,18 @@ class HomeController extends BaseController {
         \Cache::forget('arrets');
         \Cache::forget('analyses');
 
-        $arrets = \Cache::rememberForever('arrets', function()
-        {
+        $arrets = \Cache::rememberForever('arrets', function () {
+        
             return $this->jurisprudence->preparedArrets();
         });
 
-        $analyses = \Cache::rememberForever('analyses', function()
-        {
+        $analyses = \Cache::rememberForever('analyses', function () {
+        
             return $this->jurisprudence->preparedAnalyses();
         });
 
-        $annees = \Cache::rememberForever('annees', function()
-        {
+        $annees = \Cache::rememberForever('annees', function () {
+        
             return $this->jurisprudence->preparedAnnees();
         });
 
@@ -136,23 +138,17 @@ class HomeController extends BaseController {
     public function newsletters($id = null)
     {
 
-        if($id)
-        {
+        if ($id) {
             $newsletter_id = $id;
-        }
-        else
-        {
+        } else {
             $newsletter    = $this->campagne->getLastCampagne();
             $newsletter_id = (!$newsletter->isEmpty() ? $newsletter->first()->id : null);
         }
 
-        if(!empty($newsletter_id))
-        {
+        if (!empty($newsletter_id)) {
             $campagne       = $this->worker->getCampagne($newsletter_id);
             $newsletter     = $this->worker->findCampagneById($newsletter_id);
-        }
-        else
-        {
+        } else {
             $campagne   = [];
             $newsletter = [];
         }
@@ -161,5 +157,4 @@ class HomeController extends BaseController {
 
         return View::make('campagne')->with(array( 'listCampagnes' => $listCampagnes , 'campagne' => $campagne , 'newsletter' => $newsletter ));
     }
-
 }

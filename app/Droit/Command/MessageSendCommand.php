@@ -1,7 +1,7 @@
 <?php namespace Droit\Command;
 
-
-class MessageSendCommand {
+class MessageSendCommand
+{
 
     public $nom;
 
@@ -15,5 +15,4 @@ class MessageSendCommand {
         $this->email    = $email;
         $this->remarque = $remarque;
     }
-
 }

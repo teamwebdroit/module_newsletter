@@ -6,7 +6,8 @@ use Droit\Command\NewsletterSubscribeCommand;
 use Droit\Command\UnsubscribeCommand;
 use Droit\Command\ConfirmSubscriptionCommand;
 
-class InscriptionController extends \BaseController {
+class InscriptionController extends \BaseController
+{
 
     use CommanderTrait;
 
@@ -20,20 +21,20 @@ class InscriptionController extends \BaseController {
     }
 
     /**
-	 * Activate newsletter abo
-	 * GET //activation
-	 *
-	 * @return Response
-	 */
-	public function activation($token)
-	{
+     * Activate newsletter abo
+     * GET //activation
+     *
+     * @return Response
+     */
+    public function activation($token)
+    {
 
         $this->execute('Droit\Command\ConfirmSubscriptionCommand', array('token' => $token));
 
         return Redirect::to('/')
             ->with(array('status' => 'success', 'message' => 'Vous êtes maintenant abonné à la newsletter en droit du travail'));
 
-	}
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -66,17 +67,16 @@ class InscriptionController extends \BaseController {
         return Redirect::to('/')->with(array('status' => 'success', 'message' => '<strong>Lien d\'activation envoyé</strong>'));
     }
 
-	/**
-	 * Remove the email from list - unsubscribe.
-	 * POST /inscription/unsubscribe
-	 *
-	 * @return Response
-	 */
-	public function unsubscribe()
-	{
+    /**
+     * Remove the email from list - unsubscribe.
+     * POST /inscription/unsubscribe
+     *
+     * @return Response
+     */
+    public function unsubscribe()
+    {
         $this->execute('Droit\Command\UnsubscribeCommand');
 
         return Redirect::to('/')->with(array('status' => 'success', 'message' => '<strong>Vous avez été désinscrit</strong>'));
-	}
-
+    }
 }

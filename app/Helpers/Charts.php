@@ -1,6 +1,7 @@
 <?php
 
-class Charts{
+class Charts
+{
 
     public $colors;
     public $labels;
@@ -23,7 +24,8 @@ class Charts{
             12 => "Décembre");
     }
 
-    public function chartDoughnut($stats){
+    public function chartDoughnut($stats)
+    {
 
         $data['BouncedCount']      = $stats->Data[0]->BouncedCount;
         $data['ClickedCount']      = $stats->Data[0]->ClickedCount;
@@ -34,7 +36,7 @@ class Charts{
         $doughnutData = array();
 
         $i = 0;
-        foreach($data as $stat){
+        foreach ($data as $stat) {
             $doughnutData[] = array('value' => $stat, 'color' => $this->colors[$i]);
             $i++;
         }
@@ -42,17 +44,15 @@ class Charts{
         return $doughnutData;
     }
 
-    public function allYearStats($stats){
+    public function allYearStats($stats)
+    {
 
         $list = array();
         $max  = 0;
 
-        if(!empty($stats->Data))
-        {
-            foreach($stats->Data as $stat)
-            {
-                if( isset($stat->NewsLetterID))
-                {
+        if (!empty($stats->Data)) {
+            foreach ($stats->Data as $stat) {
+                if (isset($stat->NewsLetterID)) {
                     $date  = new \Carbon\Carbon($stat->CampaignSendStartAt);
                     $year  = $date->year;
                     $month = $date->month;
@@ -63,7 +63,7 @@ class Charts{
                     $list[$year][$month][$day][$stat->CampaignID]['OpenedCount']    = $stat->OpenedCount;
                     $list[$year][$month][$day][$stat->CampaignID]['BouncedCount']   = $stat->BouncedCount;
                     // Set max if bigger
-                    if($stat->DeliveredCount > $max ){
+                    if ($stat->DeliveredCount > $max) {
                         $max = $stat->DeliveredCount;
                     }
                 }
@@ -75,11 +75,11 @@ class Charts{
 
 
 
-    public function myPieChart($stats){
+    public function myPieChart($stats)
+    {
 
-        if(!empty($stats))
-        {
-            // Datas
+        if (!empty($stats)) {
+        // Datas
             $sent    =  $stats->DeliveredCount;
             $clic    =  $stats->ClickedCount/$sent;
             $open    =  $stats->OpenedCount/$sent;
@@ -100,11 +100,11 @@ class Charts{
         return $data;
 
     }
-    public function compileStats($stats){
+    public function compileStats($stats)
+    {
 
-        if(!empty($stats))
-        {
-            // Datas
+        if (!empty($stats)) {
+        // Datas
             $sent    =  $stats->DeliveredCount;
             $clic    =  $stats->ClickedCount;
             $open    =  $stats->OpenedCount;
@@ -126,5 +126,4 @@ class Charts{
         return $data;
 
     }
-
 }

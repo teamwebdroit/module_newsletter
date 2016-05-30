@@ -1,18 +1,18 @@
 <?php
 
-use Behat\Behat\Context\ClosuredContextInterface,
-    Behat\Behat\Context\TranslatedContextInterface,
-    Behat\Behat\Context\BehatContext,
-    Behat\Behat\Exception\PendingException;
-use Behat\Gherkin\Node\PyStringNode,
-    Behat\Gherkin\Node\TableNode;
+use Behat\Behat\Context\ClosuredContextInterface;
+use Behat\Behat\Context\TranslatedContextInterface;
+use Behat\Behat\Context\BehatContext;
+use Behat\Behat\Exception\PendingException;
+use Behat\Gherkin\Node\PyStringNode;
+use Behat\Gherkin\Node\TableNode;
 use Behat\MinkExtension\Context\MinkContext;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\BadResponseException;
 
-require_once( dirname(dirname(dirname(dirname(dirname(__FILE__))))).'/vendor/autoload.php' );
-require_once( dirname(dirname(dirname(dirname(dirname(__FILE__))))).'/vendor/phpunit/phpunit/src/Framework/Assert/Functions.php' );
+require_once(dirname(dirname(dirname(dirname(dirname(__FILE__))))).'/vendor/autoload.php');
+require_once(dirname(dirname(dirname(dirname(dirname(__FILE__))))).'/vendor/phpunit/phpunit/src/Framework/Assert/Functions.php');
 
 
 /**
@@ -58,25 +58,22 @@ class FeatureContext extends MinkContext
     public static function prepare($scope)
     {
         $arret = new \Droit\Content\Entities\Arret;
-        $arret = $arret->where('reference','=','TEST_A234')->get();
-        if(!$arret->isEmpty())
-        {
+        $arret = $arret->where('reference', '=', 'TEST_A234')->get();
+        if (!$arret->isEmpty()) {
             $arret = $arret->first();
             $arret->delete();
         }
 
         $analyse = new \Droit\Content\Entities\Analyse;
-        $analyse = $analyse->where('authors','=','TEST_ANALYSE_A234')->get();
-        if(!$analyse->isEmpty())
-        {
+        $analyse = $analyse->where('authors', '=', 'TEST_ANALYSE_A234')->get();
+        if (!$analyse->isEmpty()) {
             $analyse = $analyse->first();
             $analyse->delete();
         }
 
         $content = new \Droit\Content\Entities\Content;
-        $content = $content->where('titre','=','TEST_Contenu')->get();
-        if(!$content->isEmpty())
-        {
+        $content = $content->where('titre', '=', 'TEST_Contenu')->get();
+        if (!$content->isEmpty()) {
             $content = $content->first();
             $content->delete();
         }
@@ -178,6 +175,4 @@ class FeatureContext extends MinkContext
     {
         $this->assertPageContainsText($arg1);
     }
-
-
 }

@@ -1,6 +1,7 @@
 <?php
 
-class InscriptionControllerTest extends TestCase {
+class InscriptionControllerTest extends TestCase
+{
 
     protected $custom;
 
@@ -36,5 +37,4 @@ class InscriptionControllerTest extends TestCase {
     {
         \Mockery::close();
     }
-
 }

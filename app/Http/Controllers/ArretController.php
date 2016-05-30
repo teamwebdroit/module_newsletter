@@ -4,14 +4,15 @@ use Droit\Content\Repo\ArretInterface;
 use Droit\Categorie\Repo\CategorieInterface;
 use Droit\Service\Worker\UploadInterface;
 
-class ArretController extends \BaseController {
+class ArretController extends \BaseController
+{
 
     protected $arret;
     protected $categorie;
     protected $upload;
     protected $custom;
 
-    public function __construct( ArretInterface $arret, CategorieInterface $categorie , UploadInterface $upload )
+    public function __construct(ArretInterface $arret, CategorieInterface $categorie, UploadInterface $upload)
     {
         $this->beforeFilter('csrf', array('on' => 'post'));
 
@@ -23,12 +24,12 @@ class ArretController extends \BaseController {
         View::share('pageTitle', 'Arrêts');
     }
 
-	/**
-	 * Display a listing of the resource.
-	 * GET /arret
-	 *
-	 * @return Response
-	 */
+    /**
+     * Display a listing of the resource.
+     * GET /arret
+     *
+     * @return Response
+     */
 
     public function index()
     {
@@ -62,7 +63,7 @@ class ArretController extends \BaseController {
     {
         $categories = $this->categorie->getAll(195);
 
-        return View::make('admin.arrets.create')->with( array( 'categories' => $categories ) );
+        return View::make('admin.arrets.create')->with(array( 'categories' => $categories ));
     }
 
     /**
@@ -75,18 +76,15 @@ class ArretController extends \BaseController {
         $_file = Input::file('file');
 
         // Files upload
-        if( $_file && !empty( $_file ) )
-        {
-            $file = $this->upload->upload( Input::file('file') , 'files/arrets' );
+        if ($_file && !empty($_file)) {
+            $file = $this->upload->upload(Input::file('file'), 'files/arrets');
         }
 
         $cats = Input::get('categories');
 
-        if(!empty($cats)){
+        if (!empty($cats)) {
             $categories = $this->custom->prepareCategories($cats);
-        }
-        else
-        {
+        } else {
             $categories = array();
         }
 
@@ -106,12 +104,12 @@ class ArretController extends \BaseController {
         $data['file'] = (!empty($file) ? $file['name'] : '');
 
         // Create arret
-        $arret = $this->arret->create( $data );
+        $arret = $this->arret->create($data);
 
         // Insert related categories
         $arret->arrets_categories()->sync($categories);
 
-        return Redirect::to('admin/arret/'.$arret->id)->with( array('status' => 'success' , 'message' => 'Arrêt crée') );
+        return Redirect::to('admin/arret/'.$arret->id)->with(array('status' => 'success' , 'message' => 'Arrêt crée'));
 
     }
 
@@ -125,17 +123,15 @@ class ArretController extends \BaseController {
         $_file = Input::file('file');
 
         // Files upload
-        if( $_file && !empty( $_file ) )
-        {
-            $file = $this->upload->upload( Input::file('file') , 'files/arrets' );
+        if ($_file && !empty($_file)) {
+            $file = $this->upload->upload(Input::file('file'), 'files/arrets');
         }
 
         $cats = Input::get('categories');
 
-        if(!empty($cats)){
+        if (!empty($cats)) {
             $categories = $this->custom->prepareCategories($cats);
-        }
-        else{
+        } else {
             $categories = array();
         }
 
@@ -154,12 +150,12 @@ class ArretController extends \BaseController {
         $data['file'] = (!empty($file) ? $file['name'] : null);
 
         // Create arret
-        $arret = $this->arret->update( $data );
+        $arret = $this->arret->update($data);
 
         // Insert related categories
         $arret->arrets_categories()->sync($categories);
 
-        return Redirect::to('admin/arret/'.$arret->id)->with( array('status' => 'success' , 'message' => 'Arrêt mis à jour') );
+        return Redirect::to('admin/arret/'.$arret->id)->with(array('status' => 'success' , 'message' => 'Arrêt mis à jour'));
 
     }
 
@@ -187,7 +183,7 @@ class ArretController extends \BaseController {
     {
         $arrets = $this->arret->getAll(195);
 
-        return Response::json( $arrets, 200 );
+        return Response::json($arrets, 200);
     }
 
 
@@ -200,5 +196,4 @@ class ArretController extends \BaseController {
     {
         return $this->arret->find($id);
     }
-
 }

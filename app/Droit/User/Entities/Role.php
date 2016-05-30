@@ -2,7 +2,8 @@
 
 use Droit\Common\BaseModel as BaseModel;
 
-class Role extends BaseModel{
+class Role extends BaseModel
+{
 
     /**
      * Set timestamps off

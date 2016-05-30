@@ -10,7 +10,8 @@ use Droit\Content\Repo\GroupeInterface;
 
 use Droit\Command\CreateCampagneCommand;
 
-class CampagneController extends BaseController {
+class CampagneController extends BaseController
+{
 
     use CommanderTrait;
 
@@ -23,7 +24,7 @@ class CampagneController extends BaseController {
     protected $groupe;
 
     /* Inject dependencies */
-    public function __construct( ContentInterface $contentSite, NewsletterContentInterface $content, CampagneInterface $worker, NewsletterTypesInterface $types, NewsletterCampagneInterface $campagne, GroupeInterface $groupe)
+    public function __construct(ContentInterface $contentSite, NewsletterContentInterface $content, CampagneInterface $worker, NewsletterTypesInterface $types, NewsletterCampagneInterface $campagne, GroupeInterface $groupe)
     {
         $this->beforeFilter('csrf', array('only' => array('store','update')));
 
@@ -52,7 +53,7 @@ class CampagneController extends BaseController {
     {
         $campagnes = $this->campagne->getAll();
 
-        return View::make('newsletter.index')->with( array('campagnes' => $campagnes) );
+        return View::make('newsletter.index')->with(array('campagnes' => $campagnes));
     }
 
     /**
@@ -76,7 +77,7 @@ class CampagneController extends BaseController {
     {
         $campagne = $this->execute('Droit\Command\CreateCampagneCommand');
 
-        return Redirect::to('admin/campagne/'.$campagne->id)->with( array('status' => 'success' , 'message' => 'Campagne crée') );
+        return Redirect::to('admin/campagne/'.$campagne->id)->with(array('status' => 'success' , 'message' => 'Campagne crée'));
     }
 
     /**
@@ -109,7 +110,8 @@ class CampagneController extends BaseController {
         return View::make('newsletter.edit')->with(array( 'campagne' => $campagne ));
     }
 
-    public function simple($id){
+    public function simple($id)
+    {
 
         return $this->campagne->find($id);
     }
@@ -121,7 +123,8 @@ class CampagneController extends BaseController {
      * @param  int  $id
      * @return Response
      */
-    public function view($id){
+    public function view($id)
+    {
 
         /*
          * Urls
@@ -150,9 +153,9 @@ class CampagneController extends BaseController {
         $data['auteurs']       = Input::get('auteurs');
         $data['newsletter_id'] = 1;
 
-        $campagne = $this->campagne->update( $data );
+        $campagne = $this->campagne->update($data);
 
-        return Redirect::to('admin/campagne/'.$campagne->id)->with( array('status' => 'success' , 'message' => 'Campagne éditée') );
+        return Redirect::to('admin/campagne/'.$campagne->id)->with(array('status' => 'success' , 'message' => 'Campagne éditée'));
     }
 
     /**
@@ -176,7 +179,8 @@ class CampagneController extends BaseController {
      * @param  int  $id
      * @return Response
      */
-    public function unsubscribe(){
+    public function unsubscribe()
+    {
 
         return View::make('unsubscribe');
     }
@@ -186,7 +190,8 @@ class CampagneController extends BaseController {
      * POST data
      * @return Response
      */
-    public function addContent(){
+    public function addContent()
+    {
 
         $data = Input::all();
 
@@ -200,8 +205,7 @@ class CampagneController extends BaseController {
         $lien         = (isset($data['lien']) ? $this->custom->sanitizeUrl($data['lien']) : null);
         $categorie_id = (isset($data['categorie_id']) ? $data['categorie_id'] : 0);
 
-        if($type == 7)
-        {
+        if ($type == 7) {
             $arrets = $this->custom->prepareCategories($data['arrets']);
             $groupe = $this->groupe->create(array('categorie_id' => $categorie_id));
             $groupe_id = $groupe->id;
@@ -212,10 +216,9 @@ class CampagneController extends BaseController {
         // image resize
         $image = null;
 
-        if(isset($data['image']) && !empty($data['image']))
-        {
+        if (isset($data['image']) && !empty($data['image'])) {
             $image = $data['image'];
-            $this->custom->resizeImage($data['image'],$type);
+            $this->custom->resizeImage($data['image'], $type);
         }
 
         $new = array(
@@ -233,8 +236,7 @@ class CampagneController extends BaseController {
 
         $contents = $this->content->create($new);
 
-        if($contents)
-        {
+        if ($contents) {
             return Redirect::to('admin/campagne/'.$campagne.'#componant')->with(array('status' => 'success', 'message' => 'Bloc ajouté' ));
         }
 
@@ -247,17 +249,16 @@ class CampagneController extends BaseController {
      * POST data
      * @return Response
      */
-    public function editContent(){
+    public function editContent()
+    {
 
         $data = Input::all();
 
         $new  = array('id' => $data['id']);
 
-        if(!empty($data))
-        {
-            foreach($data as $key => $input)
-            {
-                if(!empty($input)){
+        if (!empty($data)) {
+            foreach ($data as $key => $input) {
+                if (!empty($input)) {
                     $new[$key] = $input;
                 }
             }
@@ -265,8 +266,7 @@ class CampagneController extends BaseController {
 
         $contents = $this->content->update($new);
 
-        if($contents)
-        {
+        if ($contents) {
             return Redirect::back()->with(array('status' => 'success', 'message' => 'Bloc édité' ));
         }
 
@@ -280,7 +280,8 @@ class CampagneController extends BaseController {
      * AJAX
      * @return Response
      */
-    public function sorting(){
+    public function sorting()
+    {
 
         $data = Input::all();
 
@@ -296,7 +297,8 @@ class CampagneController extends BaseController {
      * AJAX
      * @return Response
      */
-    public function sortingGroup(){
+    public function sortingGroup()
+    {
 
         $data = Input::all();
 
@@ -319,11 +321,11 @@ class CampagneController extends BaseController {
      * AJAX
      * @return Response
      */
-    public function remove(){
+    public function remove()
+    {
 
         $this->content->delete(Input::get('id'));
 
         return 'ok';
     }
-
 }

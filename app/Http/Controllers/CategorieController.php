@@ -3,13 +3,14 @@
 use Droit\Categorie\Repo\CategorieInterface;
 use Droit\Service\Worker\UploadInterface;
 
-class CategorieController extends \BaseController {
+class CategorieController extends \BaseController
+{
 
     protected $categorie;
     protected $upload;
     protected $custom;
 
-    public function __construct( CategorieInterface $categorie, UploadInterface $upload )
+    public function __construct(CategorieInterface $categorie, UploadInterface $upload)
     {
         $this->beforeFilter('csrf', array('only' => array('store','update')));
 
@@ -33,34 +34,33 @@ class CategorieController extends \BaseController {
         return View::make('admin.categories.index')->with(array( 'categories' => $categories));
     }
 
-	/**
-	 * Show the form for creating a new resource.
-	 * GET /categorie/create
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
+    /**
+     * Show the form for creating a new resource.
+     * GET /categorie/create
+     *
+     * @return Response
+     */
+    public function create()
+    {
         return View::make('admin.categories.create');
-	}
+    }
 
-	/**
-	 * Store a newly created resource in storage.
-	 * POST /categorie
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
+    /**
+     * Store a newly created resource in storage.
+     * POST /categorie
+     *
+     * @return Response
+     */
+    public function store()
+    {
         $_file = Input::file('file', null);
 
         // Files upload
-        if( !isset($_file) )
-        {
-            return Redirect::back()->with( array('status' => 'danger' , 'message' => 'L\'image est requise') );
+        if (!isset($_file)) {
+            return Redirect::back()->with(array('status' => 'danger' , 'message' => 'L\'image est requise'));
         }
 
-        $file = $this->upload->upload( Input::file('file') , 'newsletter/pictos' , 'categorie');
+        $file = $this->upload->upload(Input::file('file'), 'newsletter/pictos', 'categorie');
 
         // Data array
         $data['title']      = Input::get('title');
@@ -70,52 +70,51 @@ class CategorieController extends \BaseController {
         $data['pid']        = 195;
         $data['image']      = (isset($file) && !empty($file) ? $file['name'] : null);
 
-        $categorie = $this->categorie->create( $data );
+        $categorie = $this->categorie->create($data);
 
-        return Redirect::to('admin/categorie/'.$categorie->id)->with( array('status' => 'success' , 'message' => 'Catégorie crée') );
-	}
+        return Redirect::to('admin/categorie/'.$categorie->id)->with(array('status' => 'success' , 'message' => 'Catégorie crée'));
+    }
 
-	/**
-	 * Display the specified resource.
-	 * GET /categorie/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
+    /**
+     * Display the specified resource.
+     * GET /categorie/{id}
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function show($id)
+    {
         $categorie = $this->categorie->find($id);
 
         return View::make('admin.categories.show')->with(array( 'categorie' => $categorie));
-	}
+    }
 
-	/**
-	 * Show the form for editing the specified resource.
-	 * GET /categorie/{id}/edit
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
+    /**
+     * Show the form for editing the specified resource.
+     * GET /categorie/{id}/edit
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function edit($id)
+    {
 
-	}
+    }
 
-	/**
-	 * Update the specified resource in storage.
-	 * PUT /categorie/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
+    /**
+     * Update the specified resource in storage.
+     * PUT /categorie/{id}
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function update($id)
+    {
         $_file = Input::file('file', null);
 
         // Files upload
-        if( $_file )
-        {
-            $file = $this->upload->upload( Input::file('file') , 'newsletter/pictos' , 'categorie');
+        if ($_file) {
+            $file = $this->upload->upload(Input::file('file'), 'newsletter/pictos', 'categorie');
         }
 
         // Data array
@@ -125,24 +124,24 @@ class CategorieController extends \BaseController {
         $data['hideOnSite'] = (Input::get('hideOnSite') ? 1 : 0);
         $data['image']      = (isset($file) && !empty($file) ? $file['name'] : null);
 
-        $this->categorie->update( $data );
+        $this->categorie->update($data);
 
-        return Redirect::to('admin/categorie/'.$id)->with( array('status' => 'success' , 'message' => 'Catégorie mise à jour') );
-	}
+        return Redirect::to('admin/categorie/'.$id)->with(array('status' => 'success' , 'message' => 'Catégorie mise à jour'));
+    }
 
-	/**
-	 * Remove the specified resource from storage.
-	 * DELETE /categorie/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
+    /**
+     * Remove the specified resource from storage.
+     * DELETE /categorie/{id}
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function destroy($id)
+    {
         $this->categorie->delete($id);
 
         return Redirect::back()->with(array('status' => 'success', 'message' => 'Catégorie supprimée' ));
-	}
+    }
 
     /**
      * For AJAX
@@ -154,10 +153,11 @@ class CategorieController extends \BaseController {
     {
         $categories = $this->categorie->getAll(195);
 
-        return Response::json( $categories, 200 );
+        return Response::json($categories, 200);
     }
 
-    public function arretsExists(){
+    public function arretsExists()
+    {
 
         $id = Input::get('id');
 
@@ -165,7 +165,6 @@ class CategorieController extends \BaseController {
 
         $references = (!$categorie->categorie_arrets->isEmpty() ? $categorie->categorie_arrets->lists('reference') : null);
 
-        return Response::json( $references, 200 );
+        return Response::json($references, 200);
     }
-
 }

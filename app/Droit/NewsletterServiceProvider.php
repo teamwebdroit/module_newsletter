@@ -16,15 +16,16 @@ use Droit\Newsletter\Entities\Newsletter_subscriptions as Newsletter_subscriptio
 /**
  *  NewsletterServiceProvider
  */
-class NewsletterServiceProvider extends ServiceProvider {
+class NewsletterServiceProvider extends ServiceProvider
+{
 
-	/**
-	 * Register binding interface to implementation 
-	 */
+    /**
+     * Register binding interface to implementation
+     */
     public function register()
     {
         $this->registerNewsletterService();
-		$this->registerContentService();
+        $this->registerContentService();
         $this->registerTypesService();
         $this->registerCampagneService();
         $this->registerCampagneWorkerService();
@@ -36,33 +37,36 @@ class NewsletterServiceProvider extends ServiceProvider {
     /**
      * Newsletter Content service
      */
-    protected function registerNewsletterService(){
+    protected function registerNewsletterService()
+    {
 
-        $this->app->bind('Droit\Newsletter\Repo\NewsletterInterface', function()
-        {
-            return new \Droit\Newsletter\Repo\NewsletterEloquent( new Newsletter );
+        $this->app->bind('Droit\Newsletter\Repo\NewsletterInterface', function () {
+        
+            return new \Droit\Newsletter\Repo\NewsletterEloquent(new Newsletter);
         });
     }
 
-	/**
-	 * Newsletter service
-	 */     
-    protected function registerContentService(){
+    /**
+     * Newsletter service
+     */
+    protected function registerContentService()
+    {
     
-	    $this->app->bind('Droit\Newsletter\Repo\NewsletterContentInterface', function()
-        {
-            return new \Droit\Newsletter\Repo\NewsletterContentEloquent( new Newsletter_contents );
-        });        
+        $this->app->bind('Droit\Newsletter\Repo\NewsletterContentInterface', function () {
+        
+            return new \Droit\Newsletter\Repo\NewsletterContentEloquent(new Newsletter_contents);
+        });
     }
 
     /**
      * Newsletter Types service
      */
-    protected function registerTypesService(){
+    protected function registerTypesService()
+    {
 
-        $this->app->bind('Droit\Newsletter\Repo\NewsletterTypesInterface', function()
-        {
-            return new \Droit\Newsletter\Repo\NewsletterTypesEloquent( new Newsletter_types );
+        $this->app->bind('Droit\Newsletter\Repo\NewsletterTypesInterface', function () {
+        
+            return new \Droit\Newsletter\Repo\NewsletterTypesEloquent(new Newsletter_types);
         });
     }
 
@@ -70,21 +74,23 @@ class NewsletterServiceProvider extends ServiceProvider {
     /**
      * Newsletter Types service
      */
-    protected function registerCampagneService(){
+    protected function registerCampagneService()
+    {
 
-        $this->app->bind('Droit\Newsletter\Repo\NewsletterCampagneInterface', function()
-        {
-            return new \Droit\Newsletter\Repo\NewsletterCampagneEloquent( new Newsletter_campagnes );
+        $this->app->bind('Droit\Newsletter\Repo\NewsletterCampagneInterface', function () {
+        
+            return new \Droit\Newsletter\Repo\NewsletterCampagneEloquent(new Newsletter_campagnes);
         });
     }
 
     /**
      * Newsletter Campagne worker
      */
-    protected function registerCampagneWorkerService(){
+    protected function registerCampagneWorkerService()
+    {
 
-        $this->app->bind('Droit\Newsletter\Worker\CampagneInterface', function()
-        {
+        $this->app->bind('Droit\Newsletter\Worker\CampagneInterface', function () {
+        
             return new \Droit\Newsletter\Worker\CampagneWorker(
                 \App::make('Droit\Newsletter\Repo\NewsletterContentInterface'),
                 \App::make('Droit\Newsletter\Repo\NewsletterCampagneInterface'),
@@ -98,13 +104,15 @@ class NewsletterServiceProvider extends ServiceProvider {
     /**
      * Newsletter Mailjet API worker
      */
-    protected function registerMailjetWorkerService(){
+    protected function registerMailjetWorkerService()
+    {
 
-        $this->app->bind('Droit\Newsletter\Worker\MailjetInterface', function()
-        {
+        $this->app->bind('Droit\Newsletter\Worker\MailjetInterface', function () {
+        
             return new \Droit\Newsletter\Worker\MailjetWorker(
                 new \Droit\Newsletter\Service\Mailjet(
-                    \Config::get('services.mailjet.api'),\Config::get('services.mailjet.secret')
+                    \Config::get('services.mailjet.api'),
+                    \Config::get('services.mailjet.secret')
                 )
             );
         });
@@ -113,23 +121,24 @@ class NewsletterServiceProvider extends ServiceProvider {
     /**
      * Newsletter user abo service
      */
-    protected function registerInscriptionService(){
+    protected function registerInscriptionService()
+    {
 
-        $this->app->bind('Droit\Newsletter\Repo\NewsletterUserInterface', function()
-        {
-            return new \Droit\Newsletter\Repo\NewsletterUserEloquent( new Newsletter_users );
+        $this->app->bind('Droit\Newsletter\Repo\NewsletterUserInterface', function () {
+        
+            return new \Droit\Newsletter\Repo\NewsletterUserEloquent(new Newsletter_users);
         });
     }
 
     /**
      * Newsletter user abo service
      */
-    protected function registerSubscribeService(){
+    protected function registerSubscribeService()
+    {
 
-        $this->app->bind('Droit\Newsletter\Repo\NewsletterSubscriptionInterface', function()
-        {
-            return new \Droit\Newsletter\Repo\NewsletterSubscriptionEloquent( new Newsletter_subscriptions );
+        $this->app->bind('Droit\Newsletter\Repo\NewsletterSubscriptionInterface', function () {
+        
+            return new \Droit\Newsletter\Repo\NewsletterSubscriptionEloquent(new Newsletter_subscriptions);
         });
     }
-
 }

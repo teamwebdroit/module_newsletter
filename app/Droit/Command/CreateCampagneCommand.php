@@ -1,6 +1,7 @@
 <?php namespace Droit\Command;
 
-class CreateCampagneCommand {
+class CreateCampagneCommand
+{
 
     /**
      * @var string
@@ -21,5 +22,4 @@ class CreateCampagneCommand {
         $this->sujet   = $sujet;
         $this->auteurs = $auteurs;
     }
-
 }

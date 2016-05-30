@@ -4,7 +4,8 @@ use Droit\Service\Worker\UploadInterface;
 use Droit\Categorie\Repo\CategorieInterface;
 use Droit\Categorie\Entities\Categories as M;
 
-class CategorieEloquent implements CategorieInterface{
+class CategorieEloquent implements CategorieInterface
+{
 
     protected $categorie;
 
@@ -13,31 +14,37 @@ class CategorieEloquent implements CategorieInterface{
         $this->categorie = $categorie;
     }
 
-    public function getAll($pid){
+    public function getAll($pid)
+    {
 
-        return $this->categorie->where('pid','=',$pid)->where('deleted', '=', 0)->orderBy('title', 'ASC')->get();
+        return $this->categorie->where('pid', '=', $pid)->where('deleted', '=', 0)->orderBy('title', 'ASC')->get();
     }
 
-    public function getAllOnSite($pid){
-        return $this->categorie->where('pid','=',$pid)->where('deleted', '=', 0)->where('hideOnSite', '=', 0)->orderBy('title', 'ASC')->get();
+    public function getAllOnSite($pid)
+    {
+        return $this->categorie->where('pid', '=', $pid)->where('deleted', '=', 0)->where('hideOnSite', '=', 0)->orderBy('title', 'ASC')->get();
     }
 
-    public function getAllMain($pid){
+    public function getAllMain($pid)
+    {
 
-        return $this->categorie->where('pid','=',$pid)->where('ismain','=', 1)->where('deleted', '=', 0)->orderBy('title', 'ASC')->get();
+        return $this->categorie->where('pid', '=', $pid)->where('ismain', '=', 1)->where('deleted', '=', 0)->orderBy('title', 'ASC')->get();
     }
 
-    public function find($id){
+    public function find($id)
+    {
 
         return $this->categorie->with(array('categorie_arrets'))->findOrFail($id);
     }
 
-    public function findyByImage($file){
+    public function findyByImage($file)
+    {
 
-        return $this->categorie->where('image','=',$file)->where('deleted', '=', 0)->get();
+        return $this->categorie->where('image', '=', $file)->where('deleted', '=', 0)->get();
     }
 
-    public function create(array $data){
+    public function create(array $data)
+    {
 
         $categorie = $this->categorie->create(array(
             'pid'        => $data['pid'],
@@ -50,8 +57,7 @@ class CategorieEloquent implements CategorieInterface{
             'updated_at' => date('Y-m-d G:i:s')
         ));
 
-        if( ! $categorie )
-        {
+        if (! $categorie) {
             return false;
         }
 
@@ -59,12 +65,12 @@ class CategorieEloquent implements CategorieInterface{
 
     }
 
-    public function update(array $data){
+    public function update(array $data)
+    {
 
         $categorie = $this->categorie->findOrFail($data['id']);
 
-        if( ! $categorie )
-        {
+        if (! $categorie) {
             return false;
         }
 
@@ -72,7 +78,7 @@ class CategorieEloquent implements CategorieInterface{
         $categorie->ismain     = $data['ismain'];
         $categorie->hideOnSite = $data['hideOnSite'];
 
-        if(!empty($data['image'])){
+        if (!empty($data['image'])) {
             $categorie->image = $data['image'];
         }
 
@@ -82,11 +88,11 @@ class CategorieEloquent implements CategorieInterface{
         return $categorie;
     }
 
-    public function delete($id){
+    public function delete($id)
+    {
 
         $categorie = $this->categorie->find($id);
 
         return $categorie->delete();
     }
-
 }

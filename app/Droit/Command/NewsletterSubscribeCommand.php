@@ -1,6 +1,7 @@
 <?php namespace Droit\Command;
 
-class NewsletterSubscribeCommand {
+class NewsletterSubscribeCommand
+{
 
     public $email;
     public $newsletter_id;

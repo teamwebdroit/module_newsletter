@@ -1,6 +1,7 @@
 <?php
 
-class ArretControllerTest extends TestCase {
+class ArretControllerTest extends TestCase
+{
 
     protected $custom;
 
@@ -50,5 +51,4 @@ class ArretControllerTest extends TestCase {
     {
         \Mockery::close();
     }
-
 }

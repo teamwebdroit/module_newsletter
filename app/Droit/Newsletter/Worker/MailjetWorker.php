@@ -3,14 +3,16 @@
 use Droit\Newsletter\Worker\MailjetInterface;
 use Droit\Newsletter\Service\Mailjet;
 
-class MailjetWorker implements MailjetInterface{
+class MailjetWorker implements MailjetInterface
+{
 
     protected $mailjet;
     protected $list = '1';
 
     public function __construct(Mailjet $mailjet)
     {
-        $this->mailjet  = $mailjet;;
+        $this->mailjet  = $mailjet;
+        ;
     }
 
     /*
@@ -34,16 +36,18 @@ class MailjetWorker implements MailjetInterface{
 
         $result = $this->mailjet->contactslist($params);
 
-        if ($this->mailjet->getResponseCode() == 200)
+        if ($this->mailjet->getResponseCode() == 200) {
             return $result;
-        else
+        } else {
             return $this->mailjet->getResponseCode();
+        }
     }
 
     /**
      * get Subscribers
      */
-    public function getSubscribers(){
+    public function getSubscribers()
+    {
 
         $params = array(
             "method" => "VIEW",
@@ -52,14 +56,16 @@ class MailjetWorker implements MailjetInterface{
 
         $result = $this->mailjet->contactslist($params);
 
-        if ($this->mailjet->_response_code == 200)
+        if ($this->mailjet->_response_code == 200) {
             return $result;
-        else
+        } else {
             return $this->mailjet->_response_code;
+        }
 
     }
 
-    public function getAllSubscribers(){
+    public function getAllSubscribers()
+    {
         # Parameters
         $params = array(
             "method"       => "LIST",
@@ -76,7 +82,8 @@ class MailjetWorker implements MailjetInterface{
     /**
      * add new contact
      */
-    public function addContact($email){
+    public function addContact($email)
+    {
 
         $params = array(
             'method' => 'POST',
@@ -85,14 +92,16 @@ class MailjetWorker implements MailjetInterface{
 
         $result = $this->mailjet->contact($params);
 
-        if ($this->mailjet->_response_code == 200)
+        if ($this->mailjet->_response_code == 200) {
             return $result->Data[0]->ID;
-        else
+        } else {
             return $this->getContactByEmail($email);
+        }
 
     }
 
-    public function getContactByEmail($contactEmail) {
+    public function getContactByEmail($contactEmail)
+    {
 
         $params = array(
             "method" => "VIEW",
@@ -104,7 +113,8 @@ class MailjetWorker implements MailjetInterface{
         return ($this->mailjet->_response_code == 200 ? $result->Data[0]->ID : $result);
     }
 
-    public function addContactToList($contactID) {
+    public function addContactToList($contactID)
+    {
 
         $params = array(
             "method"    => "POST",
@@ -133,11 +143,12 @@ class MailjetWorker implements MailjetInterface{
     /**
      * remove contact
      */
-    public function removeContact($email){
+    public function removeContact($email)
+    {
 
         $listRecipientID = $this->getListRecipient($email);
 
-        if(!$listRecipientID){
+        if (!$listRecipientID) {
             return false;
         }
 
@@ -148,14 +159,16 @@ class MailjetWorker implements MailjetInterface{
 
         $this->mailjet->listrecipient($params);
 
-        if (($this->mailjet->_response_code == 200) || ($this->mailjet->_response_code == 202) || ($this->mailjet->_response_code == 204))
+        if (($this->mailjet->_response_code == 200) || ($this->mailjet->_response_code == 202) || ($this->mailjet->_response_code == 204)) {
             return true;
-        else
+        } else {
             return false;
+        }
 
     }
 
-    public function getListRecipient($email){
+    public function getListRecipient($email)
+    {
 
         $params = array(
             "method"        => "GET",
@@ -165,14 +178,16 @@ class MailjetWorker implements MailjetInterface{
 
         $listerecipient = $this->mailjet->listrecipient($params);
 
-        if ($this->mailjet->_response_code == 200 && isset($listerecipient->Data[0]))
+        if ($this->mailjet->_response_code == 200 && isset($listerecipient->Data[0])) {
             return $listerecipient->Data[0]->ID;
-        else
+        } else {
             return false;
+        }
 
     }
 
-    public function getCampagne($CampaignID){
+    public function getCampagne($CampaignID)
+    {
 
         # Parameters
         $params = array( "method" => "VIEW" , 'unique' => 'mj.nl='.$CampaignID);
@@ -186,7 +201,8 @@ class MailjetWorker implements MailjetInterface{
     /**
      * create new campagne
      */
-    public function createCampagne($campagne){
+    public function createCampagne($campagne)
+    {
 
         # Parameters
         $params = array(
@@ -204,8 +220,7 @@ class MailjetWorker implements MailjetInterface{
         # Call
         $response = $this->mailjet->newsletter($params);
 
-        if($response)
-        {
+        if ($response) {
             $campagne->api_campagne_id = $response->Data[0]->ID;
             $campagne->save();
 
@@ -216,7 +231,8 @@ class MailjetWorker implements MailjetInterface{
 
     }
 
-    public function setHtml($html,$id){
+    public function setHtml($html, $id)
+    {
 
         # Parameters
         $params = array(
@@ -233,7 +249,8 @@ class MailjetWorker implements MailjetInterface{
     }
 
 
-    public function sendTest($email,$html,$sujet){
+    public function sendTest($email, $html, $sujet)
+    {
 
         $params = array(
             "method"  => "POST",
@@ -245,14 +262,16 @@ class MailjetWorker implements MailjetInterface{
 
         $result = $this->mailjet->sendEmail($params);
 
-        if ($this->mailjet->_response_code == 200)
+        if ($this->mailjet->_response_code == 200) {
             return $result;
-        else
+        } else {
             return $result;
+        }
 
     }
 
-    public function sendCampagne($id,$CampaignID){
+    public function sendCampagne($id, $CampaignID)
+    {
 
         $params = array(
             "method"     => "POST",
@@ -264,14 +283,16 @@ class MailjetWorker implements MailjetInterface{
 
         $result = $this->mailjet->batchjob($params);
 
-        if ($this->mailjet->_response_code == 201)
+        if ($this->mailjet->_response_code == 201) {
             return true;
-        else
+        } else {
             return $result;
+        }
 
     }
 
-    public function statsCampagne($id){
+    public function statsCampagne($id)
+    {
 
         # Parameters
         $params = array( "method" => "VIEW" , 'unique' => 'mj.nl='.$id);
@@ -284,7 +305,8 @@ class MailjetWorker implements MailjetInterface{
     }
 
 
-    public function statsAllCampagne(){
+    public function statsAllCampagne()
+    {
 
         # Parameters
         $params = array( "method" => "VIEW");
@@ -296,7 +318,8 @@ class MailjetWorker implements MailjetInterface{
 
     }
 
-    public function statsListe(){
+    public function statsListe()
+    {
 
         # Parameters
         $params = array( "method" => "GET", 'ListRecipientID' => $this->list );
@@ -308,7 +331,8 @@ class MailjetWorker implements MailjetInterface{
 
     }
 
-    public function campagneAggregate($id){
+    public function campagneAggregate($id)
+    {
 
         # Parameters
         $params = array( "method" => "LIST", 'CampaignID' => $id );
@@ -321,7 +345,8 @@ class MailjetWorker implements MailjetInterface{
     }
 
 
-    public function clickStatistics($id, $offset = 0){
+    public function clickStatistics($id, $offset = 0)
+    {
 
         # Parameters
         $params = array("method" => "GET", 'CampaignID' => $id ,'Limit' => 500, 'Offset' => $offset);
@@ -334,7 +359,8 @@ class MailjetWorker implements MailjetInterface{
     }
 
 
-    public function openStats($campaignID){
+    public function openStats($campaignID)
+    {
 
         $params = array(
             "method"     => "GET",
@@ -343,13 +369,14 @@ class MailjetWorker implements MailjetInterface{
             'Offset' => 200
         );
 
-        $response = $this->mailjet->openinformation ($params);
+        $response = $this->mailjet->openinformation($params);
 
         return ($response ? $response : false);
 
     }
 
-    function uploadCSVContactslistData($CSVContent) {
+    function uploadCSVContactslistData($CSVContent)
+    {
 
         $params = [
             "method"      => "POST",

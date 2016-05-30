@@ -10,14 +10,15 @@ use Droit\Newsletter\Worker\MailjetInterface;
 use Droit\Newsletter\Worker\CampagneInterface;
 use Droit\Newsletter\Worker\StatsWorker;
 
-class StatsController extends \BaseController {
+class StatsController extends \BaseController
+{
 
     protected $worker;
     protected $campagne;
     protected $statsworker;
     protected $charts;
 
-    public function __construct( MailjetInterface $worker,CampagneInterface $campagne, StatsWorker $statsworker)
+    public function __construct(MailjetInterface $worker, CampagneInterface $campagne, StatsWorker $statsworker)
     {
         $this->worker       = $worker;
         $this->campagne     = $campagne;
@@ -27,15 +28,15 @@ class StatsController extends \BaseController {
         View::share('pageTitle', 'Statistiques');
     }
 
-	/**
-	 * Display the specified resource.
-	 * GET /stats/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
+    /**
+     * Display the specified resource.
+     * GET /stats/{id}
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function show($id)
+    {
         // Stats open, bounce etc.
         $campagne     = $this->campagne->getCampagne($id);
 
@@ -57,28 +58,25 @@ class StatsController extends \BaseController {
                 'clickStats'   => $allclicks
             )
         );
-	}
+    }
 
-    public function sumStatsClicksLinks( $CampaignID, $offset = 0){
+    public function sumStatsClicksLinks($CampaignID, $offset = 0)
+    {
 
         $result = array();
 
         $data  = $this->worker->clickStatistics($CampaignID, $offset);
         $count = $this->statsworker->getTotalCount($data);
 
-        if($count == 500)
-        {
+        if ($count == 500) {
             $result[] = $data->Data;
             $offset   = $offset + 500;
 
-            $result   = array_merge($result,$this->sumStatsClicksLinks($CampaignID, $offset));
-        }
-        else
-        {
+            $result   = array_merge($result, $this->sumStatsClicksLinks($CampaignID, $offset));
+        } else {
             $result[] = $data->Data;
         }
 
         return $result;
     }
-
 }

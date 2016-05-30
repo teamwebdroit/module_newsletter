@@ -11,14 +11,15 @@ use Droit\Newsletter\Worker\CampagneInterface;
 
 use Droit\Command\SendCampagneCommand;
 
-class SendController extends \BaseController {
+class SendController extends \BaseController
+{
 
     use CommanderTrait;
 
     protected $worker;
     protected $campagne;
 
-    public function __construct( MailjetInterface $worker, CampagneInterface $campagne)
+    public function __construct(MailjetInterface $worker, CampagneInterface $campagne)
     {
         $this->worker   = $worker;
         $this->campagne = $campagne;
@@ -28,14 +29,15 @@ class SendController extends \BaseController {
      * Send campagne newsletter
      * GET /send/campagne/{$id}
      */
-	public function campagne()
-	{
-        $message  = $this->execute('Droit\Command\SendCampagneCommand', array('id' => Input::get('id')) );
+    public function campagne()
+    {
+        $message  = $this->execute('Droit\Command\SendCampagneCommand', array('id' => Input::get('id')));
 
-        return Redirect::to('admin/campagne')->with( array('status' => 'success' , 'message' => $message ) );
-	}
+        return Redirect::to('admin/campagne')->with(array('status' => 'success' , 'message' => $message ));
+    }
 
-    public function test(){
+    public function test()
+    {
 
         $id    = Input::get('id');
         $email = Input::get('email');
@@ -46,18 +48,15 @@ class SendController extends \BaseController {
         // GET html
         $html = $this->campagne->html($campagne->id);
 
-        $this->worker->sendTest($email,$html,$sujet);
+        $this->worker->sendTest($email, $html, $sujet);
 
         $ajax = Input::get('send_type', 'normal');
 
-        if($ajax == 'ajax'){
+        if ($ajax == 'ajax') {
             echo 'ok';
             exit;
         }
 
-        return Redirect::to('admin/campagne/'.$id)->with( array('status' => 'success' , 'message' => 'Email de test envoyé!' ) );
+        return Redirect::to('admin/campagne/'.$id)->with(array('status' => 'success' , 'message' => 'Email de test envoyé!' ));
     }
-
-
-
 }

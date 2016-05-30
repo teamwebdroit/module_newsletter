@@ -2,11 +2,12 @@
 
 use Droit\Service\Worker\UploadInterface;
 
-class UploadController extends BaseController {
+class UploadController extends BaseController
+{
 
     protected $upload;
 
-    public function __construct( UploadInterface $upload )
+    public function __construct(UploadInterface $upload)
     {
 
         $this->upload = $upload;
@@ -16,17 +17,18 @@ class UploadController extends BaseController {
     public function uploadJS()
     {
 
-        $files = $this->upload->upload( Input::file('file') , 'files' );
+        $files = $this->upload->upload(Input::file('file'), 'files');
 
-        if($files)
-        {
-            return Response::json(array(
-                    'success' => true,
-                    'files'   => Input::file(),
-                    'get'     => Input::all(),
-                    'post'    => Input::all()
+        if ($files) {
+            return Response::json(
+                array(
+                'success' => true,
+                'files'   => Input::file(),
+                'get'     => Input::all(),
+                'post'    => Input::all()
                 ),
-            200 );
+                200
+            );
 
         }
 
@@ -36,16 +38,15 @@ class UploadController extends BaseController {
 
     public function uploadRedactor()
     {
-        $files = $this->upload->upload( Input::file('file') , 'files' );
+        $files = $this->upload->upload(Input::file('file'), 'files');
 
-        if($files)
-        {
+        if ($files) {
             $array = array(
                 'filelink' => URL::to('/').'/files/'.$files['name'],
                 'filename' => $files['name']
             );
 
-            return Response::json($array,200 );
+            return Response::json($array, 200);
         }
 
         return false;
@@ -61,26 +62,21 @@ class UploadController extends BaseController {
         $uploaded = array();
         $result   = array();
 
-        if(!empty($allfiles))
-        {
-            foreach($allfiles as $file)
-            {
-                $newfile = $this->upload->upload($file  , $path);
+        if (!empty($allfiles)) {
+            foreach ($allfiles as $file) {
+                $newfile = $this->upload->upload($file, $path);
 
-                if($newfile)
-                {
+                if ($newfile) {
                     $uploaded[] =  array(
                         "name" => $newfile['name'],
                         "size" => $newfile['size'],
                         "url"  => URL::to('/').'/files/'.$newfile['name']
                     );
-                }
-                else
-                {
+                } else {
                     $uploaded[] = array(
-                        "name"  => $newfile['name'],
-                        "size"  => $newfile['size'],
-                        "error" => "Problème avec l\'upload"
+                    "name"  => $newfile['name'],
+                    "size"  => $newfile['size'],
+                    "error" => "Problème avec l\'upload"
                     );
                 }
             }
@@ -88,7 +84,7 @@ class UploadController extends BaseController {
             $result = array('files' => $uploaded);
         }
 
-        return Response::json($result,200 );
+        return Response::json($result, 200);
 
     }
 
@@ -99,12 +95,9 @@ class UploadController extends BaseController {
         $data   = [];
         $except = ['.DS_Store'];
 
-        if(!empty($files))
-        {
-            foreach($files as $file)
-            {
-                if(!in_array($file,$except))
-                {
+        if (!empty($files)) {
+            foreach ($files as $file) {
+                if (!in_array($file, $except)) {
                     $data[] = ['image' => url('/').'/'.$file, 'thumb' => url('/').'/'.$file, 'title' => $file];
                 }
             }
@@ -120,12 +113,9 @@ class UploadController extends BaseController {
         $data   = [];
         $except = ['.DS_Store'];
 
-        if(!empty($files))
-        {
-            foreach($files as $file)
-            {
-                if(!in_array($file,$except))
-                {
+        if (!empty($files)) {
+            foreach ($files as $file) {
+                if (!in_array($file, $except)) {
                     $data[] = ['name' => $file, 'link' => url('/').'/'.$file, 'title' => $file];
                 }
             }
@@ -133,5 +123,4 @@ class UploadController extends BaseController {
 
         return Response::json($data);
     }
-
 }

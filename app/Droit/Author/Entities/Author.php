@@ -2,9 +2,10 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class Author extends Model {
+class Author extends Model
+{
 
-	protected $fillable = ['first_name','last_name','occupation','bio','photo','rang'];
+    protected $fillable = ['first_name','last_name','occupation','bio','photo','rang'];
     public $timestamps  = false;
 
     public static $rules = array(
@@ -34,6 +35,4 @@ class Author extends Model {
         //return $this->belongsToMany('Droit\Content\Entities\Analyse','author_id');
         return $this->belongsToMany('\Droit\Content\Entities\Analyse', 'analyse_authors', 'author_id', 'analyse_id');
     }
-
 }
-

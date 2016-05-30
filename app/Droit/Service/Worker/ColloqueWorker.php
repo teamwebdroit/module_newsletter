@@ -1,6 +1,7 @@
 <?php namespace Droit\Service\Worker;
 
-class ColloqueWorker{
+class ColloqueWorker
+{
 
     protected $custom;
     protected $client;
@@ -15,9 +16,10 @@ class ColloqueWorker{
         $this->base_url = ($environment == 'local' ? 'http://lux.local' : 'http://www.publications-droit.ch/fileadmin/lux');
     }
 
-    public function getColloques(){
+    public function getColloques()
+    {
 
-        $response   = $this->client->get( $this->base_url.'/event', ['query' => ['centres' => ['cemaj','cert'] ]]);
+        $response   = $this->client->get($this->base_url.'/event', ['query' => ['centres' => ['cemaj','cert'] ]]);
         $data       = $response->json();
         $data       = $this->organise($data['data']);
 
@@ -26,9 +28,10 @@ class ColloqueWorker{
         return $collection;
     }
 
-    public function getArchives(){
+    public function getArchives()
+    {
 
-        $response   = $this->client->get( $this->base_url.'/event', ['query' => ['archive' => 'archive', 'centres' => ['cemaj','cert'] ]]);
+        $response   = $this->client->get($this->base_url.'/event', ['query' => ['archive' => 'archive', 'centres' => ['cemaj','cert'] ]]);
         $data       = $response->json();
         $data       = $this->organiseYear($data['data']);
         $collection = new \Illuminate\Support\Collection($data);
@@ -36,18 +39,17 @@ class ColloqueWorker{
         return $collection;
     }
 
-    public function organise($data){
+    public function organise($data)
+    {
 
-        if(!empty($data))
-        {
-            foreach($data as $colloque)
-            {
+        if (!empty($data)) {
+            foreach ($data as $colloque) {
                 $centre = (count($colloque['organisateur']) > 1 ? 'both' : $colloque['organisateur'][0]);
                 $organise[$centre][] = $colloque;
             }
 
             $sorting  = array('cert','cemaj');
-            $organise = $this->custom->sortArrayByArray($organise,$sorting);
+            $organise = $this->custom->sortArrayByArray($organise, $sorting);
 
             return $organise;
         }
@@ -55,12 +57,11 @@ class ColloqueWorker{
         return [];
     }
 
-    public function organiseYear($data){
+    public function organiseYear($data)
+    {
 
-        if(!empty($data))
-        {
-            foreach($data as $colloque)
-            {
+        if (!empty($data)) {
+            foreach ($data as $colloque) {
                 $date = $colloque['event']['dateDebut'];
                 $year = \Carbon\Carbon::createFromFormat('Y-m-d', $date);
                 $years[$year->year][] = $colloque;
@@ -68,8 +69,7 @@ class ColloqueWorker{
 
             ksort($years);
 
-            foreach($years as $year => $event)
-            {
+            foreach ($years as $year => $event) {
                 $organise[$year] = $this->organise($event);
             }
 

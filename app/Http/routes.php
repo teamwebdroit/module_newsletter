@@ -22,8 +22,8 @@ Route::post('inscription/resend', 'InscriptionController@resend');
 Route::post('inscription/unsubscribe', 'InscriptionController@unsubscribe');
 Route::resource('inscription', 'InscriptionController');
 
-Route::group(array('before' => array('auth')), function()
-{
+Route::group(array('before' => array('auth')), function () {
+
     /**
      * Upload routes
      */
@@ -40,8 +40,8 @@ Route::group(array('before' => array('auth')), function()
 
 });
 
-Route::group(array('before' => array('admin','csrf')), function()
-{
+Route::group(array('before' => array('admin','csrf')), function () {
+
     /**
      * API
      */
@@ -72,10 +72,10 @@ Route::controller('password', 'RemindersController');
 /**
  * Admin routes
  */
-Route::group(array('prefix' => 'admin', 'before' => array('auth','admin')), function()
-{
-    Route::get('exemple', function()
-    {
+Route::group(array('prefix' => 'admin', 'before' => array('auth','admin')), function () {
+
+    Route::get('exemple', function () {
+    
         $file = public_path(). '/files/exemple_import.xlsx';
         return \Response::download($file, 'exemple_import.xlsx');
     });
@@ -112,16 +112,16 @@ Route::group(array('prefix' => 'admin', 'before' => array('auth','admin')), func
 });
 
 
-Route::get('testing', function()
-{
+Route::get('testing', function () {
+
 
     $worker   = App::make('Droit\Newsletter\Worker\CampagneInterface');
     $campagne = $worker->findCampagneById(13);
 
-    $sommaire = $campagne->map(function($item)
-    {
-        if($item->type->id == 7){
-           return $item->arrets->lists('reference');
+    $sommaire = $campagne->map(function ($item) {
+    
+        if ($item->type->id == 7) {
+            return $item->arrets->lists('reference');
         }
         return $item->type->id == 5 ? $item->reference : $item->titre;
     });
@@ -133,8 +133,8 @@ Route::get('testing', function()
 
 });
 
-Route::get('statscampagne', function()
-{
+Route::get('statscampagne', function () {
+
 
 
     $csv    = public_path('files/test.csv');

@@ -1,4 +1,5 @@
 <?php namespace Droit;
+
 /**
  * Service provider for common tasks
  */
@@ -14,14 +15,15 @@ use Droit\Author\Entities\Author as Author;
 /**
  *  DroitServiceProvider
  */
-class DroitServiceProvider extends ServiceProvider {
+class DroitServiceProvider extends ServiceProvider
+{
 
-	/**
-	 * Register binding interface to implementation 
-	 */
+    /**
+     * Register binding interface to implementation
+     */
     public function register()
-    {         	
-		$this->registerArretService();
+    {
+        $this->registerArretService();
         $this->registerAnalyseService();
         $this->registerCategorieService();
         $this->registerContentService();
@@ -30,83 +32,90 @@ class DroitServiceProvider extends ServiceProvider {
         $this->registerAuthorService();
     }
 
-	/**
-	 * Arret
-	 */     
-    protected function registerArretService(){
+    /**
+     * Arret
+     */
+    protected function registerArretService()
+    {
     
-	    $this->app->bind('Droit\Content\Repo\ArretInterface', function()
-        {
-            return new \Droit\Content\Repo\ArretEloquent( new Arret );
-        });        
+        $this->app->bind('Droit\Content\Repo\ArretInterface', function () {
+        
+            return new \Droit\Content\Repo\ArretEloquent(new Arret);
+        });
     }
 
     /**
      * Analyse
      */
-    protected function registerAnalyseService(){
+    protected function registerAnalyseService()
+    {
 
-        $this->app->bind('Droit\Content\Repo\AnalyseInterface', function()
-        {
-            return new \Droit\Content\Repo\AnalyseEloquent( new Analyse );
+        $this->app->bind('Droit\Content\Repo\AnalyseInterface', function () {
+        
+            return new \Droit\Content\Repo\AnalyseEloquent(new Analyse);
         });
     }
 
     /**
      * Author
      */
-    protected function registerAuthorService(){
+    protected function registerAuthorService()
+    {
 
-        $this->app->bind('Droit\Author\Repo\AuthorInterface', function()
-        {
-            return new \Droit\Author\Repo\AuthorEloquent( new Author );
+        $this->app->bind('Droit\Author\Repo\AuthorInterface', function () {
+        
+            return new \Droit\Author\Repo\AuthorEloquent(new Author);
         });
     }
 
     /**
      * Categorie
      */
-    protected function registerCategorieService(){
+    protected function registerCategorieService()
+    {
 
-        $this->app->bind('Droit\Categorie\Repo\CategorieInterface', function()
-        {
-            return new \Droit\Categorie\Repo\CategorieEloquent( new Categorie );
+        $this->app->bind('Droit\Categorie\Repo\CategorieInterface', function () {
+        
+            return new \Droit\Categorie\Repo\CategorieEloquent(new Categorie);
         });
     }
 
     /**
      * Content
      */
-    protected function registerContentService(){
+    protected function registerContentService()
+    {
 
-        $this->app->bind('Droit\Content\Repo\ContentInterface', function()
-        {
-            return new \Droit\Content\Repo\ContentEloquent( new Content );
+        $this->app->bind('Droit\Content\Repo\ContentInterface', function () {
+        
+            return new \Droit\Content\Repo\ContentEloquent(new Content);
         });
     }
 
     /**
      * Groupe
      */
-    protected function registerGroupeService(){
+    protected function registerGroupeService()
+    {
 
-        $this->app->bind('Droit\Content\Repo\GroupeInterface', function()
-        {
-            return new \Droit\Content\Repo\GroupeEloquent( new Groupe );
+        $this->app->bind('Droit\Content\Repo\GroupeInterface', function () {
+        
+            return new \Droit\Content\Repo\GroupeEloquent(new Groupe);
         });
     }
 
     /**
      * Search service
      */
-    protected function registerSearchService(){
+    protected function registerSearchService()
+    {
 
-        $this->app->bind('Droit\Service\Worker\SearchInterface', function()
-        {
+        $this->app->bind('Droit\Service\Worker\SearchInterface', function () {
+        
             return new \Droit\Service\Worker\SearchEloquent(
-                new Arret , new Categorie
+                new Arret,
+                new Categorie
             );
         });
     }
-
 }

@@ -4,7 +4,8 @@ use Laracasts\Commander\CommandHandler;
 use Droit\Newsletter\Repo\NewsletterUserInterface;
 use Droit\Newsletter\Worker\MailjetInterface;
 
-class UpdateSubscriberCommandHandler implements CommandHandler {
+class UpdateSubscriberCommandHandler implements CommandHandler
+{
 
     protected $worker;
     protected $abonne;
@@ -26,24 +27,20 @@ class UpdateSubscriberCommandHandler implements CommandHandler {
     public function handle($command)
     {
 
-        $abonne = $this->abonne->update( array( 'id' => $command->id, 'email' => $command->email, 'activated_at' => $command->activation ) );
+        $abonne = $this->abonne->update(array( 'id' => $command->id, 'email' => $command->email, 'activated_at' => $command->activation ));
 
         // Sync the abos to newsletter we have
         $abonne->newsletter()->sync($command->newsletter_id);
 
         $abos  = ( !$abonne->subscription->isEmpty() ? $abonne->subscription->lists('newsletter_id') : array() );
 
-        $exist =  $this->custom->allInArray($command->newsletter_id,$abos);
+        $exist =  $this->custom->allInArray($command->newsletter_id, $abos);
 
-        if( !empty($command->newsletter_id) && !$exist )
-        {
+        if (!empty($command->newsletter_id) && !$exist) {
             return $this->worker->subscribeEmailToList($abonne->email);
-        }
-        else
-        {
+        } else {
             return $this->worker->removeContact($abonne->email);
         }
 
     }
-
 }

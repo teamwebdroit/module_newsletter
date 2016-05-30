@@ -1,6 +1,7 @@
 <?php
 
-class CampagneRepoTest extends TestCase {
+class CampagneRepoTest extends TestCase
+{
 
     protected $custom;
 
@@ -50,5 +51,4 @@ class CampagneRepoTest extends TestCase {
     {
         \Mockery::close();
     }
-
 }

@@ -4,7 +4,8 @@ use Laracasts\Commander\CommandHandler;
 use Laracasts\Commander\Events\DispatchableTrait;
 use Droit\Form\MessageValidation;
 
-class MessageSendCommandHandler implements CommandHandler {
+class MessageSendCommandHandler implements CommandHandler
+{
 
     use DispatchableTrait;
 
@@ -25,13 +26,12 @@ class MessageSendCommandHandler implements CommandHandler {
     {
         $data = array('email' => $command->email, 'nom' => $command->nom, 'remarque' => $command->remarque );
 
-        $this->validator->validate( $data );
+        $this->validator->validate($data);
 
-       \Mail::send('emails.contact', $data , function($message)
-        {
+        \Mail::send('emails.contact', $data, function ($message) {
+        
             $message->to('info@droitdutravail.ch', 'Droit du travail')->subject('Message depuis le site www.droitdutravail.ch');
         });
 
     }
-
 }

@@ -1,6 +1,7 @@
 <?php namespace Droit\Command;
 
-class SendCampagneCommand {
+class SendCampagneCommand
+{
 
     /**
      * @var string
@@ -15,5 +16,4 @@ class SendCampagneCommand {
     {
         $this->id = $id;
     }
-
 }

@@ -6,7 +6,8 @@ use Laracasts\Commander\Events\DispatchableTrait;
 use Droit\Newsletter\Repo\NewsletterUserInterface;
 use Droit\Form\InscriptionValidation;
 
-class NewsletterSubscribeCommandHandler implements CommandHandler {
+class NewsletterSubscribeCommandHandler implements CommandHandler
+{
 
     use DispatchableTrait;
 
@@ -27,13 +28,13 @@ class NewsletterSubscribeCommandHandler implements CommandHandler {
      */
     public function handle($command)
     {
-        $this->validator->validate( array('email' => $command->email) );
+        $this->validator->validate(array('email' => $command->email));
 
         // Make activation token
-        $activation_token = md5( $command->email.\Carbon\Carbon::now() );
+        $activation_token = md5($command->email.\Carbon\Carbon::now());
 
         // Subscribe user to website list and synch newsletter abos
-        $suscribe = $this->newsletter->create( array('email' => $command->email, 'activation_token' => $activation_token) );
+        $suscribe = $this->newsletter->create(array('email' => $command->email, 'activation_token' => $activation_token));
         $suscribe->newsletter()->sync($command->newsletter_id);
 
         // Events notifier, send email for abo confirmation
@@ -41,5 +42,4 @@ class NewsletterSubscribeCommandHandler implements CommandHandler {
 
         return $suscribe;
     }
-
 }

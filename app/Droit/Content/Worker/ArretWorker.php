@@ -2,7 +2,8 @@
 
 use Droit\Content\Repo\GroupeInterface;
 
-class ArretWorker{
+class ArretWorker
+{
 
     protected $custom;
 
@@ -11,9 +12,10 @@ class ArretWorker{
         $this->custom  = new \Custom;
     }
 
-    public function getAnalyseForArret($arret){
+    public function getAnalyseForArret($arret)
+    {
 
-        if(!$arret->arrets_analyses->isEmpty()){
+        if (!$arret->arrets_analyses->isEmpty()) {
 
             $arret->arrets_analyses->load('analyse_authors');
             return $arret->arrets_analyses;
@@ -21,5 +23,4 @@ class ArretWorker{
 
         return [];
     }
-
 }

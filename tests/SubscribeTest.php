@@ -1,6 +1,7 @@
 <?php
 
-class Subscribe extends TestCase {
+class Subscribe extends TestCase
+{
 
     protected $custom;
 
@@ -19,13 +20,13 @@ class Subscribe extends TestCase {
         return $mock;
     }
 
-	/**
-	 * A basic functional test example.
-	 *
-	 * @return void
-	 */
-	public function testSubscribeEmailDoesExist()
-	{
+    /**
+     * A basic functional test example.
+     *
+     * @return void
+     */
+    public function testSubscribeEmailDoesExist()
+    {
         $email = 'cindy.leschaud@gmail.com';
 /*
         $this->mock->shouldReceive('create')->once();
@@ -33,11 +34,10 @@ class Subscribe extends TestCase {
         $this->call('POST', 'inscription', array('email' => $email));
 
         $this->assertRedirectedTo('/', array('status' => 'danger' ));*/
-	}
+    }
 
     public function tearDown()
     {
         \Mockery::close();
     }
-
 }

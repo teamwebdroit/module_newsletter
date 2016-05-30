@@ -3,13 +3,14 @@
 use Droit\Content\Repo\ContentInterface;
 use Droit\Service\Worker\UploadInterface;
 
-class ContentController extends \BaseController {
+class ContentController extends \BaseController
+{
 
     protected $content;
     protected $upload;
     protected $custom;
 
-    public function __construct(ContentInterface $content, UploadInterface $upload )
+    public function __construct(ContentInterface $content, UploadInterface $upload)
     {
         $this->beforeFilter('csrf', array('only' => array('store','update')));
 
@@ -21,18 +22,18 @@ class ContentController extends \BaseController {
         View::share('positions', array('sidebar' => 'Barre latérale', 'home-bloc' => 'Accueil bloc plein', 'home-colonne' => 'Accueil bloc colonne'));
     }
 
-	/**
-	 * Display a listing of the resource.
-	 * GET /content
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
+    /**
+     * Display a listing of the resource.
+     * GET /content
+     *
+     * @return Response
+     */
+    public function index()
+    {
         $content  = $this->content->getAll();
 
         return View::make('admin.content.index')->with(array( 'content' => $content ));
-	}
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -56,9 +57,8 @@ class ContentController extends \BaseController {
         $_file = Input::file('file', null);
 
         // Files upload
-        if(isset($_file) )
-        {
-            $file = $this->upload->upload( Input::file('file') , 'files');
+        if (isset($_file)) {
+            $file = $this->upload->upload(Input::file('file'), 'files');
         }
 
         // Data array
@@ -71,9 +71,9 @@ class ContentController extends \BaseController {
         $data['rang']     = Input::get('rang');
         $data['image']    = (isset($file) && !empty($file) ? $file['name'] : null);
 
-        $content = $this->content->create( $data );
+        $content = $this->content->create($data);
 
-        return Redirect::to('admin/contenu/'.$content->id)->with( array('status' => 'success' , 'message' => 'Contenu crée') );
+        return Redirect::to('admin/contenu/'.$content->id)->with(array('status' => 'success' , 'message' => 'Contenu crée'));
     }
 
     /**
@@ -115,9 +115,8 @@ class ContentController extends \BaseController {
         $_file = Input::file('file', null);
 
         // Files upload
-        if(isset($_file) )
-        {
-            $file = $this->upload->upload( Input::file('file') , 'files');
+        if (isset($_file)) {
+            $file = $this->upload->upload(Input::file('file'), 'files');
         }
 
         // Data array
@@ -131,9 +130,9 @@ class ContentController extends \BaseController {
         $data['rang']     = Input::get('rang');
         $data['image']    = (isset($file) && !empty($file) ? $file['name'] : null);
 
-        $content = $this->content->update( $data );
+        $content = $this->content->update($data);
 
-        return Redirect::to('admin/contenu/'.$content->id)->with( array('status' => 'success' , 'message' => 'Contenu mis à jour') );
+        return Redirect::to('admin/contenu/'.$content->id)->with(array('status' => 'success' , 'message' => 'Contenu mis à jour'));
     }
 
     /**
@@ -148,5 +147,4 @@ class ContentController extends \BaseController {
 
         return Redirect::back()->with(array('status' => 'success', 'message' => 'Contenu supprimée' ));
     }
-
 }

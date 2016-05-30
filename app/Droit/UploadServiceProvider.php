@@ -9,25 +9,26 @@ use Illuminate\Support\ServiceProvider;
 /**
  *  DroitServiceProvider
  */
-class UploadServiceProvider extends ServiceProvider {
+class UploadServiceProvider extends ServiceProvider
+{
 
-	/**
-	 * Register binding interface to implementation 
-	 */
+    /**
+     * Register binding interface to implementation
+     */
     public function register()
-    {         	
-		$this->registerUploadService();	
+    {
+        $this->registerUploadService();
     }
 
-	/**
-	 * Upload service
-	 */     
-    protected function registerUploadService(){
+    /**
+     * Upload service
+     */
+    protected function registerUploadService()
+    {
     
-	    $this->app->bind('Droit\Service\Worker\UploadInterface', function()
-        {
+        $this->app->bind('Droit\Service\Worker\UploadInterface', function () {
+        
             return new \Droit\Service\Worker\UploadWorker();
-        });        
+        });
     }
-
 }

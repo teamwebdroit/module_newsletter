@@ -1,6 +1,7 @@
 <?php namespace Droit\Command;
 
-class AdminSubscribeCommand {
+class AdminSubscribeCommand
+{
 
     /**
      * @var string
@@ -20,11 +21,10 @@ class AdminSubscribeCommand {
     /**
      * @param string email
      */
-    public function __construct($email,$activation,$newsletter_id)
+    public function __construct($email, $activation, $newsletter_id)
     {
         $this->email         = $email;
         $this->activation    = $activation;
         $this->newsletter_id = $newsletter_id;
     }
-
 }

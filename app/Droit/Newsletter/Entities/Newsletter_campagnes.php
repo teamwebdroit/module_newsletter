@@ -3,9 +3,10 @@
 use Illuminate\Database\Eloquent\SoftDeletingTrait;
 use Droit\Common\BaseModel as BaseModel;
 
-class Newsletter_campagnes extends BaseModel {
+class Newsletter_campagnes extends BaseModel
+{
 
-	protected $fillable = ['sujet','auteurs','newsletter_id'];
+    protected $fillable = ['sujet','auteurs','newsletter_id'];
 
     use SoftDeletingTrait;
 
@@ -27,9 +28,9 @@ class Newsletter_campagnes extends BaseModel {
         'auteurs.required' => 'Le ou les auteur/s est/sont requis'
     );
 
-    public function newsletter(){
+    public function newsletter()
+    {
 
         return $this->belongsTo('Droit\Newsletter\Entities\Newsletter', 'newsletter_id', 'id');
     }
-
 }

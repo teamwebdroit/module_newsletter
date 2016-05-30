@@ -1,6 +1,7 @@
 <?php namespace Droit\Exceptions;
 
-class FormValidationException extends \Exception {
+class FormValidationException extends \Exception
+{
 
     /**
      * @var mixed
@@ -27,5 +28,4 @@ class FormValidationException extends \Exception {
     {
         return $this->errors;
     }
-
 }

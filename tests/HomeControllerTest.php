@@ -1,6 +1,7 @@
 <?php
 
-class HomeControllerTest extends TestCase {
+class HomeControllerTest extends TestCase
+{
 
     protected $custom;
 
@@ -19,15 +20,15 @@ class HomeControllerTest extends TestCase {
         return $mock;
     }
 
-	/**
-	 * Home page
-	 *
-	 * @return void
-	 */
-	public function testHomePage()
-	{
+    /**
+     * Home page
+     *
+     * @return void
+     */
+    public function testHomePage()
+    {
         $this->client->request('GET', '/');
-	}
+    }
 
     /**
      * Jurisprudence page
@@ -81,5 +82,4 @@ class HomeControllerTest extends TestCase {
     {
         \Mockery::close();
     }
-
 }

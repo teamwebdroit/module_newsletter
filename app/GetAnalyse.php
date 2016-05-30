@@ -1,7 +1,8 @@
 <?php
 
-class GetAnalyse extends \Eloquent {
+class GetAnalyse extends \Eloquent
+{
 
     protected $table = 'ba_analyses';
-	protected $fillable = [];
+    protected $fillable = [];
 }
