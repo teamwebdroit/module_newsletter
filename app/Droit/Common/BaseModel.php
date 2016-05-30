@@ -4,7 +4,9 @@ use Laracasts\Commander\Events\EventGenerator;
 use Droit\Exceptions\FormValidationException as FormValidationException;
 use Eloquent;
 
-class BaseModel extends Eloquent
+use Illuminate\Database\Eloquent\Model;
+
+class BaseModel extends Model
 {
 
     use EventGenerator;
