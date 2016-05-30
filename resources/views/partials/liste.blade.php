@@ -7,9 +7,9 @@
         @if(!$listCampagnes->isEmpty())
             @foreach($listCampagnes as $campagnes)
                 <li>
-                    <span class="date">{{ $campagnes->created_at->formatLocalized('%d %B %Y') }}</span>
-                    <a href="{{ url('newsletters').'/'.$campagnes->id }}">{{ $campagnes->sujet }}</a>
-                    <p>{{ $campagnes->auteurs }}</p>
+                    <span class="date">{!! $campagnes->created_at->formatLocalized('%d %B %Y') !!}</span>
+                    <a href="{!! url('newsletters').'/'.$campagnes->id !!}">{!! $campagnes->sujet !!}</a>
+                    <p>{!! $campagnes->auteurs !!}</p>
                 </li>
             @endforeach
         @else

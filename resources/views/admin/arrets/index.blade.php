@@ -6,7 +6,7 @@
 
         <div class="options text-right" style="margin-bottom: 10px;">
             <div class="btn-toolbar">
-               <a href="{{ url('admin/arret/create') }}" class="btn btn-success"><i class="fa fa-plus"></i> &nbsp;Ajouter</a>
+               <a href="{!! url('admin/arret/create') !!}" class="btn btn-success"><i class="fa fa-plus"></i> &nbsp;Ajouter</a>
             </div>
         </div>
 
@@ -31,14 +31,14 @@
                         @if(!empty($arrets))
                             @foreach($arrets as $arret)
                                 <tr>
-                                    <td><a class="btn btn-sky btn-sm" href="{{ url('admin/arret/'.$arret->id) }}">éditer</a></td>
-                                    <td><strong>{{ $arret->reference }}</strong></td>
-                                    <td>{{ $arret->pub_date->formatLocalized('%d %B %Y') }}</td>
-                                    <td>{{ $arret->abstract }}</td>
+                                    <td><a class="btn btn-sky btn-sm" href="{!! url('admin/arret/'.$arret->id) !!}">éditer</a></td>
+                                    <td><strong>{!! $arret->reference !!}</strong></td>
+                                    <td>{!! $arret->pub_date->formatLocalized('%d %B %Y') !!}</td>
+                                    <td>{!! $arret->abstract !!}</td>
                                     <td>
-                                        {{ Form::open(array('route' => array('admin.arret.destroy', $arret->id), 'method' => 'delete')) }}
-                                            <button data-action="arrêt {{ $arret->reference }}" class="btn btn-danger btn-sm deleteAction">Supprimer</button>
-                                        {{ Form::close() }}
+                                        {!! Form::open(array('route' => array('admin.arret.destroy', $arret->id), 'method' => 'delete')) !!}
+                                            <button data-action="arrêt {!! $arret->reference !!}" class="btn btn-danger btn-sm deleteAction">Supprimer</button>
+                                        {!! Form::close() !!}
                                     </td>
                                 </tr>
                             @endforeach

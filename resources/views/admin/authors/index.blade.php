@@ -6,7 +6,7 @@
 
         <div class="options text-right" style="margin-bottom: 10px;">
             <div class="btn-toolbar">
-               <a href="{{ url('admin/author/create') }}" class="btn btn-success"><i class="fa fa-plus"></i> &nbsp;Ajouter</a>
+               <a href="{!! url('admin/author/create') !!}" class="btn btn-success"><i class="fa fa-plus"></i> &nbsp;Ajouter</a>
             </div>
         </div>
 
@@ -30,13 +30,13 @@
                         @if(!empty($authors))
                             @foreach($authors as $author)
                                 <tr>
-                                    <td><a class="btn btn-sky btn-sm" href="{{ url('admin/author/'.$author->id) }}">&Eacute;diter</a></td>
-                                    <td><strong>{{ $author->name }}</strong></td>
-                                    <td>{{ $author->occupation }}</td>
+                                    <td><a class="btn btn-sky btn-sm" href="{!! url('admin/author/'.$author->id) !!}">&Eacute;diter</a></td>
+                                    <td><strong>{!! $author->name !!}</strong></td>
+                                    <td>{!! $author->occupation !!}</td>
                                     <td class="text-right">
-                                        {{ Form::open(array('route' => array('admin.author.destroy', $author->id), 'method' => 'delete')) }}
-                                        <button data-action="{{ $author->name }}" class="btn btn-danger btn-sm deleteAction">Supprimer</button>
-                                        {{ Form::close() }}
+                                        {!! Form::open(array('route' => array('admin.author.destroy', $author->id), 'method' => 'delete')) !!}
+                                        <button data-action="{!! $author->name !!}" class="btn btn-danger btn-sm deleteAction">Supprimer</button>
+                                        {!! Form::close() !!}
                                     </td>
                                 </tr>
                             @endforeach

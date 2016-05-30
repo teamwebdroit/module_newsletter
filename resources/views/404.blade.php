@@ -16,7 +16,7 @@
     <div id="inner-content" class="col-md-12 text-align-center">
         <div id="pagepastrouve">
             <img src="<?php echo asset('images/pagepastrouve.svg'); ?>" alt="404">
-            <p class="text-center"><a class="button small grey" href="{{ url('/') }}">Retour à la page d'accueil</a></p>
+            <p class="text-center"><a class="button small grey" href="{!! url('/') !!}">Retour à la page d'accueil</a></p>
         </div>
     </div>
 

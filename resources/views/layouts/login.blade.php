@@ -21,26 +21,26 @@
         <div class="alert alert-warning }}">
 
             @foreach($errors->all() as $message)
-            <p>{{ $message }}</p>
+            <p>{!! $message !!}</p>
             @endforeach
 
             @if(Session::has('message'))
-            {{ Session::get('message') }}
+            {!! Session::get('message') !!}
             @endif
 
             @if(Session::has('error'))
-            {{ Session::get('error') }}
+            {!! Session::get('error') !!}
             @endif
 
             @if(Session::has('status'))
-            {{ Session::get('status') }}
+            {!! Session::get('status') !!}
             @endif
 
         </div>
 
         @endif
 
-        <div id="logo"><a href="{{ url('/') }}">Droit du <strong>travail</strong>.ch</a></div>
+        <div id="logo"><a href="{!! url('/') !!}">Droit du <strong>travail</strong>.ch</a></div>
         <div class="panel panel-primary">
 
             <!-- Contenu -->

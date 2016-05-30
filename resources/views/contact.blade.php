@@ -34,7 +34,7 @@
             </div><!--END ONE-HALF-->
 
             <div class="col-md-8 col-sx-12">
-                <form action="{{ url('sendMessage') }}" id="contact-form" class="form" method="post">
+                <form action="{!! url('sendMessage') !!}" id="contact-form" class="form" method="post">
                     <p class="form-name">
                         <label for="name">Nom <em>(*)</em></label>
                         <input id="name" name="nom" type="text" value="" size="30" class="requiredField" />

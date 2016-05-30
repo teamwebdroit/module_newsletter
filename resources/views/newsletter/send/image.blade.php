@@ -13,7 +13,7 @@
                         <p class="centerText">
                             <?php $lien = (isset($bloc->lien) && !empty($bloc->lien) ? $bloc->lien : url('/') ); ?>
                             <a target="_blank" href="<?php echo $lien; ?>">
-                                <img style="max-width: 560px;" alt="Droit du travail" src="{{ asset('files/'.$bloc->image) }}" />
+                                <img style="max-width: 560px;" alt="Droit du travail" src="{!! asset('files/'.$bloc->image) !!}" />
                             </a>
                         </p>
                     </td>
@@ -21,7 +21,7 @@
                 <tr bgcolor="ffffff">
                     <td align="center" valign="top" width="560" class="resetMarge">
                         @if( $bloc->titre )
-                            <h2 class="centerText">{{ $bloc->titre }}</h2>
+                            <h2 class="centerText">{!! $bloc->titre !!}</h2>
                         @endif
                     </td>
                 </tr><!-- space -->

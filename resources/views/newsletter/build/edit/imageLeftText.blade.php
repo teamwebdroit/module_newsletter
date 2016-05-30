@@ -9,15 +9,15 @@
         <tr bgcolor="ffffff">
             <td colspan="3" height="35">
                 <div class="pull-right btn-group btn-group-xs">
-                    <button class="btn btn-orange editContent" ng-click="edit.editContent({{ $bloc->idItem }}) && !$flow.files.length" data-id="{{ $bloc->idItem }}" type="button">éditer</button>
-                    <button class="btn btn-danger deleteContent deleteContentBloc" data-id="{{ $bloc->idItem }}" data-action="{{ $bloc->titre }}" type="button">&nbsp;×&nbsp;</button>
+                    <button class="btn btn-orange editContent" ng-click="edit.editContent({!! $bloc->idItem !!}) && !$flow.files.length" data-id="{!! $bloc->idItem !!}" type="button">éditer</button>
+                    <button class="btn btn-danger deleteContent deleteContentBloc" data-id="{!! $bloc->idItem !!}" data-action="{!! $bloc->titre !!}" type="button">&nbsp;×&nbsp;</button>
                 </div>
             </td>
         </tr><!-- space -->
         <tr>
             <td valign="top" align="center" width="160" class="resetMarge">
                 <div class="uploadBtn" ng-if="!notedited">
-                    <span class="btn btn-xs btn-info" ng-if="edit.onedit( {{ $bloc->idItem }} )" flow-btn flow-attrs="{accept:'image/*'}">Changer image</span>
+                    <span class="btn btn-xs btn-info" ng-if="edit.onedit( {!! $bloc->idItem !!} )" flow-btn flow-attrs="{accept:'image/*'}">Changer image</span>
                     <span class="btn btn-xs btn-warning" ng-show="$flow.files.length" flow-btn flow-attrs="{accept:'image/*'}">Changer</span>
                     <span class="btn btn-xs btn-danger" ng-show="$flow.files.length" ng-click="$flow.cancel()">Supprimer</span>
                 </div>
@@ -25,7 +25,7 @@
                     <img flow-img="$flow.files[0]" ng-if="notedited"/>
                     <?php $lien = (isset($bloc->lien) && !empty($bloc->lien) ? $bloc->lien : url('/') ); ?>
                     <a style="border: none;padding: 0;margin: 0;" target="_blank" href="<?php echo $lien; ?>">
-                        <img style="max-width: 130px;" alt="Droit du travail" src="{{ asset('files/'.$bloc->image) }}" />
+                        <img style="max-width: 130px;" alt="Droit du travail" src="{!! asset('files/'.$bloc->image) !!}" />
                     </a>
                 </div>
                 <div class="thumbnail mini" ng-show="$flow.files.length">
@@ -34,37 +34,37 @@
             </td>
             <td width="25" class="resetMarge"></td><!-- space -->
             <td valign="top" width="375" class="resetMarge contentForm">
-                <h2 ng-bind="edit.titre">{{ $bloc->titre }}</h2>
-                <div ng-bind-html="edit.contenu">{{ $bloc->contenu }}</div>
+                <h2 ng-bind="edit.titre">{!! $bloc->titre !!}</h2>
+                <div ng-bind-html="edit.contenu">{!! $bloc->contenu !!}</div>
             </td>
         </tr>
         <tr bgcolor="ffffff"><td colspan="3" height="35" class="blocBorder"></td></tr><!-- space -->
     </table>
     <!-- Bloc content-->
 
-    <div class="edit_content_form" id="edit_{{ $bloc->idItem }}">
-        <form name="editForm" method="post" action="{{ url('editContent') }}">
+    <div class="edit_content_form" id="edit_{!! $bloc->idItem !!}">
+        <form name="editForm" method="post" action="{!! url('editContent') !!}">
             <?php echo Form::token(); ?>
             <div class="panel panel-orange">
                 <div class="panel-body">
                     <div class="form-group">
                         <label>Titre</label>
-                        <input type="text" value="{{ $bloc->titre }}" bind-content ng-model="edit.titre" required name="titre" class="form-control">
+                        <input type="text" value="{!! $bloc->titre !!}" bind-content ng-model="edit.titre" required name="titre" class="form-control">
                     </div>
                     <div class="form-group">
                         <label>Ajouter un lien sur l'image</label>
-                        <input type="text" value="{{ $bloc->lien }}" name="lien" class="form-control">
+                        <input type="text" value="{!! $bloc->lien !!}" name="lien" class="form-control">
                     </div>
                     <div class="form-group">
                         <label>Texte</label>
-                        <textarea required redactor bind-content ng-model="edit.contenu" name="contenu" class="form-control" rows="10">{{ $bloc->contenu }}</textarea>
+                        <textarea required redactor bind-content ng-model="edit.contenu" name="contenu" class="form-control" rows="10">{!! $bloc->contenu !!}</textarea>
                     </div>
                     <div class="form-group">
                         <div class="btn-group">
-                            <input type="hidden" value="{{ $bloc->idItem }}" name="id">
+                            <input type="hidden" value="{!! $bloc->idItem !!}" name="id">
                             <input type="hidden" class="uploadImage" name="image" value="{[{ $flow.files[0].name }]}">
                             <button type="submit" class="btn btn-sm btn-orange">Envoyer</button>
-                            <button type="button" data-id="{{ $bloc->idItem }}" class="btn btn-sm btn-default cancelEdit">Annuler</button>
+                            <button type="button" data-id="{!! $bloc->idItem !!}" class="btn btn-sm btn-default cancelEdit">Annuler</button>
                         </div>
                     </div>
                 </div>

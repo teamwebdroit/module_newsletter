@@ -9,10 +9,10 @@
                 <tr bgcolor="ffffff"><td colspan="3" height="20"></td></tr><!-- space -->
                 <tr bgcolor="ffffff">
                     <td width="400" align="left" class="resetMarge contentForm" valign="top">
-                        <h3 style="text-align: left;font-family: sans-serif;">{{ $allcategories[$bloc->categorie] }}</h3>
+                        <h3 style="text-align: left;font-family: sans-serif;">{!! $allcategories[$bloc->categorie] !!}</h3>
                     </td>
                     <td width="160" align="center" valign="top" class="resetMarge">
-                        <img width="130" border="0" src="{{ asset('newsletter/pictos/'.$bloc->image) }}" alt="{{ $allcategories[$bloc->categorie] }}" />
+                        <img width="130" border="0" src="{!! asset('newsletter/pictos/'.$bloc->image) !!}" alt="{!! $allcategories[$bloc->categorie] !!}" />
                     </td>
                 </tr><!-- space -->
             </table>
@@ -35,10 +35,10 @@
                                 $title = ($arret->dumois ? 'Arrêt du mois : ' : '');
                                 setlocale(LC_ALL, 'fr_FR.UTF-8');
                                 ?>
-                                <h3 style="text-align: left;font-family: sans-serif;">{{ $title }}{{ $arret->reference }} du {{ $arret->pub_date->formatLocalized('%d %B %Y') }}</h3>
-                                <p class="abstract">{{ $arret->abstract }}</p>
-                                <div>{{ $arret->pub_text }}</div>
-                                <p><a href="{{ asset('files/arrets/'.$arret->file) }}">Télécharger en pdf</a></p>
+                                <h3 style="text-align: left;font-family: sans-serif;">{!! $title !!}{{ $arret->reference }} du {!! $arret->pub_date->formatLocalized('%d %B %Y') !!}</h3>
+                                <p class="abstract">{!! $arret->abstract !!}</p>
+                                <div>{!! $arret->pub_text !!}</div>
+                                <p><a href="{!! asset('files/arrets/'.$arret->file) !!}">Télécharger en pdf</a></p>
                             </div>
                         </td>
                         <td width="25" height="1" class="resetMarge" valign="top" style="font-size: 1px; line-height: 1px;margin: 0;padding: 0;"></td><!-- space -->

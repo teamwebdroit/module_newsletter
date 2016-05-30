@@ -13,11 +13,11 @@
                         <p class="centerText">
                             <?php $lien = (isset($bloc->lien) && !empty($bloc->lien) ? $bloc->lien : url('/') ); ?>
                             <a target="_blank" href="<?php echo $lien; ?>">
-                                <img style="max-width: 560px;" alt="Droit du travail" src="{{ asset('files/'.$bloc->image) }}" />
+                                <img style="max-width: 560px;" alt="Droit du travail" src="{!! asset('files/'.$bloc->image) !!}" />
                             </a>
                         </p>
-                        <h2 style="font-family: Sans-Serif;">{{ $bloc->titre }}</h2>
-                        <div>{{ $bloc->contenu }}</div>
+                        <h2 style="font-family: Sans-Serif;">{!! $bloc->titre !!}</h2>
+                        <div>{!! $bloc->contenu !!}</div>
                     </td>
                 </tr>
             </table>

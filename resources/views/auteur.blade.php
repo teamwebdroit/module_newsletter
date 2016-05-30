@@ -25,17 +25,17 @@
             <div class="media">
                 <div class="media-left" style="width:105px;">
                     <?php $photo = (!empty($auteur->photo) ? $auteur->photo : 'avatar.png'); ?>
-                    <img width="100" class="media-object" src="{{ asset('authors/'.$photo) }}" alt="{{ $auteur->name }}">
+                    <img width="100" class="media-object" src="{!! asset('authors/'.$photo) !!}" alt="{!! $auteur->name !!}">
 
                 </div>
                 <div class="media-body bio-body">
-                    <h3 class="media-heading">{{ $auteur->name }}</h3>
-                    <h5>{{ $auteur->occupation }}</h5>
-                    <div class="bio_auteur">{{ $auteur->bio }}</div>
+                    <h3 class="media-heading">{!! $auteur->name !!}</h3>
+                    <h5>{!! $auteur->occupation !!}</h5>
+                    <div class="bio_auteur">{!! $auteur->bio !!}</div>
 
                     @if(!$auteur->analyses->isEmpty())
                     <?php $pluriel = ($auteur->analyses->count() > 1 ? 'Analyses des arrêts' : 'Analyse de l\'arrêt'); ?>
-                    <h5>{{ $pluriel }}</h5>
+                    <h5>{!! $pluriel !!}</h5>
                     <ul class="analyse_auteur">
 
                         @foreach($auteur->analyses as $analyse)
@@ -44,8 +44,8 @@
                             @if(isset($analyse->analyses_arrets) && $analyse->analyses_arrets->count() > 0)
                             <li>
                                 <p>
-                                    <a href="{{ url('jurisprudence#analyse_'.$analyse->id) }}">{{ $analyse->analyses_arrets->first()->reference }}</a>
-                                    <i>{{ $analyse->remarque }}</i>
+                                    <a href="{!! url('jurisprudence#analyse_'.$analyse->id) !!}">{!! $analyse->analyses_arrets->first()->reference !!}</a>
+                                    <i>{!! $analyse->remarque !!}</i>
                                 </p>
                             </li>
                             @endif

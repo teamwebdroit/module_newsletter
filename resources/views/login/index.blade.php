@@ -1,12 +1,12 @@
 @extends('layouts.login')
 @section('content')
 
-    {{ Form::open(array(
+    {!! Form::open(array(
         'method'        => 'POST',
         'data-validate' => 'parsley',
         'class'         => 'validate-form form-horizontal',
         'url'           => array('login')))
-    }}
+    !!}
 
     <div class="panel-body">
         <h4 class="text-center" style="margin-bottom: 25px;">Log in</h4>
@@ -32,12 +32,12 @@
             </div>
     </div>
     <div class="panel-footer">
-        <a href="{{ action('RemindersController@getRemind') }}" class="pull-left btn btn-link" style="padding-left:0">Mot de passe perdu?</a>
+        <a href="{!! action('RemindersController@getRemind') !!}" class="pull-left btn btn-link" style="padding-left:0">Mot de passe perdu?</a>
         <div class="pull-right">
-            <a href="{{ url('/') }}" class="btn btn-default">Retour au site</a>
+            <a href="{!! url('/') !!}" class="btn btn-default">Retour au site</a>
             <button type="submit" class="btn btn-primary">Log In</button>
         </div>
     </div>
-    {{ Form::close() }}
+    {!! Form::close() !!}
 
 @stop

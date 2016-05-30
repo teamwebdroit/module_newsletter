@@ -6,7 +6,7 @@
            @if(!empty($categories))
               <select id="arret-chosen" name="category_check" data-placeholder="Choisir une ou plusieurs catégories" style="width:100%" multiple class="chosen-select category">
                   @foreach($categories as $categorie)
-                     <option value="c{{ $categorie->id }}">{{ $categorie->title }}</option>
+                     <option value="c{!! $categorie->id !!}">{!! $categorie->title !!}</option>
                   @endforeach
               </select>
           @endif
@@ -18,7 +18,7 @@
         @if(!empty($annees))
         <ul id="arret-annees" class="list annees clear">
             @foreach($annees as $annee)
-                <li><a rel="y{{ $annee }}" href="#">Paru en {{ $annee }}</a></li>
+                <li><a rel="y{!! $annee !!}" href="#">Paru en {!! $annee !!}</a></li>
             @endforeach
         </ul>
         @endif

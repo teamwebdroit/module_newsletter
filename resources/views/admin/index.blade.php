@@ -25,10 +25,10 @@
                             @if(!empty($arrets))
                                 @foreach($arrets as $arret)
                                     <tr>
-                                        <td><a class="btn btn-sky btn-sm" href="{{ url('admin/arret/'.$arret->id) }}">&Eacute;diter</a></td>
-                                        <td><strong>{{ $arret->reference }}</strong></td>
-                                        <td>{{ $arret->pub_date->formatLocalized('%d %B %Y') }}</td>
-                                        <td>{{ $custom->limit_words($arret->abstract, 10) }}</td>
+                                        <td><a class="btn btn-sky btn-sm" href="{!! url('admin/arret/'.$arret->id) !!}">&Eacute;diter</a></td>
+                                        <td><strong>{!! $arret->reference !!}</strong></td>
+                                        <td>{!! $arret->pub_date->formatLocalized('%d %B %Y') !!}</td>
+                                        <td>{!! $custom->limit_words($arret->abstract, 10) !!}</td>
                                     </tr>
                                 @endforeach
                             @endif
@@ -62,7 +62,7 @@
                             @if(!empty($abonnes))
                             @foreach($abonnes as $abonne)
                             <tr>
-                                <td><a class="btn btn-sky btn-sm" href="{{ url('admin/abonne/'.$abonne->id.'/edit') }}">&Eacute;diter</a></td>
+                                <td><a class="btn btn-sky btn-sm" href="{!! url('admin/abonne/'.$abonne->id.'/edit') !!}">&Eacute;diter</a></td>
                                 <td>
                                     @if( $abonne->activated_at )
                                         <span class="label label-success">Confirmé</span>
@@ -70,7 +70,7 @@
                                         <span class="label label-default">Email non confirmé</span>
                                     @endif
                                 </td>
-                                <td>{{ $abonne->email }}</td>
+                                <td>{!! $abonne->email !!}</td>
                                 <td>
                                     @if( !$abonne->subscription->isEmpty() )
                                     <?php

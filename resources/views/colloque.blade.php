@@ -23,7 +23,7 @@
                 @foreach($colloques as $name => $centre)
 
                     <h4 class="title-section">
-                        <a target="_blank" href="http://www2.unine.ch/cert"><img src="<?php echo asset('images/logos/'.$name.'.jpg');?>" alt="{{ $name }}" /></a>
+                        <a target="_blank" href="http://www2.unine.ch/cert"><img src="<?php echo asset('images/logos/'.$name.'.jpg');?>" alt="{!! $name !!}" /></a>
                     </h4>
 
                     @foreach($centre as $colloque)
@@ -41,41 +41,41 @@
                                     <div class="post-date">
                                         <ul>
                                             <li class="date">
-                                                <span class="day">{{ $date->day }}</span><span class="month">{{ $date->formatLocalized('%B') }}</span> <span class="year">{{ $date->year }}</span>
+                                                <span class="day">{!! $date->day !!}</span><span class="month">{!! $date->formatLocalized('%B') !!}</span> <span class="year">{!! $date->year !!}</span>
                                             </li>
                                         </ul>
                                     </div><!--END POST-DATE-->
 
                                     <div class="post-title">
                                         <h2 class="title">
-                                            <a target="_blank" href="http://www.publications-droit.ch/index.php?id=275#/item/59">{{ $colloque['event']['titre'] }}<br/>
-                                                <strong>{{ $colloque['event']['soustitre'] }}</strong></a>
+                                            <a target="_blank" href="http://www.publications-droit.ch/index.php?id=275#/item/59">{!! $colloque['event']['titre'] !!}<br/>
+                                                <strong>{!! $colloque['event']['soustitre'] !!}</strong></a>
                                         </h2>
                                     </div><!--END POST-TITLE-->
 
                                     <div class="post-entry">
-                                        <p>{{ $colloque['event']['remarques'] }}</p>
+                                        <p>{!! $colloque['event']['remarques'] !!}</p>
                                         @if(isset($colloque['programme']['url']))
-                                            <a target="_blank" href="{{ $colloque['programme']['url'].$colloque['programme']['filename'] }}">
+                                            <a target="_blank" href="{!! $colloque['programme']['url'].$colloque['programme']['filename'] !!}">
                                                 &nbsp;<i class="fa fa-file-o"></i> &nbsp;&nbsp;Le programme
                                             </a>
                                         @endif
                                         <dl class="dl-horizontal">
                                             <dt>Lieu:</dt>
-                                            <dd>{{ $colloque['event']['endroit'] }}</dd>
+                                            <dd>{!! $colloque['event']['endroit'] !!}</dd>
                                             <dt>Date:</dt>
-                                            <dd>{{ $date->format('d/m/y') }}</dd>
+                                            <dd>{!! $date->format('d/m/y') !!}</dd>
                                             <dt>Délai d'inscription:</dt>
-                                            <dd>{{ $delai->format('d/m/y') }}</dd>
+                                            <dd>{!! $delai->format('d/m/y') !!}</dd>
 
                                             <dt>Prix d'inscription:</dt>
                                             @if(!empty($colloque['prix']))
                                                 @foreach($colloque['prix'] as $prix)
-                                                    <dd>{{ $prix['remarquePrix'] }} <strong>CHF {{ $prix['Prix'] }}</strong></dd>
+                                                    <dd>{!! $prix['remarquePrix'] !!} <strong>CHF {!! $prix['Prix'] !!}</strong></dd>
                                                 @endforeach
                                             @endif
                                         </dl>
-                                        <p><a target="_blank" href="http://www.publications-droit.ch/index.php?id=275#/item/{{ $colloque['event']['id_Colloque'] }}" class="button small grey">Inscription</a></p>
+                                        <p><a target="_blank" href="http://www.publications-droit.ch/index.php?id=275#/item/{!! $colloque['event']['id_Colloque'] !!}" class="button small grey">Inscription</a></p>
 
                                     </div><!--END POST-ENTRY-->
 
@@ -114,17 +114,17 @@
                 <div class="panel panel-default">
                     <div class="panel-heading accordion-panel" role="tab" id="headingOne">
                         <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse_{{ $year }}" aria-expanded="true" aria-controls="collapseOne">
-                                Année {{ $year }}
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse_{!! $year !!}" aria-expanded="true" aria-controls="collapseOne">
+                                Année {!! $year !!}
                             </a>
                         </h4>
                     </div>
-                    <div id="collapse_{{ $year }}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                    <div id="collapse_{!! $year !!}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
                         <div class="panel-body">
                             @if($colloques)
                                 @foreach($colloques as $organisateur => $list)
 
-                                    <h4>{{ $organisateur }}</h4>
+                                    <h4>{!! $organisateur !!}</h4>
 
                                     @foreach($list as $colloque)
                                         <p>
@@ -133,10 +133,10 @@
                                                 $date  = \Carbon\Carbon::createFromFormat('Y-m-d', $colloque['event']['dateDebut']);
                                             ?>
 
-                                            <a target="_blank" href="http://www.publications-droit.ch/index.php?id=275#/item/{{ $colloque['event']['id_Colloque'] }}">
-                                                <i class="glyphicon glyphicon-inbox"></i> &nbsp;{{ $colloque['event']['titre'] }}
+                                            <a target="_blank" href="http://www.publications-droit.ch/index.php?id=275#/item/{!! $colloque['event']['id_Colloque'] !!}">
+                                                <i class="glyphicon glyphicon-inbox"></i> &nbsp;{!! $colloque['event']['titre'] !!}
                                             </a>
-                                            | <small>{{ $date->formatLocalized('%d %B %Y') }}</small>
+                                            | <small>{!! $date->formatLocalized('%d %B %Y') !!}</small>
                                         </p>
                                     @endforeach
                                 @endforeach

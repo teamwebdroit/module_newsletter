@@ -1,6 +1,6 @@
 <div class="newsletter">
     <h3 class="title"><i class="icon-envelope"></i> &nbsp;Inscription à la newsletter</h3>
-    {{ Form::open(array('url' => 'inscription')) }}
+    {!! Form::open(array('url' => 'inscription')) !!}
 
         <div class="input-group">
              <input type="text" class="form-control" value="" name="email" placeholder="Entrez votre email">
@@ -10,7 +10,7 @@
           </span>
         </div><!-- /input-group -->
 
-    {{ Form::close() }}
+    {!! Form::close() !!}
 </div><!--END WIDGET-->
 
 <p class="divider-border"></p>

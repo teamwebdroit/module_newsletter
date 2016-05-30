@@ -26,7 +26,7 @@
         @include('partials.message')
 
         <div id="about">
-            <img width="100%" alt="Droit du travail" src="{{ asset('images/header.jpg') }}" />
+            <img width="100%" alt="Droit du travail" src="{!! asset('images/header.jpg') !!}" />
         </div><!--END SECTION-->
 
         @if(!empty($homepage))
@@ -37,11 +37,11 @@
                 @foreach($contenu['blocs'] as $bloc)
                     <div class="col-md-<?php echo 12/$contenu['count']; ?>">
                         @if($index == 1)
-                            <h3 class="title">{{ $bloc->titre }}</h3>
+                            <h3 class="title">{!! $bloc->titre !!}</h3>
                         @else
-                            <h4 class="title <?php echo ( $contenu['count'] > 1 ? 'home-bloc' : ''); ?>">{{ $bloc->titre }}</h4>
+                            <h4 class="title <?php echo ( $contenu['count'] > 1 ? 'home-bloc' : ''); ?>">{!! $bloc->titre !!}</h4>
                         @endif
-                            <p>{{ $bloc->contenu }}</p>
+                            <p>{!! $bloc->contenu !!}</p>
                     </div>
                 @endforeach
 

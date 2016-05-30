@@ -28,7 +28,7 @@
                     <td width="25" class="resetMarge"></td><!-- space -->
                     <td valign="top" align="center" width="160" class="resetMarge">
                         <a target="_blank" href="http://www.staempflishop.com/detail/ISBN-9783727286797#.VI61kycVku0">
-                            <img style="max-width: 130px; max-height: 220px;" alt="Schweizerisches Wirtschaftsverwaltungsrecht" src="{{ asset('files/pub.jpg') }}" />
+                            <img style="max-width: 130px; max-height: 220px;" alt="Schweizerisches Wirtschaftsverwaltungsrecht" src="{!! asset('files/pub.jpg') !!}" />
                         </a>
                     </td>
                 </tr>

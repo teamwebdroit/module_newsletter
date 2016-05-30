@@ -3,7 +3,7 @@
 
 <div class="row"><!-- row -->
     <div class="col-md-12"><!-- col -->
-        <p><a class="btn btn-default" href="{{ url('admin/analyse') }}"><i class="fa fa-reply"></i> &nbsp;Retour à la liste</a></p>
+        <p><a class="btn btn-default" href="{!! url('admin/analyse') !!}"><i class="fa fa-reply"></i> &nbsp;Retour à la liste</a></p>
     </div>
 </div>
 
@@ -14,14 +14,14 @@
         <div class="panel panel-midnightblue">
 
             <!-- form start -->
-            {{ Form::open(array(
+            {!! Form::open(array(
                 'method'        => 'POST',
                 'id'            => 'analyse',
                 'data-validate' => 'parsley',
                 'files'         => true,
                 'class'         => 'validate-form form-horizontal',
                 'url'           => array('admin/analyse') ))
-            }}
+            !!}
 
             <div class="panel-heading">
                 <h4>Créer analyse</h4>
@@ -31,14 +31,14 @@
                 <div class="form-group">
                     <label for="message" class="col-sm-3 control-label">Titre</label>
                     <div class="col-sm-3">
-                        {{ Form::text('authors', null , array('class' => 'form-control') ) }}
+                        {!! Form::text('authors', null , array('class' => 'form-control') ) !!}
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="message" class="col-sm-3 control-label">Titre alternatif (remplace analyse du...)</label>
                     <div class="col-sm-3">
-                        {{ Form::text('title', null , array('class' => 'form-control') ) }}
+                        {!! Form::text('title', null , array('class' => 'form-control') ) !!}
                     </div>
                 </div>
 
@@ -49,7 +49,7 @@
                             <option value="">Choisir</option>
                                 @if(!empty($auteurs))
                                     @foreach($auteurs as $auteur)
-                                    <option value="{{ $auteur->id }}">{{ $auteur->name }}</option>
+                                    <option value="{!! $auteur->id !!}">{!! $auteur->name !!}</option>
                                     @endforeach
                                 @endif
                         </select>
@@ -59,21 +59,21 @@
                 <div class="form-group">
                     <label for="message" class="col-sm-3 control-label">Date de publication</label>
                     <div class="col-sm-2">
-                        {{ Form::text('pub_date', null , array('class' => 'form-control datePicker') ) }}
+                        {!! Form::text('pub_date', null , array('class' => 'form-control datePicker') ) !!}
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="file" class="col-sm-3 control-label">Fichier</label>
                     <div class="col-sm-7">
-                        {{ Form::file('file') }}
+                        {!! Form::file('file') !!}
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="message" class="col-sm-3 control-label">Résumé</label>
                     <div class="col-sm-7">
-                        {{ Form::textarea('abstract', null , array('class' => 'form-control', 'cols' => '50' , 'rows' => '4' )) }}
+                        {!! Form::textarea('abstract', null , array('class' => 'form-control', 'cols' => '50' , 'rows' => '4' )) !!}
                     </div>
                 </div>
 
@@ -131,12 +131,12 @@
                 </div>
             </div>
             <div class="panel-footer mini-footer ">
-                <div class="col-sm-3">{{ Form::hidden('user_id', 1 )}}</div>
+                <div class="col-sm-3">{!! Form::hidden('user_id', 1 )!!}</div>
                 <div class="col-sm-6">
                     <button class="btn btn-primary" type="submit">Envoyer </button>
                 </div>
             </div>
-            {{ Form::close() }}
+            {!! Form::close() !!}
         </div>
     </div>
 

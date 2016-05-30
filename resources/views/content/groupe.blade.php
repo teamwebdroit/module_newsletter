@@ -3,10 +3,10 @@
 
     <div class="row">
         <div class="col-md-9">
-            <h3 style="text-align: left;">{{ $allcategories[$bloc->categorie] }}</h3>
+            <h3 style="text-align: left;">{!! $allcategories[$bloc->categorie] !!}</h3>
         </div>
         <div class="col-md-3 listCat">
-            <img width="130" border="0" src="{{ asset('newsletter/pictos/'.$bloc->image) }}" alt="{{ $allcategories[$bloc->categorie] }}" />
+            <img width="130" border="0" src="{!! asset('newsletter/pictos/'.$bloc->image) !!}" alt="{!! $allcategories[$bloc->categorie] !!}" />
         </div>
     </div>
 
@@ -18,11 +18,11 @@
                 <div class="post">
                     <div class="post-title">
                         <?php setlocale(LC_ALL, 'fr_FR.UTF-8');  ?>
-                        <h2 class="title">{{ $arret->reference }} du {{ $arret->pub_date->formatLocalized('%d %B %Y') }}</h2>
-                        <p>{{ $arret->abstract }}</p>
+                        <h2 class="title">{!! $arret->reference !!} du {!! $arret->pub_date->formatLocalized('%d %B %Y') !!}</h2>
+                        <p>{!! $arret->abstract !!}</p>
                     </div><!--END POST-TITLE-->
                     <div class="post-entry">
-                        {{ $arret->pub_text }}
+                        {!! $arret->pub_text !!}
                     </div>
                 </div><!--END POST-->
             </div>

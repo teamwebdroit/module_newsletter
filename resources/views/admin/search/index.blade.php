@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-6">
 
-            {{ Form::open(array( 'url' => 'admin/search' )) }}
+            {!! Form::open(array( 'url' => 'admin/search' )) !!}
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Recherche</label>
                         <div class="col-sm-8">
@@ -17,7 +17,7 @@
                         </div>
                     </div>
                 </div>
-             {{ Form::close() }}
+             {!! Form::close() !!}
 
         </div>
         <div class="col-md-6">
@@ -53,10 +53,10 @@
 
                         @foreach($arrets as $arret)
                             <tr>
-                                <td><a class="btn btn-sky btn-sm" href="{{ url('admin/arret/'.$arret->id) }}">éditer</a></td>
-                                <td><strong>{{ $arret->reference }}</strong></td>
-                                <td>{{ $arret->pub_date->formatLocalized('%d %B %Y') }}</td>
-                                <td>{{ $arret->abstract }}</td>
+                                <td><a class="btn btn-sky btn-sm" href="{!! url('admin/arret/'.$arret->id) !!}">éditer</a></td>
+                                <td><strong>{!! $arret->reference !!}</strong></td>
+                                <td>{!! $arret->pub_date->formatLocalized('%d %B %Y') !!}</td>
+                                <td>{!! $arret->abstract !!}</td>
                             </tr>
                         @endforeach
 

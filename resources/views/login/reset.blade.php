@@ -1,7 +1,7 @@
 @extends('layouts.login')
 @section('content')
 
-    {{ Form::open(array('method'=> 'POST', 'action' => 'RemindersController@postReset')) }}
+    {!! Form::open(array('method'=> 'POST', 'action' => 'RemindersController@postReset')) !!}
 
         <div class="panel-body">
             <h4 class="text-center" style="margin-bottom: 25px;">Définir un nouveau mot de passe</h4>
@@ -34,11 +34,11 @@
         </div>
         <div class="panel-footer">
             <div class="pull-right">
-                <input type="hidden" name="token" value="{{ $token }}">
+                <input type="hidden" name="token" value="{!! $token !!}">
                 <button type="submit" class="btn btn-primary">Envoyer</button>
             </div>
         </div>
 
-    {{ Form::close() }}
+    {!! Form::close() !!}
 
 @stop

@@ -4,7 +4,7 @@
 
 <div class="row"><!-- row -->
     <div class="col-md-12"><!-- col -->
-        <p><a class="btn btn-default" href="{{ url('admin/author') }}"><i class="fa fa-reply"></i> &nbsp;Retour à la liste</a></p>
+        <p><a class="btn btn-default" href="{!! url('admin/author') !!}"><i class="fa fa-reply"></i> &nbsp;Retour à la liste</a></p>
     </div>
 </div>
 <!-- start row -->
@@ -14,12 +14,12 @@
         <div class="panel panel-midnightblue">
 
             <!-- form start -->
-            {{ Form::open(array(
+            {!! Form::open(array(
                 'method' => 'POST',
                 'class'  => 'form-validation form-horizontal',
                 'files'  => true,
                 'url'    => array('admin/author')))
-            }}
+            !!}
 
             <div class="panel-heading">
                 <h4>Ajouter un auteur</h4>
@@ -29,14 +29,14 @@
                 <div class="form-group">
                     <label for="message" class="col-sm-3 control-label">Prénom</label>
                     <div class="col-sm-3">
-                        {{ Form::text('first_name', null , array('class' => 'form-control') ) }}
+                        {!! Form::text('first_name', null , array('class' => 'form-control') ) !!}
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="message" class="col-sm-3 control-label">Nom</label>
                     <div class="col-sm-3">
-                        {{ Form::text('last_name', null , array('class' => 'form-control') ) }}
+                        {!! Form::text('last_name', null , array('class' => 'form-control') ) !!}
                     </div>
                 </div>
 
@@ -45,7 +45,7 @@
                     <div class="col-sm-3">
                         <div class="list-group">
                             <div class="list-group-item">
-                                {{ Form::file('photo') }}
+                                {!! Form::file('photo') !!}
                             </div>
                         </div>
                     </div>
@@ -54,14 +54,14 @@
                 <div class="form-group">
                     <label for="message" class="col-sm-3 control-label">Occupation</label>
                     <div class="col-sm-7">
-                        {{ Form::text('occupation', null , array('class' => 'form-control') ) }}
+                        {!! Form::text('occupation', null , array('class' => 'form-control') ) !!}
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="message" class="col-sm-3 control-label">Biographie</label>
                     <div class="col-sm-7">
-                        {{ Form::textarea('bio', null , array('class' => 'form-control redactor', 'cols' => '50' , 'rows' => '4' )) }}
+                        {!! Form::textarea('bio', null , array('class' => 'form-control redactor', 'cols' => '50' , 'rows' => '4' )) !!}
                     </div>
                 </div>
 
@@ -73,7 +73,7 @@
                 </div>
             </div>
 
-            {{ Form::close() }}
+            {!! Form::close() !!}
         </div>
     </div>
 

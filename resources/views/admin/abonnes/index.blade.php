@@ -8,7 +8,7 @@
     <div class="col-md-6">
         <div class="options text-right" style="margin-bottom: 10px;">
             <div class="btn-toolbar">
-                <a href="{{ url('admin/abonne/create') }}" class="btn btn-green"><i class="fa fa-plus"></i> &nbsp;Ajouter un abonné</a>
+                <a href="{!! url('admin/abonne/create') !!}" class="btn btn-green"><i class="fa fa-plus"></i> &nbsp;Ajouter un abonné</a>
             </div>
         </div>
     </div>

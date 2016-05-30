@@ -13,7 +13,7 @@
         <a style="text-align:center;font-size:13px;font-family:arial,sans-serif;
 			color:white;font-weight:bold;background-color: #dd0330;border: 1px solid #cc002a;
 			text-decoration:none;display:inline-block;min-height:27px;padding-left:8px;padding-right:8px;
-			line-height:27px;border-radius:2px;border-width:1px" href="{{ URL::to('inscription/activation', array($token)) }}">Confirmer l'adresse email </a></p>
+			line-height:27px;border-radius:2px;border-width:1px" href="{!! URL::to('inscription/activation', array($token)) !!}">Confirmer l'adresse email </a></p>
 </div>
 <p><a style="font-family: arial, sans-serif;color: #444; font-size: 13px;" href="http://www.droitdutravail.ch">www.droitdutravail.ch</a></p>
 </body>

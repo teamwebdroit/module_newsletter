@@ -23,7 +23,7 @@
                          <h2>Sommaire</h2>
                          <ol>
                              @foreach($sommaire as $list)
-                                 <li style="font-size: 14px;line-height: 20px; margin-bottom: 3px;">{{ $list }}</li>
+                                 <li style="font-size: 14px;line-height: 20px; margin-bottom: 3px;">{!! $list !!}</li>
                              @endforeach
                          </ol>
                      </td>

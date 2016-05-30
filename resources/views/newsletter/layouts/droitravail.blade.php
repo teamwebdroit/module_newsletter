@@ -23,7 +23,7 @@
                             <tr>
                                 <td align="center" class="linkGrey">
                                     Si cet email ne s'affiche pas correctement, vous pouvez le voir directement dans
-                                    <a class="linkGrey" href="{{ $browser }}">votre navigateur</a>.
+                                    <a class="linkGrey" href="{!! $browser !!}">votre navigateur</a>.
                                 </td>
                             </tr>
                             <tr><td height="15"></td></tr><!-- space -->
@@ -51,7 +51,7 @@
                             <tr><td height="15"></td></tr><!-- space -->
                             <tr>
                                 <td align="center" class="linkGrey">Si vous ne désirez plus recevoir cette newsletter, vous pouvez vous désinscrire à tout moment en
-                                    <a href="[[UNSUB_LINK_EN]]"></a><a class="linkGrey" href="{{ $unsubscribe }}">cliquant ici</a>.
+                                    <a href="[[UNSUB_LINK_EN]]"></a><a class="linkGrey" href="{!! $unsubscribe !!}">cliquant ici</a>.
 
                                 </td>
                             </tr>

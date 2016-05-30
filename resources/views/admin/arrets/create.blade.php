@@ -3,7 +3,7 @@
 
 <div class="row"><!-- row -->
     <div class="col-md-12"><!-- col -->
-        <p><a class="btn btn-default" href="{{ url('admin/arret') }}"><i class="fa fa-reply"></i> &nbsp;Retour à la liste</a></p>
+        <p><a class="btn btn-default" href="{!! url('admin/arret') !!}"><i class="fa fa-reply"></i> &nbsp;Retour à la liste</a></p>
     </div>
 </div>
 
@@ -14,14 +14,14 @@
         <div class="panel panel-midnightblue">
 
             <!-- form start -->
-            {{ Form::open(array(
+            {!! Form::open(array(
                 'method'        => 'POST',
                 'id'            => 'arret',
                 'data-validate' => 'parsley',
                 'files'         => true,
                 'class'         => 'validate-form form-horizontal',
                 'url'           => array('admin/arret') ))
-            }}
+            !!}
 
             <div class="panel-heading">
                 <h4>Créer arrêt</h4>
@@ -31,7 +31,7 @@
                 <div class="form-group">
                     <label for="message" class="col-sm-3 control-label">Référence</label>
                     <div class="col-sm-4">
-                        {{ Form::text('reference', null , array('class' => 'form-control') ) }}
+                        {!! Form::text('reference', null , array('class' => 'form-control') ) !!}
                     </div>
                     <div class="col-sm-2">
                         <div class="checkbox">
@@ -45,28 +45,28 @@
                 <div class="form-group">
                     <label for="message" class="col-sm-3 control-label">Date de publication</label>
                     <div class="col-sm-2">
-                        {{ Form::text('pub_date', null , array('class' => 'form-control datePicker') ) }}
+                        {!! Form::text('pub_date', null , array('class' => 'form-control datePicker') ) !!}
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="file" class="col-sm-3 control-label">Fichier</label>
                     <div class="col-sm-7">
-                        {{ Form::file('file') }}
+                        {!! Form::file('file') !!}
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="message" class="col-sm-3 control-label">Résumé</label>
                     <div class="col-sm-7">
-                        {{ Form::textarea('abstract', null , array('class' => 'form-control', 'cols' => '50' , 'rows' => '4' )) }}
+                        {!! Form::textarea('abstract', null , array('class' => 'form-control', 'cols' => '50' , 'rows' => '4' )) !!}
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="message" class="col-sm-3 control-label">Texte</label>
                     <div class="col-sm-7">
-                        {{ Form::textarea('pub_text', null , array('class' => 'form-control redactor', 'cols' => '50' , 'rows' => '4' )) }}
+                        {!! Form::textarea('pub_text', null , array('class' => 'form-control redactor', 'cols' => '50' , 'rows' => '4' )) !!}
                     </div>
                 </div>
 
@@ -100,12 +100,12 @@
 
             </div>
             <div class="panel-footer mini-footer ">
-                <div class="col-sm-3">{{ Form::hidden('user_id', 1 )}}</div>
+                <div class="col-sm-3">{!! Form::hidden('user_id', 1 )!!}</div>
                 <div class="col-sm-6">
                     <button class="btn btn-primary" type="submit">Envoyer </button>
                 </div>
             </div>
-            {{ Form::close() }}
+            {!! Form::close() !!}
         </div>
     </div>
 

@@ -8,7 +8,7 @@
     <div class="col-md-6">
         <div class="options text-right" style="margin-bottom: 10px;">
             <div class="btn-toolbar">
-                <a href="{{ url('admin/campagne/create') }}" class="btn btn-green"><i class="fa fa-plus"></i> &nbsp;Nouvelle campagne</a>
+                <a href="{!! url('admin/campagne/create') !!}" class="btn btn-green"><i class="fa fa-plus"></i> &nbsp;Nouvelle campagne</a>
             </div>
         </div>
     </div>
@@ -41,31 +41,31 @@
                                 <tr>
                                     <td>
                                         <div class="btn-group-vertical">
-                                           <a class="btn btn-sky btn-sm" href="{{ url('admin/campagne/'.$campagne->id.'/edit') }}">&Eacute;diter</a>
-                                           <a class="btn btn-inverse btn-sm" href="{{ url('admin/campagne/'.$campagne->id) }}">Composer</a>
+                                           <a class="btn btn-sky btn-sm" href="{!! url('admin/campagne/'.$campagne->id.'/edit') !!}">&Eacute;diter</a>
+                                           <a class="btn btn-inverse btn-sm" href="{!! url('admin/campagne/'.$campagne->id) !!}">Composer</a>
                                         </div>
                                         <div class="btn-group-vertical">
                                             @if($campagne->status == 'envoyé')
-                                                <a class="btn btn-success btn-sm" href="{{ url('admin/stats/'.$campagne->id) }}">Statistiques</a>
-                                                <a href="javascript:;" class="btn btn-default btn-sm sendEmailNewsletter" data-campagne="{{ $campagne->id }}">Envoyer par email</a>
+                                                <a class="btn btn-success btn-sm" href="{!! url('admin/stats/'.$campagne->id) !!}">Statistiques</a>
+                                                <a href="javascript:;" class="btn btn-default btn-sm sendEmailNewsletter" data-campagne="{!! $campagne->id !!}">Envoyer par email</a>
                                             @endif
                                         </div>
                                     </td>
                                     <td>
                                         @if($campagne->status == 'brouillon')
-                                            {{ Form::open(array('url' => array('admin/send/campagne') , 'id' => 'sendCampagneForm', 'class' => 'form-inline')) }}
-                                                <input name="id" value="{{ $campagne->id }}" type="hidden">
-                                                <a href="javascript:;" data-campagne="{{ $campagne->id }}" class="btn btn-sm btn-orange" id="bootbox-demo-3">
+                                            {!! Form::open(array('url' => array('admin/send/campagne') , 'id' => 'sendCampagneForm', 'class' => 'form-inline')) !!}
+                                                <input name="id" value="{!! $campagne->id !!}" type="hidden">
+                                                <a href="javascript:;" data-campagne="{!! $campagne->id !!}" class="btn btn-sm btn-orange" id="bootbox-demo-3">
                                                     <i class="fa fa-exclamation"></i> &nbsp;&nbsp;Envoyer la campagne
                                                 </a>
-                                            {{ Form::close() }}
+                                            {!! Form::close() !!}
                                         @else
                                             <?php setlocale(LC_ALL, 'fr_FR.UTF-8');  ?>
-                                            Le {{ $campagne->updated_at->formatLocalized('%d %B %Y') }} à {{ $campagne->updated_at->toTimeString() }}
+                                            Le {!! $campagne->updated_at->formatLocalized('%d %B %Y') !!} à {!! $campagne->updated_at->toTimeString() !!}
                                         @endif
                                     </td>
-                                    <td><strong>{{ $campagne->sujet }}</strong></td>
-                                    <td>{{ $campagne->auteurs }}</td>
+                                    <td><strong>{!! $campagne->sujet !!}</strong></td>
+                                    <td>{!! $campagne->auteurs !!}</td>
                                     <td>
                                         @if($campagne->status == 'brouillon')
                                             <span class="label label-default">Brouillon</span>
@@ -73,11 +73,11 @@
                                             <span class="label label-success">Envoyé</span>
                                         @endif
                                     </td>
-                                    <td>{{ $campagne->created_at->formatLocalized('%d %B %Y') }}</td>
+                                    <td>{!! $campagne->created_at->formatLocalized('%d %B %Y') !!}</td>
                                     <td class="text-right">
-                                        {{ Form::open(array('route' => array('admin.campagne.destroy', $campagne->id), 'method' => 'delete')) }}
-                                         <button data-action="campagne {{ $campagne->sujet }}" class="btn btn-danger btn-xs deleteAction">×</button>
-                                        {{ Form::close() }}
+                                        {!! Form::open(array('route' => array('admin.campagne.destroy', $campagne->id), 'method' => 'delete')) !!}
+                                         <button data-action="campagne {!! $campagne->sujet !!}" class="btn btn-danger btn-xs deleteAction">×</button>
+                                        {!! Form::close() !!}
                                     </td>
                                 </tr>
                                 @endforeach

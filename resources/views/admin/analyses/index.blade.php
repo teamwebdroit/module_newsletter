@@ -6,7 +6,7 @@
 
         <div class="options text-right" style="margin-bottom: 10px;">
             <div class="btn-toolbar">
-                <a href="{{ url('admin/analyse/create') }}" class="btn btn-success"><i class="fa fa-plus"></i> &nbsp;Ajouter</a>
+                <a href="{!! url('admin/analyse/create') !!}" class="btn btn-success"><i class="fa fa-plus"></i> &nbsp;Ajouter</a>
             </div>
         </div>
 
@@ -31,14 +31,14 @@
                         @if(!empty($analyses))
                             @foreach($analyses as $analyse)
                             <tr>
-                                <td><a class="btn btn-sky btn-sm" href="{{ url('admin/analyse/'.$analyse->id) }}">éditer</a></td>
-                                <td><strong>{{ $analyse->authors }}</strong></td>
-                                <td>{{ $analyse->pub_date->formatLocalized('%d %B %Y') }}</td>
-                                <td>{{ $analyse->abstract }}</td>
+                                <td><a class="btn btn-sky btn-sm" href="{!! url('admin/analyse/'.$analyse->id) !!}">éditer</a></td>
+                                <td><strong>{!! $analyse->authors !!}</strong></td>
+                                <td>{!! $analyse->pub_date->formatLocalized('%d %B %Y') !!}</td>
+                                <td>{!! $analyse->abstract !!}</td>
                                 <td>
-                                    {{ Form::open(array('route' => array('admin.analyse.destroy', $analyse->id), 'method' => 'delete')) }}
-                                    <button data-action="arrêt {{ $analyse->reference }}" class="btn btn-danger btn-sm deleteAction">Supprimer</button>
-                                    {{ Form::close() }}
+                                    {!! Form::open(array('route' => array('admin.analyse.destroy', $analyse->id), 'method' => 'delete')) !!}
+                                    <button data-action="arrêt {!! $analyse->reference !!}" class="btn btn-danger btn-sm deleteAction">Supprimer</button>
+                                    {!! Form::close() !!}
                                 </td>
                             </tr>
                             @endforeach

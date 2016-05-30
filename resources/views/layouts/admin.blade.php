@@ -46,22 +46,22 @@
 
         <a id="leftmenu-trigger" class="tooltips" data-toggle="tooltip" data-placement="right" title="Toggle Sidebar"></a>
 
-        <div class="navbar-header pull-left"><a class="navbar-brand" href="{{ url('/')  }}">Droit du travail</a></div>
+        <div class="navbar-header pull-left"><a class="navbar-brand" href="{!! url('/')  !!}">Droit du travail</a></div>
 
         <ul class="nav navbar-nav pull-right toolbar">
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle username" data-toggle="dropdown">
                     <span class="hidden-xs">
-                        {{ $current_user }}
+                        {!! $current_user !!}
                         <i class="fa fa-caret-down"></i></span>
                 </a>
                 <ul class="dropdown-menu userinfo arrow">
                     <li class="username">
-                        <a href="#"><div class="pull-right"><h5>Bonjour, {{ $current_user }}!</h5></div></a>
+                        <a href="#"><div class="pull-right"><h5>Bonjour, {!! $current_user !!}!</h5></div></a>
                     </li>
                     <li class="userlinks">
                         <ul class="dropdown-menu">
-                            <li><a href="{{ url('logout') }}"><i class="pull-right fa  fa-power-off"></i> Logout</a></li>
+                            <li><a href="{!! url('logout') !!}"><i class="pull-right fa  fa-power-off"></i> Logout</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -81,7 +81,7 @@
                 @include('admin.partials.breadcrumbs')
 
                 <div id="page-heading">
-                    <h2>{{ $pageTitle or 'Administration' }}</h2>
+                    <h2>{!! $pageTitle or 'Administration' !!}</h2>
 
                     <!-- messages and errors -->
                     @include('admin.partials.message')

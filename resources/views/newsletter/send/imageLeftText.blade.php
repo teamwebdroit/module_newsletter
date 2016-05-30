@@ -12,13 +12,13 @@
                     <td valign="top" align="center" width="160" class="resetMarge">
                         <?php $lien = (isset($bloc->lien) && !empty($bloc->lien) ? $bloc->lien : url('/') ); ?>
                         <a target="_blank" href="<?php echo $lien; ?>">
-                            <img width="130px" style="max-width: 130px; max-height: 220px;" alt="Droit du travail" src="{{ asset('files/'.$bloc->image) }}" />
+                            <img width="130px" style="max-width: 130px; max-height: 220px;" alt="Droit du travail" src="{!! asset('files/'.$bloc->image) !!}" />
                         </a>
                     </td>
                     <td width="25" class="resetMarge"></td><!-- space -->
                     <td valign="top" width="375" class="resetMarge">
-                        <h2 style="font-family: sans-serif;">{{ $bloc->titre }}</h2>
-                        <div>{{ $bloc->contenu }}</div>
+                        <h2 style="font-family: sans-serif;">{!! $bloc->titre !!}</h2>
+                        <div>{!! $bloc->contenu !!}</div>
                     </td>
                 </tr>
             </table>

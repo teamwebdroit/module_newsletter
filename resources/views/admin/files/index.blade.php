@@ -31,7 +31,7 @@
 
                         </div>
                         <div class="col-md-4 text-right">
-                            {{ Form::open(array('url' => array('admin/file/addFolder'))) }}
+                            {!! Form::open(array('url' => array('admin/file/addFolder'))) !!}
                             <div class="input-group">
                                 <input type="text" name="folder" class="form-control">
                                 <input type="hidden" id="addFolderForm" name="path">
@@ -39,7 +39,7 @@
                                    <button class="btn btn-sky" type="submit"><i class="fa fa-folder"></i>&nbsp; Ajouter un dossier</button>
                                 </span>
                             </div><!-- /input-group -->
-                            {{ Form::close() }}
+                            {!! Form::close() !!}
                         </div>
                     </div>
 

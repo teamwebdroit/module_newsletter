@@ -7,13 +7,13 @@
         <div class="panel panel-green">
 
             <!-- form start -->
-            {{ Form::open(array(
+            {!! Form::open(array(
                 'method'        => 'POST',
                 'data-validate' => 'parsley',
                 'files'         => true,
                 'class'         => 'validate-form form-horizontal',
                 'url'           => array('admin/campagne')))
-            }}
+            !!}
 
                 <div class="panel-heading">
                     <h4>Ajouter une campagne</h4>
@@ -23,13 +23,13 @@
                     <div class="form-group">
                         <label for="message" class="col-sm-3 control-label">Sujet</label>
                         <div class="col-sm-6">
-                            {{ Form::text('sujet', null , array('class' => 'form-control') ) }}
+                            {!! Form::text('sujet', null , array('class' => 'form-control') ) !!}
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="message" class="col-sm-3 control-label">Auteurs</label>
                         <div class="col-sm-6">
-                            {{ Form::text('auteurs', null , array('class' => 'form-control') ) }}
+                            {!! Form::text('auteurs', null , array('class' => 'form-control') ) !!}
                         </div>
                     </div>
 
@@ -41,7 +41,7 @@
                     </div>
                 </div>
 
-            {{ Form::close() }}
+            {!! Form::close() !!}
 
         </div>
 

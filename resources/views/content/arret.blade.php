@@ -3,13 +3,13 @@
         <div class="post">
             <div class="post-title">
                 <?php setlocale(LC_ALL, 'fr_FR.UTF-8');  ?>
-                <h2 class="title">{{ $bloc->reference }} du {{ $bloc->pub_date->formatLocalized('%d %B %Y') }}</h2>
-                <p>{{ $bloc->abstract }}</p>
+                <h2 class="title">{!! $bloc->reference !!} du {!! $bloc->pub_date->formatLocalized('%d %B %Y') !!}</h2>
+                <p>{!! $bloc->abstract !!}</p>
             </div><!--END POST-TITLE-->
             <div class="post-entry">
-                {{ $bloc->pub_text }}
+                {!! $bloc->pub_text !!}
                 @if(isset($bloc->file))
-                    <p><a target="_blank" href="{{ asset('files/arrets/'.$bloc->file) }}">Télécharger en pdf</a></p>
+                    <p><a target="_blank" href="{!! asset('files/arrets/'.$bloc->file) !!}">Télécharger en pdf</a></p>
                 @endif
             </div>
         </div><!--END POST-->
@@ -41,25 +41,25 @@
 
                         <!-- overwrite analyse title if any -->
                         @if(!empty($analyse->title))
-                            <h2 class="title">{{ $analyse->title }}</h2>
+                            <h2 class="title">{!! $analyse->title !!}</h2>
                         @else
-                            <h2 class="title">Analyse de l'arrêt {{ $bloc->reference }}</h2>
+                            <h2 class="title">Analyse de l'arrêt {!! $bloc->reference !!}</h2>
                         @endif
                         <!-- overwrite analyse title if any -->
 
                     </div><!--END POST-TITLE-->
                     <div class="post-entry">
-                        <h4>{{ $analyse->authors }}</h4>
-                        <p>{{ $analyse->abstract }}</p>
-                        <p><a target="_blank" href="{{ asset('files/analyses/'.$analyse->file) }}">Télécharger en pdf</a></p>
+                        <h4>{!! $analyse->authors !!}</h4>
+                        <p>{!! $analyse->abstract !!}</p>
+                        <p><a target="_blank" href="{!! asset('files/analyses/'.$analyse->file) !!}">Télécharger en pdf</a></p>
                     </div>
             </div><!--END POST-->
         @endforeach
 
     </div>
     <div class="col-md-3 listCat">
-        <a href="{{ url('jurisprudence') }}">
-            <img width="130" border="0" alt="Analyse" src="{{ asset('images/analyse.png') }}">
+        <a href="{!! url('jurisprudence') !!}">
+            <img width="130" border="0" alt="Analyse" src="{!! asset('images/analyse.png') !!}">
         </a>
     </div>
     <!-- Bloc content-->

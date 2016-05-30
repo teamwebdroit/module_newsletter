@@ -7,8 +7,8 @@
             <div class="row">
                 <div class="col-md-8">
                     @if(!empty($newsletter))
-                        <h1 class="title uppercase">{{ $campagne->sujet }}</h1>
-                        <h2 class="subtitle">{{ $campagne->auteurs }}</h2>
+                        <h1 class="title uppercase">{!! $campagne->sujet !!}</h1>
+                        <h2 class="subtitle">{!! $campagne->auteurs !!}</h2>
                     @else
                         <h1 class="title uppercase">Aucune newsletter pour le moment</h1>
                     @endif

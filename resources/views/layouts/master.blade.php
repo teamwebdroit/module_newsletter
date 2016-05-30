@@ -86,7 +86,7 @@
                         <p class="copyright">Copyright &copy; Droit du travail <?php echo date('Y'); ?>. Tous droits réservés.</p>
                     </div><!--END ONE-->
                     <div class="col-md-2 text-align-center">
-                        <a class="btn btn-xs btn-default" href="{{ url('admin/dashboard') }}">administration</a>
+                        <a class="btn btn-xs btn-default" href="{!! url('admin/dashboard') !!}">administration</a>
                     </div>
                 </div><!--END SECTION-->
             </div><!--END FOOTER-->
