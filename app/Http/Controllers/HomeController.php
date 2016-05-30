@@ -11,7 +11,7 @@ use Laracasts\Commander\CommanderTrait;
 use Droit\Command\MessageSendCommand;
 use Droit\Service\Worker\ColloqueWorker;
 
-class HomeController extends BaseController
+class HomeController extends Controller
 {
 
     use CommanderTrait;

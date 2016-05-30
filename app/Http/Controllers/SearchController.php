@@ -2,7 +2,7 @@
 
 use Droit\Service\Worker\SearchInterface;
 
-class SearchController extends BaseController
+class SearchController extends Controller
 {
     
     protected $search;

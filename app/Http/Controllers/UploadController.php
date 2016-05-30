@@ -2,7 +2,7 @@
 
 use Droit\Service\Worker\UploadInterface;
 
-class UploadController extends BaseController
+class UploadController extends Controller
 {
 
     protected $upload;

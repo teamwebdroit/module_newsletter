@@ -10,7 +10,7 @@ use Droit\Content\Repo\GroupeInterface;
 
 use Droit\Command\CreateCampagneCommand;
 
-class CampagneController extends BaseController
+class CampagneController extends Controller
 {
 
     use CommanderTrait;
